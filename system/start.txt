@@ -1,0 +1,95 @@
+##############################################################################
+#
+# This file contains original work by Andy Southgate.  Contact details can be
+# found at http://www.mushware.co.uk.  This file was placed in the Public
+# Domain by Andy Southgate and Mushware Limited in 2005.
+#
+# This software carries NO WARRANTY of any kind.
+#
+##############################################################################
+#
+# $Id: start.txt,v 1.10 2005/06/09 14:13:04 southa Exp $
+# $Log: start.txt,v $
+# Revision 1.10  2005/06/09 14:13:04  southa
+# X11 fixes
+#
+# Revision 1.9  2005/06/09 00:04:57  southa
+# X11 tweaks
+#
+# Revision 1.8  2005/05/27 12:48:35  southa
+# Registration box tweaks
+#
+# Revision 1.7  2005/05/20 13:18:59  southa
+# Release work
+#
+# Revision 1.6  2005/05/20 10:26:24  southa
+# Release work
+#
+# Revision 1.5  2005/05/20 08:44:32  southa
+# Update
+#
+# Revision 1.4  2005/04/19 23:25:33  southa
+# Mode switching and recognition
+#
+# Revision 1.3  2005/04/10 00:09:19  southa
+# Registration
+#
+# Revision 1.2  2005/04/01 00:02:00  southa
+# Build tweaks
+#
+# Revision 1.1.1.1  2005/03/30 20:47:17  southa
+# Created
+#
+#
+
+# Change the paths here if you detach the application from its data directory
+
+# On entry APPLPATH is set to the directory above the one the executable is in
+# configset("APPLPATH","/usr/local/bin/maurheen")
+
+configset("GLOBAL_SPACES_PATH",$APPLPATH+"/spaces") 
+configset("GLOBAL_PIXELS_PATH",$APPLPATH+"/pixels") 
+configset("GLOBAL_WAVES_PATH",$APPLPATH+"/waves") 
+configset("SYSTEM_PATH",$APPLPATH+"/system")
+
+# Find somewhere to save our files.  Directory name first, then paths to check
+setsavepath(".tesseracttrainer", $HOME, $SYSTEM_PATH, "/tmp")
+
+# Set registration code file path
+configset("REG_FILENAME", $GLOBAL_SAVE_PATH+"/reg.xml")
+
+# Set configuration file path
+configset("CONFIG_FILENAME", $GLOBAL_SAVE_PATH+"/config.xml")
+
+# Options for DISPLAY_QUALITY are low, medium or high
+configset("DISPLAY_QUALITY", "high")
+
+# Adanaxis configuraton values
+
+# Print OpenGL infomation
+configset('MUSHGL_DUMP_MUSHGLV', 1)
+
+# Extra display mode definitions for X11
+# Uncomment these or add your own
+# configset('X11_MODE_0', '(960,600)')
+# configset('X11_MODE_1', '(1680,1050)')
+# configset('X11_MODE_2', '(1920,1200)')
+# and so on, up to X11_MODE_9
+
+# Load the dialogues
+# GameDialogueLoad($SYSTEM_PATH+'/objects.xml')
+
+# Mutate the application into the Tesseract Trainer
+adanaxis
+
+# Add config elements - not used in this application
+configvalueadd('displaymode', 0, 0, 0)
+configstringadd('displayquality','high', 'low=Low&medium=Medium&high=High')
+configstringadd('displaylighting', 'dynamic', 'none=None&dynamic=Dynamic')
+
+# Load the system font
+loadfontmap('font-mono1',$GLOBAL_PIXELS_PATH+'/font-mono1.tiff',8,12,337,768)
+
+
+
+
