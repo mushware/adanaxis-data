@@ -8,8 +8,11 @@
 #
 ##############################################################################
 #
-# $Id: start.txt,v 1.1 2005/06/13 17:34:52 southa Exp $
+# $Id: start.txt,v 1.2 2005/06/14 13:25:30 southa Exp $
 # $Log: start.txt,v $
+# Revision 1.2  2005/06/14 13:25:30  southa
+# Adanaxis work
+#
 # Revision 1.1  2005/06/13 17:34:52  southa
 # Adanaxis creation
 
@@ -49,7 +52,7 @@ configset('MUSHGL_DUMP_MUSHGLV', 1)
 # and so on, up to X11_MODE_9
 
 # Load the dialogues
-# GameDialogueLoad($SYSTEM_PATH+'/objects.xml')
+GameDialogueLoad($SYSTEM_PATH+'/objects.xml')
 
 # Mutate the application into Adanaxis
 adanaxis
