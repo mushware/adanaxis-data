@@ -8,8 +8,11 @@
 #
 ##############################################################################
 #
-# $Id: start.txt,v 1.2 2005/06/14 13:25:30 southa Exp $
+# $Id: start.txt,v 1.3 2005/06/14 20:39:38 southa Exp $
 # $Log: start.txt,v $
+# Revision 1.3  2005/06/14 20:39:38  southa
+# Adanaxis work
+#
 # Revision 1.2  2005/06/14 13:25:30  southa
 # Adanaxis work
 #
@@ -42,7 +45,7 @@ configset("DISPLAY_QUALITY", "high")
 configset('MUSHGL_DISPLAY_MODE', 2)
 
 # Print OpenGL infomation
-configset('MUSHGL_DUMP_MUSHGLV', 1)
+# configset('MUSHGL_DUMP_MUSHGLV', 1)
 
 # Extra display mode definitions for X11
 # Uncomment these or add your own
