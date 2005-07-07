@@ -20,8 +20,11 @@ these defaults, so it may be better to edit there instead of here.
  *
  * This software carries NO WARRANTY of any kind.
  *
- * $Id$
- * $Log$
+ * $Id: axisconfig-default.xml,v 1.1 2005/07/06 19:08:25 southa Exp $
+ * $Log: axisconfig-default.xml,v $
+ * Revision 1.1  2005/07/06 19:08:25  southa
+ * Adanaxis control work
+ *
  *
  
 -->
@@ -36,28 +39,28 @@ these defaults, so it may be better to edit there instead of here.
 <keyValue>97</keyValue>
 </upKey>
 <downKey type="GLKeys">
-<keyValue>100</keyValue>
+<keyValue>113</keyValue>
 </downKey>
 <requiredKeys>()</requiredKeys>
 <disallowedKeys>()</disallowedKeys>
 <axisName>"Move in X (left/right)"</axisName>
 <pos>0</pos>
 <vel>0</vel>
-<accel>1</accel>
-<velLimit>1</velLimit>
+<accel>100</accel>
+<velLimit>10</velLimit>
 </obj>
 ,<obj type="MushGameAxisDef">
 <useDevice>0</useDevice>
-<useKeys>0</useKeys>
+<useKeys>1</useKeys>
 <useBounds>0</useBounds>
-<integrate>0</integrate>
+<integrate>1</integrate>
 <deviceNum>705170428</deviceNum>
 <deviceAxisNum>448020</deviceAxisNum>
 <upKey type="GLKeys">
-<keyValue>1</keyValue>
+<keyValue>115</keyValue>
 </upKey>
 <downKey type="GLKeys">
-<keyValue>705170428</keyValue>
+<keyValue>119</keyValue>
 </downKey>
 <upKeyTime>0</upKeyTime>
 <downKeyTime>0</downKeyTime>
@@ -68,21 +71,21 @@ these defaults, so it may be better to edit there instead of here.
 <axisName>"Move in Y (up/down)"</axisName>
 <pos>0</pos>
 <vel>0</vel>
-<accel>1</accel>
-<velLimit>1</velLimit>
+<accel>100</accel>
+<velLimit>10</velLimit>
 </obj>
 ,<obj type="MushGameAxisDef">
 <useDevice>0</useDevice>
-<useKeys>0</useKeys>
+<useKeys>1</useKeys>
 <useBounds>0</useBounds>
-<integrate>0</integrate>
+<integrate>1</integrate>
 <deviceNum>705170428</deviceNum>
 <deviceAxisNum>448020</deviceAxisNum>
 <upKey type="GLKeys">
-<keyValue>1</keyValue>
+<keyValue>100</keyValue>
 </upKey>
 <downKey type="GLKeys">
-<keyValue>705170428</keyValue>
+<keyValue>101</keyValue>
 </downKey>
 <upKeyTime>0</upKeyTime>
 <downKeyTime>0</downKeyTime>
@@ -93,21 +96,21 @@ these defaults, so it may be better to edit there instead of here.
 <axisName>"Move in Z (hidden axis)"</axisName>
 <pos>0</pos>
 <vel>0</vel>
-<accel>1</accel>
-<velLimit>1</velLimit>
+<accel>100</accel>
+<velLimit>10</velLimit>
 </obj>
 ,<obj type="MushGameAxisDef">
 <useDevice>0</useDevice>
-<useKeys>0</useKeys>
+<useKeys>1</useKeys>
 <useBounds>0</useBounds>
-<integrate>0</integrate>
+<integrate>1</integrate>
 <deviceNum>705170428</deviceNum>
 <deviceAxisNum>448020</deviceAxisNum>
 <upKey type="GLKeys">
-<keyValue>1</keyValue>
+<keyValue>102</keyValue>
 </upKey>
 <downKey type="GLKeys">
-<keyValue>705170428</keyValue>
+<keyValue>114</keyValue>
 </downKey>
 <upKeyTime>0</upKeyTime>
 <downKeyTime>0</downKeyTime>
@@ -118,21 +121,21 @@ these defaults, so it may be better to edit there instead of here.
 <axisName>"Move in W (forward/back)"</axisName>
 <pos>0</pos>
 <vel>0</vel>
-<accel>1</accel>
-<velLimit>1</velLimit>
+<accel>100</accel>
+<velLimit>10</velLimit>
 </obj>
 ,<obj type="MushGameAxisDef">
 <useDevice>0</useDevice>
-<useKeys>0</useKeys>
+<useKeys>1</useKeys>
 <useBounds>0</useBounds>
-<integrate>0</integrate>
+<integrate>1</integrate>
 <deviceNum>705170428</deviceNum>
 <deviceAxisNum>448020</deviceAxisNum>
 <upKey type="GLKeys">
-<keyValue>1</keyValue>
+<keyValue>116</keyValue>
 </upKey>
 <downKey type="GLKeys">
-<keyValue>705170428</keyValue>
+<keyValue>103</keyValue>
 </downKey>
 <upKeyTime>0</upKeyTime>
 <downKeyTime>0</downKeyTime>
@@ -143,21 +146,21 @@ these defaults, so it may be better to edit there instead of here.
 <axisName>"Roll XY"</axisName>
 <pos>0</pos>
 <vel>0</vel>
-<accel>1</accel>
+<accel>2</accel>
 <velLimit>1</velLimit>
 </obj>
 ,<obj type="MushGameAxisDef">
 <useDevice>0</useDevice>
-<useKeys>0</useKeys>
+<useKeys>1</useKeys>
 <useBounds>0</useBounds>
-<integrate>0</integrate>
+<integrate>1</integrate>
 <deviceNum>705170428</deviceNum>
 <deviceAxisNum>448020</deviceAxisNum>
 <upKey type="GLKeys">
-<keyValue>1</keyValue>
+<keyValue>104</keyValue>
 </upKey>
 <downKey type="GLKeys">
-<keyValue>705170428</keyValue>
+<keyValue>121</keyValue>
 </downKey>
 <upKeyTime>0</upKeyTime>
 <downKeyTime>0</downKeyTime>
@@ -168,21 +171,21 @@ these defaults, so it may be better to edit there instead of here.
 <axisName>"Look in hidden axis"</axisName>
 <pos>0</pos>
 <vel>0</vel>
-<accel>1</accel>
+<accel>2</accel>
 <velLimit>1</velLimit>
 </obj>
 ,<obj type="MushGameAxisDef">
 <useDevice>0</useDevice>
-<useKeys>0</useKeys>
+<useKeys>1</useKeys>
 <useBounds>0</useBounds>
-<integrate>0</integrate>
+<integrate>1</integrate>
 <deviceNum>705170428</deviceNum>
 <deviceAxisNum>448020</deviceAxisNum>
 <upKey type="GLKeys">
-<keyValue>1</keyValue>
+<keyValue>106</keyValue>
 </upKey>
 <downKey type="GLKeys">
-<keyValue>705170428</keyValue>
+<keyValue>117</keyValue>
 </downKey>
 <upKeyTime>0</upKeyTime>
 <downKeyTime>0</downKeyTime>
@@ -193,21 +196,21 @@ these defaults, so it may be better to edit there instead of here.
 <axisName>"Roll XZ"</axisName>
 <pos>0</pos>
 <vel>0</vel>
-<accel>1</accel>
+<accel>2</accel>
 <velLimit>1</velLimit>
 </obj>
 ,<obj type="MushGameAxisDef">
 <useDevice>0</useDevice>
-<useKeys>0</useKeys>
+<useKeys>1</useKeys>
 <useBounds>0</useBounds>
-<integrate>0</integrate>
+<integrate>1</integrate>
 <deviceNum>705170428</deviceNum>
 <deviceAxisNum>448020</deviceAxisNum>
 <upKey type="GLKeys">
-<keyValue>1</keyValue>
+<keyValue>107</keyValue>
 </upKey>
 <downKey type="GLKeys">
-<keyValue>705170428</keyValue>
+<keyValue>105</keyValue>
 </downKey>
 <upKeyTime>0</upKeyTime>
 <downKeyTime>0</downKeyTime>
@@ -218,21 +221,21 @@ these defaults, so it may be better to edit there instead of here.
 <axisName>"Look up/down"</axisName>
 <pos>0</pos>
 <vel>0</vel>
-<accel>1</accel>
+<accel>2</accel>
 <velLimit>1</velLimit>
 </obj>
 ,<obj type="MushGameAxisDef">
 <useDevice>0</useDevice>
-<useKeys>0</useKeys>
+<useKeys>1</useKeys>
 <useBounds>0</useBounds>
-<integrate>0</integrate>
+<integrate>1</integrate>
 <deviceNum>705170428</deviceNum>
 <deviceAxisNum>448020</deviceAxisNum>
 <upKey type="GLKeys">
-<keyValue>1</keyValue>
+<keyValue>108</keyValue>
 </upKey>
 <downKey type="GLKeys">
-<keyValue>705170428</keyValue>
+<keyValue>111</keyValue>
 </downKey>
 <upKeyTime>0</upKeyTime>
 <downKeyTime>0</downKeyTime>
@@ -243,21 +246,21 @@ these defaults, so it may be better to edit there instead of here.
 <axisName>"Look left/right"</axisName>
 <pos>0</pos>
 <vel>0</vel>
-<accel>1</accel>
+<accel>2</accel>
 <velLimit>1</velLimit>
 </obj>
 ,<obj type="MushGameAxisDef">
 <useDevice>0</useDevice>
-<useKeys>0</useKeys>
+<useKeys>1</useKeys>
 <useBounds>0</useBounds>
-<integrate>0</integrate>
+<integrate>1</integrate>
 <deviceNum>705170428</deviceNum>
 <deviceAxisNum>448020</deviceAxisNum>
 <upKey type="GLKeys">
-<keyValue>1</keyValue>
+<keyValue>59</keyValue>
 </upKey>
 <downKey type="GLKeys">
-<keyValue>705170428</keyValue>
+<keyValue>112</keyValue>
 </downKey>
 <upKeyTime>0</upKeyTime>
 <downKeyTime>0</downKeyTime>
@@ -268,7 +271,7 @@ these defaults, so it may be better to edit there instead of here.
 <axisName>"Roll YZ"</axisName>
 <pos>0</pos>
 <vel>0</vel>
-<accel>1</accel>
+<accel>2</accel>
 <velLimit>1</velLimit>
 </obj>
 )</obj>
