@@ -20,8 +20,11 @@ these defaults, so it may be better to edit there instead of here.
  *
  * This software carries NO WARRANTY of any kind.
  *
- * $Id: axisconfig-default.xml,v 1.1 2005/07/06 19:08:25 southa Exp $
+ * $Id: axisconfig-default.xml,v 1.2 2005/07/07 16:54:14 southa Exp $
  * $Log: axisconfig-default.xml,v $
+ * Revision 1.2  2005/07/07 16:54:14  southa
+ * Control tweaks
+ *
  * Revision 1.1  2005/07/06 19:08:25  southa
  * Adanaxis control work
  *
@@ -35,14 +38,15 @@ these defaults, so it may be better to edit there instead of here.
 <integrate>1</integrate>
 <deviceNum>0</deviceNum>
 <deviceAxisNum>0</deviceAxisNum>
+<deviceSensitivity>-10</deviceSensitivity>
+<deviceDamping>0.05</deviceDamping>
 <upKey type="GLKeys">
 <keyValue>97</keyValue>
 </upKey>
 <downKey type="GLKeys">
 <keyValue>113</keyValue>
 </downKey>
-<requiredKeys>()</requiredKeys>
-<disallowedKeys>()</disallowedKeys>
+<requiredKey>0</requiredKey>
 <axisName>"Move in X (left/right)"</axisName>
 <pos>0</pos>
 <vel>0</vel>
@@ -54,20 +58,19 @@ these defaults, so it may be better to edit there instead of here.
 <useKeys>1</useKeys>
 <useBounds>0</useBounds>
 <integrate>1</integrate>
-<deviceNum>705170428</deviceNum>
-<deviceAxisNum>448020</deviceAxisNum>
+<deviceNum>0</deviceNum>
+<deviceAxisNum>0</deviceAxisNum>
+<deviceSensitivity>-10</deviceSensitivity>
+<deviceDamping>0.05</deviceDamping>
 <upKey type="GLKeys">
 <keyValue>115</keyValue>
 </upKey>
 <downKey type="GLKeys">
 <keyValue>119</keyValue>
 </downKey>
-<upKeyTime>0</upKeyTime>
-<downKeyTime>0</downKeyTime>
-<requiredKeys>()</requiredKeys>
-<disallowedKeys>()</disallowedKeys>
-<minBound>1.4012984643248171e-45</minBound>
-<maxBound>-1.9987430572509766</maxBound>
+<requiredKey>0</requiredKey>
+<minBound>0</minBound>
+<maxBound>0</maxBound>
 <axisName>"Move in Y (up/down)"</axisName>
 <pos>0</pos>
 <vel>0</vel>
@@ -79,20 +82,19 @@ these defaults, so it may be better to edit there instead of here.
 <useKeys>1</useKeys>
 <useBounds>0</useBounds>
 <integrate>1</integrate>
-<deviceNum>705170428</deviceNum>
-<deviceAxisNum>448020</deviceAxisNum>
+<deviceNum>0</deviceNum>
+<deviceAxisNum>0</deviceAxisNum>
+<deviceSensitivity>-10</deviceSensitivity>
+<deviceDamping>0.05</deviceDamping>
 <upKey type="GLKeys">
 <keyValue>100</keyValue>
 </upKey>
 <downKey type="GLKeys">
 <keyValue>101</keyValue>
 </downKey>
-<upKeyTime>0</upKeyTime>
-<downKeyTime>0</downKeyTime>
-<requiredKeys>()</requiredKeys>
-<disallowedKeys>()</disallowedKeys>
-<minBound>1.4012984643248171e-45</minBound>
-<maxBound>-1.9987430572509766</maxBound>
+<requiredKey>0</requiredKey>
+<minBound>0</minBound>
+<maxBound>0</maxBound>
 <axisName>"Move in Z (hidden axis)"</axisName>
 <pos>0</pos>
 <vel>0</vel>
@@ -104,45 +106,43 @@ these defaults, so it may be better to edit there instead of here.
 <useKeys>1</useKeys>
 <useBounds>0</useBounds>
 <integrate>1</integrate>
-<deviceNum>705170428</deviceNum>
-<deviceAxisNum>448020</deviceAxisNum>
+<deviceNum>0</deviceNum>
+<deviceAxisNum>1</deviceAxisNum>
+<deviceSensitivity>1000</deviceSensitivity>
+<deviceDamping>0.05</deviceDamping>
 <upKey type="GLKeys">
 <keyValue>102</keyValue>
 </upKey>
 <downKey type="GLKeys">
 <keyValue>114</keyValue>
 </downKey>
-<upKeyTime>0</upKeyTime>
-<downKeyTime>0</downKeyTime>
-<requiredKeys>()</requiredKeys>
-<disallowedKeys>()</disallowedKeys>
-<minBound>1.4012984643248171e-45</minBound>
-<maxBound>-1.9987430572509766</maxBound>
+<requiredKey>279</requiredKey>
+<minBound>0</minBound>
+<maxBound>0</maxBound>
 <axisName>"Move in W (forward/back)"</axisName>
 <pos>0</pos>
 <vel>0</vel>
 <accel>100</accel>
-<velLimit>10</velLimit>
+<velLimit>100</velLimit>
 </obj>
 ,<obj type="MushGameAxisDef">
 <useDevice>0</useDevice>
 <useKeys>1</useKeys>
 <useBounds>0</useBounds>
-<integrate>1</integrate>
-<deviceNum>705170428</deviceNum>
-<deviceAxisNum>448020</deviceAxisNum>
+<integrate>0</integrate>
+<deviceNum>0</deviceNum>
+<deviceAxisNum>1</deviceAxisNum>
+<deviceSensitivity>-30</deviceSensitivity>
+<deviceDamping>0.05</deviceDamping>
 <upKey type="GLKeys">
 <keyValue>116</keyValue>
 </upKey>
 <downKey type="GLKeys">
 <keyValue>103</keyValue>
 </downKey>
-<upKeyTime>0</upKeyTime>
-<downKeyTime>0</downKeyTime>
-<requiredKeys>()</requiredKeys>
-<disallowedKeys>()</disallowedKeys>
-<minBound>1.4012984643248171e-45</minBound>
-<maxBound>-1.9987430572509766</maxBound>
+<requiredKey>279</requiredKey>
+<minBound>0</minBound>
+<maxBound>0</maxBound>
 <axisName>"Roll XY"</axisName>
 <pos>0</pos>
 <vel>0</vel>
@@ -150,24 +150,23 @@ these defaults, so it may be better to edit there instead of here.
 <velLimit>1</velLimit>
 </obj>
 ,<obj type="MushGameAxisDef">
-<useDevice>0</useDevice>
+<useDevice>1</useDevice>
 <useKeys>1</useKeys>
 <useBounds>0</useBounds>
-<integrate>1</integrate>
-<deviceNum>705170428</deviceNum>
-<deviceAxisNum>448020</deviceAxisNum>
+<integrate>0</integrate>
+<deviceNum>0</deviceNum>
+<deviceAxisNum>0</deviceAxisNum>
+<deviceSensitivity>-10</deviceSensitivity>
+<deviceDamping>0.05</deviceDamping>
 <upKey type="GLKeys">
 <keyValue>104</keyValue>
 </upKey>
 <downKey type="GLKeys">
 <keyValue>121</keyValue>
 </downKey>
-<upKeyTime>0</upKeyTime>
-<downKeyTime>0</downKeyTime>
-<requiredKeys>()</requiredKeys>
-<disallowedKeys>()</disallowedKeys>
-<minBound>1.4012984643248171e-45</minBound>
-<maxBound>-1.9987430572509766</maxBound>
+<requiredKey>279</requiredKey>
+<minBound>0</minBound>
+<maxBound>0</maxBound>
 <axisName>"Look in hidden axis"</axisName>
 <pos>0</pos>
 <vel>0</vel>
@@ -179,20 +178,19 @@ these defaults, so it may be better to edit there instead of here.
 <useKeys>1</useKeys>
 <useBounds>0</useBounds>
 <integrate>1</integrate>
-<deviceNum>705170428</deviceNum>
-<deviceAxisNum>448020</deviceAxisNum>
+<deviceNum>0</deviceNum>
+<deviceAxisNum>0</deviceAxisNum>
+<deviceSensitivity>-10</deviceSensitivity>
+<deviceDamping>0.05</deviceDamping>
 <upKey type="GLKeys">
 <keyValue>106</keyValue>
 </upKey>
 <downKey type="GLKeys">
 <keyValue>117</keyValue>
 </downKey>
-<upKeyTime>0</upKeyTime>
-<downKeyTime>0</downKeyTime>
-<requiredKeys>()</requiredKeys>
-<disallowedKeys>()</disallowedKeys>
-<minBound>1.4012984643248171e-45</minBound>
-<maxBound>-1.9987430572509766</maxBound>
+<requiredKey>0</requiredKey>
+<minBound>0</minBound>
+<maxBound>0</maxBound>
 <axisName>"Roll XZ"</axisName>
 <pos>0</pos>
 <vel>0</vel>
@@ -200,24 +198,23 @@ these defaults, so it may be better to edit there instead of here.
 <velLimit>1</velLimit>
 </obj>
 ,<obj type="MushGameAxisDef">
-<useDevice>0</useDevice>
+<useDevice>1</useDevice>
 <useKeys>1</useKeys>
 <useBounds>0</useBounds>
 <integrate>1</integrate>
-<deviceNum>705170428</deviceNum>
-<deviceAxisNum>448020</deviceAxisNum>
+<deviceNum>0</deviceNum>
+<deviceAxisNum>1</deviceAxisNum>
+<deviceSensitivity>-20</deviceSensitivity>
+<deviceDamping>0.05</deviceDamping>
 <upKey type="GLKeys">
 <keyValue>107</keyValue>
 </upKey>
 <downKey type="GLKeys">
 <keyValue>105</keyValue>
 </downKey>
-<upKeyTime>0</upKeyTime>
-<downKeyTime>0</downKeyTime>
-<requiredKeys>()</requiredKeys>
-<disallowedKeys>()</disallowedKeys>
-<minBound>1.4012984643248171e-45</minBound>
-<maxBound>-1.9987430572509766</maxBound>
+<requiredKey>0</requiredKey>
+<minBound>0</minBound>
+<maxBound>0</maxBound>
 <axisName>"Look up/down"</axisName>
 <pos>0</pos>
 <vel>0</vel>
@@ -225,24 +222,23 @@ these defaults, so it may be better to edit there instead of here.
 <velLimit>1</velLimit>
 </obj>
 ,<obj type="MushGameAxisDef">
-<useDevice>0</useDevice>
+<useDevice>1</useDevice>
 <useKeys>1</useKeys>
 <useBounds>0</useBounds>
 <integrate>1</integrate>
-<deviceNum>705170428</deviceNum>
-<deviceAxisNum>448020</deviceAxisNum>
+<deviceNum>0</deviceNum>
+<deviceAxisNum>0</deviceAxisNum>
+<deviceSensitivity>-20</deviceSensitivity>
+<deviceDamping>0.05</deviceDamping>
 <upKey type="GLKeys">
 <keyValue>108</keyValue>
 </upKey>
 <downKey type="GLKeys">
 <keyValue>111</keyValue>
 </downKey>
-<upKeyTime>0</upKeyTime>
-<downKeyTime>0</downKeyTime>
-<requiredKeys>()</requiredKeys>
-<disallowedKeys>()</disallowedKeys>
-<minBound>1.4012984643248171e-45</minBound>
-<maxBound>-1.9987430572509766</maxBound>
+<requiredKey>0</requiredKey>
+<minBound>0</minBound>
+<maxBound>0</maxBound>
 <axisName>"Look left/right"</axisName>
 <pos>0</pos>
 <vel>0</vel>
@@ -254,20 +250,19 @@ these defaults, so it may be better to edit there instead of here.
 <useKeys>1</useKeys>
 <useBounds>0</useBounds>
 <integrate>1</integrate>
-<deviceNum>705170428</deviceNum>
-<deviceAxisNum>448020</deviceAxisNum>
+<deviceNum>0</deviceNum>
+<deviceAxisNum>0</deviceAxisNum>
+<deviceSensitivity>-10</deviceSensitivity>
+<deviceDamping>0.05</deviceDamping>
 <upKey type="GLKeys">
 <keyValue>59</keyValue>
 </upKey>
 <downKey type="GLKeys">
 <keyValue>112</keyValue>
 </downKey>
-<upKeyTime>0</upKeyTime>
-<downKeyTime>0</downKeyTime>
-<requiredKeys>()</requiredKeys>
-<disallowedKeys>()</disallowedKeys>
-<minBound>1.4012984643248171e-45</minBound>
-<maxBound>-1.9987430572509766</maxBound>
+<requiredKey>0</requiredKey>
+<minBound>0</minBound>
+<maxBound>0</maxBound>
 <axisName>"Roll YZ"</axisName>
 <pos>0</pos>
 <vel>0</vel>
