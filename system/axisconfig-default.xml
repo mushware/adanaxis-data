@@ -20,8 +20,11 @@ these defaults, so it may be better to edit there instead of here.
  *
  * This software carries NO WARRANTY of any kind.
  *
- * $Id: axisconfig-default.xml,v 1.2 2005/07/07 16:54:14 southa Exp $
+ * $Id: axisconfig-default.xml,v 1.3 2005/07/08 12:07:05 southa Exp $
  * $Log: axisconfig-default.xml,v $
+ * Revision 1.3  2005/07/08 12:07:05  southa
+ * MushGaem control work
+ *
  * Revision 1.2  2005/07/07 16:54:14  southa
  * Control tweaks
  *
@@ -122,14 +125,14 @@ these defaults, so it may be better to edit there instead of here.
 <axisName>"Move in W (forward/back)"</axisName>
 <pos>0</pos>
 <vel>0</vel>
-<accel>100</accel>
-<velLimit>100</velLimit>
+<accel>40</accel>
+<velLimit>40</velLimit>
 </obj>
 ,<obj type="MushGameAxisDef">
 <useDevice>0</useDevice>
 <useKeys>1</useKeys>
 <useBounds>0</useBounds>
-<integrate>0</integrate>
+<integrate>1</integrate>
 <deviceNum>0</deviceNum>
 <deviceAxisNum>1</deviceAxisNum>
 <deviceSensitivity>-30</deviceSensitivity>
