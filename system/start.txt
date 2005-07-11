@@ -8,8 +8,11 @@
 #
 ##############################################################################
 #
-# $Id: start.txt,v 1.4 2005/06/21 15:57:44 southa Exp $
+# $Id: start.txt,v 1.5 2005/07/06 19:08:25 southa Exp $
 # $Log: start.txt,v $
+# Revision 1.5  2005/07/06 19:08:25  southa
+# Adanaxis control work
+#
 # Revision 1.4  2005/06/21 15:57:44  southa
 # MushGame work
 #
@@ -40,7 +43,8 @@ configset("REG_FILENAME", $GLOBAL_SAVE_PATH+"/reg.xml")
 
 # Set configuration file paths
 configset("CONFIG_FILENAME", $GLOBAL_SAVE_PATH+"/config.xml")
-configset("AXISCONFIG_DEFAULT_FILENAME", $SYSTEM_PATH+"/axisconfig-default.xml")
+configset("ADANAXIS_AXISCONFIG_DEFAULT_FILENAME", $SYSTEM_PATH+"/axisconfig-default.xml")
+configset("ADANAXIS_KEYCONFIG_DEFAULT_FILENAME", $SYSTEM_PATH+"/keyconfig-default.xml")
 
 # Options for DISPLAY_QUALITY are low, medium or high
 configset("DISPLAY_QUALITY", "high")
