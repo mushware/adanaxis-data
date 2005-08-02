@@ -1,0 +1,510 @@
+<!--
+##############################################################################
+#
+# This file contains original work by Andy Southgate.  Contact details can be
+# found at http://www.mushware.com.  This file was placed in the Public
+# Domain by Andy Southgate and Mushware Limited in 2005.
+#
+# This software carries NO WARRANTY of any kind.
+#
+##############################################################################
+#
+# $$
+# $Log$
+
+-->
+<!-- Dialogue definition -->
+<obj>(
+"keyhelp1"=<obj type="GameDialogue">
+<strings>(
+<obj type="GameStringSpec">
+<string type="GLString">
+<fontRef type="GLFontRef">
+<name>"font-mono1"</name>
+<size>1.0</size>
+</fontRef>
+<value>"Key Controls"</value>
+<alignment>0</alignment>
+</string>
+<posticity type="MushPiePosticity">
+<angPos>((0,0,0,0),(0,0,0,0))</angPos>
+<angVel>((0,0,0,0),(0,0,0,0))</angVel>
+<pos>(0,0.28,0,0)</pos>
+<vel>(0,0,0,0)</vel>
+</posticity>
+<startColour>(1,1,1,0.1)</startColour>
+<midColour>(1,1,1,0.5)</midColour>
+<endColour>(1,1,1,0)</endColour>
+<startTime>0</startTime>
+<endTime>5000</endTime>
+<fadeTime>50</fadeTime>
+<startSize>0.04</startSize>
+<midSize>0.04</midSize>
+<endSize>0.04</endSize>
+</obj>,
+
+<obj type="GameStringSpec">
+<string type="GLString">
+<fontRef type="GLFontRef">
+<name>"font-mono1"</name>
+<size>1.0</size>
+</fontRef>
+<value>"Q to [ : Move axis negative"</value>
+<alignment>-1.0</alignment>
+</string>
+<posticity type="MushPiePosticity">
+<angPos>((0,0,0,0),(0,0,0,0))</angPos>
+<angVel>((0,0,0,0),(0,0,0,0))</angVel>
+<pos>(-0.48,0.20,0,0)</pos>
+<vel>(0,0,0,0)</vel>
+</posticity>
+<startColour>(1,1,1,0.1)</startColour>
+<midColour>(1,1,1,0.5)</midColour>
+<endColour>(1,1,1,0)</endColour>
+<startTime>0</startTime>
+<endTime>5000</endTime>
+<fadeTime>50</fadeTime>
+<startSize>0.03</startSize>
+<midSize>0.03</midSize>
+<endSize>0.03</endSize>
+</obj>,
+
+<obj type="GameStringSpec">
+<string type="GLString">
+<fontRef type="GLFontRef">
+<name>"font-mono1"</name>
+<size>1.0</size>
+</fontRef>
+<value>"A to ; : Move axis positive"</value>
+<alignment>-1.0</alignment>
+</string>
+<posticity type="MushPiePosticity">
+<angPos>((0,0,0,0),(0,0,0,0))</angPos>
+<angVel>((0,0,0,0),(0,0,0,0))</angVel>
+<pos>(-0.48,0.16,0,0)</pos>
+<vel>(0,0,0,0)</vel>
+</posticity>
+<startColour>(1,1,1,0.1)</startColour>
+<midColour>(1,1,1,0.5)</midColour>
+<endColour>(1,1,1,0)</endColour>
+<startTime>0</startTime>
+<endTime>5000</endTime>
+<fadeTime>50</fadeTime>
+<startSize>0.03</startSize>
+<midSize>0.03</midSize>
+<endSize>0.03</endSize>
+</obj>,
+
+<obj type="GameStringSpec">
+<string type="GLString">
+<fontRef type="GLFontRef">
+<name>"font-mono1"</name>
+<size>1.0</size>
+</fontRef>
+<value>"Space  : Fire"</value>
+<alignment>-1.0</alignment>
+</string>
+<posticity type="MushPiePosticity">
+<angPos>((0,0,0,0),(0,0,0,0))</angPos>
+<angVel>((0,0,0,0),(0,0,0,0))</angVel>
+<pos>(-0.48,0.12,0,0)</pos>
+<vel>(0,0,0,0)</vel>
+</posticity>
+<startColour>(1,1,1,0.1)</startColour>
+<midColour>(1,1,1,0.5)</midColour>
+<endColour>(1,1,1,0)</endColour>
+<startTime>0</startTime>
+<endTime>5000</endTime>
+<fadeTime>50</fadeTime>
+<startSize>0.03</startSize>
+<midSize>0.03</midSize>
+<endSize>0.03</endSize>
+</obj>,
+
+<obj type="GameStringSpec">
+<string type="GLString">
+<fontRef type="GLFontRef">
+<name>"font-mono1"</name>
+<size>1.0</size>
+</fontRef>
+<value>"Tab    : Scanner on/off"</value>
+<alignment>-1.0</alignment>
+</string>
+<posticity type="MushPiePosticity">
+<angPos>((0,0,0,0),(0,0,0,0))</angPos>
+<angVel>((0,0,0,0),(0,0,0,0))</angVel>
+<pos>(-0.48,0.08,0,0)</pos>
+<vel>(0,0,0,0)</vel>
+</posticity>
+<startColour>(1,1,1,0.1)</startColour>
+<midColour>(1,1,1,0.5)</midColour>
+<endColour>(1,1,1,0)</endColour>
+<startTime>0</startTime>
+<endTime>5000</endTime>
+<fadeTime>50</fadeTime>
+<startSize>0.03</startSize>
+<midSize>0.03</midSize>
+<endSize>0.03</endSize>
+</obj>,
+
+<obj type="GameStringSpec">
+<string type="GLString">
+<fontRef type="GLFontRef">
+<name>"font-mono1"</name>
+<size>1.0</size>
+</fontRef>
+<value>"M      : Music on/off"</value>
+<alignment>-1.0</alignment>
+</string>
+<posticity type="MushPiePosticity">
+<angPos>((0,0,0,0),(0,0,0,0))</angPos>
+<angVel>((0,0,0,0),(0,0,0,0))</angVel>
+<pos>(-0.48,0.04,0,0)</pos>
+<vel>(0,0,0,0)</vel>
+</posticity>
+<startColour>(1,1,1,0.1)</startColour>
+<midColour>(1,1,1,0.5)</midColour>
+<endColour>(1,1,1,0)</endColour>
+<startTime>0</startTime>
+<endTime>5000</endTime>
+<fadeTime>50</fadeTime>
+<startSize>0.03</startSize>
+<midSize>0.03</midSize>
+<endSize>0.03</endSize>
+</obj>,
+
+<obj type="GameStringSpec">
+<string type="GLString">
+<fontRef type="GLFontRef">
+<name>"font-mono1"</name>
+<size>1.0</size>
+</fontRef>
+<value>"+-     : Change display mode"</value>
+<alignment>-1.0</alignment>
+</string>
+<posticity type="MushPiePosticity">
+<angPos>((0,0,0,0),(0,0,0,0))</angPos>
+<angVel>((0,0,0,0),(0,0,0,0))</angVel>
+<pos>(-0.48,0.00,0,0)</pos>
+<vel>(0,0,0,0)</vel>
+</posticity>
+<startColour>(1,1,1,0.1)</startColour>
+<midColour>(1,1,1,0.5)</midColour>
+<endColour>(1,1,1,0)</endColour>
+<startTime>0</startTime>
+<endTime>5000</endTime>
+<fadeTime>50</fadeTime>
+<startSize>0.03</startSize>
+<midSize>0.03</midSize>
+<endSize>0.03</endSize>
+</obj>,
+
+<obj type="GameStringSpec">
+<string type="GLString">
+<fontRef type="GLFontRef">
+<name>"font-mono1"</name>
+<size>1.0</size>
+</fontRef>
+<value>""</value>
+<alignment>-1.0</alignment>
+</string>
+<posticity type="MushPiePosticity">
+<angPos>((0,0,0,0),(0,0,0,0))</angPos>
+<angVel>((0,0,0,0),(0,0,0,0))</angVel>
+<pos>(-0.48,-0.04,0,0)</pos>
+<vel>(0,0,0,0)</vel>
+</posticity>
+<startColour>(1,1,1,0.1)</startColour>
+<midColour>(1,1,1,0.5)</midColour>
+<endColour>(1,1,1,0)</endColour>
+<startTime>0</startTime>
+<endTime>5000</endTime>
+<fadeTime>50</fadeTime>
+<startSize>0.03</startSize>
+<midSize>0.03</midSize>
+<endSize>0.03</endSize>
+</obj>,
+
+<obj type="GameStringSpec">
+<string type="GLString">
+<fontRef type="GLFontRef">
+<name>"font-mono1"</name>
+<size>1.0</size>
+</fontRef>
+<value>""</value>
+<alignment>-1.0</alignment>
+</string>
+<posticity type="MushPiePosticity">
+<angPos>((0,0,0,0),(0,0,0,0))</angPos>
+<angVel>((0,0,0,0),(0,0,0,0))</angVel>
+<pos>(-0.48,-0.08,0,0)</pos>
+<vel>(0,0,0,0)</vel>
+</posticity>
+<startColour>(1,1,1,0.1)</startColour>
+<midColour>(1,1,1,0.5)</midColour>
+<endColour>(1,1,1,0)</endColour>
+<startTime>0</startTime>
+<endTime>5000</endTime>
+<fadeTime>50</fadeTime>
+<startSize>0.03</startSize>
+<midSize>0.03</midSize>
+<endSize>0.03</endSize>
+</obj>,
+
+<obj type="GameStringSpec">
+<string type="GLString">
+<fontRef type="GLFontRef">
+<name>"font-mono1"</name>
+<size>1.0</size>
+</fontRef>
+<value>""</value>
+<alignment>-1.0</alignment>
+</string>
+<posticity type="MushPiePosticity">
+<angPos>((0,0,0,0),(0,0,0,0))</angPos>
+<angVel>((0,0,0,0),(0,0,0,0))</angVel>
+<pos>(-0.48,-0.12,0,0)</pos>
+<vel>(0,0,0,0)</vel>
+</posticity>
+<startColour>(1,1,1,0.1)</startColour>
+<midColour>(1,1,1,0.5)</midColour>
+<endColour>(1,1,1,0)</endColour>
+<startTime>0</startTime>
+<endTime>5000</endTime>
+<fadeTime>50</fadeTime>
+<startSize>0.03</startSize>
+<midSize>0.03</midSize>
+<endSize>0.03</endSize>
+</obj>,
+
+<obj type="GameStringSpec">
+<string type="GLString">
+<fontRef type="GLFontRef">
+<name>"font-mono1"</name>
+<size>1.0</size>
+</fontRef>
+<value>"Esc    : Exit"</value>
+<alignment>-1.0</alignment>
+</string>
+<posticity type="MushPiePosticity">
+<angPos>((0,0,0,0),(0,0,0,0))</angPos>
+<angVel>((0,0,0,0),(0,0,0,0))</angVel>
+<pos>(-0.48,-0.24,0,0)</pos>
+<vel>(0,0,0,0)</vel>
+</posticity>
+<startColour>(1,1,1,0.1)</startColour>
+<midColour>(1,1,1,0.5)</midColour>
+<endColour>(1,1,1,0)</endColour>
+<startTime>0</startTime>
+<endTime>5000</endTime>
+<fadeTime>50</fadeTime>
+<startSize>0.03</startSize>
+<midSize>0.03</midSize>
+<endSize>0.03</endSize>
+</obj>
+)</strings>
+<sounds>()</sounds>
+<soundStreams>()</soundStreams>
+<killSound>""</killSound>
+<age>0</age>
+<expired>0</expired>
+</obj>
+,
+"start1"=<obj type="GameDialogue">
+<strings>(
+<obj type="GameStringSpec">
+<string type="GLString">
+<fontRef type="GLFontRef">
+<name>"font-mono1"</name>
+<size>1.0</size>
+</fontRef>
+<value>"Adanaxis Control Demo"</value>
+<alignment>0</alignment>
+</string>
+<posticity type="MushPiePosticity">
+<angPos>((0,0,0,0),(0,0,0,0))</angPos>
+<angVel>((0,0,0,0),(0,0,0,0))</angVel>
+<pos>(0,0.23,0,0)</pos>
+<vel>(0,0,0,0)</vel>
+</posticity>
+<startColour>(1,1,1,0)</startColour>
+<midColour>(1,1,1,0.5)</midColour>
+<endColour>(1,0,0,0)</endColour>
+<startTime>0</startTime>
+<endTime>300</endTime>
+<fadeTime>100</fadeTime>
+<startSize>0.04</startSize>
+<midSize>0.04</midSize>
+<endSize>0.10</endSize>
+</obj>,
+<obj type="GameStringSpec">
+<string type="GLString">
+<fontRef type="GLFontRef">
+<name>"font-mono1"</name>
+<size>1.0</size>
+</fontRef>
+<value>"http://www.mushware.com/"</value>
+<alignment>0</alignment>
+</string>
+<posticity type="MushPiePosticity">
+<angPos>((0,0,0,0),(0,0,0,0))</angPos>
+<angVel>((0,0,0,0),(0,0,0,0))</angVel>
+<pos>(0,0.15,0,0)</pos>
+<vel>(0,0,0,0)</vel>
+</posticity>
+<startColour>(0.8,0.8,1,0)</startColour>
+<midColour>(0.8,0.8,1,0.5)</midColour>
+<endColour>(1,0,0,0)</endColour>
+<startTime>0</startTime>
+<endTime>300</endTime>
+<fadeTime>100</fadeTime>
+<startSize>0.02</startSize>
+<midSize>0.02</midSize>
+<endSize>0.02</endSize>
+</obj>,
+<obj type="GameStringSpec">
+<string type="GLString">
+<fontRef type="GLFontRef">
+<name>"font-mono1"</name>
+<size>1.0</size>
+</fontRef>
+<value>"This is a 4D game.  Hold mouse button and drag"</value>
+<alignment>0</alignment>
+</string>
+<posticity type="MushPiePosticity">
+<angPos>((0,0,0,0),(0,0,0,0))</angPos>
+<angVel>((0,0,0,0),(0,0,0,0))</angVel>
+<pos>(0,0.08,0,0)</pos>
+<vel>(0,0,0,0)</vel>
+</posticity>
+<startColour>(0.8,0.8,1,0)</startColour>
+<midColour>(0.8,0.8,1,0.5)</midColour>
+<endColour>(1,0,0,0)</endColour>
+<startTime>0</startTime>
+<endTime>600</endTime>
+<fadeTime>100</fadeTime>
+<startSize>0.02</startSize>
+<midSize>0.02</midSize>
+<endSize>0.02</endSize>
+</obj>,
+
+<obj type="GameStringSpec">
+<string type="GLString">
+<fontRef type="GLFontRef">
+<name>"font-mono1"</name>
+<size>1.0</size>
+</fontRef>
+<value>"left-right to aim in 4D.  Target must"</value>
+<alignment>0</alignment>
+</string>
+<posticity type="MushPiePosticity">
+<angPos>((0,0,0,0),(0,0,0,0))</angPos>
+<angVel>((0,0,0,0),(0,0,0,0))</angVel>
+<pos>(0,0.04,0,0)</pos>
+<vel>(0,0,0,0)</vel>
+</posticity>
+<startColour>(0.8,0.8,1,0)</startColour>
+<midColour>(0.8,0.8,1,0.5)</midColour>
+<endColour>(1,0,0,0)</endColour>
+<startTime>0</startTime>
+<endTime>600</endTime>
+<fadeTime>100</fadeTime>
+<startSize>0.02</startSize>
+<midSize>0.02</midSize>
+<endSize>0.02</endSize>
+</obj>,
+
+<obj type="GameStringSpec">
+<string type="GLString">
+<fontRef type="GLFontRef">
+<name>"font-mono1"</name>
+<size>1.0</size>
+</fontRef>
+<value>"be white before firing."</value>
+<alignment>0</alignment>
+</string>
+<posticity type="MushPiePosticity">
+<angPos>((0,0,0,0),(0,0,0,0))</angPos>
+<angVel>((0,0,0,0),(0,0,0,0))</angVel>
+<pos>(0,0.00,0,0)</pos>
+<vel>(0,0,0,0)</vel>
+</posticity>
+<startColour>(0.8,0.8,1,0)</startColour>
+<midColour>(0.8,0.8,1,0.5)</midColour>
+<endColour>(1,0,0,0)</endColour>
+<startTime>0</startTime>
+<endTime>600</endTime>
+<fadeTime>100</fadeTime>
+<startSize>0.02</startSize>
+<midSize>0.02</midSize>
+<endSize>0.02</endSize>
+</obj>,
+
+<obj type="GameStringSpec">
+<string type="GLString">
+<fontRef type="GLFontRef">
+<name>"font-mono1"</name>
+<size>1.0</size>
+</fontRef>
+<value>"(Esc to exit)"</value>
+<alignment>0</alignment>
+</string>
+<posticity type="MushPiePosticity">
+<angPos>((0,0,0,0),(0,0,0,0))</angPos>
+<angVel>((0,0,0,0),(0,0,0,0))</angVel>
+<pos>(0,-0.10,0,0)</pos>
+<vel>(0,0,0,0)</vel>
+</posticity>
+<startColour>(1,1,1,0)</startColour>
+<midColour>(1,1,1,0.5)</midColour>
+<endColour>(1,0,0,0)</endColour>
+<startTime>0</startTime>
+<endTime>300</endTime>
+<fadeTime>100</fadeTime>
+<startSize>0.02</startSize>
+<midSize>0.02</midSize>
+<endSize>0.02</endSize>
+</obj>)
+</strings>
+<sounds>()</sounds>
+<soundStreams>()</soundStreams>
+<killSound>""</killSound>
+<age>0</age>
+<expired>0</expired>
+</obj>
+,
+"safemode1"=<obj type="GameDialogue">
+<strings>(
+<obj type="GameStringSpec">
+<string type="GLString">
+<fontRef type="GLFontRef">
+<name>"font-mono1"</name>
+<size>1.0</size>
+</fontRef>
+<value>"Recovery Mode"</value>
+<alignment>0</alignment>
+</string>
+<posticity type="MushPiePosticity">
+<angPos>((0,0,0,0),(0,0,0,0))</angPos>
+<angVel>((0,0,0,0),(0,0,0,0))</angVel>
+<pos>(0,0,0,0)</pos>
+<vel>(0,0,0,0)</vel>
+</posticity>
+<startColour>(1.0,0.8,0.8,0.5)</startColour>
+<midColour>(1.0,0.8,0.8,1.0)</midColour>
+<endColour>(1,0.0,0.0,0)</endColour>
+<startTime>50</startTime>
+<endTime>1000</endTime>
+<fadeTime>50</fadeTime>
+<startSize>0.03</startSize>
+<midSize>0.03</midSize>
+<endSize>0.03</endSize>
+</obj>)
+</strings>
+<sounds>()</sounds>
+<soundStreams>()</soundStreams>
+<killSound>""</killSound>
+<age>0</age>
+<expired>0</expired>
+</obj>
+)</obj>

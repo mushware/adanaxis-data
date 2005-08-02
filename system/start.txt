@@ -8,8 +8,11 @@
 #
 ##############################################################################
 #
-# $Id: start.txt,v 1.6 2005/07/11 16:37:44 southa Exp $
+# $Id: start.txt,v 1.7 2005/08/02 11:11:47 southa Exp $
 # $Log: start.txt,v $
+# Revision 1.7  2005/08/02 11:11:47  southa
+# Adanaxis control demo work
+#
 # Revision 1.6  2005/07/11 16:37:44  southa
 # Uplink control work
 #
@@ -45,7 +48,7 @@ setsavepath(".adanaxis", $HOME, $SYSTEM_PATH, "/tmp")
 configset("REG_FILENAME", $GLOBAL_SAVE_PATH+"/reg.xml")
 
 # Set configuration file paths
-configset("CONFIG_FILENAME", $GLOBAL_SAVE_PATH+"/config.xml")
+configset("CONFIG_FILENAME", $GLOBAL_SAVE_PATH+"/controldemoconfig.xml")
 configset("ADANAXIS_AXISCONFIG_DEFAULT_FILENAME", $SYSTEM_PATH+"/axisconfig-default.xml")
 configset("ADANAXIS_KEYCONFIG_DEFAULT_FILENAME", $SYSTEM_PATH+"/keyconfig-default.xml")
 
@@ -81,6 +84,7 @@ loadfontmap('font-mono1',$GLOBAL_PIXELS_PATH+'/font-mono1.tiff',8,12,337,768)
 
 residentsound('fire', $GLOBAL_WAVES_PATH+'/fire.wav')
 residentsound('explode', $GLOBAL_WAVES_PATH+'/explode.wav')
+soundstream('adanaxis-music1',$GLOBAL_WAVES_PATH+'/game_12.ogg')
 
 
 

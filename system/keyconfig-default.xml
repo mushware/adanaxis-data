@@ -20,8 +20,11 @@ these defaults, so it may be better to edit there instead of here.
  *
  * This software carries NO WARRANTY of any kind.
  *
- * $Id$
- * $Log$
+ * $Id: keyconfig-default.xml,v 1.1 2005/07/11 16:37:44 southa Exp $
+ * $Log: keyconfig-default.xml,v $
+ * Revision 1.1  2005/07/11 16:37:44  southa
+ * Uplink control work
+ *
  *
  
 -->
@@ -29,6 +32,6 @@ these defaults, so it may be better to edit there instead of here.
 <keyValue>32</keyValue>
 <state>0</state>
 <stateHasChanged>1</stateHasChanged>
-<keyName>""</keyName>
+<keyName>"Fire"</keyName>
 </obj>
 )</obj>
