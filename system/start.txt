@@ -8,8 +8,11 @@
 #
 ##############################################################################
 #
-# $Id: start.txt,v 1.7 2005/08/02 11:11:47 southa Exp $
+# $Id: start.txt,v 1.8 2005/08/02 14:37:44 southa Exp $
 # $Log: start.txt,v $
+# Revision 1.8  2005/08/02 14:37:44  southa
+# Adanaxis control demo work
+#
 # Revision 1.7  2005/08/02 11:11:47  southa
 # Adanaxis control demo work
 #
@@ -86,5 +89,6 @@ residentsound('fire', $GLOBAL_WAVES_PATH+'/fire.wav')
 residentsound('explode', $GLOBAL_WAVES_PATH+'/explode.wav')
 soundstream('adanaxis-music1',$GLOBAL_WAVES_PATH+'/game_12.ogg')
 
+mushgltexture('tex1','file="'+$GLOBAL_PIXELS_PATH+'/font-mono1.tiff"')
 
 
