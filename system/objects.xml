@@ -10,7 +10,10 @@
 ##############################################################################
 #
 # $$
-# $Log$
+# $Log: objects.xml,v $
+# Revision 1.1  2005/08/02 14:37:44  southa
+# Adanaxis control demo work
+#
 
 -->
 <!-- Dialogue definition -->
@@ -309,7 +312,7 @@
 <age>0</age>
 <expired>0</expired>
 </obj>
-,
+,<!--
 "start1"=<obj type="GameDialogue">
 <strings>(
 <obj type="GameStringSpec">
@@ -472,7 +475,7 @@
 <age>0</age>
 <expired>0</expired>
 </obj>
-,
+, -->
 "safemode1"=<obj type="GameDialogue">
 <strings>(
 <obj type="GameStringSpec">
