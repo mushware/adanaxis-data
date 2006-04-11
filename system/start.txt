@@ -8,8 +8,11 @@
 #
 ##############################################################################
 #
-# $Id: start.txt,v 1.9 2005/08/28 22:41:51 southa Exp $
+# $Id: start.txt,v 1.10 2005/09/05 12:54:29 southa Exp $
 # $Log: start.txt,v $
+# Revision 1.10  2005/09/05 12:54:29  southa
+# Solid rendering work
+#
 # Revision 1.9  2005/08/28 22:41:51  southa
 # MushGLTexture work
 #
@@ -93,5 +96,5 @@ residentsound('explode', $GLOBAL_WAVES_PATH+'/explode.wav')
 soundstream('adanaxis-music1',$GLOBAL_WAVES_PATH+'/game_12.ogg')
 
 mushgltexture('tex1','file="'+$GLOBAL_PIXELS_PATH+'/tex1.tiff"')
-
+mushgltexture('tex2','type=noise name="attendant" size="(1024,1024)"')
 
