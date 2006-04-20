@@ -8,8 +8,11 @@
 #
 ##############################################################################
 #
-# $Id: start.txt,v 1.10 2005/09/05 12:54:29 southa Exp $
+# $Id: start.txt,v 1.11 2006/04/11 23:30:07 southa Exp $
 # $Log: start.txt,v $
+# Revision 1.11  2006/04/11 23:30:07  southa
+# Created MushRuby from ruby-1.8.4
+#
 # Revision 1.10  2005/09/05 12:54:29  southa
 # Solid rendering work
 #
@@ -49,6 +52,7 @@ configset("GLOBAL_SPACES_PATH",$APPLPATH+"/spaces")
 configset("GLOBAL_PIXELS_PATH",$APPLPATH+"/pixels") 
 configset("GLOBAL_WAVES_PATH",$APPLPATH+"/waves") 
 configset("SYSTEM_PATH",$APPLPATH+"/system")
+configset("RUBY_PATH",$APPLPATH+"/ruby")
 
 # Find somewhere to save our files.  Directory name first, then paths to check
 setsavepath(".adanaxis", $HOME, $SYSTEM_PATH, "/tmp")
