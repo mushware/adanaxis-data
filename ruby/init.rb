@@ -1,7 +1,5 @@
 
 require 'MushGLFont.rb'
-require 'topmenu.rb'
+require 'TopMenu.rb'
 
 $topMenu = TopMenu.new
-
-puts "Init complete"
