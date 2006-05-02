@@ -8,8 +8,11 @@
 #
 ##############################################################################
 #
-# $Id: start.txt,v 1.11 2006/04/11 23:30:07 southa Exp $
+# $Id: start.txt,v 1.12 2006/04/20 00:22:45 southa Exp $
 # $Log: start.txt,v $
+# Revision 1.12  2006/04/20 00:22:45  southa
+# Added ruby executive
+#
 # Revision 1.11  2006/04/11 23:30:07  southa
 # Created MushRuby from ruby-1.8.4
 #
@@ -99,6 +102,6 @@ residentsound('fire', $GLOBAL_WAVES_PATH+'/fire.wav')
 residentsound('explode', $GLOBAL_WAVES_PATH+'/explode.wav')
 soundstream('adanaxis-music1',$GLOBAL_WAVES_PATH+'/game_12.ogg')
 
-mushgltexture('tex1','file="'+$GLOBAL_PIXELS_PATH+'/tex1.tiff"')
-mushgltexture('tex2','type=noise name="attendant" size="(1024,1024)"')
+mushgltexture('palette1','file="'+$GLOBAL_PIXELS_PATH+'/tex1.tiff" storagetype="U8"')
+mushgltexture('tex2','type=noise name="attendant" size="(2048,2048)" palette="palette1" palettestart="(0.5,0.999)" palettevector="(0,0.1)"')
 
