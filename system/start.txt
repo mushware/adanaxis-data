@@ -8,8 +8,11 @@
 #
 ##############################################################################
 #
-# $Id: start.txt,v 1.13 2006/05/02 17:32:12 southa Exp $
+# $Id: start.txt,v 1.14 2006/05/03 00:58:43 southa Exp $
 # $Log: start.txt,v $
+# Revision 1.14  2006/05/03 00:58:43  southa
+# Texturing updates
+#
 # Revision 1.13  2006/05/02 17:32:12  southa
 # Texturing
 #
@@ -106,5 +109,5 @@ residentsound('explode', $GLOBAL_WAVES_PATH+'/explode.wav')
 soundstream('adanaxis-music1',$GLOBAL_WAVES_PATH+'/game_12.ogg')
 
 mushgltexture('palette1','file="'+$GLOBAL_PIXELS_PATH+'/tex1.tiff" storagetype="U8"')
-mushgltexture('tex2','type=noise name="attendant" size="(2048,2048)" palette="palette1" palettestart="(0.5,0.999)" palettevector="(0.1,0.1)"')
+mushgltexture('tex2','type=noise name="attendant" size="(512,512)" palette="palette1" palettestart="(0.5,0.999)" palettevector="(0.1,0.1)"')
 
