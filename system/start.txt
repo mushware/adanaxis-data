@@ -8,8 +8,11 @@
 #
 ##############################################################################
 #
-# $Id: start.txt,v 1.15 2006/05/11 10:43:15 southa Exp $
+# $Id: start.txt,v 1.16 2006/06/01 20:12:57 southa Exp $
 # $Log: start.txt,v $
+# Revision 1.16  2006/06/01 20:12:57  southa
+# Initial texture caching
+#
 # Revision 1.15  2006/05/11 10:43:15  southa
 # Project updates
 #
@@ -87,6 +90,9 @@ configset('MUSHGL_DISPLAY_MODE', 2)
 # Print OpenGL infomation
 # configset('MUSHGL_DUMP_MUSHGLV', 1)
 
+# Control texture cache
+configset('MUSHGL_TEXTURE_CACHE', 0)
+
 # Extra display mode definitions for X11
 # Uncomment these or add your own
 # configset('X11_MODE_0', '(960,600)')
@@ -112,6 +118,6 @@ residentsound('fire', $GLOBAL_WAVES_PATH+'/fire.wav')
 residentsound('explode', $GLOBAL_WAVES_PATH+'/explode.wav')
 soundstream('adanaxis-music1',$GLOBAL_WAVES_PATH+'/game_12.ogg')
 
-mushgltexture('palette1','file="'+$GLOBAL_PIXELS_PATH+'/tex1.tiff" storagetype="U8"')
-mushgltexture('tex2','type=noise name="attendant" size="(512,512)" palette="palette1" palettestart="(0.5,0.999)" palettevector="(0.1,0.1)"')
-
+mushgltexture('palette1','file="'+$GLOBAL_PIXELS_PATH+'/palette1.tiff" storagetype="U8"')
+# mushgltexture('tex2','type=noise name="attendant" size="(2048,2048)" palette="palette1" palettestart="(0.5,0.999)" palettevector="(0.1,0.1)"')
+mushgltexture('tex2','type=perlin name="attendant" size="(1024,1024)" palette="palette1" palettestart="(0,0)" palettevector1="(1.0,0)" palettevector2="(0,1.0)"')
