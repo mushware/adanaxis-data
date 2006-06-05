@@ -8,8 +8,11 @@
 #
 ##############################################################################
 #
-# $Id: start.txt,v 1.17 2006/06/02 18:14:34 southa Exp $
+# $Id: start.txt,v 1.18 2006/06/05 14:35:15 southa Exp $
 # $Log: start.txt,v $
+# Revision 1.18  2006/06/05 14:35:15  southa
+# Texture generation
+#
 # Revision 1.17  2006/06/02 18:14:34  southa
 # Texture caching
 #
@@ -93,8 +96,8 @@ configset('MUSHGL_DISPLAY_MODE', 2)
 # Print OpenGL infomation
 # configset('MUSHGL_DUMP_MUSHGLV', 1)
 
-# Control texture cache
-configset('MUSHGL_TEXTURE_CACHE', 0)
+# Control texture cache 0=off, 1 or undefined=on
+# configset('MUSHGL_TEXTURE_CACHE', 0)
 
 # Extra display mode definitions for X11
 # Uncomment these or add your own
