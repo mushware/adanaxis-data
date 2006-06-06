@@ -8,8 +8,11 @@
 #
 ##############################################################################
 #
-# $Id: start.txt,v 1.18 2006/06/05 14:35:15 southa Exp $
+# $Id: start.txt,v 1.19 2006/06/05 16:54:43 southa Exp $
 # $Log: start.txt,v $
+# Revision 1.19  2006/06/05 16:54:43  southa
+# Ruby textures
+#
 # Revision 1.18  2006/06/05 14:35:15  southa
 # Texture generation
 #
@@ -123,6 +126,3 @@ loadfontmap('font-mono1',$GLOBAL_PIXELS_PATH+'/font-mono1.tiff',8,12,337,768)
 residentsound('fire', $GLOBAL_WAVES_PATH+'/fire.wav')
 residentsound('explode', $GLOBAL_WAVES_PATH+'/explode.wav')
 soundstream('adanaxis-music1',$GLOBAL_WAVES_PATH+'/game_12.ogg')
-
-mushgltexture('palette1','file="'+$GLOBAL_PIXELS_PATH+'/palette1.tiff" storagetype="U8"')
-mushgltexture('tex2','type=NoiseCell name="attendant" size="(2048,2048)" palette="palette1" palettestart="(0,0)" palettevector1="(1.0,1.0)" palettevector2="(0,1.0)"')
