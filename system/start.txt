@@ -8,8 +8,11 @@
 #
 ##############################################################################
 #
-# $Id: start.txt,v 1.19 2006/06/05 16:54:43 southa Exp $
+# $Id: start.txt,v 1.20 2006/06/06 17:58:30 southa Exp $
 # $Log: start.txt,v $
+# Revision 1.20  2006/06/06 17:58:30  southa
+# Ruby texture definition
+#
 # Revision 1.19  2006/06/05 16:54:43  southa
 # Ruby textures
 #
@@ -101,6 +104,9 @@ configset('MUSHGL_DISPLAY_MODE', 2)
 
 # Control texture cache 0=off, 1 or undefined=on
 # configset('MUSHGL_TEXTURE_CACHE', 0)
+
+# Control texture compression 0=off, 1 or undefined=on
+configset('MUSHGL_TEXTURE_COMPRESSION', 0)
 
 # Extra display mode definitions for X11
 # Uncomment these or add your own
