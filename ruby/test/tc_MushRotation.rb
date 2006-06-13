@@ -1,0 +1,12 @@
+
+require 'test/unit'
+require 'MushRotation.rb'
+
+class TestMushRotation < Test::Unit::TestCase
+  def test_simple
+    vec1 = Mush4Val.new(1,0,0,0)
+    vec1initial = vec1.clone
+    rot1 = MushRotation.new
+    assert_equal(vec1, vec1initial)
+  end
+end
