@@ -1,15 +1,11 @@
 
 # Other methods provided by MushMeshRubyExtruder.cpp
 class MushExtruder
+
+#    MushExtruder.new(sourceface => number,
+#      displacement => MushDisplacement,
+#      displacement_velocity => MushDisplacement)  -> new_mush_extruder
 #
-# Constructor is of the form
-#
-# MushExtruder.new(
-#   source_face => 0
-#   displacement => MushDisplacement.new( ... )
-#   displacement_velocity => MushDisplacement.new( ... )
-#   scale => MushVector.new( ... )
-#   scale_velocity => MushVector.new( ... )
-#   )
+# Creates an extruder object, ready to add to a mesh.  
 
 end

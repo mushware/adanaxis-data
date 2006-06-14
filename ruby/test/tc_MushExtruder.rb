@@ -3,15 +3,14 @@ require 'test/unit'
 
 class TestMushExtruder < Test::Unit::TestCase
   def test_simple
-    disp = MushDisplacement.new
     extruder1 = MushExtruder.new(
         :sourceface => 0,
-        :displacement => disp,
-        :displacement_velocity => MushDisplacement.new(Mush4Val.new(1,0,0,0), MushRotation.new, 0.5),
-        :scale => 1,
-        :scale_velocity => 0
+        :displacement => MushDisplacement.new(
+            :offset => MushVector.new(1,0,0,0),
+            :rotation => MushTools.sRotationInZWPlane(Math::PI/2),
+            :scale => 1.0),
+        :displacement_velocity => MushDisplacement.new(MushVector.new(1,0,0,0), MushRotation.new, 0.5)
       )
-    puts extruder1.to_xml
 	assert_raise(Exception) { MushExtruder.new(:not_a_param => 0) }
   end
 end

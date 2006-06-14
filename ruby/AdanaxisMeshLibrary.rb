@@ -6,19 +6,21 @@ class AdanaxisMeshLibrary
     mesh = MushMesh.new('attendant')
 
     number = LOD_FACTOR
-    extrusion = MushExtrusion.new
-    
-    offset = Mush4Val.new(0,0,0,1)
-    MushTools::sRotationInZWPlane(0.5 * Math::PI / number).mRotate(offset)
 
-    angVel = MushTools::sRotationInZWPlane(Math::PI / number)
+    disp = 
+    extruder = MushExtruder.new
 
-    disp = MushDisplacement.new(offset, angVel, 0.5)
+    extruder1 = MushExtruder.new(
+        :sourceface => 0,
+        :displacement => MushDisplacement.new(
+            :offset => MushVector.new(1,0,0,0),
+            :rotation => MushTools.sRotationInZWPlane(Math::PI/2),
+            :scale => 1.0),
+        :displacement_velocity => MushDisplacement.new(MushVector.new(1,0,0,0), MushRotation.new, 0.5)
+      )
 
-	puts "disp=#{disp}"
-
-	MushMeshLibrary.sPolygonPrismCreate(mesh, Mush4Val.new(1,1,1,1), number)
-
+    mesh.mExtruderAdd(extruder)
+    mesh.mMake
   end
 
   def AdanaxisMeshLibrary.sCreate

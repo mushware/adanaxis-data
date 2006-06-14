@@ -1,10 +1,10 @@
 
 require 'test/unit'
-require 'Mush4Val.rb'
+require 'MushVector.rb'
 
 class TestMushMeshLibrary < Test::Unit::TestCase
   def test_simple
     mesh1 = MushMesh.new('testmesh')
-	MushMeshLibrary.sPolygonPrismCreate(mesh1, Mush4Val.new(1,1,1,1), 5)
+	MushMeshLibrary.sPolygonPrismCreate(mesh1, MushVector.new(1,1,1,1), 5)
   end
 end
