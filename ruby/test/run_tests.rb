@@ -1,8 +1,12 @@
 require 'test/unit/ui/console/testrunner'
 require 'test/unit/testsuite'
 
+require 'Mushware.rb'
+require 'Adanaxis.rb'
+
 require 'test/tc_Mush4Val.rb'
 require 'test/tc_MushDisplacement.rb'
+require 'test/tc_MushExtruder.rb'
 require 'test/tc_MushExtrusion.rb'
 require 'test/tc_MushMesh.rb'
 require 'test/tc_MushMeshLibrary.rb'
@@ -14,6 +18,7 @@ class Tests
     suite = Test::Unit::TestSuite.new
     suite << TestMush4Val.suite
     suite << TestMushDisplacement.suite
+    suite << TestMushExtruder.suite
     suite << TestMushExtrusion.suite
 	suite << TestMushMesh.suite
 	suite << TestMushMeshLibrary.suite
