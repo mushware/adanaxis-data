@@ -4,28 +4,29 @@ require 'test/unit/testsuite'
 require 'Mushware.rb'
 require 'Adanaxis.rb'
 
-require 'test/tc_MushBasePrism.rb'
-require 'test/tc_MushVector.rb'
-require 'test/tc_MushDisplacement.rb'
-require 'test/tc_MushExtruder.rb'
-require 'test/tc_MushExtrusion.rb'
-require 'test/tc_MushMesh.rb'
-require 'test/tc_MushMeshLibrary.rb'
-require 'test/tc_MushRotation.rb'
-require 'test/tc_MushTools.rb'
+$testNames = %w(
+  BasePrism
+  Vector
+  Displacement
+  Extruder
+  Mesh
+  MeshLibrary
+  Rotation
+  Tools
+  Vector
+)
+
+$testNames.each { |name|
+  require "test/tc_Mush#{name}.rb"
+}
 
 class Tests
   def self.suite
     suite = Test::Unit::TestSuite.new
-    suite << TestMushBasePrism.suite
-    suite << TestMushVector.suite
-    suite << TestMushDisplacement.suite
-    suite << TestMushExtruder.suite
-    suite << TestMushExtrusion.suite
-	suite << TestMushMesh.suite
-	suite << TestMushMeshLibrary.suite
-	suite << TestMushRotation.suite
-	suite << TestMushTools.suite
+	
+	$testNames.each { |name|
+      suite << eval("TestMush#{name}.suite")
+	}
 	return suite
   end
 end
