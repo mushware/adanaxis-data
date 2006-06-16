@@ -19,6 +19,8 @@ class MushExtruder
 # sourceface - Number of the face used for the base of this extrusion
 # displacement - <MushDisplacement> applied to the source face to generate the extruded face
 # displacement_velocity - <MushDisplacement> applied to displacement after each extrusion
+# num_iterations - Number of times to copy and diplace the face
+# to_point - Whether the final step extrudes to a point
 #
 # Returns:
 #
@@ -38,7 +40,13 @@ class MushExtruder
 #       :rotation => MushTools.sRotationInZWPlane(Math::PI/2),
 #       :scale => 1.0),
 #     :displacement_velocity => MushDisplacement.new(MushVector.new(1,0,0,0), MushRotation.new, 0.5)
+#     :num_iterations => 3,
+#     :to_point => true
 #   )
 # (end)
+#
+# Links:
+#- Wrapper file:doxygen/class_mush_mesh_ruby_extruder.html
+#- Implemetation file:doxygen/class_mush_mesh_library_extruder.html
 
 end

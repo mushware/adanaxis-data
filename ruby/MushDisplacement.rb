@@ -7,8 +7,8 @@ class MushDisplacement
 # This object contains an offset vector, a rotation and a scale vector.
 # When the displacement is applied to a vertex, the vertex becomes:
 #: offset + rotation applied-to (vertex elementwise-multiplied-by scale)
+#
 # 
-
 # Method: new
 #
 # Creates a MushDisplacement object
@@ -42,5 +42,10 @@ class MushDisplacement
 #	disp3 = MushDisplacement.new(
 #     :scale => MushVector.new(0.5,1,1,1))
 # (end)
+#
+# Links:
+#- Wrapper file:doxygen/class_mush_mesh_ruby_displacement.html
+#- Implemetation file:doxygen/class_mush_mesh_displacement.html
+
 end
 

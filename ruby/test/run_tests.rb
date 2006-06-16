@@ -4,6 +4,7 @@ require 'test/unit/testsuite'
 require 'Mushware.rb'
 require 'Adanaxis.rb'
 
+require 'test/tc_MushBasePrism.rb'
 require 'test/tc_MushVector.rb'
 require 'test/tc_MushDisplacement.rb'
 require 'test/tc_MushExtruder.rb'
@@ -16,6 +17,7 @@ require 'test/tc_MushTools.rb'
 class Tests
   def self.suite
     suite = Test::Unit::TestSuite.new
+    suite << TestMushBasePrism.suite
     suite << TestMushVector.suite
     suite << TestMushDisplacement.suite
     suite << TestMushExtruder.suite
