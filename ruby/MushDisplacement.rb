@@ -43,7 +43,7 @@ class MushDisplacement
 #     :scale => MushVector.new(0.5,1,1,1))
 # (end)
 #
-# Links:
+# Group: Links
 #- Wrapper file:doxygen/class_mush_mesh_ruby_displacement.html
 #- Implemetation file:doxygen/class_mush_mesh_displacement.html
 

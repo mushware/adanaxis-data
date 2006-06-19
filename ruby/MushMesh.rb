@@ -15,6 +15,7 @@ class MushMesh
 # mesh.mAddBaseDisplacement(MushDisplacement.new( ... ))
 # mesh.mAddExtruder(MushExtruder.new( ... ))
 # mesh.mAddExtruder(MushExtruder.new( ... ))
+# mesh.mAddMaterial('material1')
 # mesh.mMake
 # (end)
 #
@@ -50,7 +51,7 @@ class MushMesh
 #
 # Parameters:
 #
-# Subclass of <MushBase>
+# object - Subclass of <MushBase>
 #
 # Method: mAddBaseDisplacement
 #
@@ -59,7 +60,7 @@ class MushMesh
 #
 # Parameters:
 #
-# <MushDisplacement>
+# object - <MushDisplacement>
 #
 # Method: mAddExtruder
 #
@@ -68,9 +69,18 @@ class MushMesh
 #
 # Parameters:
 #
-# <MushExtruder>
+# object - <MushExtruder>
 #
-# Links:
+# Method: mAddMaterial
+#
+# Adds a <MushMaterial> reference to the mesh.  Materials define the material (textures,
+# lighting, etc) to be used when the mesh is rendered.
+#
+# Parameters:
+#
+# name - Name of the material to be added, previously created using <MushMaterial.cDefine>
+#
+# Group: Links
 #- Wrapper file:doxygen/class_mush_mesh_ruby_mesh.html
 #- Implemetation file:doxygen/class_mush_mesh4_mesh.html
 end

@@ -56,6 +56,7 @@ class AdanaxisMeshLibrary
     mesh.mExtruderAdd(extruder2)
     mesh.mExtruderAdd(extruder3)
     mesh.mExtruderAdd(extruder4)
+	mesh.mMaterialAdd('attendant-mat')
 
     mesh.mMake
   end

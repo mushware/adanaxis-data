@@ -9,6 +9,7 @@ $testNames = %w(
   Vector
   Displacement
   Extruder
+  Material
   Mesh
   MeshLibrary
   Rotation

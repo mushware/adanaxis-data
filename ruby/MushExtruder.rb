@@ -45,7 +45,7 @@ class MushExtruder
 #   )
 # (end)
 #
-# Links:
+# Group: Links
 #- Wrapper file:doxygen/class_mush_mesh_ruby_extruder.html
 #- Implemetation file:doxygen/class_mush_mesh_library_extruder.html
 

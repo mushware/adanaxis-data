@@ -31,7 +31,7 @@ class MushVector
 # vec = MushVector.new(1, 2, 3.1, 4.5);
 # (end)
 #
-# Links:
+# Group: Links
 #- Wrapper file:doxygen/class_mush_mesh_ruby_vector.html
 #- Implemetation file:doxygen/class_mush_mesh_vector.html
 

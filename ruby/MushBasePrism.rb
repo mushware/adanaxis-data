@@ -7,7 +7,7 @@ class MushBasePrism < MushBase
 #
 # Description:
 #
-# This object is used as the base for a <MushMesh> object, and provides a prism
+# This object is used as a base shape for a <MushMesh> object, and provides a prism
 # based on a regular polygon.  A 2D polygon is created with the requested number of sides,
 # within a circle of radius 0.5.  This polygon is extruded to produce a 3D prism,
 # and that 3D prism is again extruded to generate the 4D prism.
@@ -31,7 +31,7 @@ class MushBasePrism < MushBase
 #
 # Method: new
 #
-# Creates an BasePrism object, ready to add to a mesh.  
+# Creates a BasePrism object, ready to add to a mesh.  
 #
 # Parameters:
 #
@@ -45,7 +45,7 @@ class MushBasePrism < MushBase
 #
 # Default:
 #
-# There is no default construct.  The order parameter mut be provided.
+# There is no default constructor.  The order parameter must be provided.
 #
 # Example:
 #
@@ -54,7 +54,7 @@ class MushBasePrism < MushBase
 #   baseprism2 = MushBasePrism.new(:order => 5)
 # (end)
 #
-# Links:
+# Group: Links
 #- Wrapper file:doxygen/class_mush_mesh_ruby_base_prism.html
 #- Implemetation file:doxygen/class_mush_mesh_library_prism.html
 
