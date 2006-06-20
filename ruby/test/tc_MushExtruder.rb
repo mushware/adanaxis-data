@@ -7,7 +7,7 @@ class TestMushExtruder < Test::Unit::TestCase
         :sourceface => 0,
         :displacement => MushDisplacement.new(
             :offset => MushVector.new(1,0,0,0),
-            :rotation => MushTools.sRotationInZWPlane(Math::PI/2),
+            :rotation => MushTools.cRotationInZWPlane(Math::PI/2),
             :scale => 1.0),
         :displacement_velocity => MushDisplacement.new(MushVector.new(1,0,0,0), MushRotation.new, 0.5),
 		:num_iterations => 3,

@@ -2,7 +2,7 @@
 class AdanaxisMeshLibrary
   LOD_FACTOR = 5
 
-  def AdanaxisMeshLibrary.sAttendantCreate
+  def AdanaxisMeshLibrary.cAttendantCreate
     mesh = MushMesh.new('attendant')
 
     number = LOD_FACTOR
@@ -18,7 +18,7 @@ class AdanaxisMeshLibrary
         :sourceface => 0,
         :displacement => MushDisplacement.new(
             :offset => MushVector.new(0,0,0,-1),
-            :rotation => MushTools.sRotationInZWPlane(0*Math::PI/20),
+            :rotation => MushTools.cRotationInZWPlane(0*Math::PI/20),
             :scale => 1.0),
 		:num_iterations => 4
       )
@@ -27,7 +27,7 @@ class AdanaxisMeshLibrary
         :sourceface => 2,
         :displacement => MushDisplacement.new(
             :offset => MushVector.new(0,0,-1,0),
-            :rotation => MushTools.sRotationInZWPlane(0*Math::PI/20),
+            :rotation => MushTools.cRotationInZWPlane(0*Math::PI/20),
             :scale => 1.0),
 		:num_iterations => 4
       )
@@ -36,7 +36,7 @@ class AdanaxisMeshLibrary
         :sourceface => 7,
         :displacement => MushDisplacement.new(
             :offset => MushVector.new(0,-1,0,0),
-            :rotation => MushTools.sRotationInZWPlane(0*Math::PI/20),
+            :rotation => MushTools.cRotationInZWPlane(0*Math::PI/20),
             :scale => 1.0),
 		:num_iterations => 4
       )
@@ -45,7 +45,7 @@ class AdanaxisMeshLibrary
         :sourceface => 6,
         :displacement => MushDisplacement.new(
             :offset => MushVector.new(-1,0,0,0),
-            :rotation => MushTools.sRotationInZWPlane(0*Math::PI/20),
+            :rotation => MushTools.cRotationInZWPlane(0*Math::PI/20),
             :scale => 1.0),
 		:num_iterations => 4
       )
@@ -61,7 +61,7 @@ class AdanaxisMeshLibrary
     mesh.mMake
   end
 
-  def AdanaxisMeshLibrary.sCreate
-    sAttendantCreate()
+  def AdanaxisMeshLibrary.cCreate
+    cAttendantCreate()
   end
 end

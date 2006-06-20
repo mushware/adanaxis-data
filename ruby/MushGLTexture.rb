@@ -1,10 +1,10 @@
 
 class MushGLTexture
-  def MushGLTexture.cDefine(paramHash)
+  def self.cDefine(paramHash)
     cRubyDefine(paramHash);
   end
 
-  def MushGLTexture.cPreCache(texName)
+  def self.cPreCache(texName)
     cRubyPreCache(texName);
   end
 

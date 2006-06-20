@@ -12,6 +12,7 @@ $testNames = %w(
   Material
   Mesh
   MeshLibrary
+  Post
   Rotation
   Tools
   Vector
