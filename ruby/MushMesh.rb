@@ -10,7 +10,7 @@ class MushMesh
 # Example:
 #
 # (example)
-# mesh = MushMesh.new
+# mesh = MushMesh.new('mymesh')
 # mesh.mAddBase(MushBasePrism.new( ... ))
 # mesh.mAddBaseDisplacement(MushDisplacement.new( ... ))
 # mesh.mAddExtruder(MushExtruder.new( ... ))
@@ -25,7 +25,7 @@ class MushMesh
 #
 # Parameters:
 #
-# None.
+# Mesh name.
 #
 # Returns:
 #

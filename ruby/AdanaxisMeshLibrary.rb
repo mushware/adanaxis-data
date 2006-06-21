@@ -2,10 +2,12 @@
 class AdanaxisMeshLibrary
   LOD_FACTOR = 5
 
+  #
+  # Attendant mesh
+  #
+  
   def AdanaxisMeshLibrary.cAttendantCreate
     mesh = MushMesh.new('attendant')
-
-    number = LOD_FACTOR
 
     base1 = MushBasePrism.new(:order => 4)
 	
@@ -60,8 +62,40 @@ class AdanaxisMeshLibrary
 
     mesh.mMake
   end
+  
+  #
+  # Projectile mesh
+  #
+  
+  def AdanaxisMeshLibrary.cProjectileCreate
+	mesh =  MushMesh.new('projectile')
+
+	base1 = MushBasePrism.new(:order => 5)
+	
+	baseDisplacement1 = MushDisplacement.new(
+		:offset => MushVector.new(0,0,0,0.5),
+        :scale => MushVector.new(0.25,0.25,0.20,1)
+	  )
+	
+    extruder1 = MushExtruder.new(
+        :sourceface => 0,
+        :displacement => MushDisplacement.new(
+            :offset => MushVector.new(0,0,0,-1),
+            :scale => 0.5),
+		:num_iterations => 1,
+		:to_point => true
+      )
+
+	mesh.mBaseAdd(base1)
+	mesh.mBaseDisplacementAdd(baseDisplacement1)
+    mesh.mExtruderAdd(extruder1)
+	mesh.mMaterialAdd('projectile-mat')
+	
+	mesh.mMake
+  end
 
   def AdanaxisMeshLibrary.cCreate
     cAttendantCreate()
+    cProjectileCreate()
   end
 end

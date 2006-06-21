@@ -5,5 +5,9 @@ class AdanaxisMaterialLibrary < MushObject
 	  :name => 'attendant-mat',
 	  :texture_name => 'attendant-tex'
 	)
+	MushMaterial.cDefine(
+	  :name => 'projectile-mat',
+	  :texture_name => 'projectile-tex'
+	)
   end
 end

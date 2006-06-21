@@ -3,12 +3,21 @@ class AdanaxisTextureLibrary < MushObject
   def self.cCreate
     levelOfDetail=2
     textureSize = 256 * (2 ** levelOfDetail);
+    smallTextureSize = 128 * (2 ** levelOfDetail);
 
 	# Standard palettes
 	MushGLTexture::cDefine(
 		:name          => 'palette1',
         :type          => 'TIFF',
 		:filename      => MushConfig.cGlobalPixelsPath+'/palette1.tiff',
+		:storagetype   => 'U8',
+		:cache         => 0
+	)
+
+	MushGLTexture::cDefine(
+		:name          => 'palette2',
+        :type          => 'TIFF',
+		:filename      => MushConfig.cGlobalPixelsPath+'/palette2.tiff',
 		:storagetype   => 'U8',
 		:cache         => 0
 	)
@@ -33,6 +42,22 @@ class AdanaxisTextureLibrary < MushObject
         :octaveratio   => 0.5,
 		:cache         => 1
 	)
+	
+	scale = 4
+	
+	MushGLTexture::cDefine(
+		:name          => 'projectile-tex',
+        :type          => 'CellNoise',
+        :meshname      => 'projectile',
+        :size          => [smallTextureSize, smallTextureSize],
+        :palette       => 'palette2',
+        :palettestart  => [0.2,0.2],
+        :palettevector => [0.8,0.8],
+		:scale         => [scale, scale, scale, scale],
+        :numoctaves    => 8,
+        :octaveratio   => 0.5,
+		:cache         => 1
+	)
 
     gridScale = 2.7;
 	gridScaleVec = [gridScale, gridScale, gridScale, gridScale];
@@ -42,9 +67,9 @@ class AdanaxisTextureLibrary < MushObject
     gridPaletteStart = [0,0.5]
 
 	MushGLTexture::cDefine(
-		:name          => 'tex3',
+		:name          => 'grid-tex',
         :type          => 'Grid',
-        :meshname      => 'attendant',
+        :meshname      => 'projectile',
         :size          => [textureSize, textureSize],
         :palette       => 'gridpalette1',
         :palettestart  => gridPaletteStart,
@@ -56,18 +81,6 @@ class AdanaxisTextureLibrary < MushObject
 		:cache         => 1
 	)
 
-	MushGLTexture::cDefine(
-		:name          => 'texture',
-        :type          => 'TileShow',
-		:meshname      => 'attendant',
-        :size          => [textureSize, textureSize],
-        :palette       => 'gridpalette1',
-        :palettestart  => gridPaletteStart,
-        :palettevector => [0.98,0],
-		:cache         => 1
-	)
-
-	# MushGLTexture::cPreCache('texture')
   end
 end
 	
