@@ -26,14 +26,18 @@ class Adanaxis_local1 < AdanaxisSpace
       )
 	}
 	
-	khazi2 = AdanaxisKhazi.new(
-      :mesh_name => 'projectile',
+	world1 = AdanaxisDeco.new(
+      :mesh_name => 'world1',
 	  :post => MushPost.new(
 	  :position => MushVector.new(0,0,0,0),
-	  :angular_velocity => MushTools.cRotationInZWPlane(Math::PI/1000)
-	  )
+	  :angular_position => MushTools.cRotationInXZPlane(Math::PI/4)	  )
 	)
-
+	world2 = AdanaxisDeco.new(
+      :mesh_name => 'world1',
+	  :post => MushPost.new(
+	  :position => MushVector.new(0,0,0,0),
+	  :angular_position => MushTools.cRotationInZWPlane(Math::PI/4)	  )
+	)
   end
   
 end

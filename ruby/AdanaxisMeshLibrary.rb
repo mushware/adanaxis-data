@@ -94,8 +94,48 @@ class AdanaxisMeshLibrary
 	mesh.mMake
   end
 
+  #
+  # World mesh
+  #
+  
+  def AdanaxisMeshLibrary.cWorldCreate
+	mesh =  MushMesh.new('world1')
+
+	base1 = MushBasePrism.new(:order => 4)
+	
+	baseDisplacement1 = MushDisplacement.new(
+		:offset => MushVector.new(0,0,0,0),
+        :scale => MushVector.new(140,140,100,100)
+	  )
+	
+    extruder1 = MushExtruder.new(
+        :sourceface => 0,
+        :displacement => MushDisplacement.new(
+            :offset => MushVector.new(0,0,0,-70),
+            :scale => 0.5),
+		:num_iterations => 1
+      )
+
+    extruder2 = MushExtruder.new(
+        :sourceface => 1,
+        :displacement => MushDisplacement.new(
+            :offset => MushVector.new(0,0,0,70),
+            :scale => 0.5),
+		:num_iterations => 1
+      )
+
+	mesh.mBaseAdd(base1)
+	mesh.mBaseDisplacementAdd(baseDisplacement1)
+    #mesh.mExtruderAdd(extruder1)
+    #mesh.mExtruderAdd(extruder2)
+	mesh.mMaterialAdd('world1-mat')
+	
+	mesh.mMake
+  end
+
   def AdanaxisMeshLibrary.cCreate
     cAttendantCreate()
     cProjectileCreate()
+    cWorldCreate()
   end
 end

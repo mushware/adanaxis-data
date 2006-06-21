@@ -4,6 +4,7 @@ class AdanaxisTextureLibrary < MushObject
     levelOfDetail=2
     textureSize = 256 * (2 ** levelOfDetail);
     smallTextureSize = 128 * (2 ** levelOfDetail);
+    largeTextureSize = 512 * (2 ** levelOfDetail);
 
 	# Standard palettes
 	MushGLTexture::cDefine(
@@ -18,6 +19,14 @@ class AdanaxisTextureLibrary < MushObject
 		:name          => 'palette2',
         :type          => 'TIFF',
 		:filename      => MushConfig.cGlobalPixelsPath+'/palette2.tiff',
+		:storagetype   => 'U8',
+		:cache         => 0
+	)
+
+	MushGLTexture::cDefine(
+		:name          => 'worldpalette1',
+        :type          => 'TIFF',
+		:filename      => MushConfig.cGlobalPixelsPath+'/worldpalette1.tiff',
 		:storagetype   => 'U8',
 		:cache         => 0
 	)
@@ -57,6 +66,21 @@ class AdanaxisTextureLibrary < MushObject
         :numoctaves    => 8,
         :octaveratio   => 0.5,
 		:cache         => 1
+	)
+
+    scale = 0.02
+	MushGLTexture::cDefine(
+		:name          => 'world1-tex',
+        :type          => 'CellNoise',
+        :meshname      => 'world1',
+        :size          => [largeTextureSize, largeTextureSize],
+        :palette       => 'worldpalette1',
+        :palettestart  => [0,0.5],
+        :palettevector => [1,0],
+		:scale         => [scale,scale,scale,scale],
+        :numoctaves    => 8,
+        :octaveratio   => 0.5,
+		:cache         => 0
 	)
 
     gridScale = 2.7;

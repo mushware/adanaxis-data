@@ -5,4 +5,4 @@ require 'Level1.rb'
 
 $currentGame = AdanaxisGame.new
 
-require 'test/run_tests.rb'
+# require 'test/run_tests.rb'

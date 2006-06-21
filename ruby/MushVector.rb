@@ -36,4 +36,3 @@ class MushVector
 #- Implemetation file:doxygen/class_mush_mesh_vector.html
 
 end
-
