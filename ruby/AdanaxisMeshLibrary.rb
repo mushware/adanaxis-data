@@ -101,7 +101,7 @@ class AdanaxisMeshLibrary
   def AdanaxisMeshLibrary.cWorldCreate
 	mesh =  MushMesh.new('world1')
 
-	base1 = MushBasePrism.new(:order => 4)
+	base1 = MushBasePrism.new(:order => 3)
 	
 	baseDisplacement1 = MushDisplacement.new(
 		:offset => MushVector.new(0,0,0,0),

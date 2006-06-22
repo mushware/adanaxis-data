@@ -75,11 +75,11 @@ class AdanaxisTextureLibrary < MushObject
         :meshname      => 'world1',
         :size          => [largeTextureSize, largeTextureSize],
         :palette       => 'worldpalette1',
-        :palettestart  => [0,0.5],
-        :palettevector => [1,0],
+        :palettestart  => [0,0],
+        :palettevector => [1,1],
 		:scale         => [scale,scale,scale,scale],
-        :numoctaves    => 8,
-        :octaveratio   => 0.5,
+        :numoctaves    => 4,
+        :octaveratio   => 0.7,
 		:cache         => 0
 	)
 

@@ -16,28 +16,30 @@ class Adanaxis_local1 < AdanaxisSpace
     rotMin = -0.01
 	rotMax = 0.01
 	
-	(0..9).each { |i|
+	(1..0).each { |i|
 	  khazi = AdanaxisKhazi.new(
 	    :mesh_name => 'attendant',
 	    :post => MushPost.new(
 	      :position => MushVector.new(20*(i+2),0,0,0),
-		  :angular_velocity => MushTools.cRotationInZWPlane(i*Math::PI/1000)
+		  :angular_velocity => MushTools.cRotationInXWPlane(i*Math::PI/1000)
         )
       )
 	}
 	
-	world1 = AdanaxisDeco.new(
+	angVel = MushTools.cRotationInZWPlane(Math::PI/1000)
+	MushTools.cRotationInXZPlane(Math::PI/350).mRotate(angVel)
+	MushTools.cRotationInYZPlane(Math::PI/280).mRotate(angVel)
+	
+	
+	world1 = AdanaxisKhazi.new(
       :mesh_name => 'world1',
 	  :post => MushPost.new(
-	  :position => MushVector.new(0,0,0,0),
-	  :angular_position => MushTools.cRotationInXZPlane(Math::PI/4)	  )
+	    :position => MushVector.new(0,0,0,0),
+	    :angular_position => MushTools.cRotationInXZPlane(Math::PI/4),
+	    :angular_velocity => angVel
+	  )
 	)
-	world2 = AdanaxisDeco.new(
-      :mesh_name => 'world1',
-	  :post => MushPost.new(
-	  :position => MushVector.new(0,0,0,0),
-	  :angular_position => MushTools.cRotationInZWPlane(Math::PI/4)	  )
-	)
+	
   end
   
 end
