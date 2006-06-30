@@ -79,7 +79,7 @@ class AdanaxisTextureLibrary < MushObject
         :palettevector => [1,1],
 		:scale         => [scale,scale,scale,scale],
         :numoctaves    => 4,
-        :octaveratio   => 0.7,
+        :octaveratio   => 1,
 		:cache         => 0
 	)
 
