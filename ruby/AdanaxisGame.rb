@@ -5,6 +5,9 @@ class AdanaxisGame < MushObject
     @spaceName = 'local1'
 	@spaceObjectName = 'Adanaxis_'+@spaceName
     @spacePath = MushConfig.cGlobalSpacesPath + '/' + @spaceName
+    
+    @menuRender = AdanaxisRender.new
+    @menuRender.mCreate
   end
   
   def mLoad
@@ -14,5 +17,9 @@ class AdanaxisGame < MushObject
 	self
   end
   
+  def mRender
+    @menuRender.mRender
+  end
+
   attr_reader :spacePath, :space
 end
