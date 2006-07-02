@@ -9,6 +9,7 @@ $testNames = %w(
   Vector
   Displacement
   Extruder
+  GLFont
   Material
   Mesh
   MeshLibrary

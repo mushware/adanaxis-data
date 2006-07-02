@@ -1,8 +1,10 @@
 
 require 'Mushware.rb'
+require 'AdanaxisFontLibrary.rb'
 require 'AdanaxisGame.rb'
 require 'AdanaxisKhazi.rb'
 require 'AdanaxisMaterialLibrary.rb'
 require 'AdanaxisMeshLibrary.rb'
+require 'AdanaxisRender.rb'
 require 'AdanaxisSpace.rb'
 require 'AdanaxisTextureLibrary.rb'

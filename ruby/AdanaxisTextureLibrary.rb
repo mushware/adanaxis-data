@@ -47,8 +47,8 @@ class AdanaxisTextureLibrary < MushObject
         :palette       => 'palette1',
         :palettestart  => [0,0],
         :palettevector => [1.0,1.0],
-        :numoctaves    => 8,
-        :octaveratio   => 0.5,
+        :numoctaves    => 4,
+        :octaveratio   => 1.2,
 		:cache         => 1
 	)
 	
@@ -68,9 +68,23 @@ class AdanaxisTextureLibrary < MushObject
 		:cache         => 1
 	)
 
-    scale = 0.02
+    scale = 0.01
 	MushGLTexture::cDefine(
 		:name          => 'world1-tex',
+        :type          => 'CellNoise',
+        :meshname      => 'world1',
+        :size          => [largeTextureSize, largeTextureSize],
+        :palette       => 'worldpalette1',
+        :palettestart  => [0,0],
+        :palettevector => [0.1,0.1],
+		:scale         => [scale,scale,scale,scale],
+        :numoctaves    => 8,
+        :octaveratio   => 0.5,
+		:cache         => 1
+	)
+    scale = 0.02
+	MushGLTexture::cDefine(
+		:name          => 'world2-tex',
         :type          => 'CellNoise',
         :meshname      => 'world1',
         :size          => [largeTextureSize, largeTextureSize],
@@ -80,7 +94,7 @@ class AdanaxisTextureLibrary < MushObject
 		:scale         => [scale,scale,scale,scale],
         :numoctaves    => 4,
         :octaveratio   => 1,
-		:cache         => 0
+		:cache         => 1
 	)
 
     gridScale = 2.7;

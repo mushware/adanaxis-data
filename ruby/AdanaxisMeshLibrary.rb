@@ -101,11 +101,11 @@ class AdanaxisMeshLibrary
   def AdanaxisMeshLibrary.cWorldCreate
 	mesh =  MushMesh.new('world1')
 
-	base1 = MushBasePrism.new(:order => 3)
+	base1 = MushBasePrism.new(:order => 4)
 	
 	baseDisplacement1 = MushDisplacement.new(
 		:offset => MushVector.new(0,0,0,0),
-        :scale => MushVector.new(140,140,100,100)
+        :scale => MushVector.new(142,142,100,100)
 	  )
 	
     extruder1 = MushExtruder.new(
@@ -126,8 +126,8 @@ class AdanaxisMeshLibrary
 
 	mesh.mBaseAdd(base1)
 	mesh.mBaseDisplacementAdd(baseDisplacement1)
-    #mesh.mExtruderAdd(extruder1)
-    #mesh.mExtruderAdd(extruder2)
+    mesh.mExtruderAdd(extruder1)
+    mesh.mExtruderAdd(extruder2)
 	mesh.mMaterialAdd('world1-mat')
 	
 	mesh.mMake
