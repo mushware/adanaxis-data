@@ -21,5 +21,10 @@ class AdanaxisGame < MushObject
     @menuRender.mRender
   end
 
+  def mKeypress(inKey, inIsDown)
+    keyChar = (inKey < 256)?(inKey.chr):('?')
+    puts "key #{inKey}, '#{keyChar}' #{inIsDown}"
+  end
+
   attr_reader :spacePath, :space
 end
