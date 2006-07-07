@@ -23,7 +23,8 @@ class AdanaxisGame < MushObject
 
   def mKeypress(inKey, inIsDown)
     keyChar = (inKey < 256)?(inKey.chr):('?')
-    puts "key #{inKey}, '#{keyChar}' #{inIsDown}"
+    keyName = MushGame.cKeySymbolToName(inKey);
+    puts "key #{inKey}, '#{keyChar}' '#{keyName}' #{inIsDown}"
   end
 
   attr_reader :spacePath, :space
