@@ -25,6 +25,12 @@ class AdanaxisGame < MushObject
     keyChar = (inKey < 256)?(inKey.chr):('?')
     keyName = MushGame.cKeySymbolToName(inKey);
     puts "key #{inKey}, '#{keyChar}' '#{keyName}' #{inIsDown}"
+    
+    if inIsDown
+      if inKey == MushKeys::SDLK_ESCAPE
+        MushGame.cGameModeEnter
+      end
+    end
   end
 
   attr_reader :spacePath, :space
