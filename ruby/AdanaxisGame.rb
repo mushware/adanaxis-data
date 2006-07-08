@@ -8,6 +8,28 @@ class AdanaxisGame < MushObject
     
     @menuRender = AdanaxisRender.new
     @menuRender.mCreate
+    
+    @menu = MushMenu.new(
+      :menu => [  
+        ["New Game", :mNewGame],
+        ["Resume", :mResume],
+        ["Quit", :mQuit]
+      ],
+      :size => 0.025,
+      :colour => MushVector.new(0.7,0.7,1,0.7)
+    )
+  end
+  
+  def mNewGame
+    MushGame.cGameModeEnter
+  end
+  
+  def mResume
+    MushGame.cGameModeEnter
+  end
+  
+  def mQuit
+    MushGame.cQuit  
   end
   
   def mLoad
@@ -17,18 +39,23 @@ class AdanaxisGame < MushObject
 	self
   end
   
-  def mRender
-    @menuRender.mRender
+  def mRender(msec)
+    @menu.highlight_colour = MushVector.new(1,1,0.7,0.5+0.25*Math.sin(msec/100.0))
+    @menu.size = 0.03+0.0003*Math.sin(msec/1500.0)
+    @menu.mRender(msec)
   end
 
   def mKeypress(inKey, inIsDown)
     keyChar = (inKey < 256)?(inKey.chr):('?')
     keyName = MushGame.cKeySymbolToName(inKey);
-    puts "key #{inKey}, '#{keyChar}' '#{keyName}' #{inIsDown}"
+    # puts "key #{inKey}, '#{keyChar}' '#{keyName}' #{inIsDown}"
     
     if inIsDown
-      if inKey == MushKeys::SDLK_ESCAPE
-        MushGame.cGameModeEnter
+      case inKey
+        when MushKeys::SDLK_ESCAPE : MushGame.cGameModeEnter
+        when MushKeys::SDLK_UP : @menu.mUp
+        when MushKeys::SDLK_DOWN : @menu.mDown
+        when MushKeys::SDLK_KP_ENTER, MushKeys::SDLK_RETURN : @menu.mEnter(self)
       end
     end
   end
