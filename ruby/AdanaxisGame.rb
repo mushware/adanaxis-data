@@ -9,26 +9,20 @@ class AdanaxisGame < MushObject
     @menuRender = AdanaxisRender.new
     @menuRender.mCreate
     
-    @menu = MushMenu.new(
-      :menu => [  
-        ["New Game", :mNewGame],
-        ["Resume", :mResume],
-        ["Quit", :mQuit]
-      ],
-      :size => 0.025,
-      :colour => MushVector.new(0.7,0.7,1,0.7)
-    )
+    @menuSet = AdanaxisMenu.new
+    @currentMenu = 0
+
   end
   
-  def mNewGame
+  def mMenuNewGame
     MushGame.cGameModeEnter
   end
   
-  def mResume
+  def mMenuResume
     MushGame.cGameModeEnter
   end
   
-  def mQuit
+  def mMenuQuit
     MushGame.cQuit  
   end
   
@@ -40,9 +34,10 @@ class AdanaxisGame < MushObject
   end
   
   def mRender(msec)
-    @menu.highlight_colour = MushVector.new(1,1,0.7,0.5+0.25*Math.sin(msec/100.0))
-    @menu.size = 0.03+0.0003*Math.sin(msec/1500.0)
-    @menu.mRender(msec)
+    menu = @menuSet.mMenu(@currentMenu)
+    menu.highlight_colour = MushVector.new(1,1,0.7,0.5+0.25*Math.sin(msec/100.0))
+    menu.size = 0.03+0.0003*Math.sin(msec/1500.0)
+    menu.mRender(msec)
   end
 
   def mKeypress(inKey, inIsDown)
@@ -51,13 +46,31 @@ class AdanaxisGame < MushObject
     # puts "key #{inKey}, '#{keyChar}' '#{keyName}' #{inIsDown}"
     
     if inIsDown
+      menu = @menuSet.mMenu(@currentMenu)
       case inKey
         when MushKeys::SDLK_ESCAPE : MushGame.cGameModeEnter
-        when MushKeys::SDLK_UP : @menu.mUp
-        when MushKeys::SDLK_DOWN : @menu.mDown
-        when MushKeys::SDLK_KP_ENTER, MushKeys::SDLK_RETURN : @menu.mEnter(self)
+        when MushKeys::SDLK_UP : menu.mUp
+        when MushKeys::SDLK_DOWN : menu.mDown
+        when MushKeys::SDLK_KP_ENTER, MushKeys::SDLK_RETURN : menu.mEnter(self)
       end
+    @menuSet.mUpdate(@currentMenu)
     end
+  end
+
+  def mMenuBack
+    @currentMenu = AdanaxisMenu::MENU_TOPLEVEL
+  end
+
+  def mMenuControls
+    @currentMenu = AdanaxisMenu::MENU_CONTROL
+  end
+
+  def mMenuKeys
+    @currentMenu = AdanaxisMenu::MENU_KEYS
+  end
+
+  def mMenuMouse
+    @currentMenu = AdanaxisMenu::MENU_MOUSE
   end
 
   attr_reader :spacePath, :space
