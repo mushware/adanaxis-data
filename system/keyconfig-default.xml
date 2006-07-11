@@ -20,8 +20,11 @@ these defaults, so it may be better to edit there instead of here.
  *
  * This software carries NO WARRANTY of any kind.
  *
- * $Id: keyconfig-default.xml,v 1.1 2005/07/11 16:37:44 southa Exp $
+ * $Id: keyconfig-default.xml,v 1.2 2005/08/02 14:37:44 southa Exp $
  * $Log: keyconfig-default.xml,v $
+ * Revision 1.2  2005/08/02 14:37:44  southa
+ * Adanaxis control demo work
+ *
  * Revision 1.1  2005/07/11 16:37:44  southa
  * Uplink control work
  *
@@ -33,5 +36,12 @@ these defaults, so it may be better to edit there instead of here.
 <state>0</state>
 <stateHasChanged>1</stateHasChanged>
 <keyName>"Fire"</keyName>
+</obj>
+,
+<obj type="MushGameKeyDef">
+<keyValue>9</keyValue>
+<state>0</state>
+<stateHasChanged>1</stateHasChanged>
+<keyName>"Scanner"</keyName>
 </obj>
 )</obj>

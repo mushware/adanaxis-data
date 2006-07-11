@@ -20,8 +20,11 @@ these defaults, so it may be better to edit there instead of here.
  *
  * This software carries NO WARRANTY of any kind.
  *
- * $Id: axisconfig-default.xml,v 1.5 2005/08/02 14:37:44 southa Exp $
+ * $Id: axisconfig-default.xml,v 1.6 2006/07/08 16:05:54 southa Exp $
  * $Log: axisconfig-default.xml,v $
+ * Revision 1.6  2006/07/08 16:05:54  southa
+ * Ruby menus and key handling
+ *
  * Revision 1.5  2005/08/02 14:37:44  southa
  * Adanaxis control demo work
  *
@@ -41,8 +44,6 @@ these defaults, so it may be better to edit there instead of here.
  
 -->
 <obj>(<obj type="MushGameAxisDef">
-<useDevice>0</useDevice>
-<useKeys>1</useKeys>
 <useBounds>0</useBounds>
 <integrate>1</integrate>
 <deviceNum>0</deviceNum>
@@ -59,8 +60,6 @@ these defaults, so it may be better to edit there instead of here.
 <velLimit>10</velLimit>
 </obj>
 ,<obj type="MushGameAxisDef">
-<useDevice>0</useDevice>
-<useKeys>1</useKeys>
 <useBounds>0</useBounds>
 <integrate>1</integrate>
 <deviceNum>0</deviceNum>
@@ -79,8 +78,6 @@ these defaults, so it may be better to edit there instead of here.
 <velLimit>10</velLimit>
 </obj>
 ,<obj type="MushGameAxisDef">
-<useDevice>0</useDevice>
-<useKeys>1</useKeys>
 <useBounds>0</useBounds>
 <integrate>1</integrate>
 <deviceNum>0</deviceNum>
@@ -99,8 +96,6 @@ these defaults, so it may be better to edit there instead of here.
 <velLimit>10</velLimit>
 </obj>
 ,<obj type="MushGameAxisDef">
-<useDevice>0</useDevice>
-<useKeys>1</useKeys>
 <useBounds>0</useBounds>
 <integrate>1</integrate>
 <deviceNum>0</deviceNum>
@@ -119,8 +114,6 @@ these defaults, so it may be better to edit there instead of here.
 <velLimit>40</velLimit>
 </obj>
 ,<obj type="MushGameAxisDef">
-<useDevice>0</useDevice>
-<useKeys>1</useKeys>
 <useBounds>0</useBounds>
 <integrate>1</integrate>
 <deviceNum>0</deviceNum>
@@ -139,11 +132,9 @@ these defaults, so it may be better to edit there instead of here.
 <velLimit>1</velLimit>
 </obj>
 ,<obj type="MushGameAxisDef">
-<useDevice>1</useDevice>
-<useKeys>1</useKeys>
 <useBounds>0</useBounds>
 <integrate>0</integrate>
-<deviceNum>0</deviceNum>
+<deviceNum>1</deviceNum>
 <deviceAxisNum>0</deviceAxisNum>
 <deviceSensitivity>-10</deviceSensitivity>
 <deviceDamping>0.05</deviceDamping>
@@ -159,8 +150,6 @@ these defaults, so it may be better to edit there instead of here.
 <velLimit>1</velLimit>
 </obj>
 ,<obj type="MushGameAxisDef">
-<useDevice>0</useDevice>
-<useKeys>1</useKeys>
 <useBounds>0</useBounds>
 <integrate>1</integrate>
 <deviceNum>0</deviceNum>
@@ -179,11 +168,9 @@ these defaults, so it may be better to edit there instead of here.
 <velLimit>1</velLimit>
 </obj>
 ,<obj type="MushGameAxisDef">
-<useDevice>1</useDevice>
-<useKeys>1</useKeys>
 <useBounds>0</useBounds>
 <integrate>1</integrate>
-<deviceNum>0</deviceNum>
+<deviceNum>1</deviceNum>
 <deviceAxisNum>1</deviceAxisNum>
 <deviceSensitivity>-20</deviceSensitivity>
 <deviceDamping>0.05</deviceDamping>
@@ -199,11 +186,9 @@ these defaults, so it may be better to edit there instead of here.
 <velLimit>1</velLimit>
 </obj>
 ,<obj type="MushGameAxisDef">
-<useDevice>1</useDevice>
-<useKeys>1</useKeys>
 <useBounds>0</useBounds>
 <integrate>1</integrate>
-<deviceNum>0</deviceNum>
+<deviceNum>1</deviceNum>
 <deviceAxisNum>0</deviceAxisNum>
 <deviceSensitivity>-20</deviceSensitivity>
 <deviceDamping>0.05</deviceDamping>
@@ -219,8 +204,6 @@ these defaults, so it may be better to edit there instead of here.
 <velLimit>1</velLimit>
 </obj>
 ,<obj type="MushGameAxisDef">
-<useDevice>0</useDevice>
-<useKeys>1</useKeys>
 <useBounds>0</useBounds>
 <integrate>1</integrate>
 <deviceNum>0</deviceNum>

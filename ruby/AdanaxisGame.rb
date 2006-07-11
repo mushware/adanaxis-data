@@ -14,18 +14,6 @@ class AdanaxisGame < MushObject
 
   end
   
-  def mMenuNewGame
-    MushGame.cGameModeEnter
-  end
-  
-  def mMenuResume
-    MushGame.cGameModeEnter
-  end
-  
-  def mMenuQuit
-    MushGame.cQuit  
-  end
-  
   def mLoad
     require(@spacePath+'/space.rb')
 	@space = eval "#{@spaceObjectName}.new"
@@ -36,7 +24,7 @@ class AdanaxisGame < MushObject
   def mRender(msec)
     menu = @menuSet.mMenu(@currentMenu)
     menu.highlight_colour = MushVector.new(1,1,0.7,0.5+0.25*Math.sin(msec/100.0))
-    menu.size = 0.03+0.0003*Math.sin(msec/1500.0)
+    # menu.size = 0.03+0.0003*Math.sin(msec/1500.0)
     menu.mRender(msec)
   end
 
@@ -47,30 +35,52 @@ class AdanaxisGame < MushObject
     
     if inIsDown
       menu = @menuSet.mMenu(@currentMenu)
-      case inKey
-        when MushKeys::SDLK_ESCAPE : MushGame.cGameModeEnter
-        when MushKeys::SDLK_UP : menu.mUp
-        when MushKeys::SDLK_DOWN : menu.mDown
-        when MushKeys::SDLK_KP_ENTER, MushKeys::SDLK_RETURN : menu.mEnter(self)
+      
+      if (@menuSet.axisKeyWait)
+        menu.mKeypress(self, inKey)
+      else
+        case inKey
+          when MushKeys::SDLK_ESCAPE : MushGame.cGameModeEnter
+          when MushKeys::SDLK_UP : menu.mUp
+          when MushKeys::SDLK_DOWN : menu.mDown
+          when MushKeys::SDLK_KP_ENTER, MushKeys::SDLK_RETURN : menu.mEnter(self)
+        end
       end
-    @menuSet.mUpdate(@currentMenu)
+      @menuSet.mUpdate(@currentMenu)
     end
   end
 
-  def mMenuBack
-    @currentMenu = AdanaxisMenu::MENU_TOPLEVEL
+  def mMenuNewGame(param)
+    MushGame.cGameModeEnter
+  end
+  
+  def mMenuResume(param)
+    MushGame.cGameModeEnter
+  end
+  
+  def mMenuQuit(param)
+    MushGame.cQuit  
+  end
+  
+  def mMenuBack(param)
+    if (param)
+      @currentMenu = param
+    else
+      @currentMenu = AdanaxisMenu::MENU_TOPLEVEL
+    end    
   end
 
-  def mMenuControls
-    @currentMenu = AdanaxisMenu::MENU_CONTROL
+  def mToMenu(param)
+    @currentMenu = param
   end
 
-  def mMenuKeys
-    @currentMenu = AdanaxisMenu::MENU_KEYS
+  def mMenuAxisKey(param)
+    @menuSet.mWaitForAxisKey(param)
   end
 
-  def mMenuMouse
-    @currentMenu = AdanaxisMenu::MENU_MOUSE
+  def mMenuAxisKeyReceived(inKey, param)
+    MushGame.cAxisKeySet(inKey, param)
+    @menuSet.mWaitForAxisKey(nil)
   end
 
   attr_reader :spacePath, :space
