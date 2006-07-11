@@ -36,14 +36,20 @@ class AdanaxisGame < MushObject
     if inIsDown
       menu = @menuSet.mMenu(@currentMenu)
       
-      if (@menuSet.axisKeyWait)
+      if (@menuSet.axisKeyWait || @menuSet.keyWait)
+        inKey == 27 && inKey = 0
         menu.mKeypress(self, inKey)
       else
         case inKey
-          when MushKeys::SDLK_ESCAPE : MushGame.cGameModeEnter
+          when MushKeys::SDLK_ESCAPE
+            if @currentMenu == AdanaxisMenu::MENU_TOPLEVEL
+              MushGame.cGameModeEnter
+            else
+              @currentMenu = AdanaxisMenu::MENU_TOPLEVEL
+            end
           when MushKeys::SDLK_UP : menu.mUp
           when MushKeys::SDLK_DOWN : menu.mDown
-          when MushKeys::SDLK_KP_ENTER, MushKeys::SDLK_RETURN : menu.mEnter(self)
+          when MushKeys::SDLK_KP_ENTER, MushKeys::SDLK_RETURN, MushKeys::SDLK_RIGHT : menu.mEnter(self)
         end
       end
       @menuSet.mUpdate(@currentMenu)
@@ -51,7 +57,7 @@ class AdanaxisGame < MushObject
   end
 
   def mMenuNewGame(param)
-    MushGame.cGameModeEnter
+    MushGame.cNewGameEnter
   end
   
   def mMenuResume(param)
@@ -81,6 +87,27 @@ class AdanaxisGame < MushObject
   def mMenuAxisKeyReceived(inKey, param)
     MushGame.cAxisKeySet(inKey, param)
     @menuSet.mWaitForAxisKey(nil)
+  end
+
+  def mMenuKey(param)
+    @menuSet.mWaitForKey(param)
+  end
+
+  def mMenuKeyReceived(inKey, param)
+    MushGame.cKeySet(inKey, param)
+    @menuSet.mWaitForKey(nil)
+  end
+
+  def mMenuAxis(param)
+    axis = AdanaxisControl.cNextAxis( MushGame.cAxisSymbol(param) )
+    MushGame.cAxisSet(axis, param)
+  end
+
+  def mMenuUseJoystick(param)
+    MushGame.cAxisSet(AdanaxisControl::INAXIS_STICK_X, AdanaxisControl::AXIS_XW)
+    MushGame.cAxisSet(AdanaxisControl::INAXIS_STICK_Y, AdanaxisControl::AXIS_YW)
+    MushGame.cAxisSet(AdanaxisControl::INAXIS_STICK_Z, AdanaxisControl::AXIS_ZW)
+    MushGame.cAxisSet(AdanaxisControl::INAXIS_STICK_W, AdanaxisControl::AXIS_W)
   end
 
   attr_reader :spacePath, :space

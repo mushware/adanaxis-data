@@ -68,17 +68,38 @@ class AdanaxisMenu
       )
     )
     
+    @joystickMenu = MushMenu.new(
+      @menuCommon.merge(
+        {
+          :title => "Joystick Control",
+          :menu => [  
+            ["(Requires update)", :mMenuBack, MENU_KEYS],
+            ["Back", :mMenuBack]
+          ]
+        }
+      )
+    )
+    
     @menuSet = [
       @topLevelMenu,
       @controlMenu,
       @keysMenu,
-      @mouseMenu
+      @mouseMenu,
+      @joystickMenu
     ]
     @axisKeyWait = nil
+    @keyWait = nil
   end
   
-  attr_reader :axisKeyWait
+  attr_reader :axisKeyWait, :keyWait
   
+  def mAxisMenuEntry(name, which)
+    [ name+AdanaxisControl.cAxisName(which),
+      :mMenuAxis,
+      which
+    ]
+  end
+
   def mAxisKeyMenuEntry(name, which)
     if @axisKeyWait == which
       [ name+"<press>",
@@ -93,6 +114,20 @@ class AdanaxisMenu
     end
   end
   
+  def mKeyMenuEntry(name, which)
+    if @keyWait == which
+      [ name+"<press>",
+        :mMenuKeyReceived,
+        which
+      ]
+    else
+      [ name+AdanaxisControl.cKeyName(which),
+        :mMenuKey,
+        which
+      ]
+    end
+  end
+  
   def mUpdate(menu)
     if menu == MENU_KEYS
       @menuSet[MENU_KEYS].menu = [  
@@ -100,8 +135,8 @@ class AdanaxisMenu
         mAxisKeyMenuEntry("Dodge right       : ", AdanaxisControl::AXISKEY_X_PLUS),
         mAxisKeyMenuEntry("Forward           : ", AdanaxisControl::AXISKEY_W_MINUS),
         mAxisKeyMenuEntry("Backward          : ", AdanaxisControl::AXISKEY_W_PLUS),
-        ["Fire              : " + AdanaxisControl.cKeyName(AdanaxisControl::KEY_FIRE), :mMenuKey],
-        ["Scanner           : " + AdanaxisControl.cKeyName(AdanaxisControl::KEY_SCANNER), :mMenuKey],
+        mKeyMenuEntry(    "Fire              : ", AdanaxisControl::KEY_FIRE),
+        mKeyMenuEntry(    "Scanner           : ", AdanaxisControl::KEY_SCANNER),
         ["Use default"],
         ["Advanced keys"],
         ["Back", :mMenuBack, MENU_CONTROL]
@@ -110,12 +145,25 @@ class AdanaxisMenu
     
     if menu == MENU_MOUSE
       @menuSet[MENU_MOUSE].menu = [  
-        ["Aim left/right        : " + AdanaxisControl.cAxisName(AdanaxisControl::AXIS_XW), :mMenuKey],
-        [" - only with keypress : " + AdanaxisControl.cAxisKeyName(AdanaxisControl::AXISKEY_XW_REQUIRED), :mMenuKey],
-        ["Aim up/down           : " + AdanaxisControl.cAxisName(AdanaxisControl::AXIS_YW), :mMenuKey],
-        [" - only with keypress : " + AdanaxisControl.cAxisKeyName(AdanaxisControl::AXISKEY_YW_REQUIRED), :mMenuKey],
-        ["Aim in hidden axis    : " + AdanaxisControl.cAxisName(AdanaxisControl::AXIS_ZW), :mMenuKey],
-        [" - only with keypress : " + AdanaxisControl.cAxisKeyName(AdanaxisControl::AXISKEY_ZW_REQUIRED), :mMenuKey],
+        mAxisMenuEntry(   "Aim left/right        : ", AdanaxisControl::AXIS_XW),
+        mAxisKeyMenuEntry(" - only with keypress : ", AdanaxisControl::AXISKEY_XW_REQUIRED),
+        mAxisMenuEntry(   "Aim up/down           : ", AdanaxisControl::AXIS_YW),
+        mAxisKeyMenuEntry(" - only with keypress : ", AdanaxisControl::AXISKEY_YW_REQUIRED),
+        mAxisMenuEntry(   "Aim in hidden axis    : ", AdanaxisControl::AXIS_ZW),
+        mAxisKeyMenuEntry(" - only with keypress : ", AdanaxisControl::AXISKEY_ZW_REQUIRED),
+        ["Use default"],
+        ["Advanced axes"],
+        ["Back", :mMenuBack, MENU_CONTROL]
+      ]
+    end
+    
+    if menu == MENU_JOYSTICK
+      @menuSet[MENU_JOYSTICK].menu = [
+        ["Use joystick", :mMenuUseJoystick],
+        mAxisMenuEntry("Aim left/right        : ", AdanaxisControl::AXIS_XW),
+        mAxisMenuEntry("Aim up/down           : ", AdanaxisControl::AXIS_YW),
+        mAxisMenuEntry("Aim in hidden axis    : ", AdanaxisControl::AXIS_ZW),
+        mAxisMenuEntry("Throttle              : ", AdanaxisControl::AXIS_W),
         ["Use default"],
         ["Advanced axes"],
         ["Back", :mMenuBack, MENU_CONTROL]
@@ -129,5 +177,9 @@ class AdanaxisMenu
   
   def mWaitForAxisKey(which)
     @axisKeyWait = which
+  end
+  
+  def mWaitForKey(which)
+    @keyWait = which
   end
 end

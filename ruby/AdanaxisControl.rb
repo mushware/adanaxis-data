@@ -49,6 +49,20 @@ class AdanaxisControl
   KEY_FIRE = 0
   KEY_SCANNER = 1
 
+  INAXIS_NONE = 0
+  INAXIS_MOUSE_X = 16
+  INAXIS_MOUSE_Y = 17
+  INAXIS_MOUSE2_X = 32
+  INAXIS_MOUSE2_Y = 33
+  INAXIS_STICK_X = 48
+  INAXIS_STICK_Y = 49
+  INAXIS_STICK_Z = 50
+  INAXIS_STICK_W = 51
+  INAXIS_STICK2_X = 64
+  INAXIS_STICK2_Y = 65
+  INAXIS_STICK2_Z = 66
+  INAXIS_STICK2_W = 67
+
   def initialize
   end
 
@@ -62,6 +76,21 @@ class AdanaxisControl
 
   def self.cKeyName(keyNum)
     MushGame.cKeySymbolToName( MushGame.cKeySymbol(keyNum) )
+  end
+
+  def self.cNextAxis(inAxis)
+    numSticks = MushGame.cNumJoysticks
+    axisProg = [INAXIS_NONE, INAXIS_MOUSE_X, INAXIS_MOUSE_Y]
+    if numSticks > 0
+      axisProg += [INAXIS_STICK_X, INAXIS_STICK_Y, INAXIS_STICK_Z, INAXIS_STICK_W]
+    end
+    if numSticks > 1
+      axisProg += [INAXIS_STICK2_X, INAXIS_STICK2_Y, INAXIS_STICK2_Z, INAXIS_STICK2_W]
+    end
+
+    pos = axisProg.index(inAxis) || 0
+    pos = (pos + 1) % axisProg.size
+    axisProg[pos]
   end
 
 end

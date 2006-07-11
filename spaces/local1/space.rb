@@ -20,7 +20,7 @@ class Adanaxis_local1 < AdanaxisSpace
 	  khazi = AdanaxisKhazi.new(
 	    :mesh_name => 'attendant',
 	    :post => MushPost.new(
-	      :position => MushVector.new(20*(i+2),0,0,0),
+	      :position => MushVector.new(20*(i),0,0,0),
 		  :angular_velocity => MushTools.cRotationInXWPlane(i*Math::PI/1000)
         )
       )
