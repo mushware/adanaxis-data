@@ -108,6 +108,12 @@ class AdanaxisGame < MushObject
     MushGame.cAxisSet(AdanaxisControl::INAXIS_STICK_Y, AdanaxisControl::AXIS_YW)
     MushGame.cAxisSet(AdanaxisControl::INAXIS_STICK_Z, AdanaxisControl::AXIS_ZW)
     MushGame.cAxisSet(AdanaxisControl::INAXIS_STICK_W, AdanaxisControl::AXIS_W)
+    MushGame.cKeySet(MushKeys::KEYSTICK_0_0, AdanaxisControl::KEY_FIRE);
+  end
+
+  def mMenuControlsDefault(param)
+    MushGame.cControlsToDefaultSet
+    @currentMenu = AdanaxisMenu::MENU_TOPLEVEL
   end
 
   attr_reader :spacePath, :space

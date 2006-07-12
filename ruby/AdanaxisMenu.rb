@@ -7,6 +7,8 @@ class AdanaxisMenu
   MENU_KEYS = 2
   MENU_MOUSE = 3
   MENU_JOYSTICK = 4
+  MENU_ADV_AXES = 5
+  MENU_ADV_KEYS = 6
   
   def initialize
     @menuCommon = {
@@ -80,12 +82,40 @@ class AdanaxisMenu
       )
     )
     
+        
+    @advAxesMenu = MushMenu.new(
+      @menuCommon.merge(
+        {
+          :title => "Advanced Axes",
+          :menu => [  
+            ["(Requires update)", :mMenuBack, MENU_KEYS],
+            ["Back", :mMenuBack]
+          ]
+        }
+      )
+    )
+    
+    @advKeysMenu = MushMenu.new(
+      @menuCommon.merge(
+        {
+          :title => "Advanced Keys",
+          :menu => [  
+            ["(Requires update)", :mMenuBack, MENU_KEYS],
+            ["Back", :mMenuBack]
+          ]
+        }
+      )
+    )
+
+    
     @menuSet = [
       @topLevelMenu,
       @controlMenu,
       @keysMenu,
       @mouseMenu,
-      @joystickMenu
+      @joystickMenu,
+      @advAxesMenu,
+      @advKeysMenu
     ]
     @axisKeyWait = nil
     @keyWait = nil
@@ -137,8 +167,7 @@ class AdanaxisMenu
         mAxisKeyMenuEntry("Backward          : ", AdanaxisControl::AXISKEY_W_PLUS),
         mKeyMenuEntry(    "Fire              : ", AdanaxisControl::KEY_FIRE),
         mKeyMenuEntry(    "Scanner           : ", AdanaxisControl::KEY_SCANNER),
-        ["Use default"],
-        ["Advanced keys"],
+        ["Advanced keys", :mToMenu, MENU_ADV_KEYS],
         ["Back", :mMenuBack, MENU_CONTROL]
       ]
     end
@@ -151,8 +180,7 @@ class AdanaxisMenu
         mAxisKeyMenuEntry(" - only with keypress : ", AdanaxisControl::AXISKEY_YW_REQUIRED),
         mAxisMenuEntry(   "Aim in hidden axis    : ", AdanaxisControl::AXIS_ZW),
         mAxisKeyMenuEntry(" - only with keypress : ", AdanaxisControl::AXISKEY_ZW_REQUIRED),
-        ["Use default"],
-        ["Advanced axes"],
+        ["Advanced axes", :mToMenu, MENU_ADV_AXES],
         ["Back", :mMenuBack, MENU_CONTROL]
       ]
     end
@@ -164,11 +192,67 @@ class AdanaxisMenu
         mAxisMenuEntry("Aim up/down           : ", AdanaxisControl::AXIS_YW),
         mAxisMenuEntry("Aim in hidden axis    : ", AdanaxisControl::AXIS_ZW),
         mAxisMenuEntry("Throttle              : ", AdanaxisControl::AXIS_W),
-        ["Use default"],
-        ["Advanced axes"],
+        ["Advanced axes", :mToMenu, MENU_ADV_AXES],
         ["Back", :mMenuBack, MENU_CONTROL]
       ]
     end
+    
+    if menu == MENU_ADV_AXES
+      @menuSet[MENU_ADV_AXES].menu = [
+        mAxisMenuEntry(   "Move X                : ", AdanaxisControl::AXIS_X),
+        mAxisKeyMenuEntry(" - only with keypress : ", AdanaxisControl::AXISKEY_X_REQUIRED),
+        mAxisMenuEntry(   "Move Y                : ", AdanaxisControl::AXIS_Y),
+        mAxisKeyMenuEntry(" - only with keypress : ", AdanaxisControl::AXISKEY_Y_REQUIRED),
+        mAxisMenuEntry(   "Move Z                : ", AdanaxisControl::AXIS_Z),
+        mAxisKeyMenuEntry(" - only with keypress : ", AdanaxisControl::AXISKEY_Z_REQUIRED),
+        mAxisMenuEntry(   "Move W                : ", AdanaxisControl::AXIS_W),
+        mAxisKeyMenuEntry(" - only with keypress : ", AdanaxisControl::AXISKEY_W_REQUIRED),
+
+        mAxisMenuEntry(   "Rotate XY             : ", AdanaxisControl::AXIS_XY),
+        mAxisKeyMenuEntry(" - only with keypress : ", AdanaxisControl::AXISKEY_XY_REQUIRED),
+        mAxisMenuEntry(   "Rotate ZW             : ", AdanaxisControl::AXIS_ZW),
+        mAxisKeyMenuEntry(" - only with keypress : ", AdanaxisControl::AXISKEY_ZW_REQUIRED),
+        mAxisMenuEntry(   "Rotate XZ             : ", AdanaxisControl::AXIS_XZ),
+        mAxisKeyMenuEntry(" - only with keypress : ", AdanaxisControl::AXISKEY_XZ_REQUIRED),
+        mAxisMenuEntry(   "Rotate YW             : ", AdanaxisControl::AXIS_YW),
+        mAxisKeyMenuEntry(" - only with keypress : ", AdanaxisControl::AXISKEY_YW_REQUIRED),
+        mAxisMenuEntry(   "Rotate XW             : ", AdanaxisControl::AXIS_XW),
+        mAxisKeyMenuEntry(" - only with keypress : ", AdanaxisControl::AXISKEY_XW_REQUIRED),
+        mAxisMenuEntry(   "Rotate YZ             : ", AdanaxisControl::AXIS_YZ),
+        mAxisKeyMenuEntry(" - only with keypress : ", AdanaxisControl::AXISKEY_YZ_REQUIRED),
+
+        ["Back", :mMenuBack, MENU_CONTROL]
+      ]
+    end
+    
+    if menu == MENU_ADV_KEYS
+      @menuSet[MENU_ADV_KEYS].menu = [
+        mAxisKeyMenuEntry("Move X negative       : ", AdanaxisControl::AXISKEY_X_MINUS),
+        mAxisKeyMenuEntry("Move X positive       : ", AdanaxisControl::AXISKEY_X_PLUS),
+        mAxisKeyMenuEntry("Move Y negative       : ", AdanaxisControl::AXISKEY_Y_MINUS),
+        mAxisKeyMenuEntry("Move Y positive       : ", AdanaxisControl::AXISKEY_Y_PLUS),
+        mAxisKeyMenuEntry("Move Z negative       : ", AdanaxisControl::AXISKEY_Z_MINUS),
+        mAxisKeyMenuEntry("Move Z positive       : ", AdanaxisControl::AXISKEY_Z_PLUS),
+        mAxisKeyMenuEntry("Move W negative       : ", AdanaxisControl::AXISKEY_W_MINUS),
+        mAxisKeyMenuEntry("Move W positive       : ", AdanaxisControl::AXISKEY_W_PLUS),
+
+        mAxisKeyMenuEntry("Rotate XY negative    : ", AdanaxisControl::AXISKEY_XY_MINUS),
+        mAxisKeyMenuEntry("Rotate XY positive    : ", AdanaxisControl::AXISKEY_XY_PLUS),
+        mAxisKeyMenuEntry("Rotate ZW negative    : ", AdanaxisControl::AXISKEY_ZW_MINUS),
+        mAxisKeyMenuEntry("Rotate ZW positive    : ", AdanaxisControl::AXISKEY_ZW_PLUS),
+        mAxisKeyMenuEntry("Rotate XZ negative    : ", AdanaxisControl::AXISKEY_XZ_MINUS),
+        mAxisKeyMenuEntry("Rotate XZ positive    : ", AdanaxisControl::AXISKEY_XZ_PLUS),
+        mAxisKeyMenuEntry("Rotate YW negative    : ", AdanaxisControl::AXISKEY_YW_MINUS),
+        mAxisKeyMenuEntry("Rotate YW positive    : ", AdanaxisControl::AXISKEY_YW_PLUS),
+        mAxisKeyMenuEntry("Rotate XW negative    : ", AdanaxisControl::AXISKEY_XW_MINUS),
+        mAxisKeyMenuEntry("Rotate XW positive    : ", AdanaxisControl::AXISKEY_XW_PLUS),
+        mAxisKeyMenuEntry("Rotate YZ negative    : ", AdanaxisControl::AXISKEY_YZ_MINUS),
+        mAxisKeyMenuEntry("Rotate YZ positive    : ", AdanaxisControl::AXISKEY_YZ_PLUS),
+
+        ["Back", :mMenuBack, MENU_CONTROL]
+      ]
+    end
+
   end
   
   def mMenu(index)

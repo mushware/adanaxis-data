@@ -3,12 +3,16 @@ require 'Mushware.rb'
 class AdanaxisControl
   AXISKEY_X_MINUS     = 0
   AXISKEY_X_PLUS      = 1
+  AXISKEY_X_REQUIRED  = 2
   AXISKEY_Y_MINUS     = 4
   AXISKEY_Y_PLUS      = 5
+  AXISKEY_Y_REQUIRED  = 6
   AXISKEY_Z_MINUS     = 8
   AXISKEY_Z_PLUS      = 9
+  AXISKEY_Z_REQUIRED  = 10
   AXISKEY_W_MINUS     = 12
   AXISKEY_W_PLUS      = 13
+  AXISKEY_W_REQUIRED  = 14
 
 
   AXISKEY_XY_MINUS    = 16
