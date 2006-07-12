@@ -24,7 +24,6 @@ class AdanaxisMenu
           :menu => [  
             ["New Game", :mMenuNewGame],
             ["Controls", :mToMenu, MENU_CONTROL],
-            ["Options", :mMenuOptions],
             ["Quit", :mMenuQuit]
           ]
         }
