@@ -10,6 +10,7 @@ class AdanaxisMenu
   MENU_JOYSTICK = 4
   MENU_ADV_AXES = 5
   MENU_ADV_KEYS = 6
+  MENU_CHOOSE_LEVEL = 7
   
   def initialize
     @menuCommon = {
@@ -23,7 +24,7 @@ class AdanaxisMenu
         {
           :title => "Adanaxis",
           :menu => [  
-            ["New Game", :mMenuNewGame],
+            ["New Game", :mToMenu, MENU_CHOOSE_LEVEL],
             ["Controls", :mToMenu, MENU_CONTROL],
             ["Quit", :mMenuQuit]
           ]
@@ -107,6 +108,18 @@ class AdanaxisMenu
       )
     )
 
+    @chooseLevelMenu = MushMenu.new(
+      @menuCommon.merge(
+        {
+          :title => "Choose level",
+          :menu => [  
+            ["(Requires update)", :mMenuBack, MENU_TOPLEVEL],
+            ["Back", :mMenuBack]
+          ]
+        }
+      )
+    )
+
     
     @menuSet = [
       @topLevelMenu,
@@ -115,7 +128,8 @@ class AdanaxisMenu
       @mouseMenu,
       @joystickMenu,
       @advAxesMenu,
-      @advKeysMenu
+      @advKeysMenu,
+      @chooseLevelMenu
     ]
     @axisKeyWait = nil
     @keyWait = nil
@@ -156,6 +170,19 @@ class AdanaxisMenu
         which
       ]
     end
+  end
+  
+  def mNewGameMenuEntry(name, key)
+    [ name, :mMenuGameSelect, key.untaint ]
+  end
+  
+  def mUpdateLevels(levelList)
+    @menuSet[MENU_CHOOSE_LEVEL].menu = []
+    levelList.each do |level|
+      name = level[AdanaxisLevels::PARAMS]['name'] || level[AdanaxisLevels::KEY]
+      @menuSet[MENU_CHOOSE_LEVEL].menu.push mNewGameMenuEntry(name, level[AdanaxisLevels::KEY])
+    end
+    @menuSet[MENU_CHOOSE_LEVEL].menu.push ["Back", :mMenuBack, MENU_TOPLEVEL]
   end
   
   def mUpdate(menu)

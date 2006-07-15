@@ -1,22 +1,30 @@
 require 'Mushware.rb'
 
+require 'AdanaxisLevels.rb'
+
 class AdanaxisGame < MushObject
   def initialize
     @spaceName = 'local1'
-	@spaceObjectName = 'Adanaxis_'+@spaceName
-    @spacePath = MushConfig.cGlobalSpacesPath + '/' + @spaceName
+    @levels = AdanaxisLevels.new
     
     @menuRender = AdanaxisRender.new
     @menuRender.mCreate
     
     @menuSet = AdanaxisMenu.new
     @currentMenu = 0
-
+  end
+  
+  def mSpaceObjectName
+    'Adanaxis_'+@spaceName
+  end
+ 
+  def mSpacePath
+    MushConfig.cGlobalSpacesPath + '/' + @spaceName  
   end
   
   def mLoad
-    require(@spacePath+'/space.rb')
-	@space = eval "#{@spaceObjectName}.new"
+    require(mSpacePath+'/space.rb')
+	@space = eval "#{mSpaceObjectName}.new"
 	@space.mLoad
 	self
   end
@@ -78,6 +86,12 @@ class AdanaxisGame < MushObject
 
   def mToMenu(param)
     @currentMenu = param
+
+    case @currentMenu
+      when AdanaxisMenu::MENU_CHOOSE_LEVEL:
+        @levels.mScanForLevels
+        @menuSet.mUpdateLevels(@levels.mLevelList)
+    end
   end
 
   def mMenuAxisKey(param)
@@ -115,6 +129,11 @@ class AdanaxisGame < MushObject
     MushGame.cControlsToDefaultSet
     @currentMenu = AdanaxisMenu::MENU_TOPLEVEL
   end
+  
+  def mMenuGameSelect(params)
+    @spaceName = params
+    MushGame.cNewGameEnter
+  end    
 
   attr_reader :spacePath, :space
 end
