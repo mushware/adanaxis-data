@@ -1,0 +1,4 @@
+# Manifest file for local-1
+directory='local-1'
+name='Tutorial 1'
+creator='Andy Southgate www.mushware.com'
