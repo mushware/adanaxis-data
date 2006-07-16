@@ -1,0 +1,4 @@
+# Manifest file for local2
+directory='local2'
+name='Tutorial 2'
+creator='Andy Southgate (www.mushware.com)'
