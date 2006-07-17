@@ -39,6 +39,14 @@ class AdanaxisTextureLibrary < MushObject
 		:cache         => 0
 	)
 
+	MushGLTexture::cDefine(
+		:name          => 'flarepalette1',
+        :type          => 'TIFF',
+		:filename      => MushConfig.cGlobalPixelsPath+'/flarepalette1.tiff',
+		:storagetype   => 'U8',
+		:cache         => 0
+	)
+
 
 
 	scale = 0.3
@@ -54,7 +62,7 @@ class AdanaxisTextureLibrary < MushObject
 		:scale         => [scale, scale, scale, scale],
         :numoctaves    => 8,
         :octaveratio   => 0.5,
-		:cache         => 0
+		:cache         => 1
 	)
 	
 	scale = 4
@@ -87,6 +95,7 @@ class AdanaxisTextureLibrary < MushObject
         :octaveratio   => 0.5,
 		:cache         => 1
 	)
+    
     scale = 0.02
 	MushGLTexture::cDefine(
 		:name          => 'world2-tex',
@@ -101,6 +110,24 @@ class AdanaxisTextureLibrary < MushObject
         :octaveratio   => 1,
 		:cache         => 1
 	)
+
+    scale = 1
+    
+    10.times do |i|
+      MushGLTexture::cDefine(
+          :name          => "deco#{i}-tex",
+          :type          => 'Radial',
+          :meshname      => 'deco1',
+          :size          => [smallTextureSize, smallTextureSize],
+          :palette       => 'flarepalette1',
+          :palettestart  => [0,0.05+0.09*i],
+          :palettevector => [0.99,0.05+0.09*i],
+          :scale         => [scale,scale,scale,scale],
+          :numoctaves    => 1,
+          :octaveratio   => 1,
+          :cache         => 0
+      )
+    end
 
     gridScale = 2.7;
 	gridScaleVec = [gridScale, gridScale, gridScale, gridScale];

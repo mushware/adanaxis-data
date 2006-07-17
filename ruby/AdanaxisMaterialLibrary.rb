@@ -13,5 +13,11 @@ class AdanaxisMaterialLibrary < MushObject
 	  :name => 'world1-mat',
 	  :texture_name => 'world1-tex'
 	)
+    10.times do |i|
+  	  MushMaterial.cDefine(
+	    :name => "deco#{i}-mat",
+	    :texture_name => "deco#{i}-tex"
+	    )
+    end
   end
 end

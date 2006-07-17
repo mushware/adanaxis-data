@@ -225,9 +225,25 @@ class AdanaxisMeshLibrary
 	mesh.mMake
   end
 
+  #
+  # Single facet mesh
+  #
+  
+  def AdanaxisMeshLibrary.cDeco1Create
+    10.times do |i|
+      mesh =  MushMesh.new("deco#{i}")
+      base1 = MushBaseSingleFacet.new(:order => 4)
+      mesh.mBaseAdd(base1)
+      mesh.mBillboardSet(true)
+      mesh.mMaterialAdd("deco#{i}-mat")
+      mesh.mMake
+    end
+  end  
+
   def AdanaxisMeshLibrary.cCreate
-    cAttendantCreate()
-    cProjectileCreate()
-    cWorldCreate()
+    cAttendantCreate
+    cProjectileCreate
+    cWorldCreate
+    cDeco1Create
   end
 end
