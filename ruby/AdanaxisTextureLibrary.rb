@@ -39,6 +39,10 @@ class AdanaxisTextureLibrary < MushObject
 		:cache         => 0
 	)
 
+
+
+	scale = 0.3
+
 	MushGLTexture::cDefine(
 		:name          => 'attendant-tex',
         :type          => 'CellNoise',
@@ -47,9 +51,10 @@ class AdanaxisTextureLibrary < MushObject
         :palette       => 'palette1',
         :palettestart  => [0,0],
         :palettevector => [1.0,1.0],
-        :numoctaves    => 4,
-        :octaveratio   => 1.2,
-		:cache         => 1
+		:scale         => [scale, scale, scale, scale],
+        :numoctaves    => 8,
+        :octaveratio   => 0.5,
+		:cache         => 0
 	)
 	
 	scale = 4
