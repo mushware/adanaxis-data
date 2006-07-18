@@ -5,6 +5,7 @@ class AdanaxisTextureLibrary < MushObject
     textureSize = 256 * (2 ** levelOfDetail);
     smallTextureSize = 128 * (2 ** levelOfDetail);
     largeTextureSize = 512 * (2 ** levelOfDetail);
+    starTextureSize = 128
 
 	# Standard palettes
 	MushGLTexture::cDefine(
@@ -57,8 +58,8 @@ class AdanaxisTextureLibrary < MushObject
         :meshname      => 'attendant',
         :size          => [textureSize, textureSize],
         :palette       => 'palette1',
-        :palettestart  => [0,0],
-        :palettevector => [1.0,1.0],
+        :palettestart  => [0,0.5],
+        :palettevector => [0.99,0],
 		:scale         => [scale, scale, scale, scale],
         :numoctaves    => 8,
         :octaveratio   => 0.5,
@@ -118,7 +119,7 @@ class AdanaxisTextureLibrary < MushObject
           :name          => "deco#{i}-tex",
           :type          => 'Radial',
           :meshname      => 'deco1',
-          :size          => [smallTextureSize, smallTextureSize],
+          :size          => [starTextureSize, starTextureSize],
           :palette       => 'flarepalette1',
           :palettestart  => [0,0.05+0.09*i],
           :palettevector => [0.99,0.05+0.09*i],
@@ -129,23 +130,23 @@ class AdanaxisTextureLibrary < MushObject
       )
     end
 
-    gridScale = 2.7;
+    gridScale = 1;
 	gridScaleVec = [gridScale, gridScale, gridScale, gridScale];
-	gridRatio = [0.1,0.1,0.1,0.1]
-    gridSharpness = 1.0;
+	gridRatio = [0.05,0.05,0.05,0.05]
+    gridSharpness = 1.00;
 	gridSharpnessVec = [gridSharpness, gridSharpness, gridSharpness, gridSharpness];
     gridPaletteStart = [0,0.5]
 
 	MushGLTexture::cDefine(
 		:name          => 'grid-tex',
         :type          => 'Grid',
-        :meshname      => 'projectile',
-        :size          => [textureSize, textureSize],
+        :meshname      => 'attendant',
+        :size          => [largeTextureSize, largeTextureSize],
         :palette       => 'gridpalette1',
         :palettestart  => gridPaletteStart,
         :palettevector => [0.98,0],
 		:scale         => gridScaleVec,
-        :offset        => [0.05,0.05,0.05,0.05],
+        :offset        => [0.07,0.07,0.07,0.07],
         :gridratio     => gridRatio,
         :gridsharpness => gridSharpnessVec,
 		:cache         => 1
