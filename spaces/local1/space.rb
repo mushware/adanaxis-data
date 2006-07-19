@@ -27,13 +27,13 @@ class Adanaxis_local1 < AdanaxisSpace
     rotMax = 0.01
     
     1000.times do |i|
-        pos = MushTools.cRandomUnitVector * (25 + rand(100))
-      deco = AdanaxisDeco.new(
+      pos = MushTools.cRandomUnitVector * (25 + rand(100))
+      world = AdanaxisDeco.new(
         :mesh_name => "deco#{i % 10}",
         :post => MushPost.new(
           :position => pos
-            )
           )
+        )
     end
   end
 end

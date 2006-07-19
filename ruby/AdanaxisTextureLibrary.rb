@@ -10,7 +10,7 @@ class AdanaxisTextureLibrary < MushObject
 	# Standard palettes
 	MushGLTexture::cDefine(
 		:name          => 'palette1',
-        :type          => 'TIFF',
+    :type          => 'TIFF',
 		:filename      => MushConfig.cGlobalPixelsPath+'/palette1.tiff',
 		:storagetype   => 'U8',
 		:cache         => 0
@@ -18,7 +18,7 @@ class AdanaxisTextureLibrary < MushObject
 
 	MushGLTexture::cDefine(
 		:name          => 'palette2',
-        :type          => 'TIFF',
+    :type          => 'TIFF',
 		:filename      => MushConfig.cGlobalPixelsPath+'/palette2.tiff',
 		:storagetype   => 'U8',
 		:cache         => 0
@@ -26,7 +26,7 @@ class AdanaxisTextureLibrary < MushObject
 
 	MushGLTexture::cDefine(
 		:name          => 'worldpalette1',
-        :type          => 'TIFF',
+    :type          => 'TIFF',
 		:filename      => MushConfig.cGlobalPixelsPath+'/worldpalette1.tiff',
 		:storagetype   => 'U8',
 		:cache         => 0
@@ -34,7 +34,7 @@ class AdanaxisTextureLibrary < MushObject
 
 	MushGLTexture::cDefine(
 		:name          => 'gridpalette1',
-        :type          => 'TIFF',
+    :type          => 'TIFF',
 		:filename      => MushConfig.cGlobalPixelsPath+'/gridpalette1.tiff',
 		:storagetype   => 'U8',
 		:cache         => 0
@@ -42,27 +42,25 @@ class AdanaxisTextureLibrary < MushObject
 
 	MushGLTexture::cDefine(
 		:name          => 'flarepalette1',
-        :type          => 'TIFF',
+    :type          => 'TIFF',
 		:filename      => MushConfig.cGlobalPixelsPath+'/flarepalette1.tiff',
 		:storagetype   => 'U8',
 		:cache         => 0
 	)
 
-
-
 	scale = 0.3
 
 	MushGLTexture::cDefine(
 		:name          => 'attendant-tex',
-        :type          => 'CellNoise',
-        :meshname      => 'attendant',
-        :size          => [textureSize, textureSize],
-        :palette       => 'palette1',
-        :palettestart  => [0,0.5],
-        :palettevector => [0.99,0],
+    :type          => 'CellNoise',
+    :meshname      => 'attendant',
+    :size          => [textureSize, textureSize],
+    :palette       => 'palette1',
+    :palettestart  => [0,0.5],
+    :palettevector => [0.99,0],
 		:scale         => [scale, scale, scale, scale],
-        :numoctaves    => 8,
-        :octaveratio   => 0.5,
+    :numoctaves    => 8,
+    :octaveratio   => 0.5,
 		:cache         => 1
 	)
 	
@@ -70,67 +68,67 @@ class AdanaxisTextureLibrary < MushObject
 	
 	MushGLTexture::cDefine(
 		:name          => 'projectile-tex',
-        :type          => 'CellNoise',
-        :meshname      => 'projectile',
-        :size          => [smallTextureSize, smallTextureSize],
-        :palette       => 'palette2',
-        :palettestart  => [0.2,0.2],
-        :palettevector => [0.8,0.8],
+    :type          => 'CellNoise',
+    :meshname      => 'projectile',
+    :size          => [smallTextureSize, smallTextureSize],
+    :palette       => 'palette2',
+    :palettestart  => [0.2,0.2],
+    :palettevector => [0.8,0.8],
 		:scale         => [scale, scale, scale, scale],
-        :numoctaves    => 8,
-        :octaveratio   => 0.5,
+    :numoctaves    => 8,
+    :octaveratio   => 0.5,
 		:cache         => 1
 	)
 
-    scale = 0.01
+  scale = 0.01
 	MushGLTexture::cDefine(
 		:name          => 'world1-tex',
-        :type          => 'CellNoise',
-        :meshname      => 'world1',
-        :size          => [largeTextureSize, largeTextureSize],
-        :palette       => 'worldpalette1',
-        :palettestart  => [0,0],
-        :palettevector => [0.1,0.1],
+    :type          => 'CellNoise',
+    :meshname      => 'world1',
+    :size          => [largeTextureSize, largeTextureSize],
+    :palette       => 'worldpalette1',
+    :palettestart  => [0,0],
+    :palettevector => [0.1,0.1],
 		:scale         => [scale,scale,scale,scale],
-        :numoctaves    => 8,
-        :octaveratio   => 0.5,
+    :numoctaves    => 8,
+    :octaveratio   => 0.5,
 		:cache         => 1
 	)
     
     scale = 0.02
 	MushGLTexture::cDefine(
 		:name          => 'world2-tex',
-        :type          => 'CellNoise',
-        :meshname      => 'world1',
-        :size          => [largeTextureSize, largeTextureSize],
-        :palette       => 'worldpalette1',
-        :palettestart  => [0,0],
-        :palettevector => [1,1],
+    :type          => 'CellNoise',
+    :meshname      => 'world1',
+    :size          => [largeTextureSize, largeTextureSize],
+    :palette       => 'worldpalette1',
+    :palettestart  => [0,0],
+    :palettevector => [1,1],
 		:scale         => [scale,scale,scale,scale],
-        :numoctaves    => 4,
-        :octaveratio   => 1,
+    :numoctaves    => 4,
+    :octaveratio   => 1,
 		:cache         => 1
 	)
 
-    scale = 1
-    
-    10.times do |i|
-      MushGLTexture::cDefine(
-          :name          => "deco#{i}-tex",
-          :type          => 'Radial',
-          :meshname      => 'deco1',
-          :size          => [starTextureSize, starTextureSize],
-          :palette       => 'flarepalette1',
-          :palettestart  => [0,0.05+0.09*i],
-          :palettevector => [0.99,0.05+0.09*i],
-          :scale         => [scale,scale,scale,scale],
-          :numoctaves    => 1,
-          :octaveratio   => 1,
-          :cache         => 0
-      )
-    end
+  scale = 1
+  
+  10.times do |i|
+    MushGLTexture::cDefine(
+      :name          => "deco#{i}-tex",
+      :type          => 'Radial',
+      :meshname      => 'deco1',
+      :size          => [starTextureSize, starTextureSize],
+      :palette       => 'flarepalette1',
+      :palettestart  => [0,0.05+0.09*i],
+      :palettevector => [0.99,0.05+0.09*i],
+      :scale         => [scale,scale,scale,scale],
+      :numoctaves    => 1,
+      :octaveratio   => 1,
+      :cache         => 0
+    )
+  end
 
-    gridScale = 1;
+  gridScale = 1;
 	gridScaleVec = [gridScale, gridScale, gridScale, gridScale];
 	gridRatio = [0.05,0.05,0.05,0.05]
     gridSharpness = 1.00;
