@@ -7,6 +7,10 @@ class AdanaxisSpace < MushObject
     AdanaxisTextureLibrary.cCreate
   end
   
+  def mPreCache
+    # Nothing to precache yet
+  end
+  
   def mInitialPiecesCreate
   end
 end

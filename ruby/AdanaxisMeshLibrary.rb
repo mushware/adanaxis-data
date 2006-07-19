@@ -229,13 +229,35 @@ class AdanaxisMeshLibrary
   # Single facet mesh
   #
   
-  def AdanaxisMeshLibrary.cDeco1Create
+  def AdanaxisMeshLibrary.cEmbersCreate
     10.times do |i|
-      mesh =  MushMesh.new("deco#{i}")
+      mesh =  MushMesh.new("ember#{i}")
       base1 = MushBaseSingleFacet.new(:order => 4)
       mesh.mBaseAdd(base1)
       mesh.mBillboardSet(true)
-      mesh.mMaterialAdd("deco#{i}-mat")
+      mesh.mMaterialAdd("ember#{i}-mat")
+      mesh.mMake
+    end
+  end  
+
+  def AdanaxisMeshLibrary.cFlaresCreate
+    10.times do |i|
+      mesh =  MushMesh.new("flare#{i}")
+      base1 = MushBaseSingleFacet.new(:order => 4)
+      mesh.mBaseAdd(base1)
+      mesh.mBillboardSet(true)
+      mesh.mMaterialAdd("flare#{i}-mat")
+      mesh.mMake
+    end
+  end  
+
+  def AdanaxisMeshLibrary.cStarsCreate
+    10.times do |i|
+      mesh =  MushMesh.new("star#{i}")
+      base1 = MushBaseSingleFacet.new(:order => 4)
+      mesh.mBaseAdd(base1)
+      mesh.mBillboardSet(true)
+      mesh.mMaterialAdd("star#{i}-mat")
       mesh.mMake
     end
   end  
@@ -244,6 +266,8 @@ class AdanaxisMeshLibrary
     cAttendantCreate
     cProjectileCreate
     cWorldCreate
-    cDeco1Create
+    cStarsCreate
+    cEmbersCreate
+    cFlaresCreate
   end
 end

@@ -6,6 +6,7 @@ class AdanaxisTextureLibrary < MushObject
     smallTextureSize = 128 * (2 ** levelOfDetail);
     largeTextureSize = 512 * (2 ** levelOfDetail);
     starTextureSize = 128
+    flareTextureSize = textureSize
 
 	# Standard palettes
 	MushGLTexture::cDefine(
@@ -44,6 +45,22 @@ class AdanaxisTextureLibrary < MushObject
 		:name          => 'flarepalette1',
     :type          => 'TIFF',
 		:filename      => MushConfig.cGlobalPixelsPath+'/flarepalette1.tiff',
+		:storagetype   => 'U8',
+		:cache         => 0
+	)
+
+	MushGLTexture::cDefine(
+		:name          => 'emberpalette1',
+    :type          => 'TIFF',
+		:filename      => MushConfig.cGlobalPixelsPath+'/emberpalette1.tiff',
+		:storagetype   => 'U8',
+		:cache         => 0
+	)
+
+	MushGLTexture::cDefine(
+		:name          => 'starpalette1',
+    :type          => 'TIFF',
+		:filename      => MushConfig.cGlobalPixelsPath+'/starpalette1.tiff',
 		:storagetype   => 'U8',
 		:cache         => 0
 	)
@@ -114,19 +131,53 @@ class AdanaxisTextureLibrary < MushObject
   
   10.times do |i|
     MushGLTexture::cDefine(
-      :name          => "deco#{i}-tex",
+      :name          => "star#{i}-tex",
       :type          => 'Radial',
-      :meshname      => 'deco1',
+      :meshname      => "star#{i}",
       :size          => [starTextureSize, starTextureSize],
-      :palette       => 'flarepalette1',
+      :palette       => 'starpalette1',
       :palettestart  => [0,0.05+0.09*i],
-      :palettevector => [0.99,0.05+0.09*i],
+      :palettevector => [0.99,0],
       :scale         => [scale,scale,scale,scale],
       :numoctaves    => 1,
       :octaveratio   => 1,
-      :cache         => 0
+      :cache         => 1
     )
   end
+
+  10.times do |i|
+    MushGLTexture::cDefine(
+      :name          => "ember#{i}-tex",
+      :type          => 'Radial',
+      :meshname      => "ember#{i}",
+      :size          => [starTextureSize, starTextureSize],
+      :palette       => 'emberpalette1',
+      :palettestart  => [0,0.05+0.09*i],
+      :palettevector => [0.99,0],
+      :scale         => [scale,scale,scale,scale],
+      :numoctaves    => 1,
+      :octaveratio   => 1,
+      :cache         => 1
+    )
+  end
+
+  10.times do |i|
+    MushGLTexture::cDefine(
+      :name          => "flare#{i}-tex",
+      :type          => 'Radial',
+      :meshname      => "flare#{i}",
+      :size          => [flareTextureSize, flareTextureSize],
+      :palette       => 'flarepalette1',
+      :palettestart  => [0,0.05+0.09*i],
+      :palettevector => [0.99,0],
+      :scale         => [scale,scale,scale,scale],
+      :numoctaves    => 1,
+      :octaveratio   => 1,
+      :cache         => 1
+    )
+
+  end
+
 
   gridScale = 1;
 	gridScaleVec = [gridScale, gridScale, gridScale, gridScale];
@@ -137,16 +188,16 @@ class AdanaxisTextureLibrary < MushObject
 
 	MushGLTexture::cDefine(
 		:name          => 'grid-tex',
-        :type          => 'Grid',
-        :meshname      => 'attendant',
-        :size          => [largeTextureSize, largeTextureSize],
-        :palette       => 'gridpalette1',
-        :palettestart  => gridPaletteStart,
-        :palettevector => [0.98,0],
+    :type          => 'Grid',
+    :meshname      => 'attendant',
+    :size          => [largeTextureSize, largeTextureSize],
+    :palette       => 'gridpalette1',
+    :palettestart  => gridPaletteStart,
+    :palettevector => [0.98,0],
 		:scale         => gridScaleVec,
-        :offset        => [0.07,0.07,0.07,0.07],
-        :gridratio     => gridRatio,
-        :gridsharpness => gridSharpnessVec,
+    :offset        => [0.07,0.07,0.07,0.07],
+    :gridratio     => gridRatio,
+    :gridsharpness => gridSharpnessVec,
 		:cache         => 1
 	)
 
