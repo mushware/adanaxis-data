@@ -8,7 +8,8 @@ class AdanaxisSpace < MushObject
   end
   
   def mPreCache
-    # Nothing to precache yet
+    # Stop precaching by returning 100%
+    100
   end
   
   def mInitialPiecesCreate

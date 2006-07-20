@@ -36,6 +36,10 @@ class AdanaxisGame < MushObject
     menu.mRender(msec)
   end
 
+  def mPreCacheRender(percentage)
+    @menuRender.mPreCacheRender(percentage)
+  end
+
   def mKeypress(inKey, inIsDown)
     keyChar = (inKey < 256)?(inKey.chr):('?')
     keyName = MushGame.cKeySymbolToName(inKey);
