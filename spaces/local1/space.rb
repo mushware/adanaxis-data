@@ -13,15 +13,18 @@ class Adanaxis_local1 < AdanaxisSpace
   end
 
   def mPreCache
-    case (@preCached)
-      when 0..9   : MushGLTexture.cPreCache("flare#{@preCached}-tex")
-      when 10..19 : MushGLTexture.cPreCache("ember#{@preCached-10}-tex")
-      when 20..29 : MushGLTexture.cPreCache("star#{@preCached-20}-tex")
+    num = @preCached
+    # Must still increment @preCached if cPreCache throws
+    @preCached += 1
+    case (num)
+      when 0..9   : MushGLTexture.cPreCache("flare#{num}-tex")
+      when 10..19 : MushGLTexture.cPreCache("ember#{num-10}-tex")
+      when 20..29 : MushGLTexture.cPreCache("star#{num-20}-tex")
       when 30     : MushGLTexture.cPreCache("attendant-tex")
       when 31     : MushGLTexture.cPreCache("projectile-tex")
     end
-    @preCached += 1
-    3 * @preCached
+    
+    3 * num
   end
   
   def mInitialPiecesCreate

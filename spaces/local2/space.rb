@@ -34,7 +34,7 @@ class Adanaxis_local2 < AdanaxisSpace
       
     16.times do | i|
       
-      world1 = AdanaxisDeco.new(
+      world1 = AdanaxisWorld.new(
         :mesh_name => 'world1',
         :post => MushPost.new(
           :position => MushVector.new(((i & 1) == 0)?scale:-scale,
