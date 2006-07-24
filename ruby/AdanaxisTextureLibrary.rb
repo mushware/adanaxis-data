@@ -6,7 +6,7 @@ class AdanaxisTextureLibrary < MushObject
     smallTextureSize = 128 * (2 ** levelOfDetail);
     largeTextureSize = 512 * (2 ** levelOfDetail);
     starTextureSize = 128
-    flareTextureSize = textureSize
+    flareTextureSize = smallTextureSize
 
 	# Standard palettes
 	MushGLTexture::cDefine(
@@ -65,7 +65,7 @@ class AdanaxisTextureLibrary < MushObject
 		:cache         => 0
 	)
 
-	scale = 0.3
+	scale = 1.4
 
 	MushGLTexture::cDefine(
 		:name          => 'attendant-tex',
@@ -141,7 +141,7 @@ class AdanaxisTextureLibrary < MushObject
       :scale         => [scale,scale,scale,scale],
       :numoctaves    => 1,
       :octaveratio   => 1,
-      :cache         => 1
+      :cache         => 0
     )
   end
 
