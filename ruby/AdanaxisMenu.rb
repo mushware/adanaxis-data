@@ -11,6 +11,7 @@ class AdanaxisMenu
   MENU_ADV_AXES = 5
   MENU_ADV_KEYS = 6
   MENU_CHOOSE_LEVEL = 7
+  MENU_OPTIONS = 8
   
   def initialize
     @menuCommon = {
@@ -26,6 +27,7 @@ class AdanaxisMenu
           :menu => [  
             ["New Game", :mToMenu, MENU_CHOOSE_LEVEL],
             ["Controls", :mToMenu, MENU_CONTROL],
+            ["Options", :mMenuToOptions],
             ["Quit", :mMenuQuit]
           ]
         }
@@ -120,6 +122,18 @@ class AdanaxisMenu
       )
     )
 
+    @optionsMenu = MushMenu.new(
+      @menuCommon.merge(
+        {
+          :title => "Options",
+          :menu => [  
+            ["(Requires update)", :mMenuBack, MENU_TOPLEVEL],
+            ["Back", :mMenuBack]
+          ]
+        }
+      )
+    )
+
     
     @menuSet = [
       @topLevelMenu,
@@ -129,7 +143,8 @@ class AdanaxisMenu
       @joystickMenu,
       @advAxesMenu,
       @advKeysMenu,
-      @chooseLevelMenu
+      @chooseLevelMenu,
+      @optionsMenu
     ]
     @axisKeyWait = nil
     @keyWait = nil
@@ -174,6 +189,10 @@ class AdanaxisMenu
   
   def mNewGameMenuEntry(name, key)
     [ name, :mMenuGameSelect, key.untaint ]
+  end
+  
+  def mReset(menu)
+    @menuSet[menu].current = 0
   end
   
   def mUpdateLevels(levelList)
@@ -279,7 +298,25 @@ class AdanaxisMenu
         ["Back", :mMenuBack, MENU_CONTROL]
       ]
     end
-
+    
+    if menu == MENU_OPTIONS
+      detailName = case MushGame.cTextureDetail
+        when 0: "low"
+        when 1: "medium"
+        when 2: "high"
+        when 3: "very high"
+        when 4: "vast"
+        else "unknown"
+      end
+      @menuSet[MENU_OPTIONS].menu = [
+        ["Display mode      : "+MushGame.cDisplayModeString, :mMenuDisplayMode],
+        ["Audio volume      : #{MushGame.cAudioVolume}%", :mMenuAudioVolume],
+        ["Music volume      : #{MushGame.cMusicVolume}%", :mMenuMusicVolume],
+        ["Texture detail    : #{detailName}", :mMenuTextureDetail],
+        ["Back", :mMenuDisplayReset, MENU_TOPLEVEL]
+      ]
+      
+    end
   end
   
   def mMenu(index)

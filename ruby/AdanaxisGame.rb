@@ -12,6 +12,8 @@ class AdanaxisGame < MushObject
     
     @menuSet = AdanaxisMenu.new
     @currentMenu = 0
+    @entryDisplayMode = ""
+    @textureDetail = 0
   end
   
   def mSpaceObjectName
@@ -90,6 +92,7 @@ class AdanaxisGame < MushObject
 
   def mToMenu(param)
     @currentMenu = param
+    @menuSet.mReset(@currentMenu)
 
     case @currentMenu
       when AdanaxisMenu::MENU_CHOOSE_LEVEL:
@@ -139,5 +142,39 @@ class AdanaxisGame < MushObject
     MushGame.cNewGameEnter
   end    
 
+  def mMenuToOptions(params)
+    @entryDisplayMode = MushGame.cDisplayModeString
+    @textureDetail = MushGame.cTextureDetail
+    @currentMenu = AdanaxisMenu::MENU_OPTIONS
+  end
+
+  def mMenuDisplayMode(params)
+    MushGame.cNextDisplayMode
+  end
+
+  def mMenuDisplayReset(param)
+    if @entryDisplayMode != MushGame.cDisplayModeString || @textureDetail != MushGame.cTextureDetail
+      MushGame.cDisplayReset
+    end
+
+    if (param)
+      @currentMenu = param
+    else
+      @currentMenu = AdanaxisMenu::MENU_TOPLEVEL
+    end    
+  end
+
+  def mMenuAudioVolume(param)
+    MushGame.cAudioVolumeSet( (MushGame.cAudioVolume + 10) % 110 )
+  end
+  
+  def mMenuMusicVolume(param)
+    MushGame.cMusicVolumeSet( (MushGame.cMusicVolume + 10) % 110 )
+  end
+  
+  def mMenuTextureDetail(param)
+    MushGame.cTextureDetailSet( (MushGame.cTextureDetail + 1) % 5 )
+  end
+  
   attr_reader :spacePath, :space
 end

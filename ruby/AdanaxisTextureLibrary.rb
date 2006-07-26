@@ -1,11 +1,11 @@
 
 class AdanaxisTextureLibrary < MushObject
   def self.cCreate
-    levelOfDetail=2
+    levelOfDetail = MushGame.cTextureDetail
     textureSize = 256 * (2 ** levelOfDetail);
     smallTextureSize = 128 * (2 ** levelOfDetail);
     largeTextureSize = 512 * (2 ** levelOfDetail);
-    starTextureSize = 128
+    starTextureSize = 32 * (2 ** levelOfDetail)
     flareTextureSize = smallTextureSize
 
 	# Standard palettes
