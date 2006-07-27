@@ -42,6 +42,13 @@ class AdanaxisGame < MushObject
     @menuRender.mPreCacheRender(percentage)
   end
 
+  def mReset(allowResume)
+    @currentMenu = AdanaxisMenu::MENU_TOPLEVEL
+    @menuSet.mReset(@currentMenu)
+    @menuSet.allowResume = allowResume
+    @menuSet.mUpdate(@currentMenu)
+  end
+
   def mKeypress(inKey, inIsDown)
     keyChar = (inKey < 256)?(inKey.chr):('?')
     keyName = MushGame.cKeySymbolToName(inKey);
@@ -59,30 +66,36 @@ class AdanaxisGame < MushObject
             if @currentMenu == AdanaxisMenu::MENU_TOPLEVEL
               MushGame.cGameModeEnter
             else
+              if @currentMenu == AdanaxisMenu::MENU_OPTIONS &&
+                (@entryDisplayMode != MushGame.cDisplayModeString || @textureDetail != MushGame.cTextureDetail)
+                MushGame.cDisplayReset
+              end
               @currentMenu = AdanaxisMenu::MENU_TOPLEVEL
             end
           when MushKeys::SDLK_UP : menu.mUp
           when MushKeys::SDLK_DOWN : menu.mDown
-          when MushKeys::SDLK_KP_ENTER, MushKeys::SDLK_RETURN, MushKeys::SDLK_RIGHT : menu.mEnter(self)
+          when MushKeys::SDLK_KP_ENTER, MushKeys::SDLK_RETURN: menu.mEnter(self)
+          when MushKeys::SDLK_LEFT: menu.mLeft(self)
+          when MushKeys::SDLK_RIGHT: menu.mRight(self)
         end
       end
       @menuSet.mUpdate(@currentMenu)
     end
   end
 
-  def mMenuNewGame(param)
+  def mMenuNewGame(param, input)
     MushGame.cNewGameEnter
   end
   
-  def mMenuResume(param)
+  def mMenuResume(param, input)
     MushGame.cGameModeEnter
   end
   
-  def mMenuQuit(param)
+  def mMenuQuit(param, input)
     MushGame.cQuit  
   end
   
-  def mMenuBack(param)
+  def mMenuBack(param, input)
     if (param)
       @currentMenu = param
     else
@@ -90,7 +103,7 @@ class AdanaxisGame < MushObject
     end    
   end
 
-  def mToMenu(param)
+  def mToMenu(param, input)
     @currentMenu = param
     @menuSet.mReset(@currentMenu)
 
@@ -101,7 +114,7 @@ class AdanaxisGame < MushObject
     end
   end
 
-  def mMenuAxisKey(param)
+  def mMenuAxisKey(param, input)
     @menuSet.mWaitForAxisKey(param)
   end
 
@@ -110,7 +123,7 @@ class AdanaxisGame < MushObject
     @menuSet.mWaitForAxisKey(nil)
   end
 
-  def mMenuKey(param)
+  def mMenuKey(param, input)
     @menuSet.mWaitForKey(param)
   end
 
@@ -119,12 +132,12 @@ class AdanaxisGame < MushObject
     @menuSet.mWaitForKey(nil)
   end
 
-  def mMenuAxis(param)
+  def mMenuAxis(param, input)
     axis = AdanaxisControl.cNextAxis( MushGame.cAxisSymbol(param) )
     MushGame.cAxisSet(axis, param)
   end
 
-  def mMenuUseJoystick(param)
+  def mMenuUseJoystick(param, input)
     MushGame.cAxisSet(AdanaxisControl::INAXIS_STICK_X, AdanaxisControl::AXIS_XW)
     MushGame.cAxisSet(AdanaxisControl::INAXIS_STICK_Y, AdanaxisControl::AXIS_YW)
     MushGame.cAxisSet(AdanaxisControl::INAXIS_STICK_Z, AdanaxisControl::AXIS_ZW)
@@ -132,48 +145,64 @@ class AdanaxisGame < MushObject
     MushGame.cKeySet(MushKeys::KEYSTICK_0_0, AdanaxisControl::KEY_FIRE);
   end
 
-  def mMenuControlsDefault(param)
+  def mMenuControlsDefault(param, input)
     MushGame.cControlsToDefaultSet
     @currentMenu = AdanaxisMenu::MENU_TOPLEVEL
   end
   
-  def mMenuGameSelect(params)
+  def mMenuGameSelect(params, input)
     @spaceName = params
     MushGame.cNewGameEnter
   end    
 
-  def mMenuToOptions(params)
+  def mMenuToOptions(params, input)
     @entryDisplayMode = MushGame.cDisplayModeString
     @textureDetail = MushGame.cTextureDetail
     @currentMenu = AdanaxisMenu::MENU_OPTIONS
   end
 
-  def mMenuDisplayMode(params)
-    MushGame.cNextDisplayMode
+  def mMenuDisplayMode(params, input)
+    if (input < 0)
+      MushGame.cPreviousDisplayMode
+    else
+      MushGame.cNextDisplayMode
+    end
   end
 
-  def mMenuDisplayReset(param)
+  def mMenuDisplayReset(params, input)
     if @entryDisplayMode != MushGame.cDisplayModeString || @textureDetail != MushGame.cTextureDetail
       MushGame.cDisplayReset
     end
 
-    if (param)
-      @currentMenu = param
+    if (params)
+      @currentMenu = params
     else
       @currentMenu = AdanaxisMenu::MENU_TOPLEVEL
     end    
   end
 
-  def mMenuAudioVolume(param)
-    MushGame.cAudioVolumeSet( (MushGame.cAudioVolume + 10) % 110 )
+  def mMenuAudioVolume(params, input)
+    if input < 0
+      MushGame.cAudioVolumeSet( (MushGame.cAudioVolume + 100) % 110 )
+    else
+      MushGame.cAudioVolumeSet( (MushGame.cAudioVolume + 10) % 110 )
+    end
   end
   
-  def mMenuMusicVolume(param)
-    MushGame.cMusicVolumeSet( (MushGame.cMusicVolume + 10) % 110 )
+  def mMenuMusicVolume(params, input)
+    if input < 0
+      MushGame.cMusicVolumeSet( (MushGame.cMusicVolume + 100) % 110 )
+    else
+      MushGame.cMusicVolumeSet( (MushGame.cMusicVolume + 10) % 110 )
+    end
   end
   
-  def mMenuTextureDetail(param)
-    MushGame.cTextureDetailSet( (MushGame.cTextureDetail + 1) % 5 )
+  def mMenuTextureDetail(params, input)
+    if input < 0
+      MushGame.cTextureDetailSet( (MushGame.cTextureDetail + 4) % 5 )
+    else
+      MushGame.cTextureDetailSet( (MushGame.cTextureDetail + 1) % 5 )
+    end
   end
   
   attr_reader :spacePath, :space

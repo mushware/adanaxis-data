@@ -25,10 +25,8 @@ class AdanaxisMenu
         {
           :title => "Adanaxis",
           :menu => [  
-            ["New Game", :mToMenu, MENU_CHOOSE_LEVEL],
-            ["Controls", :mToMenu, MENU_CONTROL],
-            ["Options", :mMenuToOptions],
-            ["Quit", :mMenuQuit]
+            ["(Requires update)", :mResume],
+            ["Back", :mMenuBack]
           ]
         }
       )
@@ -148,9 +146,11 @@ class AdanaxisMenu
     ]
     @axisKeyWait = nil
     @keyWait = nil
+    @allowResume = false
   end
   
   attr_reader :axisKeyWait, :keyWait
+  attr_accessor :allowResume
   
   def mAxisMenuEntry(name, which)
     [ name+AdanaxisControl.cAxisName(which),
@@ -205,6 +205,20 @@ class AdanaxisMenu
   end
   
   def mUpdate(menu)
+    if menu == MENU_TOPLEVEL
+        menuArray = [  
+              ["New Game", :mToMenu, MENU_CHOOSE_LEVEL],
+              ["Controls", :mToMenu, MENU_CONTROL],
+              ["Options", :mMenuToOptions],
+              ["Quit", :mMenuQuit]
+            ]
+        if @allowResume
+          menuArray.unshift ["Resume", :mMenuResume]
+        end
+        
+        @menuSet[MENU_TOPLEVEL].menu = menuArray
+    end
+
     if menu == MENU_KEYS
       @menuSet[MENU_KEYS].menu = [  
         mAxisKeyMenuEntry("Dodge left        : ", AdanaxisControl::AXISKEY_X_MINUS),
@@ -304,8 +318,8 @@ class AdanaxisMenu
         when 0: "low"
         when 1: "medium"
         when 2: "high"
-        when 3: "very high"
-        when 4: "vast"
+        when 3: "very high (>128MB)"
+        when 4: "vast (>512MB)"
         else "unknown"
       end
       @menuSet[MENU_OPTIONS].menu = [
