@@ -11,6 +11,9 @@
 #
 # $$
 # $Log: objects.xml,v $
+# Revision 1.2  2005/09/06 12:15:34  southa
+# Texture and rendering work
+#
 # Revision 1.1  2005/08/02 14:37:44  southa
 # Adanaxis control demo work
 #
@@ -321,7 +324,7 @@
 <name>"font-mono1"</name>
 <size>1.0</size>
 </fontRef>
-<value>"Adanaxis Control Demo"</value>
+<value>"Adanaxis Rendering Demo"</value>
 <alignment>0</alignment>
 </string>
 <posticity type="MushPiePosticity">

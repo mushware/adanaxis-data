@@ -20,8 +20,11 @@ these defaults, so it may be better to edit there instead of here.
  *
  * This software carries NO WARRANTY of any kind.
  *
- * $Id: axisconfig-default.xml,v 1.6 2006/07/08 16:05:54 southa Exp $
+ * $Id: axisconfig-default.xml,v 1.7 2006/07/11 12:37:51 southa Exp $
  * $Log: axisconfig-default.xml,v $
+ * Revision 1.7  2006/07/11 12:37:51  southa
+ * Control configuration
+ *
  * Revision 1.6  2006/07/08 16:05:54  southa
  * Ruby menus and key handling
  *
@@ -50,8 +53,8 @@ these defaults, so it may be better to edit there instead of here.
 <deviceAxisNum>0</deviceAxisNum>
 <deviceSensitivity>-10</deviceSensitivity>
 <deviceDamping>0.05</deviceDamping>
-<upKey>97</upKey>
-<downKey>113</downKey>
+<upKey>276</upKey>
+<downKey>275</downKey>
 <requiredKey>0</requiredKey>
 <axisName>"Move in X (left/right)"</axisName>
 <pos>0</pos>
@@ -102,8 +105,8 @@ these defaults, so it may be better to edit there instead of here.
 <deviceAxisNum>1</deviceAxisNum>
 <deviceSensitivity>1000</deviceSensitivity>
 <deviceDamping>0.05</deviceDamping>
-<upKey>102</upKey>
-<downKey>114</downKey>
+<upKey>273</upKey>
+<downKey>274</downKey>
 <requiredKey>0</requiredKey>
 <minBound>0</minBound>
 <maxBound>0</maxBound>

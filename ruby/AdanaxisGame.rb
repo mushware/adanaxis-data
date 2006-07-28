@@ -208,5 +208,35 @@ class AdanaxisGame < MushObject
     end
   end
   
+  def mMenuMouseSensitivity(params, input)
+    mouseSens = MushGame.cMouseSensitivity
+    if input < 0
+      mouseSens -= 0.1
+    else
+      mouseSens += 0.1
+    end
+    
+    mouseSens = -10 if mouseSens > 10.01
+    mouseSens = 10 if mouseSens < -10.01
+    
+    MushGame.cMouseSensitivitySet(mouseSens)
+  end
+  
+  def mMenuBrightness(params, input)
+    brightness = MushGame.cBrightness
+    if input < 0
+      brightness -= 0.1
+    else
+      brightness += 0.1
+    end
+    
+    brightness = 0.1 if brightness > 2.01
+    brightness = 2 if brightness < 0.09
+    
+    MushGame.cBrightnessSet(brightness)
+  end
+  
+  
+  
   attr_reader :spacePath, :space
 end

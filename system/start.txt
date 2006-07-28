@@ -8,8 +8,11 @@
 #
 ##############################################################################
 #
-# $Id: start.txt,v 1.20 2006/06/06 17:58:30 southa Exp $
+# $Id: start.txt,v 1.21 2006/06/07 14:25:54 southa Exp $
 # $Log: start.txt,v $
+# Revision 1.21  2006/06/07 14:25:54  southa
+# Grid texture fixes
+#
 # Revision 1.20  2006/06/06 17:58:30  southa
 # Ruby texture definition
 #
@@ -89,9 +92,11 @@ setcachepath("mushware-cache", $APPLPATH, $HOME+"/.adanaxis", $HOME, $SYSTEM_PAT
 configset("REG_FILENAME", $GLOBAL_SAVE_PATH+"/reg.xml")
 
 # Set configuration file paths
-configset("CONFIG_FILENAME", $GLOBAL_SAVE_PATH+"/controldemoconfig.xml")
+configset("CONFIG_FILENAME", $GLOBAL_SAVE_PATH+"/renderingdemoconfig.xml")
 configset("ADANAXIS_AXISCONFIG_DEFAULT_FILENAME", $SYSTEM_PATH+"/axisconfig-default.xml")
 configset("ADANAXIS_KEYCONFIG_DEFAULT_FILENAME", $SYSTEM_PATH+"/keyconfig-default.xml")
+
+# Most of these configuration values are unused or act only as defaults
 
 # Options for DISPLAY_QUALITY are low, medium or high
 configset("DISPLAY_QUALITY", "high")
@@ -106,7 +111,7 @@ configset('MUSHGL_DISPLAY_MODE', 2)
 # configset('MUSHGL_TEXTURE_CACHE', 0)
 
 # Control texture compression 0=off, 1 or undefined=on
-configset('MUSHGL_TEXTURE_COMPRESSION', 0)
+configset('MUSHGL_TEXTURE_COMPRESSION', 1)
 
 # Extra display mode definitions for X11
 # Uncomment these or add your own

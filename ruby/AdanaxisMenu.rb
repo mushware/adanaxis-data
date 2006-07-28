@@ -329,6 +329,8 @@ class AdanaxisMenu
         ["Audio volume      : #{MushGame.cAudioVolume}%", :mMenuAudioVolume],
         ["Music volume      : #{MushGame.cMusicVolume}%", :mMenuMusicVolume],
         ["Texture detail    : #{detailName}", :mMenuTextureDetail],
+        ["Brightness        : #{'%2.2f'%MushGame.cBrightness}", :mMenuBrightness],
+        ["Mouse sensitivity : #{'%2.2f'%MushGame.cMouseSensitivity}", :mMenuMouseSensitivity],
         ["Back", :mMenuDisplayReset, MENU_TOPLEVEL]
       ]
       

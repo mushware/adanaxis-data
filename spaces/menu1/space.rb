@@ -16,10 +16,10 @@ class Adanaxis_menu1 < AdanaxisSpace
     num = @preCached
     @preCached += 1
     case (num)
-      when 30     : MushGLTexture.cPreCache("attendant-tex")
+      when 27     : MushGLTexture.cPreCache("attendant-tex")
     end
     
-    3 * num
+    num*2
   end
   
   def mInitialPiecesCreate

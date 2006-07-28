@@ -226,7 +226,7 @@ class AdanaxisMeshLibrary
   end
 
   #
-  # Single facet mesh
+  # Single facet meshes
   #
   
   def AdanaxisMeshLibrary.cEmbersCreate

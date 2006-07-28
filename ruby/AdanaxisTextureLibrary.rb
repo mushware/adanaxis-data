@@ -2,6 +2,9 @@
 class AdanaxisTextureLibrary < MushObject
   def self.cCreate
     levelOfDetail = MushGame.cTextureDetail
+    # level 0 and 1 activate OpenGL compression, so 2 uses the same sizes
+    # as 1 but without compression
+    levelOfDetail += 1 if levelOfDetail < 2
     textureSize = 256 * (2 ** levelOfDetail);
     smallTextureSize = 128 * (2 ** levelOfDetail);
     largeTextureSize = 512 * (2 ** levelOfDetail);
