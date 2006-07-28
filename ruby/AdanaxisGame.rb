@@ -4,7 +4,7 @@ require 'AdanaxisLevels.rb'
 
 class AdanaxisGame < MushObject
   def initialize
-    @spaceName = 'local1'
+    @spaceName = 'menu1'
     @levels = AdanaxisLevels.new
     
     @menuRender = AdanaxisRender.new
@@ -14,6 +14,11 @@ class AdanaxisGame < MushObject
     @currentMenu = 0
     @entryDisplayMode = ""
     @textureDetail = 0
+    @showHidden = false;
+  end
+  
+  def mSpaceName
+    @spaceName
   end
   
   def mSpaceObjectName
@@ -49,10 +54,12 @@ class AdanaxisGame < MushObject
     @menuSet.mUpdate(@currentMenu)
   end
 
-  def mKeypress(inKey, inIsDown)
+  def mKeypress(inKey, inModifier, inIsDown)
     keyChar = (inKey < 256)?(inKey.chr):('?')
     keyName = MushGame.cKeySymbolToName(inKey);
     # puts "key #{inKey}, '#{keyChar}' '#{keyName}' #{inIsDown}"
+    
+    @showHidden = ((inModifier & MushKeys::KMOD_SHIFT) != 0)
     
     if inIsDown
       menu = @menuSet.mMenu(@currentMenu)
@@ -82,10 +89,6 @@ class AdanaxisGame < MushObject
       @menuSet.mUpdate(@currentMenu)
     end
   end
-
-  def mMenuNewGame(param, input)
-    MushGame.cNewGameEnter
-  end
   
   def mMenuResume(param, input)
     MushGame.cGameModeEnter
@@ -110,7 +113,7 @@ class AdanaxisGame < MushObject
     case @currentMenu
       when AdanaxisMenu::MENU_CHOOSE_LEVEL:
         @levels.mScanForLevels
-        @menuSet.mUpdateLevels(@levels.mLevelList)
+        @menuSet.mUpdateLevels(@levels.mLevelList, @showHidden)
     end
   end
 

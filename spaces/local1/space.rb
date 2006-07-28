@@ -34,7 +34,7 @@ class Adanaxis_local1 < AdanaxisSpace
       khazi = AdanaxisKhazi.new(
         :mesh_name => "attendant",
         :post => MushPost.new(
-          :position => MushTools.cRandomUnitVector * (20 + rand(20)),
+          :position => MushVector.new(0,0,0,-55) + MushTools.cRandomUnitVector * (20 + rand(20)),
           :angular_velocity => MushTools.cRandomAngularVelocity(0.01)
           )
         )

@@ -1,0 +1,5 @@
+# Manifest file for menu1
+directory='menu1'
+name='Menu backdrop 1'
+creator='Andy Southgate (www.mushware.com)'
+visibility='hidden'

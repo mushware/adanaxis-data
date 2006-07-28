@@ -14,4 +14,8 @@ class AdanaxisSpace < MushObject
   
   def mInitialPiecesCreate
   end
+  
+  def mIsMenuBackdrop
+    false
+  end  
 end

@@ -124,6 +124,7 @@ class AdanaxisMenu
       @menuCommon.merge(
         {
           :title => "Options",
+          :leftright => true,
           :menu => [  
             ["(Requires update)", :mMenuBack, MENU_TOPLEVEL],
             ["Back", :mMenuBack]
@@ -195,9 +196,10 @@ class AdanaxisMenu
     @menuSet[menu].current = 0
   end
   
-  def mUpdateLevels(levelList)
+  def mUpdateLevels(levelList, showHidden)
     @menuSet[MENU_CHOOSE_LEVEL].menu = []
     levelList.each do |level|
+      next if !showHidden && level[AdanaxisLevels::PARAMS]['visibility'] == 'hidden'
       name = level[AdanaxisLevels::PARAMS]['name'] || level[AdanaxisLevels::KEY]
       @menuSet[MENU_CHOOSE_LEVEL].menu.push mNewGameMenuEntry(name, level[AdanaxisLevels::KEY])
     end

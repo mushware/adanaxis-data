@@ -7,7 +7,7 @@ class AdanaxisLevels
   PARAMS = 1
   def initialize
     @levels = []
-    @validParams = %w{directory name creator}
+    @validParams = %w{directory name creator visibility}
   end
   
   def mScanLevel(path)
