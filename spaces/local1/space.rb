@@ -30,12 +30,33 @@ class Adanaxis_local1 < AdanaxisSpace
   def mInitialPiecesCreate
     super
 
-    10.times do
+    positions = [
+      [ 0, 0, 0, -55, 0.2,0.3,0.6],
+      [ 10, 20, 3, -35, 0,0.3,0.6],
+      [ 5, -12, 0, -45, 0.2,0.3,0],
+      [ -16, 3, -3, -45, 0.3,0.3,0.7],
+      [ 0, 0, 0, -55, 0,0.3,0],
+      [ 10, 20, 3, -35, 0,0.3,0.6],
+      [ 5, -12, 0, -45, 0.2,0.3,0],
+      [ -6, 3, -3, -45, 0.3,0.3,0.7],
+      [ 8, 9, 1, -15, 0.2,0.3,0.5],
+      [ 4, 12, 2, -20, 0.5,0.8,0.6],
+      [ 5, -12, -2, -25, 0.2,0.7,0],
+      [ -7, 3, -1, -30, 0.3,0.3,0.7],
+      [ -3, 5, 0, -35, 0.3,0.1,0.6]
+      ]
+
+    positions.each do |param|
+      pos = MushVector.new(param[0], param[1], param[2], param[3])
+      angPos = MushTools.cRotationInXZPlane(Math::PI * 2 * param[4]);
+      MushTools.cRotationInZWPlane(Math::PI * 2 * param[5]).mRotate(angPos);
+      MushTools.cRotationInYZPlane(Math::PI * 2 * param[6]).mRotate(angPos);
+
       khazi = AdanaxisKhazi.new(
         :mesh_name => "attendant",
         :post => MushPost.new(
-          :position => MushVector.new(0,0,0,-55) + MushTools.cRandomUnitVector * (20 + rand(20)),
-          :angular_velocity => MushTools.cRandomAngularVelocity(0.01)
+          :position => pos,
+          :angular_position => angPos
           )
         )
     end
