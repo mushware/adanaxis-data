@@ -8,8 +8,11 @@
 #
 ##############################################################################
 #
-# $Id: start.txt,v 1.21 2006/06/07 14:25:54 southa Exp $
+# $Id: start.txt,v 1.22 2006/07/28 16:52:18 southa Exp $
 # $Log: start.txt,v $
+# Revision 1.22  2006/07/28 16:52:18  southa
+# Options work
+#
 # Revision 1.21  2006/06/07 14:25:54  southa
 # Grid texture fixes
 #
@@ -108,7 +111,10 @@ configset('MUSHGL_DISPLAY_MODE', 2)
 # configset('MUSHGL_DUMP_MUSHGLV', 1)
 
 # Control texture cache 0=off, 1 or undefined=on
-# configset('MUSHGL_TEXTURE_CACHE', 0)
+configset('MUSHGL_TEXTURE_CACHE', 1)
+
+# Control whether textures in the cache are deleted when the game exits 0=no, 1 or undefined=yes
+configset('MUSHGL_TEXTURE_CACHE_PURGE', 1)
 
 # Control texture compression 0=off, 1 or undefined=on
 configset('MUSHGL_TEXTURE_COMPRESSION', 1)

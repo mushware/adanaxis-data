@@ -62,10 +62,14 @@ class AdanaxisControl
   INAXIS_STICK_Y = 49
   INAXIS_STICK_Z = 50
   INAXIS_STICK_W = 51
+  INAXIS_STICK_5 = 52
+  INAXIS_STICK_6 = 53
   INAXIS_STICK2_X = 64
   INAXIS_STICK2_Y = 65
   INAXIS_STICK2_Z = 66
   INAXIS_STICK2_W = 67
+  INAXIS_STICK2_5 = 68
+  INAXIS_STICK2_6 = 69
 
   def initialize
   end
@@ -86,10 +90,10 @@ class AdanaxisControl
     numSticks = MushGame.cNumJoysticks
     axisProg = [INAXIS_NONE, INAXIS_MOUSE_X, INAXIS_MOUSE_Y]
     if numSticks > 0
-      axisProg += [INAXIS_STICK_X, INAXIS_STICK_Y, INAXIS_STICK_Z, INAXIS_STICK_W]
+      axisProg += [INAXIS_STICK_X, INAXIS_STICK_Y, INAXIS_STICK_Z, INAXIS_STICK_W, INAXIS_STICK_5, INAXIS_STICK_6]
     end
     if numSticks > 1
-      axisProg += [INAXIS_STICK2_X, INAXIS_STICK2_Y, INAXIS_STICK2_Z, INAXIS_STICK2_W]
+      axisProg += [INAXIS_STICK2_X, INAXIS_STICK2_Y, INAXIS_STICK2_Z, INAXIS_STICK2_W, INAXIS_STICK2_5, INAXIS_STICK2_6]
     end
 
     pos = axisProg.index(inAxis) || 0

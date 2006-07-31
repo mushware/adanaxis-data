@@ -7,8 +7,8 @@ class Adanaxis_menu1 < AdanaxisSpace
     @preCached = 0
   end
   
-  def mLoad
-    mLoadStandard
+  def mLoad(game)
+    mLoadStandard(game)
     @preCached = 0
   end
 

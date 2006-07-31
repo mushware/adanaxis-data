@@ -7,8 +7,9 @@ class Adanaxis_local1 < AdanaxisSpace
     @preCached = 0
   end
   
-  def mLoad
-    mLoadStandard
+  def mLoad(game)
+    mLoadStandard(game)
+    MushGame.cSoundStreamDefine('game1', MushConfig.cGlobalWavesPath+'/mushware-respiration.ogg')
     @preCached = 0
   end
 

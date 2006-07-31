@@ -32,7 +32,7 @@ class AdanaxisGame < MushObject
   def mLoad
     require(mSpacePath+'/space.rb')
 	@space = eval "#{mSpaceObjectName}.new"
-	@space.mLoad
+	@space.mLoad(self)
 	self
   end
   

@@ -6,8 +6,8 @@ class Adanaxis_local2 < AdanaxisSpace
   def initialize
   end
   
-  def mLoad
-    mLoadStandard
+  def mLoad(game)
+    mLoadStandard(game)
   end
   
   def mInitialPiecesCreate
