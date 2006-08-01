@@ -1,3 +1,24 @@
+#%Header {
+##############################################################################
+#
+# File: data-adanaxis/ruby/AdanaxisGame.rb
+#
+# Copyright: Andy Southgate 2006
+#
+# This file may be used and distributed under the terms of the Mushware
+# software licence version 1.1, under the terms for 'Proprietary original
+# source files'.  If not supplied with this software, a copy of the licence
+# can be obtained from Mushware Limited via http://www.mushware.com/.
+# One of your options under that licence is to use and distribute this file
+# under the terms of the GNU General Public Licence version 2.
+#
+# This software carries NO WARRANTY of any kind.
+#
+##############################################################################
+#%Header } Keyr0cDT/SIta54pYcV7Bw
+# $Id$
+# $Log$
+
 require 'Mushware.rb'
 
 require 'AdanaxisLevels.rb'
@@ -41,6 +62,7 @@ class AdanaxisGame < MushObject
     menu.highlight_colour = MushVector.new(1,1,0.7,0.5+0.25*Math.sin(msec/100.0))
     # menu.size = 0.03+0.0003*Math.sin(msec/1500.0)
     menu.mRender(msec)
+    @menuRender.mPackageIDRender
   end
 
   def mPreCacheRender(percentage)
