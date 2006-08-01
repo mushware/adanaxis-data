@@ -18,8 +18,11 @@
 #
 ##############################################################################
 #%Header } XulYrmMGLmszzHG2i2jMtA
-# $Id: space.rb,v 1.4 2006/08/01 13:41:14 southa Exp $
+# $Id: space.rb,v 1.5 2006/08/01 17:21:19 southa Exp $
 # $Log: space.rb,v $
+# Revision 1.5  2006/08/01 17:21:19  southa
+# River demo
+#
 # Revision 1.4  2006/08/01 13:41:14  southa
 # Pre-release updates
 #
@@ -34,6 +37,7 @@ class Adanaxis_local2 < AdanaxisSpace
   
   def mLoad(game)
     mLoadStandard(game)
+    MushGame.cSoundStreamDefine('intro1', MushConfig.cGlobalWavesPath+'/mushware-intro1.ogg')
   end
   
   def mPreCache

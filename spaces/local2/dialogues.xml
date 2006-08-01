@@ -11,8 +11,6 @@
 #
 # $Id: dialogues.xml,v 1.1 2006/07/31 11:01:34 southa Exp $
 # $Log: dialogues.xml,v $
-# Revision 1.1  2006/07/31 11:01:34  southa
-# Music and dialogues
 #
 -->
 <obj>(
@@ -24,7 +22,7 @@
 <name>"font-mono1"</name>
 <size>1.0</size>
 </fontRef>
-<value>"Intro"</value>
+<value>"Moving objects"</value>
 <alignment>0</alignment>
 </string>
 <posticity type="MushPiePosticity">
@@ -47,8 +45,8 @@
 <sounds>()</sounds>
 <soundStreams>(
  <obj type="GameSoundStreamSpec">
-  <soundStreamRef>"intro1"</soundStreamRef>
-  <loop>1</loop>
+  <soundStreamRef>"game1"</soundStreamRef>
+  <loop>10000</loop>
   <startTime>0</startTime>
  </obj>
 )</soundStreams>

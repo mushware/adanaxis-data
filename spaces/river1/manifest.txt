@@ -2,3 +2,4 @@
 directory='river1'
 name='River demo'
 creator='Andy Southgate (www.mushware.com)'
+visibility='hidden'
