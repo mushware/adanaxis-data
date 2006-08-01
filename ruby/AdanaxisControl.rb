@@ -1,9 +1,9 @@
 #%Header {
 ##############################################################################
 #
-# File: data-adanaxis/ruby/AdanaxisControl.rb
+# File data-adanaxis/ruby/AdanaxisControl.rb
 #
-# Copyright: Andy Southgate 2006
+# Copyright Andy Southgate 2006
 #
 # This file may be used and distributed under the terms of the Mushware
 # software licence version 1.1, under the terms for 'Proprietary original
@@ -15,9 +15,12 @@
 # This software carries NO WARRANTY of any kind.
 #
 ##############################################################################
-#%Header } AYxbjRw2z6SPzibJLNuGaw
-# $Id$
-# $Log$
+#%Header } IRcBSpDhgaiF/A38RRaoLw
+# $Id: AdanaxisControl.rb,v 1.5 2006/08/01 13:41:11 southa Exp $
+# $Log: AdanaxisControl.rb,v $
+# Revision 1.5  2006/08/01 13:41:11  southa
+# Pre-release updates
+#
 
 require 'Mushware.rb'
 

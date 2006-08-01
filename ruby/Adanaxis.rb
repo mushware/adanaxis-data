@@ -1,9 +1,9 @@
 #%Header {
 ##############################################################################
 #
-# File: data-adanaxis/ruby/Adanaxis.rb
+# File data-adanaxis/ruby/Adanaxis.rb
 #
-# Copyright: Andy Southgate 2006
+# Copyright Andy Southgate 2006
 #
 # This file may be used and distributed under the terms of the Mushware
 # software licence version 1.1, under the terms for 'Proprietary original
@@ -15,9 +15,12 @@
 # This software carries NO WARRANTY of any kind.
 #
 ##############################################################################
-#%Header } NC91XK6sd8FeFK8S5eGCZA
-# $Id$
-# $Log$
+#%Header } Vr8SNTx01PRrZQGDsHJ+7Q
+# $Id: Adanaxis.rb,v 1.7 2006/08/01 13:41:11 southa Exp $
+# $Log: Adanaxis.rb,v $
+# Revision 1.7  2006/08/01 13:41:11  southa
+# Pre-release updates
+#
 
 require 'Mushware.rb'
 require 'AdanaxisFontLibrary.rb'

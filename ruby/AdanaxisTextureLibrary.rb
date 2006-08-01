@@ -1,9 +1,9 @@
 #%Header {
 ##############################################################################
 #
-# File: data-adanaxis/ruby/AdanaxisTextureLibrary.rb
+# File data-adanaxis/ruby/AdanaxisTextureLibrary.rb
 #
-# Copyright: Andy Southgate 2006
+# Copyright Andy Southgate 2006
 #
 # This file may be used and distributed under the terms of the Mushware
 # software licence version 1.1, under the terms for 'Proprietary original
@@ -15,9 +15,12 @@
 # This software carries NO WARRANTY of any kind.
 #
 ##############################################################################
-#%Header } c86q7461R2Cxj5xG+8bGAw
-# $Id$
-# $Log$
+#%Header } avqCjn1AV8PsFQvoiWGwNA
+# $Id: AdanaxisTextureLibrary.rb,v 1.15 2006/08/01 13:41:13 southa Exp $
+# $Log: AdanaxisTextureLibrary.rb,v $
+# Revision 1.15  2006/08/01 13:41:13  southa
+# Pre-release updates
+#
 
 class AdanaxisTextureLibrary < MushObject
   def self.cCreate
@@ -52,6 +55,14 @@ class AdanaxisTextureLibrary < MushObject
 		:name          => 'worldpalette1',
     :type          => 'TIFF',
 		:filename      => MushConfig.cGlobalPixelsPath+'/worldpalette1.tiff',
+		:storagetype   => 'U8',
+		:cache         => 0
+	)
+
+	MushGLTexture::cDefine(
+		:name          => 'riverpalette1',
+    :type          => 'TIFF',
+		:filename      => MushConfig.cGlobalPixelsPath+'/riverpalette1.tiff',
 		:storagetype   => 'U8',
 		:cache         => 0
 	)
@@ -135,7 +146,7 @@ class AdanaxisTextureLibrary < MushObject
 		:cache         => 1
 	)
     
-    scale = 0.02
+  scale = 0.02
 	MushGLTexture::cDefine(
 		:name          => 'world2-tex',
     :type          => 'CellNoise',
@@ -147,6 +158,51 @@ class AdanaxisTextureLibrary < MushObject
 		:scale         => [scale,scale,scale,scale],
     :numoctaves    => 4,
     :octaveratio   => 1,
+		:cache         => 1
+	)
+
+  scale = 1
+	MushGLTexture::cDefine(
+		:name          => 'river1-tex',
+    :type          => 'CellNoise',
+    :meshname      => 'river1',
+    :size          => [textureSize, textureSize],
+    :palette       => 'riverpalette1',
+    :palettestart  => [0.01, 0.75],
+    :palettevector => [0.98, 0],
+		:scale         => [scale,scale,scale,scale],
+    :numoctaves    => 4,
+    :octaveratio   => 0.5,
+		:cache         => 1
+	)
+
+  scale = 1
+	MushGLTexture::cDefine(
+		:name          => 'ground1-tex',
+    :type          => 'CellNoise',
+    :meshname      => 'ground1',
+    :size          => [textureSize, textureSize],
+    :palette       => 'riverpalette1',
+    :palettestart  => [0.01, 0.25],
+    :palettevector => [0.98, 0],
+		:scale         => [scale,scale,scale,scale],
+    :numoctaves    => 8,
+    :octaveratio   => 0.5,
+		:cache         => 1
+	)
+
+  scale = 1
+	MushGLTexture::cDefine(
+		:name          => 'block1-tex',
+    :type          => 'CellNoise',
+    :meshname      => 'block1',
+    :size          => [textureSize, textureSize],
+    :palette       => 'riverpalette1',
+    :palettestart  => [0.01, 0.75],
+    :palettevector => [0.98, 0],
+		:scale         => [scale,scale,scale,scale],
+    :numoctaves    => 4,
+    :octaveratio   => 0.5,
 		:cache         => 1
 	)
 

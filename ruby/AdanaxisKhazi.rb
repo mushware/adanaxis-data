@@ -1,9 +1,9 @@
 #%Header {
 ##############################################################################
 #
-# File: data-adanaxis/ruby/AdanaxisKhazi.rb
+# File data-adanaxis/ruby/AdanaxisKhazi.rb
 #
-# Copyright: Andy Southgate 2006
+# Copyright Andy Southgate 2006
 #
 # This file may be used and distributed under the terms of the Mushware
 # software licence version 1.1, under the terms for 'Proprietary original
@@ -15,9 +15,12 @@
 # This software carries NO WARRANTY of any kind.
 #
 ##############################################################################
-#%Header } OyR6hVV/w1MeDejVIg4QSQ
-# $Id$
-# $Log$
+#%Header } Ku/ML6yrUJg0hv6m7ettyw
+# $Id: AdanaxisKhazi.rb,v 1.2 2006/08/01 13:41:11 southa Exp $
+# $Log: AdanaxisKhazi.rb,v $
+# Revision 1.2  2006/08/01 13:41:11  southa
+# Pre-release updates
+#
 
 class AdanaxisKhazi
 # Class: AdanaxisKhazi

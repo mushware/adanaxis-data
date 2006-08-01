@@ -1,4 +1,4 @@
 # Manifest file for local1
-directory='local1'
-name='Intro'
+directory='local3'
+name='Random positions'
 creator='Andy Southgate (www.mushware.com)'

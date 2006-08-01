@@ -1,9 +1,9 @@
 #%Header {
 ##############################################################################
 #
-# File: data-adanaxis/ruby/AdanaxisLevels.rb
+# File data-adanaxis/ruby/AdanaxisLevels.rb
 #
-# Copyright: Andy Southgate 2006
+# Copyright Andy Southgate 2006
 #
 # This file may be used and distributed under the terms of the Mushware
 # software licence version 1.1, under the terms for 'Proprietary original
@@ -15,9 +15,12 @@
 # This software carries NO WARRANTY of any kind.
 #
 ##############################################################################
-#%Header } cFwQAtyHnNl+l2a5tyRljw
-# $Id$
-# $Log$
+#%Header } YkolAA2/khvOmyZz3VmddA
+# $Id: AdanaxisLevels.rb,v 1.3 2006/08/01 13:41:11 southa Exp $
+# $Log: AdanaxisLevels.rb,v $
+# Revision 1.3  2006/08/01 13:41:11  southa
+# Pre-release updates
+#
 
 require 'Mushware.rb'
 

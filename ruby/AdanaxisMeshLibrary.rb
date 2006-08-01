@@ -1,9 +1,9 @@
 #%Header {
 ##############################################################################
 #
-# File: data-adanaxis/ruby/AdanaxisMeshLibrary.rb
+# File data-adanaxis/ruby/AdanaxisMeshLibrary.rb
 #
-# Copyright: Andy Southgate 2006
+# Copyright Andy Southgate 2006
 #
 # This file may be used and distributed under the terms of the Mushware
 # software licence version 1.1, under the terms for 'Proprietary original
@@ -15,15 +15,18 @@
 # This software carries NO WARRANTY of any kind.
 #
 ##############################################################################
-#%Header } jYZ7mRmo7EBJEk9RAoqjPQ
-# $Id$
-# $Log$
+#%Header } 74bLa8v94NQFxupv0Pj/cA
+# $Id: AdanaxisMeshLibrary.rb,v 1.15 2006/08/01 13:41:12 southa Exp $
+# $Log: AdanaxisMeshLibrary.rb,v $
+# Revision 1.15  2006/08/01 13:41:12  southa
+# Pre-release updates
+#
 
 class AdanaxisMeshLibrary
   LOD_FACTOR = 5
 
   #
-  # Axes mesh
+  # Attendant mesh
   #
   
   def AdanaxisMeshLibrary.cAttendantCreate
@@ -175,6 +178,43 @@ class AdanaxisMeshLibrary
     mesh.mMake
   end
   
+  
+  #
+  # Cube meshes
+  #
+  
+  def AdanaxisMeshLibrary.cCubesCreate
+  	baseDisplacement1 = MushDisplacement.new(
+        :scale => MushVector.new(0.9*Math.sqrt(2),0.9*Math.sqrt(2),0.9,0.9)
+	  )
+
+    begin
+      mesh = MushMesh.new('ground1')
+      base = MushBasePrism.new(:order => 4)
+      mesh.mBaseAdd(base)
+      mesh.mBaseDisplacementAdd(baseDisplacement1)
+      mesh.mMaterialAdd('ground1-mat')
+      mesh.mMake
+    end
+    begin
+      mesh = MushMesh.new('river1')
+      base = MushBasePrism.new(:order => 4)
+      mesh.mBaseAdd(base)
+      mesh.mBaseDisplacementAdd(baseDisplacement1)
+      mesh.mMaterialAdd('river1-mat')
+      mesh.mMake
+    end
+    begin
+      mesh = MushMesh.new('block1')
+      base = MushBasePrism.new(:order => 4)
+      mesh.mBaseAdd(base)
+      mesh.mBaseDisplacementAdd(baseDisplacement1)
+      mesh.mMaterialAdd('block1-mat')
+      mesh.mMake
+    end
+  end
+  
+  
   #
   # Projectile mesh
   #
@@ -284,6 +324,7 @@ class AdanaxisMeshLibrary
 
   def AdanaxisMeshLibrary.cCreate
     cAttendantCreate
+    cCubesCreate
     cProjectileCreate
     cWorldCreate
     cStarsCreate

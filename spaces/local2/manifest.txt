@@ -1,4 +1,4 @@
 # Manifest file for local2
 directory='local2'
-name='Tutorial 2'
+name='Moving objects'
 creator='Andy Southgate (www.mushware.com)'

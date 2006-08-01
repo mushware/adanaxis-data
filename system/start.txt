@@ -8,8 +8,11 @@
 #
 ##############################################################################
 #
-# $Id: start.txt,v 1.22 2006/07/28 16:52:18 southa Exp $
+# $Id: start.txt,v 1.23 2006/07/31 11:01:35 southa Exp $
 # $Log: start.txt,v $
+# Revision 1.23  2006/07/31 11:01:35  southa
+# Music and dialogues
+#
 # Revision 1.22  2006/07/28 16:52:18  southa
 # Options work
 #
@@ -101,7 +104,7 @@ configset("ADANAXIS_KEYCONFIG_DEFAULT_FILENAME", $SYSTEM_PATH+"/keyconfig-defaul
 
 # Most of these configuration values are unused or act only as defaults
 
-# Options for DISPLAY_QUALITY are low, medium or high
+# Options for DISPLAY_QUALITY are low, medium or high - not used
 configset("DISPLAY_QUALITY", "high")
 
 # Adanaxis configuraton values
@@ -113,7 +116,7 @@ configset('MUSHGL_DISPLAY_MODE', 2)
 # Control texture cache 0=off, 1 or undefined=on
 configset('MUSHGL_TEXTURE_CACHE', 1)
 
-# Control whether textures in the cache are deleted when the game exits 0=no, 1 or undefined=yes
+# Control whether texture files in the cache directory are deleted when the game exits 0=no, 1 or undefined=yes
 configset('MUSHGL_TEXTURE_CACHE_PURGE', 1)
 
 # Control texture compression 0=off, 1 or undefined=on

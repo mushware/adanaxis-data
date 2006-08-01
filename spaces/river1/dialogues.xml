@@ -1,0 +1,212 @@
+<!--
+##############################################################################
+#
+# This file contains original work by Andy Southgate.  Contact details can be
+# found at http://www.mushware.com.  This file was placed in the Public
+# Domain by Andy Southgate and Mushware Limited in 2005.
+#
+# This software carries NO WARRANTY of any kind.
+#
+##############################################################################
+#
+# $Id: dialogues.xml,v 1.1 2006/07/31 11:01:34 southa Exp $
+# $Log: dialogues.xml,v $
+# Revision 1.1  2006/07/31 11:01:34  southa
+# Music and dialogues
+#
+-->
+<obj>(
+"start1"=<obj type="GameDialogue">
+<strings>(
+<obj type="GameStringSpec">
+<string type="GLString">
+<fontRef type="GLFontRef">
+<name>"font-mono1"</name>
+<size>1.0</size>
+</fontRef>
+<value>"River demo"</value>
+<alignment>0</alignment>
+</string>
+<posticity type="MushPiePosticity">
+<angPos>((0,0,0,0),(0,0,0,0))</angPos>
+<angVel>((0,0,0,0),(0,0,0,0))</angVel>
+<pos>(0,0.12,0,0)</pos>
+<vel>(0,0,0,0)</vel>
+</posticity>
+<startColour>(1,1,1,0)</startColour>
+<midColour>(1,1,1,0.5)</midColour>
+<endColour>(1,0,0,0)</endColour>
+<startTime>0</startTime>
+<endTime>300</endTime>
+<fadeTime>100</fadeTime>
+<startSize>0.04</startSize>
+<midSize>0.04</midSize>
+<endSize>0.10</endSize>
+</obj>
+,
+<obj type="GameStringSpec">
+<string type="GLString">
+<fontRef type="GLFontRef">
+<name>"font-mono1"</name>
+<size>1.0</size>
+</fontRef>
+<value>"This demo attempts to show that it is possible"</value>
+<alignment>0</alignment>
+</string>
+<posticity type="MushPiePosticity">
+<angPos>((0,0,0,0),(0,0,0,0))</angPos>
+<angVel>((0,0,0,0),(0,0,0,0))</angVel>
+<pos>(0,0.02,0,0)</pos>
+<vel>(0,0,0,0)</vel>
+</posticity>
+<startColour>(0.8,0.8,1,0)</startColour>
+<midColour>(0.8,0.8,1,0.5)</midColour>
+<endColour>(1,0,0,0)</endColour>
+<startTime>0</startTime>
+<endTime>600</endTime>
+<fadeTime>100</fadeTime>
+<startSize>0.02</startSize>
+<midSize>0.02</midSize>
+<endSize>0.02</endSize>
+</obj>,
+
+<obj type="GameStringSpec">
+<string type="GLString">
+<fontRef type="GLFontRef">
+<name>"font-mono1"</name>
+<size>1.0</size>
+</fontRef>
+<value>"to cross a river in 4D without a bridge."</value>
+<alignment>0</alignment>
+</string>
+<posticity type="MushPiePosticity">
+<angPos>((0,0,0,0),(0,0,0,0))</angPos>
+<angVel>((0,0,0,0),(0,0,0,0))</angVel>
+<pos>(0,-0.02,0,0)</pos>
+<vel>(0,0,0,0)</vel>
+</posticity>
+<startColour>(0.8,0.8,1,0)</startColour>
+<midColour>(0.8,0.8,1,0.5)</midColour>
+<endColour>(1,0,0,0)</endColour>
+<startTime>0</startTime>
+<endTime>600</endTime>
+<fadeTime>100</fadeTime>
+<startSize>0.02</startSize>
+<midSize>0.02</midSize>
+<endSize>0.02</endSize>
+</obj>
+,
+
+
+<obj type="GameStringSpec">
+<string type="GLString">
+<fontRef type="GLFontRef">
+<name>"font-mono1"</name>
+<size>1.0</size>
+</fontRef>
+<value>"The object is to pass over the grid of blocks"</value>
+<alignment>0</alignment>
+</string>
+<posticity type="MushPiePosticity">
+<angPos>((0,0,0,0),(0,0,0,0))</angPos>
+<angVel>((0,0,0,0),(0,0,0,0))</angVel>
+<pos>(0,0.02,0,0)</pos>
+<vel>(0,0,0,0)</vel>
+</posticity>
+<startColour>(0.8,0.8,1,0)</startColour>
+<midColour>(0.8,0.8,1,0.5)</midColour>
+<endColour>(1,0,0,0)</endColour>
+<startTime>600</startTime>
+<endTime>1200</endTime>
+<fadeTime>100</fadeTime>
+<startSize>0.02</startSize>
+<midSize>0.02</midSize>
+<endSize>0.02</endSize>
+</obj>,
+
+<obj type="GameStringSpec">
+<string type="GLString">
+<fontRef type="GLFontRef">
+<name>"font-mono1"</name>
+<size>1.0</size>
+</fontRef>
+<value>"without stepping on a blue river block."</value>
+<alignment>0</alignment>
+</string>
+<posticity type="MushPiePosticity">
+<angPos>((0,0,0,0),(0,0,0,0))</angPos>
+<angVel>((0,0,0,0),(0,0,0,0))</angVel>
+<pos>(0,-0.02,0,0)</pos>
+<vel>(0,0,0,0)</vel>
+</posticity>
+<startColour>(0.8,0.8,1,0)</startColour>
+<midColour>(0.8,0.8,1,0.5)</midColour>
+<endColour>(1,0,0,0)</endColour>
+<startTime>600</startTime>
+<endTime>1200</endTime>
+<fadeTime>100</fadeTime>
+<startSize>0.02</startSize>
+<midSize>0.02</midSize>
+<endSize>0.02</endSize>
+</obj>
+,
+<obj type="GameStringSpec">
+<string type="GLString">
+<fontRef type="GLFontRef">
+<name>"font-mono1"</name>
+<size>1.0</size>
+</fontRef>
+<value>"One way is to sidestep in z (using the"</value>
+<alignment>0</alignment>
+</string>
+<posticity type="MushPiePosticity">
+<angPos>((0,0,0,0),(0,0,0,0))</angPos>
+<angVel>((0,0,0,0),(0,0,0,0))</angVel>
+<pos>(0,0.02,0,0)</pos>
+<vel>(0,0,0,0)</vel>
+</posticity>
+<startColour>(0.8,0.8,1,0)</startColour>
+<midColour>(0.8,0.8,1,0.5)</midColour>
+<endColour>(1,0,0,0)</endColour>
+<startTime>1200</startTime>
+<endTime>1800</endTime>
+<fadeTime>100</fadeTime>
+<startSize>0.02</startSize>
+<midSize>0.02</midSize>
+<endSize>0.02</endSize>
+</obj>,
+
+<obj type="GameStringSpec">
+<string type="GLString">
+<fontRef type="GLFontRef">
+<name>"font-mono1"</name>
+<size>1.0</size>
+</fontRef>
+<value>"E and D keys) before crossing."</value>
+<alignment>0</alignment>
+</string>
+<posticity type="MushPiePosticity">
+<angPos>((0,0,0,0),(0,0,0,0))</angPos>
+<angVel>((0,0,0,0),(0,0,0,0))</angVel>
+<pos>(0,-0.02,0,0)</pos>
+<vel>(0,0,0,0)</vel>
+</posticity>
+<startColour>(0.8,0.8,1,0)</startColour>
+<midColour>(0.8,0.8,1,0.5)</midColour>
+<endColour>(1,0,0,0)</endColour>
+<startTime>1200</startTime>
+<endTime>1800</endTime>
+<fadeTime>100</fadeTime>
+<startSize>0.02</startSize>
+<midSize>0.02</midSize>
+<endSize>0.02</endSize>
+</obj>
+)
+</strings>
+<sounds>()</sounds>
+<soundStreams>()</soundStreams>
+<killSound>""</killSound>
+<age>0</age>
+<expired>0</expired>
+</obj>
+)</obj>

@@ -1,9 +1,9 @@
 #%Header {
 ##############################################################################
 #
-# File: data-adanaxis/ruby/AdanaxisGame.rb
+# File data-adanaxis/ruby/AdanaxisGame.rb
 #
-# Copyright: Andy Southgate 2006
+# Copyright Andy Southgate 2006
 #
 # This file may be used and distributed under the terms of the Mushware
 # software licence version 1.1, under the terms for 'Proprietary original
@@ -15,9 +15,12 @@
 # This software carries NO WARRANTY of any kind.
 #
 ##############################################################################
-#%Header } Keyr0cDT/SIta54pYcV7Bw
-# $Id$
-# $Log$
+#%Header } KSO1aRs/aLEv+/QhWfRoRw
+# $Id: AdanaxisGame.rb,v 1.18 2006/08/01 13:41:11 southa Exp $
+# $Log: AdanaxisGame.rb,v $
+# Revision 1.18  2006/08/01 13:41:11  southa
+# Pre-release updates
+#
 
 require 'Mushware.rb'
 

@@ -1,0 +1,4 @@
+# Manifest file for river1
+directory='river1'
+name='River demo'
+creator='Andy Southgate (www.mushware.com)'

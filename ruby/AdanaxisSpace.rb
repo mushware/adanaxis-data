@@ -1,9 +1,9 @@
 #%Header {
 ##############################################################################
 #
-# File: data-adanaxis/ruby/AdanaxisSpace.rb
+# File data-adanaxis/ruby/AdanaxisSpace.rb
 #
-# Copyright: Andy Southgate 2006
+# Copyright Andy Southgate 2006
 #
 # This file may be used and distributed under the terms of the Mushware
 # software licence version 1.1, under the terms for 'Proprietary original
@@ -15,9 +15,12 @@
 # This software carries NO WARRANTY of any kind.
 #
 ##############################################################################
-#%Header } bfC4wh09eY2PYwqTrsbjWw
-# $Id$
-# $Log$
+#%Header } lR/lFdEFyXBbk1T1wsvmCw
+# $Id: AdanaxisSpace.rb,v 1.7 2006/08/01 13:41:12 southa Exp $
+# $Log: AdanaxisSpace.rb,v $
+# Revision 1.7  2006/08/01 13:41:12  southa
+# Pre-release updates
+#
 
 class AdanaxisSpace < MushObject
   def initialize

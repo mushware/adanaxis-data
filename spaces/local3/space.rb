@@ -1,7 +1,7 @@
 #%Header {
 ##############################################################################
 #
-# File data-adanaxis/spaces/local2/space.rb
+# File data-adanaxis/spaces/local3/space.rb
 #
 # Author Andy Southgate 2006
 #
@@ -17,25 +17,27 @@
 # This software carries NO WARRANTY of any kind.
 #
 ##############################################################################
-#%Header } XulYrmMGLmszzHG2i2jMtA
-# $Id: space.rb,v 1.4 2006/08/01 13:41:14 southa Exp $
+#%Header } XESH903Rz4omoAntOunkPg
+# $Id: space.rb,v 1.16 2006/08/01 13:41:14 southa Exp $
 # $Log: space.rb,v $
-# Revision 1.4  2006/08/01 13:41:14  southa
+# Revision 1.16  2006/08/01 13:41:14  southa
 # Pre-release updates
 #
 
 require 'Mushware.rb'
 require 'Adanaxis.rb'
 
-class Adanaxis_local2 < AdanaxisSpace
+class Adanaxis_local3 < AdanaxisSpace
   def initialize
     @preCached = 0
   end
   
   def mLoad(game)
     mLoadStandard(game)
+    MushGame.cSoundStreamDefine('game1', MushConfig.cGlobalWavesPath+'/mushware-respiration.ogg')
+    @preCached = 0
   end
-  
+
   def mPreCache
     num = @preCached
     # Must still increment @preCached if cPreCache throws
@@ -53,49 +55,18 @@ class Adanaxis_local2 < AdanaxisSpace
   
   def mInitialPiecesCreate
     super
-
-    12.times do |i|
-      
-      x, y, z, w = 0, 0, 0, 0
-      span = 10
-      
-      case i
-        when 0, 6: x = -span
-        when 1, 7: x =  span
-        when 2, 8: y = -span
-        when 3, 9: y =  span
-        when 4, 10: z = -span
-        when 5, 11: z =  span
-      end
-      
-      if i < 6
-        w = 0
-        vw = -0.3
-      else
-        w = -1000
-        vw = 0.1
-      end
-      
-      if (i % 2) == 0
-        rotate = 1
-      else
-        rotate = -1
-      end
-      
-      x+=0.4
-      y+=0.7
-      
+    20.times do |param|
+      pos = MushVector.new(0,0,0,0) + MushTools.cRandomUnitVector * (30 + rand(100));
+      angVel = MushTools.cRandomAngularVelocity(0.01)
       khazi = AdanaxisKhazi.new(
-        :mesh_name => 'attendant',
+        :mesh_name => "attendant",
         :post => MushPost.new(
-          :position => MushVector.new(x, y, z, w),
-          :velocity => MushVector.new(0, 0, 0, vw),
-          :angular_position => MushTools.cRotationInYWPlane(-Math::PI/2).mRotate(MushTools.cRotationInYZPlane(-Math::PI/2).mRotate(MushTools.cRotationInZWPlane(-Math::PI/2))),
-          :angular_velocity => MushTools.cRotationInXYPlane(rotate * Math::PI/1000)
+          :position => pos,
+          :angular_velocity => angVel
           )
         )
     end
-    
+
     1000.times do |i|
       pos = MushTools.cRandomUnitVector * (30 + rand(100))
       world = AdanaxisWorld.new(
@@ -106,5 +77,5 @@ class Adanaxis_local2 < AdanaxisSpace
         )
     end
     
-  end  
+  end
 end

@@ -1,9 +1,9 @@
 #%Header {
 ##############################################################################
 #
-# File: data-adanaxis/ruby/AdanaxisFontLibrary.rb
+# File data-adanaxis/ruby/AdanaxisFontLibrary.rb
 #
-# Copyright: Andy Southgate 2006
+# Copyright Andy Southgate 2006
 #
 # This file may be used and distributed under the terms of the Mushware
 # software licence version 1.1, under the terms for 'Proprietary original
@@ -15,9 +15,12 @@
 # This software carries NO WARRANTY of any kind.
 #
 ##############################################################################
-#%Header } Y3zjNGb16hOrSL70TLl/6A
-# $Id$
-# $Log$
+#%Header } ZGY5KHoT9+kVQm3zBeLowg
+# $Id: AdanaxisFontLibrary.rb,v 1.4 2006/08/01 13:41:11 southa Exp $
+# $Log: AdanaxisFontLibrary.rb,v $
+# Revision 1.4  2006/08/01 13:41:11  southa
+# Pre-release updates
+#
 
 class AdanaxisFontLibrary < MushObject
   def self.cCreate

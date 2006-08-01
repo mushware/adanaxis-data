@@ -1,7 +1,7 @@
 #%Header {
 ##############################################################################
 #
-# File data-adanaxis/spaces/local1/space.rb
+# File data-adanaxis/spaces/river1/space.rb
 #
 # Author Andy Southgate 2006
 #
@@ -17,7 +17,7 @@
 # This software carries NO WARRANTY of any kind.
 #
 ##############################################################################
-#%Header } e5pyDYhqQM6o/mG0mOvX9g
+#%Header } dor7oAM3xOfZ2ElF/iVHGg
 # $Id: space.rb,v 1.16 2006/08/01 13:41:14 southa Exp $
 # $Log: space.rb,v $
 # Revision 1.16  2006/08/01 13:41:14  southa
@@ -27,7 +27,7 @@
 require 'Mushware.rb'
 require 'Adanaxis.rb'
 
-class Adanaxis_local1 < AdanaxisSpace
+class Adanaxis_river1 < AdanaxisSpace
   def initialize
     @preCached = 0
   end
@@ -43,11 +43,8 @@ class Adanaxis_local1 < AdanaxisSpace
     # Must still increment @preCached if cPreCache throws
     @preCached += 1
     case (num)
-      when 0..9   : MushGLTexture.cPreCache("flare#{num}-tex")
-      when 10..19 : MushGLTexture.cPreCache("ember#{num-10}-tex")
-      when 20..29 : MushGLTexture.cPreCache("star#{num-20}-tex")
-      when 30     : MushGLTexture.cPreCache("attendant-tex")
-      when 31     : MushGLTexture.cPreCache("projectile-tex")
+      when 9   : MushGLTexture.cPreCache("river1-tex")
+      when 19 : MushGLTexture.cPreCache("ground1-tex")
     end
     
     3 * num
@@ -56,40 +53,26 @@ class Adanaxis_local1 < AdanaxisSpace
   def mInitialPiecesCreate
     super
 
-    positions = [
-      [ 0, 0, 0, -55, 0.2,0.3,0.6],
-      [ 10, 20, 3, -35, 0,0.3,0.6],
-      [ 5, -12, 0, -45, 0.2,0.3,0],
-      [ -16, 3, -3, -45, 0.3,0.3,0.7],
-      [ 0, 0, 0, -55, 0,0.3,0],
-      [ 10, 20, 3, -35, 0,0.3,0.6],
-      [ 5, -12, 0, -45, 0.2,0.3,0],
-      [ -6, 3, -3, -45, 0.3,0.3,0.7],
-      [ 8, 9, 1, -15, 0.2,0.3,0.5],
-      [ 4, 12, 2, -20, 0.5,0.8,0.6],
-      [ 5, -12, -2, -25, 0.2,0.7,0],
-      [ -7, 3, -1, -30, 0.3,0.3,0.7],
-      [ -3, 5, 0, -35, 0.3,0.1,0.6]
-      ]
-
-    positions.each do |param|
-      pos = MushVector.new(param[0], param[1], param[2], param[3])
-      angPos = MushTools.cRotationInXZPlane(Math::PI * 2 * param[4]);
-      MushTools.cRotationInZWPlane(Math::PI * 2 * param[5]).mRotate(angPos);
-      MushTools.cRotationInYZPlane(Math::PI * 2 * param[6]).mRotate(angPos);
-
-      khazi = AdanaxisKhazi.new(
-        :mesh_name => "attendant",
-        :post => MushPost.new(
-          :position => pos,
-          :angular_position => angPos
+    # Create the river and ground
+    5.times do |x|
+      y=-3
+      5.times do |z|
+        5.times do |w|
+          if (w == 2 && z == 2)
+            meshName = 'river1'
+          else
+            meshName = 'ground1'
+          end
+          AdanaxisKhazi.new(
+            :mesh_name => meshName,
+            :post => MushPost.new(
+              :position => MushVector.new(x-2, y-2, z-2, w-30)
+            )
           )
-        )
+        end
+      end
     end
-
-    rotMin = -0.01
-    rotMax = 0.01
-    
+      
     1000.times do |i|
       pos = MushTools.cRandomUnitVector * (30 + rand(100))
       world = AdanaxisWorld.new(
