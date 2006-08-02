@@ -18,8 +18,11 @@
 #
 ##############################################################################
 #%Header } dor7oAM3xOfZ2ElF/iVHGg
-# $Id: space.rb,v 1.16 2006/08/01 13:41:14 southa Exp $
+# $Id: space.rb,v 1.1 2006/08/01 17:21:20 southa Exp $
 # $Log: space.rb,v $
+# Revision 1.1  2006/08/01 17:21:20  southa
+# River demo
+#
 # Revision 1.16  2006/08/01 13:41:14  southa
 # Pre-release updates
 #
@@ -34,7 +37,7 @@ class Adanaxis_river1 < AdanaxisSpace
   
   def mLoad(game)
     mLoadStandard(game)
-    MushGame.cSoundStreamDefine('game1', MushConfig.cGlobalWavesPath+'/mushware-respiration.ogg')
+    MushGame.cSoundStreamDefine('theme1', MushConfig.cGlobalWavesPath+'/mushware-adanaxistheme.ogg')
     @preCached = 0
   end
 

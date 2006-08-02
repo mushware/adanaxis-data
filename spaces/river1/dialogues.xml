@@ -9,8 +9,11 @@
 #
 ##############################################################################
 #
-# $Id: dialogues.xml,v 1.1 2006/08/01 17:21:20 southa Exp $
+# $Id: dialogues.xml,v 1.2 2006/08/01 23:21:50 southa Exp $
 # $Log: dialogues.xml,v $
+# Revision 1.2  2006/08/01 23:21:50  southa
+# Rendering demo content
+#
 # Revision 1.1  2006/08/01 17:21:20  southa
 # River demo
 #
@@ -209,7 +212,7 @@
 <sounds>()</sounds>
 <soundStreams>(
  <obj type="GameSoundStreamSpec">
-  <soundStreamRef>"game1"</soundStreamRef>
+  <soundStreamRef>"theme1"</soundStreamRef>
   <loop>10000</loop>
   <startTime>0</startTime>
  </obj>
