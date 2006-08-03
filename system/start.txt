@@ -8,8 +8,11 @@
 #
 ##############################################################################
 #
-# $Id: start.txt,v 1.23 2006/07/31 11:01:35 southa Exp $
+# $Id: start.txt,v 1.24 2006/08/01 17:21:21 southa Exp $
 # $Log: start.txt,v $
+# Revision 1.24  2006/08/01 17:21:21  southa
+# River demo
+#
 # Revision 1.23  2006/07/31 11:01:35  southa
 # Music and dialogues
 #
@@ -128,6 +131,9 @@ configset('MUSHGL_TEXTURE_COMPRESSION', 1)
 # configset('X11_MODE_1', '(1680,1050)')
 # configset('X11_MODE_2', '(1920,1200)')
 # and so on, up to X11_MODE_9
+
+# Uses the SDL_ListModes function to determine X11 modes
+# configset('X11_USE_SDL_LISTMODES', 1)
 
 # Load the dialogues
 GameDialogueLoad($SYSTEM_PATH+'/objects.xml')

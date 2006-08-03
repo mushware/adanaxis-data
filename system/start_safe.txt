@@ -8,11 +8,15 @@
 #
 ##############################################################################
 #
-# $Id: start_safe.txt,v 1.1 2005/06/03 15:43:10 southa Exp $
+# $Id: start_safe.txt,v 1.1 2005/06/13 17:34:52 southa Exp $
 # $Log: start_safe.txt,v $
+# Revision 1.1  2005/06/13 17:34:52  southa
+# Adanaxis creation
+#
 # Revision 1.1  2005/06/03 15:43:10  southa
 # Created
 #
 
 load('start.txt')
 configset('SAFE_MODE', 1)
+configset('X11_USE_SDL_LISTMODES', 0)

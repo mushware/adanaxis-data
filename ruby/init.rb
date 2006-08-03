@@ -18,8 +18,11 @@
 #
 ##############################################################################
 #%Header } sDsEhHIN+GUpI3Anu4wz2g
-# $Id: init.rb,v 1.14 2006/08/01 13:41:13 southa Exp $
+# $Id: init.rb,v 1.15 2006/08/01 17:21:19 southa Exp $
 # $Log: init.rb,v $
+# Revision 1.15  2006/08/01 17:21:19  southa
+# River demo
+#
 # Revision 1.14  2006/08/01 13:41:13  southa
 # Pre-release updates
 #
@@ -29,5 +32,11 @@ require 'Adanaxis.rb'
 
 $currentGame = AdanaxisGame.new
 
-require 'test/run_tests.rb' if $MUSHCONFIG['DEBUG'] && File.file?('../mushruby/test/run_tests.rb')
+
+begin
+  require 'test/run_tests.rb' if $MUSHCONFIG['DEBUG'] && File.file?('../mushruby/test/run_tests.rb')
+rescue Exception
+  # Ignore failure
+end
+
 
