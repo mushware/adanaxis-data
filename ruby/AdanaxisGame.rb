@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } KSO1aRs/aLEv+/QhWfRoRw
-# $Id: AdanaxisGame.rb,v 1.18 2006/08/01 13:41:11 southa Exp $
+# $Id: AdanaxisGame.rb,v 1.19 2006/08/01 17:21:17 southa Exp $
 # $Log: AdanaxisGame.rb,v $
+# Revision 1.19  2006/08/01 17:21:17  southa
+# River demo
+#
 # Revision 1.18  2006/08/01 13:41:11  southa
 # Pre-release updates
 #
@@ -28,7 +31,7 @@ require 'AdanaxisLevels.rb'
 
 class AdanaxisGame < MushObject
   def initialize
-    @spaceName = 'menu1'
+    @spaceName = 'local1'
     @levels = AdanaxisLevels.new
     
     @menuRender = AdanaxisRender.new
@@ -109,6 +112,7 @@ class AdanaxisGame < MushObject
           when MushKeys::SDLK_KP_ENTER, MushKeys::SDLK_RETURN: menu.mEnter(self)
           when MushKeys::SDLK_LEFT: menu.mLeft(self)
           when MushKeys::SDLK_RIGHT: menu.mRight(self)
+          when MushKeys::SDLK_p: MushGame.cGameModeEnter
         end
       end
       @menuSet.mUpdate(@currentMenu)

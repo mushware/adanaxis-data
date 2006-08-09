@@ -9,8 +9,11 @@
 #
 ##############################################################################
 #
-# $Id: dialogues.xml,v 1.1 2006/07/31 11:01:34 southa Exp $
+# $Id: dialogues.xml,v 1.2 2006/08/01 23:21:48 southa Exp $
 # $Log: dialogues.xml,v $
+# Revision 1.2  2006/08/01 23:21:48  southa
+# Rendering demo content
+#
 # Revision 1.1  2006/07/31 11:01:34  southa
 # Music and dialogues
 #
@@ -22,15 +25,15 @@
 <string type="GLString">
 <fontRef type="GLFontRef">
 <name>"font-mono1"</name>
-<size>1.0</size>
+<size>0.8</size>
 </fontRef>
-<value>"Intro"</value>
+<value>"Adanaxis Rendering Demo"</value>
 <alignment>0</alignment>
 </string>
 <posticity type="MushPiePosticity">
 <angPos>((0,0,0,0),(0,0,0,0))</angPos>
 <angVel>((0,0,0,0),(0,0,0,0))</angVel>
-<pos>(0,0.12,0,0)</pos>
+<pos>(0,0.20,0,0)</pos>
 <vel>(0,0,0,0)</vel>
 </posticity>
 <startColour>(1,1,1,0)</startColour>

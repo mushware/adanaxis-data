@@ -8,8 +8,11 @@
 #
 ##############################################################################
 #
-# $Id: start.txt,v 1.25 2006/08/03 13:49:58 southa Exp $
+# $Id: start.txt,v 1.26 2006/08/03 15:07:57 southa Exp $
 # $Log: start.txt,v $
+# Revision 1.26  2006/08/03 15:07:57  southa
+# Cache purge fix
+#
 # Revision 1.25  2006/08/03 13:49:58  southa
 # X11 release work
 #
@@ -98,7 +101,7 @@ configset("RUBY_PATH",$APPLPATH+"/ruby")
 
 # Find somewhere to save our files.  Directory name first, then paths to check
 setsavepath(".adanaxis", $HOME, $SYSTEM_PATH, "/tmp")
-setcachepath("mushware-cache", $APPLPATH, $HOME+"/.adanaxis", $HOME, $SYSTEM_PATH, "/tmp")
+# setcachepath("mushware-cache", $APPLPATH, $HOME+"/.adanaxis", $HOME, $SYSTEM_PATH, "/tmp")
 
 # Set registration code file path
 configset("REG_FILENAME", $GLOBAL_SAVE_PATH+"/reg.xml")
@@ -114,13 +117,13 @@ configset("ADANAXIS_KEYCONFIG_DEFAULT_FILENAME", $SYSTEM_PATH+"/keyconfig-defaul
 configset("DISPLAY_QUALITY", "high")
 
 # Adanaxis configuraton values
-configset('MUSHGL_DISPLAY_MODE', 2)
+configset('MUSHGL_DISPLAY_MODE', 0)
 
 # Print OpenGL infomation
 # configset('MUSHGL_DUMP_MUSHGLV', 1)
 
 # Control texture cache 0=off, 1 or undefined=on
-configset('MUSHGL_TEXTURE_CACHE', 1)
+configset('MUSHGL_TEXTURE_CACHE', 0)
 
 # Control whether texture files in the cache directory are deleted when the game exits 0=no, 1 or undefined=yes
 # configset('MUSHGL_TEXTURE_CACHE_PURGE', 1)

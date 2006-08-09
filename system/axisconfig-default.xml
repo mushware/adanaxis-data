@@ -20,8 +20,11 @@ these defaults, so it may be better to edit there instead of here.
  *
  * This software carries NO WARRANTY of any kind.
  *
- * $Id: axisconfig-default.xml,v 1.7 2006/07/11 12:37:51 southa Exp $
+ * $Id: axisconfig-default.xml,v 1.8 2006/07/28 16:52:18 southa Exp $
  * $Log: axisconfig-default.xml,v $
+ * Revision 1.8  2006/07/28 16:52:18  southa
+ * Options work
+ *
  * Revision 1.7  2006/07/11 12:37:51  southa
  * Control configuration
  *
@@ -53,8 +56,8 @@ these defaults, so it may be better to edit there instead of here.
 <deviceAxisNum>0</deviceAxisNum>
 <deviceSensitivity>-10</deviceSensitivity>
 <deviceDamping>0.05</deviceDamping>
-<upKey>276</upKey>
-<downKey>275</downKey>
+<upKey>97</upKey>
+<downKey>100</downKey>
 <requiredKey>0</requiredKey>
 <axisName>"Move in X (left/right)"</axisName>
 <pos>0</pos>
@@ -87,8 +90,8 @@ these defaults, so it may be better to edit there instead of here.
 <deviceAxisNum>0</deviceAxisNum>
 <deviceSensitivity>-10</deviceSensitivity>
 <deviceDamping>0.05</deviceDamping>
-<upKey>100</upKey>
-<downKey>101</downKey>
+<upKey>0</upKey>
+<downKey>0</downKey>
 <requiredKey>0</requiredKey>
 <minBound>0</minBound>
 <maxBound>0</maxBound>
@@ -123,8 +126,8 @@ these defaults, so it may be better to edit there instead of here.
 <deviceAxisNum>1</deviceAxisNum>
 <deviceSensitivity>-30</deviceSensitivity>
 <deviceDamping>0.05</deviceDamping>
-<upKey>116</upKey>
-<downKey>103</downKey>
+<upKey>0</upKey>
+<downKey>0</downKey>
 <requiredKey>0</requiredKey>
 <minBound>0</minBound>
 <maxBound>0</maxBound>
@@ -141,9 +144,9 @@ these defaults, so it may be better to edit there instead of here.
 <deviceAxisNum>0</deviceAxisNum>
 <deviceSensitivity>-10</deviceSensitivity>
 <deviceDamping>0.05</deviceDamping>
-<upKey>104</upKey>
-<downKey>121</downKey>
-<requiredKey>1000</requiredKey>
+<upKey>0</upKey>
+<downKey>0</downKey>
+<requiredKey>1002</requiredKey>
 <minBound>0</minBound>
 <maxBound>0</maxBound>
 <axisName>"Look in hidden axis"</axisName>
@@ -159,8 +162,8 @@ these defaults, so it may be better to edit there instead of here.
 <deviceAxisNum>0</deviceAxisNum>
 <deviceSensitivity>-10</deviceSensitivity>
 <deviceDamping>0.05</deviceDamping>
-<upKey>106</upKey>
-<downKey>117</downKey>
+<upKey>0</upKey>
+<downKey>0</downKey>
 <requiredKey>0</requiredKey>
 <minBound>0</minBound>
 <maxBound>0</maxBound>
@@ -177,8 +180,8 @@ these defaults, so it may be better to edit there instead of here.
 <deviceAxisNum>1</deviceAxisNum>
 <deviceSensitivity>-20</deviceSensitivity>
 <deviceDamping>0.05</deviceDamping>
-<upKey>107</upKey>
-<downKey>105</downKey>
+<upKey>0</upKey>
+<downKey>0</downKey>
 <requiredKey>0</requiredKey>
 <minBound>0</minBound>
 <maxBound>0</maxBound>
@@ -195,8 +198,8 @@ these defaults, so it may be better to edit there instead of here.
 <deviceAxisNum>0</deviceAxisNum>
 <deviceSensitivity>-20</deviceSensitivity>
 <deviceDamping>0.05</deviceDamping>
-<upKey>108</upKey>
-<downKey>111</downKey>
+<upKey>276</upKey>
+<downKey>275</downKey>
 <requiredKey>0</requiredKey>
 <minBound>0</minBound>
 <maxBound>0</maxBound>
@@ -213,8 +216,8 @@ these defaults, so it may be better to edit there instead of here.
 <deviceAxisNum>0</deviceAxisNum>
 <deviceSensitivity>-10</deviceSensitivity>
 <deviceDamping>0.05</deviceDamping>
-<upKey>59</upKey>
-<downKey>112</downKey>
+<upKey>0</upKey>
+<downKey>0</downKey>
 <requiredKey>0</requiredKey>
 <minBound>0</minBound>
 <maxBound>0</maxBound>

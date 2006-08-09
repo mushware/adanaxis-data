@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } jugTbpTzFS8mdBHUZaOpuw
-# $Id: AdanaxisMenu.rb,v 1.12 2006/08/01 13:41:12 southa Exp $
+# $Id: AdanaxisMenu.rb,v 1.13 2006/08/01 17:21:18 southa Exp $
 # $Log: AdanaxisMenu.rb,v $
+# Revision 1.13  2006/08/01 17:21:18  southa
+# River demo
+#
 # Revision 1.12  2006/08/01 13:41:12  southa
 # Pre-release updates
 #
@@ -233,7 +236,7 @@ class AdanaxisMenu
     if menu == MENU_TOPLEVEL
         menuArray = [  
               ["New Game", :mToMenu, MENU_CHOOSE_LEVEL],
-              ["Controls", :mToMenu, MENU_CONTROL],
+#              ["Controls", :mToMenu, MENU_CONTROL],
               ["Options", :mMenuToOptions],
               ["Quit", :mMenuQuit]
             ]
@@ -348,7 +351,7 @@ class AdanaxisMenu
         else "unknown"
       end
       @menuSet[MENU_OPTIONS].menu = [
-        ["Display mode      : "+MushGame.cDisplayModeString, :mMenuDisplayMode],
+#        ["Display mode      : "+MushGame.cDisplayModeString, :mMenuDisplayMode],
         ["Audio volume      : #{MushGame.cAudioVolume}%", :mMenuAudioVolume],
         ["Music volume      : #{MushGame.cMusicVolume}%", :mMenuMusicVolume],
         ["Texture detail    : #{detailName}", :mMenuTextureDetail],
