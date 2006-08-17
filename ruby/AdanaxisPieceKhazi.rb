@@ -1,7 +1,7 @@
 #%Header {
 ##############################################################################
 #
-# File data-adanaxis/ruby/Adanaxis.rb
+# File data-adanaxis/ruby/AdanaxisPieceKhazi.rb
 #
 # Copyright Andy Southgate 2006
 #
@@ -15,24 +15,42 @@
 # This software carries NO WARRANTY of any kind.
 #
 ##############################################################################
-#%Header } Vr8SNTx01PRrZQGDsHJ+7Q
-# $Id: Adanaxis.rb,v 1.8 2006/08/01 17:21:16 southa Exp $
-# $Log: Adanaxis.rb,v $
-# Revision 1.8  2006/08/01 17:21:16  southa
-# River demo
-#
-# Revision 1.7  2006/08/01 13:41:11  southa
-# Pre-release updates
-#
+#%Header } aGTJVbl7QyXIWVg5D1mEzg
+# $Id$
+# $Log$
 
 require 'Mushware.rb'
-require 'AdanaxisFontLibrary.rb'
-require 'AdanaxisGame.rb'
-require 'AdanaxisKhazi.rb'
-require 'AdanaxisMaterialLibrary.rb'
-require 'AdanaxisMenu.rb'
-require 'AdanaxisMeshLibrary.rb'
-require 'AdanaxisPieceKhazi.rb'
-require 'AdanaxisRender.rb'
-require 'AdanaxisSpace.rb'
-require 'AdanaxisTextureLibrary.rb'
+
+class AdanaxisPieceKhazi < MushPiece
+  extend MushRegistered
+  mushRegistered_install
+  
+  def mInitialise
+    @callInterval = 1000
+    @numTimes = 0
+    @callInterval
+  end
+  
+  def mHandle(event)
+    case event
+      when MushEventTimer: puts "Timer event"
+      else super(event)
+    end
+    @callInterval
+  end
+
+  def mActionTimer
+  
+    puts "Action time"
+    @numTimes += 1
+    (@numTimes < 10) ? @callInterval : nil
+  end
+
+  def mBanner
+    puts "Hello from object"
+    puts @@registeredObjects
+    
+    event = MushEventTimer.new
+    mHandle(event)
+  end
+end
