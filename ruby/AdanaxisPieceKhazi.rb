@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } aGTJVbl7QyXIWVg5D1mEzg
-# $Id$
-# $Log$
+# $Id: AdanaxisPieceKhazi.rb,v 1.1 2006/08/17 08:57:10 southa Exp $
+# $Log: AdanaxisPieceKhazi.rb,v $
+# Revision 1.1  2006/08/17 08:57:10  southa
+# Event handling
+#
 
 require 'Mushware.rb'
 
@@ -28,20 +31,35 @@ class AdanaxisPieceKhazi < MushPiece
   def mInitialise
     @callInterval = 1000
     @numTimes = 0
-    @callInterval
+    @post = MushPost.new
+
+    return @callInterval
+  end
+  
+  def mLoad
+    mPostLoad(@post)
+    puts "Retrieved post #{@post}"
+  end
+  
+  def mSave
+  end
+  
+  def mTimerHandle(event)
+    puts "Timer event"
+    mLoad
   end
   
   def mHandle(event)
     case event
-      when MushEventTimer: puts "Timer event"
+      when MushEventTimer: mTimerHandle(event)
       else super(event)
     end
     @callInterval
   end
 
   def mActionTimer
-  
     puts "Action time"
+    mLoad
     @numTimes += 1
     (@numTimes < 10) ? @callInterval : nil
   end
