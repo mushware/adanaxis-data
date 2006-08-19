@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } aGTJVbl7QyXIWVg5D1mEzg
-# $Id: AdanaxisPieceKhazi.rb,v 1.1 2006/08/17 08:57:10 southa Exp $
+# $Id: AdanaxisPieceKhazi.rb,v 1.2 2006/08/17 12:18:10 southa Exp $
 # $Log: AdanaxisPieceKhazi.rb,v $
+# Revision 1.2  2006/08/17 12:18:10  southa
+# Event handling
+#
 # Revision 1.1  2006/08/17 08:57:10  southa
 # Event handling
 #
@@ -32,13 +35,12 @@ class AdanaxisPieceKhazi < MushPiece
     @callInterval = 1000
     @numTimes = 0
     @post = MushPost.new
-
     return @callInterval
   end
   
   def mLoad
     mPostLoad(@post)
-    puts "Retrieved post #{@post}"
+    puts "Retrieved post #{self.inspect}"
   end
   
   def mSave
@@ -58,7 +60,6 @@ class AdanaxisPieceKhazi < MushPiece
   end
 
   def mActionTimer
-    puts "Action time"
     mLoad
     @numTimes += 1
     (@numTimes < 10) ? @callInterval : nil
