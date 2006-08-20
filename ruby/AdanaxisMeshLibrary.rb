@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } 74bLa8v94NQFxupv0Pj/cA
-# $Id: AdanaxisMeshLibrary.rb,v 1.15 2006/08/01 13:41:12 southa Exp $
+# $Id: AdanaxisMeshLibrary.rb,v 1.16 2006/08/01 17:21:18 southa Exp $
 # $Log: AdanaxisMeshLibrary.rb,v $
+# Revision 1.16  2006/08/01 17:21:18  southa
+# River demo
+#
 # Revision 1.15  2006/08/01 13:41:12  southa
 # Pre-release updates
 #
@@ -40,29 +43,29 @@ class AdanaxisMeshLibrary
 	  )
 	
     extruder1 = MushExtruder.new(
-        :sourceface => 0,
+        :sourceface => 2,
         :displacement => MushDisplacement.new(
-            :offset => MushVector.new(0,0,0,-1),
+            :offset => MushVector.new(0,0,-1,0),
             :rotation => MushTools.cRotationInZWPlane(Math::PI/8),
             :scale => 0.8),
 		:num_iterations => 8
       )
 	  
     extruder2 = MushExtruder.new(
-        :sourceface => 1,
+        :sourceface => 3,
         :displacement => MushDisplacement.new(
-            :offset => MushVector.new(0,0,0,1),
+            :offset => MushVector.new(0,0,1,0),
             :rotation => MushTools.cRotationInZWPlane(-Math::PI/8),
             :scale => 0.8),
 		:num_iterations => 8
       )
 	  
     extruder3 = MushExtruder.new(
-        :sourceface => 2,
+        :sourceface => 0,
         :displacement => MushDisplacement.new(
-            :offset => MushVector.new(0,0,-1,0),
+            :offset => MushVector.new(0,0,0,-1),
             :scale => 0.6),
-		:num_iterations => 1
+		:num_iterations => 10
       )
 
     extruder4 = MushExtruder.new(
@@ -107,10 +110,10 @@ class AdanaxisMeshLibrary
     mesh.mExtruderAdd(extruder1)
     mesh.mExtruderAdd(extruder2)
     mesh.mExtruderAdd(extruder3)
-    mesh.mExtruderAdd(extruder4)
-    mesh.mExtruderAdd(extruder5)
-    mesh.mExtruderAdd(extruder6)
-    mesh.mExtruderAdd(extruder7)
+    #mesh.mExtruderAdd(extruder4)
+    #mesh.mExtruderAdd(extruder5)
+    #mesh.mExtruderAdd(extruder6)
+    #mesh.mExtruderAdd(extruder7)
 	mesh.mMaterialAdd('attendant-mat')
 
     mesh.mMake

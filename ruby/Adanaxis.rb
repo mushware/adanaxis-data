@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } Vr8SNTx01PRrZQGDsHJ+7Q
-# $Id: Adanaxis.rb,v 1.8 2006/08/01 17:21:16 southa Exp $
+# $Id: Adanaxis.rb,v 1.9 2006/08/17 08:57:10 southa Exp $
 # $Log: Adanaxis.rb,v $
+# Revision 1.9  2006/08/17 08:57:10  southa
+# Event handling
+#
 # Revision 1.8  2006/08/01 17:21:16  southa
 # River demo
 #
@@ -26,6 +29,7 @@
 #
 
 require 'Mushware.rb'
+require 'AdanaxisAI.rb'
 require 'AdanaxisFontLibrary.rb'
 require 'AdanaxisGame.rb'
 require 'AdanaxisKhazi.rb'

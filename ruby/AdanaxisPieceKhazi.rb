@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } aGTJVbl7QyXIWVg5D1mEzg
-# $Id: AdanaxisPieceKhazi.rb,v 1.2 2006/08/17 12:18:10 southa Exp $
+# $Id: AdanaxisPieceKhazi.rb,v 1.3 2006/08/19 09:12:09 southa Exp $
 # $Log: AdanaxisPieceKhazi.rb,v $
+# Revision 1.3  2006/08/19 09:12:09  southa
+# Event handling
+#
 # Revision 1.2  2006/08/17 12:18:10  southa
 # Event handling
 #
@@ -26,24 +29,19 @@
 #
 
 require 'Mushware.rb'
+require 'AdanaxisAI.rb'
 
 class AdanaxisPieceKhazi < MushPiece
   extend MushRegistered
   mushRegistered_install
   
+  include AdanaxisAI
+  
   def mInitialise
-    @callInterval = 1000
+    @callInterval = 100
     @numTimes = 0
-    @post = MushPost.new
+    @aiState = AISTATE_DORMANT
     return @callInterval
-  end
-  
-  def mLoad
-    mPostLoad(@post)
-    puts "Retrieved post #{self.inspect}"
-  end
-  
-  def mSave
   end
   
   def mTimerHandle(event)
@@ -59,10 +57,36 @@ class AdanaxisPieceKhazi < MushPiece
     @callInterval
   end
 
+  def mStateActionSeek
+    angVel = MushTools::cSlerp(@m_post.angular_velocity,
+      MushTools.cTurnToFace(@m_post, AdanaxisRuby.cPlayerPosition, 0.05),
+      0.2)
+      
+    angVel.mScale!(0.5)
+    
+    @m_post.angular_velocity = angVel
+      
+    @callInterval = 100
+  end
+
+  def mActByState
+    case @aiState
+      when AISTATE_IDLE : @aiState = AISTATE_DORMANT
+      when AISTATE_DORMANT : @aiState = AISTATE_SEEK
+      when AISTATE_SEEK : mStateActionSeek  
+    end
+  end
+
   def mActionTimer
     mLoad
+
+    mActByState
+
+    mSave
     @numTimes += 1
-    (@numTimes < 10) ? @callInterval : nil
+    
+    
+    @callInterval
   end
 
   def mBanner
