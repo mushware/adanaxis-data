@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } jugTbpTzFS8mdBHUZaOpuw
-# $Id: AdanaxisMenu.rb,v 1.12 2006/08/01 13:41:12 southa Exp $
+# $Id: AdanaxisMenu.rb,v 1.13 2006/08/01 17:21:18 southa Exp $
 # $Log: AdanaxisMenu.rb,v $
+# Revision 1.13  2006/08/01 17:21:18  southa
+# River demo
+#
 # Revision 1.12  2006/08/01 13:41:12  southa
 # Pre-release updates
 #
@@ -25,7 +28,7 @@
 require 'Mushware.rb'
 require 'AdanaxisControl.rb'
 
-class AdanaxisMenu
+class AdanaxisMenu < MushObject
   MENU_TOPLEVEL = 0
   MENU_CONTROL = 1
   MENU_KEYS = 2

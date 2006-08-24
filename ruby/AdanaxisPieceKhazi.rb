@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } aGTJVbl7QyXIWVg5D1mEzg
-# $Id: AdanaxisPieceKhazi.rb,v 1.3 2006/08/19 09:12:09 southa Exp $
+# $Id: AdanaxisPieceKhazi.rb,v 1.4 2006/08/20 14:19:20 southa Exp $
 # $Log: AdanaxisPieceKhazi.rb,v $
+# Revision 1.4  2006/08/20 14:19:20  southa
+# Seek operation
+#
 # Revision 1.3  2006/08/19 09:12:09  southa
 # Event handling
 #
@@ -37,11 +40,11 @@ class AdanaxisPieceKhazi < MushPiece
   
   include AdanaxisAI
   
-  def mInitialise
+  def initialize
+    super
     @callInterval = 100
     @numTimes = 0
     @aiState = AISTATE_DORMANT
-    return @callInterval
   end
   
   def mTimerHandle(event)
@@ -82,11 +85,18 @@ class AdanaxisPieceKhazi < MushPiece
 
     mActByState
 
-    mSave
     @numTimes += 1
-    
-    
+    mFire if (@numTimes % 10) == 0
+
+    mSave
+        
     @callInterval
+  end
+
+  def mFire
+    event = AdanaxisEventFire.new
+    event.m_post = @m_post
+    $currentLogic.mEventConsume(event, @m_id, @m_id)  
   end
 
   def mBanner

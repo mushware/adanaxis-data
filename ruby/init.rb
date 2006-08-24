@@ -18,8 +18,11 @@
 #
 ##############################################################################
 #%Header } sDsEhHIN+GUpI3Anu4wz2g
-# $Id: init.rb,v 1.15 2006/08/01 17:21:19 southa Exp $
+# $Id: init.rb,v 1.16 2006/08/03 13:49:58 southa Exp $
 # $Log: init.rb,v $
+# Revision 1.16  2006/08/03 13:49:58  southa
+# X11 release work
+#
 # Revision 1.15  2006/08/01 17:21:19  southa
 # River demo
 #
@@ -31,7 +34,7 @@ require 'Mushware.rb'
 require 'Adanaxis.rb'
 
 $currentGame = AdanaxisGame.new
-
+$currentLogic = AdanaxisLogic.new
 
 begin
   require 'test/run_tests.rb' if $MUSHCONFIG['DEBUG'] && File.file?('../mushruby/test/run_tests.rb')

@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } Vr8SNTx01PRrZQGDsHJ+7Q
-# $Id: Adanaxis.rb,v 1.9 2006/08/17 08:57:10 southa Exp $
+# $Id: Adanaxis.rb,v 1.10 2006/08/20 14:19:19 southa Exp $
 # $Log: Adanaxis.rb,v $
+# Revision 1.10  2006/08/20 14:19:19  southa
+# Seek operation
+#
 # Revision 1.9  2006/08/17 08:57:10  southa
 # Event handling
 #
@@ -30,9 +33,11 @@
 
 require 'Mushware.rb'
 require 'AdanaxisAI.rb'
+require 'AdanaxisEvents.rb'
 require 'AdanaxisFontLibrary.rb'
 require 'AdanaxisGame.rb'
 require 'AdanaxisKhazi.rb'
+require 'AdanaxisLogic.rb'
 require 'AdanaxisMaterialLibrary.rb'
 require 'AdanaxisMenu.rb'
 require 'AdanaxisMeshLibrary.rb'
