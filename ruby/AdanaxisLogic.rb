@@ -16,27 +16,47 @@
 #
 ##############################################################################
 #%Header } OEQ7ye4+ICpoJw+Z14qbnQ
-# $Id$
-# $Log$
+# $Id: AdanaxisLogic.rb,v 1.1 2006/08/24 13:04:37 southa Exp $
+# $Log: AdanaxisLogic.rb,v $
+# Revision 1.1  2006/08/24 13:04:37  southa
+# Event handling
+#
 
 class AdanaxisLogic < MushLogic
+
+  def initialize
+    @m_outbox = []
+  end
+
   def mLookup(id)
     case id
       when /^k/
         receiver = AdanaxisPieceKhazi.cLookup(id[1..-1])
       else
-        raise TypeError.new("Cannot decode object id '#{id}'")
+        raise MushError.new("Cannot decode object id '#{id}'")
     end
     receiver
   end
 
-  def mEventConsume(event, src, dest)
-    puts "Consuming event #{event.inspect} from #{src} to #{dest}"
-    begin
-      receiver = mLookup(dest)
-      puts "Receiver is #{receiver.inspect}"
-    rescue Exception => e
-      puts "Discarding event: #{e}"
+  def mInboxConsume(inbox)
+    inbox.each do |event|
+      begin
+        receiver = mLookup(event.dest)
+        receiver.mEventHandle(event)
+      rescue Exception => e
+        MushLog.cWarn "Event failed: #{e} at #{e.backtrace[0]}"
+      end
     end
+    inbox.clear
+  end
+
+  def mEventConsume(event, src, dest)
+    event.src = src
+    event.dest = dest
+    @m_outbox << event
+  end
+  
+  def mReceiveSequence
+    mInboxConsume(@m_outbox)
   end
 end

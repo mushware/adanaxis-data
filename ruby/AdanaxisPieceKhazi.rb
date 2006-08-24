@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } aGTJVbl7QyXIWVg5D1mEzg
-# $Id: AdanaxisPieceKhazi.rb,v 1.4 2006/08/20 14:19:20 southa Exp $
+# $Id: AdanaxisPieceKhazi.rb,v 1.5 2006/08/24 13:04:37 southa Exp $
 # $Log: AdanaxisPieceKhazi.rb,v $
+# Revision 1.5  2006/08/24 13:04:37  southa
+# Event handling
+#
 # Revision 1.4  2006/08/20 14:19:20  southa
 # Seek operation
 #
@@ -33,6 +36,7 @@
 
 require 'Mushware.rb'
 require 'AdanaxisAI.rb'
+require 'AdanaxisEvents.rb'
 
 class AdanaxisPieceKhazi < MushPiece
   extend MushRegistered
@@ -52,9 +56,14 @@ class AdanaxisPieceKhazi < MushPiece
     mLoad
   end
   
-  def mHandle(event)
+  def mFireHandle(event)
+    puts "Fire event #{event.inspect}"
+  end
+
+  def mEventHandle(event)
     case event
       when MushEventTimer: mTimerHandle(event)
+      when AdanaxisEventFire: mFireHandle(event)
       else super(event)
     end
     @callInterval
@@ -89,7 +98,9 @@ class AdanaxisPieceKhazi < MushPiece
     mFire if (@numTimes % 10) == 0
 
     mSave
-        
+    
+    $currentLogic.mReceiveSequence
+    
     @callInterval
   end
 
