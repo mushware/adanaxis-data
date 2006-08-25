@@ -1,7 +1,7 @@
 #%Header {
 ##############################################################################
 #
-# File data-adanaxis/ruby/AdanaxisEvents.rb
+# File data-adanaxis/ruby/AdanaxisPieceProjectile.rb
 #
 # Copyright Andy Southgate 2006
 #
@@ -15,17 +15,10 @@
 # This software carries NO WARRANTY of any kind.
 #
 ##############################################################################
-#%Header } fAZMXASsvVkN8FSXXDhczg
-# $Id: AdanaxisEvents.rb,v 1.1 2006/08/24 13:04:37 southa Exp $
-# $Log: AdanaxisEvents.rb,v $
-# Revision 1.1  2006/08/24 13:04:37  southa
-# Event handling
-#
+#%Header } JPjWkwGvzd5d5LJLXnphkQ
+# $Id$
+# $Log$
 
-class AdanaxisEventFire < MushEvent
-  def initialize
-    @post = MushPost.new
-  end
-  
-  attr_accessor :post
+class AdanaxisPieceProjectile < MushPiece
+
 end

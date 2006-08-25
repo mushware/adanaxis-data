@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } OEQ7ye4+ICpoJw+Z14qbnQ
-# $Id: AdanaxisLogic.rb,v 1.1 2006/08/24 13:04:37 southa Exp $
+# $Id: AdanaxisLogic.rb,v 1.2 2006/08/24 16:30:55 southa Exp $
 # $Log: AdanaxisLogic.rb,v $
+# Revision 1.2  2006/08/24 16:30:55  southa
+# Event handling
+#
 # Revision 1.1  2006/08/24 13:04:37  southa
 # Event handling
 #
@@ -44,7 +47,7 @@ class AdanaxisLogic < MushLogic
         receiver = mLookup(event.dest)
         receiver.mEventHandle(event)
       rescue Exception => e
-        MushLog.cWarn "Event failed: #{e} at #{e.backtrace[0]}"
+        MushLog.cWarning "Event failed: #{e} at #{e.backtrace[0]}"
       end
     end
     inbox.clear

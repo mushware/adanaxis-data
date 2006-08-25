@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } Vr8SNTx01PRrZQGDsHJ+7Q
-# $Id: Adanaxis.rb,v 1.10 2006/08/20 14:19:19 southa Exp $
+# $Id: Adanaxis.rb,v 1.11 2006/08/24 13:04:37 southa Exp $
 # $Log: Adanaxis.rb,v $
+# Revision 1.11  2006/08/24 13:04:37  southa
+# Event handling
+#
 # Revision 1.10  2006/08/20 14:19:19  southa
 # Seek operation
 #
@@ -42,6 +45,7 @@ require 'AdanaxisMaterialLibrary.rb'
 require 'AdanaxisMenu.rb'
 require 'AdanaxisMeshLibrary.rb'
 require 'AdanaxisPieceKhazi.rb'
+require 'AdanaxisPieceProjectile.rb'
 require 'AdanaxisRender.rb'
 require 'AdanaxisSpace.rb'
 require 'AdanaxisTextureLibrary.rb'

@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } aGTJVbl7QyXIWVg5D1mEzg
-# $Id: AdanaxisPieceKhazi.rb,v 1.5 2006/08/24 13:04:37 southa Exp $
+# $Id: AdanaxisPieceKhazi.rb,v 1.6 2006/08/24 16:30:55 southa Exp $
 # $Log: AdanaxisPieceKhazi.rb,v $
+# Revision 1.6  2006/08/24 16:30:55  southa
+# Event handling
+#
 # Revision 1.5  2006/08/24 13:04:37  southa
 # Event handling
 #
@@ -47,7 +50,7 @@ class AdanaxisPieceKhazi < MushPiece
   def initialize
     super
     @callInterval = 100
-    @numTimes = 0
+    @numTimes = rand(30)
     @aiState = AISTATE_DORMANT
   end
   
@@ -57,7 +60,21 @@ class AdanaxisPieceKhazi < MushPiece
   end
   
   def mFireHandle(event)
-    puts "Fire event #{event.inspect}"
+    projPost = event.post.dup
+    
+    vel = MushVector.new(0,0,0,-1)
+    
+    projPost.angular_position.mRotate(vel)
+    
+    projPost.velocity = projPost.velocity + vel
+    projPost.angular_velocity = MushRotation.new
+    
+    khazi = AdanaxisPieceProjectile.cCreate(
+      :mesh_name => "projectile",
+      :post => projPost,
+      :owner => m_id,
+      :lifetime_msec => 15000
+      )
   end
 
   def mEventHandle(event)
@@ -95,7 +112,7 @@ class AdanaxisPieceKhazi < MushPiece
     mActByState
 
     @numTimes += 1
-    mFire if (@numTimes % 10) == 0
+    mFire if (@numTimes % 30) == 0
 
     mSave
     
@@ -106,7 +123,7 @@ class AdanaxisPieceKhazi < MushPiece
 
   def mFire
     event = AdanaxisEventFire.new
-    event.m_post = @m_post
+    event.post = @m_post
     $currentLogic.mEventConsume(event, @m_id, @m_id)  
   end
 
