@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } aGTJVbl7QyXIWVg5D1mEzg
-# $Id: AdanaxisPieceKhazi.rb,v 1.6 2006/08/24 16:30:55 southa Exp $
+# $Id: AdanaxisPieceKhazi.rb,v 1.7 2006/08/25 01:44:56 southa Exp $
 # $Log: AdanaxisPieceKhazi.rb,v $
+# Revision 1.7  2006/08/25 01:44:56  southa
+# Khazi fire
+#
 # Revision 1.6  2006/08/24 16:30:55  southa
 # Event handling
 #
@@ -74,7 +77,7 @@ class AdanaxisPieceKhazi < MushPiece
       :post => projPost,
       :owner => m_id,
       :lifetime_msec => 15000
-      )
+    )
   end
 
   def mEventHandle(event)
