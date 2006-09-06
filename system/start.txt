@@ -8,8 +8,11 @@
 #
 ##############################################################################
 #
-# $Id: start.txt,v 1.25 2006/08/03 13:49:58 southa Exp $
+# $Id: start.txt,v 1.26 2006/08/03 15:07:57 southa Exp $
 # $Log: start.txt,v $
+# Revision 1.26  2006/08/03 15:07:57  southa
+# Cache purge fix
+#
 # Revision 1.25  2006/08/03 13:49:58  southa
 # X11 release work
 #
@@ -117,7 +120,7 @@ configset("DISPLAY_QUALITY", "high")
 configset('MUSHGL_DISPLAY_MODE', 2)
 
 # Print OpenGL infomation
-# configset('MUSHGL_DUMP_MUSHGLV', 1)
+configset('MUSHGL_DUMP_MUSHGLV', 1)
 
 # Control texture cache 0=off, 1 or undefined=on
 configset('MUSHGL_TEXTURE_CACHE', 1)
