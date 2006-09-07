@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } lR/lFdEFyXBbk1T1wsvmCw
-# $Id: AdanaxisSpace.rb,v 1.7 2006/08/01 13:41:12 southa Exp $
+# $Id: AdanaxisSpace.rb,v 1.8 2006/08/01 17:21:18 southa Exp $
 # $Log: AdanaxisSpace.rb,v $
+# Revision 1.8  2006/08/01 17:21:18  southa
+# River demo
+#
 # Revision 1.7  2006/08/01 13:41:12  southa
 # Pre-release updates
 #
@@ -32,6 +35,7 @@ class AdanaxisSpace < MushObject
 	AdanaxisMeshLibrary.cCreate
 	AdanaxisMaterialLibrary.cCreate
     AdanaxisTextureLibrary.cCreate
+    AdanaxisShaderLibrary.cCreate
     
     dialogueFile = game.mSpacePath+"/dialogues.xml"
     if File.file?(dialogueFile)
