@@ -16,10 +16,53 @@
 #
 ##############################################################################
 #%Header } TdNUOwKtoKPRBQwBNPKiRw
-# $Id$
-# $Log$
+# $Id: AdanaxisShaderLibrary.rb,v 1.1 2006/09/07 10:02:36 southa Exp $
+# $Log: AdanaxisShaderLibrary.rb,v $
+# Revision 1.1  2006/09/07 10:02:36  southa
+# Shader interface
+#
 
 class AdanaxisShaderLibrary < MushObject
+
+#
+# Default 4D vertex shader
+#
+  def self.cVertex4D
+    <<EOS
+// Default vertex shader
+
+uniform vec4 mush_ProjectionOffset;
+uniform vec4 mush_ModelViewOffset;
+uniform vec4 mush_ModelViewProjectionOffset;
+
+// varying vec4 mush_EyePosition;
+
+void main(void)
+{
+    gl_FrontColor = gl_Color;
+    gl_TexCoord[0] = gl_MultiTexCoord0;
+    
+    // mush_EyePosition = mush_ModelViewOffset + gl_ModelViewMatrix * gl_Vertex;
+    gl_Position = mush_ModelViewProjectionOffset + gl_ModelViewProjectionMatrix * gl_Vertex;
+}
+EOS
+  end
+
+#
+# Standard shader definitions
+#
+  def self.cStandardCreate
+    # Standard OpenGL pipeline
+    MushGLShader.new(
+      :name => 'standard'
+    )
+    
+    shader = MushGLShader.new(
+      :name => 'project4d',
+      :vertex_shader => cVertex4D
+    )
+  end
+  
   def self.cTestCreate
   
     fragmentShader = <<EOS
@@ -27,7 +70,7 @@ class AdanaxisShaderLibrary < MushObject
 // Default fragment shader
 
 uniform sampler2D tex;
-  
+
 void main(void)
 {
 		vec4 color = texture2D(tex,gl_TexCoord[0].st);
@@ -43,6 +86,7 @@ EOS
 void main(void)
 {
     gl_FrontColor = gl_Color;
+    gl_BackColor = gl_Color;
     gl_TexCoord[0] = gl_MultiTexCoord0;
     gl_Position = ftransform();
 }
@@ -57,6 +101,7 @@ EOS
   end
 
   def self.cCreate
+    cStandardCreate
     cTestCreate
   end
 end
