@@ -8,8 +8,11 @@
 #
 ##############################################################################
 #
-# $Id: start.txt,v 1.27 2006/09/06 17:33:18 southa Exp $
+# $Id: start.txt,v 1.28 2006/09/07 10:02:36 southa Exp $
 # $Log: start.txt,v $
+# Revision 1.28  2006/09/07 10:02:36  southa
+# Shader interface
+#
 # Revision 1.27  2006/09/06 17:33:18  southa
 # Shader interface
 #
@@ -123,7 +126,7 @@ configset("DISPLAY_QUALITY", "high")
 configset('MUSHGL_DISPLAY_MODE', 2)
 
 # Print OpenGL infomation
-# configset('MUSHGL_DUMP_MUSHGLV', 1)
+configset('MUSHGL_DUMP_MUSHGLV', 1)
 
 # Control texture cache 0=off, 1 or undefined=on
 configset('MUSHGL_TEXTURE_CACHE', 1)

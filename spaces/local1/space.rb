@@ -18,8 +18,11 @@
 #
 ##############################################################################
 #%Header } e5pyDYhqQM6o/mG0mOvX9g
-# $Id: space.rb,v 1.18 2006/08/01 23:21:48 southa Exp $
+# $Id: space.rb,v 1.19 2006/08/02 15:41:46 southa Exp $
 # $Log: space.rb,v $
+# Revision 1.19  2006/08/02 15:41:46  southa
+# Prerelease work
+#
 # Revision 1.18  2006/08/01 23:21:48  southa
 # Rendering demo content
 #
@@ -93,8 +96,8 @@ class Adanaxis_local1 < AdanaxisSpace
     rotMin = -0.01
     rotMax = 0.01
     
-    1000.times do |i|
-      pos = MushTools.cRandomUnitVector * (30 + rand(100))
+    10000.times do |i|
+      pos = MushTools.cRandomUnitVector * (100 + rand(400))
       world = AdanaxisWorld.new(
         :mesh_name => "star#{i % 10}",
         :post => MushPost.new(
