@@ -18,8 +18,11 @@
 #
 ##############################################################################
 #%Header } e5pyDYhqQM6o/mG0mOvX9g
-# $Id: space.rb,v 1.19 2006/08/02 15:41:46 southa Exp $
+# $Id: space.rb,v 1.20 2006/09/10 10:30:51 southa Exp $
 # $Log: space.rb,v $
+# Revision 1.20  2006/09/10 10:30:51  southa
+# Shader billboarding
+#
 # Revision 1.19  2006/08/02 15:41:46  southa
 # Prerelease work
 #
@@ -92,11 +95,8 @@ class Adanaxis_local1 < AdanaxisSpace
           )
         )
     end
-
-    rotMin = -0.01
-    rotMax = 0.01
     
-    10000.times do |i|
+    0.times do |i|
       pos = MushTools.cRandomUnitVector * (100 + rand(400))
       world = AdanaxisWorld.new(
         :mesh_name => "star#{i % 10}",
@@ -105,6 +105,21 @@ class Adanaxis_local1 < AdanaxisSpace
           )
         )
     end
+    
+    worldMesh =  MushMesh.new("world")
+    worldBase = MushBaseWorldSphere.new(
+      :num_facets => 10,
+      :tiles_per_texture => 1);
+    worldMesh.mBaseAdd(worldBase)
+    worldMesh.mMaterialAdd("star0-mat")
+    worldMesh.mMake
+    puts worldMesh.to_xml
+    
+    world = AdanaxisWorld.new(
+      :mesh_name => "world"
+    )
+    
+    
     
   end
 end
