@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } aGTJVbl7QyXIWVg5D1mEzg
-# $Id: AdanaxisPieceKhazi.rb,v 1.7 2006/08/25 01:44:56 southa Exp $
+# $Id: AdanaxisPieceKhazi.rb,v 1.8 2006/08/25 11:06:07 southa Exp $
 # $Log: AdanaxisPieceKhazi.rb,v $
+# Revision 1.8  2006/08/25 11:06:07  southa
+# Snapshot
+#
 # Revision 1.7  2006/08/25 01:44:56  southa
 # Khazi fire
 #
@@ -54,7 +57,6 @@ class AdanaxisPieceKhazi < MushPiece
     super
     @callInterval = 100
     @numTimes = rand(30)
-    @aiState = AISTATE_DORMANT
   end
   
   def mTimerHandle(event)
@@ -89,30 +91,10 @@ class AdanaxisPieceKhazi < MushPiece
     @callInterval
   end
 
-  def mStateActionSeek
-    angVel = MushTools::cSlerp(@m_post.angular_velocity,
-      MushTools.cTurnToFace(@m_post, AdanaxisRuby.cPlayerPosition, 0.05),
-      0.2)
-      
-    angVel.mScale!(0.5)
-    
-    @m_post.angular_velocity = angVel
-      
-    @callInterval = 100
-  end
-
-  def mActByState
-    case @aiState
-      when AISTATE_IDLE : @aiState = AISTATE_DORMANT
-      when AISTATE_DORMANT : @aiState = AISTATE_SEEK
-      when AISTATE_SEEK : mStateActionSeek  
-    end
-  end
-
   def mActionTimer
     mLoad
 
-    mActByState
+    @callInterval = mActByState
 
     @numTimes += 1
     mFire if (@numTimes % 30) == 0
