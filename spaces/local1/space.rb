@@ -18,8 +18,11 @@
 #
 ##############################################################################
 #%Header } e5pyDYhqQM6o/mG0mOvX9g
-# $Id: space.rb,v 1.20 2006/09/10 10:30:51 southa Exp $
+# $Id: space.rb,v 1.21 2006/09/12 15:28:49 southa Exp $
 # $Log: space.rb,v $
+# Revision 1.21  2006/09/12 15:28:49  southa
+# World sphere
+#
 # Revision 1.20  2006/09/10 10:30:51  southa
 # Shader billboarding
 #
@@ -113,7 +116,7 @@ class Adanaxis_local1 < AdanaxisSpace
     worldMesh.mBaseAdd(worldBase)
     worldMesh.mMaterialAdd("star0-mat")
     worldMesh.mMake
-    puts worldMesh.to_xml
+    # puts worldMesh.to_xml
     
     world = AdanaxisWorld.new(
       :mesh_name => "world"

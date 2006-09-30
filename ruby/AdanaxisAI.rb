@@ -16,13 +16,16 @@
 #
 ##############################################################################
 #%Header } ZJhgffsl43t4RqQcN4aPag
-# $Id: AdanaxisAI.rb,v 1.1 2006/08/24 09:58:51 southa Exp $
+# $Id: AdanaxisAI.rb,v 1.2 2006/09/29 10:47:55 southa Exp $
 # $Log: AdanaxisAI.rb,v $
+# Revision 1.2  2006/09/29 10:47:55  southa
+# Object AI
+#
 # Revision 1.1  2006/08/24 09:58:51  southa
 # File addition
 #
 
-module AdanaxisAI
+class AdanaxisAI
   AISTATE_INVALID=0
   AISTATE_NONE=1
   AISTATE_DORMANT=2
@@ -33,82 +36,99 @@ module AdanaxisAI
 
   def initialize
     super
-    @aiState = AISTATE_DORMANT
-    @aiWaypoint = MushVector.new(0,0,0,0)
-    @aiWaypointDuration = 0
-    @aiStateChangeMsec = 0
+    @m_state = AISTATE_DORMANT
+    @m_stateDuration = 0
+    @m_waypoint = MushVector.new(0,0,0,0)
+    @m_stateChangeMsec = 0
+    @r_piece
+    @r_post
   end
 
   def mStateChange(newState)
-    @aiState = newState
-    @aiStateChangeMsec = MushGame.cGameMsec
+    @m_state = newState
+    @m_stateChangeMsec = MushGame.cGameMsec
+    nil
   end
 
-  def mStateChangeWaypoint(waypoint, duration)
-    @aiWaypoint = waypoint
-    @aiWaypointDuration = duration
+  def mStateChangeSeek(duration)
+    @m_stateDuration = duration
+    mStateChange(AISTATE_SEEK)
+    nil
+  end
+
+  def mStateChangeWaypoint(duration, waypoint)
+    @m_waypoint = waypoint
+    @m_stateDuration = duration
     mStateChange(AISTATE_WAYPOINT)
+    nil
   end
 
   def mMsecSinceStateChange
-    MushGame.cGameMsec - @aiStateChangeMsec
+    MushGame.cGameMsec - @m_stateChangeMsec
+  end
+
+  def mStateExpired?
+    (mMsecSinceStateChange > @m_stateDuration)
   end
 
   def mStateActionSeek
-    angVel = MushTools::cSlerp(@m_post.angular_velocity,
-      MushTools.cTurnToFace(@m_post, AdanaxisRuby.cPlayerPosition, 0.05),
-      0.2)
-      
-    angVel.mScale!(0.5)
+    MushUtil.cRotateAndSeek(@r_post,
+      AdanaxisRuby.cPlayerPosition, # Target
+      0.02, # Maximum speed
+      0.01 # Acceleration
+    )
     
-    @m_post.angular_velocity = angVel
-    @m_post.velocity *= 0.9
-    
-    if mMsecSinceStateChange > 5000
-      mStateChangeWaypoint(MushVector.new(0,0,0,0), 5000)
+    if mStateExpired?
+      mStateChangeWaypoint(30000, MushVector.new(rand(30)-15, rand(30)-15, rand(30)-15, -30))
     end
     
     100
   end
 
   def mStateActionWaypoint
-    angVel = MushTools::cSlerp(@m_post.angular_velocity,
-      MushTools.cTurnToFace(@m_post, @aiWaypoint, 0.05),
-      0.2)
-      
-    angVel.mScale!(0.5)
+    MushUtil.cRotateAndSeek(@r_post,
+      @m_waypoint, # Target
+      0.10, # Maximum speed
+      0.01 # Acceleration
+    )
     
-    @m_post.angular_velocity = angVel
-      
-    distToPoint = (@aiWaypoint - @m_post.position).mMagnitude;
-      
-    accel = MushVector.new(0,0,0, -distToPoint / 100.0)
-    @m_post.angular_position.mRotate(accel)
-      
-    @m_post.velocity = @m_post.velocity * 0.98 + accel * 0.02;
-      
-    if mMsecSinceStateChange > @aiWaypointDuration
-      mStateChange(AISTATE_SEEK)
+    if mStateExpired?
+      mStateChangeSeek(15000)
     end
       
     100
   end
-
-  def mActByState
+  
+  def mActMain
     callInterval = 100
-    
+
+    case @m_state
+      when AISTATE_IDLE : mStateChange(AISTATE_DORMANT)
+      when AISTATE_DORMANT : mStateChangeSeek(15000)
+      when AISTATE_SEEK : callInterval = mStateActionSeek
+      else raise MushError.new("Bad aiState value @m_state") 
+    end
+
+    callInterval
+  end
+
+  def mActPrologue(ioPiece)
+    @r_piece = ioPiece
+    @r_post = ioPiece.mPostWRef
+  end
+
+  def mActEpilogue
+  end
+
+  def mActByState(ioPiece)
     begin
-      callInterval = case @aiState
-        when AISTATE_IDLE : mStateChange(AISTATE_DORMANT)
-        when AISTATE_DORMANT : mStateChange(AISTATE_SEEK)
-        when AISTATE_SEEK : mStateActionSeek
-        when AISTATE_WAYPOINT : mStateActionWaypoint
-        else raise MushError.new("Bad aiState value @aiState") 
-      end
+      mActPrologue(ioPiece)
+      callInterval = mActMain
+      mActEpilogue
     rescue
       mStateChange(AISTATE_IDLE)
       raise
-    end
+    end  
     callInterval
   end
 

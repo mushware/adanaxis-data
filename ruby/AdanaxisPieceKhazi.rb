@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } aGTJVbl7QyXIWVg5D1mEzg
-# $Id: AdanaxisPieceKhazi.rb,v 1.8 2006/08/25 11:06:07 southa Exp $
+# $Id: AdanaxisPieceKhazi.rb,v 1.9 2006/09/29 10:47:56 southa Exp $
 # $Log: AdanaxisPieceKhazi.rb,v $
+# Revision 1.9  2006/09/29 10:47:56  southa
+# Object AI
+#
 # Revision 1.8  2006/08/25 11:06:07  southa
 # Snapshot
 #
@@ -44,19 +47,18 @@
 #
 
 require 'Mushware.rb'
-require 'AdanaxisAI.rb'
+require 'AdanaxisAIKhazi.rb'
 require 'AdanaxisEvents.rb'
 
 class AdanaxisPieceKhazi < MushPiece
   extend MushRegistered
   mushRegistered_install
   
-  include AdanaxisAI
-  
   def initialize
     super
-    @callInterval = 100
+    @m_callInterval = 100
     @numTimes = rand(30)
+    @m_ai = AdanaxisAIKhazi.new
   end
   
   def mTimerHandle(event)
@@ -88,13 +90,13 @@ class AdanaxisPieceKhazi < MushPiece
       when AdanaxisEventFire: mFireHandle(event)
       else super(event)
     end
-    @callInterval
+    @m_callInterval
   end
 
   def mActionTimer
     mLoad
 
-    @callInterval = mActByState
+    @m_callInterval = @m_ai.mActByState(self)
 
     @numTimes += 1
     mFire if (@numTimes % 30) == 0
@@ -103,20 +105,12 @@ class AdanaxisPieceKhazi < MushPiece
     
     $currentLogic.mReceiveSequence
     
-    @callInterval
+    @m_callInterval
   end
 
   def mFire
     event = AdanaxisEventFire.new
     event.post = @m_post
     $currentLogic.mEventConsume(event, @m_id, @m_id)  
-  end
-
-  def mBanner
-    puts "Hello from object"
-    puts @@registeredObjects
-    
-    event = MushEventTimer.new
-    mHandle(event)
   end
 end
