@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } Vr8SNTx01PRrZQGDsHJ+7Q
-# $Id: Adanaxis.rb,v 1.12 2006/08/25 01:44:56 southa Exp $
+# $Id: Adanaxis.rb,v 1.13 2006/09/07 10:02:36 southa Exp $
 # $Log: Adanaxis.rb,v $
+# Revision 1.13  2006/09/07 10:02:36  southa
+# Shader interface
+#
 # Revision 1.12  2006/08/25 01:44:56  southa
 # Khazi fire
 #
@@ -48,6 +51,7 @@ require 'AdanaxisMaterialLibrary.rb'
 require 'AdanaxisMenu.rb'
 require 'AdanaxisMeshLibrary.rb'
 require 'AdanaxisPieceKhazi.rb'
+require 'AdanaxisPiecePlayer.rb'
 require 'AdanaxisPieceProjectile.rb'
 require 'AdanaxisRender.rb'
 require 'AdanaxisShaderLibrary.rb'

@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } ZJhgffsl43t4RqQcN4aPag
-# $Id: AdanaxisAI.rb,v 1.2 2006/09/29 10:47:55 southa Exp $
+# $Id: AdanaxisAI.rb,v 1.3 2006/09/30 13:46:32 southa Exp $
 # $Log: AdanaxisAI.rb,v $
+# Revision 1.3  2006/09/30 13:46:32  southa
+# Seek and patrol
+#
 # Revision 1.2  2006/09/29 10:47:55  southa
 # Object AI
 #
@@ -38,8 +41,9 @@ class AdanaxisAI
     super
     @m_state = AISTATE_DORMANT
     @m_stateDuration = 0
-    @m_waypoint = MushVector.new(0,0,0,0)
+    @m_waypoint = MushVector.new(rand(300)-150, rand(300)-150, rand(300)-150, -rand(300)-50)
     @m_stateChangeMsec = 0
+    @m_targetID = 'p:2'
     @r_piece
     @r_post
   end
@@ -72,14 +76,22 @@ class AdanaxisAI
   end
 
   def mStateActionSeek
+    targetPos = nil
+    begin
+      targetPiece = MushGame.cPieceLookup(@m_targetID)
+      targetPos = targetPiece.post.position
+    rescue Exception => e
+      MushLog.cWarning "Piece lookup failed for '#{@m_targetID}': #{e}"
+      targetPos = AdanaxisRuby.cPlayerPosition
+    end
     MushUtil.cRotateAndSeek(@r_post,
-      AdanaxisRuby.cPlayerPosition, # Target
-      0.02, # Maximum speed
+      targetPos, # Target
+      0.10, # Maximum speed
       0.01 # Acceleration
     )
     
     if mStateExpired?
-      mStateChangeWaypoint(30000, MushVector.new(rand(30)-15, rand(30)-15, rand(30)-15, -30))
+      mStateChangeWaypoint(30000, @m_waypoint)
     end
     
     100
@@ -88,7 +100,7 @@ class AdanaxisAI
   def mStateActionWaypoint
     MushUtil.cRotateAndSeek(@r_post,
       @m_waypoint, # Target
-      0.10, # Maximum speed
+      1.0, # Maximum speed
       0.01 # Acceleration
     )
     
@@ -106,7 +118,7 @@ class AdanaxisAI
       when AISTATE_IDLE : mStateChange(AISTATE_DORMANT)
       when AISTATE_DORMANT : mStateChangeSeek(15000)
       when AISTATE_SEEK : callInterval = mStateActionSeek
-      else raise MushError.new("Bad aiState value @m_state") 
+      else raise MushError.new("Bad aiState value #{@m_state}") 
     end
 
     callInterval
