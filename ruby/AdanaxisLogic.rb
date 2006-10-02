@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } OEQ7ye4+ICpoJw+Z14qbnQ
-# $Id: AdanaxisLogic.rb,v 1.2 2006/08/24 16:30:55 southa Exp $
+# $Id: AdanaxisLogic.rb,v 1.3 2006/08/25 01:44:56 southa Exp $
 # $Log: AdanaxisLogic.rb,v $
+# Revision 1.3  2006/08/25 01:44:56  southa
+# Khazi fire
+#
 # Revision 1.2  2006/08/24 16:30:55  southa
 # Event handling
 #
@@ -32,13 +35,8 @@ class AdanaxisLogic < MushLogic
   end
 
   def mLookup(id)
-    case id
-      when /^k/
-        receiver = AdanaxisPieceKhazi.cLookup(id[1..-1])
-      else
-        raise MushError.new("Cannot decode object id '#{id}'")
-    end
-    receiver
+    # Only pieces for the moment
+    return MushGame.cPieceLookup(id)
   end
 
   def mInboxConsume(inbox)
