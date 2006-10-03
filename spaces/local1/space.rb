@@ -18,8 +18,11 @@
 #
 ##############################################################################
 #%Header } e5pyDYhqQM6o/mG0mOvX9g
-# $Id: space.rb,v 1.21 2006/09/12 15:28:49 southa Exp $
+# $Id: space.rb,v 1.22 2006/09/30 13:46:32 southa Exp $
 # $Log: space.rb,v $
+# Revision 1.22  2006/09/30 13:46:32  southa
+# Seek and patrol
+#
 # Revision 1.21  2006/09/12 15:28:49  southa
 # World sphere
 #
@@ -89,7 +92,7 @@ class Adanaxis_local1 < AdanaxisSpace
       MushTools.cRotationInZWPlane(Math::PI * 2 * param[5]).mRotate(angPos);
       MushTools.cRotationInYZPlane(Math::PI * 2 * param[6]).mRotate(angPos);
 
-      khazi = AdanaxisKhazi.new(
+      khazi = AdanaxisPieceKhazi.cCreate(
         :mesh_name => "attendant",
         :post => MushPost.new(
           :position => pos,

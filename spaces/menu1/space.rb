@@ -18,8 +18,11 @@
 #
 ##############################################################################
 #%Header } +qJXLcrDec2QZ7WFKpERPQ
-# $Id: space.rb,v 1.6 2006/08/01 23:21:49 southa Exp $
+# $Id: space.rb,v 1.7 2006/08/02 15:41:46 southa Exp $
 # $Log: space.rb,v $
+# Revision 1.7  2006/08/02 15:41:46  southa
+# Prerelease work
+#
 # Revision 1.6  2006/08/01 23:21:49  southa
 # Rendering demo content
 #
@@ -62,7 +65,7 @@ class Adanaxis_menu1 < AdanaxisSpace
     MushTools.cRotationInYZPlane(Math::PI / 670).mRotate(angVel);
     
     1.times do
-      khazi = AdanaxisKhazi.new(
+      khazi = AdanaxisPieceKhazi.cCreate(
         :mesh_name => "attendant",
         :post => MushPost.new(
           :position => MushVector.new(0,0,0,-20),

@@ -18,8 +18,11 @@
 #
 ##############################################################################
 #%Header } XESH903Rz4omoAntOunkPg
-# $Id: space.rb,v 1.16 2006/08/01 13:41:14 southa Exp $
+# $Id: space.rb,v 1.1 2006/08/01 17:21:20 southa Exp $
 # $Log: space.rb,v $
+# Revision 1.1  2006/08/01 17:21:20  southa
+# River demo
+#
 # Revision 1.16  2006/08/01 13:41:14  southa
 # Pre-release updates
 #
@@ -56,14 +59,15 @@ class Adanaxis_local3 < AdanaxisSpace
   def mInitialPiecesCreate
     super
     20.times do |param|
-      pos = MushVector.new(0,0,0,0) + MushTools.cRandomUnitVector * (30 + rand(100));
+      pos = MushVector.new(0,0,0,-100) + MushTools.cRandomUnitVector * (30 + rand(100));
       angVel = MushTools.cRandomAngularVelocity(0.01)
-      khazi = AdanaxisKhazi.new(
+      khazi = AdanaxisPieceKhazi.cCreate(
         :mesh_name => "attendant",
         :post => MushPost.new(
           :position => pos,
           :angular_velocity => angVel
-          )
+          ),
+        :target_types => "kp"
         )
     end
 

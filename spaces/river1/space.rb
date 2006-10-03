@@ -18,8 +18,11 @@
 #
 ##############################################################################
 #%Header } dor7oAM3xOfZ2ElF/iVHGg
-# $Id: space.rb,v 1.1 2006/08/01 17:21:20 southa Exp $
+# $Id: space.rb,v 1.2 2006/08/02 15:41:46 southa Exp $
 # $Log: space.rb,v $
+# Revision 1.2  2006/08/02 15:41:46  southa
+# Prerelease work
+#
 # Revision 1.1  2006/08/01 17:21:20  southa
 # River demo
 #
@@ -66,7 +69,7 @@ class Adanaxis_river1 < AdanaxisSpace
           else
             meshName = 'ground1'
           end
-          AdanaxisKhazi.new(
+          AdanaxisPieceKhazi.cCreate(
             :mesh_name => meshName,
             :post => MushPost.new(
               :position => MushVector.new(x-2, y-2, z-2, w-30)

@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } ZJhgffsl43t4RqQcN4aPag
-# $Id: AdanaxisAI.rb,v 1.4 2006/10/02 17:25:03 southa Exp $
+# $Id: AdanaxisAI.rb,v 1.5 2006/10/02 20:28:09 southa Exp $
 # $Log: AdanaxisAI.rb,v $
+# Revision 1.5  2006/10/02 20:28:09  southa
+# Object lookup and target selection
+#
 # Revision 1.4  2006/10/02 17:25:03  southa
 # Object lookup and target selection
 #
@@ -33,7 +36,7 @@
 
 require 'AdanaxisTargetSelect.rb'
 
-class AdanaxisAI
+class AdanaxisAI < MushObject
   AISTATE_INVALID=0
   AISTATE_NONE=1
   AISTATE_DORMANT=2
@@ -42,19 +45,25 @@ class AdanaxisAI
   AISTATE_SEEK=5
   AISTATE_WAYPOINT=6
 
-  def initialize
-    super
+  def initialize(params = {})
     @m_state = AISTATE_DORMANT
     @m_stateDuration = 0
     @m_waypoint = MushVector.new(rand(300)-150, rand(300)-150, rand(300)-150, -rand(300)-50)
     @m_stateChangeMsec = 0
     @m_targetID = nil
-    @r_piece
-    @r_post
+    @r_piece = nil
+    @r_post = nil
+    
+    # Parameters
+    @m_seekSpeed = params[:seek_speed] || 0.0
+    @m_seekAcceleration = params[:seek_acceleration] || 0.0
+    @m_patrolSpeed = params[:patrol_speed] || 0.0
+    @m_patrolAcceleration = params[:patrol_acceleration] || 0.0
+    @m_targetTypes = params[:target_types] || "p"
   end
 
   def mTargetSelect
-    @m_targetID = AdanaxisTargetSelect.cSelect(@r_post, "kp", @r_piece.m_id)
+    @m_targetID = AdanaxisTargetSelect.cSelect(@r_post, @m_targetTypes, @r_piece.m_id)
     nil
   end
 
@@ -92,20 +101,18 @@ class AdanaxisAI
       # No target to seek
       mStateChange(AISTATE_IDLE)
     else
-      targetPos = nil
       begin
         targetPiece = MushGame.cPieceLookup(@m_targetID)
         targetPos = targetPiece.post.position
+        MushUtil.cRotateAndSeek(@r_post,
+          targetPos, # Target
+          @m_seekSpeed, # Maximum speed
+          @m_seekAcceleration # Acceleration
+        )
       rescue Exception => e
         # Target probably destroyed
-        mTargetSelect
-        targetPos = AdanaxisRuby.cPlayerPosition
+        @m_targetID = nil
       end
-      MushUtil.cRotateAndSeek(@r_post,
-        targetPos, # Target
-        0.10, # Maximum speed
-        0.01 # Acceleration
-      )
     end
     
     if mStateExpired?
@@ -118,8 +125,8 @@ class AdanaxisAI
   def mStateActionWaypoint
     MushUtil.cRotateAndSeek(@r_post,
       @m_waypoint, # Target
-      1.0, # Maximum speed
-      0.01 # Acceleration
+      @m_patrolSpeed, # Maximum speed
+      @m_patrolAcceleration # Acceleration
     )
     
     if mStateExpired?

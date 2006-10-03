@@ -16,9 +16,19 @@
 #
 ##############################################################################
 #%Header } JPjWkwGvzd5d5LJLXnphkQ
-# $Id$
-# $Log$
+# $Id: AdanaxisPieceProjectile.rb,v 1.1 2006/08/25 01:44:56 southa Exp $
+# $Log: AdanaxisPieceProjectile.rb,v $
+# Revision 1.1  2006/08/25 01:44:56  southa
+# Khazi fire
+#
 
 class AdanaxisPieceProjectile < MushPiece
+  extend MushRegistered
+  mushRegistered_install
 
+  def initialize(inParams={})
+    super
+    @m_owner = inParams[:owner] || ""
+    @m_lifeMsec = inParams[:lifetime_msec] || 0
+  end
 end

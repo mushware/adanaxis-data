@@ -18,8 +18,11 @@
 #
 ##############################################################################
 #%Header } XulYrmMGLmszzHG2i2jMtA
-# $Id: space.rb,v 1.6 2006/08/01 23:21:49 southa Exp $
+# $Id: space.rb,v 1.7 2006/08/02 15:41:46 southa Exp $
 # $Log: space.rb,v $
+# Revision 1.7  2006/08/02 15:41:46  southa
+# Prerelease work
+#
 # Revision 1.6  2006/08/01 23:21:49  southa
 # Rendering demo content
 #
@@ -92,7 +95,7 @@ class Adanaxis_local2 < AdanaxisSpace
       x+=0.4
       y+=0.7
       
-      khazi = AdanaxisKhazi.new(
+      khazi = AdanaxisPieceKhazi.cCreate(
         :mesh_name => 'attendant',
         :post => MushPost.new(
           :position => MushVector.new(x, y, z, w),
