@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } aGTJVbl7QyXIWVg5D1mEzg
-# $Id: AdanaxisPieceKhazi.rb,v 1.11 2006/10/03 14:06:49 southa Exp $
+# $Id: AdanaxisPieceKhazi.rb,v 1.12 2006/10/04 13:35:21 southa Exp $
 # $Log: AdanaxisPieceKhazi.rb,v $
+# Revision 1.12  2006/10/04 13:35:21  southa
+# Selective targetting
+#
 # Revision 1.11  2006/10/03 14:06:49  southa
 # Khazi and projectile creation
 #
@@ -68,12 +71,12 @@ class AdanaxisPieceKhazi < MushPiece
     @m_callInterval = 100
     @numTimes = rand(30)
     
-    aiParams = inParams.merge(
+    aiParams = {
       :seek_speed => 0.02,
       :seek_acceleration => 0.01,
       :patrol_speed => 0.1,
       :patrol_acceleration => 0.01
-    )
+    }.merge(inParams)
     
     @m_ai = AdanaxisAIKhazi.new(aiParams)
   end

@@ -18,8 +18,11 @@
 #
 ##############################################################################
 #%Header } XESH903Rz4omoAntOunkPg
-# $Id: space.rb,v 1.2 2006/10/03 14:06:50 southa Exp $
+# $Id: space.rb,v 1.3 2006/10/04 13:35:22 southa Exp $
 # $Log: space.rb,v $
+# Revision 1.3  2006/10/04 13:35:22  southa
+# Selective targetting
+#
 # Revision 1.2  2006/10/03 14:06:50  southa
 # Khazi and projectile creation
 #
@@ -75,7 +78,9 @@ class Adanaxis_local3 < AdanaxisSpace
           :angular_velocity => angVel
           ),
         :type => thisType,
-        :target_types => targetTypes 
+        :target_types => targetTypes,
+        :seek_speed => 0.05,
+        :seek_acceleration => 0.01
         )
     end
 
