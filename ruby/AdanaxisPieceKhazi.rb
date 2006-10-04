@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } aGTJVbl7QyXIWVg5D1mEzg
-# $Id: AdanaxisPieceKhazi.rb,v 1.10 2006/09/30 13:46:32 southa Exp $
+# $Id: AdanaxisPieceKhazi.rb,v 1.11 2006/10/03 14:06:49 southa Exp $
 # $Log: AdanaxisPieceKhazi.rb,v $
+# Revision 1.11  2006/10/03 14:06:49  southa
+# Khazi and projectile creation
+#
 # Revision 1.10  2006/09/30 13:46:32  southa
 # Seek and patrol
 #
@@ -59,7 +62,9 @@ class AdanaxisPieceKhazi < MushPiece
   mushRegistered_install
   
   def initialize(inParams={})
+    @m_defaultType = "k"
     super
+    
     @m_callInterval = 100
     @numTimes = rand(30)
     

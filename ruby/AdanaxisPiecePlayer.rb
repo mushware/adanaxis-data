@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } 1H+rLloObKxiiVjoIDjJFw
-# $Id$
-# $Log$
+# $Id: AdanaxisPiecePlayer.rb,v 1.1 2006/10/02 17:25:03 southa Exp $
+# $Log: AdanaxisPiecePlayer.rb,v $
+# Revision 1.1  2006/10/02 17:25:03  southa
+# Object lookup and target selection
+#
 
 require 'Mushware.rb'
 require 'AdanaxisAI.rb'
@@ -28,6 +31,7 @@ class AdanaxisPiecePlayer < MushPiece
   mushRegistered_install
   
   def initialize
+    @m_defaultType = "p"
     super
     @m_callInterval = 100
   end

@@ -9,8 +9,11 @@
 #
 ##############################################################################
 #
-# $Id: dialogues.xml,v 1.1 2006/08/01 17:21:19 southa Exp $
+# $Id: dialogues.xml,v 1.2 2006/08/02 15:41:46 southa Exp $
 # $Log: dialogues.xml,v $
+# Revision 1.2  2006/08/02 15:41:46  southa
+# Prerelease work
+#
 # Revision 1.1  2006/08/01 17:21:19  southa
 # River demo
 #
@@ -27,7 +30,7 @@
 <name>"font-mono1"</name>
 <size>1.0</size>
 </fontRef>
-<value>"Random positions"</value>
+<value>"Khazi war"</value>
 <alignment>0</alignment>
 </string>
 <posticity type="MushPiePosticity">

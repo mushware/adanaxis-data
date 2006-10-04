@@ -18,8 +18,11 @@
 #
 ##############################################################################
 #%Header } XESH903Rz4omoAntOunkPg
-# $Id: space.rb,v 1.1 2006/08/01 17:21:20 southa Exp $
+# $Id: space.rb,v 1.2 2006/10/03 14:06:50 southa Exp $
 # $Log: space.rb,v $
+# Revision 1.2  2006/10/03 14:06:50  southa
+# Khazi and projectile creation
+#
 # Revision 1.1  2006/08/01 17:21:20  southa
 # River demo
 #
@@ -58,8 +61,12 @@ class Adanaxis_local3 < AdanaxisSpace
   
   def mInitialPiecesCreate
     super
-    20.times do |param|
-      pos = MushVector.new(0,0,0,-100) + MushTools.cRandomUnitVector * (30 + rand(100));
+    100.times do |param|
+      isRed = ((param % 2) == 0)
+      thisType = isRed ? "kr" : "kb"
+      targetTypes = isRed ? "kb,k,p" : "kr,k,p"
+      
+      pos = MushVector.new(isRed ? -100 : 100, 0, 0, -400) + MushTools.cRandomUnitVector * (30 + rand(100));
       angVel = MushTools.cRandomAngularVelocity(0.01)
       khazi = AdanaxisPieceKhazi.cCreate(
         :mesh_name => "attendant",
@@ -67,7 +74,8 @@ class Adanaxis_local3 < AdanaxisSpace
           :position => pos,
           :angular_velocity => angVel
           ),
-        :target_types => "kp"
+        :type => thisType,
+        :target_types => targetTypes 
         )
     end
 
