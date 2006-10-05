@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } Qn1dyBC0obbg8YEx3MpSKg
-# $Id: AdanaxisMaterialLibrary.rb,v 1.6 2006/08/01 13:41:12 southa Exp $
+# $Id: AdanaxisMaterialLibrary.rb,v 1.7 2006/08/01 17:21:17 southa Exp $
 # $Log: AdanaxisMaterialLibrary.rb,v $
+# Revision 1.7  2006/08/01 17:21:17  southa
+# River demo
+#
 # Revision 1.6  2006/08/01 13:41:12  southa
 # Pre-release updates
 #
@@ -52,6 +55,12 @@ class AdanaxisMaterialLibrary < MushObject
       MushMaterial.cDefine(
       :name => "flare#{i}-mat",
       :texture_name => "flare#{i}-tex"
+      )
+    end
+    10.times do |i|
+      MushMaterial.cDefine(
+      :name => "explo#{i}-mat",
+      :texture_name => "explo#{i}-tex-6"
       )
     end
 

@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } 74bLa8v94NQFxupv0Pj/cA
-# $Id: AdanaxisMeshLibrary.rb,v 1.16 2006/08/01 17:21:18 southa Exp $
+# $Id: AdanaxisMeshLibrary.rb,v 1.17 2006/08/20 14:19:20 southa Exp $
 # $Log: AdanaxisMeshLibrary.rb,v $
+# Revision 1.17  2006/08/20 14:19:20  southa
+# Seek operation
+#
 # Revision 1.16  2006/08/01 17:21:18  southa
 # River demo
 #
@@ -323,6 +326,17 @@ class AdanaxisMeshLibrary
       mesh.mMaterialAdd("star#{i}-mat")
       mesh.mMake
     end
+  end
+    
+  def AdanaxisMeshLibrary.cExploCreate
+    10.times do |i|
+      mesh =  MushMesh.new("explo#{i}")
+      base1 = MushBaseSingleFacet.new(:order => 4)
+      mesh.mBaseAdd(base1)
+      mesh.mBillboardSet(true)
+      mesh.mMaterialAdd("explo#{i}-mat")
+      mesh.mMake
+    end
   end  
 
   def AdanaxisMeshLibrary.cCreate
@@ -333,5 +347,6 @@ class AdanaxisMeshLibrary
     cStarsCreate
     cEmbersCreate
     cFlaresCreate
+    cExploCreate
   end
 end

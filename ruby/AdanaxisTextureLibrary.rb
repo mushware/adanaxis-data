@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } avqCjn1AV8PsFQvoiWGwNA
-# $Id: AdanaxisTextureLibrary.rb,v 1.15 2006/08/01 13:41:13 southa Exp $
+# $Id: AdanaxisTextureLibrary.rb,v 1.16 2006/08/01 17:21:18 southa Exp $
 # $Log: AdanaxisTextureLibrary.rb,v $
+# Revision 1.16  2006/08/01 17:21:18  southa
+# River demo
+#
 # Revision 1.15  2006/08/01 13:41:13  southa
 # Pre-release updates
 #
@@ -99,7 +102,20 @@ class AdanaxisTextureLibrary < MushObject
 		:cache         => 0
 	)
 
-	scale = 1.4
+  100.times do |i|
+    filename = MushConfig.cGlobalPixelsPath+"/copyright-explo1-#{i}.tiff"
+    if File.file?(filename)
+      MushGLTexture::cDefine(
+        :name          => "explo1-tex-#{i}",
+        :type          => 'TIFF',
+        :filename      => filename,
+        :storagetype   => 'GL',
+        :cache         => 0
+      )
+    end
+  end
+
+  scale = 1.4
 
 	MushGLTexture::cDefine(
 		:name          => 'attendant-tex',
