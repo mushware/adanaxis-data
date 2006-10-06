@@ -18,8 +18,11 @@
 #
 ##############################################################################
 #%Header } XESH903Rz4omoAntOunkPg
-# $Id: space.rb,v 1.4 2006/10/04 14:54:33 southa Exp $
+# $Id: space.rb,v 1.5 2006/10/05 15:39:16 southa Exp $
 # $Log: space.rb,v $
+# Revision 1.5  2006/10/05 15:39:16  southa
+# Explosion handling
+#
 # Revision 1.4  2006/10/04 14:54:33  southa
 # AI tweaks
 #
@@ -67,7 +70,7 @@ class Adanaxis_local3 < AdanaxisSpace
   
   def mInitialPiecesCreate
     super
-    30.times do |param|
+    100.times do |param|
       isRed = ((param % 2) == 0)
       thisType = isRed ? "kr" : "kb"
       targetTypes = isRed ? "kb,k,p" : "kr,k,p"
