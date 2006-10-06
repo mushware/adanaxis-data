@@ -18,8 +18,11 @@
 #
 ##############################################################################
 #%Header } dor7oAM3xOfZ2ElF/iVHGg
-# $Id: space.rb,v 1.2 2006/08/02 15:41:46 southa Exp $
+# $Id: space.rb,v 1.3 2006/10/03 14:06:50 southa Exp $
 # $Log: space.rb,v $
+# Revision 1.3  2006/10/03 14:06:50  southa
+# Khazi and projectile creation
+#
 # Revision 1.2  2006/08/02 15:41:46  southa
 # Prerelease work
 #
@@ -34,7 +37,8 @@ require 'Mushware.rb'
 require 'Adanaxis.rb'
 
 class Adanaxis_river1 < AdanaxisSpace
-  def initialize
+  def initialize(inParams = {})
+    super
     @preCached = 0
   end
   

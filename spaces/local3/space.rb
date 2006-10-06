@@ -18,8 +18,11 @@
 #
 ##############################################################################
 #%Header } XESH903Rz4omoAntOunkPg
-# $Id: space.rb,v 1.5 2006/10/05 15:39:16 southa Exp $
+# $Id: space.rb,v 1.6 2006/10/06 11:54:57 southa Exp $
 # $Log: space.rb,v $
+# Revision 1.6  2006/10/06 11:54:57  southa
+# Scaled rendering
+#
 # Revision 1.5  2006/10/05 15:39:16  southa
 # Explosion handling
 #
@@ -43,7 +46,8 @@ require 'Mushware.rb'
 require 'Adanaxis.rb'
 
 class Adanaxis_local3 < AdanaxisSpace
-  def initialize
+  def initialize(inParams = {})
+    super
     @preCached = 0
   end
   

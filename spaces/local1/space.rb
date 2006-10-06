@@ -18,8 +18,11 @@
 #
 ##############################################################################
 #%Header } e5pyDYhqQM6o/mG0mOvX9g
-# $Id: space.rb,v 1.22 2006/09/30 13:46:32 southa Exp $
+# $Id: space.rb,v 1.23 2006/10/03 14:06:49 southa Exp $
 # $Log: space.rb,v $
+# Revision 1.23  2006/10/03 14:06:49  southa
+# Khazi and projectile creation
+#
 # Revision 1.22  2006/09/30 13:46:32  southa
 # Seek and patrol
 #
@@ -46,7 +49,8 @@ require 'Mushware.rb'
 require 'Adanaxis.rb'
 
 class Adanaxis_local1 < AdanaxisSpace
-  def initialize
+  def initialize(inParams = {})
+    super
     @preCached = 0
   end
   

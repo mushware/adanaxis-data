@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } KSO1aRs/aLEv+/QhWfRoRw
-# $Id: AdanaxisGame.rb,v 1.18 2006/08/01 13:41:11 southa Exp $
+# $Id: AdanaxisGame.rb,v 1.19 2006/08/01 17:21:17 southa Exp $
 # $Log: AdanaxisGame.rb,v $
+# Revision 1.19  2006/08/01 17:21:17  southa
+# River demo
+#
 # Revision 1.18  2006/08/01 13:41:11  southa
 # Pre-release updates
 #
@@ -55,7 +58,7 @@ class AdanaxisGame < MushObject
   
   def mLoad
     require(mSpacePath+'/space.rb')
-	@space = eval "#{mSpaceObjectName}.new"
+	@space = eval("#{mSpaceObjectName}.new", binding, mSpacePath+'/space.rb', 1)
 	@space.mLoad(self)
 	self
   end

@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } Qn1dyBC0obbg8YEx3MpSKg
-# $Id: AdanaxisMaterialLibrary.rb,v 1.7 2006/08/01 17:21:17 southa Exp $
+# $Id: AdanaxisMaterialLibrary.rb,v 1.8 2006/10/05 15:39:16 southa Exp $
 # $Log: AdanaxisMaterialLibrary.rb,v $
+# Revision 1.8  2006/10/05 15:39:16  southa
+# Explosion handling
+#
 # Revision 1.7  2006/08/01 17:21:17  southa
 # River demo
 #
@@ -26,48 +29,52 @@
 #
 
 class AdanaxisMaterialLibrary < MushObject
-  def self.cCreate
+  def initialize(inParams = {})
+    @m_textureLibrary = inParams[:texture_library] || raise("No texture library supplied to material library")
+  end
+
+  def mCreate
     MushMaterial.cDefine(
       :name => 'attendant-mat',
-      :texture_name => 'attendant-tex'
+      :texture_names => ['attendant-tex']
     )
     MushMaterial.cDefine(
       :name => 'projectile-mat',
-      :texture_name => 'projectile-tex'
+      :texture_names => ['projectile-tex']
     )
     MushMaterial.cDefine(
       :name => 'world1-mat',
-      :texture_name => 'world1-tex'
+      :texture_names => ['world1-tex']
     )
     10.times do |i|
       MushMaterial.cDefine(
       :name => "star#{i}-mat",
-      :texture_name => "star#{i}-tex"
+      :texture_names => ["star#{i}-tex"]
       )
     end
     10.times do |i|
       MushMaterial.cDefine(
       :name => "ember#{i}-mat",
-      :texture_name => "ember#{i}-tex"
+      :texture_names => ["ember#{i}-tex"]
       )
     end
     10.times do |i|
       MushMaterial.cDefine(
       :name => "flare#{i}-mat",
-      :texture_name => "flare#{i}-tex"
+      :texture_names => ["flare#{i}-tex"]
       )
     end
     10.times do |i|
       MushMaterial.cDefine(
       :name => "explo#{i}-mat",
-      :texture_name => "explo#{i}-tex-6"
+      :texture_names => @m_textureLibrary.mExplo1Names
       )
     end
 
     [ 'ground', 'river', 'block' ].each do |prefix|
       MushMaterial.cDefine(
         :name => "#{prefix}1-mat",
-        :texture_name => "#{prefix}1-tex"
+        :texture_names => ["#{prefix}1-tex"]
       )
     end
   end

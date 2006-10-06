@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } avqCjn1AV8PsFQvoiWGwNA
-# $Id: AdanaxisTextureLibrary.rb,v 1.16 2006/08/01 17:21:18 southa Exp $
+# $Id: AdanaxisTextureLibrary.rb,v 1.17 2006/10/05 15:39:16 southa Exp $
 # $Log: AdanaxisTextureLibrary.rb,v $
+# Revision 1.17  2006/10/05 15:39:16  southa
+# Explosion handling
+#
 # Revision 1.16  2006/08/01 17:21:18  southa
 # River demo
 #
@@ -26,7 +29,15 @@
 #
 
 class AdanaxisTextureLibrary < MushObject
-  def self.cCreate
+  def initialize(inParams = {})
+  
+  end
+
+  def mExplo1Names
+    @m_explo1Names
+  end
+
+  def mCreate
     levelOfDetail = MushGame.cTextureDetail
     # level 0 and 1 activate OpenGL compression, so 2 uses the same sizes
     # as 1 but without compression
@@ -102,11 +113,14 @@ class AdanaxisTextureLibrary < MushObject
 		:cache         => 0
 	)
 
+  @m_explo1Names = []
   100.times do |i|
     filename = MushConfig.cGlobalPixelsPath+"/copyright-explo1-#{i}.tiff"
     if File.file?(filename)
+      texName = "explo1-tex-#{i}"
+      @m_explo1Names << texName
       MushGLTexture::cDefine(
-        :name          => "explo1-tex-#{i}",
+        :name          => texName,
         :type          => 'TIFF',
         :filename      => filename,
         :storagetype   => 'GL',
