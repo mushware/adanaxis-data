@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } Qn1dyBC0obbg8YEx3MpSKg
-# $Id: AdanaxisMaterialLibrary.rb,v 1.8 2006/10/05 15:39:16 southa Exp $
+# $Id: AdanaxisMaterialLibrary.rb,v 1.9 2006/10/06 14:48:17 southa Exp $
 # $Log: AdanaxisMaterialLibrary.rb,v $
+# Revision 1.9  2006/10/06 14:48:17  southa
+# Material animation
+#
 # Revision 1.8  2006/10/05 15:39:16  southa
 # Explosion handling
 #
@@ -64,12 +67,23 @@ class AdanaxisMaterialLibrary < MushObject
       :texture_names => ["flare#{i}-tex"]
       )
     end
-    10.times do |i|
-      MushMaterial.cDefine(
-      :name => "explo#{i}-mat",
-      :texture_names => @m_textureLibrary.mExplo1Names
-      )
+    
+    if @m_textureLibrary.mExplo1Names.size > 0
+      10.times do |i|
+        MushMaterial.cDefine(
+        :name => "explo#{i}-mat",
+        :texture_names => @m_textureLibrary.mExplo1Names
+        )
+      end
+    else
+      10.times do |i|
+        MushMaterial.cDefine(
+        :name => "explo#{i}-mat",
+        :texture_names => ["flare#{i}-tex"]
+        )
+      end    
     end
+
 
     [ 'ground', 'river', 'block' ].each do |prefix|
       MushMaterial.cDefine(

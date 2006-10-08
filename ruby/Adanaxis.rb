@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } Vr8SNTx01PRrZQGDsHJ+7Q
-# $Id: Adanaxis.rb,v 1.13 2006/09/07 10:02:36 southa Exp $
+# $Id: Adanaxis.rb,v 1.14 2006/10/02 17:25:03 southa Exp $
 # $Log: Adanaxis.rb,v $
+# Revision 1.14  2006/10/02 17:25:03  southa
+# Object lookup and target selection
+#
 # Revision 1.13  2006/09/07 10:02:36  southa
 # Shader interface
 #
@@ -57,3 +60,4 @@ require 'AdanaxisRender.rb'
 require 'AdanaxisShaderLibrary.rb'
 require 'AdanaxisSpace.rb'
 require 'AdanaxisTextureLibrary.rb'
+require 'AdanaxisUtil.rb'

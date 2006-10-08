@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } aGTJVbl7QyXIWVg5D1mEzg
-# $Id: AdanaxisPieceKhazi.rb,v 1.12 2006/10/04 13:35:21 southa Exp $
+# $Id: AdanaxisPieceKhazi.rb,v 1.13 2006/10/04 14:54:33 southa Exp $
 # $Log: AdanaxisPieceKhazi.rb,v $
+# Revision 1.13  2006/10/04 14:54:33  southa
+# AI tweaks
+#
 # Revision 1.12  2006/10/04 13:35:21  southa
 # Selective targetting
 #
@@ -59,12 +62,15 @@ require 'Mushware.rb'
 require 'AdanaxisAIKhazi.rb'
 require 'AdanaxisEvents.rb'
 require 'AdanaxisPieceProjectile.rb'
+require 'AdanaxisUtil.rb'
 
 class AdanaxisPieceKhazi < MushPiece
   extend MushRegistered
   mushRegistered_install
   
   def initialize(inParams={})
+    AdanaxisUtil.cSpellCheck(inParams)
+    
     @m_defaultType = "k"
     super
     

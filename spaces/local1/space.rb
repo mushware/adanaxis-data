@@ -18,8 +18,11 @@
 #
 ##############################################################################
 #%Header } e5pyDYhqQM6o/mG0mOvX9g
-# $Id: space.rb,v 1.23 2006/10/03 14:06:49 southa Exp $
+# $Id: space.rb,v 1.24 2006/10/06 14:48:17 southa Exp $
 # $Log: space.rb,v $
+# Revision 1.24  2006/10/06 14:48:17  southa
+# Material animation
+#
 # Revision 1.23  2006/10/03 14:06:49  southa
 # Khazi and projectile creation
 #
@@ -98,10 +101,10 @@ class Adanaxis_local1 < AdanaxisSpace
 
       khazi = AdanaxisPieceKhazi.cCreate(
         :mesh_name => "attendant",
+        :hit_points => 1.0,
         :post => MushPost.new(
           :position => pos,
-          :angular_position => angPos,
-          :angular_velocity => MushTools.cRandomAngularVelocity(0.01)
+          :angular_position => angPos
           )
         )
     end
