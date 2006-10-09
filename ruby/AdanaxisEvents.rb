@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } fAZMXASsvVkN8FSXXDhczg
-# $Id: AdanaxisEvents.rb,v 1.1 2006/08/24 13:04:37 southa Exp $
+# $Id: AdanaxisEvents.rb,v 1.2 2006/08/25 01:44:56 southa Exp $
 # $Log: AdanaxisEvents.rb,v $
+# Revision 1.2  2006/08/25 01:44:56  southa
+# Khazi fire
+#
 # Revision 1.1  2006/08/24 13:04:37  southa
 # Event handling
 #
@@ -29,3 +32,4 @@ class AdanaxisEventFire < MushEvent
   
   attr_accessor :post
 end
+

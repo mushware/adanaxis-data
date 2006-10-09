@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } 63kk9LVPAcoFqUyUUPiQfg
-# $Id$
-# $Log$
+# $Id: AdanaxisUtil.rb,v 1.1 2006/10/08 11:31:32 southa Exp $
+# $Log: AdanaxisUtil.rb,v $
+# Revision 1.1  2006/10/08 11:31:32  southa
+# Hit points
+#
 
 require 'Mushware.rb'
 
@@ -33,6 +36,7 @@ class AdanaxisUtil < MushObject
   @c_symbols = {
     :angular_position => true,
     :angular_velocity => true,
+    :hit_points => true,
     :id_suffix => true,
     :mesh_name => true,
     :position => true,
