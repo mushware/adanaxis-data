@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } ZJhgffsl43t4RqQcN4aPag
-# $Id: AdanaxisAI.rb,v 1.5 2006/10/02 20:28:09 southa Exp $
+# $Id: AdanaxisAI.rb,v 1.6 2006/10/03 14:06:49 southa Exp $
 # $Log: AdanaxisAI.rb,v $
+# Revision 1.6  2006/10/03 14:06:49  southa
+# Khazi and projectile creation
+#
 # Revision 1.5  2006/10/02 20:28:09  southa
 # Object lookup and target selection
 #
@@ -116,7 +119,7 @@ class AdanaxisAI < MushObject
     end
     
     if mStateExpired?
-      mStateChangeWaypoint(10000, @m_waypoint)
+      mStateChangeWaypoint(30000, @m_waypoint)
     end
     
     100

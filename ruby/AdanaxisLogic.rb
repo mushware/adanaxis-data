@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } OEQ7ye4+ICpoJw+Z14qbnQ
-# $Id: AdanaxisLogic.rb,v 1.3 2006/08/25 01:44:56 southa Exp $
+# $Id: AdanaxisLogic.rb,v 1.4 2006/10/02 20:28:09 southa Exp $
 # $Log: AdanaxisLogic.rb,v $
+# Revision 1.4  2006/10/02 20:28:09  southa
+# Object lookup and target selection
+#
 # Revision 1.3  2006/08/25 01:44:56  southa
 # Khazi fire
 #
@@ -59,5 +62,11 @@ class AdanaxisLogic < MushLogic
   
   def mReceiveSequence
     mInboxConsume(@m_outbox)
+  end
+  
+  def mCollisionEventConsume(event)
+    event.m_piece1.mLoad
+    event.m_piece2.mLoad
+#    puts "Collision event: #{event.inspect}"
   end
 end

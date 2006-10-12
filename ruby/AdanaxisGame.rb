@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } KSO1aRs/aLEv+/QhWfRoRw
-# $Id: AdanaxisGame.rb,v 1.19 2006/08/01 17:21:17 southa Exp $
+# $Id: AdanaxisGame.rb,v 1.20 2006/10/06 14:48:17 southa Exp $
 # $Log: AdanaxisGame.rb,v $
+# Revision 1.20  2006/10/06 14:48:17  southa
+# Material animation
+#
 # Revision 1.19  2006/08/01 17:21:17  southa
 # River demo
 #
@@ -58,9 +61,9 @@ class AdanaxisGame < MushObject
   
   def mLoad
     require(mSpacePath+'/space.rb')
-	@space = eval("#{mSpaceObjectName}.new", binding, mSpacePath+'/space.rb', 1)
-	@space.mLoad(self)
-	self
+    @space = eval("#{mSpaceObjectName}.new", binding, mSpacePath+'/space.rb', 1)
+    @space.mLoad(self)
+    self
   end
   
   def mRender(msec)
