@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } OEQ7ye4+ICpoJw+Z14qbnQ
-# $Id: AdanaxisLogic.rb,v 1.4 2006/10/02 20:28:09 southa Exp $
+# $Id: AdanaxisLogic.rb,v 1.5 2006/10/12 22:04:46 southa Exp $
 # $Log: AdanaxisLogic.rb,v $
+# Revision 1.5  2006/10/12 22:04:46  southa
+# Collision events
+#
 # Revision 1.4  2006/10/02 20:28:09  southa
 # Object lookup and target selection
 #
@@ -65,8 +68,15 @@ class AdanaxisLogic < MushLogic
   end
   
   def mCollisionEventConsume(event)
+    # Send each object with itself in the first position
     event.m_piece1.mLoad
     event.m_piece2.mLoad
-#    puts "Collision event: #{event.inspect}"
+    
+    event.m_piece1.mEventHandle(event)
+    
+    # Swap piece1 and piece2 in the event
+    event.mPiecesSwap!
+    
+    event.m_piece1.mEventHandle(event)
   end
 end

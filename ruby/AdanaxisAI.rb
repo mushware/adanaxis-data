@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } ZJhgffsl43t4RqQcN4aPag
-# $Id: AdanaxisAI.rb,v 1.6 2006/10/03 14:06:49 southa Exp $
+# $Id: AdanaxisAI.rb,v 1.7 2006/10/12 22:04:45 southa Exp $
 # $Log: AdanaxisAI.rb,v $
+# Revision 1.7  2006/10/12 22:04:45  southa
+# Collision events
+#
 # Revision 1.6  2006/10/03 14:06:49  southa
 # Khazi and projectile creation
 #
@@ -48,7 +51,7 @@ class AdanaxisAI < MushObject
   AISTATE_SEEK=5
   AISTATE_WAYPOINT=6
 
-  def initialize(params = {})
+  def initialize(inParams = {})
     @m_state = AISTATE_DORMANT
     @m_stateDuration = 0
     @m_waypoint = MushVector.new(rand(300)-150, rand(300)-150, rand(300)-150, -rand(300)-50)
@@ -58,16 +61,24 @@ class AdanaxisAI < MushObject
     @r_post = nil
     
     # Parameters
-    @m_seekSpeed = params[:seek_speed] || 0.0
-    @m_seekAcceleration = params[:seek_acceleration] || 0.0
-    @m_patrolSpeed = params[:patrol_speed] || 0.0
-    @m_patrolAcceleration = params[:patrol_acceleration] || 0.0
-    @m_targetTypes = params[:target_types] || "p"
+    @m_seekSpeed = inParams[:seek_speed] || 0.0
+    @m_seekAcceleration = inParams[:seek_acceleration] || 0.0
+    @m_patrolSpeed = inParams[:patrol_speed] || 0.0
+    @m_patrolAcceleration = inParams[:patrol_acceleration] || 0.0
+    @m_targetTypes = inParams[:target_types] || "p"
+    @m_overrideDeadMsec = inParams[:override_dead_msec] || 10000
+    @m_lastOverrideMsec = nil
   end
 
   def mTargetSelect
     @m_targetID = AdanaxisTargetSelect.cSelect(@r_post, @m_targetTypes, @r_piece.m_id)
     nil
+  end
+
+  def mTargetOverride(inTargetID)
+    @m_lastOverrideMsec = MushUtil.cIntervalTest(@m_lastOverrideMsec, @m_overrideDeadMsec) do
+      @m_targetID = inTargetID
+    end
   end
 
   def mStateChange(newState)

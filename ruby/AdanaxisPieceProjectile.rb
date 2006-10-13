@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } JPjWkwGvzd5d5LJLXnphkQ
-# $Id: AdanaxisPieceProjectile.rb,v 1.2 2006/10/03 14:06:49 southa Exp $
+# $Id: AdanaxisPieceProjectile.rb,v 1.3 2006/10/04 13:35:21 southa Exp $
 # $Log: AdanaxisPieceProjectile.rb,v $
+# Revision 1.3  2006/10/04 13:35:21  southa
+# Selective targetting
+#
 # Revision 1.2  2006/10/03 14:06:49  southa
 # Khazi and projectile creation
 #
@@ -34,5 +37,22 @@ class AdanaxisPieceProjectile < MushPiece
     super
     @m_owner = inParams[:owner] || ""
     @m_lifeMsec = inParams[:lifetime_msec] || 0
+    @m_hitPoints = 1.0
+  end
+  
+  def mOwner
+    @m_owner
+  end
+  
+  def mEventHandle(event)
+    case event
+      when MushEventCollision: mCollisionHandle(event)
+      else super(event)
+    end
+    @m_callInterval
+  end
+  
+  def mCollisionHandle(event)
+    # Ignore for now
   end
 end

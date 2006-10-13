@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } aGTJVbl7QyXIWVg5D1mEzg
-# $Id: AdanaxisPieceKhazi.rb,v 1.13 2006/10/04 14:54:33 southa Exp $
+# $Id: AdanaxisPieceKhazi.rb,v 1.14 2006/10/08 11:31:31 southa Exp $
 # $Log: AdanaxisPieceKhazi.rb,v $
+# Revision 1.14  2006/10/08 11:31:31  southa
+# Hit points
+#
 # Revision 1.13  2006/10/04 14:54:33  southa
 # AI tweaks
 #
@@ -114,6 +117,7 @@ class AdanaxisPieceKhazi < MushPiece
     case event
       when MushEventTimer: mTimerHandle(event)
       when AdanaxisEventFire: mFireHandle(event)
+      when MushEventCollision: mCollisionHandle(event)
       else super(event)
     end
     @m_callInterval
@@ -138,6 +142,15 @@ class AdanaxisPieceKhazi < MushPiece
     event = AdanaxisEventFire.new
     event.post = @m_post
     $currentLogic.mEventConsume(event, @m_id, @m_id)  
+  end
+  
+  def mCollisionHandle(event)
+    # puts "Khazi handling #{event.inspect}"
+    otherPiece = event.m_piece2
+    case event.m_piece2
+      when AdanaxisPieceProjectile:
+        @m_ai.mTargetOverride(otherPiece.mOwner)
+    end
   end
 end
 
