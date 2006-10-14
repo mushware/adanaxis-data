@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } Vr8SNTx01PRrZQGDsHJ+7Q
-# $Id: Adanaxis.rb,v 1.14 2006/10/02 17:25:03 southa Exp $
+# $Id: Adanaxis.rb,v 1.15 2006/10/08 11:31:31 southa Exp $
 # $Log: Adanaxis.rb,v $
+# Revision 1.15  2006/10/08 11:31:31  southa
+# Hit points
+#
 # Revision 1.14  2006/10/02 17:25:03  southa
 # Object lookup and target selection
 #
@@ -53,6 +56,7 @@ require 'AdanaxisLogic.rb'
 require 'AdanaxisMaterialLibrary.rb'
 require 'AdanaxisMenu.rb'
 require 'AdanaxisMeshLibrary.rb'
+require 'AdanaxisPieceDeco.rb'
 require 'AdanaxisPieceKhazi.rb'
 require 'AdanaxisPiecePlayer.rb'
 require 'AdanaxisPieceProjectile.rb'

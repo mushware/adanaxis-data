@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } OEQ7ye4+ICpoJw+Z14qbnQ
-# $Id: AdanaxisLogic.rb,v 1.5 2006/10/12 22:04:46 southa Exp $
+# $Id: AdanaxisLogic.rb,v 1.6 2006/10/13 14:21:25 southa Exp $
 # $Log: AdanaxisLogic.rb,v $
+# Revision 1.6  2006/10/13 14:21:25  southa
+# Collision handling
+#
 # Revision 1.5  2006/10/12 22:04:46  southa
 # Collision events
 #
@@ -69,14 +72,27 @@ class AdanaxisLogic < MushLogic
   
   def mCollisionEventConsume(event)
     # Send each object with itself in the first position
-    event.m_piece1.mLoad
-    event.m_piece2.mLoad
+    event.mPiece1.mLoad
+    event.mPiece2.mLoad
     
-    event.m_piece1.mEventHandle(event)
+    
+    # Decrement hit points here, otherwise one object will used the already-
+    # decremented value of the other
+    
+    hitPoints1 = event.mPiece1.mHitPoints
+    hitPoints2 = event.mPiece2.mHitPoints
+    
+    event.mPiece1.mHitPointsSet(hitPoints1 - hitPoints2)
+    event.mPiece2.mHitPointsSet(hitPoints2 - hitPoints1)
+    
+    event.mPiece1.mEventHandle(event)
     
     # Swap piece1 and piece2 in the event
     event.mPiecesSwap!
     
-    event.m_piece1.mEventHandle(event)
+    event.mPiece1.mEventHandle(event)
+    
+    event.mPiece1.mSave
+    event.mPiece2.mSave
   end
 end

@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } aGTJVbl7QyXIWVg5D1mEzg
-# $Id: AdanaxisPieceKhazi.rb,v 1.14 2006/10/08 11:31:31 southa Exp $
+# $Id: AdanaxisPieceKhazi.rb,v 1.15 2006/10/13 14:21:25 southa Exp $
 # $Log: AdanaxisPieceKhazi.rb,v $
+# Revision 1.15  2006/10/13 14:21:25  southa
+# Collision handling
+#
 # Revision 1.14  2006/10/08 11:31:31  southa
 # Hit points
 #
@@ -145,9 +148,9 @@ class AdanaxisPieceKhazi < MushPiece
   end
   
   def mCollisionHandle(event)
-    # puts "Khazi handling #{event.inspect}"
-    otherPiece = event.m_piece2
-    case event.m_piece2
+    super
+    otherPiece = event.mPiece2
+    case event.mPiece2
       when AdanaxisPieceProjectile:
         @m_ai.mTargetOverride(otherPiece.mOwner)
     end

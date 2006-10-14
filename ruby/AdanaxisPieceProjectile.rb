@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } JPjWkwGvzd5d5LJLXnphkQ
-# $Id: AdanaxisPieceProjectile.rb,v 1.3 2006/10/04 13:35:21 southa Exp $
+# $Id: AdanaxisPieceProjectile.rb,v 1.4 2006/10/13 14:21:26 southa Exp $
 # $Log: AdanaxisPieceProjectile.rb,v $
+# Revision 1.4  2006/10/13 14:21:26  southa
+# Collision handling
+#
 # Revision 1.3  2006/10/04 13:35:21  southa
 # Selective targetting
 #
@@ -52,7 +55,14 @@ class AdanaxisPieceProjectile < MushPiece
     @m_callInterval
   end
   
-  def mCollisionHandle(event)
-    # Ignore for now
+  def mFatalCollisionHandle(event)
+    # Generate the projectile explosion
   end
+  
+  def mCollisionHandle(event)
+    mHitPointsSet(0.0) # Projectiles always get destroyed
+    super
+  end
+  
+  
 end
