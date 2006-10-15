@@ -18,8 +18,11 @@
 #
 ##############################################################################
 #%Header } XESH903Rz4omoAntOunkPg
-# $Id: space.rb,v 1.8 2006/10/09 16:00:15 southa Exp $
+# $Id: space.rb,v 1.9 2006/10/12 22:04:46 southa Exp $
 # $Log: space.rb,v $
+# Revision 1.9  2006/10/12 22:04:46  southa
+# Collision events
+#
 # Revision 1.8  2006/10/09 16:00:15  southa
 # Intern generation
 #
@@ -89,7 +92,7 @@ class Adanaxis_local3 < AdanaxisSpace
       angVel = MushTools.cRandomAngularVelocity(0.01)
       khazi = AdanaxisPieceKhazi.cCreate(
         :mesh_name => "attendant",
-        :hit_points => 2.0,
+        :hit_points => 10.0,
         :post => MushPost.new(
           :position => pos,
           :angular_velocity => angVel

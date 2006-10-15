@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } OEQ7ye4+ICpoJw+Z14qbnQ
-# $Id: AdanaxisLogic.rb,v 1.6 2006/10/13 14:21:25 southa Exp $
+# $Id: AdanaxisLogic.rb,v 1.7 2006/10/14 16:59:43 southa Exp $
 # $Log: AdanaxisLogic.rb,v $
+# Revision 1.7  2006/10/14 16:59:43  southa
+# Ruby Deco objects
+#
 # Revision 1.6  2006/10/13 14:21:25  southa
 # Collision handling
 #
@@ -41,7 +44,10 @@ class AdanaxisLogic < MushLogic
 
   def initialize
     @m_outbox = []
+    @m_effects = AdanaxisEffects.new
   end
+
+  mush_reader :m_effects
 
   def mLookup(id)
     # Only pieces for the moment

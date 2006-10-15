@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } ZJhgffsl43t4RqQcN4aPag
-# $Id: AdanaxisAI.rb,v 1.7 2006/10/12 22:04:45 southa Exp $
+# $Id: AdanaxisAI.rb,v 1.8 2006/10/13 14:21:25 southa Exp $
 # $Log: AdanaxisAI.rb,v $
+# Revision 1.8  2006/10/13 14:21:25  southa
+# Collision handling
+#
 # Revision 1.7  2006/10/12 22:04:45  southa
 # Collision events
 #
@@ -71,7 +74,7 @@ class AdanaxisAI < MushObject
   end
 
   def mTargetSelect
-    @m_targetID = AdanaxisTargetSelect.cSelect(@r_post, @m_targetTypes, @r_piece.m_id)
+    @m_targetID = AdanaxisTargetSelect.cSelect(@r_post, @m_targetTypes, @r_piece.mId)
     nil
   end
 

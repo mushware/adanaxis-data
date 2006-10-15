@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } xOGGCYeMt0BNCjURov3s3Q
-# $Id$
-# $Log$
+# $Id: AdanaxisPieceDeco.rb,v 1.1 2006/10/14 16:59:43 southa Exp $
+# $Log: AdanaxisPieceDeco.rb,v $
+# Revision 1.1  2006/10/14 16:59:43  southa
+# Ruby Deco objects
+#
 
 class AdanaxisPieceDeco < MushPiece
   extend MushRegistered
@@ -27,6 +30,5 @@ class AdanaxisPieceDeco < MushPiece
     @m_defaultType = "d"
     super
     @m_lifeMsec = inParams[:lifetime_msec] || 0
-    @m_renderScale = inParams[:render_scale] || 1.0
   end
 end

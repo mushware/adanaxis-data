@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } Vr8SNTx01PRrZQGDsHJ+7Q
-# $Id: Adanaxis.rb,v 1.15 2006/10/08 11:31:31 southa Exp $
+# $Id: Adanaxis.rb,v 1.16 2006/10/14 16:59:43 southa Exp $
 # $Log: Adanaxis.rb,v $
+# Revision 1.16  2006/10/14 16:59:43  southa
+# Ruby Deco objects
+#
 # Revision 1.15  2006/10/08 11:31:31  southa
 # Hit points
 #
@@ -48,6 +51,7 @@
 
 require 'Mushware.rb'
 require 'AdanaxisAI.rb'
+require 'AdanaxisEffects.rb'
 require 'AdanaxisEvents.rb'
 require 'AdanaxisFontLibrary.rb'
 require 'AdanaxisGame.rb'
