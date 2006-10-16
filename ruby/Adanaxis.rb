@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } Vr8SNTx01PRrZQGDsHJ+7Q
-# $Id: Adanaxis.rb,v 1.16 2006/10/14 16:59:43 southa Exp $
+# $Id: Adanaxis.rb,v 1.17 2006/10/15 17:12:53 southa Exp $
 # $Log: Adanaxis.rb,v $
+# Revision 1.17  2006/10/15 17:12:53  southa
+# Scripted explosions
+#
 # Revision 1.16  2006/10/14 16:59:43  southa
 # Ruby Deco objects
 #
@@ -55,7 +58,6 @@ require 'AdanaxisEffects.rb'
 require 'AdanaxisEvents.rb'
 require 'AdanaxisFontLibrary.rb'
 require 'AdanaxisGame.rb'
-require 'AdanaxisKhazi.rb'
 require 'AdanaxisLogic.rb'
 require 'AdanaxisMaterialLibrary.rb'
 require 'AdanaxisMenu.rb'

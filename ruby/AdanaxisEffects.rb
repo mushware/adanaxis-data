@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } RVKExAJp3XSTK1irqyfmog
-# $Id: AdanaxisEffects.rb,v 1.1 2006/10/15 17:12:53 southa Exp $
+# $Id: AdanaxisEffects.rb,v 1.2 2006/10/16 14:36:50 southa Exp $
 # $Log: AdanaxisEffects.rb,v $
+# Revision 1.2  2006/10/16 14:36:50  southa
+# Deco handling
+#
 # Revision 1.1  2006/10/15 17:12:53  southa
 # Scripted explosions
 #
@@ -76,6 +79,16 @@ class AdanaxisEffects < MushObject
     end
   end
   
+  def mApplyLifetimeRange(ioParams, inSymbol)
+    lifetimeRange = ioParams[inSymbol]
+    if lifetimeRange
+      unless lifetimeRange.kind_of?(Range)
+        lifetimeRange = (0..lifetimeRange)
+      end
+      ioParams[:lifetime_msec] = lifetimeRange.begin + rand(lifetimeRange.end - lifetimeRange.begin)
+    end
+  end
+  
   def mEmberCreate(inParams = {})
     mergedParams = @m_emberDefaults.merge(inParams)
   
@@ -84,6 +97,7 @@ class AdanaxisEffects < MushObject
     
     mApplySpeedRange(mergedParams, :ember_speed_range)
     mApplyScaleRange(mergedParams, :ember_scale_range)
+    mApplyLifetimeRange(mergedParams, :ember_lifetime_range)
     
     AdanaxisPieceDeco.cCreate(mergedParams)
   end
@@ -96,6 +110,7 @@ class AdanaxisEffects < MushObject
     
     mApplySpeedRange(mergedParams, :explosion_speed_range)
     mApplyScaleRange(mergedParams, :explosion_scale_range)
+    mApplyLifetimeRange(mergedParams, :explosion_lifetime_range)
     
     AdanaxisPieceDeco.cCreate(mergedParams)
   end
@@ -108,7 +123,8 @@ class AdanaxisEffects < MushObject
 
     mApplySpeedRange(mergedParams, :flare_speed_range)
     mApplyScaleRange(mergedParams, :flare_scale_range)
-    
+    mApplyLifetimeRange(mergedParams, :flare_lifetime_range)
+
     AdanaxisPieceDeco.cCreate(mergedParams)
   end
 
@@ -122,8 +138,8 @@ class AdanaxisEffects < MushObject
     
     objParams[:post].velocity = MushVector.new(0,0,0,0)
     
-    (objParams[:flares] || @m_numFlares).times { mFlareCreate(objParams) }
     (objParams[:explosions] || @m_numExplos).times { mExploCreate(objParams) }
+    (objParams[:flares] || @m_numFlares).times { mFlareCreate(objParams) }
   end
 end
 
