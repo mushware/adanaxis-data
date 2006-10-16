@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } aGTJVbl7QyXIWVg5D1mEzg
-# $Id: AdanaxisPieceKhazi.rb,v 1.15 2006/10/13 14:21:25 southa Exp $
+# $Id: AdanaxisPieceKhazi.rb,v 1.16 2006/10/14 16:59:43 southa Exp $
 # $Log: AdanaxisPieceKhazi.rb,v $
+# Revision 1.16  2006/10/14 16:59:43  southa
+# Ruby Deco objects
+#
 # Revision 1.15  2006/10/13 14:21:25  southa
 # Collision handling
 #
@@ -145,6 +148,19 @@ class AdanaxisPieceKhazi < MushPiece
     event = AdanaxisEventFire.new
     event.post = @m_post
     $currentLogic.mEventConsume(event, @m_id, @m_id)  
+  end
+  
+  def mFatalCollisionHandle(event)
+    super
+    $currentLogic.mEffects.mExplode(
+      :post => mPost,
+      :embers => 100,
+      :explosions => 1,
+      :flares => 1,
+      :explosion_scale_range => (5.0..7.0),
+      :ember_speed_range => (0.1..1.0),
+      :flare_scale_range => (8.0..10.0)
+      )
   end
   
   def mCollisionHandle(event)

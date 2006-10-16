@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } RVKExAJp3XSTK1irqyfmog
-# $Id$
-# $Log$
+# $Id: AdanaxisEffects.rb,v 1.1 2006/10/15 17:12:53 southa Exp $
+# $Log: AdanaxisEffects.rb,v $
+# Revision 1.1  2006/10/15 17:12:53  southa
+# Scripted explosions
+#
 
 class AdanaxisEffects < MushObject
   def initialize
@@ -27,94 +30,100 @@ class AdanaxisEffects < MushObject
     
     @m_emberDefaults = {
       :lifetime_msec => 1000,
-      :random_speed => 1.0,
-      :random_scale => (0.1..0.4)
+      :ember_speed_range => (0.1..0.4),
+      :ember_scale_range => (0.1..0.4)
       }
 
     @m_exploDefaults = {
       :lifetime_msec => 2000,
-      :render_scale => 3.0
+      # :explosion_speed_range => 0.0,
+      :explosion_scale_range => (2.0..4.0)
       }
 
     @m_flareDefaults = {
       :lifetime_msec => 400,
-      :render_scale => 3.0
+      # :flare_speed_range => 0.0,
+      :flare_scale_range => (2.0..4.0)
       }
   
     @m_numEmbers = 10  
+    @m_numFlares = 1  
+    @m_numExplos = 1  
             
+  end
+  
+  def mApplySpeedRange(ioParams, inSymbol)
+    speedRange = ioParams[inSymbol]
+    if speedRange
+      unless speedRange.kind_of?(Range)
+        speedRange = (0.0..speedRange)
+      end
+
+      ioParams[:post] = ioParams[:post].dup
+      speed = speedRange.begin + rand * (speedRange.end - speedRange.begin)
+      dispVec = MushTools.cRandomUnitVector * speed
+      ioParams[:post].velocity = ioParams[:post].velocity + dispVec
+    end
+  end
+  
+  def mApplyScaleRange(ioParams, inSymbol)
+    scaleRange = ioParams[inSymbol]
+    if scaleRange
+      unless scaleRange.kind_of?(Range)
+        scaleRange = (0.0..scaleRange)
+      end
+      ioParams[:render_scale] = scaleRange.begin + rand * (scaleRange.end - scaleRange.begin)
+    end
   end
   
   def mEmberCreate(inParams = {})
     mergedParams = @m_emberDefaults.merge(inParams)
   
     meshNum = mergedParams[:ember_number] || rand(@m_numEmberMeshes)
-    
     mergedParams[:mesh_name] = "ember#{meshNum}"
     
-    speedRange = mergedParams[:random_speed]
-    if speedRange
-    
-      unless speedRange.kind_of?(Range)
-        speedRange = (0.0..speedRange)
-      end
-
-      speed = speedRange.begin + rand * (speedRange.end - speedRange.begin)
-      
-      newPost = mergedParams[:post].dup
-      newPost.velocity = newPost.velocity + MushTools.cRandomUnitVector * speed
-      
-      mergedParams[:post] = newPost
-    end
-    
-    scaleRange = mergedParams[:random_scale]
-    if scaleRange
-      unless scaleRange.kind_of?(Range)
-        scaleRange = (0.0..scaleRange)
-      end
-
-      mergedParams[:render_scale] = scaleRange.begin + rand * (scaleRange.end - scaleRange.begin)
-    end
+    mApplySpeedRange(mergedParams, :ember_speed_range)
+    mApplyScaleRange(mergedParams, :ember_scale_range)
     
     AdanaxisPieceDeco.cCreate(mergedParams)
   end
   
   def mExploCreate(inParams = {})
-    meshNum = inParams[:explo_number] || rand(@m_numExploMeshes)
+    mergedParams = @m_exploDefaults.merge(inParams)
+  
+    meshNum = mergedParams[:explo_number] || rand(@m_numExploMeshes)
+    mergedParams[:mesh_name] = "explo#{meshNum}"
     
-    AdanaxisPieceDeco.cCreate(
-      @m_exploDefaults.merge(inParams).merge(
-      :mesh_name => "explo#{meshNum}"
-      )
-    )
+    mApplySpeedRange(mergedParams, :explosion_speed_range)
+    mApplyScaleRange(mergedParams, :explosion_scale_range)
+    
+    AdanaxisPieceDeco.cCreate(mergedParams)
   end
   
   def mFlareCreate(inParams = {})
+    mergedParams = @m_flareDefaults.merge(inParams)
+
     meshNum = inParams[:flare_number] || rand(@m_numFlareMeshes)
+        mergedParams[:mesh_name] = "flare#{meshNum}"
+
+    mApplySpeedRange(mergedParams, :flare_speed_range)
+    mApplyScaleRange(mergedParams, :flare_scale_range)
     
-    AdanaxisPieceDeco.cCreate(
-      @m_flareDefaults.merge(inParams).merge(
-      :mesh_name => "flare#{meshNum}"
-      )
-    )
+    AdanaxisPieceDeco.cCreate(mergedParams)
   end
-  
+
   def mExplode(inParams = {})
     objParams = inParams.dup
   
     # Embers inherit a fraction of the object's velocity
     objParams[:post].velocity = objParams[:post].velocity * 0.5
   
-    numEmbers = objParams[:num_embers] || @m_numEmbers
-
-    numEmbers.times do
-      mEmberCreate(objParams)
-    end
+    (objParams[:embers] || @m_numEmbers).times { mEmberCreate(objParams) }
     
     objParams[:post].velocity = MushVector.new(0,0,0,0)
     
-    mFlareCreate(objParams)
-    #mExploCreate(objParams)
+    (objParams[:flares] || @m_numFlares).times { mFlareCreate(objParams) }
+    (objParams[:explosions] || @m_numExplos).times { mExploCreate(objParams) }
   end
 end
 

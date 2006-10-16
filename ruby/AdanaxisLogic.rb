@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } OEQ7ye4+ICpoJw+Z14qbnQ
-# $Id: AdanaxisLogic.rb,v 1.7 2006/10/14 16:59:43 southa Exp $
+# $Id: AdanaxisLogic.rb,v 1.8 2006/10/15 17:12:53 southa Exp $
 # $Log: AdanaxisLogic.rb,v $
+# Revision 1.8  2006/10/15 17:12:53  southa
+# Scripted explosions
+#
 # Revision 1.7  2006/10/14 16:59:43  southa
 # Ruby Deco objects
 #
@@ -80,7 +83,6 @@ class AdanaxisLogic < MushLogic
     # Send each object with itself in the first position
     event.mPiece1.mLoad
     event.mPiece2.mLoad
-    
     
     # Decrement hit points here, otherwise one object will used the already-
     # decremented value of the other

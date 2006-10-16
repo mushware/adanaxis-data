@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } JPjWkwGvzd5d5LJLXnphkQ
-# $Id: AdanaxisPieceProjectile.rb,v 1.5 2006/10/14 16:59:43 southa Exp $
+# $Id: AdanaxisPieceProjectile.rb,v 1.6 2006/10/15 17:12:53 southa Exp $
 # $Log: AdanaxisPieceProjectile.rb,v $
+# Revision 1.6  2006/10/15 17:12:53  southa
+# Scripted explosions
+#
 # Revision 1.5  2006/10/14 16:59:43  southa
 # Ruby Deco objects
 #
@@ -59,13 +62,19 @@ class AdanaxisPieceProjectile < MushPiece
   end
   
   def mFatalCollisionHandle(event)
-    # Generate the projectile explosion
+    super
+    $currentLogic.mEffects.mExplode(
+      :post => mPost,
+      :embers => 3,
+      :explosions => 0,
+      :flares => 1,
+      :flare_scale_range => (1.7..2.0)
+      )
   end
   
   def mCollisionHandle(event)
     mHitPointsSet(0.0) # Projectiles always get destroyed
     
-    $currentLogic.mEffects.mExplode(:post => mPost)
     super
   end
   
