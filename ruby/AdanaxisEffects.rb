@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } RVKExAJp3XSTK1irqyfmog
-# $Id: AdanaxisEffects.rb,v 1.2 2006/10/16 14:36:50 southa Exp $
+# $Id: AdanaxisEffects.rb,v 1.3 2006/10/16 15:25:57 southa Exp $
 # $Log: AdanaxisEffects.rb,v $
+# Revision 1.3  2006/10/16 15:25:57  southa
+# Explosion lifetimes
+#
 # Revision 1.2  2006/10/16 14:36:50  southa
 # Deco handling
 #
@@ -39,13 +42,11 @@ class AdanaxisEffects < MushObject
 
     @m_exploDefaults = {
       :lifetime_msec => 2000,
-      # :explosion_speed_range => 0.0,
       :explosion_scale_range => (2.0..4.0)
       }
 
     @m_flareDefaults = {
       :lifetime_msec => 400,
-      # :flare_speed_range => 0.0,
       :flare_scale_range => (2.0..4.0)
       }
   
@@ -130,7 +131,8 @@ class AdanaxisEffects < MushObject
 
   def mExplode(inParams = {})
     objParams = inParams.dup
-  
+    objParams[:post] = objParams[:post].dup
+
     # Embers inherit a fraction of the object's velocity
     objParams[:post].velocity = objParams[:post].velocity * 0.5
   

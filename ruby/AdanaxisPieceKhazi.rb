@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } aGTJVbl7QyXIWVg5D1mEzg
-# $Id: AdanaxisPieceKhazi.rb,v 1.17 2006/10/16 14:36:50 southa Exp $
+# $Id: AdanaxisPieceKhazi.rb,v 1.18 2006/10/16 15:25:57 southa Exp $
 # $Log: AdanaxisPieceKhazi.rb,v $
+# Revision 1.18  2006/10/16 15:25:57  southa
+# Explosion lifetimes
+#
 # Revision 1.17  2006/10/16 14:36:50  southa
 # Deco handling
 #
@@ -166,6 +169,7 @@ class AdanaxisPieceKhazi < MushPiece
       :flare_scale_range => (20.0..25.0),
       :flare_lifetime_range => (600..700)
       )
+    MushGame.cSoundPlay("explode", mPost)
   end
   
   def mCollisionHandle(event)
