@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } JPjWkwGvzd5d5LJLXnphkQ
-# $Id: AdanaxisPieceProjectile.rb,v 1.6 2006/10/15 17:12:53 southa Exp $
+# $Id: AdanaxisPieceProjectile.rb,v 1.7 2006/10/16 14:36:50 southa Exp $
 # $Log: AdanaxisPieceProjectile.rb,v $
+# Revision 1.7  2006/10/16 14:36:50  southa
+# Deco handling
+#
 # Revision 1.6  2006/10/15 17:12:53  southa
 # Scripted explosions
 #
@@ -56,27 +59,39 @@ class AdanaxisPieceProjectile < MushPiece
   def mEventHandle(event)
     case event
       when MushEventCollision: mCollisionHandle(event)
+      when MushEventExpiry: mExpiryHandle(event)
       else super(event)
     end
     @m_callInterval
   end
   
-  def mFatalCollisionHandle(event)
-    super
+  def mExplosionEffect
     $currentLogic.mEffects.mExplode(
       :post => mPost,
       :embers => 3,
       :explosions => 0,
       :flares => 1,
       :flare_scale_range => (1.7..2.0)
-      )
+    )
+  end
+  
+  def mExplosionSound
+  end
+  
+  def mFatalCollisionHandle(event)
+    super
+    mExplosionEffect
+    mExplosionSound
   end
   
   def mCollisionHandle(event)
     mHitPointsSet(0.0) # Projectiles always get destroyed
-    
     super
   end
   
-  
+  def mExpiryHandle(event)
+    mLoad
+    mExplosionEffect
+    mExplosionSound
+  end
 end
