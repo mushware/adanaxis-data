@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } ZGY5KHoT9+kVQm3zBeLowg
-# $Id: AdanaxisFontLibrary.rb,v 1.4 2006/08/01 13:41:11 southa Exp $
+# $Id: AdanaxisFontLibrary.rb,v 1.5 2006/08/01 17:21:17 southa Exp $
 # $Log: AdanaxisFontLibrary.rb,v $
+# Revision 1.5  2006/08/01 17:21:17  southa
+# River demo
+#
 # Revision 1.4  2006/08/01 13:41:11  southa
 # Pre-release updates
 #
@@ -51,6 +54,21 @@ class AdanaxisFontLibrary < MushObject
       :texture_name => 'symbol1-font-tex',
       :divide => [8,8],
       :extent => [512.0/8, 512.0/8],
+      :size => 1
+    )
+    
+    MushGLTexture::cDefine(
+		  :name          => 'dashboard1-font-tex',
+      :type          => 'TIFF',
+		  :filename      => MushConfig.cGlobalPixelsPath+'/dashboard1.tiff',
+		  :cache         => 0
+	  )
+    
+    font2 = MushGLFont.new(
+      :name => 'dashboard1-font',
+      :texture_name => 'dashboard1-font-tex',
+      :divide => [2,2],
+      :extent => [256.0/2, 256.0/2],
       :size => 1
     )
     
