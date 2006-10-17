@@ -18,8 +18,11 @@
 #
 ##############################################################################
 #%Header } e5pyDYhqQM6o/mG0mOvX9g
-# $Id: space.rb,v 1.24 2006/10/06 14:48:17 southa Exp $
+# $Id: space.rb,v 1.25 2006/10/08 11:31:32 southa Exp $
 # $Log: space.rb,v $
+# Revision 1.25  2006/10/08 11:31:32  southa
+# Hit points
+#
 # Revision 1.24  2006/10/06 14:48:17  southa
 # Material animation
 #
@@ -128,9 +131,9 @@ class Adanaxis_local1 < AdanaxisSpace
     worldMesh.mMake
     # puts worldMesh.to_xml
     
-    world = AdanaxisWorld.new(
-      :mesh_name => "world"
-    )
+    #world = AdanaxisWorld.new(
+    #  :mesh_name => "world"
+    #)
     
     
     

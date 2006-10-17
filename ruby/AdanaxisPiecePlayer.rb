@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } 1H+rLloObKxiiVjoIDjJFw
-# $Id: AdanaxisPiecePlayer.rb,v 1.1 2006/10/02 17:25:03 southa Exp $
+# $Id: AdanaxisPiecePlayer.rb,v 1.2 2006/10/04 13:35:21 southa Exp $
 # $Log: AdanaxisPiecePlayer.rb,v $
+# Revision 1.2  2006/10/04 13:35:21  southa
+# Selective targetting
+#
 # Revision 1.1  2006/10/02 17:25:03  southa
 # Object lookup and target selection
 #
@@ -30,9 +33,21 @@ class AdanaxisPiecePlayer < MushPiece
   extend MushRegistered
   mushRegistered_install
   
-  def initialize
+  def initialize(inParams = {})
     @m_defaultType = "p"
     super
+    @m_hitPoints = inParams[:hit_points] || 100.0
+    @m_originalHitPoints = @m_hitPoints
+
     @m_callInterval = 100
+  end
+  
+  def mActionTimer
+    mLoad
+    $currentGame.mView.mDashboard.mUpdate(
+      :hit_point_ratio => mHitPointRatio
+      )
+
+    @m_callInterval
   end
 end

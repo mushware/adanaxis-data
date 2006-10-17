@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } KSO1aRs/aLEv+/QhWfRoRw
-# $Id: AdanaxisGame.rb,v 1.20 2006/10/06 14:48:17 southa Exp $
+# $Id: AdanaxisGame.rb,v 1.21 2006/10/12 22:04:46 southa Exp $
 # $Log: AdanaxisGame.rb,v $
+# Revision 1.21  2006/10/12 22:04:46  southa
+# Collision events
+#
 # Revision 1.20  2006/10/06 14:48:17  southa
 # Material animation
 #
@@ -34,55 +37,65 @@ require 'AdanaxisLevels.rb'
 
 class AdanaxisGame < MushObject
   def initialize
-    @spaceName = 'menu1'
-    @levels = AdanaxisLevels.new
+    @m_spaceName = 'menu1'
+    @m_levels = AdanaxisLevels.new
     
-    @menuRender = AdanaxisRender.new
-    @menuRender.mCreate
+    @m_view = MushView.new(
+      :dashboard => AdanaxisDashboard.new
+    )
+
+    @m_menuRender = AdanaxisRender.new
+    @m_menuRender.mCreate
     
-    @menuSet = AdanaxisMenu.new
-    @currentMenu = 0
-    @entryDisplayMode = ""
-    @textureDetail = 0
-    @showHidden = false;
+    @m_menuSet = AdanaxisMenu.new
+    @m_currentMenu = 0
+    @m_entryDisplayMode = ""
+    @m_textureDetail = 0
+    @m_showHidden = false;
   end
   
+  mush_accessor :m_space, :m_view
+  
   def mSpaceName
-    @spaceName
+    @m_spaceName
   end
   
   def mSpaceObjectName
-    'Adanaxis_'+@spaceName
+    'Adanaxis_'+@m_spaceName
   end
  
   def mSpacePath
-    MushConfig.cGlobalSpacesPath + '/' + @spaceName  
+    MushConfig.cGlobalSpacesPath + '/' + @m_spaceName  
   end
   
   def mLoad
     require(mSpacePath+'/space.rb')
-    @space = eval("#{mSpaceObjectName}.new", binding, mSpacePath+'/space.rb', 1)
-    @space.mLoad(self)
+    @m_space = eval("#{mSpaceObjectName}.new", binding, mSpacePath+'/space.rb', 1)
+    @m_space.mLoad(self)
     self
   end
   
-  def mRender(msec)
-    menu = @menuSet.mMenu(@currentMenu)
+  def mRender(inParams = {})
+    @m_view.mDashboardRender(inParams)
+  end
+  
+  def mMenuRender(msec)
+    menu = @m_menuSet.mMenu(@m_currentMenu)
     menu.highlight_colour = MushVector.new(1,1,0.7,0.5+0.25*Math.sin(msec/100.0))
     # menu.size = 0.03+0.0003*Math.sin(msec/1500.0)
     menu.mRender(msec)
-    @menuRender.mPackageIDRender
+    @m_menuRender.mPackageIDRender
   end
 
   def mPreCacheRender(percentage)
-    @menuRender.mPreCacheRender(percentage)
+    @m_menuRender.mPreCacheRender(percentage)
   end
 
   def mReset(allowResume)
-    @currentMenu = AdanaxisMenu::MENU_TOPLEVEL
-    @menuSet.mReset(@currentMenu)
-    @menuSet.allowResume = allowResume
-    @menuSet.mUpdate(@currentMenu)
+    @m_currentMenu = AdanaxisMenu::MENU_TOPLEVEL
+    @m_menuSet.mReset(@m_currentMenu)
+    @m_menuSet.allowResume = allowResume
+    @m_menuSet.mUpdate(@m_currentMenu)
   end
 
   def mKeypress(inKey, inModifier, inIsDown)
@@ -90,25 +103,25 @@ class AdanaxisGame < MushObject
     keyName = MushGame.cKeySymbolToName(inKey);
     # puts "key #{inKey}, '#{keyChar}' '#{keyName}' #{inIsDown}"
     
-    @showHidden = ((inModifier & MushKeys::KMOD_SHIFT) != 0)
+    @m_showHidden = ((inModifier & MushKeys::KMOD_SHIFT) != 0)
     
     if inIsDown
-      menu = @menuSet.mMenu(@currentMenu)
+      menu = @m_menuSet.mMenu(@m_currentMenu)
       
-      if (@menuSet.axisKeyWait || @menuSet.keyWait)
+      if (@m_menuSet.axisKeyWait || @m_menuSet.keyWait)
         inKey == 27 && inKey = 0
         menu.mKeypress(self, inKey)
       else
         case inKey
           when MushKeys::SDLK_ESCAPE
-            if @currentMenu == AdanaxisMenu::MENU_TOPLEVEL
+            if @m_currentMenu == AdanaxisMenu::MENU_TOPLEVEL
               MushGame.cGameModeEnter
             else
-              if @currentMenu == AdanaxisMenu::MENU_OPTIONS &&
-                (@entryDisplayMode != MushGame.cDisplayModeString || @textureDetail != MushGame.cTextureDetail)
+              if @m_currentMenu == AdanaxisMenu::MENU_OPTIONS &&
+                (@m_entryDisplayMode != MushGame.cDisplayModeString || @m_textureDetail != MushGame.cTextureDetail)
                 MushGame.cDisplayReset
               end
-              @currentMenu = AdanaxisMenu::MENU_TOPLEVEL
+              @m_currentMenu = AdanaxisMenu::MENU_TOPLEVEL
             end
           when MushKeys::SDLK_UP : menu.mUp
           when MushKeys::SDLK_DOWN : menu.mDown
@@ -117,7 +130,7 @@ class AdanaxisGame < MushObject
           when MushKeys::SDLK_RIGHT: menu.mRight(self)
         end
       end
-      @menuSet.mUpdate(@currentMenu)
+      @m_menuSet.mUpdate(@m_currentMenu)
     end
   end
   
@@ -131,39 +144,39 @@ class AdanaxisGame < MushObject
   
   def mMenuBack(param, input)
     if (param)
-      @currentMenu = param
+      @m_currentMenu = param
     else
-      @currentMenu = AdanaxisMenu::MENU_TOPLEVEL
+      @m_currentMenu = AdanaxisMenu::MENU_TOPLEVEL
     end    
   end
 
   def mToMenu(param, input)
-    @currentMenu = param
-    @menuSet.mReset(@currentMenu)
+    @m_currentMenu = param
+    @m_menuSet.mReset(@m_currentMenu)
 
-    case @currentMenu
+    case @m_currentMenu
       when AdanaxisMenu::MENU_CHOOSE_LEVEL:
-        @levels.mScanForLevels
-        @menuSet.mUpdateLevels(@levels.mLevelList, @showHidden)
+        @m_levels.mScanForLevels
+        @m_menuSet.mUpdateLevels(@m_levels.mLevelList, @m_showHidden)
     end
   end
 
   def mMenuAxisKey(param, input)
-    @menuSet.mWaitForAxisKey(param)
+    @m_menuSet.mWaitForAxisKey(param)
   end
 
   def mMenuAxisKeyReceived(inKey, param)
     MushGame.cAxisKeySet(inKey, param)
-    @menuSet.mWaitForAxisKey(nil)
+    @m_menuSet.mWaitForAxisKey(nil)
   end
 
   def mMenuKey(param, input)
-    @menuSet.mWaitForKey(param)
+    @m_menuSet.mWaitForKey(param)
   end
 
   def mMenuKeyReceived(inKey, param)
     MushGame.cKeySet(inKey, param)
-    @menuSet.mWaitForKey(nil)
+    @m_menuSet.mWaitForKey(nil)
   end
 
   def mMenuAxis(param, input)
@@ -181,18 +194,18 @@ class AdanaxisGame < MushObject
 
   def mMenuControlsDefault(param, input)
     MushGame.cControlsToDefaultSet
-    @currentMenu = AdanaxisMenu::MENU_TOPLEVEL
+    @m_currentMenu = AdanaxisMenu::MENU_TOPLEVEL
   end
   
   def mMenuGameSelect(params, input)
-    @spaceName = params
+    @m_spaceName = params
     MushGame.cNewGameEnter
   end    
 
   def mMenuToOptions(params, input)
-    @entryDisplayMode = MushGame.cDisplayModeString
-    @textureDetail = MushGame.cTextureDetail
-    @currentMenu = AdanaxisMenu::MENU_OPTIONS
+    @m_entryDisplayMode = MushGame.cDisplayModeString
+    @m_textureDetail = MushGame.cTextureDetail
+    @m_currentMenu = AdanaxisMenu::MENU_OPTIONS
   end
 
   def mMenuDisplayMode(params, input)
@@ -204,14 +217,14 @@ class AdanaxisGame < MushObject
   end
 
   def mMenuDisplayReset(params, input)
-    if @entryDisplayMode != MushGame.cDisplayModeString || @textureDetail != MushGame.cTextureDetail
+    if @m_entryDisplayMode != MushGame.cDisplayModeString || @m_textureDetail != MushGame.cTextureDetail
       MushGame.cDisplayReset
     end
 
     if (params)
-      @currentMenu = params
+      @m_currentMenu = params
     else
-      @currentMenu = AdanaxisMenu::MENU_TOPLEVEL
+      @m_currentMenu = AdanaxisMenu::MENU_TOPLEVEL
     end    
   end
 

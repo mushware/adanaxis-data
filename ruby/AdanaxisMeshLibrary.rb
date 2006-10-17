@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } 74bLa8v94NQFxupv0Pj/cA
-# $Id: AdanaxisMeshLibrary.rb,v 1.17 2006/08/20 14:19:20 southa Exp $
+# $Id: AdanaxisMeshLibrary.rb,v 1.18 2006/10/05 15:39:16 southa Exp $
 # $Log: AdanaxisMeshLibrary.rb,v $
+# Revision 1.18  2006/10/05 15:39:16  southa
+# Explosion handling
+#
 # Revision 1.17  2006/08/20 14:19:20  southa
 # Seek operation
 #
@@ -35,7 +38,7 @@ class AdanaxisMeshLibrary
   # Attendant mesh
   #
   
-  def AdanaxisMeshLibrary.cAttendantCreate
+  def self.cAttendantCreate
     mesh = MushMesh.new('attendant')
 
     base1 = MushBasePrism.new(:order => 5)
@@ -118,6 +121,52 @@ class AdanaxisMeshLibrary
     #mesh.mExtruderAdd(extruder6)
     #mesh.mExtruderAdd(extruder7)
 	mesh.mMaterialAdd('attendant-mat')
+
+    mesh.mMake
+  end
+
+  def self.cPlayerCreate
+    mesh = MushMesh.new('player')
+
+    base1 = MushBasePrism.new(:order => 4)
+	
+	  baseDisplacement1 = MushDisplacement.new(
+		  :offset => MushVector.new(0,0,0,0),
+      :scale => MushVector.new(Math.sqrt(2),Math.sqrt(2),1,1)
+	  )
+	
+    extruder1 = MushExtruder.new(
+      :sourceface => 2,
+      :displacement => MushDisplacement.new(
+      :offset => MushVector.new(0,0,-1,0),
+      :rotation => MushTools.cRotationInZWPlane(Math::PI/8),
+      :scale => 0.8),
+		  :num_iterations => 5
+    )
+	  
+    extruder2 = MushExtruder.new(
+      :sourceface => 3,
+      :displacement => MushDisplacement.new(
+      :offset => MushVector.new(0,0,1,0),
+      :rotation => MushTools.cRotationInZWPlane(-Math::PI/8),
+      :scale => 0.8),
+      :num_iterations => 5
+    )
+	  
+    extruder3 = MushExtruder.new(
+      :sourceface => 0,
+      :displacement => MushDisplacement.new(
+      :offset => MushVector.new(0,0,0,-1),
+      :scale => 0.6),
+      :num_iterations => 3
+    )
+
+    mesh.mBaseAdd(base1)
+    mesh.mBaseDisplacementAdd(baseDisplacement1)
+    mesh.mExtruderAdd(extruder1)
+    mesh.mExtruderAdd(extruder2)
+    mesh.mExtruderAdd(extruder3)
+    mesh.mMaterialAdd('player-mat')
 
     mesh.mMake
   end
@@ -348,5 +397,6 @@ class AdanaxisMeshLibrary
     cEmbersCreate
     cFlaresCreate
     cExploCreate
+    cPlayerCreate
   end
 end

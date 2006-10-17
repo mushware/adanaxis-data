@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } aGTJVbl7QyXIWVg5D1mEzg
-# $Id: AdanaxisPieceKhazi.rb,v 1.18 2006/10/16 15:25:57 southa Exp $
+# $Id: AdanaxisPieceKhazi.rb,v 1.19 2006/10/16 22:00:20 southa Exp $
 # $Log: AdanaxisPieceKhazi.rb,v $
+# Revision 1.19  2006/10/16 22:00:20  southa
+# Tweaks
+#
 # Revision 1.18  2006/10/16 15:25:57  southa
 # Explosion lifetimes
 #
@@ -102,11 +105,6 @@ class AdanaxisPieceKhazi < MushPiece
     @m_ai = AdanaxisAIKhazi.new(aiParams)
   end
   
-  def mTimerHandle(event)
-    puts "Timer event"
-    mLoad
-  end
-  
   def mFireHandle(event)
     projPost = event.post.dup
     
@@ -127,9 +125,7 @@ class AdanaxisPieceKhazi < MushPiece
 
   def mEventHandle(event)
     case event
-      when MushEventTimer: mTimerHandle(event)
       when AdanaxisEventFire: mFireHandle(event)
-      when MushEventCollision: mCollisionHandle(event)
       else super(event)
     end
     @m_callInterval

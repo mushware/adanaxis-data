@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } OEQ7ye4+ICpoJw+Z14qbnQ
-# $Id: AdanaxisLogic.rb,v 1.8 2006/10/15 17:12:53 southa Exp $
+# $Id: AdanaxisLogic.rb,v 1.9 2006/10/16 14:36:50 southa Exp $
 # $Log: AdanaxisLogic.rb,v $
+# Revision 1.9  2006/10/16 14:36:50  southa
+# Deco handling
+#
 # Revision 1.8  2006/10/15 17:12:53  southa
 # Scripted explosions
 #
@@ -50,7 +53,7 @@ class AdanaxisLogic < MushLogic
     @m_effects = AdanaxisEffects.new
   end
 
-  mush_reader :m_effects
+  mush_reader :m_effects, :m_view
 
   def mLookup(id)
     # Only pieces for the moment

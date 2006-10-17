@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } JPjWkwGvzd5d5LJLXnphkQ
-# $Id: AdanaxisPieceProjectile.rb,v 1.7 2006/10/16 14:36:50 southa Exp $
+# $Id: AdanaxisPieceProjectile.rb,v 1.8 2006/10/17 11:05:54 southa Exp $
 # $Log: AdanaxisPieceProjectile.rb,v $
+# Revision 1.8  2006/10/17 11:05:54  southa
+# Expiry events
+#
 # Revision 1.7  2006/10/16 14:36:50  southa
 # Deco handling
 #
@@ -52,18 +55,7 @@ class AdanaxisPieceProjectile < MushPiece
     @m_hitPoints = 1.0
   end
   
-  def mOwner
-    @m_owner
-  end
-  
-  def mEventHandle(event)
-    case event
-      when MushEventCollision: mCollisionHandle(event)
-      when MushEventExpiry: mExpiryHandle(event)
-      else super(event)
-    end
-    @m_callInterval
-  end
+  mush_reader :m_owner
   
   def mExplosionEffect
     $currentLogic.mEffects.mExplode(

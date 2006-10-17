@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } Qn1dyBC0obbg8YEx3MpSKg
-# $Id: AdanaxisMaterialLibrary.rb,v 1.9 2006/10/06 14:48:17 southa Exp $
+# $Id: AdanaxisMaterialLibrary.rb,v 1.10 2006/10/08 11:31:31 southa Exp $
 # $Log: AdanaxisMaterialLibrary.rb,v $
+# Revision 1.10  2006/10/08 11:31:31  southa
+# Hit points
+#
 # Revision 1.9  2006/10/06 14:48:17  southa
 # Material animation
 #
@@ -40,6 +43,10 @@ class AdanaxisMaterialLibrary < MushObject
     MushMaterial.cDefine(
       :name => 'attendant-mat',
       :texture_names => ['attendant-tex']
+    )
+    MushMaterial.cDefine(
+      :name => 'player-mat',
+      :texture_names => ['player-tex']
     )
     MushMaterial.cDefine(
       :name => 'projectile-mat',

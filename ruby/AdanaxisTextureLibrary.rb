@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } avqCjn1AV8PsFQvoiWGwNA
-# $Id: AdanaxisTextureLibrary.rb,v 1.17 2006/10/05 15:39:16 southa Exp $
+# $Id: AdanaxisTextureLibrary.rb,v 1.18 2006/10/06 14:48:17 southa Exp $
 # $Log: AdanaxisTextureLibrary.rb,v $
+# Revision 1.18  2006/10/06 14:48:17  southa
+# Material animation
+#
 # Revision 1.17  2006/10/05 15:39:16  southa
 # Explosion handling
 #
@@ -141,6 +144,20 @@ class AdanaxisTextureLibrary < MushObject
     :palettevector => [0.99,0],
 		:scale         => [scale, scale, scale, scale],
     :numoctaves    => 8,
+    :octaveratio   => 0.5,
+		:cache         => 1
+	)
+	
+	MushGLTexture::cDefine(
+		:name          => 'player-tex',
+    :type          => 'CellNoise',
+    :meshname      => 'attendant',
+    :size          => [textureSize, textureSize],
+    :palette       => 'palette1',
+    :palettestart  => [0,0.8],
+    :palettevector => [0.99,0],
+		:scale         => [scale, scale, scale, scale],
+    :numoctaves    => 5,
     :octaveratio   => 0.5,
 		:cache         => 1
 	)

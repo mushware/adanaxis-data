@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } gALWTcpqRL4PXzPDNgzRcg
-# $Id: AdanaxisRender.rb,v 1.3 2006/08/01 13:41:12 southa Exp $
+# $Id: AdanaxisRender.rb,v 1.4 2006/08/01 17:21:18 southa Exp $
 # $Log: AdanaxisRender.rb,v $
+# Revision 1.4  2006/08/01 17:21:18  southa
+# River demo
+#
 # Revision 1.3  2006/08/01 13:41:12  southa
 # Pre-release updates
 #
@@ -26,16 +29,16 @@ require 'Mushware.rb'
 
 class AdanaxisRender < MushObject
   def initialize
-    @packageID = MushGame.cPackageID
+    @m_packageID = MushGame.cPackageID
   end
  
   def mCreate
-    @menuFont = MushGLFont.new(:name => 'library-font1');
-    @menuStr = "Menu from ruby";
+    @m_menuFont = MushGLFont.new(:name => 'library-font1');
+    @m_menuStr = "Menu from ruby";
   end
     
   def mRenderMenu
-    @menuFont.mRender(@menuStr)
+    @m_menuFont.mRender(@m_menuStr)
   end
   
   def mRender
@@ -43,13 +46,12 @@ class AdanaxisRender < MushObject
   end
 
   def mPreCacheRender(percentage)
-    @menuFont.colour = MushVector.new(1,1,1,0.3)
-    @menuFont.mRenderAtSize("Loading... #{percentage}%", -0.4, -0.25, 0.02);
+    @m_menuFont.colour = MushVector.new(1,1,1,0.3)
+    @m_menuFont.mRenderAtSize("Loading... #{percentage}%", -0.4, -0.25, 0.02);
   end
 
   def mPackageIDRender
-    @menuFont.colour = MushVector.new(1,1,1,0.3)
-    @menuFont.mRenderAtSize(@packageID, -@packageID.length * 0.006, -0.27, 0.012);
+    @m_menuFont.colour = MushVector.new(1,1,1,0.3)
+    @m_menuFont.mRenderAtSize(@m_packageID, -@m_packageID.length * 0.006, -0.27, 0.012);
   end
-
 end

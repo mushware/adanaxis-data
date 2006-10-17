@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } Vr8SNTx01PRrZQGDsHJ+7Q
-# $Id: Adanaxis.rb,v 1.17 2006/10/15 17:12:53 southa Exp $
+# $Id: Adanaxis.rb,v 1.18 2006/10/16 15:25:57 southa Exp $
 # $Log: Adanaxis.rb,v $
+# Revision 1.18  2006/10/16 15:25:57  southa
+# Explosion lifetimes
+#
 # Revision 1.17  2006/10/15 17:12:53  southa
 # Scripted explosions
 #
@@ -54,6 +57,7 @@
 
 require 'Mushware.rb'
 require 'AdanaxisAI.rb'
+require 'AdanaxisDashboard.rb'
 require 'AdanaxisEffects.rb'
 require 'AdanaxisEvents.rb'
 require 'AdanaxisFontLibrary.rb'
