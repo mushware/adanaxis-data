@@ -18,8 +18,11 @@
 #
 ##############################################################################
 #%Header } +qJXLcrDec2QZ7WFKpERPQ
-# $Id: space.rb,v 1.10 2006/10/09 16:00:15 southa Exp $
+# $Id: space.rb,v 1.11 2006/10/14 16:59:43 southa Exp $
 # $Log: space.rb,v $
+# Revision 1.11  2006/10/14 16:59:43  southa
+# Ruby Deco objects
+#
 # Revision 1.10  2006/10/09 16:00:15  southa
 # Intern generation
 #
@@ -84,10 +87,23 @@ class Adanaxis_menu1 < AdanaxisSpace
           )
         )
     end
-
-    def mIsMenuBackdrop
-      true
+    
+    begin
+      1000.times do |i|
+        pos = MushTools.cRandomUnitVector * (10 + rand(40))
+        world = AdanaxisWorld.new(
+          :mesh_name => mMeshLibrary.mRandomCosmosName,
+          :post => MushPost.new(
+            :position => pos
+            )
+          )
+      end
+    rescue Exception => e
+      MushLog.cWarning "Cosmos construction failed: #{e} at #{e.backtrace[0]}"
     end
+  end
 
+  def mIsMenuBackdrop
+    true
   end
 end

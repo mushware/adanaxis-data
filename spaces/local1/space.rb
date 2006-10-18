@@ -18,8 +18,11 @@
 #
 ##############################################################################
 #%Header } e5pyDYhqQM6o/mG0mOvX9g
-# $Id: space.rb,v 1.25 2006/10/08 11:31:32 southa Exp $
+# $Id: space.rb,v 1.26 2006/10/17 15:28:00 southa Exp $
 # $Log: space.rb,v $
+# Revision 1.26  2006/10/17 15:28:00  southa
+# Player collisions
+#
 # Revision 1.25  2006/10/08 11:31:32  southa
 # Hit points
 #
@@ -122,6 +125,16 @@ class Adanaxis_local1 < AdanaxisSpace
         )
     end
     
+          1000.times do |i|
+        pos = MushTools.cRandomUnitVector * (10 + rand(40))
+        world = AdanaxisWorld.new(
+          :mesh_name => mMeshLibrary.mRandomCosmosName,
+          :post => MushPost.new(
+            :position => pos
+            )
+          )
+      end
+      
     worldMesh =  MushMesh.new("world")
     worldBase = MushBaseWorldSphere.new(
       :num_facets => 10,

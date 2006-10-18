@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } lR/lFdEFyXBbk1T1wsvmCw
-# $Id: AdanaxisSpace.rb,v 1.9 2006/09/07 10:02:36 southa Exp $
+# $Id: AdanaxisSpace.rb,v 1.10 2006/10/06 14:48:17 southa Exp $
 # $Log: AdanaxisSpace.rb,v $
+# Revision 1.10  2006/10/06 14:48:17  southa
+# Material animation
+#
 # Revision 1.9  2006/09/07 10:02:36  southa
 # Shader interface
 #
@@ -33,13 +36,16 @@ class AdanaxisSpace < MushObject
     @startShown = false
     @m_textureLibrary = AdanaxisTextureLibrary.new
     @m_materialLibrary = AdanaxisMaterialLibrary.new(:texture_library => @m_textureLibrary)
+    @m_meshLibrary = AdanaxisMeshLibrary.new(:texture_library => @m_textureLibrary)
   end
+  
+  mush_reader :m_textureLibrary, :m_materialLibrary, :m_meshLibrary
   
   def mLoadStandard(game)
     AdanaxisFontLibrary.cCreate
-	  AdanaxisMeshLibrary.cCreate
     @m_textureLibrary.mCreate
 	  @m_materialLibrary.mCreate
+	  @m_meshLibrary.mCreate
     AdanaxisShaderLibrary.cCreate
     
     dialogueFile = game.mSpacePath+"/dialogues.xml"

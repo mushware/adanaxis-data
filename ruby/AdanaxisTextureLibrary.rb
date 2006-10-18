@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } avqCjn1AV8PsFQvoiWGwNA
-# $Id: AdanaxisTextureLibrary.rb,v 1.18 2006/10/06 14:48:17 southa Exp $
+# $Id: AdanaxisTextureLibrary.rb,v 1.19 2006/10/17 15:28:00 southa Exp $
 # $Log: AdanaxisTextureLibrary.rb,v $
+# Revision 1.19  2006/10/17 15:28:00  southa
+# Player collisions
+#
 # Revision 1.18  2006/10/06 14:48:17  southa
 # Material animation
 #
@@ -36,9 +39,7 @@ class AdanaxisTextureLibrary < MushObject
   
   end
 
-  def mExplo1Names
-    @m_explo1Names
-  end
+  mush_reader :m_explo1Names, :m_cosmos1Names
 
   def mCreate
     levelOfDetail = MushGame.cTextureDetail
@@ -122,6 +123,22 @@ class AdanaxisTextureLibrary < MushObject
     if File.file?(filename)
       texName = "explo1-tex-#{i}"
       @m_explo1Names << texName
+      MushGLTexture::cDefine(
+        :name          => texName,
+        :type          => 'TIFF',
+        :filename      => filename,
+        :storagetype   => 'GL',
+        :cache         => 0
+      )
+    end
+  end
+
+  @m_cosmos1Names = []
+  100.times do |i|
+    filename = MushConfig.cGlobalPixelsPath+"/cosmos/cosmos1-#{i}.tiff"
+    if File.file?(filename)
+      texName = "cosmos1-tex-#{i}"
+      @m_cosmos1Names << texName
       MushGLTexture::cDefine(
         :name          => texName,
         :type          => 'TIFF',

@@ -18,8 +18,11 @@
 #
 ##############################################################################
 #%Header } XESH903Rz4omoAntOunkPg
-# $Id: space.rb,v 1.9 2006/10/12 22:04:46 southa Exp $
+# $Id: space.rb,v 1.10 2006/10/15 17:12:53 southa Exp $
 # $Log: space.rb,v $
+# Revision 1.10  2006/10/15 17:12:53  southa
+# Scripted explosions
+#
 # Revision 1.9  2006/10/12 22:04:46  southa
 # Collision events
 #
@@ -104,14 +107,15 @@ class Adanaxis_local3 < AdanaxisSpace
         )
     end
 
+    
     1000.times do |i|
-      pos = MushTools.cRandomUnitVector * (30 + rand(100))
+      pos = MushTools.cRandomUnitVector * (7 + 20 * rand)
       world = AdanaxisWorld.new(
-        :mesh_name => "star#{i % 10}",
+        :mesh_name => mMeshLibrary.mRandomCosmosName,
         :post => MushPost.new(
-          :position => pos
-          )
+        :position => pos
         )
+      )
     end
     
   end

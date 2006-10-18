@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } 74bLa8v94NQFxupv0Pj/cA
-# $Id: AdanaxisMeshLibrary.rb,v 1.18 2006/10/05 15:39:16 southa Exp $
+# $Id: AdanaxisMeshLibrary.rb,v 1.19 2006/10/17 15:28:00 southa Exp $
 # $Log: AdanaxisMeshLibrary.rb,v $
+# Revision 1.19  2006/10/17 15:28:00  southa
+# Player collisions
+#
 # Revision 1.18  2006/10/05 15:39:16  southa
 # Explosion handling
 #
@@ -34,11 +37,15 @@
 class AdanaxisMeshLibrary
   LOD_FACTOR = 5
 
+  def initialize(inParams = {})
+    @m_textureLibrary = inParams[:texture_library] || raise("No texture library supplied to mesh library")
+  end
+  
   #
   # Attendant mesh
   #
   
-  def self.cAttendantCreate
+  def mAttendantCreate
     mesh = MushMesh.new('attendant')
 
     base1 = MushBasePrism.new(:order => 5)
@@ -125,7 +132,7 @@ class AdanaxisMeshLibrary
     mesh.mMake
   end
 
-  def self.cPlayerCreate
+  def mPlayerCreate
     mesh = MushMesh.new('player')
 
     base1 = MushBasePrism.new(:order => 4)
@@ -176,7 +183,7 @@ class AdanaxisMeshLibrary
   # Axes mesh
   #
   
-  def AdanaxisMeshLibrary.cAxesCreate
+  def mAxesCreate
     mesh = MushMesh.new('axes')
 
     base1 = MushBasePrism.new(:order => 4)
@@ -238,7 +245,7 @@ class AdanaxisMeshLibrary
   # Cube meshes
   #
   
-  def AdanaxisMeshLibrary.cCubesCreate
+  def mCubesCreate
   	baseDisplacement1 = MushDisplacement.new(
         :scale => MushVector.new(0.9*Math.sqrt(2),0.9*Math.sqrt(2),0.9,0.9)
 	  )
@@ -274,7 +281,7 @@ class AdanaxisMeshLibrary
   # Projectile mesh
   #
   
-  def AdanaxisMeshLibrary.cProjectileCreate
+  def mProjectileCreate
 	mesh =  MushMesh.new('projectile')
 
 	base1 = MushBasePrism.new(:order => 5)
@@ -305,7 +312,7 @@ class AdanaxisMeshLibrary
   # World mesh
   #
   
-  def AdanaxisMeshLibrary.cWorldCreate
+  def mWorldCreate
 	mesh =  MushMesh.new('world1')
 
 	base1 = MushBasePrism.new(:order => 4)
@@ -344,7 +351,7 @@ class AdanaxisMeshLibrary
   # Single facet meshes
   #
   
-  def AdanaxisMeshLibrary.cEmbersCreate
+  def mEmbersCreate
     10.times do |i|
       mesh =  MushMesh.new("ember#{i}")
       base1 = MushBaseSingleFacet.new(:order => 4)
@@ -355,7 +362,7 @@ class AdanaxisMeshLibrary
     end
   end  
 
-  def AdanaxisMeshLibrary.cFlaresCreate
+  def mFlaresCreate
     10.times do |i|
       mesh =  MushMesh.new("flare#{i}")
       base1 = MushBaseSingleFacet.new(:order => 4)
@@ -366,7 +373,7 @@ class AdanaxisMeshLibrary
     end
   end  
 
-  def AdanaxisMeshLibrary.cStarsCreate
+  def mStarsCreate
     10.times do |i|
       mesh =  MushMesh.new("star#{i}")
       base1 = MushBaseSingleFacet.new(:order => 4)
@@ -377,7 +384,7 @@ class AdanaxisMeshLibrary
     end
   end
     
-  def AdanaxisMeshLibrary.cExploCreate
+  def mExploCreate
     10.times do |i|
       mesh =  MushMesh.new("explo#{i}")
       base1 = MushBaseSingleFacet.new(:order => 4)
@@ -388,15 +395,32 @@ class AdanaxisMeshLibrary
     end
   end  
 
-  def AdanaxisMeshLibrary.cCreate
-    cAttendantCreate
-    cCubesCreate
-    cProjectileCreate
-    cWorldCreate
-    cStarsCreate
-    cEmbersCreate
-    cFlaresCreate
-    cExploCreate
-    cPlayerCreate
+  def mCosmosCreate
+    @m_textureLibrary.mCosmos1Names.size.times do |i|
+      mesh =  MushMesh.new("cosmos1-#{i}")
+      base1 = MushBaseSingleFacet.new(:order => 4)
+      mesh.mBaseAdd(base1)
+      mesh.mBillboardSet(true)
+      mesh.mMaterialAdd("cosmos1-#{i}-mat")
+      mesh.mMake
+    end
+  end  
+
+  def mRandomCosmosName
+    num = rand(@m_textureLibrary.mCosmos1Names.size)
+    "cosmos1-#{num}"
+  end
+
+  def mCreate
+    mAttendantCreate
+    mCubesCreate
+    mProjectileCreate
+    mWorldCreate
+    mStarsCreate
+    mEmbersCreate
+    mFlaresCreate
+    mExploCreate
+    mCosmosCreate
+    mPlayerCreate
   end
 end

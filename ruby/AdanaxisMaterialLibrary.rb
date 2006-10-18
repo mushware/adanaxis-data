@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } Qn1dyBC0obbg8YEx3MpSKg
-# $Id: AdanaxisMaterialLibrary.rb,v 1.10 2006/10/08 11:31:31 southa Exp $
+# $Id: AdanaxisMaterialLibrary.rb,v 1.11 2006/10/17 15:28:00 southa Exp $
 # $Log: AdanaxisMaterialLibrary.rb,v $
+# Revision 1.11  2006/10/17 15:28:00  southa
+# Player collisions
+#
 # Revision 1.10  2006/10/08 11:31:31  southa
 # Hit points
 #
@@ -91,6 +94,14 @@ class AdanaxisMaterialLibrary < MushObject
       end    
     end
 
+    if @m_textureLibrary.mCosmos1Names.size > 0
+      @m_textureLibrary.mCosmos1Names.size.times do |i|
+        MushMaterial.cDefine(
+          :name => "cosmos1-#{i}-mat",
+          :texture_names => [@m_textureLibrary.mCosmos1Names[i]]
+        )
+      end  
+    end
 
     [ 'ground', 'river', 'block' ].each do |prefix|
       MushMaterial.cDefine(
