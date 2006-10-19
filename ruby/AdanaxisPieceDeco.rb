@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } xOGGCYeMt0BNCjURov3s3Q
-# $Id: AdanaxisPieceDeco.rb,v 1.2 2006/10/15 17:12:53 southa Exp $
+# $Id: AdanaxisPieceDeco.rb,v 1.3 2006/10/16 14:36:50 southa Exp $
 # $Log: AdanaxisPieceDeco.rb,v $
+# Revision 1.3  2006/10/16 14:36:50  southa
+# Deco handling
+#
 # Revision 1.2  2006/10/15 17:12:53  southa
 # Scripted explosions
 #
@@ -33,8 +36,5 @@ class AdanaxisPieceDeco < MushPiece
     @m_defaultType = "d"
     super
     @m_lifeMsec = inParams[:lifetime_msec] || 0
-    #ObjectSpace.define_finalizer(self, lambda { |id| puts "Final #{id}" } )
-    #GC.enable
-    #GC.start
   end
 end

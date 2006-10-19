@@ -18,8 +18,11 @@
 #
 ##############################################################################
 #%Header } +qJXLcrDec2QZ7WFKpERPQ
-# $Id: space.rb,v 1.11 2006/10/14 16:59:43 southa Exp $
+# $Id: space.rb,v 1.12 2006/10/18 13:22:08 southa Exp $
 # $Log: space.rb,v $
+# Revision 1.12  2006/10/18 13:22:08  southa
+# World rendering
+#
 # Revision 1.11  2006/10/14 16:59:43  southa
 # Ruby Deco objects
 #
@@ -86,6 +89,30 @@ class Adanaxis_menu1 < AdanaxisSpace
           :angular_velocity => angVel
           )
         )
+    end
+    
+    1.times do
+      AdanaxisPieceItem.cCreate(
+        :mesh_name => "health1",
+        :hit_points => 10.0,
+        :lifetime_msec => 10000,
+        :post => MushPost.new(
+          :position => MushVector.new(20,0,0,-40),
+          :angular_velocity => angVel
+        )
+      )
+    end
+    
+    1.times do
+      AdanaxisPieceItem.cCreate(
+        :mesh_name => "shield1",
+        :hit_points => 10.0,
+        :lifetime_msec => 100000,
+        :post => MushPost.new(
+          :position => MushVector.new(-20,0,0,-40),
+          :angular_velocity => angVel
+        )
+      )
     end
     
     begin

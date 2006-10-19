@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } Qn1dyBC0obbg8YEx3MpSKg
-# $Id: AdanaxisMaterialLibrary.rb,v 1.11 2006/10/17 15:28:00 southa Exp $
+# $Id: AdanaxisMaterialLibrary.rb,v 1.12 2006/10/18 13:22:08 southa Exp $
 # $Log: AdanaxisMaterialLibrary.rb,v $
+# Revision 1.12  2006/10/18 13:22:08  southa
+# World rendering
+#
 # Revision 1.11  2006/10/17 15:28:00  southa
 # Player collisions
 #
@@ -45,35 +48,42 @@ class AdanaxisMaterialLibrary < MushObject
   def mCreate
     MushMaterial.cDefine(
       :name => 'attendant-mat',
+      :mapping_type => :tiled,
       :texture_names => ['attendant-tex']
     )
     MushMaterial.cDefine(
       :name => 'player-mat',
+      :mapping_type => :tiled,
       :texture_names => ['player-tex']
     )
     MushMaterial.cDefine(
       :name => 'projectile-mat',
+      :mapping_type => :tiled,
       :texture_names => ['projectile-tex']
     )
     MushMaterial.cDefine(
       :name => 'world1-mat',
+      :mapping_type => :tiled,
       :texture_names => ['world1-tex']
     )
     10.times do |i|
       MushMaterial.cDefine(
       :name => "star#{i}-mat",
+      :mapping_type => :tiled,
       :texture_names => ["star#{i}-tex"]
       )
     end
     10.times do |i|
       MushMaterial.cDefine(
       :name => "ember#{i}-mat",
+      :mapping_type => :tiled,
       :texture_names => ["ember#{i}-tex"]
       )
     end
     10.times do |i|
       MushMaterial.cDefine(
       :name => "flare#{i}-mat",
+      :mapping_type => :tiled,
       :texture_names => ["flare#{i}-tex"]
       )
     end
@@ -82,6 +92,7 @@ class AdanaxisMaterialLibrary < MushObject
       10.times do |i|
         MushMaterial.cDefine(
         :name => "explo#{i}-mat",
+      :mapping_type => :tiled,
         :texture_names => @m_textureLibrary.mExplo1Names
         )
       end
@@ -89,6 +100,7 @@ class AdanaxisMaterialLibrary < MushObject
       10.times do |i|
         MushMaterial.cDefine(
         :name => "explo#{i}-mat",
+      :mapping_type => :tiled,
         :texture_names => ["flare#{i}-tex"]
         )
       end    
@@ -98,16 +110,27 @@ class AdanaxisMaterialLibrary < MushObject
       @m_textureLibrary.mCosmos1Names.size.times do |i|
         MushMaterial.cDefine(
           :name => "cosmos1-#{i}-mat",
+          :mapping_type => :tiled,
           :texture_names => [@m_textureLibrary.mCosmos1Names[i]]
         )
       end  
     end
 
-    [ 'ground', 'river', 'block' ].each do |prefix|
+    ['ground', 'river', 'block'].each do |prefix|
       MushMaterial.cDefine(
         :name => "#{prefix}1-mat",
+        :mapping_type => :tiled,
         :texture_names => ["#{prefix}1-tex"]
       )
     end
+    
+    ['health', 'shield'].each do |prefix|
+      MushMaterial.cDefine(
+        :name => "#{prefix}1-mat",
+        :mapping_type => :singular,
+        :texture_names => ["#{prefix}1-tex"]
+      )
+    end
+    
   end
 end

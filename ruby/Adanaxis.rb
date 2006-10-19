@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } Vr8SNTx01PRrZQGDsHJ+7Q
-# $Id: Adanaxis.rb,v 1.18 2006/10/16 15:25:57 southa Exp $
+# $Id: Adanaxis.rb,v 1.19 2006/10/17 15:27:59 southa Exp $
 # $Log: Adanaxis.rb,v $
+# Revision 1.19  2006/10/17 15:27:59  southa
+# Player collisions
+#
 # Revision 1.18  2006/10/16 15:25:57  southa
 # Explosion lifetimes
 #
@@ -67,6 +70,7 @@ require 'AdanaxisMaterialLibrary.rb'
 require 'AdanaxisMenu.rb'
 require 'AdanaxisMeshLibrary.rb'
 require 'AdanaxisPieceDeco.rb'
+require 'AdanaxisPieceItem.rb'
 require 'AdanaxisPieceKhazi.rb'
 require 'AdanaxisPiecePlayer.rb'
 require 'AdanaxisPieceProjectile.rb'

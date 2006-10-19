@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } avqCjn1AV8PsFQvoiWGwNA
-# $Id: AdanaxisTextureLibrary.rb,v 1.19 2006/10/17 15:28:00 southa Exp $
+# $Id: AdanaxisTextureLibrary.rb,v 1.20 2006/10/18 13:22:08 southa Exp $
 # $Log: AdanaxisTextureLibrary.rb,v $
+# Revision 1.20  2006/10/18 13:22:08  southa
+# World rendering
+#
 # Revision 1.19  2006/10/17 15:28:00  southa
 # Player collisions
 #
@@ -116,6 +119,22 @@ class AdanaxisTextureLibrary < MushObject
 		:storagetype   => 'U8',
 		:cache         => 0
 	)
+
+  MushGLTexture::cDefine(
+    :name          => "health1-tex",
+    :type          => 'TIFF',
+    :filename      => MushConfig.cGlobalPixelsPath+'/healthbox1.tiff',
+    :storagetype   => 'GL',
+    :cache         => 0
+  )
+
+  MushGLTexture::cDefine(
+    :name          => "shield1-tex",
+    :type          => 'TIFF',
+    :filename      => MushConfig.cGlobalPixelsPath+'/shieldbox1.tiff',
+    :storagetype   => 'GL',
+    :cache         => 0
+  )
 
   @m_explo1Names = []
   100.times do |i|

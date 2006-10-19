@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } 74bLa8v94NQFxupv0Pj/cA
-# $Id: AdanaxisMeshLibrary.rb,v 1.19 2006/10/17 15:28:00 southa Exp $
+# $Id: AdanaxisMeshLibrary.rb,v 1.20 2006/10/18 13:22:08 southa Exp $
 # $Log: AdanaxisMeshLibrary.rb,v $
+# Revision 1.20  2006/10/18 13:22:08  southa
+# World rendering
+#
 # Revision 1.19  2006/10/17 15:28:00  southa
 # Player collisions
 #
@@ -411,6 +414,16 @@ class AdanaxisMeshLibrary
     "cosmos1-#{num}"
   end
 
+  def mItemsCreate
+    ['health', 'shield'].each do |prefix|
+      mesh = MushMesh.new("#{prefix}1")
+	    base1 = MushBasePrism.new(:order => 4)
+      mesh.mBaseAdd(base1)
+      mesh.mMaterialAdd("#{prefix}1-mat")
+      mesh.mMake
+    end
+  end
+  
   def mCreate
     mAttendantCreate
     mCubesCreate
@@ -422,5 +435,6 @@ class AdanaxisMeshLibrary
     mExploCreate
     mCosmosCreate
     mPlayerCreate
+    mItemsCreate
   end
 end
