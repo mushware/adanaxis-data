@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } aGTJVbl7QyXIWVg5D1mEzg
-# $Id: AdanaxisPieceKhazi.rb,v 1.19 2006/10/16 22:00:20 southa Exp $
+# $Id: AdanaxisPieceKhazi.rb,v 1.20 2006/10/17 15:28:00 southa Exp $
 # $Log: AdanaxisPieceKhazi.rb,v $
+# Revision 1.20  2006/10/17 15:28:00  southa
+# Player collisions
+#
 # Revision 1.19  2006/10/16 22:00:20  southa
 # Tweaks
 #
@@ -166,6 +169,31 @@ class AdanaxisPieceKhazi < MushPiece
       :flare_lifetime_range => (600..700)
       )
     MushGame.cSoundPlay("explode", mPost)
+    
+    objPost = mPost.dup
+    angVel = MushTools.cRotationInXYPlane(Math::PI / 200);
+    MushTools.cRotationInZWPlane(Math::PI / 473).mRotate(angVel);
+    MushTools.cRotationInYZPlane(Math::PI / 670).mRotate(angVel);
+
+    objPost.velocity = MushVector.new(0,0,0,0)
+    objPost.angular_velocity = angVel
+    
+    if rand < 0.5
+      AdanaxisPieceItem.cCreate(
+        :mesh_name => "health1",
+        :hit_points => 5.0,
+        :lifetime_msec => 100000,
+        :post => objPost
+      )
+    else
+      AdanaxisPieceItem.cCreate(
+        :mesh_name => "shield1",
+        :hit_points => 5.0,
+        :lifetime_msec => 100000,
+        :post => objPost
+      )
+    end
+    
   end
   
   def mCollisionHandle(event)
