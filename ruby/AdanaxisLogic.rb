@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } OEQ7ye4+ICpoJw+Z14qbnQ
-# $Id: AdanaxisLogic.rb,v 1.10 2006/10/17 15:28:00 southa Exp $
+# $Id: AdanaxisLogic.rb,v 1.11 2006/10/30 17:03:49 southa Exp $
 # $Log: AdanaxisLogic.rb,v $
+# Revision 1.11  2006/10/30 17:03:49  southa
+# Remnants creation
+#
 # Revision 1.10  2006/10/17 15:28:00  southa
 # Player collisions
 #
@@ -90,7 +93,6 @@ class AdanaxisLogic < MushLogic
   end
   
   def mCollisionEventConsume(event)
-    # Send each object with itself in the first position
     event.mPiece1.mLoad
     event.mPiece2.mLoad
     
@@ -100,9 +102,10 @@ class AdanaxisLogic < MushLogic
     hitPoints1 = event.mPiece1.mHitPoints
     hitPoints2 = event.mPiece2.mHitPoints
     
-    event.mPiece1.mHitPointsSet(hitPoints1 - hitPoints2)
-    event.mPiece2.mHitPointsSet(hitPoints2 - hitPoints1)
+    event.mPiece1.mHitPointsSet(hitPoints1 - hitPoints2) if event.mPiece1.mVulnerable && event.mPiece2.mDoesDamage
+    event.mPiece2.mHitPointsSet(hitPoints2 - hitPoints1) if event.mPiece2.mVulnerable && event.mPiece1.mDoesDamage
     
+    # Send to each object with itself in the first position
     event.mPiece1.mEventHandle(event)
     
     # Swap piece1 and piece2 in the event

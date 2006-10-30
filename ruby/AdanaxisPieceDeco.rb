@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } xOGGCYeMt0BNCjURov3s3Q
-# $Id: AdanaxisPieceDeco.rb,v 1.4 2006/10/19 15:41:34 southa Exp $
+# $Id: AdanaxisPieceDeco.rb,v 1.5 2006/10/30 17:03:49 southa Exp $
 # $Log: AdanaxisPieceDeco.rb,v $
+# Revision 1.5  2006/10/30 17:03:49  southa
+# Remnants creation
+#
 # Revision 1.4  2006/10/19 15:41:34  southa
 # Item handling
 #
@@ -36,6 +39,7 @@ class AdanaxisPieceDeco < AdanaxisPiece
   mushRegistered_install
 
   def initialize(inParams={})
+    AdanaxisUtil.cSpellCheck(inParams)
     @m_defaultType = "d"
     super
     @m_lifeMsec = inParams[:lifetime_msec] || 0

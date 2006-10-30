@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } iJ1K74BKpcBau3IxsHns9Q
-# $Id$
-# $Log$
+# $Id: AdanaxisPiece.rb,v 1.1 2006/10/30 17:03:49 southa Exp $
+# $Log: AdanaxisPiece.rb,v $
+# Revision 1.1  2006/10/30 17:03:49  southa
+# Remnants creation
+#
 
 class AdanaxisPiece < MushPiece
   def initialize(inParams)
@@ -30,7 +33,7 @@ class AdanaxisPiece < MushPiece
         # No action
       when Symbol
         $currentLogic.mRemnant.mCreate(
-          :type => @m_remnant,
+          :item_type => @m_remnant,
           :post => mPost
         )
       when Hash
@@ -41,5 +44,17 @@ class AdanaxisPiece < MushPiece
       else
         raise(RuntimeError, "Unknown remnant type #{@m_remnant.inspect}")
     end
+  end
+  
+  def mLimitedHealthAdd(inProportion)
+    newValue = mHitPoints + inProportion * mOriginalHitPoints
+    
+    newValue = [mOriginalHitPoints, newValue].min
+    newValue = [mHitPoints, newValue].max
+    
+    mHitPointsSet(newValue)
+  end
+  
+  def mLimitedShieldAdd(inProportion)
   end
 end

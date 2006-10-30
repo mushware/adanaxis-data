@@ -18,8 +18,11 @@
 #
 ##############################################################################
 #%Header } +qJXLcrDec2QZ7WFKpERPQ
-# $Id: space.rb,v 1.13 2006/10/19 15:41:35 southa Exp $
+# $Id: space.rb,v 1.14 2006/10/30 17:03:50 southa Exp $
 # $Log: space.rb,v $
+# Revision 1.14  2006/10/30 17:03:50  southa
+# Remnants creation
+#
 # Revision 1.13  2006/10/19 15:41:35  southa
 # Item handling
 #
@@ -92,30 +95,6 @@ class Adanaxis_menu1 < AdanaxisSpace
           :angular_velocity => angVel
           ),
         :remnant => :health1
-      )
-    end
-    
-    1.times do
-      AdanaxisPieceItem.cCreate(
-        :mesh_name => "health1",
-        :hit_points => 10.0,
-        :lifetime_msec => 10000,
-        :post => MushPost.new(
-          :position => MushVector.new(20,0,0,-40),
-          :angular_velocity => angVel
-        )
-      )
-    end
-    
-    1.times do
-      AdanaxisPieceItem.cCreate(
-        :mesh_name => "shield1",
-        :hit_points => 10.0,
-        :lifetime_msec => 100000,
-        :post => MushPost.new(
-          :position => MushVector.new(-20,0,0,-40),
-          :angular_velocity => angVel
-        )
       )
     end
     

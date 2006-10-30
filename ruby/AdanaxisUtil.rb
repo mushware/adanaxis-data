@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } 63kk9LVPAcoFqUyUUPiQfg
-# $Id: AdanaxisUtil.rb,v 1.2 2006/10/09 16:00:15 southa Exp $
+# $Id: AdanaxisUtil.rb,v 1.3 2006/10/30 17:03:50 southa Exp $
 # $Log: AdanaxisUtil.rb,v $
+# Revision 1.3  2006/10/30 17:03:50  southa
+# Remnants creation
+#
 # Revision 1.2  2006/10/09 16:00:15  southa
 # Intern generation
 #
@@ -39,12 +42,28 @@ class AdanaxisUtil < MushObject
   @c_symbols = {
     :angular_position => true,
     :angular_velocity => true,
+    :does_damage => true,
+    :embers => true,
+    :ember_lifetime_range => true,
+    :ember_scale_range => true,
+    :ember_speed_range => true,
+    :explosions => true,
+    :explosion_scale_range => true,
+    :explosion_speed_range => true,
+    :flares => true,
+    :flare_lifetime_range => true,
+    :flare_scale_range => true,
+    :flare_speed_range => true,
     :hit_points => true,
     :id_suffix => true,
+    :item_type => true,
+    :lifetime_msec => true,
     :mesh_name => true,
+    :owner => true,
     :position => true,
     :post => true,
     :remnant => true,
+    :render_scale => true,
     :seek_acceleration => true,
     :seek_speed => true,
     :target_types => true,

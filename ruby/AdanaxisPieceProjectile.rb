@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } JPjWkwGvzd5d5LJLXnphkQ
-# $Id: AdanaxisPieceProjectile.rb,v 1.9 2006/10/17 15:28:00 southa Exp $
+# $Id: AdanaxisPieceProjectile.rb,v 1.10 2006/10/30 17:03:50 southa Exp $
 # $Log: AdanaxisPieceProjectile.rb,v $
+# Revision 1.10  2006/10/30 17:03:50  southa
+# Remnants creation
+#
 # Revision 1.9  2006/10/17 15:28:00  southa
 # Player collisions
 #
@@ -51,6 +54,7 @@ class AdanaxisPieceProjectile < AdanaxisPiece
   mushRegistered_install
 
   def initialize(inParams={})
+    AdanaxisUtil.cSpellCheck(inParams)
     @m_defaultType = "f"
     super
     @m_owner = inParams[:owner] || ""

@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } 1H+rLloObKxiiVjoIDjJFw
-# $Id: AdanaxisPiecePlayer.rb,v 1.3 2006/10/17 15:28:00 southa Exp $
+# $Id: AdanaxisPiecePlayer.rb,v 1.4 2006/10/30 17:03:50 southa Exp $
 # $Log: AdanaxisPiecePlayer.rb,v $
+# Revision 1.4  2006/10/30 17:03:50  southa
+# Remnants creation
+#
 # Revision 1.3  2006/10/17 15:28:00  southa
 # Player collisions
 #
@@ -37,6 +40,7 @@ class AdanaxisPiecePlayer < AdanaxisPiece
   mushRegistered_install
   
   def initialize(inParams = {})
+    AdanaxisUtil.cSpellCheck(inParams)
     @m_defaultType = "p"
     super
     @m_hitPoints = inParams[:hit_points] || 100.0
@@ -53,4 +57,18 @@ class AdanaxisPiecePlayer < AdanaxisPiece
 
     @m_callInterval
   end
+  
+  def mCollectItem(inItem)
+    $currentLogic.mRemnant.mCollect(inItem, self)
+  end
+  
+  def mCollisionHandle(event)
+    super
+    case event.mPiece2
+      when AdanaxisPieceItem:
+        mCollectItem(event.mPiece2)
+        event.mPiece2.mExpireFlagSet(true)
+    end
+  end
+  
 end

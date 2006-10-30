@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } bWqJ8Rs4225yq5McUizgaw
-# $Id$
-# $Log$
+# $Id: AdanaxisRemnant.rb,v 1.1 2006/10/30 17:03:50 southa Exp $
+# $Log: AdanaxisRemnant.rb,v $
+# Revision 1.1  2006/10/30 17:03:50  southa
+# Remnants creation
+#
 
 require 'AdanaxisUtil.rb'
 
@@ -41,7 +44,7 @@ class AdanaxisRemnant < MushObject
   def mCreate(inParams)
     itemParams = {}
     
-    case inParams[:type]
+    case inParams[:item_type]
       when :health1
         itemParams.merge!(@m_healthDefaults)
       when :shield1
@@ -64,14 +67,25 @@ class AdanaxisRemnant < MushObject
     AdanaxisPieceItem.cCreate(itemParams)
   end
   
+  def mCollect(inItem, inPiece)
+    case inItem.mItemType
+      when :health1
+        inPiece.mLimitedHealthAdd(0.1) if inPiece.respond_to?(:mLimitedHealthAdd)
+      when :shield1
+        inPiece.mLimitedShieldAdd(0.1) if inPiece.respond_to?(:mLimitedShieldAdd)
+      else
+        raise(RuntimeError, "Collected unknown remnant type '#{inItem.inspect}'")
+      end
+  end
+
   def self.cStandardRemnant(inSequenceNum)
     retVal = nil
     
     if inSequenceNum == 0
       # No remnant
-    elsif inSequenceNum % 20 == 0
+    elsif inSequenceNum % 8 == 0
       retVal = :shield1
-    elsif inSequenceNum % 5 == 0
+    elsif inSequenceNum % 4 == 0
       retVal = :health1
     end
     retVal
