@@ -18,8 +18,11 @@
 #
 ##############################################################################
 #%Header } +qJXLcrDec2QZ7WFKpERPQ
-# $Id: space.rb,v 1.12 2006/10/18 13:22:08 southa Exp $
+# $Id: space.rb,v 1.13 2006/10/19 15:41:35 southa Exp $
 # $Log: space.rb,v $
+# Revision 1.13  2006/10/19 15:41:35  southa
+# Item handling
+#
 # Revision 1.12  2006/10/18 13:22:08  southa
 # World rendering
 #
@@ -87,8 +90,9 @@ class Adanaxis_menu1 < AdanaxisSpace
         :post => MushPost.new(
           :position => MushVector.new(0,0,0,-20),
           :angular_velocity => angVel
-          )
-        )
+          ),
+        :remnant => :health1
+      )
     end
     
     1.times do

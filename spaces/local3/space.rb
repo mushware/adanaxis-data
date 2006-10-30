@@ -18,8 +18,11 @@
 #
 ##############################################################################
 #%Header } XESH903Rz4omoAntOunkPg
-# $Id: space.rb,v 1.10 2006/10/15 17:12:53 southa Exp $
+# $Id: space.rb,v 1.11 2006/10/18 13:22:08 southa Exp $
 # $Log: space.rb,v $
+# Revision 1.11  2006/10/18 13:22:08  southa
+# World rendering
+#
 # Revision 1.10  2006/10/15 17:12:53  southa
 # Scripted explosions
 #
@@ -103,10 +106,10 @@ class Adanaxis_local3 < AdanaxisSpace
         :type => thisType,
         :target_types => targetTypes,
         :seek_speed => 0.05,
-        :seek_acceleration => 0.01
+        :seek_acceleration => 0.01,
+        :remnant => AdanaxisRemnant.cStandardRemnant(param)
         )
     end
-
     
     1000.times do |i|
       pos = MushTools.cRandomUnitVector * (7 + 20 * rand)

@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } OEQ7ye4+ICpoJw+Z14qbnQ
-# $Id: AdanaxisLogic.rb,v 1.9 2006/10/16 14:36:50 southa Exp $
+# $Id: AdanaxisLogic.rb,v 1.10 2006/10/17 15:28:00 southa Exp $
 # $Log: AdanaxisLogic.rb,v $
+# Revision 1.10  2006/10/17 15:28:00  southa
+# Player collisions
+#
 # Revision 1.9  2006/10/16 14:36:50  southa
 # Deco handling
 #
@@ -46,14 +49,18 @@
 # Event handling
 #
 
+require 'AdanaxisEffects.rb'
+require 'AdanaxisRemnant.rb'
+
 class AdanaxisLogic < MushLogic
 
   def initialize
     @m_outbox = []
     @m_effects = AdanaxisEffects.new
+    @m_remnant = AdanaxisRemnant.new
   end
 
-  mush_reader :m_effects, :m_view
+  mush_reader :m_effects, :m_remnant, :m_view
 
   def mLookup(id)
     # Only pieces for the moment

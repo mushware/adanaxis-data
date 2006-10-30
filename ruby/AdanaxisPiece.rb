@@ -1,7 +1,7 @@
 #%Header {
 ##############################################################################
 #
-# File data-adanaxis/ruby/AdanaxisPieceDeco.rb
+# File data-adanaxis/ruby/AdanaxisPiece.rb
 #
 # Copyright Andy Southgate 2006
 #
@@ -15,29 +15,31 @@
 # This software carries NO WARRANTY of any kind.
 #
 ##############################################################################
-#%Header } xOGGCYeMt0BNCjURov3s3Q
-# $Id: AdanaxisPieceDeco.rb,v 1.4 2006/10/19 15:41:34 southa Exp $
-# $Log: AdanaxisPieceDeco.rb,v $
-# Revision 1.4  2006/10/19 15:41:34  southa
-# Item handling
-#
-# Revision 1.3  2006/10/16 14:36:50  southa
-# Deco handling
-#
-# Revision 1.2  2006/10/15 17:12:53  southa
-# Scripted explosions
-#
-# Revision 1.1  2006/10/14 16:59:43  southa
-# Ruby Deco objects
-#
+#%Header } iJ1K74BKpcBau3IxsHns9Q
+# $Id$
+# $Log$
 
-class AdanaxisPieceDeco < AdanaxisPiece
-  extend MushRegistered
-  mushRegistered_install
-
-  def initialize(inParams={})
-    @m_defaultType = "d"
+class AdanaxisPiece < MushPiece
+  def initialize(inParams)
     super
-    @m_lifeMsec = inParams[:lifetime_msec] || 0
+  end
+
+  def mRemnantCreate
+    case @m_remnant
+      when NilClass
+        # No action
+      when Symbol
+        $currentLogic.mRemnant.mCreate(
+          :type => @m_remnant,
+          :post => mPost
+        )
+      when Hash
+        $currentLogic.mRemnant.mCreate(@m_remnant.merge(
+          :post => mPost
+          )
+        )
+      else
+        raise(RuntimeError, "Unknown remnant type #{@m_remnant.inspect}")
+    end
   end
 end

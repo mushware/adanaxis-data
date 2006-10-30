@@ -16,10 +16,13 @@
 #
 ##############################################################################
 #%Header } Wc8DiQMb3X3SK/ndcDlP7Q
-# $Id$
-# $Log$
+# $Id: AdanaxisPieceItem.rb,v 1.1 2006/10/19 15:41:35 southa Exp $
+# $Log: AdanaxisPieceItem.rb,v $
+# Revision 1.1  2006/10/19 15:41:35  southa
+# Item handling
+#
 
-class AdanaxisPieceItem < MushPiece
+class AdanaxisPieceItem < AdanaxisPiece
   extend MushRegistered
   mushRegistered_install
 
@@ -27,7 +30,7 @@ class AdanaxisPieceItem < MushPiece
     @m_defaultType = "i"
     super
     @m_lifeMsec = inParams[:lifetime_msec] || 0
-    @m_callInterval = 300
+    @m_callInterval = 1000
   end
   
   def mActionTimer

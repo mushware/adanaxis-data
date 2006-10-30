@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } JPjWkwGvzd5d5LJLXnphkQ
-# $Id: AdanaxisPieceProjectile.rb,v 1.8 2006/10/17 11:05:54 southa Exp $
+# $Id: AdanaxisPieceProjectile.rb,v 1.9 2006/10/17 15:28:00 southa Exp $
 # $Log: AdanaxisPieceProjectile.rb,v $
+# Revision 1.9  2006/10/17 15:28:00  southa
+# Player collisions
+#
 # Revision 1.8  2006/10/17 11:05:54  southa
 # Expiry events
 #
@@ -43,7 +46,7 @@
 # Khazi fire
 #
 
-class AdanaxisPieceProjectile < MushPiece
+class AdanaxisPieceProjectile < AdanaxisPiece
   extend MushRegistered
   mushRegistered_install
 

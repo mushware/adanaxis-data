@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } aGTJVbl7QyXIWVg5D1mEzg
-# $Id: AdanaxisPieceKhazi.rb,v 1.20 2006/10/17 15:28:00 southa Exp $
+# $Id: AdanaxisPieceKhazi.rb,v 1.21 2006/10/20 15:38:51 southa Exp $
 # $Log: AdanaxisPieceKhazi.rb,v $
+# Revision 1.21  2006/10/20 15:38:51  southa
+# Item collection
+#
 # Revision 1.20  2006/10/17 15:28:00  southa
 # Player collisions
 #
@@ -85,7 +88,7 @@ require 'AdanaxisEvents.rb'
 require 'AdanaxisPieceProjectile.rb'
 require 'AdanaxisUtil.rb'
 
-class AdanaxisPieceKhazi < MushPiece
+class AdanaxisPieceKhazi < AdanaxisPiece
   extend MushRegistered
   mushRegistered_install
   
@@ -106,6 +109,7 @@ class AdanaxisPieceKhazi < MushPiece
     }.merge(inParams)
     
     @m_ai = AdanaxisAIKhazi.new(aiParams)
+    @m_remnant = inParams[:remnant]
   end
   
   def mFireHandle(event)
@@ -178,20 +182,9 @@ class AdanaxisPieceKhazi < MushPiece
     objPost.velocity = MushVector.new(0,0,0,0)
     objPost.angular_velocity = angVel
     
-    if rand < 0.5
-      AdanaxisPieceItem.cCreate(
-        :mesh_name => "health1",
-        :hit_points => 5.0,
-        :lifetime_msec => 100000,
-        :post => objPost
-      )
-    else
-      AdanaxisPieceItem.cCreate(
-        :mesh_name => "shield1",
-        :hit_points => 5.0,
-        :lifetime_msec => 100000,
-        :post => objPost
-      )
+    case event.mPiece2
+      when AdanaxisPieceProjectile:
+        mRemnantCreate if event.mPiece2.mOwner =~ /^p/
     end
     
   end
@@ -204,6 +197,8 @@ class AdanaxisPieceKhazi < MushPiece
         @m_ai.mTargetOverride(otherPiece.mOwner)
     end
   end
+  
+
 end
 
 # Class: AdanaxisPieceKhazi

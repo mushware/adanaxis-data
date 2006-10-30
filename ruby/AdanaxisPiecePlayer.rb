@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } 1H+rLloObKxiiVjoIDjJFw
-# $Id: AdanaxisPiecePlayer.rb,v 1.2 2006/10/04 13:35:21 southa Exp $
+# $Id: AdanaxisPiecePlayer.rb,v 1.3 2006/10/17 15:28:00 southa Exp $
 # $Log: AdanaxisPiecePlayer.rb,v $
+# Revision 1.3  2006/10/17 15:28:00  southa
+# Player collisions
+#
 # Revision 1.2  2006/10/04 13:35:21  southa
 # Selective targetting
 #
@@ -29,7 +32,7 @@ require 'Mushware.rb'
 require 'AdanaxisAI.rb'
 require 'AdanaxisEvents.rb'
 
-class AdanaxisPiecePlayer < MushPiece
+class AdanaxisPiecePlayer < AdanaxisPiece
   extend MushRegistered
   mushRegistered_install
   

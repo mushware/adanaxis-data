@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } 63kk9LVPAcoFqUyUUPiQfg
-# $Id: AdanaxisUtil.rb,v 1.1 2006/10/08 11:31:32 southa Exp $
+# $Id: AdanaxisUtil.rb,v 1.2 2006/10/09 16:00:15 southa Exp $
 # $Log: AdanaxisUtil.rb,v $
+# Revision 1.2  2006/10/09 16:00:15  southa
+# Intern generation
+#
 # Revision 1.1  2006/10/08 11:31:32  southa
 # Hit points
 #
@@ -41,11 +44,13 @@ class AdanaxisUtil < MushObject
     :mesh_name => true,
     :position => true,
     :post => true,
+    :remnant => true,
     :seek_acceleration => true,
     :seek_speed => true,
     :target_types => true,
     :type => true,
-    :velocity => true
+    :velocity => true,
+    :velocity_factor => true
     }
 end
 

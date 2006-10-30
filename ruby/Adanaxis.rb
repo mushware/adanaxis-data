@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } Vr8SNTx01PRrZQGDsHJ+7Q
-# $Id: Adanaxis.rb,v 1.19 2006/10/17 15:27:59 southa Exp $
+# $Id: Adanaxis.rb,v 1.20 2006/10/19 15:41:34 southa Exp $
 # $Log: Adanaxis.rb,v $
+# Revision 1.20  2006/10/19 15:41:34  southa
+# Item handling
+#
 # Revision 1.19  2006/10/17 15:27:59  southa
 # Player collisions
 #
@@ -69,11 +72,13 @@ require 'AdanaxisLogic.rb'
 require 'AdanaxisMaterialLibrary.rb'
 require 'AdanaxisMenu.rb'
 require 'AdanaxisMeshLibrary.rb'
+require 'AdanaxisPiece.rb'
 require 'AdanaxisPieceDeco.rb'
 require 'AdanaxisPieceItem.rb'
 require 'AdanaxisPieceKhazi.rb'
 require 'AdanaxisPiecePlayer.rb'
 require 'AdanaxisPieceProjectile.rb'
+require 'AdanaxisRemnant.rb'
 require 'AdanaxisRender.rb'
 require 'AdanaxisShaderLibrary.rb'
 require 'AdanaxisSpace.rb'
