@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } Wc8DiQMb3X3SK/ndcDlP7Q
-# $Id: AdanaxisPieceItem.rb,v 1.2 2006/10/30 17:03:50 southa Exp $
+# $Id: AdanaxisPieceItem.rb,v 1.3 2006/10/30 19:36:38 southa Exp $
 # $Log: AdanaxisPieceItem.rb,v $
+# Revision 1.3  2006/10/30 19:36:38  southa
+# Item collection
+#
 # Revision 1.2  2006/10/30 17:03:50  southa
 # Remnants creation
 #
@@ -34,16 +37,16 @@ class AdanaxisPieceItem < AdanaxisPiece
     @m_defaultType = "i"
     super
     @m_lifeMsec = inParams[:lifetime_msec] || 0
-    mDoesDamageSet(inParams[:does_damage] || false)
+    mDamageFactorSet(inParams[:damage_factor] || 0.0)
     @m_itemType = inParams[:item_type] || raise(RuntimeError, "No item_type supplied")
     @m_callInterval = 1000
   end
   
   mush_accessor :m_itemType
   
-  def mVulnerable
-    # Items are invulnerable for a period after creation
-    return mAgeMsec > 3000
+  def mVulnerability
+    # Items are fairly invulnerable for a period after creation
+    return (mAgeMsec < 2000) ? 0.1 : 1.0
   end
   
   def mActionTimer

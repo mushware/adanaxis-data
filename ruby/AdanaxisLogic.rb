@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } OEQ7ye4+ICpoJw+Z14qbnQ
-# $Id: AdanaxisLogic.rb,v 1.11 2006/10/30 17:03:49 southa Exp $
+# $Id: AdanaxisLogic.rb,v 1.12 2006/10/30 19:36:38 southa Exp $
 # $Log: AdanaxisLogic.rb,v $
+# Revision 1.12  2006/10/30 19:36:38  southa
+# Item collection
+#
 # Revision 1.11  2006/10/30 17:03:49  southa
 # Remnants creation
 #
@@ -102,8 +105,8 @@ class AdanaxisLogic < MushLogic
     hitPoints1 = event.mPiece1.mHitPoints
     hitPoints2 = event.mPiece2.mHitPoints
     
-    event.mPiece1.mHitPointsSet(hitPoints1 - hitPoints2) if event.mPiece1.mVulnerable && event.mPiece2.mDoesDamage
-    event.mPiece2.mHitPointsSet(hitPoints2 - hitPoints1) if event.mPiece2.mVulnerable && event.mPiece1.mDoesDamage
+    event.mPiece1.mDamageTake(hitPoints2 * event.mPiece2.mDamageFactor)
+    event.mPiece2.mDamageTake(hitPoints1 * event.mPiece1.mDamageFactor)
     
     # Send to each object with itself in the first position
     event.mPiece1.mEventHandle(event)

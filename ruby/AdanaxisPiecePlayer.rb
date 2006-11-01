@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } 1H+rLloObKxiiVjoIDjJFw
-# $Id: AdanaxisPiecePlayer.rb,v 1.4 2006/10/30 17:03:50 southa Exp $
+# $Id: AdanaxisPiecePlayer.rb,v 1.5 2006/10/30 19:36:38 southa Exp $
 # $Log: AdanaxisPiecePlayer.rb,v $
+# Revision 1.5  2006/10/30 19:36:38  southa
+# Item collection
+#
 # Revision 1.4  2006/10/30 17:03:50  southa
 # Remnants creation
 #
@@ -45,14 +48,37 @@ class AdanaxisPiecePlayer < AdanaxisPiece
     super
     @m_hitPoints = inParams[:hit_points] || 100.0
     @m_originalHitPoints = @m_hitPoints
+    @m_shield = inParams[:shield] || 0.0
+    @m_originalShield = 100.0
 
     @m_callInterval = 100
+  end
+  
+  mush_accessor :m_shield, :m_originalShield
+  
+  def mShieldRatio
+    @m_shield / @m_originalShield
+  end
+  
+  def mVulnerability
+    vuln = ((150.0 - @m_shield) / 150.0) - 0.2
+    vuln = 0.0 if vuln < 0.0
+    vuln = 1.0 if vuln > 1.0 || @m_shield == 0
+    
+    return vuln
+  end
+  
+  def mDamageTake(inDamage)
+    @m_shield -= inDamage
+    @m_shield = 0.0 if @m_shield < 0.0
+    super
   end
   
   def mActionTimer
     mLoad
     $currentGame.mView.mDashboard.mUpdate(
-      :hit_point_ratio => mHitPointRatio
+      :hit_point_ratio => mHitPointRatio,
+      :shield_ratio => mShieldRatio
       )
 
     @m_callInterval
@@ -64,6 +90,8 @@ class AdanaxisPiecePlayer < AdanaxisPiece
   
   def mCollisionHandle(event)
     super
+    
+    
     case event.mPiece2
       when AdanaxisPieceItem:
         mCollectItem(event.mPiece2)

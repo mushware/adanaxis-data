@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } iJ1K74BKpcBau3IxsHns9Q
-# $Id: AdanaxisPiece.rb,v 1.1 2006/10/30 17:03:49 southa Exp $
+# $Id: AdanaxisPiece.rb,v 1.2 2006/10/30 19:36:38 southa Exp $
 # $Log: AdanaxisPiece.rb,v $
+# Revision 1.2  2006/10/30 19:36:38  southa
+# Item collection
+#
 # Revision 1.1  2006/10/30 17:03:49  southa
 # Remnants creation
 #
@@ -56,5 +59,11 @@ class AdanaxisPiece < MushPiece
   end
   
   def mLimitedShieldAdd(inProportion)
+    newValue = mShield + inProportion * mOriginalShield
+    
+    newValue = [mOriginalShield, newValue].min
+    newValue = [mShield, newValue].max
+    
+    mShieldSet(newValue)
   end
 end
