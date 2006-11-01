@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } ZGY5KHoT9+kVQm3zBeLowg
-# $Id: AdanaxisFontLibrary.rb,v 1.5 2006/08/01 17:21:17 southa Exp $
+# $Id: AdanaxisFontLibrary.rb,v 1.6 2006/10/17 20:43:00 southa Exp $
 # $Log: AdanaxisFontLibrary.rb,v $
+# Revision 1.6  2006/10/17 20:43:00  southa
+# Dashboard work
+#
 # Revision 1.5  2006/08/01 17:21:17  southa
 # River demo
 #
@@ -26,6 +29,9 @@
 #
 
 class AdanaxisFontLibrary < MushObject
+  DASHBOARD_HEALTH = 0
+  DASHBOARD_SHIELD = 1
+
   def self.cCreate
   	MushGLTexture::cDefine(
 		  :name          => 'library-font1-tex',

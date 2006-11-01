@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } jlpar81vJMXtlQaf/66fpw
-# $Id: AdanaxisDashboard.rb,v 1.2 2006/10/17 20:43:00 southa Exp $
+# $Id: AdanaxisDashboard.rb,v 1.3 2006/11/01 10:07:12 southa Exp $
 # $Log: AdanaxisDashboard.rb,v $
+# Revision 1.3  2006/11/01 10:07:12  southa
+# Shield handling
+#
 # Revision 1.2  2006/10/17 20:43:00  southa
 # Dashboard work
 #
@@ -84,7 +87,7 @@ class AdanaxisDashboard < MushDashboard
       else MushVector.new(1,1,1,alpha)
     end
     
-    mRenderValue(0, value, colour)
+    mRenderValue(AdanaxisFontLibrary::DASHBOARD_HEALTH, value, colour)
     
     alpha = mAlphaForValue(@m_shieldRatio)
     value = Integer(@m_shieldRatio.mValue * 100) 
@@ -95,6 +98,6 @@ class AdanaxisDashboard < MushDashboard
       else MushVector.new(0.6,0.8,1,[alpha, 0.4].max)
     end
 
-    mRenderValue(1, value, colour)
+    mRenderValue(AdanaxisFontLibrary::DASHBOARD_SHIELD, value, colour)
   end
 end

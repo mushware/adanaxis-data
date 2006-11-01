@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } aGTJVbl7QyXIWVg5D1mEzg
-# $Id: AdanaxisPieceKhazi.rb,v 1.21 2006/10/20 15:38:51 southa Exp $
+# $Id: AdanaxisPieceKhazi.rb,v 1.22 2006/10/30 17:03:50 southa Exp $
 # $Log: AdanaxisPieceKhazi.rb,v $
+# Revision 1.22  2006/10/30 17:03:50  southa
+# Remnants creation
+#
 # Revision 1.21  2006/10/20 15:38:51  southa
 # Item collection
 #
@@ -99,7 +102,6 @@ class AdanaxisPieceKhazi < AdanaxisPiece
     super
     
     @m_callInterval = 100
-    @numTimes = rand(30)
     
     aiParams = {
       :seek_speed => 0.02,
@@ -110,24 +112,14 @@ class AdanaxisPieceKhazi < AdanaxisPiece
     
     @m_ai = AdanaxisAIKhazi.new(aiParams)
     @m_remnant = inParams[:remnant]
+    @m_weaponName = inParams[:weapon] || :khazi_base
+    @m_weapon = $currentGame.mSpace.mWeaponLibrary.mWeapon(@m_weaponName)
   end
   
   def mFireHandle(event)
-    projPost = event.post.dup
-    
-    vel = MushVector.new(0,0,0,-1)
-    
-    projPost.angular_position.mRotate(vel)
-    
-    projPost.velocity = projPost.velocity + vel
-    projPost.angular_velocity = MushRotation.new
-    
-    projectile = AdanaxisPieceProjectile.cCreate(
-      :mesh_name => "projectile",
-      :post => projPost,
-      :owner => @m_id,
-      :lifetime_msec => 15000
-    )
+    if @m_weapon
+      @m_weapon.mFire(event, self)
+    end
   end
 
   def mEventHandle(event)
@@ -143,9 +135,6 @@ class AdanaxisPieceKhazi < AdanaxisPiece
 
     @m_callInterval = @m_ai.mActByState(self)
 
-    @numTimes += 1
-    mFire if (@numTimes % 30) == 0
-
     mSave
     
     $currentLogic.mReceiveSequence
@@ -154,9 +143,11 @@ class AdanaxisPieceKhazi < AdanaxisPiece
   end
 
   def mFire
-    event = AdanaxisEventFire.new
-    event.post = @m_post
-    $currentLogic.mEventConsume(event, @m_id, @m_id)  
+    if @m_weapon.mFireOpportunityTake
+      event = AdanaxisEventFire.new
+      event.post = @m_post
+      $currentLogic.mEventConsume(event, @m_id, @m_id)
+    end
   end
   
   def mFatalCollisionHandle(event)

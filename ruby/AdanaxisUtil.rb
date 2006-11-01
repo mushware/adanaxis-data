@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } 63kk9LVPAcoFqUyUUPiQfg
-# $Id: AdanaxisUtil.rb,v 1.3 2006/10/30 17:03:50 southa Exp $
+# $Id: AdanaxisUtil.rb,v 1.4 2006/10/30 19:36:38 southa Exp $
 # $Log: AdanaxisUtil.rb,v $
+# Revision 1.4  2006/10/30 19:36:38  southa
+# Item collection
+#
 # Revision 1.3  2006/10/30 17:03:50  southa
 # Remnants creation
 #
@@ -50,6 +53,7 @@ class AdanaxisUtil < MushObject
     :explosions => true,
     :explosion_scale_range => true,
     :explosion_speed_range => true,
+    :fire_rate_msec => true,
     :flares => true,
     :flare_lifetime_range => true,
     :flare_scale_range => true,
@@ -62,10 +66,12 @@ class AdanaxisUtil < MushObject
     :owner => true,
     :position => true,
     :post => true,
+    :projectile_mesh => true,
     :remnant => true,
     :render_scale => true,
     :seek_acceleration => true,
     :seek_speed => true,
+    :speed => true,
     :target_types => true,
     :type => true,
     :velocity => true,

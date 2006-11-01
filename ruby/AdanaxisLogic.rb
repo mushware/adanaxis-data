@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } OEQ7ye4+ICpoJw+Z14qbnQ
-# $Id: AdanaxisLogic.rb,v 1.12 2006/10/30 19:36:38 southa Exp $
+# $Id: AdanaxisLogic.rb,v 1.13 2006/11/01 10:07:12 southa Exp $
 # $Log: AdanaxisLogic.rb,v $
+# Revision 1.13  2006/11/01 10:07:12  southa
+# Shield handling
+#
 # Revision 1.12  2006/10/30 19:36:38  southa
 # Item collection
 #
@@ -64,6 +67,7 @@ class AdanaxisLogic < MushLogic
     @m_outbox = []
     @m_effects = AdanaxisEffects.new
     @m_remnant = AdanaxisRemnant.new
+    @m_wea
   end
 
   mush_reader :m_effects, :m_remnant, :m_view

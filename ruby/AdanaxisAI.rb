@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } ZJhgffsl43t4RqQcN4aPag
-# $Id: AdanaxisAI.rb,v 1.8 2006/10/13 14:21:25 southa Exp $
+# $Id: AdanaxisAI.rb,v 1.9 2006/10/15 17:12:53 southa Exp $
 # $Log: AdanaxisAI.rb,v $
+# Revision 1.9  2006/10/15 17:12:53  southa
+# Scripted explosions
+#
 # Revision 1.8  2006/10/13 14:21:25  southa
 # Collision handling
 #
@@ -113,6 +116,7 @@ class AdanaxisAI < MushObject
   end
 
   def mStateActionSeek
+    onTarget = false
     mTargetSelect unless @m_targetID
     unless @m_targetID
       # No target to seek
@@ -121,7 +125,7 @@ class AdanaxisAI < MushObject
       begin
         targetPiece = MushGame.cPieceLookup(@m_targetID)
         targetPos = targetPiece.post.position
-        MushUtil.cRotateAndSeek(@r_post,
+        onTarget = MushUtil.cRotateAndSeek(@r_post,
           targetPos, # Target
           @m_seekSpeed, # Maximum speed
           @m_seekAcceleration # Acceleration
@@ -135,6 +139,8 @@ class AdanaxisAI < MushObject
     if mStateExpired?
       mStateChangeWaypoint(30000, @m_waypoint)
     end
+    
+    @r_piece.mFire if onTarget
     
     100
   end

@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } Vr8SNTx01PRrZQGDsHJ+7Q
-# $Id: Adanaxis.rb,v 1.20 2006/10/19 15:41:34 southa Exp $
+# $Id: Adanaxis.rb,v 1.21 2006/10/30 17:03:49 southa Exp $
 # $Log: Adanaxis.rb,v $
+# Revision 1.21  2006/10/30 17:03:49  southa
+# Remnants creation
+#
 # Revision 1.20  2006/10/19 15:41:34  southa
 # Item handling
 #
@@ -84,3 +87,5 @@ require 'AdanaxisShaderLibrary.rb'
 require 'AdanaxisSpace.rb'
 require 'AdanaxisTextureLibrary.rb'
 require 'AdanaxisUtil.rb'
+require 'AdanaxisWeapon.rb'
+require 'AdanaxisWeaponLibrary.rb'
