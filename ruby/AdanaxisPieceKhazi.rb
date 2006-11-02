@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } aGTJVbl7QyXIWVg5D1mEzg
-# $Id: AdanaxisPieceKhazi.rb,v 1.22 2006/10/30 17:03:50 southa Exp $
+# $Id: AdanaxisPieceKhazi.rb,v 1.23 2006/11/01 13:04:21 southa Exp $
 # $Log: AdanaxisPieceKhazi.rb,v $
+# Revision 1.23  2006/11/01 13:04:21  southa
+# Initial weapon handling
+#
 # Revision 1.22  2006/10/30 17:03:50  southa
 # Remnants creation
 #
@@ -125,7 +128,7 @@ class AdanaxisPieceKhazi < AdanaxisPiece
   def mEventHandle(event)
     case event
       when AdanaxisEventFire: mFireHandle(event)
-      else super(event)
+      else super
     end
     @m_callInterval
   end
@@ -145,7 +148,7 @@ class AdanaxisPieceKhazi < AdanaxisPiece
   def mFire
     if @m_weapon.mFireOpportunityTake
       event = AdanaxisEventFire.new
-      event.post = @m_post
+      event.mPostSet(@m_post)
       $currentLogic.mEventConsume(event, @m_id, @m_id)
     end
   end

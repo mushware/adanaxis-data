@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } 1H+rLloObKxiiVjoIDjJFw
-# $Id: AdanaxisPiecePlayer.rb,v 1.5 2006/10/30 19:36:38 southa Exp $
+# $Id: AdanaxisPiecePlayer.rb,v 1.6 2006/11/01 10:07:13 southa Exp $
 # $Log: AdanaxisPiecePlayer.rb,v $
+# Revision 1.6  2006/11/01 10:07:13  southa
+# Shield handling
+#
 # Revision 1.5  2006/10/30 19:36:38  southa
 # Item collection
 #
@@ -50,10 +53,12 @@ class AdanaxisPiecePlayer < AdanaxisPiece
     @m_originalHitPoints = @m_hitPoints
     @m_shield = inParams[:shield] || 0.0
     @m_originalShield = 100.0
+    @m_weaponName = inParams[:weapon] || :player_base
+    @m_weapon = $currentGame.mSpace.mWeaponLibrary.mWeapon(@m_weaponName)
 
     @m_callInterval = 100
   end
-  
+
   mush_accessor :m_shield, :m_originalShield
   
   def mShieldRatio
@@ -74,6 +79,14 @@ class AdanaxisPiecePlayer < AdanaxisPiece
     super
   end
   
+  def mEventHandle(event)
+    case event
+      when AdanaxisEventFire: mFireHandle(event)
+      else super
+    end
+    @m_callInterval
+  end
+  
   def mActionTimer
     mLoad
     $currentGame.mView.mDashboard.mUpdate(
@@ -90,8 +103,7 @@ class AdanaxisPiecePlayer < AdanaxisPiece
   
   def mCollisionHandle(event)
     super
-    
-    
+
     case event.mPiece2
       when AdanaxisPieceItem:
         mCollectItem(event.mPiece2)
@@ -99,4 +111,10 @@ class AdanaxisPiecePlayer < AdanaxisPiece
     end
   end
   
+  def mFireHandle(event)
+    mLoad
+    if @m_weapon
+      @m_weapon.mFire(event, self)
+    end
+  end
 end

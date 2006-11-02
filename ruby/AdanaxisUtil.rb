@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } 63kk9LVPAcoFqUyUUPiQfg
-# $Id: AdanaxisUtil.rb,v 1.4 2006/10/30 19:36:38 southa Exp $
+# $Id: AdanaxisUtil.rb,v 1.5 2006/11/01 13:04:21 southa Exp $
 # $Log: AdanaxisUtil.rb,v $
+# Revision 1.5  2006/11/01 13:04:21  southa
+# Initial weapon handling
+#
 # Revision 1.4  2006/10/30 19:36:38  southa
 # Item collection
 #
@@ -54,6 +57,7 @@ class AdanaxisUtil < MushObject
     :explosion_scale_range => true,
     :explosion_speed_range => true,
     :fire_rate_msec => true,
+    :fire_sound => true,
     :flares => true,
     :flare_lifetime_range => true,
     :flare_scale_range => true,
@@ -63,6 +67,7 @@ class AdanaxisUtil < MushObject
     :item_type => true,
     :lifetime_msec => true,
     :mesh_name => true,
+    :offset_sequence => true,
     :owner => true,
     :position => true,
     :post => true,

@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } fqw0Kg8SFKBRqHTmFMXeGw
-# $Id$
-# $Log$
+# $Id: AdanaxisWeaponLibrary.rb,v 1.1 2006/11/01 13:04:21 southa Exp $
+# $Log: AdanaxisWeaponLibrary.rb,v $
+# Revision 1.1  2006/11/01 13:04:21  southa
+# Initial weapon handling
+#
 #
 
 require 'AdanaxisWeapon.rb'
@@ -28,8 +31,15 @@ class AdanaxisWeaponLibrary < MushObject
   end
   
   def mCreate
-    @m_weapons[:base] = AdanaxisWeapon.new(
-      :projectile_mesh => 'projectile'
+    @m_weapons[:player_base] = AdanaxisWeapon.new(
+      :projectile_mesh => 'projectile',
+      :speed => 1.0,
+      :fire_rate_msec => 200,
+      :offset_sequence => [
+        MushVector.new(-1,0,0,0),
+        MushVector.new(1,0,0,0)
+      ],
+      :fire_sound => 'fire'
     )
     
     @m_weapons[:khazi_base] = AdanaxisWeapon.new(

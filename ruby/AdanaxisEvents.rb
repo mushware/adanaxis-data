@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } fAZMXASsvVkN8FSXXDhczg
-# $Id: AdanaxisEvents.rb,v 1.2 2006/08/25 01:44:56 southa Exp $
+# $Id: AdanaxisEvents.rb,v 1.3 2006/10/09 16:00:15 southa Exp $
 # $Log: AdanaxisEvents.rb,v $
+# Revision 1.3  2006/10/09 16:00:15  southa
+# Intern generation
+#
 # Revision 1.2  2006/08/25 01:44:56  southa
 # Khazi fire
 #
@@ -27,9 +30,8 @@
 
 class AdanaxisEventFire < MushEvent
   def initialize
-    @post = MushPost.new
+    @m_post = MushPost.new
   end
   
-  attr_accessor :post
+  mush_accessor :m_post
 end
-

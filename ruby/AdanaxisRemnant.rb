@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } bWqJ8Rs4225yq5McUizgaw
-# $Id: AdanaxisRemnant.rb,v 1.1 2006/10/30 17:03:50 southa Exp $
+# $Id: AdanaxisRemnant.rb,v 1.2 2006/10/30 19:36:38 southa Exp $
 # $Log: AdanaxisRemnant.rb,v $
+# Revision 1.2  2006/10/30 19:36:38  southa
+# Item collection
+#
 # Revision 1.1  2006/10/30 17:03:50  southa
 # Remnants creation
 #
@@ -61,8 +64,6 @@ class AdanaxisRemnant < MushObject
       :velocity => itemParams[:post].velocity * velocityFactor,
       :angular_velocity => MushTools.cRandomAngularVelocity(0.01)
     )
-    
-    AdanaxisUtil.cSpellCheck(inParams)
     
     AdanaxisPieceItem.cCreate(itemParams)
   end
