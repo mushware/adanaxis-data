@@ -20,8 +20,11 @@ these defaults, so it may be better to edit there instead of here.
  *
  * This software carries NO WARRANTY of any kind.
  *
- * $Id: axisconfig-default.xml,v 1.7 2006/07/11 12:37:51 southa Exp $
+ * $Id: axisconfig-default.xml,v 1.8 2006/07/28 16:52:18 southa Exp $
  * $Log: axisconfig-default.xml,v $
+ * Revision 1.8  2006/07/28 16:52:18  southa
+ * Options work
+ *
  * Revision 1.7  2006/07/11 12:37:51  southa
  * Control configuration
  *
@@ -143,7 +146,7 @@ these defaults, so it may be better to edit there instead of here.
 <deviceDamping>0.05</deviceDamping>
 <upKey>104</upKey>
 <downKey>121</downKey>
-<requiredKey>1000</requiredKey>
+<requiredKey>1002</requiredKey>
 <minBound>0</minBound>
 <maxBound>0</maxBound>
 <axisName>"Look in hidden axis"</axisName>

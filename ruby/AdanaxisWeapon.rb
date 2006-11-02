@@ -16,14 +16,20 @@
 #
 ##############################################################################
 #%Header } Xu79QXYia2BFmo2DZ89f+A
-# $Id: AdanaxisWeapon.rb,v 1.1 2006/11/01 13:04:21 southa Exp $
+# $Id: AdanaxisWeapon.rb,v 1.2 2006/11/02 09:47:32 southa Exp $
 # $Log: AdanaxisWeapon.rb,v $
+# Revision 1.2  2006/11/02 09:47:32  southa
+# Player weapon control
+#
 # Revision 1.1  2006/11/01 13:04:21  southa
 # Initial weapon handling
 #
 
 class AdanaxisWeapon < MushObject
   @@c_defaultOffset = [MushVector.new(0,0,0,0)]
+  @@c_defaultAngularVelocity = MushTools.cRotationInXYPlane(0.02)
+  MushTools.cRotationInXZPlane(0.05).mRotate(@@c_defaultAngularVelocity)
+  MushTools.cRotationInYZPlane(0.07).mRotate(@@c_defaultAngularVelocity)
 
   def initialize(inParams = {})
     AdanaxisUtil.cSpellCheck(inParams)
@@ -34,6 +40,7 @@ class AdanaxisWeapon < MushObject
     @m_offsetSequence = inParams[:offset_sequence] || @@c_defaultOffset
     @m_offsetNumber = 0
     @m_fireSound = inParams[:fire_sound]
+    @m_angularVelocity = inParams[:angular_velocity] || @@c_defaultAngularVelocity
     
     @m_lastFireMsec = 0
   end
@@ -50,15 +57,27 @@ class AdanaxisWeapon < MushObject
   def mFire(inEvent, inPiece)
     projPost = inEvent.mPost.dup
     
+    # Get player forward velocity but not transverse
+    vel = projPost.velocity
+    projPost.angular_position.mInverse.mRotate(vel)
+    vel.x = 0
+    vel.y = 0
+    vel.z = 0
+    vel.w = vel.w - @m_speed
+    
     offset = @m_offsetSequence[@m_offsetNumber].dup
-    vel = MushVector.new(0,0,0,-@m_speed)
     
     projPost.angular_position.mRotate(offset)
     projPost.angular_position.mRotate(vel)
     
     projPost.position = projPost.position + offset
-    projPost.velocity = projPost.velocity + vel
-    projPost.angular_velocity = MushRotation.new
+    projPost.velocity = vel
+    
+    # Apply the angular velocity in the object frame
+    angVel = projPost.angular_position.mInverse
+    @m_angularVelocity.mRotate(angVel)
+    projPost.angular_position.mRotate(angVel)
+    projPost.angular_velocity = angVel
     
     retVal = AdanaxisPieceProjectile.cCreate(
       :mesh_name => @m_projectileMesh,
