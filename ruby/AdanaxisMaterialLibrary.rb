@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } Qn1dyBC0obbg8YEx3MpSKg
-# $Id: AdanaxisMaterialLibrary.rb,v 1.12 2006/10/18 13:22:08 southa Exp $
+# $Id: AdanaxisMaterialLibrary.rb,v 1.13 2006/10/19 15:41:34 southa Exp $
 # $Log: AdanaxisMaterialLibrary.rb,v $
+# Revision 1.13  2006/10/19 15:41:34  southa
+# Item handling
+#
 # Revision 1.12  2006/10/18 13:22:08  southa
 # World rendering
 #
@@ -56,11 +59,13 @@ class AdanaxisMaterialLibrary < MushObject
       :mapping_type => :tiled,
       :texture_names => ['player-tex']
     )
-    MushMaterial.cDefine(
-      :name => 'projectile-mat',
-      :mapping_type => :tiled,
-      :texture_names => ['projectile-tex']
-    )
+    10.times do |i|
+      MushMaterial.cDefine(
+        :name => "projectile#{i}-mat",
+        :mapping_type => :tiled,
+        :texture_names => ["projectile#{i}-tex"]
+      )
+    end
     MushMaterial.cDefine(
       :name => 'world1-mat',
       :mapping_type => :tiled,
@@ -131,6 +136,11 @@ class AdanaxisMaterialLibrary < MushObject
         :texture_names => ["#{prefix}1-tex"]
       )
     end
-    
+
+    MushMaterial.cDefine(
+      :name => "no-render-mat",
+      :mapping_type => :tiled,
+      :texture_names => [@m_textureLibrary.mCosmos1Names[2]]
+    )
   end
 end

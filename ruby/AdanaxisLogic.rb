@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } OEQ7ye4+ICpoJw+Z14qbnQ
-# $Id: AdanaxisLogic.rb,v 1.13 2006/11/01 10:07:12 southa Exp $
+# $Id: AdanaxisLogic.rb,v 1.14 2006/11/01 13:04:21 southa Exp $
 # $Log: AdanaxisLogic.rb,v $
+# Revision 1.14  2006/11/01 13:04:21  southa
+# Initial weapon handling
+#
 # Revision 1.13  2006/11/01 10:07:12  southa
 # Shield handling
 #
@@ -109,8 +112,8 @@ class AdanaxisLogic < MushLogic
     hitPoints1 = event.mPiece1.mHitPoints
     hitPoints2 = event.mPiece2.mHitPoints
     
-    event.mPiece1.mDamageTake(hitPoints2 * event.mPiece2.mDamageFactor)
-    event.mPiece2.mDamageTake(hitPoints1 * event.mPiece1.mDamageFactor)
+    event.mPiece1.mDamageTake(hitPoints2 * event.mPiece2.mDamageFactor(event.mPiece1))
+    event.mPiece2.mDamageTake(hitPoints1 * event.mPiece1.mDamageFactor(event.mPiece2))
     
     # Send to each object with itself in the first position
     event.mPiece1.mEventHandle(event)

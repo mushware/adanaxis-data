@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } 63kk9LVPAcoFqUyUUPiQfg
-# $Id: AdanaxisUtil.rb,v 1.5 2006/11/01 13:04:21 southa Exp $
+# $Id: AdanaxisUtil.rb,v 1.6 2006/11/02 09:47:32 southa Exp $
 # $Log: AdanaxisUtil.rb,v $
+# Revision 1.6  2006/11/02 09:47:32  southa
+# Player weapon control
+#
 # Revision 1.5  2006/11/01 13:04:21  southa
 # Initial weapon handling
 #
@@ -49,6 +52,7 @@ class AdanaxisUtil < MushObject
     :angular_position => true,
     :angular_velocity => true,
     :does_damage => true,
+    :damage_frame => true,
     :embers => true,
     :ember_lifetime_range => true,
     :ember_scale_range => true,
@@ -80,7 +84,8 @@ class AdanaxisUtil < MushObject
     :target_types => true,
     :type => true,
     :velocity => true,
-    :velocity_factor => true
+    :velocity_factor => true,
+    :vulnerability => true
     }
 end
 

@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } JPjWkwGvzd5d5LJLXnphkQ
-# $Id: AdanaxisPieceProjectile.rb,v 1.10 2006/10/30 17:03:50 southa Exp $
+# $Id: AdanaxisPieceProjectile.rb,v 1.11 2006/10/30 19:36:38 southa Exp $
 # $Log: AdanaxisPieceProjectile.rb,v $
+# Revision 1.11  2006/10/30 19:36:38  southa
+# Item collection
+#
 # Revision 1.10  2006/10/30 17:03:50  southa
 # Remnants creation
 #
@@ -59,38 +62,81 @@ class AdanaxisPieceProjectile < AdanaxisPiece
     super
     @m_owner = inParams[:owner] || ""
     @m_lifeMsec = inParams[:lifetime_msec] || 0
-    @m_hitPoints = 1.0
+    @m_damageFrame = inParams[:damage_frame]
   end
   
   mush_reader :m_owner
   
   def mExplosionEffect
-    $currentLogic.mEffects.mExplode(
-      :post => mPost,
-      :embers => 3,
-      :explosions => 0,
-      :flares => 1,
-      :flare_scale_range => (1.7..2.0)
-    )
+    if @m_originalHitPoints > 5.0
+      $currentLogic.mEffects.mExplode(
+        :post => mPost,
+        :embers => 0,
+        :explosions => 0,
+        :flares => 2,
+        :flare_scale_range => @m_originalHitPoints,
+        :flare_lifetime_range => (3000..6000)
+      )
+    else
+      $currentLogic.mEffects.mExplode(
+        :post => mPost,
+        :embers => 3,
+        :explosions => 0,
+        :flares => 1,
+        :flare_scale_range => (1.7..2.0)
+      )
+    end
   end
   
   def mExplosionSound
+    case @m_originalHitPoints
+      when 0...100.0
+      else
+        MushGame.cSoundPlay('nuke_explo1', mPost)
+    end
   end
   
+  def mDamageFrameCreate
+    AdanaxisPieceEffector.cCreate(
+      :mesh_name => 'nuke_splash',
+      :post => mPost,
+      :owner => mOwner,
+      :lifetime_msec => 0,
+      :hit_points => @m_originalHitPoints,
+      :vulnerability => 0.0
+    )
+  end
+
   def mFatalCollisionHandle(event)
     super
     mExplosionEffect
     mExplosionSound
+    if @m_originalHitPoints > 10.0
+      unless @m_damageFrame
+        mDamageFrameCreate
+      end
+    end
   end
   
   def mCollisionHandle(event)
-    mHitPointsSet(0.0) # Projectiles always get destroyed
-    super
+    if @m_damageFrame
+      # Collisions don't affect damage frames - they just expire
+    else
+      mHitPointsSet(0.0) # Projectiles always get destroyed
+      super
+    end
   end
   
   def mExpiryHandle(event)
-    mLoad
-    mExplosionEffect
-    mExplosionSound
+    unless @m_damageFrame
+      mLoad
+      mExplosionEffect
+      mExplosionSound
+      if @m_originalHitPoints > 10.0
+        unless @m_damageFrame
+          mDamageFrameCreate
+        end
+      end
+    end
   end
 end

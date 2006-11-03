@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } avqCjn1AV8PsFQvoiWGwNA
-# $Id: AdanaxisTextureLibrary.rb,v 1.20 2006/10/18 13:22:08 southa Exp $
+# $Id: AdanaxisTextureLibrary.rb,v 1.21 2006/10/19 15:41:35 southa Exp $
 # $Log: AdanaxisTextureLibrary.rb,v $
+# Revision 1.21  2006/10/19 15:41:35  southa
+# Item handling
+#
 # Revision 1.20  2006/10/18 13:22:08  southa
 # World rendering
 #
@@ -201,13 +204,27 @@ class AdanaxisTextureLibrary < MushObject
 	scale = 4
 	
 	MushGLTexture::cDefine(
-		:name          => 'projectile-tex',
+		:name          => 'projectile1-tex',
     :type          => 'CellNoise',
-    :meshname      => 'projectile',
+    :meshname      => 'projectile1',
     :size          => [smallTextureSize, smallTextureSize],
     :palette       => 'palette2',
     :palettestart  => [0.2,0.2],
     :palettevector => [0.8,0.8],
+		:scale         => [scale, scale, scale, scale],
+    :numoctaves    => 8,
+    :octaveratio   => 0.5,
+		:cache         => 1
+	)
+
+	MushGLTexture::cDefine(
+		:name          => 'projectile2-tex',
+    :type          => 'CellNoise',
+    :meshname      => 'projectile2',
+    :size          => [smallTextureSize, smallTextureSize],
+    :palette       => 'palette1',
+    :palettestart  => [0,0.9],
+    :palettevector => [0.99,0],
 		:scale         => [scale, scale, scale, scale],
     :numoctaves    => 8,
     :octaveratio   => 0.5,

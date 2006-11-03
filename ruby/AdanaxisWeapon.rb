@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } Xu79QXYia2BFmo2DZ89f+A
-# $Id: AdanaxisWeapon.rb,v 1.2 2006/11/02 09:47:32 southa Exp $
+# $Id: AdanaxisWeapon.rb,v 1.3 2006/11/02 12:23:21 southa Exp $
 # $Log: AdanaxisWeapon.rb,v $
+# Revision 1.3  2006/11/02 12:23:21  southa
+# Weapon selection
+#
 # Revision 1.2  2006/11/02 09:47:32  southa
 # Player weapon control
 #
@@ -41,6 +44,7 @@ class AdanaxisWeapon < MushObject
     @m_offsetNumber = 0
     @m_fireSound = inParams[:fire_sound]
     @m_angularVelocity = inParams[:angular_velocity] || @@c_defaultAngularVelocity
+    @m_hitPoints = inParams[:hit_points] || 1.0
     
     @m_lastFireMsec = 0
   end
@@ -64,7 +68,7 @@ class AdanaxisWeapon < MushObject
     vel.y = 0
     vel.z = 0
     vel.w = vel.w - @m_speed
-    
+
     offset = @m_offsetSequence[@m_offsetNumber].dup
     
     projPost.angular_position.mRotate(offset)
@@ -83,13 +87,13 @@ class AdanaxisWeapon < MushObject
       :mesh_name => @m_projectileMesh,
       :post => projPost,
       :owner => inPiece.mId,
-      :lifetime_msec => @m_lifetimeMsec
+      :lifetime_msec => @m_lifetimeMsec,
+      :hit_points => @m_hitPoints
     )
     
     @m_lastFireMsec = MushGame.cGameMsec
     @m_offsetNumber += 1
     @m_offsetNumber = 0 if @m_offsetNumber >= @m_offsetSequence.size    
-    
     
     MushGame.cSoundPlay(@m_fireSound, projPost) if @m_fireSound
     retVal

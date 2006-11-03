@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } IRcBSpDhgaiF/A38RRaoLw
-# $Id: AdanaxisControl.rb,v 1.5 2006/08/01 13:41:11 southa Exp $
+# $Id: AdanaxisControl.rb,v 1.6 2006/08/01 17:21:17 southa Exp $
 # $Log: AdanaxisControl.rb,v $
+# Revision 1.6  2006/08/01 17:21:17  southa
+# River demo
+#
 # Revision 1.5  2006/08/01 13:41:11  southa
 # Pre-release updates
 #
@@ -76,6 +79,18 @@ class AdanaxisControl
 
   KEY_FIRE = 0
   KEY_SCANNER = 1
+  KEY_WEAPON_PREVIOUS = 2
+  KEY_WEAPON_NEXT = 3
+  KEY_WEAPON_0 = 4
+  KEY_WEAPON_1 = 5
+  KEY_WEAPON_2 = 6
+  KEY_WEAPON_3 = 7
+  KEY_WEAPON_4 = 8
+  KEY_WEAPON_5 = 9
+  KEY_WEAPON_6 = 10
+  KEY_WEAPON_7 = 11
+  KEY_WEAPON_8 = 12
+  KEY_WEAPON_9 = 13
 
   INAXIS_NONE = 0
   INAXIS_MOUSE_X = 16

@@ -18,8 +18,11 @@
 #
 ##############################################################################
 #%Header } e5pyDYhqQM6o/mG0mOvX9g
-# $Id: space.rb,v 1.26 2006/10/17 15:28:00 southa Exp $
+# $Id: space.rb,v 1.27 2006/10/18 13:22:08 southa Exp $
 # $Log: space.rb,v $
+# Revision 1.27  2006/10/18 13:22:08  southa
+# World rendering
+#
 # Revision 1.26  2006/10/17 15:28:00  southa
 # Player collisions
 #
@@ -78,7 +81,8 @@ class Adanaxis_local1 < AdanaxisSpace
       when 10..19 : MushGLTexture.cPreCache("ember#{num-10}-tex")
       when 20..29 : MushGLTexture.cPreCache("star#{num-20}-tex")
       when 30     : MushGLTexture.cPreCache("attendant-tex")
-      when 31     : MushGLTexture.cPreCache("projectile-tex")
+      when 31     : MushGLTexture.cPreCache("projectile1-tex")
+      when 32     : MushGLTexture.cPreCache("projectile2-tex")
     end
     
     3 * num

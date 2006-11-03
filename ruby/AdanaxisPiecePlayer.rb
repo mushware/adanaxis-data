@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } 1H+rLloObKxiiVjoIDjJFw
-# $Id: AdanaxisPiecePlayer.rb,v 1.6 2006/11/01 10:07:13 southa Exp $
+# $Id: AdanaxisPiecePlayer.rb,v 1.7 2006/11/02 09:47:32 southa Exp $
 # $Log: AdanaxisPiecePlayer.rb,v $
+# Revision 1.7  2006/11/02 09:47:32  southa
+# Player weapon control
+#
 # Revision 1.6  2006/11/01 10:07:13  southa
 # Shield handling
 #
@@ -45,6 +48,11 @@ class AdanaxisPiecePlayer < AdanaxisPiece
   extend MushRegistered
   mushRegistered_install
   
+  @@c_weaponList = [
+    :player_base,
+    :player_super_nuker
+  ]
+  
   def initialize(inParams = {})
     AdanaxisUtil.cSpellCheck(inParams)
     @m_defaultType = "p"
@@ -53,9 +61,9 @@ class AdanaxisPiecePlayer < AdanaxisPiece
     @m_originalHitPoints = @m_hitPoints
     @m_shield = inParams[:shield] || 0.0
     @m_originalShield = 100.0
-    @m_weaponName = inParams[:weapon] || :player_base
-    @m_weapon = $currentGame.mSpace.mWeaponLibrary.mWeapon(@m_weaponName)
-
+    @m_weaponNum = 0
+    @m_weapon = $currentGame.mSpace.mWeaponLibrary.mWeapon(@@c_weaponList[@m_weaponNum])
+    @m_fireState = false
     @m_callInterval = 100
   end
 
@@ -79,9 +87,25 @@ class AdanaxisPiecePlayer < AdanaxisPiece
     super
   end
   
+  def mNewWeapon(inNum)
+    @m_weaponNum = inNum
+    @m_weaponNum = 0 if @m_weaponNum >= @@c_weaponList.size
+    @m_weaponNum = @@c_weaponList.size - 1 if @m_weaponNum < 0
+    @m_weapon = $currentGame.mSpace.mWeaponLibrary.mWeapon(@@c_weaponList[@m_weaponNum])
+  end
+  
+  def mFire
+    if @m_weapon.mFireOpportunityTake
+      event = AdanaxisEventFire.new
+      event.mPostSet(@m_post)
+      $currentLogic.mEventConsume(event, @m_id, @m_id)
+    end
+  end
+  
   def mEventHandle(event)
     case event
       when AdanaxisEventFire: mFireHandle(event)
+      when AdanaxisEventKeyState: mKeyStateHandle(event)
       else super
     end
     @m_callInterval
@@ -89,6 +113,9 @@ class AdanaxisPiecePlayer < AdanaxisPiece
   
   def mActionTimer
     mLoad
+
+    mFire if @m_fireState
+
     $currentGame.mView.mDashboard.mUpdate(
       :hit_point_ratio => mHitPointRatio,
       :shield_ratio => mShieldRatio
@@ -115,6 +142,27 @@ class AdanaxisPiecePlayer < AdanaxisPiece
     mLoad
     if @m_weapon
       @m_weapon.mFire(event, self)
+    end
+  end
+  
+  def mKeyStateHandle(event)
+    event.mState.each_with_index do |state, i|
+      keyNum = event.mKeyNum[i]
+
+      if keyNum == AdanaxisControl::KEY_FIRE
+        @m_fireState = state
+      end
+    
+      if state
+        case keyNum
+          when AdanaxisControl::KEY_WEAPON_PREVIOUS
+            mNewWeapon(@m_weaponNum - 1)
+          when AdanaxisControl::KEY_WEAPON_NEXT
+            mNewWeapon(@m_weaponNum + 1)
+          when AdanaxisControl::KEY_WEAPON_0..AdanaxisControl::KEY_WEAPON_9
+            mNewWeapon(keyNum - AdanaxisControl::KEY_WEAPON_0)
+        end
+      end
     end
   end
 end

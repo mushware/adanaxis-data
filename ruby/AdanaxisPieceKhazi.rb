@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } aGTJVbl7QyXIWVg5D1mEzg
-# $Id: AdanaxisPieceKhazi.rb,v 1.23 2006/11/01 13:04:21 southa Exp $
+# $Id: AdanaxisPieceKhazi.rb,v 1.24 2006/11/02 09:47:32 southa Exp $
 # $Log: AdanaxisPieceKhazi.rb,v $
+# Revision 1.24  2006/11/02 09:47:32  southa
+# Player weapon control
+#
 # Revision 1.23  2006/11/01 13:04:21  southa
 # Initial weapon handling
 #
@@ -155,11 +158,14 @@ class AdanaxisPieceKhazi < AdanaxisPiece
   
   def mFatalCollisionHandle(event)
     super
+    # Choose numbers
+    numEmbers = (event.mPiece2.mId =~ /^e/) ? 0 : 100
+    numFlares = (event.mPiece2.mId =~ /^e/) ? 0 : 1
     $currentLogic.mEffects.mExplode(
       :post => mPost,
-      :embers => 100,
+      :embers => numEmbers,
       :explosions => 1,
-      :flares => 1,
+      :flares => numFlares,
       :ember_speed_range => (0.3..1.0),
       :ember_lifetime_range => (2000..3000),
       :explosion_scale_range => (6.0..7.0),

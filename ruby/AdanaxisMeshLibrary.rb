@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } 74bLa8v94NQFxupv0Pj/cA
-# $Id: AdanaxisMeshLibrary.rb,v 1.20 2006/10/18 13:22:08 southa Exp $
+# $Id: AdanaxisMeshLibrary.rb,v 1.21 2006/10/19 15:41:34 southa Exp $
 # $Log: AdanaxisMeshLibrary.rb,v $
+# Revision 1.21  2006/10/19 15:41:34  southa
+# Item handling
+#
 # Revision 1.20  2006/10/18 13:22:08  southa
 # World rendering
 #
@@ -285,30 +288,56 @@ class AdanaxisMeshLibrary
   #
   
   def mProjectileCreate
-	mesh =  MushMesh.new('projectile')
+    mesh =  MushMesh.new('projectile1')
 
-	base1 = MushBasePrism.new(:order => 5)
-	
-	baseDisplacement1 = MushDisplacement.new(
-		:offset => MushVector.new(0,0,0,0.5),
-        :scale => MushVector.new(0.25,0.25,0.20,1)
-	  )
-	
-    extruder1 = MushExtruder.new(
+    base1 = MushBasePrism.new(:order => 5)
+    
+    baseDisplacement1 = MushDisplacement.new(
+      :offset => MushVector.new(0,0,0,0.5),
+          :scale => MushVector.new(0.25,0.25,0.20,1)
+      )
+    
+      extruder1 = MushExtruder.new(
         :sourceface => 0,
         :displacement => MushDisplacement.new(
-            :offset => MushVector.new(0,0,0,-1),
-            :scale => 0.5),
-		:num_iterations => 1,
-		:to_point => true
+          :offset => MushVector.new(0,0,0,-1),
+          :scale => 0.5),
+        :num_iterations => 1,
+        :to_point => true
       )
 
-	mesh.mBaseAdd(base1)
-	mesh.mBaseDisplacementAdd(baseDisplacement1)
+    mesh.mBaseAdd(base1)
+    mesh.mBaseDisplacementAdd(baseDisplacement1)
+      mesh.mExtruderAdd(extruder1)
+    mesh.mMaterialAdd('projectile1-mat')
+    
+    mesh.mMake
+    
+    mesh =  MushMesh.new('projectile2')
+
+    base1 = MushBasePrism.new(:order => 9)
+    
+    baseDisplacement1 = MushDisplacement.new(
+      :offset => MushVector.new(0,0,0,2),
+          :scale => MushVector.new(1,1,0.8,4)
+      )
+    
+      extruder1 = MushExtruder.new(
+          :sourceface => 0,
+          :displacement => MushDisplacement.new(
+            :offset => MushVector.new(0,0,0,-1),
+            :scale => 0.5),
+          :num_iterations => 1,
+          :to_point => true
+        )
+
+    mesh.mBaseAdd(base1)
+    mesh.mBaseDisplacementAdd(baseDisplacement1)
     mesh.mExtruderAdd(extruder1)
-	mesh.mMaterialAdd('projectile-mat')
-	
-	mesh.mMake
+    mesh.mMaterialAdd('projectile2-mat')
+    
+    mesh.mMake
+
   end
 
   #
@@ -424,6 +453,21 @@ class AdanaxisMeshLibrary
     end
   end
   
+  def mDamageFramesCreate
+    ['nuke_splash'].each do |prefix|
+      mesh = MushMesh.new("#{prefix}")
+      base1 = MushBaseSingleFacet.new(:order => 4)
+      baseDisplacement1 = MushDisplacement.new(
+        :scale => MushVector.new(1000, 1000, 1000, 1000)
+      )
+      mesh.mBaseAdd(base1)
+      mesh.mBillboardSet(true)
+      mesh.mBaseDisplacementAdd(baseDisplacement1)
+      mesh.mMaterialAdd("no-render-mat")
+      mesh.mMake
+    end
+  end
+  
   def mCreate
     mAttendantCreate
     mCubesCreate
@@ -436,5 +480,6 @@ class AdanaxisMeshLibrary
     mCosmosCreate
     mPlayerCreate
     mItemsCreate
+    mDamageFramesCreate
   end
 end

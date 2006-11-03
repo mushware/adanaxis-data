@@ -1,7 +1,7 @@
 #%Header {
 ##############################################################################
 #
-# File data-adanaxis/ruby/AdanaxisEvents.rb
+# File data-adanaxis/ruby/AdanaxisWaveLibrary.rb
 #
 # Copyright Andy Southgate 2006
 #
@@ -15,36 +15,12 @@
 # This software carries NO WARRANTY of any kind.
 #
 ##############################################################################
-#%Header } fAZMXASsvVkN8FSXXDhczg
-# $Id: AdanaxisEvents.rb,v 1.4 2006/11/02 09:47:32 southa Exp $
-# $Log: AdanaxisEvents.rb,v $
-# Revision 1.4  2006/11/02 09:47:32  southa
-# Player weapon control
-#
-# Revision 1.3  2006/10/09 16:00:15  southa
-# Intern generation
-#
-# Revision 1.2  2006/08/25 01:44:56  southa
-# Khazi fire
-#
-# Revision 1.1  2006/08/24 13:04:37  southa
-# Event handling
-#
+#%Header } 2oLE7H8JFTEPCMWkYH/dgw
+# $Id$
+# $Log$
 
-class AdanaxisEventFire < MushEvent
-  def initialize
-    @m_post = MushPost.new
+class AdanaxisWaveLibrary < MushObject
+  def mCreate
+      MushGame.cSoundDefine('nuke_explo1', MushConfig.cGlobalWavesPath+'/copyright-explo-big.wav')
   end
-  
-  mush_accessor :m_post
 end
-
-class AdanaxisEventKeyState < MushEvent
-  def initialize
-    @m_keyNum = []
-    @m_state = []
-  end
-  
-  mush_accessor :m_keyNum, :m_state
-end
-

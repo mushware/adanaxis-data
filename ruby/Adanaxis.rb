@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } Vr8SNTx01PRrZQGDsHJ+7Q
-# $Id: Adanaxis.rb,v 1.21 2006/10/30 17:03:49 southa Exp $
+# $Id: Adanaxis.rb,v 1.22 2006/11/01 13:04:20 southa Exp $
 # $Log: Adanaxis.rb,v $
+# Revision 1.22  2006/11/01 13:04:20  southa
+# Initial weapon handling
+#
 # Revision 1.21  2006/10/30 17:03:49  southa
 # Remnants creation
 #
@@ -77,6 +80,7 @@ require 'AdanaxisMenu.rb'
 require 'AdanaxisMeshLibrary.rb'
 require 'AdanaxisPiece.rb'
 require 'AdanaxisPieceDeco.rb'
+require 'AdanaxisPieceEffector.rb'
 require 'AdanaxisPieceItem.rb'
 require 'AdanaxisPieceKhazi.rb'
 require 'AdanaxisPiecePlayer.rb'
@@ -87,5 +91,6 @@ require 'AdanaxisShaderLibrary.rb'
 require 'AdanaxisSpace.rb'
 require 'AdanaxisTextureLibrary.rb'
 require 'AdanaxisUtil.rb'
+require 'AdanaxisWaveLibrary.rb'
 require 'AdanaxisWeapon.rb'
 require 'AdanaxisWeaponLibrary.rb'

@@ -20,8 +20,11 @@ these defaults, so it may be better to edit there instead of here.
  *
  * This software carries NO WARRANTY of any kind.
  *
- * $Id: keyconfig-default.xml,v 1.3 2006/07/11 12:37:51 southa Exp $
+ * $Id: keyconfig-default.xml,v 1.4 2006/11/02 12:23:22 southa Exp $
  * $Log: keyconfig-default.xml,v $
+ * Revision 1.4  2006/11/02 12:23:22  southa
+ * Weapon selection
+ *
  * Revision 1.3  2006/07/11 12:37:51  southa
  * Control configuration
  *
@@ -49,84 +52,84 @@ these defaults, so it may be better to edit there instead of here.
 </obj>
 ,
 <obj type="MushGameKeyDef">
-<keyValues>(9)</keyValues>
+<keyValues>(91, 1004)</keyValues>
 <state>0</state>
 <stateHasChanged>1</stateHasChanged>
 <keyName>"Previous weapon"</keyName>
 </obj>
 ,
 <obj type="MushGameKeyDef">
-<keyValues>(9)</keyValues>
+<keyValues>(93, 1003)</keyValues>
 <state>0</state>
 <stateHasChanged>1</stateHasChanged>
 <keyName>"Next weapon"</keyName>
 </obj>
 ,
 <obj type="MushGameKeyDef">
-<keyValues>(9)</keyValues>
+<keyValues>(49)</keyValues>
 <state>0</state>
 <stateHasChanged>1</stateHasChanged>
 <keyName>"Weapon 0"</keyName>
 </obj>
 ,
 <obj type="MushGameKeyDef">
-<keyValues>(9)</keyValues>
+<keyValues>(50)</keyValues>
 <state>0</state>
 <stateHasChanged>1</stateHasChanged>
 <keyName>"Weapon 1"</keyName>
 </obj>
 ,
 <obj type="MushGameKeyDef">
-<keyValues>(9)</keyValues>
+<keyValues>(51)</keyValues>
 <state>0</state>
 <stateHasChanged>1</stateHasChanged>
 <keyName>"Weapon 2"</keyName>
 </obj>
 ,
 <obj type="MushGameKeyDef">
-<keyValues>(9)</keyValues>
+<keyValues>(52)</keyValues>
 <state>0</state>
 <stateHasChanged>1</stateHasChanged>
 <keyName>"Weapon 3"</keyName>
 </obj>
 ,
 <obj type="MushGameKeyDef">
-<keyValues>(9)</keyValues>
+<keyValues>(53)</keyValues>
 <state>0</state>
 <stateHasChanged>1</stateHasChanged>
 <keyName>"Weapon 4"</keyName>
 </obj>
 ,
 <obj type="MushGameKeyDef">
-<keyValues>(9)</keyValues>
+<keyValues>(54)</keyValues>
 <state>0</state>
 <stateHasChanged>1</stateHasChanged>
 <keyName>"Weapon 5"</keyName>
 </obj>
 ,
 <obj type="MushGameKeyDef">
-<keyValues>(9)</keyValues>
+<keyValues>(55)</keyValues>
 <state>0</state>
 <stateHasChanged>1</stateHasChanged>
 <keyName>"Weapon 6"</keyName>
 </obj>
 ,
 <obj type="MushGameKeyDef">
-<keyValues>(9)</keyValues>
+<keyValues>(56)</keyValues>
 <state>0</state>
 <stateHasChanged>1</stateHasChanged>
 <keyName>"Weapon 7"</keyName>
 </obj>
 ,
 <obj type="MushGameKeyDef">
-<keyValues>(9)</keyValues>
+<keyValues>(57)</keyValues>
 <state>0</state>
 <stateHasChanged>1</stateHasChanged>
 <keyName>"Weapon 8"</keyName>
 </obj>
 ,
 <obj type="MushGameKeyDef">
-<keyValues>(9)</keyValues>
+<keyValues>(48)</keyValues>
 <state>0</state>
 <stateHasChanged>1</stateHasChanged>
 <keyName>"Weapon 9"</keyName>

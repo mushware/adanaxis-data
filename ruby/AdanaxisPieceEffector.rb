@@ -1,7 +1,7 @@
 #%Header {
 ##############################################################################
 #
-# File data-adanaxis/ruby/AdanaxisEvents.rb
+# File data-adanaxis/ruby/AdanaxisPieceEffector.rb
 #
 # Copyright Andy Southgate 2006
 #
@@ -15,36 +15,27 @@
 # This software carries NO WARRANTY of any kind.
 #
 ##############################################################################
-#%Header } fAZMXASsvVkN8FSXXDhczg
-# $Id: AdanaxisEvents.rb,v 1.4 2006/11/02 09:47:32 southa Exp $
-# $Log: AdanaxisEvents.rb,v $
-# Revision 1.4  2006/11/02 09:47:32  southa
-# Player weapon control
-#
-# Revision 1.3  2006/10/09 16:00:15  southa
-# Intern generation
-#
-# Revision 1.2  2006/08/25 01:44:56  southa
-# Khazi fire
-#
-# Revision 1.1  2006/08/24 13:04:37  southa
-# Event handling
-#
+#%Header } yTzlWjZhcDQjs3FNriJdaw
+# $Id$
+# $Log$
 
-class AdanaxisEventFire < MushEvent
-  def initialize
-    @m_post = MushPost.new
+class AdanaxisPieceEffector < AdanaxisPiece
+  extend MushRegistered
+  mushRegistered_install
+
+  def initialize(inParams={})
+    AdanaxisUtil.cSpellCheck(inParams)
+    @m_defaultType = "e"
+    super
+    @m_owner = inParams[:owner] || ""
+    @m_lifeMsec = inParams[:lifetime_msec] || 0
   end
   
-  mush_accessor :m_post
-end
-
-class AdanaxisEventKeyState < MushEvent
-  def initialize
-    @m_keyNum = []
-    @m_state = []
+  def mDamageFactor(inPiece)
+    separation = (mPost.position - inPiece.mPost.position).mMagnitude
+    factor = ((@m_hitPoints - separation) / @m_hitPoints).mClamp(0.0, 1.0)
+    factor *= factor * factor # 4D so inverse cube law
+    return @m_damageFactor * factor
   end
-  
-  mush_accessor :m_keyNum, :m_state
-end
 
+end

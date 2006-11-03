@@ -18,8 +18,11 @@
 #
 ##############################################################################
 #%Header } XESH903Rz4omoAntOunkPg
-# $Id: space.rb,v 1.11 2006/10/18 13:22:08 southa Exp $
+# $Id: space.rb,v 1.12 2006/10/30 17:03:50 southa Exp $
 # $Log: space.rb,v $
+# Revision 1.12  2006/10/30 17:03:50  southa
+# Remnants creation
+#
 # Revision 1.11  2006/10/18 13:22:08  southa
 # World rendering
 #
@@ -81,7 +84,8 @@ class Adanaxis_local3 < AdanaxisSpace
       when 10..19 : MushGLTexture.cPreCache("ember#{num-10}-tex")
       when 20..29 : MushGLTexture.cPreCache("star#{num-20}-tex")
       when 30     : MushGLTexture.cPreCache("attendant-tex")
-      when 31     : MushGLTexture.cPreCache("projectile-tex")
+      when 31     : MushGLTexture.cPreCache("projectile1-tex")
+      when 32     : MushGLTexture.cPreCache("projectile2-tex")
     end
     
     3 * num
