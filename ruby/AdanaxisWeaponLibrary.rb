@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } fqw0Kg8SFKBRqHTmFMXeGw
-# $Id: AdanaxisWeaponLibrary.rb,v 1.2 2006/11/02 09:47:32 southa Exp $
+# $Id: AdanaxisWeaponLibrary.rb,v 1.3 2006/11/03 18:46:32 southa Exp $
 # $Log: AdanaxisWeaponLibrary.rb,v $
+# Revision 1.3  2006/11/03 18:46:32  southa
+# Damage effectors
+#
 # Revision 1.2  2006/11/02 09:47:32  southa
 # Player weapon control
 #
@@ -37,7 +40,7 @@ class AdanaxisWeaponLibrary < MushObject
     @m_weapons[:player_base] = AdanaxisWeapon.new(
       :projectile_mesh => 'projectile1',
       :speed => 2.0,
-      :fire_rate_msec => 200,
+      :fire_rate_msec => 50,
       :offset_sequence => [
         MushVector.new(-1,0,0,0),
         MushVector.new(1,0,0,0)
