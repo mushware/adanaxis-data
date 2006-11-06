@@ -18,8 +18,11 @@
 #
 ##############################################################################
 #%Header } bA+zXF6spqUFrZuwIA4AWQ
-# $Id$
-# $Log$
+# $Id: MakeMush.rb,v 1.1 2006/11/05 09:31:23 southa Exp $
+# $Log: MakeMush.rb,v $
+# Revision 1.1  2006/11/05 09:31:23  southa
+# Mush file generation
+#
 
 $LOAD_PATH.push File.dirname($0)+"/../../scripts"
 require 'ProcessMush.rb'
@@ -27,6 +30,6 @@ require 'ProcessMush.rb'
 process = ProcessMush.new(
   :control_file => $0,
   :destination_path =>'waves',
-  :mush_file => 'waves.mush'
+  :mush_file => '../mush/waves.mush'
 )
 process.mProcess

@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } KSO1aRs/aLEv+/QhWfRoRw
-# $Id: AdanaxisGame.rb,v 1.21 2006/10/12 22:04:46 southa Exp $
+# $Id: AdanaxisGame.rb,v 1.22 2006/10/17 15:28:00 southa Exp $
 # $Log: AdanaxisGame.rb,v $
+# Revision 1.22  2006/10/17 15:28:00  southa
+# Player collisions
+#
 # Revision 1.21  2006/10/12 22:04:46  southa
 # Collision events
 #
@@ -63,12 +66,25 @@ class AdanaxisGame < MushObject
   def mSpaceObjectName
     'Adanaxis_'+@m_spaceName
   end
- 
+
   def mSpacePath
     MushConfig.cGlobalSpacesPath + '/' + @m_spaceName  
   end
   
+  def mMushLoad
+    if File.directory?(MushConfig.cGlobalMushPath)
+      Dir.foreach(MushConfig.cGlobalMushPath) do |leafname|
+        filename = File.expand_path(leafname, MushConfig.cGlobalMushPath).untaint
+        if File.file?(filename) && File.extname(filename) == '.mush'
+          MushFile.cLibraryAdd(filename)
+        end
+      end
+    end
+    MushFile.cLibraryDump
+  end
+  
   def mLoad
+    mMushLoad
     require(mSpacePath+'/space.rb')
     @m_space = eval("#{mSpaceObjectName}.new", binding, mSpacePath+'/space.rb', 1)
     @m_space.mLoad(self)
