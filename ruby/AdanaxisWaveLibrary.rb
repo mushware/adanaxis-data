@@ -16,14 +16,17 @@
 #
 ##############################################################################
 #%Header } 2oLE7H8JFTEPCMWkYH/dgw
-# $Id: AdanaxisWaveLibrary.rb,v 1.1 2006/11/03 18:46:32 southa Exp $
+# $Id: AdanaxisWaveLibrary.rb,v 1.2 2006/11/06 12:56:31 southa Exp $
 # $Log: AdanaxisWaveLibrary.rb,v $
+# Revision 1.2  2006/11/06 12:56:31  southa
+# MushFile work
+#
 # Revision 1.1  2006/11/03 18:46:32  southa
 # Damage effectors
 #
 
 class AdanaxisWaveLibrary < MushObject
   def mCreate
-      MushGame.cSoundDefine('nuke_explo1', MushConfig.cGlobalWavesPath+'/sdog-explo-big.wav')
+      MushGame.cSoundDefine('nuke_explo1', "mush://waves/sdog-explo-big.wav|#{MushConfig.cGlobalWavesPath}/sdog-explo-big.wav")
   end
 end
