@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } avqCjn1AV8PsFQvoiWGwNA
-# $Id: AdanaxisTextureLibrary.rb,v 1.21 2006/10/19 15:41:35 southa Exp $
+# $Id: AdanaxisTextureLibrary.rb,v 1.22 2006/11/03 18:46:32 southa Exp $
 # $Log: AdanaxisTextureLibrary.rb,v $
+# Revision 1.22  2006/11/03 18:46:32  southa
+# Damage effectors
+#
 # Revision 1.21  2006/10/19 15:41:35  southa
 # Item handling
 #
@@ -141,8 +144,8 @@ class AdanaxisTextureLibrary < MushObject
 
   @m_explo1Names = []
   100.times do |i|
-    filename = MushConfig.cGlobalPixelsPath+"/copyright-explo1-#{i}.tiff"
-    if File.file?(filename)
+    filename = "mush://pixels/artb-explo1-#{i}.tiff|#{MushConfig.cGlobalPixelsPath}/copyright-explo1-#{i}.tiff"
+    if MushFile.cFile?(filename)
       texName = "explo1-tex-#{i}"
       @m_explo1Names << texName
       MushGLTexture::cDefine(
