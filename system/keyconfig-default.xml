@@ -7,7 +7,7 @@ these defaults, so it may be better to edit there instead of here.
  *
  * File: keyconfig-default.xml
  *
- * Author: Andy Southgate 2005
+ * Author: Andy Southgate 2005-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -20,8 +20,11 @@ these defaults, so it may be better to edit there instead of here.
  *
  * This software carries NO WARRANTY of any kind.
  *
- * $Id: keyconfig-default.xml,v 1.4 2006/11/02 12:23:22 southa Exp $
+ * $Id: keyconfig-default.xml,v 1.5 2006/11/03 18:46:32 southa Exp $
  * $Log: keyconfig-default.xml,v $
+ * Revision 1.5  2006/11/03 18:46:32  southa
+ * Damage effectors
+ *
  * Revision 1.4  2006/11/02 12:23:22  southa
  * Weapon selection
  *
@@ -38,28 +41,28 @@ these defaults, so it may be better to edit there instead of here.
  
 -->
 <obj>(<obj type="MushGameKeyDef">
-<keyValues>(32,1000)</keyValues>
+<keyValues>(1000, 305, 306)</keyValues>
 <state>0</state>
 <stateHasChanged>1</stateHasChanged>
 <keyName>"Fire"</keyName>
 </obj>
 ,
 <obj type="MushGameKeyDef">
-<keyValues>(9)</keyValues>
+<keyValues>(9, 256)</keyValues>
 <state>0</state>
 <stateHasChanged>1</stateHasChanged>
 <keyName>"Scanner"</keyName>
 </obj>
 ,
 <obj type="MushGameKeyDef">
-<keyValues>(91, 1004)</keyValues>
+<keyValues>(1004, 91)</keyValues>
 <state>0</state>
 <stateHasChanged>1</stateHasChanged>
 <keyName>"Previous weapon"</keyName>
 </obj>
 ,
 <obj type="MushGameKeyDef">
-<keyValues>(93, 1003)</keyValues>
+<keyValues>(1003, 93)</keyValues>
 <state>0</state>
 <stateHasChanged>1</stateHasChanged>
 <keyName>"Next weapon"</keyName>

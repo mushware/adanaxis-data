@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } jugTbpTzFS8mdBHUZaOpuw
-# $Id: AdanaxisMenu.rb,v 1.14 2006/08/24 13:04:37 southa Exp $
+# $Id: AdanaxisMenu.rb,v 1.15 2006/11/03 18:46:31 southa Exp $
 # $Log: AdanaxisMenu.rb,v $
+# Revision 1.15  2006/11/03 18:46:31  southa
+# Damage effectors
+#
 # Revision 1.14  2006/08/24 13:04:37  southa
 # Event handling
 #
@@ -252,14 +255,14 @@ class AdanaxisMenu < MushObject
 
     if menu == MENU_KEYS
       @menuSet[MENU_KEYS].menu = [  
-        mAxisKeyMenuEntry("Dodge left        : ", AdanaxisControl::AXISKEY_X_MINUS),
-        mAxisKeyMenuEntry("Dodge right       : ", AdanaxisControl::AXISKEY_X_PLUS),
-        mAxisKeyMenuEntry("Forward           : ", AdanaxisControl::AXISKEY_W_MINUS),
-        mAxisKeyMenuEntry("Backward          : ", AdanaxisControl::AXISKEY_W_PLUS),
-        mKeyMenuEntry(    "Fire              : ", AdanaxisControl::KEY_FIRE),
-        mKeyMenuEntry(    "Scanner           : ", AdanaxisControl::KEY_SCANNER),
-        mKeyMenuEntry(    "Previous weapon   : ", AdanaxisControl::KEY_WEAPON_PREVIOUS),
-        mKeyMenuEntry(    "Next weapon       : ", AdanaxisControl::KEY_WEAPON_NEXT),
+        mAxisKeyMenuEntry("Dodge left      : ", AdanaxisControl::AXISKEY_X_MINUS),
+        mAxisKeyMenuEntry("Dodge right     : ", AdanaxisControl::AXISKEY_X_PLUS),
+        mAxisKeyMenuEntry("Forward         : ", AdanaxisControl::AXISKEY_W_MINUS),
+        mAxisKeyMenuEntry("Backward        : ", AdanaxisControl::AXISKEY_W_PLUS),
+        mKeyMenuEntry(    "Fire            : ", AdanaxisControl::KEY_FIRE),
+        mKeyMenuEntry(    "Scanner         : ", AdanaxisControl::KEY_SCANNER),
+        mKeyMenuEntry(    "Previous weapon : ", AdanaxisControl::KEY_WEAPON_PREVIOUS),
+        mKeyMenuEntry(    "Next weapon     : ", AdanaxisControl::KEY_WEAPON_NEXT),
         ["Advanced keys", :mToMenu, MENU_ADV_KEYS],
         ["Back", :mMenuBack, MENU_CONTROL]
       ]

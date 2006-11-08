@@ -7,7 +7,7 @@ these defaults, so it may be better to edit there instead of here.
  *
  * File: axisconfig-default.xml
  *
- * Author: Andy Southgate 2005
+ * Author: Andy Southgate 2005-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -20,8 +20,11 @@ these defaults, so it may be better to edit there instead of here.
  *
  * This software carries NO WARRANTY of any kind.
  *
- * $Id: axisconfig-default.xml,v 1.8 2006/07/28 16:52:18 southa Exp $
+ * $Id: axisconfig-default.xml,v 1.9 2006/11/02 12:23:22 southa Exp $
  * $Log: axisconfig-default.xml,v $
+ * Revision 1.9  2006/11/02 12:23:22  southa
+ * Weapon selection
+ *
  * Revision 1.8  2006/07/28 16:52:18  southa
  * Options work
  *
@@ -47,7 +50,6 @@ these defaults, so it may be better to edit there instead of here.
  * Adanaxis control work
  *
  *
- 
 -->
 <obj>(<obj type="MushGameAxisDef">
 <useBounds>0</useBounds>
@@ -56,9 +58,9 @@ these defaults, so it may be better to edit there instead of here.
 <deviceAxisNum>0</deviceAxisNum>
 <deviceSensitivity>-10</deviceSensitivity>
 <deviceDamping>0.05</deviceDamping>
-<upKey>276</upKey>
-<downKey>275</downKey>
-<requiredKey>0</requiredKey>
+<upKeys>(97,276,257)</upKeys>
+<downKeys>(100,275,259)</downKeys>
+<requiredKeys>()</requiredKeys>
 <axisName>"Move in X (left/right)"</axisName>
 <pos>0</pos>
 <vel>0</vel>
@@ -72,9 +74,9 @@ these defaults, so it may be better to edit there instead of here.
 <deviceAxisNum>0</deviceAxisNum>
 <deviceSensitivity>-10</deviceSensitivity>
 <deviceDamping>0.05</deviceDamping>
-<upKey>115</upKey>
-<downKey>119</downKey>
-<requiredKey>0</requiredKey>
+<upKeys>(116)</upKeys>
+<downKeys>(103)</downKeys>
+<requiredKeys>()</requiredKeys>
 <minBound>0</minBound>
 <maxBound>0</maxBound>
 <axisName>"Move in Y (up/down)"</axisName>
@@ -90,9 +92,9 @@ these defaults, so it may be better to edit there instead of here.
 <deviceAxisNum>0</deviceAxisNum>
 <deviceSensitivity>-10</deviceSensitivity>
 <deviceDamping>0.05</deviceDamping>
-<upKey>100</upKey>
-<downKey>101</downKey>
-<requiredKey>0</requiredKey>
+<upKeys>(121)</upKeys>
+<downKeys>(104)</downKeys>
+<requiredKeys>()</requiredKeys>
 <minBound>0</minBound>
 <maxBound>0</maxBound>
 <axisName>"Move in Z (hidden axis)"</axisName>
@@ -108,9 +110,9 @@ these defaults, so it may be better to edit there instead of here.
 <deviceAxisNum>1</deviceAxisNum>
 <deviceSensitivity>1000</deviceSensitivity>
 <deviceDamping>0.05</deviceDamping>
-<upKey>273</upKey>
-<downKey>274</downKey>
-<requiredKey>0</requiredKey>
+<upKeys>(119,273,261)</upKeys>
+<downKeys>(115,274,258)</downKeys>
+<requiredKeys>()</requiredKeys>
 <minBound>0</minBound>
 <maxBound>0</maxBound>
 <axisName>"Move in W (forward/back)"</axisName>
@@ -121,14 +123,14 @@ these defaults, so it may be better to edit there instead of here.
 </obj>
 ,<obj type="MushGameAxisDef">
 <useBounds>0</useBounds>
-<integrate>1</integrate>
-<deviceNum>0</deviceNum>
-<deviceAxisNum>1</deviceAxisNum>
-<deviceSensitivity>-30</deviceSensitivity>
+<integrate>0</integrate>
+<deviceNum>1</deviceNum>
+<deviceAxisNum>0</deviceAxisNum>
+<deviceSensitivity>-20</deviceSensitivity>
 <deviceDamping>0.05</deviceDamping>
-<upKey>116</upKey>
-<downKey>103</downKey>
-<requiredKey>0</requiredKey>
+<upKeys>(117)</upKeys>
+<downKeys>(106)</downKeys>
+<requiredKeys>(113, 260)</requiredKeys>
 <minBound>0</minBound>
 <maxBound>0</maxBound>
 <axisName>"Roll XY"</axisName>
@@ -144,9 +146,9 @@ these defaults, so it may be better to edit there instead of here.
 <deviceAxisNum>0</deviceAxisNum>
 <deviceSensitivity>-10</deviceSensitivity>
 <deviceDamping>0.05</deviceDamping>
-<upKey>104</upKey>
-<downKey>121</downKey>
-<requiredKey>1002</requiredKey>
+<upKeys>()</upKeys>
+<downKeys>()</downKeys>
+<requiredKeys>(32, 1002, 271)</requiredKeys>
 <minBound>0</minBound>
 <maxBound>0</maxBound>
 <axisName>"Look in hidden axis"</axisName>
@@ -157,14 +159,14 @@ these defaults, so it may be better to edit there instead of here.
 </obj>
 ,<obj type="MushGameAxisDef">
 <useBounds>0</useBounds>
-<integrate>1</integrate>
-<deviceNum>0</deviceNum>
+<integrate>0</integrate>
+<deviceNum>1</deviceNum>
 <deviceAxisNum>0</deviceAxisNum>
-<deviceSensitivity>-10</deviceSensitivity>
+<deviceSensitivity>-20</deviceSensitivity>
 <deviceDamping>0.05</deviceDamping>
-<upKey>106</upKey>
-<downKey>117</downKey>
-<requiredKey>0</requiredKey>
+<upKeys>()</upKeys>
+<downKeys>()</downKeys>
+<requiredKeys>(101, 262)</requiredKeys>
 <minBound>0</minBound>
 <maxBound>0</maxBound>
 <axisName>"Roll XZ"</axisName>
@@ -180,9 +182,9 @@ these defaults, so it may be better to edit there instead of here.
 <deviceAxisNum>1</deviceAxisNum>
 <deviceSensitivity>-20</deviceSensitivity>
 <deviceDamping>0.05</deviceDamping>
-<upKey>107</upKey>
-<downKey>105</downKey>
-<requiredKey>0</requiredKey>
+<upKeys>(105)</upKeys>
+<downKeys>(107)</downKeys>
+<requiredKeys>()</requiredKeys>
 <minBound>0</minBound>
 <maxBound>0</maxBound>
 <axisName>"Look up/down"</axisName>
@@ -198,9 +200,9 @@ these defaults, so it may be better to edit there instead of here.
 <deviceAxisNum>0</deviceAxisNum>
 <deviceSensitivity>-20</deviceSensitivity>
 <deviceDamping>0.05</deviceDamping>
-<upKey>108</upKey>
-<downKey>111</downKey>
-<requiredKey>0</requiredKey>
+<upKeys>(111)</upKeys>
+<downKeys>(108)</downKeys>
+<requiredKeys>()</requiredKeys>
 <minBound>0</minBound>
 <maxBound>0</maxBound>
 <axisName>"Look left/right"</axisName>
@@ -211,14 +213,14 @@ these defaults, so it may be better to edit there instead of here.
 </obj>
 ,<obj type="MushGameAxisDef">
 <useBounds>0</useBounds>
-<integrate>1</integrate>
-<deviceNum>0</deviceNum>
-<deviceAxisNum>0</deviceAxisNum>
-<deviceSensitivity>-10</deviceSensitivity>
+<integrate>0</integrate>
+<deviceNum>1</deviceNum>
+<deviceAxisNum>1</deviceAxisNum>
+<deviceSensitivity>-20</deviceSensitivity>
 <deviceDamping>0.05</deviceDamping>
-<upKey>59</upKey>
-<downKey>112</downKey>
-<requiredKey>0</requiredKey>
+<upKeys>()</upKeys>
+<downKeys>()</downKeys>
+<requiredKeys>(101, 262)</requiredKeys>
 <minBound>0</minBound>
 <maxBound>0</maxBound>
 <axisName>"Roll YZ"</axisName>

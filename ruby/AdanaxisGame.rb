@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } KSO1aRs/aLEv+/QhWfRoRw
-# $Id: AdanaxisGame.rb,v 1.23 2006/11/06 12:56:31 southa Exp $
+# $Id: AdanaxisGame.rb,v 1.24 2006/11/06 19:27:51 southa Exp $
 # $Log: AdanaxisGame.rb,v $
+# Revision 1.24  2006/11/06 19:27:51  southa
+# Mushfile handling
+#
 # Revision 1.23  2006/11/06 12:56:31  southa
 # MushFile work
 #
@@ -119,7 +122,7 @@ class AdanaxisGame < MushObject
 
   def mKeypress(inKey, inModifier, inIsDown)
     keyChar = (inKey < 256)?(inKey.chr):('?')
-    keyName = MushGame.cKeySymbolToName(inKey);
+    # keyName = MushGame.cKeySymbolsToName(inKey);
     # puts "key #{inKey}, '#{keyChar}' '#{keyName}' #{inIsDown}"
     
     @m_showHidden = ((inModifier & MushKeys::KMOD_SHIFT) != 0)

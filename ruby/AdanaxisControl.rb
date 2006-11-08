@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } IRcBSpDhgaiF/A38RRaoLw
-# $Id: AdanaxisControl.rb,v 1.6 2006/08/01 17:21:17 southa Exp $
+# $Id: AdanaxisControl.rb,v 1.7 2006/11/03 18:46:31 southa Exp $
 # $Log: AdanaxisControl.rb,v $
+# Revision 1.7  2006/11/03 18:46:31  southa
+# Damage effectors
+#
 # Revision 1.6  2006/08/01 17:21:17  southa
 # River demo
 #
@@ -114,7 +117,7 @@ class AdanaxisControl
   end
 
   def self.cAxisKeyName(axisKey)
-    MushGame.cKeySymbolToName( MushGame.cAxisKeySymbol(axisKey) )
+    MushGame.cKeySymbolsToName( MushGame.cAxisKeySymbols(axisKey) )
   end
 
   def self.cAxisName(axisNum)
@@ -122,7 +125,7 @@ class AdanaxisControl
   end
 
   def self.cKeyName(keyNum)
-    MushGame.cKeySymbolToName( MushGame.cKeySymbol(keyNum) )
+    MushGame.cKeySymbolsToName( MushGame.cKeySymbols(keyNum) )
   end
 
   def self.cNextAxis(inAxis)
