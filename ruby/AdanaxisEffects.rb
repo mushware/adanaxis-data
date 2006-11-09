@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } RVKExAJp3XSTK1irqyfmog
-# $Id: AdanaxisEffects.rb,v 1.3 2006/10/16 15:25:57 southa Exp $
+# $Id: AdanaxisEffects.rb,v 1.4 2006/10/16 22:00:20 southa Exp $
 # $Log: AdanaxisEffects.rb,v $
+# Revision 1.4  2006/10/16 22:00:20  southa
+# Tweaks
+#
 # Revision 1.3  2006/10/16 15:25:57  southa
 # Explosion lifetimes
 #
@@ -31,7 +34,7 @@
 class AdanaxisEffects < MushObject
   def initialize
     @m_numEmberMeshes = 10
-    @m_numExploMeshes = 10
+    @m_numExploMeshes = 8
     @m_numFlareMeshes = 10
     
     @m_emberDefaults = {
@@ -106,7 +109,14 @@ class AdanaxisEffects < MushObject
   def mExploCreate(inParams = {})
     mergedParams = @m_exploDefaults.merge(inParams)
   
-    meshNum = mergedParams[:explo_number] || rand(@m_numExploMeshes)
+  
+    meshNum = mergedParams[:explo_number]
+    if meshNum.kind_of?(Range)
+      meshNum = meshNum.begin + rand(meshNum.end - meshNum.begin)
+    else
+      meshNum ||= rand(@m_numExploMeshes)
+    end
+
     mergedParams[:mesh_name] = "explo#{meshNum}"
     
     mApplySpeedRange(mergedParams, :explosion_speed_range)

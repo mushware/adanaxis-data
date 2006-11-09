@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } 74bLa8v94NQFxupv0Pj/cA
-# $Id: AdanaxisMeshLibrary.rb,v 1.21 2006/10/19 15:41:34 southa Exp $
+# $Id: AdanaxisMeshLibrary.rb,v 1.22 2006/11/03 18:46:31 southa Exp $
 # $Log: AdanaxisMeshLibrary.rb,v $
+# Revision 1.22  2006/11/03 18:46:31  southa
+# Damage effectors
+#
 # Revision 1.21  2006/10/19 15:41:34  southa
 # Item handling
 #
@@ -417,7 +420,7 @@ class AdanaxisMeshLibrary
   end
     
   def mExploCreate
-    10.times do |i|
+    8.times do |i|
       mesh =  MushMesh.new("explo#{i}")
       base1 = MushBaseSingleFacet.new(:order => 4)
       mesh.mBaseAdd(base1)

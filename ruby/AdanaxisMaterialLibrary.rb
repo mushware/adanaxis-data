@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } Qn1dyBC0obbg8YEx3MpSKg
-# $Id: AdanaxisMaterialLibrary.rb,v 1.13 2006/10/19 15:41:34 southa Exp $
+# $Id: AdanaxisMaterialLibrary.rb,v 1.14 2006/11/03 18:46:31 southa Exp $
 # $Log: AdanaxisMaterialLibrary.rb,v $
+# Revision 1.14  2006/11/03 18:46:31  southa
+# Damage effectors
+#
 # Revision 1.13  2006/10/19 15:41:34  southa
 # Item handling
 #
@@ -93,20 +96,24 @@ class AdanaxisMaterialLibrary < MushObject
       )
     end
     
-    if @m_textureLibrary.mExplo1Names.size > 0
-      10.times do |i|
+    numExplo = @m_textureLibrary.mExploNames.size
+    if numExplo > 0
+      8.times do |i|
+        texToUse = i
+        texToUse = numExplo - 1 if texToUse >= numExplo
+        
         MushMaterial.cDefine(
-        :name => "explo#{i}-mat",
-      :mapping_type => :tiled,
-        :texture_names => @m_textureLibrary.mExplo1Names
+          :name => "explo#{i}-mat",
+          :mapping_type => :tiled,
+          :texture_names => @m_textureLibrary.mExploNames[texToUse]
         )
       end
     else
-      10.times do |i|
+      8.times do |i|
         MushMaterial.cDefine(
-        :name => "explo#{i}-mat",
-      :mapping_type => :tiled,
-        :texture_names => ["flare#{i}-tex"]
+          :name => "explo#{i}-mat",
+          :mapping_type => :tiled,
+          :texture_names => ["flare#{i}-tex"]
         )
       end    
     end

@@ -18,8 +18,11 @@
 #
 ##############################################################################
 #%Header } XESH903Rz4omoAntOunkPg
-# $Id: space.rb,v 1.12 2006/10/30 17:03:50 southa Exp $
+# $Id: space.rb,v 1.13 2006/11/03 18:46:32 southa Exp $
 # $Log: space.rb,v $
+# Revision 1.13  2006/11/03 18:46:32  southa
+# Damage effectors
+#
 # Revision 1.12  2006/10/30 17:03:50  southa
 # Remnants creation
 #
@@ -80,15 +83,16 @@ class Adanaxis_local3 < AdanaxisSpace
     # Must still increment @preCached if cPreCache throws
     @preCached += 1
     case (num)
-      when 0..9   : MushGLTexture.cPreCache("flare#{num}-tex")
-      when 10..19 : MushGLTexture.cPreCache("ember#{num-10}-tex")
-      when 20..29 : MushGLTexture.cPreCache("star#{num-20}-tex")
-      when 30     : MushGLTexture.cPreCache("attendant-tex")
-      when 31     : MushGLTexture.cPreCache("projectile1-tex")
-      when 32     : MushGLTexture.cPreCache("projectile2-tex")
+      when 3..12   : mStandardPrecache(num-3)
+      when 20..29 : MushGLTexture.cPreCache("ember#{num-20}-tex")
+      when 30..39 : MushGLTexture.cPreCache("star#{num-30}-tex")
+      when 40..49 : MushGLTexture.cPreCache("flare#{num-40}-tex")
+      when 50     : MushGLTexture.cPreCache("attendant-tex")
+      when 51     : MushGLTexture.cPreCache("projectile1-tex")
+      when 52     : MushGLTexture.cPreCache("projectile2-tex")
     end
     
-    3 * num
+    num
   end
   
   def mInitialPiecesCreate

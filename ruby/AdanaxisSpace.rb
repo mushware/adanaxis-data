@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } lR/lFdEFyXBbk1T1wsvmCw
-# $Id: AdanaxisSpace.rb,v 1.12 2006/11/01 13:04:21 southa Exp $
+# $Id: AdanaxisSpace.rb,v 1.13 2006/11/03 18:46:31 southa Exp $
 # $Log: AdanaxisSpace.rb,v $
+# Revision 1.13  2006/11/03 18:46:31  southa
+# Damage effectors
+#
 # Revision 1.12  2006/11/01 13:04:21  southa
 # Initial weapon handling
 #
@@ -61,6 +64,20 @@ class AdanaxisSpace < MushObject
     dialogueFile = game.mSpacePath+"/dialogues.xml"
     if File.file?(dialogueFile)
       MushGame.cGameDialoguesLoad(dialogueFile)
+    end
+  end
+  
+  def mStandardPrecache(inNum)
+    if inNum < @m_textureLibrary.mExploNames.size
+      @m_textureLibrary.mExploNames[inNum].each do |texName|
+        MushGLTexture.cPreCache(texName)
+      end
+    end
+    
+    if inNum == @m_textureLibrary.mExploNames.size
+      @m_textureLibrary.mCosmos1Names.each do |texName|
+        MushGLTexture.cPreCache(texName)
+      end
     end
   end
   

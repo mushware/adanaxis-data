@@ -18,8 +18,11 @@
 #
 ##############################################################################
 #%Header } GlOv4eqaA1+e+dQsFxDIuw
-# $Id$
-# $Log$
+# $Id: MakeCosmos.rb,v 1.1 2006/10/18 13:21:58 southa Exp $
+# $Log: MakeCosmos.rb,v $
+# Revision 1.1  2006/10/18 13:21:58  southa
+# World rendering
+#
 
 $LOAD_PATH.push File.dirname($0)+"/../../scripts"
 require 'ProcessCosmos.rb'
@@ -27,7 +30,8 @@ require 'ProcessCosmos.rb'
 processAnimation = ProcessCosmos.new(
   :control_file => $0,
   :source_path => File.dirname($0)+"/../pixelsrc/cosmos",
-  :destination_path => "cosmos"
+  :destination_path => "cosmos",
+  :black_threshold => 0.02
   )
 processAnimation.mProcess(
   :source_regexp => /\.jpe?g$/,

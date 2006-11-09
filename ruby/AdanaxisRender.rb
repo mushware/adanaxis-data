@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } gALWTcpqRL4PXzPDNgzRcg
-# $Id: AdanaxisRender.rb,v 1.4 2006/08/01 17:21:18 southa Exp $
+# $Id: AdanaxisRender.rb,v 1.5 2006/10/17 15:28:00 southa Exp $
 # $Log: AdanaxisRender.rb,v $
+# Revision 1.5  2006/10/17 15:28:00  southa
+# Player collisions
+#
 # Revision 1.4  2006/08/01 17:21:18  southa
 # River demo
 #
@@ -45,9 +48,11 @@ class AdanaxisRender < MushObject
     mRenderMenu
   end
 
-  def mPreCacheRender(percentage)
+  def mPreCacheRender(inPercentage, inMB)
     @m_menuFont.colour = MushVector.new(1,1,1,0.3)
-    @m_menuFont.mRenderAtSize("Loading... #{percentage}%", -0.4, -0.25, 0.02);
+    @m_menuFont.mRenderAtSize("Loading... #{inPercentage}%", -0.4, -0.25, 0.02);
+    @m_menuFont.colour = MushVector.new(1,1,1,0.1)
+    @m_menuFont.mRenderAtSize("#{inMB}MB", -0.4, -0.27, 0.015);
   end
 
   def mPackageIDRender

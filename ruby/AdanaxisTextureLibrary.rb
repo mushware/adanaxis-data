@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } avqCjn1AV8PsFQvoiWGwNA
-# $Id: AdanaxisTextureLibrary.rb,v 1.22 2006/11/03 18:46:32 southa Exp $
+# $Id: AdanaxisTextureLibrary.rb,v 1.23 2006/11/07 11:08:54 southa Exp $
 # $Log: AdanaxisTextureLibrary.rb,v $
+# Revision 1.23  2006/11/07 11:08:54  southa
+# Texture loading from mushfiles
+#
 # Revision 1.22  2006/11/03 18:46:32  southa
 # Damage effectors
 #
@@ -45,21 +48,28 @@
 
 class AdanaxisTextureLibrary < MushObject
   def initialize(inParams = {})
-  
+    @m_exploNames = []
   end
 
-  mush_reader :m_explo1Names, :m_cosmos1Names
+  mush_reader :m_exploNames, :m_cosmos1Names
 
   def mCreate
     levelOfDetail = MushGame.cTextureDetail
-    # level 0 and 1 activate OpenGL compression, so 2 uses the same sizes
-    # as 1 but without compression
-    levelOfDetail += 1 if levelOfDetail < 2
     textureSize = 256 * (2 ** levelOfDetail);
     smallTextureSize = 128 * (2 ** levelOfDetail);
     largeTextureSize = 512 * (2 ** levelOfDetail);
     starTextureSize = 32 * (2 ** levelOfDetail)
     flareTextureSize = smallTextureSize
+
+    compressNear = case levelOfDetail
+      when 0..1: true
+      else false
+    end
+    
+    compressFar = case levelOfDetail
+      when 0..3: true
+      else false
+    end
 
 	# Standard palettes
 	MushGLTexture::cDefine(
@@ -131,7 +141,8 @@ class AdanaxisTextureLibrary < MushObject
     :type          => 'TIFF',
     :filename      => MushConfig.cGlobalPixelsPath+'/healthbox1.tiff',
     :storagetype   => 'GL',
-    :cache         => 0
+    :cache         => 0,
+    :compress      => compressFar
   )
 
   MushGLTexture::cDefine(
@@ -139,22 +150,33 @@ class AdanaxisTextureLibrary < MushObject
     :type          => 'TIFF',
     :filename      => MushConfig.cGlobalPixelsPath+'/shieldbox1.tiff',
     :storagetype   => 'GL',
-    :cache         => 0
+    :cache         => 0,
+    :compress      => compressFar
   )
 
   @m_explo1Names = []
-  100.times do |i|
-    filename = "mush://pixels/artb-explo1-#{i}.tiff|#{MushConfig.cGlobalPixelsPath}/copyright-explo1-#{i}.tiff"
-    if MushFile.cFile?(filename)
-      texName = "explo1-tex-#{i}"
-      @m_explo1Names << texName
-      MushGLTexture::cDefine(
-        :name          => texName,
-        :type          => 'TIFF',
-        :filename      => filename,
-        :storagetype   => 'GL',
-        :cache         => 0
-      )
+  maxExplos = case levelOfDetail
+    when 0: 2
+    when 1: 4
+    else 8
+  end
+  
+  maxExplos.times do |exploNum|
+    @m_exploNames << []
+    100.times do |i|
+      filename = "mush://pixels/artb-explo#{exploNum}-#{i}.tiff|#{MushConfig.cGlobalPixelsPath}/explo#{exploNum}-#{i}.tiff"
+      if MushFile.cFile?(filename)
+        texName = "explo#{exploNum}-tex-#{i}"
+        @m_exploNames[exploNum] << texName
+        MushGLTexture::cDefine(
+          :name          => texName,
+          :type          => 'TIFF',
+          :filename      => filename,
+          :storagetype   => 'GL',
+          :cache         => 0,
+          :compress      => compressFar
+        )
+      end
     end
   end
 
@@ -169,7 +191,8 @@ class AdanaxisTextureLibrary < MushObject
         :type          => 'TIFF',
         :filename      => filename,
         :storagetype   => 'GL',
-        :cache         => 0
+        :cache         => 0,
+        :compress      => compressFar
       )
     end
   end
@@ -187,7 +210,8 @@ class AdanaxisTextureLibrary < MushObject
 		:scale         => [scale, scale, scale, scale],
     :numoctaves    => 8,
     :octaveratio   => 0.5,
-		:cache         => 1
+		:cache         => 1,
+    :compress      => compressNear
 	)
 	
 	MushGLTexture::cDefine(
@@ -201,7 +225,8 @@ class AdanaxisTextureLibrary < MushObject
 		:scale         => [scale, scale, scale, scale],
     :numoctaves    => 5,
     :octaveratio   => 0.5,
-		:cache         => 1
+		:cache         => 1,
+    :compress      => compressNear
 	)
 	
 	scale = 4
@@ -217,7 +242,8 @@ class AdanaxisTextureLibrary < MushObject
 		:scale         => [scale, scale, scale, scale],
     :numoctaves    => 8,
     :octaveratio   => 0.5,
-		:cache         => 1
+		:cache         => 1,
+    :compress      => compressNear
 	)
 
 	MushGLTexture::cDefine(
@@ -231,7 +257,8 @@ class AdanaxisTextureLibrary < MushObject
 		:scale         => [scale, scale, scale, scale],
     :numoctaves    => 8,
     :octaveratio   => 0.5,
-		:cache         => 1
+		:cache         => 1,
+    :compress      => compressNear
 	)
 
   scale = 0.01
@@ -246,7 +273,8 @@ class AdanaxisTextureLibrary < MushObject
 		:scale         => [scale,scale,scale,scale],
     :numoctaves    => 8,
     :octaveratio   => 0.5,
-		:cache         => 1
+		:cache         => 1,
+    :compress      => compressFar
 	)
     
   scale = 0.02
@@ -261,7 +289,8 @@ class AdanaxisTextureLibrary < MushObject
 		:scale         => [scale,scale,scale,scale],
     :numoctaves    => 4,
     :octaveratio   => 1,
-		:cache         => 1
+		:cache         => 1,
+    :compress      => compressFar
 	)
 
   scale = 1
@@ -276,7 +305,8 @@ class AdanaxisTextureLibrary < MushObject
 		:scale         => [scale,scale,scale,scale],
     :numoctaves    => 4,
     :octaveratio   => 0.5,
-		:cache         => 1
+		:cache         => 1,
+    :compress      => compressNear
 	)
 
   scale = 1
@@ -291,7 +321,8 @@ class AdanaxisTextureLibrary < MushObject
 		:scale         => [scale,scale,scale,scale],
     :numoctaves    => 8,
     :octaveratio   => 0.5,
-		:cache         => 1
+		:cache         => 1,
+    :compress      => compressNear
 	)
 
   scale = 1
@@ -306,7 +337,8 @@ class AdanaxisTextureLibrary < MushObject
 		:scale         => [scale,scale,scale,scale],
     :numoctaves    => 4,
     :octaveratio   => 0.5,
-		:cache         => 1
+		:cache         => 1,
+    :compress      => compressNear
 	)
 
   scale = 1
@@ -323,7 +355,8 @@ class AdanaxisTextureLibrary < MushObject
       :scale         => [scale,scale,scale,scale],
       :numoctaves    => 1,
       :octaveratio   => 1,
-      :cache         => 0
+      :cache         => 0,
+      :compress      => compressFar
     )
   end
 
@@ -339,7 +372,8 @@ class AdanaxisTextureLibrary < MushObject
       :scale         => [scale,scale,scale,scale],
       :numoctaves    => 1,
       :octaveratio   => 1,
-      :cache         => 1
+      :cache         => 1,
+      :compress      => compressNear
     )
   end
 
@@ -355,7 +389,8 @@ class AdanaxisTextureLibrary < MushObject
       :scale         => [scale,scale,scale,scale],
       :numoctaves    => 1,
       :octaveratio   => 1,
-      :cache         => 1
+      :cache         => 1,
+      :compress      => compressNear
     )
 
   end
@@ -380,7 +415,8 @@ class AdanaxisTextureLibrary < MushObject
     :offset        => [0.07,0.07,0.07,0.07],
     :gridratio     => gridRatio,
     :gridsharpness => gridSharpnessVec,
-		:cache         => 1
+		:cache         => 1,
+    :compress      => compressNear
 	)
 
   end

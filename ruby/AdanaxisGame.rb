@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } KSO1aRs/aLEv+/QhWfRoRw
-# $Id: AdanaxisGame.rb,v 1.24 2006/11/06 19:27:51 southa Exp $
+# $Id: AdanaxisGame.rb,v 1.25 2006/11/08 18:30:53 southa Exp $
 # $Log: AdanaxisGame.rb,v $
+# Revision 1.25  2006/11/08 18:30:53  southa
+# Key and axis configuration
+#
 # Revision 1.24  2006/11/06 19:27:51  southa
 # Mushfile handling
 #
@@ -109,8 +112,8 @@ class AdanaxisGame < MushObject
     @m_menuRender.mPackageIDRender
   end
 
-  def mPreCacheRender(percentage)
-    @m_menuRender.mPreCacheRender(percentage)
+  def mPreCacheRender(inPercentage, inMB)
+    @m_menuRender.mPreCacheRender(inPercentage, inMB)
   end
 
   def mReset(allowResume)
