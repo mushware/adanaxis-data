@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } aGTJVbl7QyXIWVg5D1mEzg
-# $Id: AdanaxisPieceKhazi.rb,v 1.24 2006/11/02 09:47:32 southa Exp $
+# $Id: AdanaxisPieceKhazi.rb,v 1.25 2006/11/03 18:46:31 southa Exp $
 # $Log: AdanaxisPieceKhazi.rb,v $
+# Revision 1.25  2006/11/03 18:46:31  southa
+# Damage effectors
+#
 # Revision 1.24  2006/11/02 09:47:32  southa
 # Player weapon control
 #
@@ -172,7 +175,7 @@ class AdanaxisPieceKhazi < AdanaxisPiece
       :flare_scale_range => (20.0..25.0),
       :flare_lifetime_range => (600..700)
       )
-    MushGame.cSoundPlay("explode", mPost)
+    MushGame.cSoundPlay("explo#{rand(8)}", mPost)
     
     objPost = mPost.dup
     angVel = MushTools.cRotationInXYPlane(Math::PI / 200);

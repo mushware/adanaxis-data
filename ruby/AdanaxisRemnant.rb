@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } bWqJ8Rs4225yq5McUizgaw
-# $Id: AdanaxisRemnant.rb,v 1.2 2006/10/30 19:36:38 southa Exp $
+# $Id: AdanaxisRemnant.rb,v 1.3 2006/11/02 09:47:32 southa Exp $
 # $Log: AdanaxisRemnant.rb,v $
+# Revision 1.3  2006/11/02 09:47:32  southa
+# Player weapon control
+#
 # Revision 1.2  2006/10/30 19:36:38  southa
 # Item collection
 #
@@ -72,8 +75,10 @@ class AdanaxisRemnant < MushObject
     case inItem.mItemType
       when :health1
         inPiece.mLimitedHealthAdd(0.1) if inPiece.respond_to?(:mLimitedHealthAdd)
+        MushGame.cSoundPlay("healthcollect1", inPiece.mPost)
       when :shield1
         inPiece.mLimitedShieldAdd(0.1) if inPiece.respond_to?(:mLimitedShieldAdd)
+        MushGame.cSoundPlay("shieldcollect1", inPiece.mPost)
       else
         raise(RuntimeError, "Collected unknown remnant type '#{inItem.inspect}'")
       end

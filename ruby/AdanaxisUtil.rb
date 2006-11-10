@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } 63kk9LVPAcoFqUyUUPiQfg
-# $Id: AdanaxisUtil.rb,v 1.6 2006/11/02 09:47:32 southa Exp $
+# $Id: AdanaxisUtil.rb,v 1.7 2006/11/03 18:46:32 southa Exp $
 # $Log: AdanaxisUtil.rb,v $
+# Revision 1.7  2006/11/03 18:46:32  southa
+# Damage effectors
+#
 # Revision 1.6  2006/11/02 09:47:32  southa
 # Player weapon control
 #
@@ -69,6 +72,7 @@ class AdanaxisUtil < MushObject
     :hit_points => true,
     :id_suffix => true,
     :item_type => true,
+    :load_sound => true,
     :lifetime_msec => true,
     :mesh_name => true,
     :offset_sequence => true,

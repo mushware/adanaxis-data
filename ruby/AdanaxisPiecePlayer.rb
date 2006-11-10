@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } 1H+rLloObKxiiVjoIDjJFw
-# $Id: AdanaxisPiecePlayer.rb,v 1.7 2006/11/02 09:47:32 southa Exp $
+# $Id: AdanaxisPiecePlayer.rb,v 1.8 2006/11/03 18:46:31 southa Exp $
 # $Log: AdanaxisPiecePlayer.rb,v $
+# Revision 1.8  2006/11/03 18:46:31  southa
+# Damage effectors
+#
 # Revision 1.7  2006/11/02 09:47:32  southa
 # Player weapon control
 #
@@ -49,7 +52,15 @@ class AdanaxisPiecePlayer < AdanaxisPiece
   mushRegistered_install
   
   @@c_weaponList = [
-    :player_base,
+    :player_base0,
+    :player_base1,
+    :player_base2,
+    :player_base3,
+    :player_base4,
+    :player_base5,
+    :player_base6,
+    :player_base7,
+    :player_base8,
     :player_super_nuker
   ]
   
@@ -92,6 +103,7 @@ class AdanaxisPiecePlayer < AdanaxisPiece
     @m_weaponNum = 0 if @m_weaponNum >= @@c_weaponList.size
     @m_weaponNum = @@c_weaponList.size - 1 if @m_weaponNum < 0
     @m_weapon = $currentGame.mSpace.mWeaponLibrary.mWeapon(@@c_weaponList[@m_weaponNum])
+    MushGame.cSoundPlay("load#{@m_weaponNum}", mPost)
   end
   
   def mFire
