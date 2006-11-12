@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } 1H+rLloObKxiiVjoIDjJFw
-# $Id: AdanaxisPiecePlayer.rb,v 1.8 2006/11/03 18:46:31 southa Exp $
+# $Id: AdanaxisPiecePlayer.rb,v 1.9 2006/11/10 20:17:11 southa Exp $
 # $Log: AdanaxisPiecePlayer.rb,v $
+# Revision 1.9  2006/11/10 20:17:11  southa
+# Audio work
+#
 # Revision 1.8  2006/11/03 18:46:31  southa
 # Damage effectors
 #
@@ -52,16 +55,16 @@ class AdanaxisPiecePlayer < AdanaxisPiece
   mushRegistered_install
   
   @@c_weaponList = [
-    :player_base0,
-    :player_base1,
-    :player_base2,
-    :player_base3,
-    :player_base4,
-    :player_base5,
-    :player_base6,
-    :player_base7,
-    :player_base8,
-    :player_super_nuker
+    :player_light_machine,
+    :player_fast_machine,
+    :player_flak,
+    :player_quad_machine,
+    :player_rail_gun,
+    :player_heavy_cannon,
+    :player_light_missile,
+    :player_heavy_missile,
+    :player_flush_gun,
+    :player_nuclear
   ]
   
   def initialize(inParams = {})

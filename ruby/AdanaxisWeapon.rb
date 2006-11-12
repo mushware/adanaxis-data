@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } Xu79QXYia2BFmo2DZ89f+A
-# $Id: AdanaxisWeapon.rb,v 1.3 2006/11/02 12:23:21 southa Exp $
+# $Id: AdanaxisWeapon.rb,v 1.4 2006/11/03 18:46:32 southa Exp $
 # $Log: AdanaxisWeapon.rb,v $
+# Revision 1.4  2006/11/03 18:46:32  southa
+# Damage effectors
+#
 # Revision 1.3  2006/11/02 12:23:21  southa
 # Weapon selection
 #
@@ -39,6 +42,7 @@ class AdanaxisWeapon < MushObject
     @m_projectileMesh = inParams[:projectile_mesh]
     @m_lifetimeMsec = inParams[:lifetime_msec] || 10000
     @m_speed = inParams[:speed] || 1.0
+    @m_acceleration = inParams[:acceleration] || 0.0
     @m_fireRateMsec = inParams[:fire_rate_msec] || 1000
     @m_offsetSequence = inParams[:offset_sequence] || @@c_defaultOffset
     @m_offsetNumber = 0
@@ -88,7 +92,8 @@ class AdanaxisWeapon < MushObject
       :post => projPost,
       :owner => inPiece.mId,
       :lifetime_msec => @m_lifetimeMsec,
-      :hit_points => @m_hitPoints
+      :hit_points => @m_hitPoints,
+      :acceleration => @m_acceleration
     )
     
     @m_lastFireMsec = MushGame.cGameMsec

@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } fqw0Kg8SFKBRqHTmFMXeGw
-# $Id: AdanaxisWeaponLibrary.rb,v 1.4 2006/11/05 09:32:13 southa Exp $
+# $Id: AdanaxisWeaponLibrary.rb,v 1.5 2006/11/10 20:17:11 southa Exp $
 # $Log: AdanaxisWeaponLibrary.rb,v $
+# Revision 1.5  2006/11/10 20:17:11  southa
+# Audio work
+#
 # Revision 1.4  2006/11/05 09:32:13  southa
 # Mush file generation
 #
@@ -40,22 +43,23 @@ class AdanaxisWeaponLibrary < MushObject
   end
   
   def mCreate
-    @m_weapons[:player_base0] = AdanaxisWeapon.new(
+    @m_weapons[:player_light_machine] = AdanaxisWeapon.new(
       :projectile_mesh => 'projectile1',
       :speed => 1.0,
-      :fire_rate_msec => 190,
+      :hit_points => 1.0,
+      :fire_rate_msec => 200,
       :offset_sequence => [
-        MushVector.new(-1,0,0,0),
-        MushVector.new(1,0,0,0)
+        MushVector.new(0,-0.5,0,0)
       ],
       :load_sound => 'load0',
       :fire_sound => 'fire0'
     )
 
-    @m_weapons[:player_base1] = AdanaxisWeapon.new(
+    @m_weapons[:player_fast_machine] = AdanaxisWeapon.new(
       :projectile_mesh => 'projectile1',
       :speed => 2.0,
-      :fire_rate_msec => 190,
+      :hit_points => 1.0,
+      :fire_rate_msec => 100,
       :offset_sequence => [
         MushVector.new(-1,0,0,0),
         MushVector.new(1,0,0,0)
@@ -63,43 +67,48 @@ class AdanaxisWeaponLibrary < MushObject
       :load_sound => 'load1',
       :fire_sound => 'fire1'
     )
-    @m_weapons[:player_base2] = AdanaxisWeapon.new(
+    @m_weapons[:player_flak] = AdanaxisWeapon.new(
       :projectile_mesh => 'projectile1',
       :speed => 2.0,
-      :fire_rate_msec => 90,
+      :hit_points => 1.0,
+      :fire_rate_msec => 500,
+      :lifetime_msec => 1000,
       :offset_sequence => [
-        MushVector.new(-1,0,0,0),
-        MushVector.new(1,0,0,0)
+        MushVector.new(0,-0.5,0,0)
       ],
       :load_sound => 'load2',
       :fire_sound => 'fire2'
     )
-    @m_weapons[:player_base3] = AdanaxisWeapon.new(
+    @m_weapons[:player_quad_machine] = AdanaxisWeapon.new(
       :projectile_mesh => 'projectile1',
       :speed => 2.0,
-      :fire_rate_msec => 90,
+      :hit_points => 1.0,
+      :fire_rate_msec => 100,
       :offset_sequence => [
-        MushVector.new(-1,0,0,0),
-        MushVector.new(1,0,0,0)
+        MushVector.new(-1,-0.5,0,0),
+        MushVector.new(1,0.5,0,0),
+        MushVector.new(-1,0.5,0,0),
+        MushVector.new(1,-0.5,0,0)
       ],
       :load_sound => 'load3',
       :fire_sound => 'fire3'
     )
-    @m_weapons[:player_base4] = AdanaxisWeapon.new(
+    @m_weapons[:player_rail_gun] = AdanaxisWeapon.new(
       :projectile_mesh => 'projectile1',
       :speed => 2.0,
+      :hit_points => 50.0,
       :fire_rate_msec => 1000,
       :offset_sequence => [
-        MushVector.new(-1,0,0,0),
-        MushVector.new(1,0,0,0)
+        MushVector.new(0,-0.5,0,0)
       ],
       :load_sound => 'load4',
       :fire_sound => 'fire4'
     )
-    @m_weapons[:player_base5] = AdanaxisWeapon.new(
+    @m_weapons[:player_heavy_cannon] = AdanaxisWeapon.new(
       :projectile_mesh => 'projectile1',
       :speed => 2.0,
-      :fire_rate_msec => 30,
+      :hit_points => 4.0,
+      :fire_rate_msec => 100,
       :offset_sequence => [
         MushVector.new(-1,0,0,0),
         MushVector.new(1,0,0,0)
@@ -107,57 +116,62 @@ class AdanaxisWeaponLibrary < MushObject
       :load_sound => 'load5',
       :fire_sound => 'fire5'
     )
-    @m_weapons[:player_base6] = AdanaxisWeapon.new(
+    @m_weapons[:player_light_missile] = AdanaxisWeapon.new(
       :projectile_mesh => 'projectile1',
-      :speed => 2.0,
-      :fire_rate_msec => 50,
+      :speed => 0.0,
+      :acceleration => 0.01,
+      :hit_points => 25.0,
+      :fire_rate_msec => 400,
       :offset_sequence => [
-        MushVector.new(-1,0,0,0),
-        MushVector.new(1,0,0,0)
+        MushVector.new(-1,-0.3,0,0),
+        MushVector.new(1,-0.3,0,0)
       ],
       :load_sound => 'load6',
       :fire_sound => 'fire6'
     )
-    @m_weapons[:player_base7] = AdanaxisWeapon.new(
+    @m_weapons[:player_heavy_missile] = AdanaxisWeapon.new(
       :projectile_mesh => 'projectile1',
-      :speed => 2.0,
-      :fire_rate_msec => 50,
+      :speed => 0.0,
+      :acceleration => 0.005,
+      :hit_points => 80.0,
+      :fire_rate_msec => 1000,
       :offset_sequence => [
-        MushVector.new(-1,0,0,0),
-        MushVector.new(1,0,0,0)
+        MushVector.new(-0.8,-0.3,0,0),
+        MushVector.new(0.8,-0.3,0,0)
       ],
       :load_sound => 'load7',
       :fire_sound => 'fire7'
     )
-    @m_weapons[:player_base8] = AdanaxisWeapon.new(
+    @m_weapons[:player_flush_gun] = AdanaxisWeapon.new(
       :projectile_mesh => 'projectile1',
-      :speed => 2.0,
-      :fire_rate_msec => 50,
+      :speed => 0.0,
+      :acceleration => 0.005,
+      :hit_points => 0.0,
+      :fire_rate_msec => 2000,
       :offset_sequence => [
-        MushVector.new(-1,0,0,0),
-        MushVector.new(1,0,0,0)
+        MushVector.new(0,-0.5,0,0)
       ],
       :load_sound => 'load8',
       :fire_sound => 'fire8'
     )
 
     
-    @m_weapons[:player_super_nuker] = AdanaxisWeapon.new(
+    @m_weapons[:player_nuclear] = AdanaxisWeapon.new(
       :projectile_mesh => 'projectile2',
       :speed => 1.0,
-      :fire_rate_msec => 2000,
+      :hit_points => 500.0,
+      :fire_rate_msec => 10000,
       :lifetime_msec => 5000,
       :offset_sequence => [
-        MushVector.new(0,-2,0,0)
+        MushVector.new(0,-1,0,0)
       ],
-      :hit_points => 500.0,
       :load_sound => 'load9',
       :fire_sound => 'fire9'
     )
 
     @m_weapons[:khazi_base] = AdanaxisWeapon.new(
       :projectile_mesh => 'projectile1',
-      :speed => 1.0,
+      :speed => 0.5,
       :fire_rate_msec => 3000
     )
   end

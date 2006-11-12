@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } 63kk9LVPAcoFqUyUUPiQfg
-# $Id: AdanaxisUtil.rb,v 1.7 2006/11/03 18:46:32 southa Exp $
+# $Id: AdanaxisUtil.rb,v 1.8 2006/11/10 20:17:11 southa Exp $
 # $Log: AdanaxisUtil.rb,v $
+# Revision 1.8  2006/11/10 20:17:11  southa
+# Audio work
+#
 # Revision 1.7  2006/11/03 18:46:32  southa
 # Damage effectors
 #
@@ -52,6 +55,7 @@ class AdanaxisUtil < MushObject
   end
   
   @c_symbols = {
+    :acceleration => true,
     :angular_position => true,
     :angular_velocity => true,
     :does_damage => true,

@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } JPjWkwGvzd5d5LJLXnphkQ
-# $Id: AdanaxisPieceProjectile.rb,v 1.11 2006/10/30 19:36:38 southa Exp $
+# $Id: AdanaxisPieceProjectile.rb,v 1.12 2006/11/03 18:46:31 southa Exp $
 # $Log: AdanaxisPieceProjectile.rb,v $
+# Revision 1.12  2006/11/03 18:46:31  southa
+# Damage effectors
+#
 # Revision 1.11  2006/10/30 19:36:38  southa
 # Item collection
 #
@@ -63,12 +66,13 @@ class AdanaxisPieceProjectile < AdanaxisPiece
     @m_owner = inParams[:owner] || ""
     @m_lifeMsec = inParams[:lifetime_msec] || 0
     @m_damageFrame = inParams[:damage_frame]
+    @m_acceleration = inParams[:acceleration] || 0.0
   end
   
   mush_reader :m_owner
   
   def mExplosionEffect
-    if @m_originalHitPoints > 5.0
+    if @m_originalHitPoints > 50.0
       $currentLogic.mEffects.mExplode(
         :post => mPost,
         :embers => 0,
