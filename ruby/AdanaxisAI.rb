@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } ZJhgffsl43t4RqQcN4aPag
-# $Id: AdanaxisAI.rb,v 1.9 2006/10/15 17:12:53 southa Exp $
+# $Id: AdanaxisAI.rb,v 1.10 2006/11/01 13:04:20 southa Exp $
 # $Log: AdanaxisAI.rb,v $
+# Revision 1.10  2006/11/01 13:04:20  southa
+# Initial weapon handling
+#
 # Revision 1.9  2006/10/15 17:12:53  southa
 # Scripted explosions
 #
@@ -56,17 +59,18 @@ class AdanaxisAI < MushObject
   AISTATE_PATROL=4
   AISTATE_SEEK=5
   AISTATE_WAYPOINT=6
+  AISTATE_PROJECTILE_SEEK=7
 
   def initialize(inParams = {})
     @m_state = AISTATE_DORMANT
     @m_stateDuration = 0
     @m_waypoint = MushVector.new(rand(300)-150, rand(300)-150, rand(300)-150, -rand(300)-50)
     @m_stateChangeMsec = 0
-    @m_targetID = nil
     @r_piece = nil
     @r_post = nil
     
     # Parameters
+    @m_targetID = inParams[:target_id]
     @m_seekSpeed = inParams[:seek_speed] || 0.0
     @m_seekAcceleration = inParams[:seek_acceleration] || 0.0
     @m_patrolSpeed = inParams[:patrol_speed] || 0.0

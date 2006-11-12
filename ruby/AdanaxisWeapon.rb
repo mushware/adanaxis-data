@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } Xu79QXYia2BFmo2DZ89f+A
-# $Id: AdanaxisWeapon.rb,v 1.4 2006/11/03 18:46:32 southa Exp $
+# $Id: AdanaxisWeapon.rb,v 1.5 2006/11/12 14:39:50 southa Exp $
 # $Log: AdanaxisWeapon.rb,v $
+# Revision 1.5  2006/11/12 14:39:50  southa
+# Player weapons amd audio fix
+#
 # Revision 1.4  2006/11/03 18:46:32  southa
 # Damage effectors
 #
@@ -43,12 +46,15 @@ class AdanaxisWeapon < MushObject
     @m_lifetimeMsec = inParams[:lifetime_msec] || 10000
     @m_speed = inParams[:speed] || 1.0
     @m_acceleration = inParams[:acceleration] || 0.0
+    @m_speedLimit = inParams[:speed_limit] || 0.0
     @m_fireRateMsec = inParams[:fire_rate_msec] || 1000
     @m_offsetSequence = inParams[:offset_sequence] || @@c_defaultOffset
     @m_offsetNumber = 0
     @m_fireSound = inParams[:fire_sound]
+    @m_reloadSound = inParams[:reload_sound]
     @m_angularVelocity = inParams[:angular_velocity] || @@c_defaultAngularVelocity
     @m_hitPoints = inParams[:hit_points] || 1.0
+    @m_aiParams = inParams[:ai_params]
     
     @m_lastFireMsec = 0
   end
@@ -87,13 +93,21 @@ class AdanaxisWeapon < MushObject
     projPost.angular_position.mRotate(angVel)
     projPost.angular_velocity = angVel
     
+    if @m_aiParams
+      aiParams = @m_aiParams.merge(
+        :target_id => inEvent.mTargetID
+      )
+    end
+    
     retVal = AdanaxisPieceProjectile.cCreate(
       :mesh_name => @m_projectileMesh,
       :post => projPost,
       :owner => inPiece.mId,
       :lifetime_msec => @m_lifetimeMsec,
       :hit_points => @m_hitPoints,
-      :acceleration => @m_acceleration
+      :acceleration => @m_acceleration,
+      :speed_limit => @m_speedLimit,
+      :ai_params => aiParams
     )
     
     @m_lastFireMsec = MushGame.cGameMsec
@@ -101,6 +115,7 @@ class AdanaxisWeapon < MushObject
     @m_offsetNumber = 0 if @m_offsetNumber >= @m_offsetSequence.size    
     
     MushGame.cSoundPlay(@m_fireSound, projPost) if @m_fireSound
+    MushGame.cSoundPlay(@m_reloadSound, projPost) if @m_reloadSound
     retVal
   end
 end

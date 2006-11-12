@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } fAZMXASsvVkN8FSXXDhczg
-# $Id: AdanaxisEvents.rb,v 1.4 2006/11/02 09:47:32 southa Exp $
+# $Id: AdanaxisEvents.rb,v 1.5 2006/11/03 18:46:31 southa Exp $
 # $Log: AdanaxisEvents.rb,v $
+# Revision 1.5  2006/11/03 18:46:31  southa
+# Damage effectors
+#
 # Revision 1.4  2006/11/02 09:47:32  southa
 # Player weapon control
 #
@@ -34,9 +37,10 @@
 class AdanaxisEventFire < MushEvent
   def initialize
     @m_post = MushPost.new
+    @m_targetID = ""
   end
   
-  mush_accessor :m_post
+  mush_accessor :m_post, :m_targetID
 end
 
 class AdanaxisEventKeyState < MushEvent

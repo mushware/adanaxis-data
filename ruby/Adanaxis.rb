@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } Vr8SNTx01PRrZQGDsHJ+7Q
-# $Id: Adanaxis.rb,v 1.22 2006/11/01 13:04:20 southa Exp $
+# $Id: Adanaxis.rb,v 1.23 2006/11/03 18:46:31 southa Exp $
 # $Log: Adanaxis.rb,v $
+# Revision 1.23  2006/11/03 18:46:31  southa
+# Damage effectors
+#
 # Revision 1.22  2006/11/01 13:04:20  southa
 # Initial weapon handling
 #
@@ -69,6 +72,8 @@
 
 require 'Mushware.rb'
 require 'AdanaxisAI.rb'
+require 'AdanaxisAIKhazi.rb'
+require 'AdanaxisAIProjectile.rb'
 require 'AdanaxisDashboard.rb'
 require 'AdanaxisEffects.rb'
 require 'AdanaxisEvents.rb'

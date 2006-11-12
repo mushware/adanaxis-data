@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } 63kk9LVPAcoFqUyUUPiQfg
-# $Id: AdanaxisUtil.rb,v 1.8 2006/11/10 20:17:11 southa Exp $
+# $Id: AdanaxisUtil.rb,v 1.9 2006/11/12 14:39:50 southa Exp $
 # $Log: AdanaxisUtil.rb,v $
+# Revision 1.9  2006/11/12 14:39:50  southa
+# Player weapons amd audio fix
+#
 # Revision 1.8  2006/11/10 20:17:11  southa
 # Audio work
 #
@@ -55,6 +58,7 @@ class AdanaxisUtil < MushObject
   end
   
   @c_symbols = {
+    :ai_params => true,
     :acceleration => true,
     :angular_position => true,
     :angular_velocity => true,
@@ -84,11 +88,13 @@ class AdanaxisUtil < MushObject
     :position => true,
     :post => true,
     :projectile_mesh => true,
+    :reload_sound => true,
     :remnant => true,
     :render_scale => true,
     :seek_acceleration => true,
     :seek_speed => true,
     :speed => true,
+    :speed_limit => true,
     :target_types => true,
     :type => true,
     :velocity => true,

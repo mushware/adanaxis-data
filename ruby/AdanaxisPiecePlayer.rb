@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } 1H+rLloObKxiiVjoIDjJFw
-# $Id: AdanaxisPiecePlayer.rb,v 1.9 2006/11/10 20:17:11 southa Exp $
+# $Id: AdanaxisPiecePlayer.rb,v 1.10 2006/11/12 14:39:49 southa Exp $
 # $Log: AdanaxisPiecePlayer.rb,v $
+# Revision 1.10  2006/11/12 14:39:49  southa
+# Player weapons amd audio fix
+#
 # Revision 1.9  2006/11/10 20:17:11  southa
 # Audio work
 #
@@ -113,6 +116,7 @@ class AdanaxisPiecePlayer < AdanaxisPiece
     if @m_weapon.mFireOpportunityTake
       event = AdanaxisEventFire.new
       event.mPostSet(@m_post)
+      event.mTargetIDSet(AdanaxisRuby.cPlayerTargetID)
       $currentLogic.mEventConsume(event, @m_id, @m_id)
     end
   end

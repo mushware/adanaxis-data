@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } fqw0Kg8SFKBRqHTmFMXeGw
-# $Id: AdanaxisWeaponLibrary.rb,v 1.5 2006/11/10 20:17:11 southa Exp $
+# $Id: AdanaxisWeaponLibrary.rb,v 1.6 2006/11/12 14:39:50 southa Exp $
 # $Log: AdanaxisWeaponLibrary.rb,v $
+# Revision 1.6  2006/11/12 14:39:50  southa
+# Player weapons amd audio fix
+#
 # Revision 1.5  2006/11/10 20:17:11  southa
 # Audio work
 #
@@ -52,7 +55,9 @@ class AdanaxisWeaponLibrary < MushObject
         MushVector.new(0,-0.5,0,0)
       ],
       :load_sound => 'load0',
-      :fire_sound => 'fire0'
+      :fire_sound => 'fire0',
+      :ai_params => {:seek_acceleration => 0.01},
+      :angular_velocity => MushRotation.new
     )
 
     @m_weapons[:player_fast_machine] = AdanaxisWeapon.new(
@@ -120,41 +125,52 @@ class AdanaxisWeaponLibrary < MushObject
       :projectile_mesh => 'projectile1',
       :speed => 0.0,
       :acceleration => 0.01,
+      :speed_limit => 4.0,
       :hit_points => 25.0,
       :fire_rate_msec => 400,
+      :lifetime_msec => 6000,
       :offset_sequence => [
         MushVector.new(-1,-0.3,0,0),
         MushVector.new(1,-0.3,0,0)
       ],
       :load_sound => 'load6',
-      :fire_sound => 'fire6'
+      :fire_sound => 'fire6',
+      :reload_sound => 'load6',
+      :ai_params => {:seek_acceleration => 0.01},
+      :angular_velocity => MushRotation.new
     )
     @m_weapons[:player_heavy_missile] = AdanaxisWeapon.new(
       :projectile_mesh => 'projectile1',
       :speed => 0.0,
       :acceleration => 0.005,
+      :speed_limit => 4.0,
       :hit_points => 80.0,
       :fire_rate_msec => 1000,
+      :lifetime_msec => 20000,
       :offset_sequence => [
         MushVector.new(-0.8,-0.3,0,0),
         MushVector.new(0.8,-0.3,0,0)
       ],
       :load_sound => 'load7',
-      :fire_sound => 'fire7'
+      :fire_sound => 'fire7',
+      :reload_sound => 'load7',
+      :ai_params => {:seek_acceleration => 0.02},
+      :angular_velocity => MushRotation.new
     )
     @m_weapons[:player_flush_gun] = AdanaxisWeapon.new(
       :projectile_mesh => 'projectile1',
       :speed => 0.0,
       :acceleration => 0.005,
+      :speed_limit => 0.5,
       :hit_points => 0.0,
       :fire_rate_msec => 2000,
+      :lifetime_msec => 6000,
       :offset_sequence => [
         MushVector.new(0,-0.5,0,0)
       ],
       :load_sound => 'load8',
       :fire_sound => 'fire8'
     )
-
     
     @m_weapons[:player_nuclear] = AdanaxisWeapon.new(
       :projectile_mesh => 'projectile2',

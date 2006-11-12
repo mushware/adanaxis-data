@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } JPjWkwGvzd5d5LJLXnphkQ
-# $Id: AdanaxisPieceProjectile.rb,v 1.12 2006/11/03 18:46:31 southa Exp $
+# $Id: AdanaxisPieceProjectile.rb,v 1.13 2006/11/12 14:39:50 southa Exp $
 # $Log: AdanaxisPieceProjectile.rb,v $
+# Revision 1.13  2006/11/12 14:39:50  southa
+# Player weapons amd audio fix
+#
 # Revision 1.12  2006/11/03 18:46:31  southa
 # Damage effectors
 #
@@ -67,9 +70,32 @@ class AdanaxisPieceProjectile < AdanaxisPiece
     @m_lifeMsec = inParams[:lifetime_msec] || 0
     @m_damageFrame = inParams[:damage_frame]
     @m_acceleration = inParams[:acceleration] || 0.0
+    @m_speedLimit = inParams[:speed_limit] || 0.0
+    
+    aiParams = inParams[:ai_params]
+    if aiParams
+      @m_ai = AdanaxisAIProjectile.new(aiParams)
+      @m_callInterval = 100
+    else
+      @m_callInterval = nil
+    end
+    
+    return @m_callInterval
   end
   
   mush_reader :m_owner
+  
+  def mActionTimer
+    mLoad
+    
+    if @m_ai
+      @m_callInterval = @m_ai.mActByState(self)
+    end
+    
+    mSave
+    
+    @m_callInterval
+  end
   
   def mExplosionEffect
     if @m_originalHitPoints > 50.0
