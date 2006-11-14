@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } yTzlWjZhcDQjs3FNriJdaw
-# $Id$
-# $Log$
+# $Id: AdanaxisPieceEffector.rb,v 1.1 2006/11/03 18:46:31 southa Exp $
+# $Log: AdanaxisPieceEffector.rb,v $
+# Revision 1.1  2006/11/03 18:46:31  southa
+# Damage effectors
+#
 
 class AdanaxisPieceEffector < AdanaxisPiece
   extend MushRegistered
@@ -29,13 +32,21 @@ class AdanaxisPieceEffector < AdanaxisPiece
     super
     @m_owner = inParams[:owner] || ""
     @m_lifeMsec = inParams[:lifetime_msec] || 0
+    @m_rail = inParams[:rail] || false
   end
   
+  mush_accessor :m_rail
+  
   def mDamageFactor(inPiece)
-    separation = (mPost.position - inPiece.mPost.position).mMagnitude
-    factor = ((@m_hitPoints - separation) / @m_hitPoints).mClamp(0.0, 1.0)
-    factor *= factor * factor # 4D so inverse cube law
-    return @m_damageFactor * factor
+    if @m_rail
+      retVal = @m_damageFactor
+    else
+      separation = (mPost.position - inPiece.mPost.position).mMagnitude
+      factor = ((@m_hitPoints - separation) / @m_hitPoints).mClamp(0.0, 1.0)
+      factor *= factor * factor # 4D so inverse cube law
+      retVal = @m_damageFactor * factor
+    end
+    retVal
   end
 
 end

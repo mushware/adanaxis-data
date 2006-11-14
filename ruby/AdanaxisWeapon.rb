@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } Xu79QXYia2BFmo2DZ89f+A
-# $Id: AdanaxisWeapon.rb,v 1.6 2006/11/12 20:09:54 southa Exp $
+# $Id: AdanaxisWeapon.rb,v 1.7 2006/11/14 14:02:16 southa Exp $
 # $Log: AdanaxisWeapon.rb,v $
+# Revision 1.7  2006/11/14 14:02:16  southa
+# Ball projectiles
+#
 # Revision 1.6  2006/11/12 20:09:54  southa
 # Missile guidance
 #
@@ -60,6 +63,7 @@ class AdanaxisWeapon < MushObject
     @m_aiParams = inParams[:ai_params]
     @m_numProjectiles = inParams[:num_projectiles] || 1
     @m_deviation = inParams[:deviation]
+    @m_rail = inParams[:rail]
     @m_lastFireMsec = 0
   end
   
@@ -72,7 +76,7 @@ class AdanaxisWeapon < MushObject
     retVal
   end
   
-  def mFire(inEvent, inPiece)
+  def mProjectileFire(inEvent, inPiece)
     projPost = inEvent.mPost.dup
     
     # Get player forward velocity but not transverse
@@ -127,5 +131,58 @@ class AdanaxisWeapon < MushObject
     MushGame.cSoundPlay(@m_fireSound, projPost) if @m_fireSound
     MushGame.cSoundPlay(@m_reloadSound, projPost) if @m_reloadSound
     nil
+  end
+  
+  def mRailFire(inEvent, inPiece)
+    projPost = inEvent.mPost.dup
+    offset = @m_offsetSequence[@m_offsetNumber].dup
+    
+    
+    # Apply the angular velocity in the object frame
+    angVel = projPost.angular_position.mInverse
+    @m_angularVelocity.mRotate(angVel)
+    projPost.angular_position.mRotate(angVel)
+    projPost.angular_velocity = angVel
+    
+    baseVelocity = projPost.velocity
+    lifetime = @m_lifetimeMsec
+
+    # Create the effector before applying the offset, so the gunsight works as expected
+    AdanaxisPieceEffector.cCreate(
+      :rail => true,
+      :mesh_name => @m_projectileMesh,
+      :post => projPost,
+      :owner => inPiece.mId,
+      :lifetime_msec => 0,
+      :hit_points => @m_hitPoints,
+      :vulnerability => 0.0
+    )
+
+    projPost.angular_position.mRotate(offset)
+    projPost.position = projPost.position + offset
+
+    AdanaxisPieceDeco.cCreate(
+      :mesh_name => @m_projectileMesh,
+      :post => projPost,
+      :lifetime_msec => lifetime
+    )
+      
+
+    
+    @m_lastFireMsec = MushGame.cGameMsec
+    @m_offsetNumber += 1
+    @m_offsetNumber = 0 if @m_offsetNumber >= @m_offsetSequence.size    
+    
+    MushGame.cSoundPlay(@m_fireSound, projPost) if @m_fireSound
+    MushGame.cSoundPlay(@m_reloadSound, projPost) if @m_reloadSound
+    nil
+  end
+  
+  def mFire(inEvent, inPiece)
+    if @m_rail
+      mRailFire(inEvent, inPiece)
+    else
+      mProjectileFire(inEvent, inPiece)
+    end
   end
 end

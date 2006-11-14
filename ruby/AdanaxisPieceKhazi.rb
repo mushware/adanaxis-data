@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } aGTJVbl7QyXIWVg5D1mEzg
-# $Id: AdanaxisPieceKhazi.rb,v 1.25 2006/11/03 18:46:31 southa Exp $
+# $Id: AdanaxisPieceKhazi.rb,v 1.26 2006/11/10 20:17:11 southa Exp $
 # $Log: AdanaxisPieceKhazi.rb,v $
+# Revision 1.26  2006/11/10 20:17:11  southa
+# Audio work
+#
 # Revision 1.25  2006/11/03 18:46:31  southa
 # Damage effectors
 #
@@ -162,8 +165,9 @@ class AdanaxisPieceKhazi < AdanaxisPiece
   def mFatalCollisionHandle(event)
     super
     # Choose numbers
-    numEmbers = (event.mPiece2.mId =~ /^e/) ? 0 : 100
-    numFlares = (event.mPiece2.mId =~ /^e/) ? 0 : 1
+    isNuclear = event.mPiece2.kind_of?(AdanaxisPieceEffector) && !event.mPiece2.mRail
+    numEmbers = isNuclear ? 0 : 100
+    numFlares = isNuclear ? 0 : 1
     $currentLogic.mEffects.mExplode(
       :post => mPost,
       :embers => numEmbers,

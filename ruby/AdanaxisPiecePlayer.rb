@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } 1H+rLloObKxiiVjoIDjJFw
-# $Id: AdanaxisPiecePlayer.rb,v 1.10 2006/11/12 14:39:49 southa Exp $
+# $Id: AdanaxisPiecePlayer.rb,v 1.11 2006/11/12 20:09:54 southa Exp $
 # $Log: AdanaxisPiecePlayer.rb,v $
+# Revision 1.11  2006/11/12 20:09:54  southa
+# Missile guidance
+#
 # Revision 1.10  2006/11/12 14:39:49  southa
 # Player weapons amd audio fix
 #
@@ -109,6 +112,7 @@ class AdanaxisPiecePlayer < AdanaxisPiece
     @m_weaponNum = 0 if @m_weaponNum >= @@c_weaponList.size
     @m_weaponNum = @@c_weaponList.size - 1 if @m_weaponNum < 0
     @m_weapon = $currentGame.mSpace.mWeaponLibrary.mWeapon(@@c_weaponList[@m_weaponNum])
+    @m_weapon.mFireOpportunityTake # Weapon inactive for its reload time
     MushGame.cSoundPlay("load#{@m_weaponNum}", mPost)
   end
   

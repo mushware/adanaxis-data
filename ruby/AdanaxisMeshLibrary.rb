@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } 74bLa8v94NQFxupv0Pj/cA
-# $Id: AdanaxisMeshLibrary.rb,v 1.23 2006/11/09 23:53:59 southa Exp $
+# $Id: AdanaxisMeshLibrary.rb,v 1.24 2006/11/14 14:02:15 southa Exp $
 # $Log: AdanaxisMeshLibrary.rb,v $
+# Revision 1.24  2006/11/14 14:02:15  southa
+# Ball projectiles
+#
 # Revision 1.23  2006/11/09 23:53:59  southa
 # Explosion and texture loading
 #
@@ -470,6 +473,21 @@ class AdanaxisMeshLibrary
     end
   end
   
+  def mRailsCreate
+    10.times do |i|
+      mesh =  MushMesh.new("rail#{i}")
+      base1 = MushBasePrism.new(:order => 4)
+      baseDisplacement1 = MushDisplacement.new(
+        :scale => MushVector.new(0.141,0.141,0.1,1000),
+        :offset => MushVector.new(0,0,0,-501)
+      )
+      mesh.mBaseAdd(base1)
+      mesh.mBaseDisplacementAdd(baseDisplacement1)
+      mesh.mMaterialAdd("rail#{i}-mat")
+      mesh.mMake
+    end
+  end
+  
   def mDamageFramesCreate
     ['nuke_splash'].each do |prefix|
       mesh = MushMesh.new("#{prefix}")
@@ -498,6 +516,7 @@ class AdanaxisMeshLibrary
     mPlayerCreate
     mItemsCreate
     mBallsCreate
+    mRailsCreate
     mDamageFramesCreate
   end
 end

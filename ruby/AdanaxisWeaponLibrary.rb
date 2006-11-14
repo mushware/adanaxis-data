@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } fqw0Kg8SFKBRqHTmFMXeGw
-# $Id: AdanaxisWeaponLibrary.rb,v 1.7 2006/11/12 20:09:54 southa Exp $
+# $Id: AdanaxisWeaponLibrary.rb,v 1.8 2006/11/14 14:02:16 southa Exp $
 # $Log: AdanaxisWeaponLibrary.rb,v $
+# Revision 1.8  2006/11/14 14:02:16  southa
+# Ball projectiles
+#
 # Revision 1.7  2006/11/12 20:09:54  southa
 # Missile guidance
 #
@@ -109,15 +112,23 @@ class AdanaxisWeaponLibrary < MushObject
       :load_sound => 'load3',
       :fire_sound => 'fire3'
     )
+    
+    railAngVel = MushTools.cRotationInXYPlane(0.04)
+    MushTools.cRotationInXZPlane(0.1).mRotate(railAngVel)
+    MushTools.cRotationInYZPlane(0.14).mRotate(railAngVel)
+
     @m_weapons[:player_rail_gun] = AdanaxisWeapon.new(
-      :projectile_mesh => 'projectile1',
-      :speed => 2.0,
+      :projectile_mesh => 'rail1',
+      :rail => true,
+      :angular_velocity => railAngVel,
       :hit_points => 50.0,
-      :fire_rate_msec => 1000,
+      :fire_rate_msec => 2000,
+      :lifetime_msec => 500,
       :offset_sequence => [
         MushVector.new(0,-0.5,0,0)
       ],
       :load_sound => 'load4',
+      :reload_sound => 'load4',
       :fire_sound => 'fire4'
     )
     @m_weapons[:player_heavy_cannon] = AdanaxisWeapon.new(
@@ -197,7 +208,10 @@ class AdanaxisWeaponLibrary < MushObject
     )
 
     @m_weapons[:khazi_base] = AdanaxisWeapon.new(
-      :projectile_mesh => 'ball1',
+      :projectile_mesh => 'rail1',
+      :rail => true,
+      :angular_velocity => railAngVel,
+      :lifetime_msec => 500,
       :speed => 0.5,
       :fire_rate_msec => 3000
     )

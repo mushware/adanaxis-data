@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } 63kk9LVPAcoFqUyUUPiQfg
-# $Id: AdanaxisUtil.rb,v 1.10 2006/11/12 20:09:54 southa Exp $
+# $Id: AdanaxisUtil.rb,v 1.11 2006/11/14 14:02:15 southa Exp $
 # $Log: AdanaxisUtil.rb,v $
+# Revision 1.11  2006/11/14 14:02:15  southa
+# Ball projectiles
+#
 # Revision 1.10  2006/11/12 20:09:54  southa
 # Missile guidance
 #
@@ -94,6 +97,7 @@ class AdanaxisUtil < MushObject
     :post => true,
     :projectile_mesh => true,
     :reload_sound => true,
+    :rail => true,
     :remnant => true,
     :render_scale => true,
     :seek_acceleration => true,
