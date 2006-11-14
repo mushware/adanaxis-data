@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } Xu79QXYia2BFmo2DZ89f+A
-# $Id: AdanaxisWeapon.rb,v 1.5 2006/11/12 14:39:50 southa Exp $
+# $Id: AdanaxisWeapon.rb,v 1.6 2006/11/12 20:09:54 southa Exp $
 # $Log: AdanaxisWeapon.rb,v $
+# Revision 1.6  2006/11/12 20:09:54  southa
+# Missile guidance
+#
 # Revision 1.5  2006/11/12 14:39:50  southa
 # Player weapons amd audio fix
 #
@@ -55,7 +58,8 @@ class AdanaxisWeapon < MushObject
     @m_angularVelocity = inParams[:angular_velocity] || @@c_defaultAngularVelocity
     @m_hitPoints = inParams[:hit_points] || 1.0
     @m_aiParams = inParams[:ai_params]
-    
+    @m_numProjectiles = inParams[:num_projectiles] || 1
+    @m_deviation = inParams[:deviation]
     @m_lastFireMsec = 0
   end
   
@@ -99,16 +103,22 @@ class AdanaxisWeapon < MushObject
       )
     end
     
-    retVal = AdanaxisPieceProjectile.cCreate(
-      :mesh_name => @m_projectileMesh,
-      :post => projPost,
-      :owner => inPiece.mId,
-      :lifetime_msec => @m_lifetimeMsec,
-      :hit_points => @m_hitPoints,
-      :acceleration => @m_acceleration,
-      :speed_limit => @m_speedLimit,
-      :ai_params => aiParams
-    )
+    baseVelocity = projPost.velocity
+    lifetime = @m_lifetimeMsec
+    @m_numProjectiles.times do
+      projPost.velocity = baseVelocity + MushTools.cRandomUnitVector * @m_deviation if @m_deviation
+      lifetime = @m_lifetimeMsec.begin + rand(@m_lifetimeMsec.end - @m_lifetimeMsec.begin) if @m_lifetimeMsec.kind_of?(Range)
+      AdanaxisPieceProjectile.cCreate(
+        :mesh_name => @m_projectileMesh,
+        :post => projPost,
+        :owner => inPiece.mId,
+        :lifetime_msec => lifetime,
+        :hit_points => @m_hitPoints,
+        :acceleration => @m_acceleration,
+        :speed_limit => @m_speedLimit,
+        :ai_params => aiParams
+      )
+    end
     
     @m_lastFireMsec = MushGame.cGameMsec
     @m_offsetNumber += 1
@@ -116,6 +126,6 @@ class AdanaxisWeapon < MushObject
     
     MushGame.cSoundPlay(@m_fireSound, projPost) if @m_fireSound
     MushGame.cSoundPlay(@m_reloadSound, projPost) if @m_reloadSound
-    retVal
+    nil
   end
 end

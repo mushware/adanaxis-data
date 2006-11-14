@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } Qn1dyBC0obbg8YEx3MpSKg
-# $Id: AdanaxisMaterialLibrary.rb,v 1.14 2006/11/03 18:46:31 southa Exp $
+# $Id: AdanaxisMaterialLibrary.rb,v 1.15 2006/11/09 23:53:59 southa Exp $
 # $Log: AdanaxisMaterialLibrary.rb,v $
+# Revision 1.15  2006/11/09 23:53:59  southa
+# Explosion and texture loading
+#
 # Revision 1.14  2006/11/03 18:46:31  southa
 # Damage effectors
 #
@@ -74,7 +77,14 @@ class AdanaxisMaterialLibrary < MushObject
       :mapping_type => :tiled,
       :texture_names => ['world1-tex']
     )
-    10.times do |i|
+     10.times do |i|
+      MushMaterial.cDefine(
+      :name => "ball#{i}-mat",
+      :mapping_type => :singular,
+      :texture_names => ["ball#{i}-tex"]
+      )
+    end
+   10.times do |i|
       MushMaterial.cDefine(
       :name => "star#{i}-mat",
       :mapping_type => :tiled,

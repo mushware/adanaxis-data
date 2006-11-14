@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } 63kk9LVPAcoFqUyUUPiQfg
-# $Id: AdanaxisUtil.rb,v 1.9 2006/11/12 14:39:50 southa Exp $
+# $Id: AdanaxisUtil.rb,v 1.10 2006/11/12 20:09:54 southa Exp $
 # $Log: AdanaxisUtil.rb,v $
+# Revision 1.10  2006/11/12 20:09:54  southa
+# Missile guidance
+#
 # Revision 1.9  2006/11/12 14:39:50  southa
 # Player weapons amd audio fix
 #
@@ -62,8 +65,9 @@ class AdanaxisUtil < MushObject
     :acceleration => true,
     :angular_position => true,
     :angular_velocity => true,
-    :does_damage => true,
     :damage_frame => true,
+    :deviation => true,
+    :does_damage => true,
     :embers => true,
     :ember_lifetime_range => true,
     :ember_scale_range => true,
@@ -83,6 +87,7 @@ class AdanaxisUtil < MushObject
     :load_sound => true,
     :lifetime_msec => true,
     :mesh_name => true,
+    :num_projectiles => true,
     :offset_sequence => true,
     :owner => true,
     :position => true,

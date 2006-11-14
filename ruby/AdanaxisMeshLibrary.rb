@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } 74bLa8v94NQFxupv0Pj/cA
-# $Id: AdanaxisMeshLibrary.rb,v 1.22 2006/11/03 18:46:31 southa Exp $
+# $Id: AdanaxisMeshLibrary.rb,v 1.23 2006/11/09 23:53:59 southa Exp $
 # $Log: AdanaxisMeshLibrary.rb,v $
+# Revision 1.23  2006/11/09 23:53:59  southa
+# Explosion and texture loading
+#
 # Revision 1.22  2006/11/03 18:46:31  southa
 # Damage effectors
 #
@@ -455,6 +458,17 @@ class AdanaxisMeshLibrary
       mesh.mMake
     end
   end
+
+  def mBallsCreate
+    10.times do |i|
+      mesh =  MushMesh.new("ball#{i}")
+      base1 = MushBaseSingleFacet.new(:order => 4)
+      mesh.mBaseAdd(base1)
+      mesh.mBillboardRandomSet(true)
+      mesh.mMaterialAdd("ball#{i}-mat")
+      mesh.mMake
+    end
+  end
   
   def mDamageFramesCreate
     ['nuke_splash'].each do |prefix|
@@ -483,6 +497,7 @@ class AdanaxisMeshLibrary
     mCosmosCreate
     mPlayerCreate
     mItemsCreate
+    mBallsCreate
     mDamageFramesCreate
   end
 end

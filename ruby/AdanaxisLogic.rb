@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } OEQ7ye4+ICpoJw+Z14qbnQ
-# $Id: AdanaxisLogic.rb,v 1.14 2006/11/01 13:04:21 southa Exp $
+# $Id: AdanaxisLogic.rb,v 1.15 2006/11/03 18:46:31 southa Exp $
 # $Log: AdanaxisLogic.rb,v $
+# Revision 1.15  2006/11/03 18:46:31  southa
+# Damage effectors
+#
 # Revision 1.14  2006/11/01 13:04:21  southa
 # Initial weapon handling
 #
@@ -65,15 +68,18 @@ require 'AdanaxisEffects.rb'
 require 'AdanaxisRemnant.rb'
 
 class AdanaxisLogic < MushLogic
-
+  DIFFICULTY_EASY = 0
+  DIFFICULTY_NORMAL = 1
+  DIFFICULTY_HARD = 2
+  
   def initialize
     @m_outbox = []
     @m_effects = AdanaxisEffects.new
     @m_remnant = AdanaxisRemnant.new
-    @m_wea
+    @m_difficulty = DIFFICULTY_EASY
   end
 
-  mush_reader :m_effects, :m_remnant, :m_view
+  mush_reader :m_effects, :m_remnant, :m_view, :m_difficulty
 
   def mLookup(id)
     # Only pieces for the moment

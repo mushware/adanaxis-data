@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } fqw0Kg8SFKBRqHTmFMXeGw
-# $Id: AdanaxisWeaponLibrary.rb,v 1.6 2006/11/12 14:39:50 southa Exp $
+# $Id: AdanaxisWeaponLibrary.rb,v 1.7 2006/11/12 20:09:54 southa Exp $
 # $Log: AdanaxisWeaponLibrary.rb,v $
+# Revision 1.7  2006/11/12 20:09:54  southa
+# Missile guidance
+#
 # Revision 1.6  2006/11/12 14:39:50  southa
 # Player weapons amd audio fix
 #
@@ -46,8 +49,12 @@ class AdanaxisWeaponLibrary < MushObject
   end
   
   def mCreate
+    if $currentLogic.mDifficulty == AdanaxisLogic::DIFFICULTY_EASY
+      aiParams = {:seek_acceleration => 0.01}
+    end
+    
     @m_weapons[:player_light_machine] = AdanaxisWeapon.new(
-      :projectile_mesh => 'projectile1',
+      :projectile_mesh => 'ball1',
       :speed => 1.0,
       :hit_points => 1.0,
       :fire_rate_msec => 200,
@@ -56,7 +63,7 @@ class AdanaxisWeaponLibrary < MushObject
       ],
       :load_sound => 'load0',
       :fire_sound => 'fire0',
-      :ai_params => {:seek_acceleration => 0.01},
+      :ai_params => aiParams,
       :angular_velocity => MushRotation.new
     )
 
@@ -73,16 +80,20 @@ class AdanaxisWeaponLibrary < MushObject
       :fire_sound => 'fire1'
     )
     @m_weapons[:player_flak] = AdanaxisWeapon.new(
-      :projectile_mesh => 'projectile1',
+      :projectile_mesh => 'ball1',
       :speed => 2.0,
-      :hit_points => 1.0,
+      :hit_points => 2.0,
       :fire_rate_msec => 500,
-      :lifetime_msec => 1000,
+      :lifetime_msec => 700..1000,
       :offset_sequence => [
         MushVector.new(0,-0.5,0,0)
       ],
+      :num_projectiles => 10,
+      :deviation => 0.1,
       :load_sound => 'load2',
-      :fire_sound => 'fire2'
+      :fire_sound => 'fire2',
+      :ai_params => {:seek_acceleration => 0.02},
+      :angular_velocity => MushRotation.new
     )
     @m_weapons[:player_quad_machine] = AdanaxisWeapon.new(
       :projectile_mesh => 'projectile1',
@@ -186,7 +197,7 @@ class AdanaxisWeaponLibrary < MushObject
     )
 
     @m_weapons[:khazi_base] = AdanaxisWeapon.new(
-      :projectile_mesh => 'projectile1',
+      :projectile_mesh => 'ball1',
       :speed => 0.5,
       :fire_rate_msec => 3000
     )

@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } JPjWkwGvzd5d5LJLXnphkQ
-# $Id: AdanaxisPieceProjectile.rb,v 1.13 2006/11/12 14:39:50 southa Exp $
+# $Id: AdanaxisPieceProjectile.rb,v 1.14 2006/11/12 20:09:54 southa Exp $
 # $Log: AdanaxisPieceProjectile.rb,v $
+# Revision 1.14  2006/11/12 20:09:54  southa
+# Missile guidance
+#
 # Revision 1.13  2006/11/12 14:39:50  southa
 # Player weapons amd audio fix
 #
@@ -117,6 +120,19 @@ class AdanaxisPieceProjectile < AdanaxisPiece
       )
     end
   end
+
+  def mExpiryEffect
+    if @m_originalHitPoints > 50.0
+      mExplosionEffect
+    else
+      $currentLogic.mEffects.mExplode(
+        :post => mPost,
+        :embers => 3,
+        :explosions => 0,
+        :flares => 0
+      )
+    end
+  end
   
   def mExplosionSound
     case @m_originalHitPoints
@@ -160,8 +176,7 @@ class AdanaxisPieceProjectile < AdanaxisPiece
   def mExpiryHandle(event)
     unless @m_damageFrame
       mLoad
-      mExplosionEffect
-      mExplosionSound
+      mExpiryEffect
       if @m_originalHitPoints > 10.0
         unless @m_damageFrame
           mDamageFrameCreate

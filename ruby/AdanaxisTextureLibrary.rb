@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } avqCjn1AV8PsFQvoiWGwNA
-# $Id: AdanaxisTextureLibrary.rb,v 1.23 2006/11/07 11:08:54 southa Exp $
+# $Id: AdanaxisTextureLibrary.rb,v 1.24 2006/11/09 23:53:59 southa Exp $
 # $Log: AdanaxisTextureLibrary.rb,v $
+# Revision 1.24  2006/11/09 23:53:59  southa
+# Explosion and texture loading
+#
 # Revision 1.23  2006/11/07 11:08:54  southa
 # Texture loading from mushfiles
 #
@@ -149,6 +152,15 @@ class AdanaxisTextureLibrary < MushObject
     :name          => "shield1-tex",
     :type          => 'TIFF',
     :filename      => MushConfig.cGlobalPixelsPath+'/shieldbox1.tiff',
+    :storagetype   => 'GL',
+    :cache         => 0,
+    :compress      => compressFar
+  )
+
+  MushGLTexture::cDefine(
+    :name          => "ball1-tex",
+    :type          => 'TIFF',
+    :filename      => MushConfig.cGlobalPixelsPath+'/ball1.tiff',
     :storagetype   => 'GL',
     :cache         => 0,
     :compress      => compressFar
