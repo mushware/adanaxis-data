@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } 63kk9LVPAcoFqUyUUPiQfg
-# $Id: AdanaxisUtil.rb,v 1.11 2006/11/14 14:02:15 southa Exp $
+# $Id: AdanaxisUtil.rb,v 1.12 2006/11/14 20:28:36 southa Exp $
 # $Log: AdanaxisUtil.rb,v $
+# Revision 1.12  2006/11/14 20:28:36  southa
+# Added rail gun
+#
 # Revision 1.11  2006/11/14 14:02:15  southa
 # Ball projectiles
 #
@@ -93,6 +96,8 @@ class AdanaxisUtil < MushObject
     :num_projectiles => true,
     :offset_sequence => true,
     :owner => true,
+    :patrol_acceleration => true,
+    :patrol_speed => true,
     :position => true,
     :post => true,
     :projectile_mesh => true,
@@ -108,7 +113,8 @@ class AdanaxisUtil < MushObject
     :type => true,
     :velocity => true,
     :velocity_factor => true,
-    :vulnerability => true
+    :vulnerability => true,
+    :weapon => true
     }
 end
 

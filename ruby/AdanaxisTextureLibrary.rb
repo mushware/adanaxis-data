@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } avqCjn1AV8PsFQvoiWGwNA
-# $Id: AdanaxisTextureLibrary.rb,v 1.25 2006/11/14 14:02:15 southa Exp $
+# $Id: AdanaxisTextureLibrary.rb,v 1.26 2006/11/14 20:28:36 southa Exp $
 # $Log: AdanaxisTextureLibrary.rb,v $
+# Revision 1.26  2006/11/14 20:28:36  southa
+# Added rail gun
+#
 # Revision 1.25  2006/11/14 14:02:15  southa
 # Ball projectiles
 #
@@ -90,6 +93,14 @@ class AdanaxisTextureLibrary < MushObject
 		:name          => 'palette2',
     :type          => 'TIFF',
 		:filename      => MushConfig.cGlobalPixelsPath+'/palette2.tiff',
+		:storagetype   => 'U8',
+		:cache         => 0
+	)
+
+	MushGLTexture::cDefine(
+		:name          => 'palette3',
+    :type          => 'TIFF',
+		:filename      => MushConfig.cGlobalPixelsPath+'/palette3.tiff',
 		:storagetype   => 'U8',
 		:cache         => 0
 	)
@@ -238,6 +249,24 @@ class AdanaxisTextureLibrary < MushObject
     :compress      => compressNear
 	)
 	
+  scale = 0.1
+	MushGLTexture::cDefine(
+		:name          => 'khazi-rail-tex',
+    :type          => 'CellNoise',
+    :meshname      => 'khazi-rail',
+    :size          => [textureSize, textureSize],
+    :palette       => 'palette3',
+    :palettestart  => [0,0.5],
+    :palettevector => [0.99,0],
+		:scale         => [scale, scale, scale, scale],
+    :numoctaves    => 8,
+    :octaveratio   => 0.55,
+		:cache         => 1,
+    :compress      => compressNear
+	)
+
+  scale = 1.4
+
 	MushGLTexture::cDefine(
 		:name          => 'player-tex',
     :type          => 'CellNoise',

@@ -18,8 +18,11 @@
 #
 ##############################################################################
 #%Header } XESH903Rz4omoAntOunkPg
-# $Id: space.rb,v 1.13 2006/11/03 18:46:32 southa Exp $
+# $Id: space.rb,v 1.14 2006/11/09 23:53:59 southa Exp $
 # $Log: space.rb,v $
+# Revision 1.14  2006/11/09 23:53:59  southa
+# Explosion and texture loading
+#
 # Revision 1.13  2006/11/03 18:46:32  southa
 # Damage effectors
 #
@@ -117,6 +120,30 @@ class Adanaxis_local3 < AdanaxisSpace
         :seek_acceleration => 0.01,
         :remnant => AdanaxisRemnant.cStandardRemnant(param)
         )
+    end
+
+    4.times do |param|
+      isRed = true
+      thisType = isRed ? "kr" : "kb"
+      targetTypes = isRed ? "kb,k,p" : "kr,k,p"
+      
+      pos = MushVector.new(isRed ? -200 : 200, 0, 0, -400) + MushTools.cRandomUnitVector * (30 + rand(100));
+      khazi = AdanaxisPieceKhazi.cCreate(
+        :mesh_name => "khazi-rail",
+        :hit_points => 80.0,
+        :post => MushPost.new(
+          :position => pos
+          ),
+        :type => thisType,
+        :target_types => targetTypes,
+        :seek_speed => 0.01,
+        :seek_acceleration => 0.003,
+        :patrol_speed => 0.01,
+        :patrol_acceleration => 0.003,
+        
+        :remnant => AdanaxisRemnant.cStandardRemnant(param),
+        :weapon => :khazi_rail
+      )
     end
     
     1000.times do |i|

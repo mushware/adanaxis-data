@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } fqw0Kg8SFKBRqHTmFMXeGw
-# $Id: AdanaxisWeaponLibrary.rb,v 1.8 2006/11/14 14:02:16 southa Exp $
+# $Id: AdanaxisWeaponLibrary.rb,v 1.9 2006/11/14 20:28:36 southa Exp $
 # $Log: AdanaxisWeaponLibrary.rb,v $
+# Revision 1.9  2006/11/14 20:28:36  southa
+# Added rail gun
+#
 # Revision 1.8  2006/11/14 14:02:16  southa
 # Ball projectiles
 #
@@ -208,12 +211,21 @@ class AdanaxisWeaponLibrary < MushObject
     )
 
     @m_weapons[:khazi_base] = AdanaxisWeapon.new(
-      :projectile_mesh => 'rail1',
-      :rail => true,
-      :angular_velocity => railAngVel,
-      :lifetime_msec => 500,
+      :projectile_mesh => 'ball1',
+      :lifetime_msec => 5000,
       :speed => 0.5,
       :fire_rate_msec => 3000
+    )
+    @m_weapons[:khazi_rail] = AdanaxisWeapon.new(
+      :projectile_mesh => 'rail1',
+      :hit_points => 40,
+      :rail => true,
+      :angular_velocity => railAngVel,
+      :lifetime_msec => 300,
+      :offset_sequence => [
+        MushVector.new(0,0,0,-5.5)
+      ],
+      :fire_rate_msec => 5000
     )
   end
   

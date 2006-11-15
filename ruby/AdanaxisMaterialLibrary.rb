@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } Qn1dyBC0obbg8YEx3MpSKg
-# $Id: AdanaxisMaterialLibrary.rb,v 1.16 2006/11/14 14:02:15 southa Exp $
+# $Id: AdanaxisMaterialLibrary.rb,v 1.17 2006/11/14 20:28:35 southa Exp $
 # $Log: AdanaxisMaterialLibrary.rb,v $
+# Revision 1.17  2006/11/14 20:28:35  southa
+# Added rail gun
+#
 # Revision 1.16  2006/11/14 14:02:15  southa
 # Ball projectiles
 #
@@ -62,6 +65,11 @@ class AdanaxisMaterialLibrary < MushObject
       :name => 'attendant-mat',
       :mapping_type => :tiled,
       :texture_names => ['attendant-tex']
+    )
+    MushMaterial.cDefine(
+      :name => 'khazi-rail-mat',
+      :mapping_type => :tiled,
+      :texture_names => ['khazi-rail-tex']
     )
     MushMaterial.cDefine(
       :name => 'player-mat',

@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } 74bLa8v94NQFxupv0Pj/cA
-# $Id: AdanaxisMeshLibrary.rb,v 1.24 2006/11/14 14:02:15 southa Exp $
+# $Id: AdanaxisMeshLibrary.rb,v 1.25 2006/11/14 20:28:36 southa Exp $
 # $Log: AdanaxisMeshLibrary.rb,v $
+# Revision 1.25  2006/11/14 20:28:36  southa
+# Added rail gun
+#
 # Revision 1.24  2006/11/14 14:02:15  southa
 # Ball projectiles
 #
@@ -57,11 +60,186 @@ class AdanaxisMeshLibrary
   end
   
   #
+  # Khazi Rail
+  #
+  # Big, heavy khazi equipped with a rail gun
+  #
+  def mKhaziRailCreate
+    mesh = MushMesh.new('khazi-rail')
+
+    mesh.mBaseAdd(MushBasePrism.new(:order => 4))
+	
+    mesh.mBaseDisplacementAdd(MushDisplacement.new(
+		  :offset => MushVector.new(0,0,0,2),
+      :scale => MushVector.new(2*Math.sqrt(2),2*Math.sqrt(2),2,2)
+	  ))
+	
+    arms = 2.0
+  
+    # Nose 1
+    mesh.mExtruderAdd(MushExtruder.new(
+      :sourceface => 0,
+      :displacement => MushDisplacement.new(
+        :offset => MushVector.new(0,0,0,-1),
+        :scale => 1.1),
+  		:num_iterations => 2
+    ))
+    
+    # Nose 2
+    mesh.mExtruderAdd(MushExtruder.new(
+      :sourceface => 8+7,
+      :displacement => MushDisplacement.new(
+        :offset => MushVector.new(0,0,0,-2),
+        :scale => 0.7),
+  		:num_iterations => 3
+    ))
+  
+    # Boom -x
+    mesh.mExtruderAdd(MushExtruder.new(
+      :sourceface => 6,
+      :displacement => MushDisplacement.new(
+        :offset => MushVector.new(-arms,0,0,0),
+        :rotation => MushTools.cRotationInXWPlane(Math::PI/6),
+        :scale => 0.75
+      ),
+		  :num_iterations => 5
+    ))
+	  
+    # Boom +x
+    mesh.mExtruderAdd(MushExtruder.new(
+      :sourceface => 4,
+      :displacement => MushDisplacement.new(
+        :offset => MushVector.new(arms,0,0,0),
+        :rotation => MushTools.cRotationInXWPlane(-Math::PI/6),
+        :scale => 0.75
+      ),
+      :num_iterations => 5
+    ))
+	  
+    # Boom -y
+    mesh.mExtruderAdd(MushExtruder.new(
+      :sourceface => 7,
+      :displacement => MushDisplacement.new(
+        :offset => MushVector.new(0,-arms,0,0),
+        :rotation => MushTools.cRotationInYWPlane(Math::PI/6),
+        :scale => 0.75
+      ),
+		  :num_iterations => 5
+    ))
+	  
+    # Boom +y
+    mesh.mExtruderAdd(MushExtruder.new(
+      :sourceface => 5,
+      :displacement => MushDisplacement.new(
+        :offset => MushVector.new(0,arms,0,0),
+        :rotation => MushTools.cRotationInYWPlane(-Math::PI/6),
+        :scale => 0.75
+      ),
+      :num_iterations => 5
+    ))
+	  
+    # Boom -z
+    mesh.mExtruderAdd(MushExtruder.new(
+      :sourceface => 2,
+      :displacement => MushDisplacement.new(
+        :offset => MushVector.new(0,0,-arms,0),
+        :rotation => MushTools.cRotationInZWPlane(Math::PI/6),
+        :scale => 0.75
+      ),
+		  :num_iterations => 5
+    ))
+	  
+    # Boom +z
+    mesh.mExtruderAdd(MushExtruder.new(
+      :sourceface => 3,
+      :displacement => MushDisplacement.new(
+        :offset => MushVector.new(0,0,arms,0),
+        :rotation => MushTools.cRotationInZWPlane(-Math::PI/6),
+        :scale => 0.75
+      ),
+      :num_iterations => 5
+    ))
+
+    # Tail
+    mesh.mExtruderAdd(MushExtruder.new(
+      :sourceface => 1,
+      :displacement => MushDisplacement.new(
+        :offset => MushVector.new(0,0,0,1.0),
+        :scale => 0.5),
+  		:num_iterations => 3
+    ))
+
+    mesh.mMaterialAdd('khazi-rail-mat')
+
+    mesh.mMake
+  end
+
+  #
+  # Attendant mesh
+  #
+  # Cannon fodder, lots of them, quick to render
+  def mAttendantCreate
+    mesh = MushMesh.new('attendant')
+
+    mesh.mBaseAdd(MushBasePrism.new(:order => 5))
+	
+    mesh.mBaseDisplacementAdd(MushDisplacement.new(
+		  :offset => MushVector.new(0,0,0,1),
+      :scale => MushVector.new(Math.sqrt(2),Math.sqrt(2),1,1)
+	  ))
+	
+    # Boom -z
+    mesh.mExtruderAdd(MushExtruder.new(
+      :sourceface => 2,
+      :displacement => MushDisplacement.new(
+        :offset => MushVector.new(0,0,-0.5,0),
+        :rotation => MushTools.cRotationInZWPlane(Math::PI/6),
+        :scale => 0.75
+      ),
+		  :num_iterations => 4
+    ))
+	  
+    # Boom +z
+    mesh.mExtruderAdd(MushExtruder.new(
+      :sourceface => 3,
+      :displacement => MushDisplacement.new(
+        :offset => MushVector.new(0,0,0.5,0),
+        :rotation => MushTools.cRotationInZWPlane(-Math::PI/6),
+        :scale => 0.75
+      ),
+      :num_iterations => 4
+    ))
+	  
+    # Nose
+    mesh.mExtruderAdd(MushExtruder.new(
+      :sourceface => 0,
+      :displacement => MushDisplacement.new(
+        :offset => MushVector.new(0,0,0,-1),
+        :scale => 0.6),
+  		:num_iterations => 3
+    ))
+
+    # Tail
+    mesh.mExtruderAdd(MushExtruder.new(
+      :sourceface => 1,
+      :displacement => MushDisplacement.new(
+        :offset => MushVector.new(0,0,0,1.0),
+        :scale => 0.75),
+  		:num_iterations => 1
+    ))
+
+    mesh.mMaterialAdd('attendant-mat')
+
+    mesh.mMake
+  end
+
+
+  #
   # Attendant mesh
   #
   
-  def mAttendantCreate
-    mesh = MushMesh.new('attendant')
+  def mKleenorCreate
+    mesh = MushMesh.new('kleenor')
 
     base1 = MushBasePrism.new(:order => 5)
 	
@@ -132,17 +310,16 @@ class AdanaxisMeshLibrary
 		:num_iterations => 2
       )
 
-
 	mesh.mBaseAdd(base1)
 	mesh.mBaseDisplacementAdd(baseDisplacement1)
-    mesh.mExtruderAdd(extruder1)
-    mesh.mExtruderAdd(extruder2)
-    mesh.mExtruderAdd(extruder3)
-    #mesh.mExtruderAdd(extruder4)
-    #mesh.mExtruderAdd(extruder5)
-    #mesh.mExtruderAdd(extruder6)
-    #mesh.mExtruderAdd(extruder7)
-	mesh.mMaterialAdd('attendant-mat')
+  mesh.mExtruderAdd(extruder1)
+  mesh.mExtruderAdd(extruder2)
+  mesh.mExtruderAdd(extruder3)
+  #mesh.mExtruderAdd(extruder4)
+  #mesh.mExtruderAdd(extruder5)
+  #mesh.mExtruderAdd(extruder6)
+  #mesh.mExtruderAdd(extruder7)
+  mesh.mMaterialAdd('attendant-mat')
 
     mesh.mMake
   end
@@ -504,6 +681,7 @@ class AdanaxisMeshLibrary
   end
   
   def mCreate
+    mKhaziRailCreate
     mAttendantCreate
     mCubesCreate
     mProjectileCreate
