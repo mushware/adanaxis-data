@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } avqCjn1AV8PsFQvoiWGwNA
-# $Id: AdanaxisTextureLibrary.rb,v 1.26 2006/11/14 20:28:36 southa Exp $
+# $Id: AdanaxisTextureLibrary.rb,v 1.27 2006/11/15 18:25:54 southa Exp $
 # $Log: AdanaxisTextureLibrary.rb,v $
+# Revision 1.27  2006/11/15 18:25:54  southa
+# Khazi rails
+#
 # Revision 1.26  2006/11/14 20:28:36  southa
 # Added rail gun
 #
@@ -260,7 +263,7 @@ class AdanaxisTextureLibrary < MushObject
     :palettevector => [0.99,0],
 		:scale         => [scale, scale, scale, scale],
     :numoctaves    => 8,
-    :octaveratio   => 0.55,
+    :octaveratio   => 0.6,
 		:cache         => 1,
     :compress      => compressNear
 	)

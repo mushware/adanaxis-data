@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } fqw0Kg8SFKBRqHTmFMXeGw
-# $Id: AdanaxisWeaponLibrary.rb,v 1.9 2006/11/14 20:28:36 southa Exp $
+# $Id: AdanaxisWeaponLibrary.rb,v 1.10 2006/11/15 18:25:54 southa Exp $
 # $Log: AdanaxisWeaponLibrary.rb,v $
+# Revision 1.10  2006/11/15 18:25:54  southa
+# Khazi rails
+#
 # Revision 1.9  2006/11/14 20:28:36  southa
 # Added rail gun
 #
@@ -220,12 +223,12 @@ class AdanaxisWeaponLibrary < MushObject
       :projectile_mesh => 'rail1',
       :hit_points => 40,
       :rail => true,
-      :angular_velocity => railAngVel,
       :lifetime_msec => 300,
       :offset_sequence => [
-        MushVector.new(0,0,0,-5.5)
+        MushVector.new(0,0,0,-6.0)
       ],
-      :fire_rate_msec => 5000
+      :fire_rate_msec => 5000,
+      :fire_sound => 'fire6'
     )
   end
   
