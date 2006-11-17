@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } bWqJ8Rs4225yq5McUizgaw
-# $Id: AdanaxisRemnant.rb,v 1.3 2006/11/02 09:47:32 southa Exp $
+# $Id: AdanaxisRemnant.rb,v 1.4 2006/11/10 20:17:11 southa Exp $
 # $Log: AdanaxisRemnant.rb,v $
+# Revision 1.4  2006/11/10 20:17:11  southa
+# Audio work
+#
 # Revision 1.3  2006/11/02 09:47:32  southa
 # Player weapon control
 #
@@ -39,11 +42,11 @@ class AdanaxisRemnant < MushObject
 
   
     @m_healthDefaults = @remnantDefaults.merge(
-      :mesh_name => "health1"
+      :mesh_name => "healthbox1"
     )
 
     @m_shieldDefaults = @remnantDefaults.merge(
-      :mesh_name => "shield1"
+      :mesh_name => "shieldbox1"
     )
   end
 

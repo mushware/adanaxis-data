@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } 74bLa8v94NQFxupv0Pj/cA
-# $Id: AdanaxisMeshLibrary.rb,v 1.25 2006/11/14 20:28:36 southa Exp $
+# $Id: AdanaxisMeshLibrary.rb,v 1.26 2006/11/15 18:25:54 southa Exp $
 # $Log: AdanaxisMeshLibrary.rb,v $
+# Revision 1.26  2006/11/15 18:25:54  southa
+# Khazi rails
+#
 # Revision 1.25  2006/11/14 20:28:36  southa
 # Added rail gun
 #
@@ -631,10 +634,10 @@ class AdanaxisMeshLibrary
 
   def mItemsCreate
     ['health', 'shield'].each do |prefix|
-      mesh = MushMesh.new("#{prefix}1")
+      mesh = MushMesh.new("#{prefix}box1")
 	    base1 = MushBasePrism.new(:order => 4)
       mesh.mBaseAdd(base1)
-      mesh.mMaterialAdd("#{prefix}1-mat")
+      mesh.mMaterialAdd("#{prefix}box1-mat")
       mesh.mMake
     end
   end

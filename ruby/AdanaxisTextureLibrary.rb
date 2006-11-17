@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } avqCjn1AV8PsFQvoiWGwNA
-# $Id: AdanaxisTextureLibrary.rb,v 1.27 2006/11/15 18:25:54 southa Exp $
+# $Id: AdanaxisTextureLibrary.rb,v 1.28 2006/11/15 19:26:02 southa Exp $
 # $Log: AdanaxisTextureLibrary.rb,v $
+# Revision 1.28  2006/11/15 19:26:02  southa
+# Rail changes
+#
 # Revision 1.27  2006/11/15 18:25:54  southa
 # Khazi rails
 #
@@ -156,23 +159,20 @@ class AdanaxisTextureLibrary < MushObject
 		:cache         => 0
 	)
 
-  MushGLTexture::cDefine(
-    :name          => "health1-tex",
-    :type          => 'TIFF',
-    :filename      => MushConfig.cGlobalPixelsPath+'/healthbox1.tiff',
-    :storagetype   => 'GL',
-    :cache         => 0,
-    :compress      => compressFar
-  )
-
-  MushGLTexture::cDefine(
-    :name          => "shield1-tex",
-    :type          => 'TIFF',
-    :filename      => MushConfig.cGlobalPixelsPath+'/shieldbox1.tiff',
-    :storagetype   => 'GL',
-    :cache         => 0,
-    :compress      => compressFar
-  )
+  # Boxes
+  
+  %w{ health shield base lightcannon quadcannon flak
+    heavycannon rail lightmissile heavymissile flush nuclear}.each do |name|
+    raise("fie #{name}") unless File.file?(MushConfig.cGlobalPixelsPath+"/#{name}box1.tiff")
+    MushGLTexture::cDefine(
+      :name          => "#{name}box1-tex",
+      :type          => 'TIFF',
+      :filename      => MushConfig.cGlobalPixelsPath+"/#{name}box1.tiff",
+      :storagetype   => 'GL',
+      :cache         => 0,
+      :compress      => compressFar
+    )
+  end
 
   MushGLTexture::cDefine(
     :name          => "ball1-tex",

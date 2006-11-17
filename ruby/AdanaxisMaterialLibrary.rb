@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } Qn1dyBC0obbg8YEx3MpSKg
-# $Id: AdanaxisMaterialLibrary.rb,v 1.17 2006/11/14 20:28:35 southa Exp $
+# $Id: AdanaxisMaterialLibrary.rb,v 1.18 2006/11/15 18:25:53 southa Exp $
 # $Log: AdanaxisMaterialLibrary.rb,v $
+# Revision 1.18  2006/11/15 18:25:53  southa
+# Khazi rails
+#
 # Revision 1.17  2006/11/14 20:28:35  southa
 # Added rail gun
 #
@@ -166,9 +169,9 @@ class AdanaxisMaterialLibrary < MushObject
     
     ['health', 'shield'].each do |prefix|
       MushMaterial.cDefine(
-        :name => "#{prefix}1-mat",
+        :name => "#{prefix}box1-mat",
         :mapping_type => :singular,
-        :texture_names => ["#{prefix}1-tex"]
+        :texture_names => ["#{prefix}box1-tex"]
       )
     end
 
