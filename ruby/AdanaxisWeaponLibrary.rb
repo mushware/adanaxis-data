@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } fqw0Kg8SFKBRqHTmFMXeGw
-# $Id: AdanaxisWeaponLibrary.rb,v 1.10 2006/11/15 18:25:54 southa Exp $
+# $Id: AdanaxisWeaponLibrary.rb,v 1.11 2006/11/15 19:26:02 southa Exp $
 # $Log: AdanaxisWeaponLibrary.rb,v $
+# Revision 1.11  2006/11/15 19:26:02  southa
+# Rail changes
+#
 # Revision 1.10  2006/11/15 18:25:54  southa
 # Khazi rails
 #
@@ -62,7 +65,7 @@ class AdanaxisWeaponLibrary < MushObject
       aiParams = {:seek_acceleration => 0.01}
     end
     
-    @m_weapons[:player_light_machine] = AdanaxisWeapon.new(
+    @m_weapons[:player_base] = AdanaxisWeapon.new(
       :projectile_mesh => 'ball1',
       :speed => 1.0,
       :hit_points => 1.0,
@@ -76,7 +79,7 @@ class AdanaxisWeaponLibrary < MushObject
       :angular_velocity => MushRotation.new
     )
 
-    @m_weapons[:player_fast_machine] = AdanaxisWeapon.new(
+    @m_weapons[:player_light_cannon] = AdanaxisWeapon.new(
       :projectile_mesh => 'projectile1',
       :speed => 2.0,
       :hit_points => 1.0,
@@ -104,7 +107,7 @@ class AdanaxisWeaponLibrary < MushObject
       :ai_params => {:seek_acceleration => 0.02},
       :angular_velocity => MushRotation.new
     )
-    @m_weapons[:player_quad_machine] = AdanaxisWeapon.new(
+    @m_weapons[:player_quad_cannon] = AdanaxisWeapon.new(
       :projectile_mesh => 'projectile1',
       :speed => 2.0,
       :hit_points => 1.0,
@@ -123,7 +126,7 @@ class AdanaxisWeaponLibrary < MushObject
     MushTools.cRotationInXZPlane(0.1).mRotate(railAngVel)
     MushTools.cRotationInYZPlane(0.14).mRotate(railAngVel)
 
-    @m_weapons[:player_rail_gun] = AdanaxisWeapon.new(
+    @m_weapons[:player_rail] = AdanaxisWeapon.new(
       :projectile_mesh => 'rail1',
       :rail => true,
       :angular_velocity => railAngVel,
@@ -185,7 +188,7 @@ class AdanaxisWeaponLibrary < MushObject
       :ai_params => {:seek_acceleration => 0.02},
       :angular_velocity => MushRotation.new
     )
-    @m_weapons[:player_flush_gun] = AdanaxisWeapon.new(
+    @m_weapons[:player_flush] = AdanaxisWeapon.new(
       :projectile_mesh => 'projectile1',
       :speed => 0.0,
       :acceleration => 0.005,

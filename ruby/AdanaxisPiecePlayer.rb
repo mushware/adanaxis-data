@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } 1H+rLloObKxiiVjoIDjJFw
-# $Id: AdanaxisPiecePlayer.rb,v 1.11 2006/11/12 20:09:54 southa Exp $
+# $Id: AdanaxisPiecePlayer.rb,v 1.12 2006/11/14 20:28:36 southa Exp $
 # $Log: AdanaxisPiecePlayer.rb,v $
+# Revision 1.12  2006/11/14 20:28:36  southa
+# Added rail gun
+#
 # Revision 1.11  2006/11/12 20:09:54  southa
 # Missile guidance
 #
@@ -61,15 +64,15 @@ class AdanaxisPiecePlayer < AdanaxisPiece
   mushRegistered_install
   
   @@c_weaponList = [
-    :player_light_machine,
-    :player_fast_machine,
+    :player_base,
+    :player_light_cannon,
     :player_flak,
-    :player_quad_machine,
-    :player_rail_gun,
+    :player_quad_cannon,
+    :player_rail,
     :player_heavy_cannon,
     :player_light_missile,
     :player_heavy_missile,
-    :player_flush_gun,
+    :player_flush,
     :player_nuclear
   ]
   

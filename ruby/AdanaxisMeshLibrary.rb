@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } 74bLa8v94NQFxupv0Pj/cA
-# $Id: AdanaxisMeshLibrary.rb,v 1.26 2006/11/15 18:25:54 southa Exp $
+# $Id: AdanaxisMeshLibrary.rb,v 1.27 2006/11/17 13:22:06 southa Exp $
 # $Log: AdanaxisMeshLibrary.rb,v $
+# Revision 1.27  2006/11/17 13:22:06  southa
+# Box textures
+#
 # Revision 1.26  2006/11/15 18:25:54  southa
 # Khazi rails
 #
@@ -633,7 +636,7 @@ class AdanaxisMeshLibrary
   end
 
   def mItemsCreate
-    ['health', 'shield'].each do |prefix|
+    @m_textureLibrary.mBoxNames.each do |prefix|
       mesh = MushMesh.new("#{prefix}box1")
 	    base1 = MushBasePrism.new(:order => 4)
       mesh.mBaseAdd(base1)

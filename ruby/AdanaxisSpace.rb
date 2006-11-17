@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } lR/lFdEFyXBbk1T1wsvmCw
-# $Id: AdanaxisSpace.rb,v 1.14 2006/11/09 23:53:59 southa Exp $
+# $Id: AdanaxisSpace.rb,v 1.15 2006/11/15 18:25:54 southa Exp $
 # $Log: AdanaxisSpace.rb,v $
+# Revision 1.15  2006/11/15 18:25:54  southa
+# Khazi rails
+#
 # Revision 1.14  2006/11/09 23:53:59  southa
 # Explosion and texture loading
 #
@@ -73,7 +76,7 @@ class AdanaxisSpace < MushObject
   def mStandardPrecache(inNum)
     if inNum < @m_textureLibrary.mExploNames.size
       @m_textureLibrary.mExploNames[inNum].each do |texName|
-        MushGLTexture.cPreCache(texName) unless $MUSHCONFIG['DEBUG']
+        MushGLTexture.cPreCache(texName) unless $MUSHCONFIG['-DEBUG']
       end
     end
     

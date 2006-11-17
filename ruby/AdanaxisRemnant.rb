@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } bWqJ8Rs4225yq5McUizgaw
-# $Id: AdanaxisRemnant.rb,v 1.4 2006/11/10 20:17:11 southa Exp $
+# $Id: AdanaxisRemnant.rb,v 1.5 2006/11/17 13:22:06 southa Exp $
 # $Log: AdanaxisRemnant.rb,v $
+# Revision 1.5  2006/11/17 13:22:06  southa
+# Box textures
+#
 # Revision 1.4  2006/11/10 20:17:11  southa
 # Audio work
 #
@@ -35,12 +38,25 @@ require 'AdanaxisUtil.rb'
 
 class AdanaxisRemnant < MushObject
   def initialize
+    @m_names = [
+      :health1,
+      :shield1,
+      :player_base,
+      :player_light_cannon,
+      :player_quad_cannon,
+      :player_flak,
+      :player_heavy_cannon,
+      :player_rail,
+      :player_light_missile,
+      :player_heavy_missile,
+      :player_flush,
+      :player_nuclear
+      ]
     @remnantDefaults = {
       :lifetime_msec => 60000,
       :hit_points => 5.0
     }
 
-  
     @m_healthDefaults = @remnantDefaults.merge(
       :mesh_name => "healthbox1"
     )
@@ -48,18 +64,50 @@ class AdanaxisRemnant < MushObject
     @m_shieldDefaults = @remnantDefaults.merge(
       :mesh_name => "shieldbox1"
     )
+    
+    @m_ammoDefaults = @remnantDefaults
   end
 
   def mCreate(inParams)
     itemParams = {}
-    
-    case inParams[:item_type]
+    itemType = inParams[:item_type]
+    case itemType
       when :health1
         itemParams.merge!(@m_healthDefaults)
       when :shield1
         itemParams.merge!(@m_shieldDefaults)
+      when :player_base
+        itemParams.merge!(@m_ammoDefaults)
+        itemParams.merge!(:mesh_name => 'basebox1')        
+      when :player_light_cannon
+        itemParams.merge!(@m_ammoDefaults)
+        itemParams.merge!(:mesh_name => 'lightcannonbox1')        
+      when :player_quad_cannon
+        itemParams.merge!(@m_ammoDefaults)
+        itemParams.merge!(:mesh_name => 'quadcannonbox1')        
+      when :player_flak
+        itemParams.merge!(@m_ammoDefaults)
+        itemParams.merge!(:mesh_name => 'flakbox1')        
+      when :player_heavy_cannon
+        itemParams.merge!(@m_ammoDefaults)
+        itemParams.merge!(:mesh_name => 'heavycannonbox1')        
+      when :player_rail
+        itemParams.merge!(@m_ammoDefaults)
+        itemParams.merge!(:mesh_name => 'railbox1')        
+      when :player_light_missile
+        itemParams.merge!(@m_ammoDefaults)
+        itemParams.merge!(:mesh_name => 'lightmissilebox1')        
+      when :player_heavy_missile
+        itemParams.merge!(@m_ammoDefaults)
+        itemParams.merge!(:mesh_name => 'heavymissilebox1')        
+      when :player_flush
+        itemParams.merge!(@m_ammoDefaults)
+        itemParams.merge!(:mesh_name => 'flushbox1')        
+      when :player_nuclear
+        itemParams.merge!(@m_ammoDefaults)
+        itemParams.merge!(:mesh_name => 'nuclearbox1')        
       else
-        raise(RuntimeError, "Unknown remnant type '#{inParams[:type] || '(not set)'}'")
+        raise(RuntimeError, "Unknown remnant type '#{itemType || '(not set)'}'")
     end
     itemParams.merge!(inParams)
  
@@ -82,12 +130,22 @@ class AdanaxisRemnant < MushObject
       when :shield1
         inPiece.mLimitedShieldAdd(0.1) if inPiece.respond_to?(:mLimitedShieldAdd)
         MushGame.cSoundPlay("shieldcollect1", inPiece.mPost)
+      when :player_base
+      when :player_light_cannon
+      when :player_quad_cannon
+      when :player_flak
+      when :player_heavy_cannon
+      when :player_rail
+      when :player_light_missile
+      when :player_heavy_missile
+      when :player_flush
+      when :player_nuclear
       else
         raise(RuntimeError, "Collected unknown remnant type '#{inItem.inspect}'")
       end
   end
 
-  def self.cStandardRemnant(inSequenceNum)
+  def mStandardRemnant(inSequenceNum)
     retVal = nil
     
     if inSequenceNum == 0
@@ -97,6 +155,7 @@ class AdanaxisRemnant < MushObject
     elsif inSequenceNum % 4 == 0
       retVal = :health1
     end
+    retVal = @m_names[rand(@m_names.size)]
     retVal
   end
 end

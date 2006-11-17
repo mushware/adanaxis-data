@@ -18,8 +18,11 @@
 #
 ##############################################################################
 #%Header } XESH903Rz4omoAntOunkPg
-# $Id: space.rb,v 1.14 2006/11/09 23:53:59 southa Exp $
+# $Id: space.rb,v 1.15 2006/11/15 18:25:54 southa Exp $
 # $Log: space.rb,v $
+# Revision 1.15  2006/11/15 18:25:54  southa
+# Khazi rails
+#
 # Revision 1.14  2006/11/09 23:53:59  southa
 # Explosion and texture loading
 #
@@ -98,7 +101,7 @@ class Adanaxis_local3 < AdanaxisSpace
     num
   end
   
-  def mInitialPiecesCreate
+  def mInitialPiecesCreate  
     super
     100.times do |param|
       isRed = ((param % 2) == 0)
@@ -118,7 +121,7 @@ class Adanaxis_local3 < AdanaxisSpace
         :target_types => targetTypes,
         :seek_speed => 0.05,
         :seek_acceleration => 0.01,
-        :remnant => AdanaxisRemnant.cStandardRemnant(param)
+        :remnant => $currentLogic.mRemnant.mStandardRemnant(param)
         )
     end
 
@@ -141,7 +144,7 @@ class Adanaxis_local3 < AdanaxisSpace
         :patrol_speed => 0.01,
         :patrol_acceleration => 0.003,
         
-        :remnant => AdanaxisRemnant.cStandardRemnant(param),
+        :remnant => $currentLogic.mRemnant.mStandardRemnant(param),
         :weapon => :khazi_rail
       )
     end

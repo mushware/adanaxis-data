@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } Qn1dyBC0obbg8YEx3MpSKg
-# $Id: AdanaxisMaterialLibrary.rb,v 1.18 2006/11/15 18:25:53 southa Exp $
+# $Id: AdanaxisMaterialLibrary.rb,v 1.19 2006/11/17 13:22:06 southa Exp $
 # $Log: AdanaxisMaterialLibrary.rb,v $
+# Revision 1.19  2006/11/17 13:22:06  southa
+# Box textures
+#
 # Revision 1.18  2006/11/15 18:25:53  southa
 # Khazi rails
 #
@@ -167,7 +170,7 @@ class AdanaxisMaterialLibrary < MushObject
       )
     end
     
-    ['health', 'shield'].each do |prefix|
+    @m_textureLibrary.mBoxNames.each do |prefix|
       MushMaterial.cDefine(
         :name => "#{prefix}box1-mat",
         :mapping_type => :singular,

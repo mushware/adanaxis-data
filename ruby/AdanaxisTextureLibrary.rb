@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } avqCjn1AV8PsFQvoiWGwNA
-# $Id: AdanaxisTextureLibrary.rb,v 1.28 2006/11/15 19:26:02 southa Exp $
+# $Id: AdanaxisTextureLibrary.rb,v 1.29 2006/11/17 13:22:06 southa Exp $
 # $Log: AdanaxisTextureLibrary.rb,v $
+# Revision 1.29  2006/11/17 13:22:06  southa
+# Box textures
+#
 # Revision 1.28  2006/11/15 19:26:02  southa
 # Rail changes
 #
@@ -64,9 +67,11 @@
 class AdanaxisTextureLibrary < MushObject
   def initialize(inParams = {})
     @m_exploNames = []
+    @m_boxNames = %w{ health shield base lightcannon quadcannon flak
+      heavycannon rail lightmissile heavymissile flush nuclear }
   end
 
-  mush_reader :m_exploNames, :m_cosmos1Names
+  mush_reader :m_exploNames, :m_boxNames, :m_cosmos1Names
 
   def mCreate
     levelOfDetail = MushGame.cTextureDetail
@@ -161,16 +166,16 @@ class AdanaxisTextureLibrary < MushObject
 
   # Boxes
   
-  %w{ health shield base lightcannon quadcannon flak
-    heavycannon rail lightmissile heavymissile flush nuclear}.each do |name|
-    raise("fie #{name}") unless File.file?(MushConfig.cGlobalPixelsPath+"/#{name}box1.tiff")
+  mBoxNames.each do |name|
+    filename = MushConfig.cGlobalPixelsPath+"/#{name}box1.tiff"
+    MushLog.cWarning("Missing box texture #{filename}") unless File.file?(filename)
     MushGLTexture::cDefine(
       :name          => "#{name}box1-tex",
       :type          => 'TIFF',
-      :filename      => MushConfig.cGlobalPixelsPath+"/#{name}box1.tiff",
+      :filename      => filename,
       :storagetype   => 'GL',
       :cache         => 0,
-      :compress      => compressFar
+      :compress      => compressNear
     )
   end
 
