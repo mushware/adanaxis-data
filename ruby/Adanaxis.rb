@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } Vr8SNTx01PRrZQGDsHJ+7Q
-# $Id: Adanaxis.rb,v 1.23 2006/11/03 18:46:31 southa Exp $
+# $Id: Adanaxis.rb,v 1.24 2006/11/12 20:09:54 southa Exp $
 # $Log: Adanaxis.rb,v $
+# Revision 1.24  2006/11/12 20:09:54  southa
+# Missile guidance
+#
 # Revision 1.23  2006/11/03 18:46:31  southa
 # Damage effectors
 #
@@ -80,6 +83,7 @@ require 'AdanaxisEvents.rb'
 require 'AdanaxisFontLibrary.rb'
 require 'AdanaxisGame.rb'
 require 'AdanaxisLogic.rb'
+require 'AdanaxisMagazine.rb'
 require 'AdanaxisMaterialLibrary.rb'
 require 'AdanaxisMenu.rb'
 require 'AdanaxisMeshLibrary.rb'

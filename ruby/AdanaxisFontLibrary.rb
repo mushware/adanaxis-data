@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } ZGY5KHoT9+kVQm3zBeLowg
-# $Id: AdanaxisFontLibrary.rb,v 1.6 2006/10/17 20:43:00 southa Exp $
+# $Id: AdanaxisFontLibrary.rb,v 1.7 2006/11/01 13:04:20 southa Exp $
 # $Log: AdanaxisFontLibrary.rb,v $
+# Revision 1.7  2006/11/01 13:04:20  southa
+# Initial weapon handling
+#
 # Revision 1.6  2006/10/17 20:43:00  southa
 # Dashboard work
 #
@@ -32,7 +35,11 @@ class AdanaxisFontLibrary < MushObject
   DASHBOARD_HEALTH = 0
   DASHBOARD_SHIELD = 1
 
-  def self.cCreate
+  def initialize(inParams = {})
+    @m_textureLibrary = inParams[:texture_library] || raise("No texture library supplied to font library")
+  end
+
+  def mCreate
   	MushGLTexture::cDefine(
 		  :name          => 'library-font1-tex',
       :type          => 'TIFF',
@@ -40,7 +47,7 @@ class AdanaxisFontLibrary < MushObject
 		  :cache         => 0
 	  )
   
-	  font1 = MushGLFont.new(
+	  MushGLFont.new(
       :name => 'library-font1',
       :texture_name => 'library-font1-tex',
       :divide => [8,12],
@@ -55,7 +62,7 @@ class AdanaxisFontLibrary < MushObject
 		  :cache         => 0
 	  )
     
-    font2 = MushGLFont.new(
+    MushGLFont.new(
       :name => 'symbol1-font',
       :texture_name => 'symbol1-font-tex',
       :divide => [8,8],
@@ -70,7 +77,7 @@ class AdanaxisFontLibrary < MushObject
 		  :cache         => 0
 	  )
     
-    font2 = MushGLFont.new(
+    MushGLFont.new(
       :name => 'dashboard1-font',
       :texture_name => 'dashboard1-font-tex',
       :divide => [2,2],
@@ -78,5 +85,15 @@ class AdanaxisFontLibrary < MushObject
       :size => 1
     )
     
+    # Reuse object textures for font
+    @m_textureLibrary.mBoxNames.each do |name|
+      MushGLFont.new(
+        :name => "#{name}box1-font",
+        :texture_name => "#{name}box1-tex",
+        :divide => [1,1],
+        :extent => [256.0, 256.0],
+        :size => 1
+      )
+    end
   end
 end

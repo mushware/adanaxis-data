@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } bWqJ8Rs4225yq5McUizgaw
-# $Id: AdanaxisRemnant.rb,v 1.5 2006/11/17 13:22:06 southa Exp $
+# $Id: AdanaxisRemnant.rb,v 1.6 2006/11/17 15:47:42 southa Exp $
 # $Log: AdanaxisRemnant.rb,v $
+# Revision 1.6  2006/11/17 15:47:42  southa
+# Ammo remnants
+#
 # Revision 1.5  2006/11/17 13:22:06  southa
 # Box textures
 #
@@ -131,18 +134,38 @@ class AdanaxisRemnant < MushObject
         inPiece.mLimitedShieldAdd(0.1) if inPiece.respond_to?(:mLimitedShieldAdd)
         MushGame.cSoundPlay("shieldcollect1", inPiece.mPost)
       when :player_base
+        inPiece.mAmmoCollect(:player_base, 100) if inPiece.respond_to?(:mAmmoCollect)
+        MushGame.cSoundPlay("load0", inPiece.mPost)
       when :player_light_cannon
+        inPiece.mAmmoCollect(:player_light_cannon, 100) if inPiece.respond_to?(:mAmmoCollect)
+        MushGame.cSoundPlay("load1", inPiece.mPost)
       when :player_quad_cannon
+        inPiece.mAmmoCollect(:player_quad_cannon, 100) if inPiece.respond_to?(:mAmmoCollect)
+        MushGame.cSoundPlay("load2", inPiece.mPost)
       when :player_flak
+        inPiece.mAmmoCollect(:player_flak, 30) if inPiece.respond_to?(:mAmmoCollect)
+        MushGame.cSoundPlay("load3", inPiece.mPost)
       when :player_heavy_cannon
+        inPiece.mAmmoCollect(:player_heavy_cannon, 100) if inPiece.respond_to?(:mAmmoCollect)
+        MushGame.cSoundPlay("load4", inPiece.mPost)
       when :player_rail
+        inPiece.mAmmoCollect(:player_rail, 10) if inPiece.respond_to?(:mAmmoCollect)
+        MushGame.cSoundPlay("load5", inPiece.mPost)
       when :player_light_missile
+        inPiece.mAmmoCollect(:player_light_missile, 10) if inPiece.respond_to?(:mAmmoCollect)
+        MushGame.cSoundPlay("load6", inPiece.mPost)
       when :player_heavy_missile
+        inPiece.mAmmoCollect(:player_heavy_missile, 3) if inPiece.respond_to?(:mAmmoCollect)
+        MushGame.cSoundPlay("load7", inPiece.mPost)
       when :player_flush
-      when :player_nuclear
-      else
+        inPiece.mAmmoCollect(:player_flush, 1) if inPiece.respond_to?(:mAmmoCollect)
+        MushGame.cSoundPlay("load8", inPiece.mPost)
+     when :player_nuclear
+        inPiece.mAmmoCollect(:player_nuclear, 1) if inPiece.respond_to?(:mAmmoCollect)
+        MushGame.cSoundPlay("load9", inPiece.mPost)
+     else
         raise(RuntimeError, "Collected unknown remnant type '#{inItem.inspect}'")
-      end
+     end
   end
 
   def mStandardRemnant(inSequenceNum)

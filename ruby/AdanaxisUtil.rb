@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } 63kk9LVPAcoFqUyUUPiQfg
-# $Id: AdanaxisUtil.rb,v 1.12 2006/11/14 20:28:36 southa Exp $
+# $Id: AdanaxisUtil.rb,v 1.13 2006/11/15 18:25:54 southa Exp $
 # $Log: AdanaxisUtil.rb,v $
+# Revision 1.13  2006/11/15 18:25:54  southa
+# Khazi rails
+#
 # Revision 1.12  2006/11/14 20:28:36  southa
 # Added rail gun
 #
@@ -67,8 +70,9 @@ class AdanaxisUtil < MushObject
   end
   
   @c_symbols = {
-    :ai_params => true,
     :acceleration => true,
+    :ai_params => true,
+    :ammo_count => true,
     :angular_position => true,
     :angular_velocity => true,
     :damage_frame => true,
@@ -88,6 +92,7 @@ class AdanaxisUtil < MushObject
     :flare_scale_range => true,
     :flare_speed_range => true,
     :hit_points => true,
+    :hit_point_ratio => true,
     :id_suffix => true,
     :item_type => true,
     :load_sound => true,
@@ -107,6 +112,7 @@ class AdanaxisUtil < MushObject
     :render_scale => true,
     :seek_acceleration => true,
     :seek_speed => true,
+    :shield_ratio => true,
     :speed => true,
     :speed_limit => true,
     :target_types => true,
@@ -114,7 +120,8 @@ class AdanaxisUtil < MushObject
     :velocity => true,
     :velocity_factor => true,
     :vulnerability => true,
-    :weapon => true
+    :weapon => true,
+    :weapon_name => true
     }
 end
 

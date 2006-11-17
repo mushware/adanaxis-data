@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } lR/lFdEFyXBbk1T1wsvmCw
-# $Id: AdanaxisSpace.rb,v 1.15 2006/11/15 18:25:54 southa Exp $
+# $Id: AdanaxisSpace.rb,v 1.16 2006/11/17 15:47:42 southa Exp $
 # $Log: AdanaxisSpace.rb,v $
+# Revision 1.16  2006/11/17 15:47:42  southa
+# Ammo remnants
+#
 # Revision 1.15  2006/11/15 18:25:54  southa
 # Khazi rails
 #
@@ -52,14 +55,15 @@ class AdanaxisSpace < MushObject
     @m_textureLibrary = AdanaxisTextureLibrary.new
     @m_materialLibrary = AdanaxisMaterialLibrary.new(:texture_library => @m_textureLibrary)
     @m_meshLibrary = AdanaxisMeshLibrary.new(:texture_library => @m_textureLibrary)
+    @m_fontLibrary = AdanaxisFontLibrary.new(:texture_library => @m_textureLibrary)
     @m_waveLibrary = AdanaxisWaveLibrary.new
     @m_weaponLibrary = AdanaxisWeaponLibrary.new
   end
   
-  mush_reader :m_textureLibrary, :m_materialLibrary, :m_meshLibrary, :m_weaponLibrary
+  mush_reader :m_textureLibrary, :m_materialLibrary, :m_meshLibrary, :m_weaponLibrary, :m_fontLibrary
   
   def mLoadStandard(game)
-    AdanaxisFontLibrary.cCreate
+    @m_fontLibrary.mCreate
     @m_textureLibrary.mCreate
 	  @m_materialLibrary.mCreate
 	  @m_meshLibrary.mCreate

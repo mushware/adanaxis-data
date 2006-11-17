@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } 1H+rLloObKxiiVjoIDjJFw
-# $Id: AdanaxisPiecePlayer.rb,v 1.12 2006/11/14 20:28:36 southa Exp $
+# $Id: AdanaxisPiecePlayer.rb,v 1.13 2006/11/17 15:47:42 southa Exp $
 # $Log: AdanaxisPiecePlayer.rb,v $
+# Revision 1.13  2006/11/17 15:47:42  southa
+# Ammo remnants
+#
 # Revision 1.12  2006/11/14 20:28:36  southa
 # Added rail gun
 #
@@ -85,12 +88,16 @@ class AdanaxisPiecePlayer < AdanaxisPiece
     @m_shield = inParams[:shield] || 0.0
     @m_originalShield = 100.0
     @m_weaponNum = 0
-    @m_weapon = $currentGame.mSpace.mWeaponLibrary.mWeapon(@@c_weaponList[@m_weaponNum])
+    @m_weaponName = @@c_weaponList[@m_weaponNum]
+    @m_weapon = $currentGame.mSpace.mWeaponLibrary.mWeapon(@m_weaponName)
+    @m_magazine = AdanaxisMagazine.new
+    @m_magazine.mPlayerLoadAll if $MUSHCONFIG['-DEBUG']
     @m_fireState = false
+    @m_numActions = 0
     @m_callInterval = 100
   end
 
-  mush_accessor :m_shield, :m_originalShield
+  mush_accessor :m_shield, :m_originalShield, :m_magazine
   
   def mShieldRatio
     @m_shield / @m_originalShield
@@ -110,21 +117,51 @@ class AdanaxisPiecePlayer < AdanaxisPiece
     super
   end
   
-  def mNewWeapon(inNum)
-    @m_weaponNum = inNum
+  def mNewWeapon(inWeapon)
+    if inWeapon.kind_of?(Symbol)
+      @m_weaponNum = @@c_weaponList.index(inWeapon)
+      @m_weaponNum ||= 0
+    else
+      @m_weaponNum = inWeapon
+    end
     @m_weaponNum = 0 if @m_weaponNum >= @@c_weaponList.size
     @m_weaponNum = @@c_weaponList.size - 1 if @m_weaponNum < 0
-    @m_weapon = $currentGame.mSpace.mWeaponLibrary.mWeapon(@@c_weaponList[@m_weaponNum])
+    @m_weaponName = @@c_weaponList[@m_weaponNum]
+    @m_weapon = $currentGame.mSpace.mWeaponLibrary.mWeapon(@m_weaponName)
     @m_weapon.mFireOpportunityTake # Weapon inactive for its reload time
     MushGame.cSoundPlay("load#{@m_weaponNum}", mPost)
+    $currentGame.mView.mDashboard.mUpdate(
+      :weapon_name => @m_weaponName,
+      :ammo_count => @m_magazine.mAmmoCount(@m_weaponName)
+    )
+  end
+  
+  def mAmmoCollect(inType, inCount)
+    mMagazine.mLimitedAmmoAdd(inType, inCount)
+    
+    weaponNum = @@c_weaponList.index(inType)
+    if weaponNum && weaponNum > @m_weaponNum
+      mNewWeapon(weaponNum)
+    end
   end
   
   def mFire
     if @m_weapon.mFireOpportunityTake
-      event = AdanaxisEventFire.new
-      event.mPostSet(@m_post)
-      event.mTargetIDSet(AdanaxisRuby.cPlayerTargetID)
-      $currentLogic.mEventConsume(event, @m_id, @m_id)
+      if @m_magazine.mAmmoCount(@m_weaponName) <= 0
+        @@c_weaponList.reverse_each do |name|
+          if @m_magazine.mAmmoCount(name) > 0
+            mNewWeapon(name)
+            break
+          end
+        end
+      else
+        event = AdanaxisEventFire.new
+        event.mPostSet(@m_post)
+        event.mTargetIDSet(AdanaxisRuby.cPlayerTargetID)
+        $currentLogic.mEventConsume(event, @m_id, @m_id)
+        @m_magazine.mAmmoDecrement(@m_weaponName)
+        $currentGame.mView.mDashboard.mUpdate(:ammo_count => @m_magazine.mAmmoCount(@m_weaponName))
+      end
     end
   end
   
@@ -142,10 +179,21 @@ class AdanaxisPiecePlayer < AdanaxisPiece
 
     mFire if @m_fireState
 
+    if @m_numActions % 10 == 0
+      if @m_magazine.mAmmoCount(:player_base) < 100
+        @m_magazine.mLimitedAmmoAdd(:player_base, 1)
+        if @m_weaponName == :player_base
+          $currentGame.mView.mDashboard.mUpdate(:ammo_count => @m_magazine.mAmmoCount(@m_weaponName))
+        end
+      end
+    end
+    
     $currentGame.mView.mDashboard.mUpdate(
       :hit_point_ratio => mHitPointRatio,
       :shield_ratio => mShieldRatio
-      )
+    )
+
+    @m_numActions += 1
 
     @m_callInterval
   end
