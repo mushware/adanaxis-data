@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } jlpar81vJMXtlQaf/66fpw
-# $Id: AdanaxisDashboard.rb,v 1.4 2006/11/01 13:04:20 southa Exp $
+# $Id: AdanaxisDashboard.rb,v 1.5 2006/11/17 20:08:34 southa Exp $
 # $Log: AdanaxisDashboard.rb,v $
+# Revision 1.5  2006/11/17 20:08:34  southa
+# Weapon change and ammo handling
+#
 # Revision 1.4  2006/11/01 13:04:20  southa
 # Initial weapon handling
 #
@@ -62,7 +65,6 @@ class AdanaxisDashboard < MushDashboard
     @m_ammoCount.mCompareAndSet(inParams[:ammo_count]) if inParams[:ammo_count]
     fontName = inParams[:weapon_name]
     if fontName
-      puts "font name #{@@c_weaponFonts[fontName]}"
       @m_weaponFont = MushGLFont.new(:name => @@c_weaponFonts[fontName])
     end
   end

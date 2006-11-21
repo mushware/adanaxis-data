@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } KSO1aRs/aLEv+/QhWfRoRw
-# $Id: AdanaxisGame.rb,v 1.25 2006/11/08 18:30:53 southa Exp $
+# $Id: AdanaxisGame.rb,v 1.26 2006/11/09 23:53:59 southa Exp $
 # $Log: AdanaxisGame.rb,v $
+# Revision 1.26  2006/11/09 23:53:59  southa
+# Explosion and texture loading
+#
 # Revision 1.25  2006/11/08 18:30:53  southa
 # Key and axis configuration
 #
@@ -102,6 +105,10 @@ class AdanaxisGame < MushObject
   
   def mRender(inParams = {})
     @m_view.mDashboardRender(inParams)
+  end
+  
+  def mCutSceneRender(inNum)
+    @m_space.mCutSceneRender(inNum)
   end
   
   def mMenuRender(msec)

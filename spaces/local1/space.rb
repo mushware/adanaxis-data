@@ -18,8 +18,11 @@
 #
 ##############################################################################
 #%Header } e5pyDYhqQM6o/mG0mOvX9g
-# $Id: space.rb,v 1.27 2006/10/18 13:22:08 southa Exp $
+# $Id: space.rb,v 1.28 2006/11/03 18:46:32 southa Exp $
 # $Log: space.rb,v $
+# Revision 1.28  2006/11/03 18:46:32  southa
+# Damage effectors
+#
 # Revision 1.27  2006/10/18 13:22:08  southa
 # World rendering
 #
@@ -64,12 +67,31 @@ class Adanaxis_local1 < AdanaxisSpace
   def initialize(inParams = {})
     super
     @preCached = 0
+    @m_cutScene = self
   end
   
   def mLoad(game)
     mLoadStandard(game)
     MushGame.cSoundStreamDefine('intro1', MushConfig.cGlobalWavesPath+'/mushware-intro1.ogg')
     @preCached = 0
+  end
+
+  def mHandleGameStart
+    super
+    @m_cutScene.mCutSceneInit(0)
+    MushGame.cCutSceneModeEnter(0)
+  end
+
+  def mCutSceneInit(inNum)
+    @m_cutSceneFont = MushGLFont.new(:name => "basebox1-font")
+  end
+  
+  def mRender(inNum)
+  end
+
+  def mCutSceneRender(inNum)
+    @m_cutSceneFont.colour = MushVector.new(1,1,1,1)
+    @m_cutSceneFont.mRenderAtSize("Hello", 0, 0, 0.04);
   end
 
   def mPreCache
