@@ -18,8 +18,11 @@
 #
 ##############################################################################
 #%Header } e5pyDYhqQM6o/mG0mOvX9g
-# $Id: space.rb,v 1.28 2006/11/03 18:46:32 southa Exp $
+# $Id: space.rb,v 1.29 2006/11/21 10:08:23 southa Exp $
 # $Log: space.rb,v $
+# Revision 1.29  2006/11/21 10:08:23  southa
+# Initial cut scene handling
+#
 # Revision 1.28  2006/11/03 18:46:32  southa
 # Damage effectors
 #
@@ -64,6 +67,14 @@ require 'Mushware.rb'
 require 'Adanaxis.rb'
 
 class Adanaxis_local1 < AdanaxisSpace
+  SCENESTATE_INIT = 0
+  SCENESTATE_ZOOM = 1
+  SCENESTATE_INIT1 = 2
+  SCENESTATE_INIT2 = 3
+  SCENESTATE_INIT3 = 4
+  SCENESTATE_INIT4 = 5
+  SCENESTATE_INIT4 = 6
+  
   def initialize(inParams = {})
     super
     @preCached = 0
@@ -83,15 +94,68 @@ class Adanaxis_local1 < AdanaxisSpace
   end
 
   def mCutSceneInit(inNum)
-    @m_cutSceneFont = MushGLFont.new(:name => "basebox1-font")
+    @m_symbolFont = MushGLFont.new(:name => "symbol1-font")
+    @m_textFont = MushGLFont.new(:name => "library-font1")
+    @m_scannerValue = MushVector.new(-1, 0, 1, -10)
+    @m_scannerPos = MushVector.new(0, 0, 0, 0)
+    @m_scannerSize = 0.02
+    mStateChange(SCENESTATE_INIT)
+  end
+
+  def mStateChange(inState)
+    @m_sceneState = inState
+    @m_stateMsec = MushGame.cFreeMsec
   end
   
-  def mRender(inNum)
+  def mStateNext
+    mStateChange(@m_sceneState + 1)
+  end
+
+  def mStateAgeMsec
+    return MushGame.cFreeMsec - @m_stateMsec
+  end
+
+  def mScannerRender
+    @m_symbolFont.mRenderSymbolAtSize(
+      AdanaxisFontLibrary::SYMBOL_SCAN_WHITE, @m_scannerPos.x, @m_scannerPos.y, @m_scannerSize);
+    
+    @m_symbolFont.mRenderSymbolAtSize(
+      AdanaxisFontLibrary::SYMBOL_SCAN_X,
+      @m_scannerPos.x + 0.7 * @m_scannerSize * Math.sin(@m_scannerValue.x),
+      @m_scannerPos.y + 0.7 * @m_scannerSize * Math.cos(@m_scannerValue.x),
+      @m_scannerSize * 0.3)
+      
+   @m_symbolFont.mRenderSymbolAtSize(
+      AdanaxisFontLibrary::SYMBOL_SCAN_Y,
+      @m_scannerPos.x + 0.7 * @m_scannerSize * Math.sin(@m_scannerValue.y),
+      @m_scannerPos.y + 0.7 * @m_scannerSize * Math.cos(@m_scannerValue.y),
+      @m_scannerSize * 0.3)
+      
+   @m_symbolFont.mRenderSymbolAtSize(
+      AdanaxisFontLibrary::SYMBOL_SCAN_Z,
+      @m_scannerPos.x + 0.7 * @m_scannerSize * Math.sin(@m_scannerValue.z),
+      @m_scannerPos.y + 0.7 * @m_scannerSize * Math.cos(@m_scannerValue.z),
+      @m_scannerSize * 0.3)
   end
 
   def mCutSceneRender(inNum)
-    @m_cutSceneFont.colour = MushVector.new(1,1,1,1)
-    @m_cutSceneFont.mRenderAtSize("Hello", 0, 0, 0.04);
+    mCutSceneMove(inNum)
+    @m_symbolFont.colour = MushVector.new(1,1,1,1)
+    @m_textFont.mRenderAtSize("Hello", 0, -0.2, 0.04);
+    mScannerRender
+  end
+  
+  def mCutSceneMove(inNum)
+    case @m_sceneState
+      when SCENESTATE_INIT:
+        mStateNext if mStateAgeMsec > 1000
+      when SCENESTATE_ZOOM:
+        if @m_scannerSize >= 0.1
+          mStateNext
+        else
+           @m_scannerSize += 0.001
+        end
+      end
   end
 
   def mPreCache

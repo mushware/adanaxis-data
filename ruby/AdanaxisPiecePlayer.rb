@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } 1H+rLloObKxiiVjoIDjJFw
-# $Id: AdanaxisPiecePlayer.rb,v 1.13 2006/11/17 15:47:42 southa Exp $
+# $Id: AdanaxisPiecePlayer.rb,v 1.14 2006/11/17 20:08:34 southa Exp $
 # $Log: AdanaxisPiecePlayer.rb,v $
+# Revision 1.14  2006/11/17 20:08:34  southa
+# Weapon change and ammo handling
+#
 # Revision 1.13  2006/11/17 15:47:42  southa
 # Ammo remnants
 #
@@ -94,6 +97,10 @@ class AdanaxisPiecePlayer < AdanaxisPiece
     @m_magazine.mPlayerLoadAll if $MUSHCONFIG['-DEBUG']
     @m_fireState = false
     @m_numActions = 0
+    $currentGame.mView.mDashboard.mUpdate(
+      :weapon_name => @m_weaponName,
+      :ammo_count => @m_magazine.mAmmoCount(@m_weaponName)
+    )
     @m_callInterval = 100
   end
 
@@ -228,11 +235,24 @@ class AdanaxisPiecePlayer < AdanaxisPiece
       end
     
       if state
+        numWeapons = @@c_weaponList.size
         case keyNum
           when AdanaxisControl::KEY_WEAPON_PREVIOUS
-            mNewWeapon(@m_weaponNum - 1)
+            (numWeapons-1).times do |i|
+              newNum = (@m_weaponNum+numWeapons-i-1) % numWeapons
+              if @m_magazine.mAmmoCount(@@c_weaponList[newNum]) > 0
+                mNewWeapon(newNum)
+                break
+              end
+            end
           when AdanaxisControl::KEY_WEAPON_NEXT
-            mNewWeapon(@m_weaponNum + 1)
+            (numWeapons-1).times do |i|
+              newNum = (@m_weaponNum+i+1) % numWeapons
+              if @m_magazine.mAmmoCount(@@c_weaponList[newNum]) > 0
+                mNewWeapon(newNum)
+                break
+              end
+            end
           when AdanaxisControl::KEY_WEAPON_0..AdanaxisControl::KEY_WEAPON_9
             mNewWeapon(keyNum - AdanaxisControl::KEY_WEAPON_0)
         end

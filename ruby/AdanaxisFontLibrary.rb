@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } ZGY5KHoT9+kVQm3zBeLowg
-# $Id: AdanaxisFontLibrary.rb,v 1.7 2006/11/01 13:04:20 southa Exp $
+# $Id: AdanaxisFontLibrary.rb,v 1.8 2006/11/17 20:08:34 southa Exp $
 # $Log: AdanaxisFontLibrary.rb,v $
+# Revision 1.8  2006/11/17 20:08:34  southa
+# Weapon change and ammo handling
+#
 # Revision 1.7  2006/11/01 13:04:20  southa
 # Initial weapon handling
 #
@@ -34,6 +37,14 @@
 class AdanaxisFontLibrary < MushObject
   DASHBOARD_HEALTH = 0
   DASHBOARD_SHIELD = 1
+
+  SYMBOL_SCAN_WHITE = 0
+  SYMBOL_SCAN_RED = 1
+  SYMBOL_SCAN_GREEN = 2
+  SYMBOL_SCAN_X = 8
+  SYMBOL_SCAN_Y = 9
+  SYMBOL_SCAN_Z = 10
+  SYMBOL_SCAN_W = 11
 
   def initialize(inParams = {})
     @m_textureLibrary = inParams[:texture_library] || raise("No texture library supplied to font library")
