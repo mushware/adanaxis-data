@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } ZGY5KHoT9+kVQm3zBeLowg
-# $Id: AdanaxisFontLibrary.rb,v 1.8 2006/11/17 20:08:34 southa Exp $
+# $Id: AdanaxisFontLibrary.rb,v 1.9 2006/11/21 16:13:54 southa Exp $
 # $Log: AdanaxisFontLibrary.rb,v $
+# Revision 1.9  2006/11/21 16:13:54  southa
+# Cutscene handling
+#
 # Revision 1.8  2006/11/17 20:08:34  southa
 # Weapon change and ammo handling
 #
@@ -105,6 +108,34 @@ class AdanaxisFontLibrary < MushObject
         :extent => [256.0, 256.0],
         :size => 1
       )
+      
+    # Control tutorial fonts
+    %w{ mouse1 mouseleftpressed1 mouserightpressed1 spacebar1 spacebarpressed1
+        cross1 tick1 }.each do |name|
+      MushGLTexture::cDefine(
+		    :name          => "#{name}-font-tex",
+        :type          => 'TIFF',
+		    :filename      => MushConfig.cGlobalPixelsPath+"/#{name}.tiff",
+		    :cache         => 0
+	    )
+      
+      if name =~ /^space/
+        extent = [512.0, 256.0]
+        fontSize = [2, 1]
+      else
+        extent = [256.0, 256.0]
+        fontSize = 1
+      end
+      
+      MushGLFont.new(
+        :name => "#{name}-font",
+        :texture_name => "#{name}-font-tex",
+        :divide => [1,1],
+        :extent => extent,
+        :size => fontSize
+      )
+    end
+      
     end
   end
 end

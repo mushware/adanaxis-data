@@ -18,8 +18,11 @@
 #
 ##############################################################################
 #%Header } e5pyDYhqQM6o/mG0mOvX9g
-# $Id: space.rb,v 1.29 2006/11/21 10:08:23 southa Exp $
+# $Id: space.rb,v 1.30 2006/11/21 16:13:55 southa Exp $
 # $Log: space.rb,v $
+# Revision 1.30  2006/11/21 16:13:55  southa
+# Cutscene handling
+#
 # Revision 1.29  2006/11/21 10:08:23  southa
 # Initial cut scene handling
 #
@@ -68,12 +71,13 @@ require 'Adanaxis.rb'
 
 class Adanaxis_local1 < AdanaxisSpace
   SCENESTATE_INIT = 0
-  SCENESTATE_ZOOM = 1
-  SCENESTATE_INIT1 = 2
-  SCENESTATE_INIT2 = 3
-  SCENESTATE_INIT3 = 4
-  SCENESTATE_INIT4 = 5
-  SCENESTATE_INIT4 = 6
+  SCENESTATE_TEXT_1 = 1
+  SCENESTATE_ZOOM = 2
+  SCENESTATE_SHOW_X = 3
+  SCENESTATE_SHOW_Y = 4
+  SCENESTATE_SHOW_Z = 5
+  SCENESTATE_FIRE_INFO = 6
+  SCENESTATE_AXES_DONE = 7
   
   def initialize(inParams = {})
     super
@@ -96,9 +100,27 @@ class Adanaxis_local1 < AdanaxisSpace
   def mCutSceneInit(inNum)
     @m_symbolFont = MushGLFont.new(:name => "symbol1-font")
     @m_textFont = MushGLFont.new(:name => "library-font1")
+    @m_mouseFont = MushGLFont.new(:name => "mouse1-font")
+    @m_spaceBarFont = MushGLFont.new(:name => "spacebar1-font")
+    @m_mouseAlpha = 0.0
+    @m_spaceBarAlpha = 0.0
     @m_scannerValue = MushVector.new(-1, 0, 1, -10)
     @m_scannerPos = MushVector.new(0, 0, 0, 0)
     @m_scannerSize = 0.02
+    @m_mouseOffset = MushVector.new(0, 0, 0, 0)
+    @m_text = []
+    @m_singleButton = true
+    @m_positions = [
+      MushVector.new(1.1, 0.65, -1.45, 0),
+      MushVector.new(0.5, -1.14, -2.77, 0),
+      MushVector.new(-1.13, 0.98, 1.96, 0),
+      MushVector.new(1.97, 0, 0, 0),
+      MushVector.new(0.0, 0.0, 0.6, 0),
+      MushVector.new(0, 0.84, 0, 0),
+      MushVector.new(0.53, 2.08, 1.03, 0),
+      MushVector.new(0, 0, 0, 0)
+    ]
+      
     mStateChange(SCENESTATE_INIT)
   end
 
@@ -138,24 +160,196 @@ class Adanaxis_local1 < AdanaxisSpace
       @m_scannerSize * 0.3)
   end
 
+  def mMouseRender
+    @m_mouseFont.colour = MushVector.new(1,1,1,@m_mouseAlpha)
+    @m_mouseFont.mRenderSymbolAtSize(0,
+      0.3+@m_mouseOffset.x, -0.2+@m_mouseOffset.y, 0.2)
+  end
+
+  def mSpaceBarRender
+    @m_spaceBarFont.colour = MushVector.new(1,1,1,@m_spaceBarAlpha)
+    @m_spaceBarFont.mRenderSymbolAtSize(0,
+      -0.2, -0.2, 0.2)
+  end
+
   def mCutSceneRender(inNum)
     mCutSceneMove(inNum)
     @m_symbolFont.colour = MushVector.new(1,1,1,1)
-    @m_textFont.mRenderAtSize("Hello", 0, -0.2, 0.04);
+    @m_textFont.colour = MushVector.new(1,1,1,0.5)
+    
+    textBase = 0.28
+    @m_text.each do |line|
+      @m_textFont.mRenderAtSize(line, -0.01 * line.size, textBase, 0.02);
+      textBase -= 0.022
+    end
     mScannerRender
+    mMouseRender if @m_mouseAlpha > 0.0
+    mSpaceBarRender if @m_spaceBarAlpha > 0.0
   end
   
   def mCutSceneMove(inNum)
     case @m_sceneState
-      when SCENESTATE_INIT:
+      when SCENESTATE_INIT
         mStateNext if mStateAgeMsec > 1000
-      when SCENESTATE_ZOOM:
-        if @m_scannerSize >= 0.1
-          mStateNext
-        else
-           @m_scannerSize += 0.001
+
+      when SCENESTATE_TEXT_1
+        @m_text = [
+          "Your craft is equipped with a 4D control system",
+          "and aiming is done in 3 different directions"
+           ]
+        mStateNext if mStateAgeMsec > 6000
+
+      when SCENESTATE_ZOOM
+        @m_mouseAlpha = mStateAgeMsec / 4000.0
+        @m_mouseAlpha = 1.0 if @m_mouseAlpha > 1.0
+
+        @m_scannerSize = 0.02 + mStateAgeMsec / 40000.0
+        @m_scannerSize = 0.1 if @m_scannerSize > 0.1
+
+        mStateNext if mStateAgeMsec > 4000
+      
+      when SCENESTATE_SHOW_X
+        @m_text = [
+          "Aiming left-right (the x axis) works as normal,",
+          "by moving the mouse left and right",
+        ]
+        
+        if (@m_text.size < 3 && mStateAgeMsec > 8000)
+          @m_text << ""
+          @m_text << "The red dot on the three-dot marker shows"
+          @m_text << "the position of the target in x"
         end
-      end
+        
+        xVal = Math.sin(Math::PI * mStateAgeMsec / 4000.0)
+        @m_mouseOffset = MushVector.new(0.1*xVal, 0, 0, 0)
+        @m_scannerValue.x = -xVal
+        @m_scannerPos.x = -0.1*xVal
+        mStateNext if mStateAgeMsec > 16000
+    
+      when SCENESTATE_SHOW_Y
+        @m_text = [
+          "Aiming up-down (the y axis) also works as normal,",
+          "by moving the mouse up and down",
+        ]
+        
+        if (@m_text.size < 3 && mStateAgeMsec > 8000)
+          @m_text << ""
+          @m_text << "The green dot on the three-dot marker shows"
+          @m_text << "the position of the target in y"
+        end
+        
+        yVal = Math.sin(Math::PI * mStateAgeMsec / 4000.0)
+        @m_mouseOffset = MushVector.new(0, 0.1*yVal, 0, 0)
+        @m_scannerValue.x = 0
+        @m_scannerPos.x = 0
+        @m_scannerValue.y = -yVal
+        @m_scannerPos.y = -0.1*yVal
+        mStateNext if mStateAgeMsec > 16000
+    
+      when SCENESTATE_SHOW_Z
+      
+        if @m_singleButton
+          @m_spaceBarAlpha = mStateAgeMsec / 4000.0
+          @m_spaceBarAlpha = 1.0 if @m_spaceBarAlpha > 1.0
+        end
+      
+        @m_text = [
+          "In 4D, there's one more aiming direction.",
+          "This is the 'hidden axis' (or z axis)"
+        ]
+        
+        if (@m_text.size < 3 && mStateAgeMsec > 4000)
+          @m_text << ""
+          @m_text << "The blue dot on the three-dot marker shows"
+          @m_text << "the position of the target in z"
+        end
+        
+        if (@m_text.size < 6 && mStateAgeMsec > 8000)
+        
+          if @m_singleButton
+            @m_text << ""
+            @m_text << "To aim in z, hold the space bar down"
+            @m_text << "whilst dragging the mouse left and right"
+
+            @m_spaceBarFont = MushGLFont.new(:name => "spacebarpressed1-font")
+          else
+            @m_text << ""
+            @m_text << "To aim in z, hold the right mouse button"
+            @m_text << "down whilst dragging the mouse left and right"
+
+            @m_mouseFont = MushGLFont.new(:name => "mouserightpressed1-font")
+          end
+        end
+        
+        if mStateAgeMsec > 8000
+          zVal = Math.sin(Math::PI * mStateAgeMsec / 4000.0)
+          @m_mouseOffset = MushVector.new(0.1*zVal, 0, 0, 0)
+          @m_scannerValue.y = 0
+          @m_scannerPos.y = 0
+          @m_scannerValue.z = -zVal
+        end
+        if mStateAgeMsec > 20000
+          @m_mouseFont = MushGLFont.new(:name => "mouse1-font")
+          @m_spaceBarFont = MushGLFont.new(:name => "spacebar1-font")        
+          mStateNext 
+        end
+      
+      when SCENESTATE_FIRE_INFO
+        @m_spaceBarAlpha = 1.0 - mStateAgeMsec / 4000.0
+        @m_spaceBarAlpha = 0.0 if @m_spaceBarAlpha < 0.0
+      
+        @m_text = [
+          "When all three are at the top of the marker,",
+          "the craft is aiming directly at the target"
+        ]
+
+        if (@m_text.size < 3 && mStateAgeMsec > 4000)
+          @m_text << ""
+          @m_text << "Even if the target is in the crosshairs,"
+          @m_text << "the craft isn't aiming at it unless the"
+          @m_text << "blue dot is at the top as well."
+        end
+
+        if mStateAgeMsec > 8000
+          posNum = (mStateAgeMsec / 1000) % 12
+
+          if posNum < 7
+            @m_scannerValue = @m_positions[posNum]
+            @m_mouseFont = MushGLFont.new(:name => "mouse1-font")
+            crossTickFont = MushGLFont.new(:name => "cross1-font")
+            caption = "MISS"
+          else
+            @m_scannerValue = @m_positions[7]
+            if mStateAgeMsec % 500 > 350
+              @m_mouseFont = MushGLFont.new(:name => "mouseleftpressed1-font")
+            else
+              @m_mouseFont = MushGLFont.new(:name => "mouse1-font")
+            end
+            crossTickFont = MushGLFont.new(:name => "tick1-font")
+            caption = "HIT"
+          end
+          @m_textFont.colour = MushVector.new(1,1,1, 1.0 - (mStateAgeMsec % 1000) / 1000.0)
+          @m_textFont.mRenderAtSize(caption, -0.02 * caption.size, -0.1, 0.04)
+          crossTickFont.colour = MushVector.new(1,1,1,0.5)
+          crossTickFont.mRenderAtSize(0, 0.1, 0, 0.2)
+        end
+        mStateNext if mStateAgeMsec > 24000
+
+      when SCENESTATE_AXES_DONE
+        @m_text = [
+          "Try shooting the target drones in front of you"
+        ]
+
+        @m_mouseOffset = MushVector.new(0, 0, 0, 0)
+        @m_scannerValue.z = 0
+        @m_mouseAlpha = 1.0 - mStateAgeMsec / 4000.0
+        @m_mouseAlpha = 0.0 if @m_mouseAlpha < 0.0
+        @m_scannerSize -= 0.001 if @m_scannerSize < 0.02
+        
+        mStateNext if mStateAgeMsec > 5000
+      else
+        MushGame.cCutSceneModeExit
+    end
   end
 
   def mPreCache
@@ -182,7 +376,7 @@ class Adanaxis_local1 < AdanaxisSpace
       [ 10, 0,  3, -35, 0,0.3,0.6],
       [ 10, -10, 8, -45, 0.2,0.3,0],
       [ 0, 10, -3, -45, 0.3,0.3,0.7],
-      [ 0, 0, -14, -55, 0,0.3,0],
+      [ 0, 0, 0, -55, 0,0.3,0],
       [ 0, -10, -12, -35, 0,0.3,0.6],
       [ -10, 10, 7, -45, 0.2,0.3,0],
       [ -10, 0, -3, -45, 0.3,0.3,0.7],
