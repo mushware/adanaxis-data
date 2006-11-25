@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } KSO1aRs/aLEv+/QhWfRoRw
-# $Id: AdanaxisGame.rb,v 1.26 2006/11/09 23:53:59 southa Exp $
+# $Id: AdanaxisGame.rb,v 1.27 2006/11/21 10:08:23 southa Exp $
 # $Log: AdanaxisGame.rb,v $
+# Revision 1.27  2006/11/21 10:08:23  southa
+# Initial cut scene handling
+#
 # Revision 1.26  2006/11/09 23:53:59  southa
 # Explosion and texture loading
 #
@@ -114,7 +117,6 @@ class AdanaxisGame < MushObject
   def mMenuRender(msec)
     menu = @m_menuSet.mMenu(@m_currentMenu)
     menu.highlight_colour = MushVector.new(1,1,0.7,0.5+0.25*Math.sin(msec/100.0))
-    # menu.size = 0.03+0.0003*Math.sin(msec/1500.0)
     menu.mRender(msec)
     @m_menuRender.mPackageIDRender
   end
