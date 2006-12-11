@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } jlpar81vJMXtlQaf/66fpw
-# $Id: AdanaxisDashboard.rb,v 1.5 2006/11/17 20:08:34 southa Exp $
+# $Id: AdanaxisDashboard.rb,v 1.6 2006/11/21 10:08:22 southa Exp $
 # $Log: AdanaxisDashboard.rb,v $
+# Revision 1.6  2006/11/21 10:08:22  southa
+# Initial cut scene handling
+#
 # Revision 1.5  2006/11/17 20:08:34  southa
 # Weapon change and ammo handling
 #
@@ -72,13 +75,13 @@ class AdanaxisDashboard < MushDashboard
   def mRenderValuesBeginLeft
     @m_valueXPos = -0.5
     @m_valueXStep = 1.0
-    @m_valueYPos = -0.28
+    @m_valueYPos = - MushGL.cViewExtent.y + @m_valueSize / 2.0
   end
   
   def mRenderValuesBeginRight
     @m_valueXPos = 0.5
     @m_valueXStep = -1.0
-    @m_valueYPos = -0.28
+    @m_valueYPos = - MushGL.cViewExtent.y + @m_valueSize / 2.0
   end
   
   def mRenderValueNext
