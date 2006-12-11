@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } 1H+rLloObKxiiVjoIDjJFw
-# $Id: AdanaxisPiecePlayer.rb,v 1.14 2006/11/17 20:08:34 southa Exp $
+# $Id: AdanaxisPiecePlayer.rb,v 1.15 2006/11/21 16:13:54 southa Exp $
 # $Log: AdanaxisPiecePlayer.rb,v $
+# Revision 1.15  2006/11/21 16:13:54  southa
+# Cutscene handling
+#
 # Revision 1.14  2006/11/17 20:08:34  southa
 # Weapon change and ammo handling
 #
@@ -136,7 +139,7 @@ class AdanaxisPiecePlayer < AdanaxisPiece
     @m_weaponName = @@c_weaponList[@m_weaponNum]
     @m_weapon = $currentGame.mSpace.mWeaponLibrary.mWeapon(@m_weaponName)
     @m_weapon.mFireOpportunityTake # Weapon inactive for its reload time
-    MushGame.cSoundPlay("load#{@m_weaponNum}", mPost)
+    MushGame.cTiedSoundPlay("load#{@m_weaponNum}", mPost)
     $currentGame.mView.mDashboard.mUpdate(
       :weapon_name => @m_weaponName,
       :ammo_count => @m_magazine.mAmmoCount(@m_weaponName)
@@ -227,6 +230,7 @@ class AdanaxisPiecePlayer < AdanaxisPiece
   end
   
   def mKeyStateHandle(event)
+    mLoad
     event.mState.each_with_index do |state, i|
       keyNum = event.mKeyNum[i]
 

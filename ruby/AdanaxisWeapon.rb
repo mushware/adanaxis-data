@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } Xu79QXYia2BFmo2DZ89f+A
-# $Id: AdanaxisWeapon.rb,v 1.7 2006/11/14 14:02:16 southa Exp $
+# $Id: AdanaxisWeapon.rb,v 1.8 2006/11/14 20:28:36 southa Exp $
 # $Log: AdanaxisWeapon.rb,v $
+# Revision 1.8  2006/11/14 20:28:36  southa
+# Added rail gun
+#
 # Revision 1.7  2006/11/14 14:02:16  southa
 # Ball projectiles
 #
@@ -128,8 +131,8 @@ class AdanaxisWeapon < MushObject
     @m_offsetNumber += 1
     @m_offsetNumber = 0 if @m_offsetNumber >= @m_offsetSequence.size    
     
-    MushGame.cSoundPlay(@m_fireSound, projPost) if @m_fireSound
-    MushGame.cSoundPlay(@m_reloadSound, projPost) if @m_reloadSound
+    MushGame.cTiedSoundPlay(@m_fireSound, projPost) if @m_fireSound
+    MushGame.cTiedSoundPlay(@m_reloadSound, projPost) if @m_reloadSound
     nil
   end
   
