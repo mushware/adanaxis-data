@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } fqw0Kg8SFKBRqHTmFMXeGw
-# $Id: AdanaxisWeaponLibrary.rb,v 1.11 2006/11/15 19:26:02 southa Exp $
+# $Id: AdanaxisWeaponLibrary.rb,v 1.12 2006/11/17 15:47:42 southa Exp $
 # $Log: AdanaxisWeaponLibrary.rb,v $
+# Revision 1.12  2006/11/17 15:47:42  southa
+# Ammo remnants
+#
 # Revision 1.11  2006/11/15 19:26:02  southa
 # Rail changes
 #
@@ -111,7 +114,7 @@ class AdanaxisWeaponLibrary < MushObject
       :projectile_mesh => 'projectile1',
       :speed => 2.0,
       :hit_points => 1.0,
-      :fire_rate_msec => 100,
+      :fire_rate_msec => 50,
       :offset_sequence => [
         MushVector.new(-1,-0.5,0,0),
         MushVector.new(1,0.5,0,0),

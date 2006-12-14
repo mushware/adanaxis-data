@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } aGTJVbl7QyXIWVg5D1mEzg
-# $Id: AdanaxisPieceKhazi.rb,v 1.26 2006/11/10 20:17:11 southa Exp $
+# $Id: AdanaxisPieceKhazi.rb,v 1.27 2006/11/14 20:28:36 southa Exp $
 # $Log: AdanaxisPieceKhazi.rb,v $
+# Revision 1.27  2006/11/14 20:28:36  southa
+# Added rail gun
+#
 # Revision 1.26  2006/11/10 20:17:11  southa
 # Audio work
 #
@@ -148,8 +151,6 @@ class AdanaxisPieceKhazi < AdanaxisPiece
     @m_callInterval = @m_ai.mActByState(self)
 
     mSave
-    
-    $currentLogic.mReceiveSequence
     
     @m_callInterval
   end

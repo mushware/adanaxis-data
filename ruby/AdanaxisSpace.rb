@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } lR/lFdEFyXBbk1T1wsvmCw
-# $Id: AdanaxisSpace.rb,v 1.16 2006/11/17 15:47:42 southa Exp $
+# $Id: AdanaxisSpace.rb,v 1.17 2006/11/17 20:08:34 southa Exp $
 # $Log: AdanaxisSpace.rb,v $
+# Revision 1.17  2006/11/17 20:08:34  southa
+# Weapon change and ammo handling
+#
 # Revision 1.16  2006/11/17 15:47:42  southa
 # Ammo remnants
 #
@@ -51,7 +54,7 @@
 
 class AdanaxisSpace < MushObject
   def initialize(inParams = {})
-    @startShown = false
+    @m_gameInited = false
     @m_textureLibrary = AdanaxisTextureLibrary.new
     @m_materialLibrary = AdanaxisMaterialLibrary.new(:texture_library => @m_textureLibrary)
     @m_meshLibrary = AdanaxisMeshLibrary.new(:texture_library => @m_textureLibrary)
@@ -96,9 +99,13 @@ class AdanaxisSpace < MushObject
     100
   end
   
-  def mHandleGameStart
-    MushGame.cNamedDialoguesAdd('^start') unless @startShown
-    @startShown = true
+  def mGameInit
+    MushGame.cNamedDialoguesAdd('^start')
+  end
+  
+  def mHandlePreCacheEnd
+    mGameInit unless @m_gameInited
+    @m_gameInited = true
   end
   
   def mInitialPiecesCreate

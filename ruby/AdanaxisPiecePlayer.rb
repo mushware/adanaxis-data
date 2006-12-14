@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } 1H+rLloObKxiiVjoIDjJFw
-# $Id: AdanaxisPiecePlayer.rb,v 1.15 2006/11/21 16:13:54 southa Exp $
+# $Id: AdanaxisPiecePlayer.rb,v 1.16 2006/12/11 18:54:13 southa Exp $
 # $Log: AdanaxisPiecePlayer.rb,v $
+# Revision 1.16  2006/12/11 18:54:13  southa
+# Positional audio
+#
 # Revision 1.15  2006/11/21 16:13:54  southa
 # Cutscene handling
 #
@@ -100,10 +103,13 @@ class AdanaxisPiecePlayer < AdanaxisPiece
     @m_magazine.mPlayerLoadAll if $MUSHCONFIG['-DEBUG']
     @m_fireState = false
     @m_numActions = 0
+    @m_lastAmmoAddMsec = 0
+    
     $currentGame.mView.mDashboard.mUpdate(
       :weapon_name => @m_weaponName,
       :ammo_count => @m_magazine.mAmmoCount(@m_weaponName)
     )
+    # Call player every time for consistent rapid fire
     @m_callInterval = 100
   end
 
@@ -185,31 +191,39 @@ class AdanaxisPiecePlayer < AdanaxisPiece
   end
   
   def mActionTimer
-    mLoad
-
-    mFire if @m_fireState
-
-    if @m_numActions % 10 == 0
-      if @m_magazine.mAmmoCount(:player_base) < 100
-        @m_magazine.mLimitedAmmoAdd(:player_base, 1)
-        if @m_weaponName == :player_base
-          $currentGame.mView.mDashboard.mUpdate(:ammo_count => @m_magazine.mAmmoCount(@m_weaponName))
-        end
-      end
-    end
+    callInterval = @m_callInterval
     
-    $currentGame.mView.mDashboard.mUpdate(
-      :hit_point_ratio => mHitPointRatio,
-      :shield_ratio => mShieldRatio
-    )
+    if @m_fireState || (@m_numActions % 8) == 0
+      mLoad
 
+      if @m_fireState
+        mFire
+        # Short call interval for smooth rapid fire
+        callInterval = 0
+      end
+      
+      if @m_lastAmmoAddMsec + 1000 < MushGame.cGameMsec
+        if @m_magazine.mAmmoCount(:player_base) < 100
+          @m_magazine.mLimitedAmmoAdd(:player_base, 1)
+          if @m_weaponName == :player_base
+            $currentGame.mView.mDashboard.mUpdate(:ammo_count => @m_magazine.mAmmoCount(@m_weaponName))
+          end
+        end
+        @m_lastAmmoAddMsec = MushGame.cGameMsec
+      end
+      
+      $currentGame.mView.mDashboard.mUpdate(
+        :hit_point_ratio => mHitPointRatio,
+        :shield_ratio => mShieldRatio
+      )
+    end
     @m_numActions += 1
-
-    @m_callInterval
+    callInterval
   end
   
   def mCollectItem(inItem)
     $currentLogic.mRemnant.mCollect(inItem, self)
+    $currentGame.mView.mDashboard.mUpdate(:ammo_count => @m_magazine.mAmmoCount(@m_weaponName))
   end
   
   def mCollisionHandle(event)

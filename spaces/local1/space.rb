@@ -18,8 +18,11 @@
 #
 ##############################################################################
 #%Header } e5pyDYhqQM6o/mG0mOvX9g
-# $Id: space.rb,v 1.30 2006/11/21 16:13:55 southa Exp $
+# $Id: space.rb,v 1.31 2006/11/23 14:40:29 southa Exp $
 # $Log: space.rb,v $
+# Revision 1.31  2006/11/23 14:40:29  southa
+# Intro cutscene
+#
 # Revision 1.30  2006/11/21 16:13:55  southa
 # Cutscene handling
 #
@@ -91,7 +94,7 @@ class Adanaxis_local1 < AdanaxisSpace
     @preCached = 0
   end
 
-  def mHandleGameStart
+  def mGameInit
     super
     @m_cutScene.mCutSceneInit(0)
     MushGame.cCutSceneModeEnter(0)
@@ -269,7 +272,7 @@ class Adanaxis_local1 < AdanaxisSpace
           if @m_singleButton
             @m_text << ""
             @m_text << "To aim in z, hold the space bar down"
-            @m_text << "whilst dragging the mouse left and right"
+            @m_text << "whilst moving the mouse left and right"
 
             @m_spaceBarFont = MushGLFont.new(:name => "spacebarpressed1-font")
           else
@@ -311,7 +314,7 @@ class Adanaxis_local1 < AdanaxisSpace
         end
 
         if mStateAgeMsec > 8000
-          posNum = (mStateAgeMsec / 1000) % 12
+          posNum = ((mStateAgeMsec - 8000)/ 1000) % 12
 
           if posNum < 7
             @m_scannerValue = @m_positions[posNum]
@@ -344,7 +347,7 @@ class Adanaxis_local1 < AdanaxisSpace
         @m_scannerValue.z = 0
         @m_mouseAlpha = 1.0 - mStateAgeMsec / 4000.0
         @m_mouseAlpha = 0.0 if @m_mouseAlpha < 0.0
-        @m_scannerSize -= 0.001 if @m_scannerSize < 0.02
+        @m_scannerSize -= 0.001 if @m_scannerSize > 0.02
         
         mStateNext if mStateAgeMsec > 5000
       else
@@ -409,30 +412,15 @@ class Adanaxis_local1 < AdanaxisSpace
         )
     end
     
-          1000.times do |i|
-        pos = MushTools.cRandomUnitVector * (10 + rand(40))
-        world = AdanaxisWorld.new(
-          :mesh_name => mMeshLibrary.mRandomCosmosName,
-          :post => MushPost.new(
-            :position => pos
-            )
+    1000.times do |i|
+      pos = MushTools.cRandomUnitVector * (10 + rand(40))
+      world = AdanaxisWorld.new(
+        :mesh_name => mMeshLibrary.mRandomCosmosName,
+        :post => MushPost.new(
+          :position => pos
           )
-      end
-      
-    worldMesh =  MushMesh.new("world")
-    worldBase = MushBaseWorldSphere.new(
-      :num_facets => 10,
-      :tiles_per_texture => 1);
-    worldMesh.mBaseAdd(worldBase)
-    worldMesh.mMaterialAdd("star0-mat")
-    worldMesh.mMake
-    # puts worldMesh.to_xml
-    
-    #world = AdanaxisWorld.new(
-    #  :mesh_name => "world"
-    #)
-    
-    
+        )
+    end
     
   end
 end

@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } KSO1aRs/aLEv+/QhWfRoRw
-# $Id: AdanaxisGame.rb,v 1.27 2006/11/21 10:08:23 southa Exp $
+# $Id: AdanaxisGame.rb,v 1.28 2006/11/25 21:26:30 southa Exp $
 # $Log: AdanaxisGame.rb,v $
+# Revision 1.28  2006/11/25 21:26:30  southa
+# Display mode definitions
+#
 # Revision 1.27  2006/11/21 10:08:23  southa
 # Initial cut scene handling
 #
@@ -132,6 +135,12 @@ class AdanaxisGame < MushObject
     @m_menuSet.mUpdate(@m_currentMenu)
   end
 
+  def mCutSceneKeypress(inKey, inModifier, inIsDown)
+    if inKey == 32
+        MushGame.cCutSceneModeExit
+    end
+  end
+
   def mKeypress(inKey, inModifier, inIsDown)
     keyChar = (inKey < 256)?(inKey.chr):('?')
     # keyName = MushGame.cKeySymbolsToName(inKey);
@@ -143,7 +152,7 @@ class AdanaxisGame < MushObject
       menu = @m_menuSet.mMenu(@m_currentMenu)
       
       if (@m_menuSet.axisKeyWait || @m_menuSet.keyWait)
-        inKey == 27 && inKey = 0
+        inKey = 0 if inKey == 27
         menu.mKeypress(self, inKey)
       else
         case inKey
@@ -313,8 +322,6 @@ class AdanaxisGame < MushObject
     
     MushGame.cBrightnessSet(brightness)
   end
-  
-  
   
   attr_reader :spacePath, :space
 end
