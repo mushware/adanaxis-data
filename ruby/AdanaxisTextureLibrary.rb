@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } avqCjn1AV8PsFQvoiWGwNA
-# $Id: AdanaxisTextureLibrary.rb,v 1.29 2006/11/17 13:22:06 southa Exp $
+# $Id: AdanaxisTextureLibrary.rb,v 1.30 2006/11/17 15:47:42 southa Exp $
 # $Log: AdanaxisTextureLibrary.rb,v $
+# Revision 1.30  2006/11/17 15:47:42  southa
+# Ammo remnants
+#
 # Revision 1.29  2006/11/17 13:22:06  southa
 # Box textures
 #
@@ -205,11 +208,11 @@ class AdanaxisTextureLibrary < MushObject
   end
   
   maxExplos.times do |exploNum|
-    @m_exploNames << []
     100.times do |i|
       filename = "mush://pixels/artb-explo#{exploNum}-#{i}.tiff|#{MushConfig.cGlobalPixelsPath}/explo#{exploNum}-#{i}.tiff"
       if MushFile.cFile?(filename)
         texName = "explo#{exploNum}-tex-#{i}"
+        @m_exploNames[exploNum] ||= []
         @m_exploNames[exploNum] << texName
         MushGLTexture::cDefine(
           :name          => texName,

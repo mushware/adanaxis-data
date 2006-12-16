@@ -18,8 +18,11 @@
 #
 ##############################################################################
 #%Header } +qJXLcrDec2QZ7WFKpERPQ
-# $Id: space.rb,v 1.15 2006/10/30 19:36:38 southa Exp $
+# $Id: space.rb,v 1.16 2006/11/07 11:08:54 southa Exp $
 # $Log: space.rb,v $
+# Revision 1.16  2006/11/07 11:08:54  southa
+# Texture loading from mushfiles
+#
 # Revision 1.15  2006/10/30 19:36:38  southa
 # Item collection
 #
@@ -77,7 +80,6 @@ class Adanaxis_menu1 < AdanaxisSpace
     @preCached += 1
     case (num)
       when 27     : MushGLTexture.cPreCache("attendant-tex")
-      when 26     : MushGLTexture.cPreCache("explo1-tex-1")
     end
     
     num*2

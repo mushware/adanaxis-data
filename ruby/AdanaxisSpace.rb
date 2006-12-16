@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } lR/lFdEFyXBbk1T1wsvmCw
-# $Id: AdanaxisSpace.rb,v 1.17 2006/11/17 20:08:34 southa Exp $
+# $Id: AdanaxisSpace.rb,v 1.18 2006/12/14 15:59:23 southa Exp $
 # $Log: AdanaxisSpace.rb,v $
+# Revision 1.18  2006/12/14 15:59:23  southa
+# Fire and cutscene fixes
+#
 # Revision 1.17  2006/11/17 20:08:34  southa
 # Weapon change and ammo handling
 #
@@ -83,7 +86,7 @@ class AdanaxisSpace < MushObject
   def mStandardPrecache(inNum)
     if inNum < @m_textureLibrary.mExploNames.size
       @m_textureLibrary.mExploNames[inNum].each do |texName|
-        MushGLTexture.cPreCache(texName) unless $MUSHCONFIG['-DEBUG']
+        MushGLTexture.cPreCache(texName)
       end
     end
     
