@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } avqCjn1AV8PsFQvoiWGwNA
-# $Id: AdanaxisTextureLibrary.rb,v 1.30 2006/11/17 15:47:42 southa Exp $
+# $Id: AdanaxisTextureLibrary.rb,v 1.31 2006/12/16 10:57:21 southa Exp $
 # $Log: AdanaxisTextureLibrary.rb,v $
+# Revision 1.31  2006/12/16 10:57:21  southa
+# Encrypted files
+#
 # Revision 1.30  2006/11/17 15:47:42  southa
 # Ammo remnants
 #
@@ -256,7 +259,37 @@ class AdanaxisTextureLibrary < MushObject
 		:scale         => [scale, scale, scale, scale],
     :numoctaves    => 8,
     :octaveratio   => 0.5,
-		:cache         => 1,
+		:cache         => 0, #1,
+    :compress      => compressNear
+	)
+	
+	MushGLTexture::cDefine(
+		:name          => 'attendant-red-tex',
+    :type          => 'CellNoise',
+    :meshname      => 'attendant-red',
+    :size          => [textureSize, textureSize],
+    :palette       => 'palette1',
+    :palettestart  => [0,0.9],
+    :palettevector => [0.99,0],
+		:scale         => [scale, scale, scale, scale],
+    :numoctaves    => 8,
+    :octaveratio   => 0.5,
+		:cache         => 0, #1,
+    :compress      => compressNear
+	)
+	
+	MushGLTexture::cDefine(
+		:name          => 'attendant-blue-tex',
+    :type          => 'CellNoise',
+    :meshname      => 'attendant-blue',
+    :size          => [textureSize, textureSize],
+    :palette       => 'palette1',
+    :palettestart  => [0,0.1],
+    :palettevector => [0.99,0],
+		:scale         => [scale, scale, scale, scale],
+    :numoctaves    => 8,
+    :octaveratio   => 0.5,
+		:cache         => 0, #1,
     :compress      => compressNear
 	)
 	

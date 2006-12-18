@@ -18,8 +18,11 @@
 #
 ##############################################################################
 #%Header } XESH903Rz4omoAntOunkPg
-# $Id: space.rb,v 1.15 2006/11/15 18:25:54 southa Exp $
+# $Id: space.rb,v 1.16 2006/11/17 15:47:43 southa Exp $
 # $Log: space.rb,v $
+# Revision 1.16  2006/11/17 15:47:43  southa
+# Ammo remnants
+#
 # Revision 1.15  2006/11/15 18:25:54  southa
 # Khazi rails
 #
@@ -111,7 +114,7 @@ class Adanaxis_local3 < AdanaxisSpace
       pos = MushVector.new(isRed ? -100 : 100, 0, 0, -400) + MushTools.cRandomUnitVector * (30 + rand(100));
       angVel = MushTools.cRandomAngularVelocity(0.01)
       khazi = AdanaxisPieceKhazi.cCreate(
-        :mesh_name => "attendant",
+        :mesh_name => isRed ? "attendant-red" : "attendant-blue",
         :hit_points => 10.0,
         :post => MushPost.new(
           :position => pos,

@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } 74bLa8v94NQFxupv0Pj/cA
-# $Id: AdanaxisMeshLibrary.rb,v 1.27 2006/11/17 13:22:06 southa Exp $
+# $Id: AdanaxisMeshLibrary.rb,v 1.28 2006/11/17 15:47:42 southa Exp $
 # $Log: AdanaxisMeshLibrary.rb,v $
+# Revision 1.28  2006/11/17 15:47:42  southa
+# Ammo remnants
+#
 # Revision 1.27  2006/11/17 13:22:06  southa
 # Box textures
 #
@@ -184,8 +187,8 @@ class AdanaxisMeshLibrary
   # Attendant mesh
   #
   # Cannon fodder, lots of them, quick to render
-  def mAttendantCreate
-    mesh = MushMesh.new('attendant')
+  def mAttendantCreate(inName)
+    mesh = MushMesh.new(inName)
 
     mesh.mBaseAdd(MushBasePrism.new(:order => 5))
 	
@@ -233,8 +236,8 @@ class AdanaxisMeshLibrary
         :scale => 0.75),
   		:num_iterations => 1
     ))
-
-    mesh.mMaterialAdd('attendant-mat')
+    puts "#{inName}-mat"
+    mesh.mMaterialAdd("#{inName}-mat")
 
     mesh.mMake
   end
@@ -688,7 +691,10 @@ class AdanaxisMeshLibrary
   
   def mCreate
     mKhaziRailCreate
-    mAttendantCreate
+    mAttendantCreate('attendant')
+    mAttendantCreate('attendant-red')
+    mAttendantCreate('attendant-blue')
+    
     mCubesCreate
     mProjectileCreate
     mWorldCreate

@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } Qn1dyBC0obbg8YEx3MpSKg
-# $Id: AdanaxisMaterialLibrary.rb,v 1.19 2006/11/17 13:22:06 southa Exp $
+# $Id: AdanaxisMaterialLibrary.rb,v 1.20 2006/11/17 15:47:41 southa Exp $
 # $Log: AdanaxisMaterialLibrary.rb,v $
+# Revision 1.20  2006/11/17 15:47:41  southa
+# Ammo remnants
+#
 # Revision 1.19  2006/11/17 13:22:06  southa
 # Box textures
 #
@@ -71,6 +74,16 @@ class AdanaxisMaterialLibrary < MushObject
       :name => 'attendant-mat',
       :mapping_type => :tiled,
       :texture_names => ['attendant-tex']
+    )
+    MushMaterial.cDefine(
+      :name => 'attendant-red-mat',
+      :mapping_type => :tiled,
+      :texture_names => ['attendant-red-tex']
+    )
+    MushMaterial.cDefine(
+      :name => 'attendant-blue-mat',
+      :mapping_type => :tiled,
+      :texture_names => ['attendant-blue-tex']
     )
     MushMaterial.cDefine(
       :name => 'khazi-rail-mat',
