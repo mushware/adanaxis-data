@@ -1,4 +1,4 @@
 # Manifest file for local2
 directory='local2'
-name='Moving objects'
+name='Skirmish'
 creator='Andy Southgate (www.mushware.com)'

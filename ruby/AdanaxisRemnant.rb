@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } bWqJ8Rs4225yq5McUizgaw
-# $Id: AdanaxisRemnant.rb,v 1.6 2006/11/17 15:47:42 southa Exp $
+# $Id: AdanaxisRemnant.rb,v 1.7 2006/11/17 20:08:34 southa Exp $
 # $Log: AdanaxisRemnant.rb,v $
+# Revision 1.7  2006/11/17 20:08:34  southa
+# Weapon change and ammo handling
+#
 # Revision 1.6  2006/11/17 15:47:42  southa
 # Ammo remnants
 #
@@ -168,6 +171,31 @@ class AdanaxisRemnant < MushObject
      end
   end
 
+  def mPseudoRandom(inValue)
+    return (inValue * inValue * 237) % 75843;
+  end
+
+  def mLowGradeRemnant(inSequenceNum)
+    retVal = nil
+    
+    selector = mPseudoRandom(inSequenceNum)
+    
+    if selector == 0
+      # No remnant
+    elsif selector % 32 == 0
+      retVal = :player_flak
+    elsif selector % 16 == 0
+      retVal = :player_quad_cannon
+    elsif selector % 8 == 0
+      retVal = :player_light_cannon
+    elsif selector % 4 == 0
+      retVal = :shield1
+    elsif selector % 2 == 0
+      retVal = :health1
+    end
+    retVal
+  end
+  
   def mStandardRemnant(inSequenceNum)
     retVal = nil
     
@@ -178,7 +206,9 @@ class AdanaxisRemnant < MushObject
     elsif inSequenceNum % 4 == 0
       retVal = :health1
     end
-    retVal = @m_names[rand(@m_names.size)]
+    retVal = @m_names[rand(@m_names.size - 2)]
     retVal
   end
+  
+  
 end

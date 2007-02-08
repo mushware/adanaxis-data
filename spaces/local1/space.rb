@@ -18,8 +18,11 @@
 #
 ##############################################################################
 #%Header } e5pyDYhqQM6o/mG0mOvX9g
-# $Id: space.rb,v 1.31 2006/11/23 14:40:29 southa Exp $
+# $Id: space.rb,v 1.32 2006/12/14 15:59:23 southa Exp $
 # $Log: space.rb,v $
+# Revision 1.32  2006/12/14 15:59:23  southa
+# Fire and cutscene fixes
+#
 # Revision 1.31  2006/11/23 14:40:29  southa
 # Intro cutscene
 #
@@ -355,17 +358,17 @@ class Adanaxis_local1 < AdanaxisSpace
     end
   end
 
-  def mPreCache
+  def mPrecache
     num = @preCached
-    # Must still increment @preCached if cPreCache throws
+    # Must still increment @preCached if cPrecache throws
     @preCached += 1
     case (num)
-      when 0..9   : MushGLTexture.cPreCache("flare#{num}-tex")
-      when 10..19 : MushGLTexture.cPreCache("ember#{num-10}-tex")
-      when 20..29 : MushGLTexture.cPreCache("star#{num-20}-tex")
-      when 30     : MushGLTexture.cPreCache("attendant-tex")
-      when 31     : MushGLTexture.cPreCache("projectile1-tex")
-      when 32     : MushGLTexture.cPreCache("projectile2-tex")
+      when 0..9   : MushGLTexture.cPrecache("flare#{num}-tex")
+      when 10..19 : MushGLTexture.cPrecache("ember#{num-10}-tex")
+      when 20..29 : MushGLTexture.cPrecache("star#{num-20}-tex")
+      when 30     : MushGLTexture.cPrecache("attendant-tex")
+      when 31     : MushGLTexture.cPrecache("projectile1-tex")
+      when 32     : MushGLTexture.cPrecache("projectile2-tex")
     end
     
     3 * num

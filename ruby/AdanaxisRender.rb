@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } gALWTcpqRL4PXzPDNgzRcg
-# $Id: AdanaxisRender.rb,v 1.5 2006/10/17 15:28:00 southa Exp $
+# $Id: AdanaxisRender.rb,v 1.6 2006/11/09 23:53:59 southa Exp $
 # $Log: AdanaxisRender.rb,v $
+# Revision 1.6  2006/11/09 23:53:59  southa
+# Explosion and texture loading
+#
 # Revision 1.5  2006/10/17 15:28:00  southa
 # Player collisions
 #
@@ -48,7 +51,7 @@ class AdanaxisRender < MushObject
     mRenderMenu
   end
 
-  def mPreCacheRender(inPercentage, inMB)
+  def mPrecacheRender(inPercentage, inMB)
     @m_menuFont.colour = MushVector.new(1,1,1,0.3)
     @m_menuFont.mRenderAtSize("Loading... #{inPercentage}%", -0.4, -0.25, 0.02);
     @m_menuFont.colour = MushVector.new(1,1,1,0.1)

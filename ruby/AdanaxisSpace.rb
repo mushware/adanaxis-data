@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } lR/lFdEFyXBbk1T1wsvmCw
-# $Id: AdanaxisSpace.rb,v 1.18 2006/12/14 15:59:23 southa Exp $
+# $Id: AdanaxisSpace.rb,v 1.19 2006/12/16 10:57:21 southa Exp $
 # $Log: AdanaxisSpace.rb,v $
+# Revision 1.19  2006/12/16 10:57:21  southa
+# Encrypted files
+#
 # Revision 1.18  2006/12/14 15:59:23  southa
 # Fire and cutscene fixes
 #
@@ -64,9 +67,15 @@ class AdanaxisSpace < MushObject
     @m_fontLibrary = AdanaxisFontLibrary.new(:texture_library => @m_textureLibrary)
     @m_waveLibrary = AdanaxisWaveLibrary.new
     @m_weaponLibrary = AdanaxisWeaponLibrary.new
+    @m_pieceLibrary = AdanaxisPieceLibrary.new
+    @m_precacheIndex = 0
+    
+    @m_precacheList = nil
+    
   end
   
-  mush_reader :m_textureLibrary, :m_materialLibrary, :m_meshLibrary, :m_weaponLibrary, :m_fontLibrary
+  mush_reader :m_textureLibrary, :m_materialLibrary, :m_meshLibrary,
+              :m_weaponLibrary, :m_fontLibrary, :m_pieceLibrary
   
   def mLoadStandard(game)
     @m_fontLibrary.mCreate
@@ -83,30 +92,60 @@ class AdanaxisSpace < MushObject
     end
   end
   
-  def mStandardPrecache(inNum)
-    if inNum < @m_textureLibrary.mExploNames.size
-      @m_textureLibrary.mExploNames[inNum].each do |texName|
-        MushGLTexture.cPreCache(texName)
-      end
-    end
+  def mPrecacheListBuild
+    @m_precacheList = []
     
-    if inNum == @m_textureLibrary.mExploNames.size # Yep, mExploNames
-      @m_textureLibrary.mCosmos1Names.each do |texName|
-        MushGLTexture.cPreCache(texName)
+    @m_textureLibrary.mExploNames.each do |exploSet|
+      exploSet.each do |texName|
+        @m_precacheList << texName
       end
     end
+
+    @m_textureLibrary.mCosmos1Names.each do |texName|
+      @m_precacheList << texName
+    end
+        
+    10.times { |i| @m_precacheList << "ember#{i}-tex" }
+    10.times { |i| @m_precacheList << "star#{i}-tex" }
+    10.times { |i| @m_precacheList << "flare#{i}-tex" }
+    @m_precacheList << "attendant-tex"
+    @m_precacheList << "projectile1-tex"
+    @m_precacheList << "projectile2-tex"
   end
   
-  def mPreCache
-    # Stop precaching by returning 100%
-    100
+  def mPrecache
+    mPrecacheListBuild unless @m_precacheList
+    
+    startTime = Time.now.to_f
+    while @m_precacheIndex < @m_precacheList.size do
+      MushGLTexture.cPrecache(@m_precacheList[@m_precacheIndex])
+      @m_precacheIndex += 1
+      break if Time.now.to_f > startTime + 0.1 # Yield to draw a frame every 100ms
+    end
+
+    return (100*@m_precacheIndex) / @m_precacheList.size
+  end
+  
+  def mStandardCosmos(inSeed)
+    srand(inSeed)
+    
+    1000.times do
+      pos = MushTools.cRandomUnitVector * (7 + 20 * rand)
+      world = AdanaxisWorld.new(
+        :mesh_name => mMeshLibrary.mRandomCosmosName,
+        :post => MushPost.new(
+          :position => pos
+        )
+      )
+    end
   end
   
   def mGameInit
+    # @m_precachePercent = 0
     MushGame.cNamedDialoguesAdd('^start')
   end
   
-  def mHandlePreCacheEnd
+  def mHandlePrecacheEnd
     mGameInit unless @m_gameInited
     @m_gameInited = true
   end

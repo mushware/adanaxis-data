@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } KSO1aRs/aLEv+/QhWfRoRw
-# $Id: AdanaxisGame.rb,v 1.28 2006/11/25 21:26:30 southa Exp $
+# $Id: AdanaxisGame.rb,v 1.29 2006/12/14 15:59:18 southa Exp $
 # $Log: AdanaxisGame.rb,v $
+# Revision 1.29  2006/12/14 15:59:18  southa
+# Fire and cutscene fixes
+#
 # Revision 1.28  2006/11/25 21:26:30  southa
 # Display mode definitions
 #
@@ -124,8 +127,8 @@ class AdanaxisGame < MushObject
     @m_menuRender.mPackageIDRender
   end
 
-  def mPreCacheRender(inPercentage, inMB)
-    @m_menuRender.mPreCacheRender(inPercentage, inMB)
+  def mPrecacheRender(inPercentage, inMB)
+    @m_menuRender.mPrecacheRender(inPercentage, inMB)
   end
 
   def mReset(allowResume)

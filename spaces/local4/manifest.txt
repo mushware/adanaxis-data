@@ -1,0 +1,4 @@
+# Manifest file for local4
+directory='local4'
+name='Hardcore'
+creator='Andy Southgate (www.mushware.com)'

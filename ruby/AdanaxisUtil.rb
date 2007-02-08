@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } 63kk9LVPAcoFqUyUUPiQfg
-# $Id: AdanaxisUtil.rb,v 1.13 2006/11/15 18:25:54 southa Exp $
+# $Id: AdanaxisUtil.rb,v 1.14 2006/11/17 20:08:34 southa Exp $
 # $Log: AdanaxisUtil.rb,v $
+# Revision 1.14  2006/11/17 20:08:34  southa
+# Weapon change and ammo handling
+#
 # Revision 1.13  2006/11/15 18:25:54  southa
 # Khazi rails
 #
@@ -75,6 +78,7 @@ class AdanaxisUtil < MushObject
     :ammo_count => true,
     :angular_position => true,
     :angular_velocity => true,
+    :colour => true,
     :damage_frame => true,
     :deviation => true,
     :does_damage => true,

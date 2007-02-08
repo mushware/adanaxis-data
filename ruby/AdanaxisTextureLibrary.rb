@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } avqCjn1AV8PsFQvoiWGwNA
-# $Id: AdanaxisTextureLibrary.rb,v 1.31 2006/12/16 10:57:21 southa Exp $
+# $Id: AdanaxisTextureLibrary.rb,v 1.32 2006/12/18 15:39:35 southa Exp $
 # $Log: AdanaxisTextureLibrary.rb,v $
+# Revision 1.32  2006/12/18 15:39:35  southa
+# Palette changes
+#
 # Revision 1.31  2006/12/16 10:57:21  southa
 # Encrypted files
 #
@@ -259,7 +262,7 @@ class AdanaxisTextureLibrary < MushObject
 		:scale         => [scale, scale, scale, scale],
     :numoctaves    => 8,
     :octaveratio   => 0.5,
-		:cache         => 0, #1,
+		:cache         => 1,
     :compress      => compressNear
 	)
 	
@@ -274,7 +277,7 @@ class AdanaxisTextureLibrary < MushObject
 		:scale         => [scale, scale, scale, scale],
     :numoctaves    => 8,
     :octaveratio   => 0.5,
-		:cache         => 0, #1,
+		:cache         => 1,
     :compress      => compressNear
 	)
 	
@@ -289,15 +292,15 @@ class AdanaxisTextureLibrary < MushObject
 		:scale         => [scale, scale, scale, scale],
     :numoctaves    => 8,
     :octaveratio   => 0.5,
-		:cache         => 0, #1,
+		:cache         => 1,
     :compress      => compressNear
 	)
 	
   scale = 0.1
 	MushGLTexture::cDefine(
-		:name          => 'khazi-rail-tex',
+		:name          => 'rail-tex',
     :type          => 'CellNoise',
-    :meshname      => 'khazi-rail',
+    :meshname      => 'rail',
     :size          => [textureSize, textureSize],
     :palette       => 'palette3',
     :palettestart  => [0,0.5],
@@ -306,6 +309,36 @@ class AdanaxisTextureLibrary < MushObject
     :numoctaves    => 8,
     :octaveratio   => 0.6,
 		:cache         => 1,
+    :compress      => compressNear
+	)
+
+	MushGLTexture::cDefine(
+		:name          => 'rail-red-tex',
+    :type          => 'CellNoise',
+    :meshname      => 'rail-red',
+    :size          => [textureSize, textureSize],
+    :palette       => 'palette3',
+    :palettestart  => [0,0.9],
+    :palettevector => [0.99,0],
+		:scale         => [scale, scale, scale, scale],
+    :numoctaves    => 8,
+    :octaveratio   => 0.6,
+		:cache         => 1,
+    :compress      => compressNear
+	)
+
+	MushGLTexture::cDefine(
+		:name          => 'rail-blue-tex',
+    :type          => 'CellNoise',
+    :meshname      => 'rail-blue',
+    :size          => [textureSize, textureSize],
+    :palette       => 'palette3',
+    :palettestart  => [0,0.1],
+    :palettevector => [0.99,0],
+		:scale         => [scale, scale, scale, scale],
+    :numoctaves    => 8,
+    :octaveratio   => 0.6,
+		:cache         => 1,∫œ
     :compress      => compressNear
 	)
 

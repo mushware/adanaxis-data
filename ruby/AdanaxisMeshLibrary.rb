@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } 74bLa8v94NQFxupv0Pj/cA
-# $Id: AdanaxisMeshLibrary.rb,v 1.28 2006/11/17 15:47:42 southa Exp $
+# $Id: AdanaxisMeshLibrary.rb,v 1.29 2006/12/18 15:39:35 southa Exp $
 # $Log: AdanaxisMeshLibrary.rb,v $
+# Revision 1.29  2006/12/18 15:39:35  southa
+# Palette changes
+#
 # Revision 1.28  2006/11/17 15:47:42  southa
 # Ammo remnants
 #
@@ -73,8 +76,8 @@ class AdanaxisMeshLibrary
   #
   # Big, heavy khazi equipped with a rail gun
   #
-  def mKhaziRailCreate
-    mesh = MushMesh.new('khazi-rail')
+  def mKhaziRailCreate(inName)
+    mesh = MushMesh.new(inName)
 
     mesh.mBaseAdd(MushBasePrism.new(:order => 4))
 	
@@ -178,7 +181,7 @@ class AdanaxisMeshLibrary
   		:num_iterations => 3
     ))
 
-    mesh.mMaterialAdd('khazi-rail-mat')
+    mesh.mMaterialAdd("#{inName}-mat")
 
     mesh.mMake
   end
@@ -236,7 +239,7 @@ class AdanaxisMeshLibrary
         :scale => 0.75),
   		:num_iterations => 1
     ))
-    puts "#{inName}-mat"
+
     mesh.mMaterialAdd("#{inName}-mat")
 
     mesh.mMake
@@ -690,7 +693,9 @@ class AdanaxisMeshLibrary
   end
   
   def mCreate
-    mKhaziRailCreate
+    mKhaziRailCreate('rail')
+    mKhaziRailCreate('rail-red')
+    mKhaziRailCreate('rail-blue')
     mAttendantCreate('attendant')
     mAttendantCreate('attendant-red')
     mAttendantCreate('attendant-blue')

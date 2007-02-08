@@ -18,8 +18,11 @@
 #
 ##############################################################################
 #%Header } XulYrmMGLmszzHG2i2jMtA
-# $Id: space.rb,v 1.10 2006/10/09 16:00:15 southa Exp $
+# $Id: space.rb,v 1.11 2006/11/03 18:46:32 southa Exp $
 # $Log: space.rb,v $
+# Revision 1.11  2006/11/03 18:46:32  southa
+# Damage effectors
+#
 # Revision 1.10  2006/10/09 16:00:15  southa
 # Intern generation
 #
@@ -56,17 +59,17 @@ class Adanaxis_local2 < AdanaxisSpace
     MushGame.cSoundStreamDefine('game1', MushConfig.cGlobalWavesPath+'/mushware-respiration.ogg')
   end
   
-  def mPreCache
+  def mPrecache
     num = @preCached
-    # Must still increment @preCached if cPreCache throws
+    # Must still increment @preCached if cPrecache throws
     @preCached += 1
     case (num)
-      when 0..9   : MushGLTexture.cPreCache("flare#{num}-tex")
-      when 10..19 : MushGLTexture.cPreCache("ember#{num-10}-tex")
-      when 20..29 : MushGLTexture.cPreCache("star#{num-20}-tex")
-      when 30     : MushGLTexture.cPreCache("attendant-tex")
-      when 31     : MushGLTexture.cPreCache("projectile1-tex")
-      when 32     : MushGLTexture.cPreCache("projectile2-tex")
+      when 0..9   : MushGLTexture.cPrecache("flare#{num}-tex")
+      when 10..19 : MushGLTexture.cPrecache("ember#{num-10}-tex")
+      when 20..29 : MushGLTexture.cPrecache("star#{num-20}-tex")
+      when 30     : MushGLTexture.cPrecache("attendant-tex")
+      when 31     : MushGLTexture.cPrecache("projectile1-tex")
+      when 32     : MushGLTexture.cPrecache("projectile2-tex")
     end
     
     3 * num

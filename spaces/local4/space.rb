@@ -1,7 +1,7 @@
 #%Header {
 ##############################################################################
 #
-# File data-adanaxis/spaces/local3/space.rb
+# File data-adanaxis/spaces/local4/space.rb
 #
 # Author Andy Southgate 2006
 #
@@ -17,7 +17,7 @@
 # This software carries NO WARRANTY of any kind.
 #
 ##############################################################################
-#%Header } XESH903Rz4omoAntOunkPg
+#%Header } HacRfZ2xB2ikp+zBw7iYuw
 # $Id: space.rb,v 1.17 2006/12/18 15:39:35 southa Exp $
 # $Log: space.rb,v $
 # Revision 1.17  2006/12/18 15:39:35  southa
@@ -78,34 +78,14 @@
 require 'Mushware.rb'
 require 'Adanaxis.rb'
 
-class Adanaxis_local3 < AdanaxisSpace
+class Adanaxis_local4 < AdanaxisSpace
   def initialize(inParams = {})
     super
-    @preCached = 0
   end
   
   def mLoad(game)
     mLoadStandard(game)
     MushGame.cSoundStreamDefine('game1', MushConfig.cGlobalWavesPath+'/mushware-respiration.ogg')
-    @preCached = 0
-  end
-
-  def mPrecache
-    super
-  
-    num = @preCached
-    # Must still increment @preCached if cPrecache throws
-    @preCached += 1
-    case (num)
-      when 20..29 : MushGLTexture.cPrecache("ember#{num-20}-tex")
-      when 30..39 : MushGLTexture.cPrecache("star#{num-30}-tex")
-      when 40..49 : MushGLTexture.cPrecache("flare#{num-40}-tex")
-      when 50     : MushGLTexture.cPrecache("attendant-tex")
-      when 51     : MushGLTexture.cPrecache("projectile1-tex")
-      when 52     : MushGLTexture.cPrecache("projectile2-tex")
-    end
-    
-    num
   end
   
   def mInitialPiecesCreate  
@@ -123,38 +103,15 @@ class Adanaxis_local3 < AdanaxisSpace
     end
 
     4.times do |param|
-      isRed = true
-      thisType = isRed ? "kr" : "kb"
-      targetTypes = isRed ? "kb+p,k,p" : "kr,k,p"
-      
-      pos = MushVector.new(isRed ? -200 : 200, 0, 0, -400) + MushTools.cRandomUnitVector * (30 + rand(100));
-      khazi = AdanaxisPieceKhazi.cCreate(
-        :mesh_name => "rail",
-        :hit_points => 80.0,
-        :post => MushPost.new(
+      ['red', 'blue'].each do |colour|
+        pos = MushVector.new((colour == 'red') ? -200 : 200, 0, 0, -400) + MushTools.cRandomUnitVector * (30 + rand(100));
+        mPieceLibrary.mRailCreate(
+          :colour => colour,
           :position => pos
-          ),
-        :type => thisType,
-        :target_types => targetTypes,
-        :seek_speed => 0.01,
-        :seek_acceleration => 0.003,
-        :patrol_speed => 0.01,
-        :patrol_acceleration => 0.003,
-        
-        :remnant => $currentLogic.mRemnant.mStandardRemnant(param),
-        :weapon => :khazi_rail
-      )
-    end
-    
-    1000.times do |i|
-      pos = MushTools.cRandomUnitVector * (7 + 20 * rand)
-      world = AdanaxisWorld.new(
-        :mesh_name => mMeshLibrary.mRandomCosmosName,
-        :post => MushPost.new(
-        :position => pos
         )
-      )
-    end
+      end    end
+
+    mStandardCosmos(4)
     
   end
 end

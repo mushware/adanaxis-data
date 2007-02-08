@@ -18,8 +18,11 @@
 #
 ##############################################################################
 #%Header } dor7oAM3xOfZ2ElF/iVHGg
-# $Id: space.rb,v 1.3 2006/10/03 14:06:50 southa Exp $
+# $Id: space.rb,v 1.4 2006/10/06 14:48:18 southa Exp $
 # $Log: space.rb,v $
+# Revision 1.4  2006/10/06 14:48:18  southa
+# Material animation
+#
 # Revision 1.3  2006/10/03 14:06:50  southa
 # Khazi and projectile creation
 #
@@ -48,13 +51,13 @@ class Adanaxis_river1 < AdanaxisSpace
     @preCached = 0
   end
 
-  def mPreCache
+  def mPrecache
     num = @preCached
-    # Must still increment @preCached if cPreCache throws
+    # Must still increment @preCached if cPrecache throws
     @preCached += 1
     case (num)
-      when 9   : MushGLTexture.cPreCache("river1-tex")
-      when 19 : MushGLTexture.cPreCache("ground1-tex")
+      when 9   : MushGLTexture.cPrecache("river1-tex")
+      when 19 : MushGLTexture.cPrecache("ground1-tex")
     end
     
     3 * num

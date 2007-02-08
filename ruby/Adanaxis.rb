@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } Vr8SNTx01PRrZQGDsHJ+7Q
-# $Id: Adanaxis.rb,v 1.24 2006/11/12 20:09:54 southa Exp $
+# $Id: Adanaxis.rb,v 1.25 2006/11/17 20:08:33 southa Exp $
 # $Log: Adanaxis.rb,v $
+# Revision 1.25  2006/11/17 20:08:33  southa
+# Weapon change and ammo handling
+#
 # Revision 1.24  2006/11/12 20:09:54  southa
 # Missile guidance
 #
@@ -92,6 +95,7 @@ require 'AdanaxisPieceDeco.rb'
 require 'AdanaxisPieceEffector.rb'
 require 'AdanaxisPieceItem.rb'
 require 'AdanaxisPieceKhazi.rb'
+require 'AdanaxisPieceLibrary.rb'
 require 'AdanaxisPiecePlayer.rb'
 require 'AdanaxisPieceProjectile.rb'
 require 'AdanaxisRemnant.rb'
