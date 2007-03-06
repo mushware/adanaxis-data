@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } avqCjn1AV8PsFQvoiWGwNA
-# $Id: AdanaxisTextureLibrary.rb,v 1.32 2006/12/18 15:39:35 southa Exp $
+# $Id: AdanaxisTextureLibrary.rb,v 1.33 2007/02/08 17:55:12 southa Exp $
 # $Log: AdanaxisTextureLibrary.rb,v $
+# Revision 1.33  2007/02/08 17:55:12  southa
+# Common routines in space generation
+#
 # Revision 1.32  2006/12/18 15:39:35  southa
 # Palette changes
 #
@@ -338,7 +341,7 @@ class AdanaxisTextureLibrary < MushObject
 		:scale         => [scale, scale, scale, scale],
     :numoctaves    => 8,
     :octaveratio   => 0.6,
-		:cache         => 1,∫œ
+		:cache         => 1,
     :compress      => compressNear
 	)
 

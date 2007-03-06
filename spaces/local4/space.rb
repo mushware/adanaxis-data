@@ -3,23 +3,24 @@
 #
 # File data-adanaxis/spaces/local4/space.rb
 #
-# Author Andy Southgate 2006
+# Copyright Andy Southgate 2006
 #
-# This file contains original work by Andy Southgate.  The author and his
-# employer (Mushware Limited) irrevocably waive all of their copyright rights
-# vested in this particular version of this file to the furthest extent
-# permitted.  The author and Mushware Limited also irrevocably waive any and
-# all of their intellectual property rights arising from said file and its
-# creation that would otherwise restrict the rights of any party to use and/or
-# distribute the use of, the techniques and methods used herein.  A written
-# waiver can be obtained via http://www.mushware.com/.
+# This file may be used and distributed under the terms of the Mushware
+# software licence version 1.1, under the terms for 'Proprietary original
+# source files'.  If not supplied with this software, a copy of the licence
+# can be obtained from Mushware Limited via http://www.mushware.com/.
+# One of your options under that licence is to use and distribute this file
+# under the terms of the GNU General Public Licence version 2.
 #
 # This software carries NO WARRANTY of any kind.
 #
 ##############################################################################
-#%Header } HacRfZ2xB2ikp+zBw7iYuw
-# $Id: space.rb,v 1.17 2006/12/18 15:39:35 southa Exp $
+#%Header } 9btZJX1RwZdHfO/OWZksXQ
+# $Id: space.rb,v 1.1 2007/02/08 17:55:13 southa Exp $
 # $Log: space.rb,v $
+# Revision 1.1  2007/02/08 17:55:13  southa
+# Common routines in space generation
+#
 # Revision 1.17  2006/12/18 15:39:35  southa
 # Palette changes
 #
@@ -86,6 +87,12 @@ class Adanaxis_local4 < AdanaxisSpace
   def mLoad(game)
     mLoadStandard(game)
     MushGame.cSoundStreamDefine('game1', MushConfig.cGlobalWavesPath+'/mushware-respiration.ogg')
+  end
+  
+  def mPrecacheListBuild
+    super
+    mPrecacheListAdd(mPieceLibrary.mAttendantTex('red', 'blue'))
+    mPrecacheListAdd(mPieceLibrary.mRailTex('red', 'blue'))
   end
   
   def mInitialPiecesCreate  

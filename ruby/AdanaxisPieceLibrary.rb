@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } txNtx34pY3FGnAXYnq2bwA
-# $Id$
-# $Log$
+# $Id: AdanaxisPieceLibrary.rb,v 1.1 2007/02/08 17:55:12 southa Exp $
+# $Log: AdanaxisPieceLibrary.rb,v $
+# Revision 1.1  2007/02/08 17:55:12  southa
+# Common routines in space generation
+#
 
 class AdanaxisPieceLibrary < MushObject
   def initialize(inParams = {})
@@ -77,13 +80,21 @@ class AdanaxisPieceLibrary < MushObject
     AdanaxisUtil.cSpellCheck(inParams)
     AdanaxisPieceKhazi.cCreate(mAttendantParams(inParams))
     @m_attendantNum += 1
-  end
+  end    
 
   # Creates a Rail
   def mRailCreate(inParams = {})
     AdanaxisUtil.cSpellCheck(inParams)
     AdanaxisPieceKhazi.cCreate(mRailParams(inParams))
     @m_railNum += 1
+  end
+
+  def mAttendantTex(*inColours)
+    return inColours.collect { |name| "attendant-#{name}-tex" }
+  end
+
+  def mRailTex(*inColours)
+    return inColours.collect { |name| "rail-#{name}-tex" }
   end
 
 protected

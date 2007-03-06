@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } lR/lFdEFyXBbk1T1wsvmCw
-# $Id: AdanaxisSpace.rb,v 1.19 2006/12/16 10:57:21 southa Exp $
+# $Id: AdanaxisSpace.rb,v 1.20 2007/02/08 17:55:12 southa Exp $
 # $Log: AdanaxisSpace.rb,v $
+# Revision 1.20  2007/02/08 17:55:12  southa
+# Common routines in space generation
+#
 # Revision 1.19  2006/12/16 10:57:21  southa
 # Encrypted files
 #
@@ -92,6 +95,17 @@ class AdanaxisSpace < MushObject
     end
   end
   
+  def mPrecacheListAdd(inNames)
+    raise "Precache list not built yet" unless @m_precacheList
+    if inNames === String
+      @m_precacheList.unshift inNames
+    else
+      inNames.flatten.each do |name|
+        @m_precacheList.unshift name
+      end
+    end
+  end
+  
   def mPrecacheListBuild
     @m_precacheList = []
     
@@ -114,13 +128,20 @@ class AdanaxisSpace < MushObject
   end
   
   def mPrecache
-    mPrecacheListBuild unless @m_precacheList
-    
-    startTime = Time.now.to_f
-    while @m_precacheIndex < @m_precacheList.size do
-      MushGLTexture.cPrecache(@m_precacheList[@m_precacheIndex])
-      @m_precacheIndex += 1
-      break if Time.now.to_f > startTime + 0.1 # Yield to draw a frame every 100ms
+    unless @m_precacheList
+      mPrecacheListBuild
+      @m_precacheList.unshift(nil, nil, nil) # Skip a few frames to show the loading screen
+    else
+      startTime = Time.now.to_f
+      while @m_precacheIndex < @m_precacheList.size do
+        i = @m_precacheIndex
+        @m_precacheIndex += 1 # Always increment in case of throw
+        break unless @m_precacheList[i] # If nil, skip this frame
+        
+        MushGLTexture.cPrecache(@m_precacheList[i])
+
+        break if Time.now.to_f > startTime + 0.1 # Yield to draw a frame every 100ms
+      end
     end
 
     return (100*@m_precacheIndex) / @m_precacheList.size
