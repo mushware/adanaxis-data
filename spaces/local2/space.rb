@@ -3,23 +3,24 @@
 #
 # File data-adanaxis/spaces/local2/space.rb
 #
-# Author Andy Southgate 2006
+# Copyright Andy Southgate 2006
 #
-# This file contains original work by Andy Southgate.  The author and his
-# employer (Mushware Limited) irrevocably waive all of their copyright rights
-# vested in this particular version of this file to the furthest extent
-# permitted.  The author and Mushware Limited also irrevocably waive any and
-# all of their intellectual property rights arising from said file and its
-# creation that would otherwise restrict the rights of any party to use and/or
-# distribute the use of, the techniques and methods used herein.  A written
-# waiver can be obtained via http://www.mushware.com/.
+# This file may be used and distributed under the terms of the Mushware
+# software licence version 1.1, under the terms for 'Proprietary original
+# source files'.  If not supplied with this software, a copy of the licence
+# can be obtained from Mushware Limited via http://www.mushware.com/.
+# One of your options under that licence is to use and distribute this file
+# under the terms of the GNU General Public Licence version 2.
 #
 # This software carries NO WARRANTY of any kind.
 #
 ##############################################################################
-#%Header } XulYrmMGLmszzHG2i2jMtA
-# $Id: space.rb,v 1.11 2006/11/03 18:46:32 southa Exp $
+#%Header } FEGeAD/l2v64LoOP6QjqtA
+# $Id: space.rb,v 1.12 2007/02/08 17:55:13 southa Exp $
 # $Log: space.rb,v $
+# Revision 1.12  2007/02/08 17:55:13  southa
+# Common routines in space generation
+#
 # Revision 1.11  2006/11/03 18:46:32  southa
 # Damage effectors
 #
@@ -51,7 +52,6 @@ require 'Adanaxis.rb'
 class Adanaxis_local2 < AdanaxisSpace
   def initialize(inParams = {})
     super
-    @preCached = 0
   end
   
   def mLoad(game)
@@ -59,77 +59,25 @@ class Adanaxis_local2 < AdanaxisSpace
     MushGame.cSoundStreamDefine('game1', MushConfig.cGlobalWavesPath+'/mushware-respiration.ogg')
   end
   
-  def mPrecache
-    num = @preCached
-    # Must still increment @preCached if cPrecache throws
-    @preCached += 1
-    case (num)
-      when 0..9   : MushGLTexture.cPrecache("flare#{num}-tex")
-      when 10..19 : MushGLTexture.cPrecache("ember#{num-10}-tex")
-      when 20..29 : MushGLTexture.cPrecache("star#{num-20}-tex")
-      when 30     : MushGLTexture.cPrecache("attendant-tex")
-      when 31     : MushGLTexture.cPrecache("projectile1-tex")
-      when 32     : MushGLTexture.cPrecache("projectile2-tex")
-    end
-    
-    3 * num
+  def mPrecacheListBuild
+    super
+    mPrecacheListAdd(mPieceLibrary.mAttendantTex('red'))
   end
   
   def mInitialPiecesCreate
     super
+    (-2..2).each do |i|
+      mPieceLibrary.mAttendantCreate(
+        :colour => 'red',
+        :post => MushPost.new(
+          :position => MushVector.new(i * 50, -40, 0, -100-20*i.abs),
+          :angular_position => MushTools.cRandomOrientation
+        ),
+        :waypoint => MushVector.new(i * 30, -0, 0, -250),
+        :waypoint_msec => 15000
+      )
+    end
 
-    12.times do |i|
-      
-      x, y, z, w = 0, 0, 0, 0
-      span = 10
-      
-      case i
-        when 0, 6: x = -span
-        when 1, 7: x =  span
-        when 2, 8: y = -span
-        when 3, 9: y =  span
-        when 4, 10: z = -span
-        when 5, 11: z =  span
-      end
-      
-      if i < 6
-        w = 0
-        vw = -0.3
-      else
-        w = -1000
-        vw = 0.1
-      end
-      
-      if (i % 2) == 0
-        rotate = 1
-      else
-        rotate = -1
-      end
-      
-      x+=0.4
-      y+=0.7
-      
-      khazi = AdanaxisPieceKhazi.cCreate(
-        :mesh_name => 'attendant',
-        :hit_points => 1.0,
-        :post => MushPost.new(
-          :position => MushVector.new(x, y, z, w),
-          :velocity => MushVector.new(0, 0, 0, vw),
-          :angular_position => MushTools.cRotationInYWPlane(-Math::PI/2).mRotate(MushTools.cRotationInYZPlane(-Math::PI/2).mRotate(MushTools.cRotationInZWPlane(-Math::PI/2))),
-          :angular_velocity => MushTools.cRotationInXYPlane(rotate * Math::PI/1000)
-          )
-        )
-    end
-    
-    1000.times do |i|
-      pos = MushTools.cRandomUnitVector * (30 + rand(100))
-      world = AdanaxisWorld.new(
-        :mesh_name => "star#{i % 10}",
-        :post => MushPost.new(
-          :position => pos
-          )
-        )
-    end
-    
+    mStandardCosmos(2)
   end  
 end

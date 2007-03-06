@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } ZJhgffsl43t4RqQcN4aPag
-# $Id: AdanaxisAI.rb,v 1.10 2006/11/01 13:04:20 southa Exp $
+# $Id: AdanaxisAI.rb,v 1.11 2006/11/12 20:09:54 southa Exp $
 # $Log: AdanaxisAI.rb,v $
+# Revision 1.11  2006/11/12 20:09:54  southa
+# Missile guidance
+#
 # Revision 1.10  2006/11/01 13:04:20  southa
 # Initial weapon handling
 #
@@ -64,7 +67,6 @@ class AdanaxisAI < MushObject
   def initialize(inParams = {})
     @m_state = AISTATE_DORMANT
     @m_stateDuration = 0
-    @m_waypoint = MushVector.new(rand(300)-150, rand(300)-150, rand(300)-150, -rand(300)-50)
     @m_stateChangeMsec = 0
     @r_piece = nil
     @r_post = nil
@@ -78,6 +80,8 @@ class AdanaxisAI < MushObject
     @m_targetTypes = inParams[:target_types] || "p"
     @m_overrideDeadMsec = inParams[:override_dead_msec] || 10000
     @m_lastOverrideMsec = nil
+    @m_waypoint = inParams[:waypoint] || MushVector.new(rand(300)-150, rand(300)-150, rand(300)-150, -rand(300)-50)
+    @m_waypointMsec = inParams[:waypoint_msec]
   end
 
   def mTargetSelect
@@ -168,7 +172,12 @@ class AdanaxisAI < MushObject
 
     case @m_state
       when AISTATE_IDLE : mStateChange(AISTATE_DORMANT)
-      when AISTATE_DORMANT : mStateChangeSeek(15000)
+      when AISTATE_DORMANT :
+        if @m_waypointMsec
+          mStateChangeWaypoint(@m_waypointMsec, @m_waypoint)
+        else
+          mStateChangeSeek(15000)
+        end
       when AISTATE_SEEK : callInterval = mStateActionSeek
       else raise MushError.new("Bad aiState value #{@m_state}") 
     end

@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } 63kk9LVPAcoFqUyUUPiQfg
-# $Id: AdanaxisUtil.rb,v 1.14 2006/11/17 20:08:34 southa Exp $
+# $Id: AdanaxisUtil.rb,v 1.15 2007/02/08 17:55:12 southa Exp $
 # $Log: AdanaxisUtil.rb,v $
+# Revision 1.15  2007/02/08 17:55:12  southa
+# Common routines in space generation
+#
 # Revision 1.14  2006/11/17 20:08:34  southa
 # Weapon change and ammo handling
 #
@@ -124,6 +127,8 @@ class AdanaxisUtil < MushObject
     :velocity => true,
     :velocity_factor => true,
     :vulnerability => true,
+    :waypoint => true,
+    :waypoint_msec => true,
     :weapon => true,
     :weapon_name => true
     }

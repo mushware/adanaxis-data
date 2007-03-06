@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } fqw0Kg8SFKBRqHTmFMXeGw
-# $Id: AdanaxisWeaponLibrary.rb,v 1.12 2006/11/17 15:47:42 southa Exp $
+# $Id: AdanaxisWeaponLibrary.rb,v 1.13 2006/12/14 15:59:23 southa Exp $
 # $Log: AdanaxisWeaponLibrary.rb,v $
+# Revision 1.13  2006/12/14 15:59:23  southa
+# Fire and cutscene fixes
+#
 # Revision 1.12  2006/11/17 15:47:42  southa
 # Ammo remnants
 #
@@ -160,7 +163,7 @@ class AdanaxisWeaponLibrary < MushObject
       :speed => 0.0,
       :acceleration => 0.01,
       :speed_limit => 4.0,
-      :hit_points => 25.0,
+      :hit_points => 15.0,
       :fire_rate_msec => 400,
       :lifetime_msec => 6000,
       :offset_sequence => [

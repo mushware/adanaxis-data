@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } 9btZJX1RwZdHfO/OWZksXQ
-# $Id: space.rb,v 1.1 2007/02/08 17:55:13 southa Exp $
+# $Id: space.rb,v 1.2 2007/03/06 11:34:01 southa Exp $
 # $Log: space.rb,v $
+# Revision 1.2  2007/03/06 11:34:01  southa
+# Space and precache fixes
+#
 # Revision 1.1  2007/02/08 17:55:13  southa
 # Common routines in space generation
 #
@@ -97,10 +100,10 @@ class Adanaxis_local4 < AdanaxisSpace
   
   def mInitialPiecesCreate  
     super
-    50.times do |param|
-      ['red', 'blue'].each do |colour|
-        pos = MushVector.new((colour == 'red') ? -100 : 100, 0, 0, -400) +
-          MushTools.cRandomUnitVector * (30 + rand(100));
+    20.times do |param|
+      ['red', 'red', 'blue'].each do |colour|
+        pos = MushVector.new(0, 0, 0, -200 + ((colour == 'red') ? -60 : 60)) +
+          MushTools.cRandomUnitVector * (20 + rand(100));
         
         mPieceLibrary.mAttendantCreate(
           :colour => colour,
@@ -111,13 +114,22 @@ class Adanaxis_local4 < AdanaxisSpace
 
     4.times do |param|
       ['red', 'blue'].each do |colour|
-        pos = MushVector.new((colour == 'red') ? -200 : 200, 0, 0, -400) + MushTools.cRandomUnitVector * (30 + rand(100));
+        pos = MushVector.new(0, 0, 0, -250 + ((colour == 'red') ? -400 : 400)) + MushTools.cRandomUnitVector * (30 + rand(100));
         mPieceLibrary.mRailCreate(
           :colour => colour,
           :position => pos
         )
-      end    end
+      end    
+    end
 
+    (-1..1).each do |i|
+      $currentLogic.mRemnant.mCreate(
+        :item_type => :player_light_missile,
+        :post => MushPost.new(
+          :position => MushVector.new(0*i, 0, 0, 0)
+        )
+      )
+    end
     mStandardCosmos(4)
     
   end

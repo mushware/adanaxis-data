@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } txNtx34pY3FGnAXYnq2bwA
-# $Id: AdanaxisPieceLibrary.rb,v 1.1 2007/02/08 17:55:12 southa Exp $
+# $Id: AdanaxisPieceLibrary.rb,v 1.2 2007/03/06 11:34:00 southa Exp $
 # $Log: AdanaxisPieceLibrary.rb,v $
+# Revision 1.2  2007/03/06 11:34:00  southa
+# Space and precache fixes
+#
 # Revision 1.1  2007/02/08 17:55:12  southa
 # Common routines in space generation
 #
@@ -36,7 +39,7 @@ class AdanaxisPieceLibrary < MushObject
     @m_attendantNum = 0
     
     @m_railDefaults = {
-      :hit_points => 80.0,
+      :hit_points => 160.0,
       :type => @m_typeDefault,
       :seek_speed => 0.01,
       :seek_acceleration => 0.003,
