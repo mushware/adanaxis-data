@@ -9,8 +9,11 @@
 #
 ##############################################################################
 #
-# $Id: dialogues.xml,v 1.1 2006/07/31 11:01:34 southa Exp $
+# $Id: dialogues.xml,v 1.1 2006/08/01 23:21:48 southa Exp $
 # $Log: dialogues.xml,v $
+# Revision 1.1  2006/08/01 23:21:48  southa
+# Rendering demo content
+#
 #
 -->
 <obj>(
@@ -22,7 +25,7 @@
 <name>"font-mono1"</name>
 <size>1.0</size>
 </fontRef>
-<value>"Moving objects"</value>
+<value>"Skirmish"</value>
 <alignment>0</alignment>
 </string>
 <posticity type="MushPiePosticity">

@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } jugTbpTzFS8mdBHUZaOpuw
-# $Id: AdanaxisMenu.rb,v 1.15 2006/11/03 18:46:31 southa Exp $
+# $Id: AdanaxisMenu.rb,v 1.16 2006/11/08 18:30:53 southa Exp $
 # $Log: AdanaxisMenu.rb,v $
+# Revision 1.16  2006/11/08 18:30:53  southa
+# Key and axis configuration
+#
 # Revision 1.15  2006/11/03 18:46:31  southa
 # Damage effectors
 #
@@ -49,7 +52,8 @@ class AdanaxisMenu < MushObject
     @menuCommon = {
       :size => 0.02,
       :colour => MushVector.new(0.7,0.7,1,0.7),
-      :title_colour => MushVector.new(1,1,1,0.7)
+      :title_colour => MushVector.new(1,1,1,0.7),
+      :grey_colour => MushVector.new(1,1,1,0.3)
     }
     
     @topLevelMenu = MushMenu.new(
@@ -220,8 +224,12 @@ class AdanaxisMenu < MushObject
     end
   end
   
-  def mNewGameMenuEntry(name, key)
-    [ name, :mMenuGameSelect, key.untaint ]
+  def mNewLevelMenuEntry(name, level)
+    permit = level[AdanaxisLevels::PARAMS]['permit']
+    if permit && !AdanaxisRuby.cRecordTime(permit)
+      flags = {:grey => true}
+    end
+    [ name, :mMenuGameSelect, level[AdanaxisLevels::KEY], flags ]
   end
   
   def mReset(menu)
@@ -233,7 +241,7 @@ class AdanaxisMenu < MushObject
     levelList.each do |level|
       next if !showHidden && level[AdanaxisLevels::PARAMS]['visibility'] == 'hidden'
       name = level[AdanaxisLevels::PARAMS]['name'] || level[AdanaxisLevels::KEY]
-      @menuSet[MENU_CHOOSE_LEVEL].menu.push mNewGameMenuEntry(name, level[AdanaxisLevels::KEY])
+      @menuSet[MENU_CHOOSE_LEVEL].menu.push mNewLevelMenuEntry(name, level)
     end
     @menuSet[MENU_CHOOSE_LEVEL].menu.push ["Back", :mMenuBack, MENU_TOPLEVEL]
   end

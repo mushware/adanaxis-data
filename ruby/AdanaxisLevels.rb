@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } YkolAA2/khvOmyZz3VmddA
-# $Id: AdanaxisLevels.rb,v 1.3 2006/08/01 13:41:11 southa Exp $
+# $Id: AdanaxisLevels.rb,v 1.4 2006/08/01 17:21:17 southa Exp $
 # $Log: AdanaxisLevels.rb,v $
+# Revision 1.4  2006/08/01 17:21:17  southa
+# River demo
+#
 # Revision 1.3  2006/08/01 13:41:11  southa
 # Pre-release updates
 #
@@ -29,14 +32,14 @@ class AdanaxisLevels
   KEY = 0
   PARAMS = 1
   def initialize
-    @levels = []
-    @validParams = %w{directory name creator visibility}
+    @m_levels = []
+    @m_validParams = %w{directory name creator visibility permit next}
   end
   
   def mScanLevel(path)
     manifestFile = "#{path}/#{LEVEL_MANIFEST_NAME}"
     manifestFile.untaint
-    baseName = File.basename(path)
+    baseName = File.basename(path).untaint
     unless File.file?(manifestFile)
       puts "Manifest file #{manifestFile} missing from space directory" 
     else
@@ -48,10 +51,10 @@ class AdanaxisLevels
             puts "Syntax error in '#{line}'"
           else
             name, value = $1, $2
-            unless @validParams.index(name)
+            unless @m_validParams.index(name)
               puts "Unknown parameter '#{name}' in manifest"
             else
-              paramHash[name] = value
+              paramHash[name.untaint] = value.untaint
             end
           end
         end
@@ -62,16 +65,16 @@ class AdanaxisLevels
         puts "Discarding level name because directory in manifest '#{paramHash['directory']}' doesn't match actual directory '#{baseName}'"
       end
       
-      @levels.push [baseName, paramHash]
+      @m_levels.push [baseName, paramHash]
     end
   end
   
   def mLevelList
-    @levels
+    @m_levels
   end
   
   def mScanForLevels
-    @levels = []
+    @m_levels = []
     spacePath = MushConfig.cGlobalSpacesPath
     Dir.foreach(spacePath) do |leafName|
       next if leafName == 'CVS' || leafName =~ /\./

@@ -3,23 +3,24 @@
 #
 # File data-adanaxis/spaces/local1/space.rb
 #
-# Author Andy Southgate 2006
+# Copyright Andy Southgate 2006
 #
-# This file contains original work by Andy Southgate.  The author and his
-# employer (Mushware Limited) irrevocably waive all of their copyright rights
-# vested in this particular version of this file to the furthest extent
-# permitted.  The author and Mushware Limited also irrevocably waive any and
-# all of their intellectual property rights arising from said file and its
-# creation that would otherwise restrict the rights of any party to use and/or
-# distribute the use of, the techniques and methods used herein.  A written
-# waiver can be obtained via http://www.mushware.com/.
+# This file may be used and distributed under the terms of the Mushware
+# software licence version 1.1, under the terms for 'Proprietary original
+# source files'.  If not supplied with this software, a copy of the licence
+# can be obtained from Mushware Limited via http://www.mushware.com/.
+# One of your options under that licence is to use and distribute this file
+# under the terms of the GNU General Public Licence version 2.
 #
 # This software carries NO WARRANTY of any kind.
 #
 ##############################################################################
-#%Header } e5pyDYhqQM6o/mG0mOvX9g
-# $Id: space.rb,v 1.32 2006/12/14 15:59:23 southa Exp $
+#%Header } //kENcTdqo3TQQX+ClUnqg
+# $Id: space.rb,v 1.33 2007/02/08 17:55:13 southa Exp $
 # $Log: space.rb,v $
+# Revision 1.33  2007/02/08 17:55:13  southa
+# Common routines in space generation
+#
 # Revision 1.32  2006/12/14 15:59:23  southa
 # Fire and cutscene fixes
 #
@@ -87,14 +88,12 @@ class Adanaxis_local1 < AdanaxisSpace
   
   def initialize(inParams = {})
     super
-    @preCached = 0
     @m_cutScene = self
   end
   
   def mLoad(game)
     mLoadStandard(game)
-    MushGame.cSoundStreamDefine('intro1', MushConfig.cGlobalWavesPath+'/mushware-intro1.ogg')
-    @preCached = 0
+    MushGame.cSoundStreamDefine('intro1', MushConfig.cGlobalWavesPath+'/mushware-extensions-to-space.ogg')
   end
 
   def mGameInit
@@ -356,22 +355,6 @@ class Adanaxis_local1 < AdanaxisSpace
       else
         MushGame.cCutSceneModeExit
     end
-  end
-
-  def mPrecache
-    num = @preCached
-    # Must still increment @preCached if cPrecache throws
-    @preCached += 1
-    case (num)
-      when 0..9   : MushGLTexture.cPrecache("flare#{num}-tex")
-      when 10..19 : MushGLTexture.cPrecache("ember#{num-10}-tex")
-      when 20..29 : MushGLTexture.cPrecache("star#{num-20}-tex")
-      when 30     : MushGLTexture.cPrecache("attendant-tex")
-      when 31     : MushGLTexture.cPrecache("projectile1-tex")
-      when 32     : MushGLTexture.cPrecache("projectile2-tex")
-    end
-    
-    3 * num
   end
   
   def mInitialPiecesCreate

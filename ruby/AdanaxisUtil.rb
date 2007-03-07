@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } 63kk9LVPAcoFqUyUUPiQfg
-# $Id: AdanaxisUtil.rb,v 1.15 2007/02/08 17:55:12 southa Exp $
+# $Id: AdanaxisUtil.rb,v 1.16 2007/03/06 21:05:17 southa Exp $
 # $Log: AdanaxisUtil.rb,v $
+# Revision 1.16  2007/03/06 21:05:17  southa
+# Level work
+#
 # Revision 1.15  2007/02/08 17:55:12  southa
 # Common routines in space generation
 #
@@ -78,6 +81,7 @@ class AdanaxisUtil < MushObject
   @c_symbols = {
     :acceleration => true,
     :ai_params => true,
+    :ai_state => true,
     :ammo_count => true,
     :angular_position => true,
     :angular_velocity => true,

@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } FEGeAD/l2v64LoOP6QjqtA
-# $Id: space.rb,v 1.12 2007/02/08 17:55:13 southa Exp $
+# $Id: space.rb,v 1.13 2007/03/06 21:05:17 southa Exp $
 # $Log: space.rb,v $
+# Revision 1.13  2007/03/06 21:05:17  southa
+# Level work
+#
 # Revision 1.12  2007/02/08 17:55:13  southa
 # Common routines in space generation
 #
@@ -56,7 +59,7 @@ class Adanaxis_local2 < AdanaxisSpace
   
   def mLoad(game)
     mLoadStandard(game)
-    MushGame.cSoundStreamDefine('game1', MushConfig.cGlobalWavesPath+'/mushware-respiration.ogg')
+    MushGame.cSoundStreamDefine('game1', MushConfig.cGlobalWavesPath+'/mushware-except-for-this.ogg')
   end
   
   def mPrecacheListBuild
@@ -73,8 +76,9 @@ class Adanaxis_local2 < AdanaxisSpace
           :position => MushVector.new(i * 50, -40, 0, -100-20*i.abs),
           :angular_position => MushTools.cRandomOrientation
         ),
-        :waypoint => MushVector.new(i * 30, -0, 0, -250),
-        :waypoint_msec => 15000
+        :waypoint => MushVector.new(i * 30, -0, i * 15, -250),
+        :waypoint_msec => 15000,
+        :ai_state => :waypoint_timed
       )
     end
 
