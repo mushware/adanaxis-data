@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } 1H+rLloObKxiiVjoIDjJFw
-# $Id: AdanaxisPiecePlayer.rb,v 1.16 2006/12/11 18:54:13 southa Exp $
+# $Id: AdanaxisPiecePlayer.rb,v 1.17 2006/12/14 15:59:22 southa Exp $
 # $Log: AdanaxisPiecePlayer.rb,v $
+# Revision 1.17  2006/12/14 15:59:22  southa
+# Fire and cutscene fixes
+#
 # Revision 1.16  2006/12/11 18:54:13  southa
 # Positional audio
 #
@@ -162,7 +165,7 @@ class AdanaxisPiecePlayer < AdanaxisPiece
   end
   
   def mFire
-    if @m_weapon.mFireOpportunityTake
+    if @m_hitPoints > 0.0 && @m_weapon.mFireOpportunityTake
       if @m_magazine.mAmmoCount(@m_weaponName) <= 0
         @@c_weaponList.reverse_each do |name|
           if @m_magazine.mAmmoCount(name) > 0
@@ -226,13 +229,68 @@ class AdanaxisPiecePlayer < AdanaxisPiece
     $currentGame.mView.mDashboard.mUpdate(:ammo_count => @m_magazine.mAmmoCount(@m_weaponName))
   end
   
+  def mFatalCollisionHandle(event)
+    super
+
+    3.times do |i|
+      post = event.mPiece1.post.dup
+      disp = MushVector.new(0,0,0,-10 * (i+1))
+      post.angular_position.mRotate(disp)
+      post.position = post.position + disp
+        
+      $currentLogic.mEffects.mExplode(
+        :post => post,
+        :embers => 0,
+        :explosions => 1,
+        :explo_number => 5+i,
+        :flares => 1,
+        :explosion_lifetime_range => (3000..4000),
+        :explosion_scale_range => (14.0..15.0),
+        :flare_scale_range => (50.0..60.0),
+        :flare_lifetime_range => (1000..2000)
+        )
+    end
+    
+    post = event.mPiece1.post.dup
+    post.velocity = MushVector.new(0,0,0,0)
+    disp = MushVector.new(0,0,0,-1)
+    post.angular_position.mRotate(disp)
+    post.position = post.position + disp
+
+    $currentLogic.mEffects.mExplode(
+        :post => post,
+        :embers => 100,
+        :explosions => 0,
+        :flares => 0,
+        :ember_speed_range => (0.05..0.1),
+        :ember_lifetime_range => (40000..60000)
+    )
+    
+    post = event.mPiece1.post.dup
+    disp = MushVector.new(-10,0,0,0)
+    post.angular_position.mRotate(disp)
+    post.position = post.position + disp
+    MushGame.cSoundPlay("explo5", post)
+    post = event.mPiece1.post.dup
+    disp = MushVector.new(10,0,0,0)
+    post.angular_position.mRotate(disp)
+    post.position = post.position + disp
+    MushGame.cSoundPlay("explo6", post)
+    MushGame.cSoundPlay("explo7", mPost)
+        
+    # Remove other object
+    event.mPiece2.mExpireFlagSet(true)
+  end
+  
   def mCollisionHandle(event)
     super
 
     case event.mPiece2
       when AdanaxisPieceItem:
-        mCollectItem(event.mPiece2)
-        event.mPiece2.mExpireFlagSet(true)
+        if @m_hitPoints > 0.0
+          mCollectItem(event.mPiece2)
+          event.mPiece2.mExpireFlagSet(true)
+        end
     end
   end
   

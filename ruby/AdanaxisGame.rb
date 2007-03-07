@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } KSO1aRs/aLEv+/QhWfRoRw
-# $Id: AdanaxisGame.rb,v 1.29 2006/12/14 15:59:18 southa Exp $
+# $Id: AdanaxisGame.rb,v 1.30 2007/02/08 17:55:12 southa Exp $
 # $Log: AdanaxisGame.rb,v $
+# Revision 1.30  2007/02/08 17:55:12  southa
+# Common routines in space generation
+#
 # Revision 1.29  2006/12/14 15:59:18  southa
 # Fire and cutscene fixes
 #
@@ -112,6 +115,10 @@ class AdanaxisGame < MushObject
     self
   end
   
+  def mSpawn
+    return @m_space.mSpawn
+  end
+
   def mRender(inParams = {})
     @m_view.mDashboardRender(inParams)
   end

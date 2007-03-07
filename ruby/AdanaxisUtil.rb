@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } 63kk9LVPAcoFqUyUUPiQfg
-# $Id: AdanaxisUtil.rb,v 1.16 2007/03/06 21:05:17 southa Exp $
+# $Id: AdanaxisUtil.rb,v 1.17 2007/03/07 11:29:23 southa Exp $
 # $Log: AdanaxisUtil.rb,v $
+# Revision 1.17  2007/03/07 11:29:23  southa
+# Level permission
+#
 # Revision 1.16  2007/03/06 21:05:17  southa
 # Level work
 #
@@ -94,8 +97,10 @@ class AdanaxisUtil < MushObject
     :ember_scale_range => true,
     :ember_speed_range => true,
     :explosions => true,
+    :explosion_lifetime_range => true,
     :explosion_scale_range => true,
     :explosion_speed_range => true,
+    :explo_number => true,
     :fire_rate_msec => true,
     :fire_sound => true,
     :flares => true,

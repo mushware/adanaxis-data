@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } lR/lFdEFyXBbk1T1wsvmCw
-# $Id: AdanaxisSpace.rb,v 1.20 2007/02/08 17:55:12 southa Exp $
+# $Id: AdanaxisSpace.rb,v 1.21 2007/03/06 11:34:01 southa Exp $
 # $Log: AdanaxisSpace.rb,v $
+# Revision 1.21  2007/03/06 11:34:01  southa
+# Space and precache fixes
+#
 # Revision 1.20  2007/02/08 17:55:12  southa
 # Common routines in space generation
 #
@@ -64,6 +67,7 @@
 class AdanaxisSpace < MushObject
   def initialize(inParams = {})
     @m_gameInited = false
+    @m_spawnList = []
     @m_textureLibrary = AdanaxisTextureLibrary.new
     @m_materialLibrary = AdanaxisMaterialLibrary.new(:texture_library => @m_textureLibrary)
     @m_meshLibrary = AdanaxisMeshLibrary.new(:texture_library => @m_textureLibrary)
@@ -147,6 +151,18 @@ class AdanaxisSpace < MushObject
     return (100*@m_precacheIndex) / @m_precacheList.size
   end
   
+  def mSpawn
+    spawner = @m_spawnList.shift
+    
+    retVal = false
+    retVal = send spawner if spawner # spawner is a symbol to call in this object
+    retVal
+  end
+  
+  def mSpawnAdd(*inSpawners)
+    @m_spawnList.concat inSpawners
+  end
+
   def mStandardCosmos(inSeed)
     srand(inSeed)
     

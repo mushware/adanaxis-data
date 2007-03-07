@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } FEGeAD/l2v64LoOP6QjqtA
-# $Id: space.rb,v 1.13 2007/03/06 21:05:17 southa Exp $
+# $Id: space.rb,v 1.14 2007/03/07 11:29:23 southa Exp $
 # $Log: space.rb,v $
+# Revision 1.14  2007/03/07 11:29:23  southa
+# Level permission
+#
 # Revision 1.13  2007/03/06 21:05:17  southa
 # Level work
 #
@@ -55,6 +58,7 @@ require 'Adanaxis.rb'
 class Adanaxis_local2 < AdanaxisSpace
   def initialize(inParams = {})
     super
+    mSpawnAdd(:mSpawn0)
   end
   
   def mLoad(game)
@@ -83,5 +87,21 @@ class Adanaxis_local2 < AdanaxisSpace
     end
 
     mStandardCosmos(2)
-  end  
+  end
+  
+  def mSpawn0
+    (-1..1).each do |i|
+      mPieceLibrary.mAttendantCreate(
+        :colour => 'red',
+        :post => MushPost.new(
+          :position => MushVector.new(i * 50, -40, 0, -100-20*i.abs),
+          :angular_position => MushTools.cRandomOrientation
+        ),
+        :waypoint => MushVector.new(i * 30, -0, i * 15, -250),
+        :waypoint_msec => 15000,
+        :ai_state => :waypoint_timed
+      )
+    end
+    return true
+  end
 end
