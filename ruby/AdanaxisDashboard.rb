@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } jlpar81vJMXtlQaf/66fpw
-# $Id: AdanaxisDashboard.rb,v 1.6 2006/11/21 10:08:22 southa Exp $
+# $Id: AdanaxisDashboard.rb,v 1.7 2006/12/11 13:28:19 southa Exp $
 # $Log: AdanaxisDashboard.rb,v $
+# Revision 1.7  2006/12/11 13:28:19  southa
+# Snapshot
+#
 # Revision 1.6  2006/11/21 10:08:22  southa
 # Initial cut scene handling
 #
@@ -57,6 +60,8 @@ class AdanaxisDashboard < MushDashboard
     @m_hitPointRatio = MushTimedValue.new(1.0)
     @m_shieldRatio = MushTimedValue.new(1.0)
     @m_ammoCount = MushTimedValue.new(0)
+    @m_redCount = MushTimedValue.new(0)
+    @m_blueCount = MushTimedValue.new(0)
     @m_weaponFont = MushGLFont.new(:name => "basebox1-font")
     @m_valueSize = 0.06
   end
@@ -66,19 +71,33 @@ class AdanaxisDashboard < MushDashboard
     @m_hitPointRatio.mCompareAndSet(inParams[:hit_point_ratio]) if inParams[:hit_point_ratio]
     @m_shieldRatio.mCompareAndSet(inParams[:shield_ratio]) if inParams[:shield_ratio]
     @m_ammoCount.mCompareAndSet(inParams[:ammo_count]) if inParams[:ammo_count]
+    @m_redCount.mCompareAndSet(inParams[:red_count]) if inParams[:red_count]
+    @m_blueCount.mCompareAndSet(inParams[:blue_count]) if inParams[:blue_count]
     fontName = inParams[:weapon_name]
     if fontName
       @m_weaponFont = MushGLFont.new(:name => @@c_weaponFonts[fontName])
     end
   end
 
-  def mRenderValuesBeginLeft
+  def mRenderValuesBeginTopLeft
+    @m_valueXPos = -0.5
+    @m_valueXStep = 1.0
+    @m_valueYPos = MushGL.cViewExtent.y - @m_valueSize / 2.0
+  end
+  
+  def mRenderValuesBeginTopRight
+    @m_valueXPos = 0.5
+    @m_valueXStep = -1.0
+    @m_valueYPos = MushGL.cViewExtent.y - @m_valueSize / 2.0
+  end
+
+  def mRenderValuesBeginBottomLeft
     @m_valueXPos = -0.5
     @m_valueXStep = 1.0
     @m_valueYPos = - MushGL.cViewExtent.y + @m_valueSize / 2.0
   end
   
-  def mRenderValuesBeginRight
+  def mRenderValuesBeginBottomRight
     @m_valueXPos = 0.5
     @m_valueXStep = -1.0
     @m_valueYPos = - MushGL.cViewExtent.y + @m_valueSize / 2.0
@@ -110,7 +129,25 @@ class AdanaxisDashboard < MushDashboard
   end
   
   def mRender(inParams = {})
-    mRenderValuesBeginLeft
+    mRenderValuesBeginTopLeft
+
+    alpha = mAlphaForValue(@m_redCount)
+    value = Integer(@m_redCount.mValue) 
+    value = 0 if value < 0
+    colour = MushVector.new(1,0.3,0.3,alpha)
+    
+    mRenderValue(AdanaxisFontLibrary::DASHBOARD_RED_COUNT, value, colour)
+    
+    # mRenderValuesBeginTopRight
+
+    alpha = mAlphaForValue(@m_blueCount)
+    value = Integer(@m_blueCount.mValue) 
+    value = 0 if value < 0
+    colour = MushVector.new(0.3,0.3,1,alpha)
+    
+    mRenderValue(AdanaxisFontLibrary::DASHBOARD_BLUE_COUNT, value, colour)
+     
+    mRenderValuesBeginBottomLeft
 
     alpha = mAlphaForValue(@m_hitPointRatio)
     value = Integer(@m_hitPointRatio.mValue * 100) 
@@ -135,7 +172,7 @@ class AdanaxisDashboard < MushDashboard
 
     mRenderValue(AdanaxisFontLibrary::DASHBOARD_SHIELD, value, colour)
     
-    mRenderValuesBeginRight
+    mRenderValuesBeginBottomRight
     
     alpha = mAlphaForValue(@m_ammoCount)
     value = Integer(@m_ammoCount.mValue) 

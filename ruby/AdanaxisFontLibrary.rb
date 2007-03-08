@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } ZGY5KHoT9+kVQm3zBeLowg
-# $Id: AdanaxisFontLibrary.rb,v 1.9 2006/11/21 16:13:54 southa Exp $
+# $Id: AdanaxisFontLibrary.rb,v 1.10 2006/11/23 14:40:28 southa Exp $
 # $Log: AdanaxisFontLibrary.rb,v $
+# Revision 1.10  2006/11/23 14:40:28  southa
+# Intro cutscene
+#
 # Revision 1.9  2006/11/21 16:13:54  southa
 # Cutscene handling
 #
@@ -40,6 +43,8 @@
 class AdanaxisFontLibrary < MushObject
   DASHBOARD_HEALTH = 0
   DASHBOARD_SHIELD = 1
+  DASHBOARD_RED_COUNT = 2
+  DASHBOARD_BLUE_COUNT = 3
 
   SYMBOL_SCAN_WHITE = 0
   SYMBOL_SCAN_RED = 1
