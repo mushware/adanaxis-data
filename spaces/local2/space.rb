@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } FEGeAD/l2v64LoOP6QjqtA
-# $Id: space.rb,v 1.14 2007/03/07 11:29:23 southa Exp $
+# $Id: space.rb,v 1.15 2007/03/07 16:59:43 southa Exp $
 # $Log: space.rb,v $
+# Revision 1.15  2007/03/07 16:59:43  southa
+# Khazi spawning and level ends
+#
 # Revision 1.14  2007/03/07 11:29:23  southa
 # Level permission
 #
@@ -58,7 +61,7 @@ require 'Adanaxis.rb'
 class Adanaxis_local2 < AdanaxisSpace
   def initialize(inParams = {})
     super
-    mSpawnAdd(:mSpawn0)
+    # mSpawnAdd(:mSpawn0)
   end
   
   def mLoad(game)
@@ -73,7 +76,7 @@ class Adanaxis_local2 < AdanaxisSpace
   
   def mInitialPiecesCreate
     super
-    (-2..2).each do |i|
+    (-2..-2).each do |i|
       mPieceLibrary.mAttendantCreate(
         :colour => 'red',
         :post => MushPost.new(

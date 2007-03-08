@@ -9,8 +9,11 @@
 #
 ##############################################################################
 #
-# $Id: dialogues.xml,v 1.1 2006/08/01 23:21:48 southa Exp $
+# $Id: dialogues.xml,v 1.2 2007/03/07 11:29:23 southa Exp $
 # $Log: dialogues.xml,v $
+# Revision 1.2  2007/03/07 11:29:23  southa
+# Level permission
+#
 # Revision 1.1  2006/08/01 23:21:48  southa
 # Rendering demo content
 #
@@ -53,6 +56,76 @@
   <startTime>0</startTime>
  </obj>
 )</soundStreams>
+<killSound>""</killSound>
+<age>0</age>
+<expired>0</expired>
+</obj>
+,
+"dead1"=<obj type="GameDialogue">
+<strings>(
+<obj type="GameStringSpec">
+<string type="GLString">
+<fontRef type="GLFontRef">
+<name>"font-mono1"</name>
+<size>1.0</size>
+</fontRef>
+<value>"Mission Failed"</value>
+<alignment>0</alignment>
+</string>
+<posticity type="MushPiePosticity">
+<angPos>((0,0,0,0),(0,0,0,0))</angPos>
+<angVel>((0,0,0,0),(0,0,0,0))</angVel>
+<pos>(0,0.12,0,0)</pos>
+<vel>(0,0,0,0)</vel>
+</posticity>
+<startColour>(1,1,1,0)</startColour>
+<midColour>(1,1,1,0.5)</midColour>
+<endColour>(1,0,0,0)</endColour>
+<startTime>0</startTime>
+<endTime>300</endTime>
+<fadeTime>100</fadeTime>
+<startSize>0.04</startSize>
+<midSize>0.04</midSize>
+<endSize>0.10</endSize>
+</obj>)
+</strings>
+<sounds>()</sounds>
+<soundStreams>()</soundStreams>
+<killSound>""</killSound>
+<age>0</age>
+<expired>0</expired>
+</obj>
+,
+"won1"=<obj type="GameDialogue">
+<strings>(
+<obj type="GameStringSpec">
+<string type="GLString">
+<fontRef type="GLFontRef">
+<name>"font-mono1"</name>
+<size>1.0</size>
+</fontRef>
+<value>"Mission Successful"</value>
+<alignment>0</alignment>
+</string>
+<posticity type="MushPiePosticity">
+<angPos>((0,0,0,0),(0,0,0,0))</angPos>
+<angVel>((0,0,0,0),(0,0,0,0))</angVel>
+<pos>(0,0.12,0,0)</pos>
+<vel>(0,0,0,0)</vel>
+</posticity>
+<startColour>(1,1,1,0)</startColour>
+<midColour>(1,1,1,0.5)</midColour>
+<endColour>(1,0,0,0)</endColour>
+<startTime>0</startTime>
+<endTime>300</endTime>
+<fadeTime>100</fadeTime>
+<startSize>0.04</startSize>
+<midSize>0.04</midSize>
+<endSize>0.10</endSize>
+</obj>)
+</strings>
+<sounds>()</sounds>
+<soundStreams>()</soundStreams>
 <killSound>""</killSound>
 <age>0</age>
 <expired>0</expired>

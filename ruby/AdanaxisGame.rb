@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } KSO1aRs/aLEv+/QhWfRoRw
-# $Id: AdanaxisGame.rb,v 1.31 2007/03/07 16:59:42 southa Exp $
+# $Id: AdanaxisGame.rb,v 1.32 2007/03/08 11:00:28 southa Exp $
 # $Log: AdanaxisGame.rb,v $
+# Revision 1.32  2007/03/08 11:00:28  southa
+# Level epilogue
+#
 # Revision 1.31  2007/03/07 16:59:42  southa
 # Khazi spawning and level ends
 #
@@ -130,6 +133,10 @@ class AdanaxisGame < MushObject
     @m_space.mCutSceneRender(inNum)
   end
   
+  def mEpilogueRender
+    @m_space.mEpilogueRender
+  end
+  
   def mMenuRender(msec)
     menu = @m_menuSet.mMenu(@m_currentMenu)
     menu.highlight_colour = MushVector.new(1,1,0.7,0.5+0.25*Math.sin(msec/100.0))
@@ -148,6 +155,14 @@ class AdanaxisGame < MushObject
     @m_menuSet.mUpdate(@m_currentMenu)
   end
 
+  def mEpilogueStartDead
+    MushGame.cNamedDialoguesAdd('^dead')
+  end
+  
+  def mEpilogueStartWon
+    MushGame.cNamedDialoguesAdd('^won')
+  end
+
   def mCutSceneKeypress(inKey, inModifier, inIsDown)
     if inKey == 32
         MushGame.cCutSceneModeExit
@@ -157,12 +172,14 @@ class AdanaxisGame < MushObject
   def mEpilogueKeypress(inKey, inModifier, inIsDown)
     case inKey
       when MushKeys::SDLK_SPACE, MushKeys::KEY_MOUSE0, MushKeys::SDLK_KP_ENTER, MushKeys::SDLK_RETURN
-        if MushGame.cEpilogueWon
-          @m_spaceName = @m_levels.mNextLevelKey(@m_spaceName)
-          MushGame.cNewGameEnter
-        else
-          # Keep current @m_spaceName
-          MushGame.cNewGameEnter
+        if MushGame.cEpilogueRunMsec > 3000
+          if MushGame.cEpilogueWon
+            @m_spaceName = @m_levels.mNextLevelKey(@m_spaceName)
+            MushGame.cNewGameEnter
+          else
+            # Keep current @m_spaceName
+            MushGame.cNewGameEnter
+          end
         end
       when MushKeys::SDLK_ESCAPE
         MushGame.cMenuModeEnter

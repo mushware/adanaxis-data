@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } lR/lFdEFyXBbk1T1wsvmCw
-# $Id: AdanaxisSpace.rb,v 1.21 2007/03/06 11:34:01 southa Exp $
+# $Id: AdanaxisSpace.rb,v 1.22 2007/03/07 16:59:43 southa Exp $
 # $Log: AdanaxisSpace.rb,v $
+# Revision 1.22  2007/03/07 16:59:43  southa
+# Khazi spawning and level ends
+#
 # Revision 1.21  2007/03/06 11:34:01  southa
 # Space and precache fixes
 #
@@ -75,6 +78,9 @@ class AdanaxisSpace < MushObject
     @m_waveLibrary = AdanaxisWaveLibrary.new
     @m_weaponLibrary = AdanaxisWeaponLibrary.new
     @m_pieceLibrary = AdanaxisPieceLibrary.new
+    
+    
+    @m_textFont = MushGLFont.new(:name => (inParams[:font] || 'library-font1'));
     @m_precacheIndex = 0
     
     @m_precacheList = nil
@@ -126,9 +132,6 @@ class AdanaxisSpace < MushObject
     10.times { |i| @m_precacheList << "ember#{i}-tex" }
     10.times { |i| @m_precacheList << "star#{i}-tex" }
     10.times { |i| @m_precacheList << "flare#{i}-tex" }
-    @m_precacheList << "attendant-tex"
-    @m_precacheList << "projectile1-tex"
-    @m_precacheList << "projectile2-tex"
   end
   
   def mPrecache
@@ -192,5 +195,11 @@ class AdanaxisSpace < MushObject
   
   def mIsMenuBackdrop
     false
-  end  
+  end
+  
+  def mCutSceneRender
+  end
+  
+  def mEpilogueRender
+  end
 end
