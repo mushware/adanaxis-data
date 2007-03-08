@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } 9btZJX1RwZdHfO/OWZksXQ
-# $Id: space.rb,v 1.2 2007/03/06 11:34:01 southa Exp $
+# $Id: space.rb,v 1.3 2007/03/06 21:05:17 southa Exp $
 # $Log: space.rb,v $
+# Revision 1.3  2007/03/06 21:05:17  southa
+# Level work
+#
 # Revision 1.2  2007/03/06 11:34:01  southa
 # Space and precache fixes
 #
@@ -89,7 +92,7 @@ class Adanaxis_local4 < AdanaxisSpace
   
   def mLoad(game)
     mLoadStandard(game)
-    MushGame.cSoundStreamDefine('game1', MushConfig.cGlobalWavesPath+'/mushware-respiration.ogg')
+    MushGame.cSoundStreamDefine('game1', MushConfig.cGlobalWavesPath+'/mushware-except-for-this.ogg')
   end
   
   def mPrecacheListBuild
@@ -122,11 +125,11 @@ class Adanaxis_local4 < AdanaxisSpace
       end    
     end
 
-    (-1..1).each do |i|
+    (0..1).each do |i|
       $currentLogic.mRemnant.mCreate(
         :item_type => :player_light_missile,
         :post => MushPost.new(
-          :position => MushVector.new(0*i, 0, 0, 0)
+          :position => MushVector.new(0, 0, 0, -20-5*i)
         )
       )
     end

@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } KSO1aRs/aLEv+/QhWfRoRw
-# $Id: AdanaxisGame.rb,v 1.30 2007/02/08 17:55:12 southa Exp $
+# $Id: AdanaxisGame.rb,v 1.31 2007/03/07 16:59:42 southa Exp $
 # $Log: AdanaxisGame.rb,v $
+# Revision 1.31  2007/03/07 16:59:42  southa
+# Khazi spawning and level ends
+#
 # Revision 1.30  2007/02/08 17:55:12  southa
 # Common routines in space generation
 #
@@ -148,6 +151,21 @@ class AdanaxisGame < MushObject
   def mCutSceneKeypress(inKey, inModifier, inIsDown)
     if inKey == 32
         MushGame.cCutSceneModeExit
+    end
+  end
+
+  def mEpilogueKeypress(inKey, inModifier, inIsDown)
+    case inKey
+      when MushKeys::SDLK_SPACE, MushKeys::KEY_MOUSE0, MushKeys::SDLK_KP_ENTER, MushKeys::SDLK_RETURN
+        if MushGame.cEpilogueWon
+          @m_spaceName = @m_levels.mNextLevelKey(@m_spaceName)
+          MushGame.cNewGameEnter
+        else
+          # Keep current @m_spaceName
+          MushGame.cNewGameEnter
+        end
+      when MushKeys::SDLK_ESCAPE
+        MushGame.cMenuModeEnter
     end
   end
 

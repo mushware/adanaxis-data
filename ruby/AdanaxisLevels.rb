@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } YkolAA2/khvOmyZz3VmddA
-# $Id: AdanaxisLevels.rb,v 1.4 2006/08/01 17:21:17 southa Exp $
+# $Id: AdanaxisLevels.rb,v 1.5 2007/03/07 11:29:23 southa Exp $
 # $Log: AdanaxisLevels.rb,v $
+# Revision 1.5  2007/03/07 11:29:23  southa
+# Level permission
+#
 # Revision 1.4  2006/08/01 17:21:17  southa
 # River demo
 #
@@ -80,5 +83,26 @@ class AdanaxisLevels
       next if leafName == 'CVS' || leafName =~ /\./
       mScanLevel(spacePath+'/'+leafName)
     end
+  end
+  
+  def mLevelFind(inKey)
+    @m_levels.each do |level|
+      return level if inKey == level[AdanaxisLevels::KEY]
+    end
+    nil
+  end
+  
+  def mNextLevelKey(inCurrent)
+    retVal = nil
+    level = mLevelFind(inCurrent)
+    puts "level=#{level.inspect}"
+    if level
+      nextLevel = level[PARAMS]['next']
+      puts "nextLevel=#{nextLevel.inspect}"
+      if nextLevel
+        retVal = nextLevel
+      end
+    end
+    retVal
   end
 end
