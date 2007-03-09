@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } KSO1aRs/aLEv+/QhWfRoRw
-# $Id: AdanaxisGame.rb,v 1.32 2007/03/08 11:00:28 southa Exp $
+# $Id: AdanaxisGame.rb,v 1.33 2007/03/08 18:38:13 southa Exp $
 # $Log: AdanaxisGame.rb,v $
+# Revision 1.33  2007/03/08 18:38:13  southa
+# Level progression
+#
 # Revision 1.32  2007/03/08 11:00:28  southa
 # Level epilogue
 #
@@ -118,11 +121,8 @@ class AdanaxisGame < MushObject
     require(mSpacePath+'/space.rb')
     @m_space = eval("#{mSpaceObjectName}.new", binding, mSpacePath+'/space.rb', 1)
     @m_space.mLoad(self)
+    mView.mDashboard.mUpdate(:is_battle => @m_space.mIsBattle)
     self
-  end
-  
-  def mSpawn
-    return @m_space.mSpawn
   end
 
   def mRender(inParams = {})
@@ -161,6 +161,18 @@ class AdanaxisGame < MushObject
   
   def mEpilogueStartWon
     MushGame.cNamedDialoguesAdd('^won')
+  end
+
+  def mKhaziCountUpdate(inKhazi, inRedKhazi, inBlueKhazi)
+    mView.mDashboard.mUpdate(
+      :red_count => inRedKhazi,
+      :blue_count => inBlueKhazi)
+      
+    @m_space.mKhaziCountSet(inKhazi)
+    @m_space.mKhaziRedCountSet(inRedKhazi)
+    @m_space.mKhaziBlueCountSet(inBlueKhazi)
+    
+    return @m_space.mGameState
   end
 
   def mCutSceneKeypress(inKey, inModifier, inIsDown)

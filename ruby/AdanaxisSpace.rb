@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } lR/lFdEFyXBbk1T1wsvmCw
-# $Id: AdanaxisSpace.rb,v 1.22 2007/03/07 16:59:43 southa Exp $
+# $Id: AdanaxisSpace.rb,v 1.23 2007/03/08 18:38:14 southa Exp $
 # $Log: AdanaxisSpace.rb,v $
+# Revision 1.23  2007/03/08 18:38:14  southa
+# Level progression
+#
 # Revision 1.22  2007/03/07 16:59:43  southa
 # Khazi spawning and level ends
 #
@@ -79,6 +82,10 @@ class AdanaxisSpace < MushObject
     @m_weaponLibrary = AdanaxisWeaponLibrary.new
     @m_pieceLibrary = AdanaxisPieceLibrary.new
     
+    @m_khaziCount = 0;
+    @m_khaziRedCount = 0;
+    @m_khaziBlueCount = 0;
+    @m_isBattle = false;
     
     @m_textFont = MushGLFont.new(:name => (inParams[:font] || 'library-font1'));
     @m_precacheIndex = 0
@@ -89,6 +96,8 @@ class AdanaxisSpace < MushObject
   
   mush_reader :m_textureLibrary, :m_materialLibrary, :m_meshLibrary,
               :m_weaponLibrary, :m_fontLibrary, :m_pieceLibrary
+              
+  mush_accessor :m_khaziCount, :m_khaziRedCount, :m_khaziBlueCount, :m_isBattle
   
   def mLoadStandard(game)
     @m_fontLibrary.mCreate
@@ -183,6 +192,26 @@ class AdanaxisSpace < MushObject
   def mGameInit
     # @m_precachePercent = 0
     MushGame.cNamedDialoguesAdd('^start')
+  end
+  
+  def mGameState
+    retVal = MushGame::GAMERESULT_NONE
+    if mIsBattle
+      if mKhaziBlueCount == 0
+        retVal = MushGame::GAMERESULT_LOST
+      elsif mKhaziRedCount == 0
+        unless mSpawn
+          retVal = MushGame::GAMERESULT_WON
+        end
+      end
+    else
+      if mKhaziRedCount == 0
+        unless mSpawn
+          retVal = MushGame::GAMERESULT_WON
+        end
+      end
+    end
+    retVal
   end
   
   def mHandlePrecacheEnd

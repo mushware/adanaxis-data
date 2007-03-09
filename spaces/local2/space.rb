@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } FEGeAD/l2v64LoOP6QjqtA
-# $Id: space.rb,v 1.15 2007/03/07 16:59:43 southa Exp $
+# $Id: space.rb,v 1.16 2007/03/08 18:38:14 southa Exp $
 # $Log: space.rb,v $
+# Revision 1.16  2007/03/08 18:38:14  southa
+# Level progression
+#
 # Revision 1.15  2007/03/07 16:59:43  southa
 # Khazi spawning and level ends
 #
@@ -61,7 +64,7 @@ require 'Adanaxis.rb'
 class Adanaxis_local2 < AdanaxisSpace
   def initialize(inParams = {})
     super
-    # mSpawnAdd(:mSpawn0)
+    mSpawnAdd(:mSpawn0)
   end
   
   def mLoad(game)

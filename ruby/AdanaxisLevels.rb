@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } YkolAA2/khvOmyZz3VmddA
-# $Id: AdanaxisLevels.rb,v 1.5 2007/03/07 11:29:23 southa Exp $
+# $Id: AdanaxisLevels.rb,v 1.6 2007/03/08 11:00:29 southa Exp $
 # $Log: AdanaxisLevels.rb,v $
+# Revision 1.6  2007/03/08 11:00:29  southa
+# Level epilogue
+#
 # Revision 1.5  2007/03/07 11:29:23  southa
 # Level permission
 #
@@ -95,10 +98,8 @@ class AdanaxisLevels
   def mNextLevelKey(inCurrent)
     retVal = nil
     level = mLevelFind(inCurrent)
-    puts "level=#{level.inspect}"
     if level
       nextLevel = level[PARAMS]['next']
-      puts "nextLevel=#{nextLevel.inspect}"
       if nextLevel
         retVal = nextLevel
       end

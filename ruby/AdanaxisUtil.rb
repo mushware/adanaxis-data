@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } 63kk9LVPAcoFqUyUUPiQfg
-# $Id: AdanaxisUtil.rb,v 1.17 2007/03/07 11:29:23 southa Exp $
+# $Id: AdanaxisUtil.rb,v 1.18 2007/03/07 16:59:43 southa Exp $
 # $Log: AdanaxisUtil.rb,v $
+# Revision 1.18  2007/03/07 16:59:43  southa
+# Khazi spawning and level ends
+#
 # Revision 1.17  2007/03/07 11:29:23  southa
 # Level permission
 #
@@ -88,6 +91,7 @@ class AdanaxisUtil < MushObject
     :ammo_count => true,
     :angular_position => true,
     :angular_velocity => true,
+    :blue_count => true,
     :colour => true,
     :damage_frame => true,
     :deviation => true,
@@ -110,6 +114,7 @@ class AdanaxisUtil < MushObject
     :hit_points => true,
     :hit_point_ratio => true,
     :id_suffix => true,
+    :is_battle => true,
     :item_type => true,
     :load_sound => true,
     :lifetime_msec => true,
@@ -124,6 +129,7 @@ class AdanaxisUtil < MushObject
     :projectile_mesh => true,
     :reload_sound => true,
     :rail => true,
+    :red_count => true,
     :remnant => true,
     :render_scale => true,
     :seek_acceleration => true,

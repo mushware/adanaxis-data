@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } jlpar81vJMXtlQaf/66fpw
-# $Id: AdanaxisDashboard.rb,v 1.7 2006/12/11 13:28:19 southa Exp $
+# $Id: AdanaxisDashboard.rb,v 1.8 2007/03/08 21:51:01 southa Exp $
 # $Log: AdanaxisDashboard.rb,v $
+# Revision 1.8  2007/03/08 21:51:01  southa
+# Count display
+#
 # Revision 1.7  2006/12/11 13:28:19  southa
 # Snapshot
 #
@@ -62,6 +65,7 @@ class AdanaxisDashboard < MushDashboard
     @m_ammoCount = MushTimedValue.new(0)
     @m_redCount = MushTimedValue.new(0)
     @m_blueCount = MushTimedValue.new(0)
+    @m_isBattle = false;
     @m_weaponFont = MushGLFont.new(:name => "basebox1-font")
     @m_valueSize = 0.06
   end
@@ -73,6 +77,7 @@ class AdanaxisDashboard < MushDashboard
     @m_ammoCount.mCompareAndSet(inParams[:ammo_count]) if inParams[:ammo_count]
     @m_redCount.mCompareAndSet(inParams[:red_count]) if inParams[:red_count]
     @m_blueCount.mCompareAndSet(inParams[:blue_count]) if inParams[:blue_count]
+    @m_isBattle = inParams[:is_battle] if inParams[:is_battle]
     fontName = inParams[:weapon_name]
     if fontName
       @m_weaponFont = MushGLFont.new(:name => @@c_weaponFonts[fontName])
@@ -138,15 +143,17 @@ class AdanaxisDashboard < MushDashboard
     
     mRenderValue(AdanaxisFontLibrary::DASHBOARD_RED_COUNT, value, colour)
     
-    # mRenderValuesBeginTopRight
+    if (@m_isBattle)
+      # mRenderValuesBeginTopRight
 
-    alpha = mAlphaForValue(@m_blueCount)
-    value = Integer(@m_blueCount.mValue) 
-    value = 0 if value < 0
-    colour = MushVector.new(0.3,0.3,1,alpha)
+      alpha = mAlphaForValue(@m_blueCount)
+      value = Integer(@m_blueCount.mValue) 
+      value = 0 if value < 0
+      colour = MushVector.new(0.3,0.3,1,alpha)
+      
+      mRenderValue(AdanaxisFontLibrary::DASHBOARD_BLUE_COUNT, value, colour)
+    end
     
-    mRenderValue(AdanaxisFontLibrary::DASHBOARD_BLUE_COUNT, value, colour)
-     
     mRenderValuesBeginBottomLeft
 
     alpha = mAlphaForValue(@m_hitPointRatio)

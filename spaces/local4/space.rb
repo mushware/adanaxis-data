@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } 9btZJX1RwZdHfO/OWZksXQ
-# $Id: space.rb,v 1.3 2007/03/06 21:05:17 southa Exp $
+# $Id: space.rb,v 1.4 2007/03/08 11:00:29 southa Exp $
 # $Log: space.rb,v $
+# Revision 1.4  2007/03/08 11:00:29  southa
+# Level epilogue
+#
 # Revision 1.3  2007/03/06 21:05:17  southa
 # Level work
 #
@@ -88,6 +91,7 @@ require 'Adanaxis.rb'
 class Adanaxis_local4 < AdanaxisSpace
   def initialize(inParams = {})
     super
+    mIsBattleSet(true)
   end
   
   def mLoad(game)
