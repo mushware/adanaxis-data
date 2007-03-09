@@ -8,8 +8,11 @@
 #
 ##############################################################################
 #
-# $Id: start.txt,v 1.29 2006/09/10 10:30:52 southa Exp $
+# $Id: start.txt,v 1.30 2006/09/12 15:28:49 southa Exp $
 # $Log: start.txt,v $
+# Revision 1.30  2006/09/12 15:28:49  southa
+# World sphere
+#
 # Revision 1.29  2006/09/10 10:30:52  southa
 # Shader billboarding
 #
@@ -116,7 +119,8 @@ setcachepath("mushware-cache", $APPLPATH, $HOME+"/.adanaxis", $HOME, $SYSTEM_PAT
 configset("REG_FILENAME", $GLOBAL_SAVE_PATH+"/reg.xml")
 
 # Set configuration file paths
-configset("CONFIG_FILENAME", $GLOBAL_SAVE_PATH+"/renderingdemoconfig.xml")
+configset("CONFIG_FILENAME", $GLOBAL_SAVE_PATH+"/adanaxisconfig.xml")
+configset("RECORDS_FILENAME", $GLOBAL_SAVE_PATH+"/adanaxisrecords.xml")
 configset("ADANAXIS_AXISCONFIG_DEFAULT_FILENAME", $SYSTEM_PATH+"/axisconfig-default.xml")
 configset("ADANAXIS_KEYCONFIG_DEFAULT_FILENAME", $SYSTEM_PATH+"/keyconfig-default.xml")
 

@@ -3,7 +3,7 @@
 #
 # File data-adanaxis/ruby/AdanaxisTextureLibrary.rb
 #
-# Copyright Andy Southgate 2006
+# Copyright Andy Southgate 2006-2007
 #
 # This file may be used and distributed under the terms of the Mushware
 # software licence version 1.1, under the terms for 'Proprietary original
@@ -15,9 +15,12 @@
 # This software carries NO WARRANTY of any kind.
 #
 ##############################################################################
-#%Header } avqCjn1AV8PsFQvoiWGwNA
-# $Id: AdanaxisTextureLibrary.rb,v 1.33 2007/02/08 17:55:12 southa Exp $
+#%Header } 6dpPnv49oOQywOR6vN4p5w
+# $Id: AdanaxisTextureLibrary.rb,v 1.34 2007/03/06 11:34:01 southa Exp $
 # $Log: AdanaxisTextureLibrary.rb,v $
+# Revision 1.34  2007/03/06 11:34:01  southa
+# Space and precache fixes
+#
 # Revision 1.33  2007/02/08 17:55:12  southa
 # Common routines in space generation
 #
@@ -187,7 +190,8 @@ class AdanaxisTextureLibrary < MushObject
       :filename      => filename,
       :storagetype   => 'GL',
       :cache         => 0,
-      :compress      => compressNear
+      :compress      => compressNear,
+      :resident      => 1
     )
   end
 
@@ -197,7 +201,8 @@ class AdanaxisTextureLibrary < MushObject
     :filename      => MushConfig.cGlobalPixelsPath+'/ball1.tiff',
     :storagetype   => 'GL',
     :cache         => 0,
-    :compress      => compressFar
+    :compress      => compressFar,
+    :resident      => 1
   )
 
   MushGLTexture::cDefine(
@@ -206,7 +211,8 @@ class AdanaxisTextureLibrary < MushObject
     :filename      => MushConfig.cGlobalPixelsPath+'/rail1.tiff',
     :storagetype   => 'GL',
     :cache         => 0,
-    :compress      => compressFar
+    :compress      => compressFar,
+    :resident      => 1
   )
 
   @m_explo1Names = []
@@ -229,7 +235,8 @@ class AdanaxisTextureLibrary < MushObject
           :filename      => filename,
           :storagetype   => 'GL',
           :cache         => 0,
-          :compress      => compressFar
+          :compress      => compressFar,
+          :resident      => 1
         )
       end
     end
@@ -247,7 +254,8 @@ class AdanaxisTextureLibrary < MushObject
         :filename      => filename,
         :storagetype   => 'GL',
         :cache         => 0,
-        :compress      => compressFar
+        :compress      => compressFar,
+        :resident      => 1
       )
     end
   end
@@ -489,7 +497,8 @@ class AdanaxisTextureLibrary < MushObject
       :numoctaves    => 1,
       :octaveratio   => 1,
       :cache         => 0,
-      :compress      => compressFar
+      :compress      => compressFar,
+      :resident      => 1
     )
   end
 
@@ -506,7 +515,8 @@ class AdanaxisTextureLibrary < MushObject
       :numoctaves    => 1,
       :octaveratio   => 1,
       :cache         => 1,
-      :compress      => compressNear
+      :compress      => compressNear,
+      :resident      => 1
     )
   end
 
@@ -523,7 +533,8 @@ class AdanaxisTextureLibrary < MushObject
       :numoctaves    => 1,
       :octaveratio   => 1,
       :cache         => 1,
-      :compress      => compressNear
+      :compress      => compressNear,
+      :resident      => 1
     )
 
   end

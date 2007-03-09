@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } KSO1aRs/aLEv+/QhWfRoRw
-# $Id: AdanaxisGame.rb,v 1.33 2007/03/08 18:38:13 southa Exp $
+# $Id: AdanaxisGame.rb,v 1.34 2007/03/09 11:29:12 southa Exp $
 # $Log: AdanaxisGame.rb,v $
+# Revision 1.34  2007/03/09 11:29:12  southa
+# Game end actions
+#
 # Revision 1.33  2007/03/08 18:38:13  southa
 # Level progression
 #
@@ -176,25 +179,27 @@ class AdanaxisGame < MushObject
   end
 
   def mCutSceneKeypress(inKey, inModifier, inIsDown)
-    if inKey == 32
+    if inKey == 32 && inIsDown
         MushGame.cCutSceneModeExit
     end
   end
 
   def mEpilogueKeypress(inKey, inModifier, inIsDown)
-    case inKey
-      when MushKeys::SDLK_SPACE, MushKeys::KEY_MOUSE0, MushKeys::SDLK_KP_ENTER, MushKeys::SDLK_RETURN
-        if MushGame.cEpilogueRunMsec > 3000
-          if MushGame.cEpilogueWon
-            @m_spaceName = @m_levels.mNextLevelKey(@m_spaceName)
-            MushGame.cNewGameEnter
-          else
-            # Keep current @m_spaceName
-            MushGame.cNewGameEnter
+    if inIsDown
+      case inKey
+        when MushKeys::SDLK_SPACE, MushKeys::KEY_MOUSE0, MushKeys::SDLK_KP_ENTER, MushKeys::SDLK_RETURN
+          if MushGame.cEpilogueRunMsec > 3000
+            if MushGame.cEpilogueWon
+              @m_spaceName = @m_levels.mNextLevelKey(@m_spaceName)
+              MushGame.cNewGameEnter
+            else
+              # Keep current @m_spaceName
+              MushGame.cNewGameEnter
+            end
           end
-        end
-      when MushKeys::SDLK_ESCAPE
-        MushGame.cMenuModeEnter
+        when MushKeys::SDLK_ESCAPE
+          MushGame.cMenuModeEnter
+      end
     end
   end
 
