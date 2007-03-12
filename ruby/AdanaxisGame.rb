@@ -3,7 +3,7 @@
 #
 # File data-adanaxis/ruby/AdanaxisGame.rb
 #
-# Copyright Andy Southgate 2006
+# Copyright Andy Southgate 2006-2007
 #
 # This file may be used and distributed under the terms of the Mushware
 # software licence version 1.1, under the terms for 'Proprietary original
@@ -15,9 +15,12 @@
 # This software carries NO WARRANTY of any kind.
 #
 ##############################################################################
-#%Header } KSO1aRs/aLEv+/QhWfRoRw
-# $Id: AdanaxisGame.rb,v 1.34 2007/03/09 11:29:12 southa Exp $
+#%Header } 7yVWfKTkiMq9xpFeLYGzFg
+# $Id: AdanaxisGame.rb,v 1.35 2007/03/09 19:50:10 southa Exp $
 # $Log: AdanaxisGame.rb,v $
+# Revision 1.35  2007/03/09 19:50:10  southa
+# Resident textures
+#
 # Revision 1.34  2007/03/09 11:29:12  southa
 # Game end actions
 #
