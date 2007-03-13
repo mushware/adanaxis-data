@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } ybS7u9KMas6Wc8aax6KIow
-# $Id: AdanaxisUtil.rb,v 1.19 2007/03/09 11:29:12 southa Exp $
+# $Id: AdanaxisUtil.rb,v 1.20 2007/03/13 12:22:50 southa Exp $
 # $Log: AdanaxisUtil.rb,v $
+# Revision 1.20  2007/03/13 12:22:50  southa
+# Scanner symbols
+#
 # Revision 1.19  2007/03/09 11:29:12  southa
 # Game end actions
 #
@@ -118,6 +121,7 @@ class AdanaxisUtil < MushObject
     :hit_point_ratio => true,
     :id_suffix => true,
     :is_battle => true,
+    :is_jammer => true,
     :item_type => true,
     :load_sound => true,
     :lifetime_msec => true,
@@ -139,6 +143,7 @@ class AdanaxisUtil < MushObject
     :seek_acceleration => true,
     :seek_speed => true,
     :shield_ratio => true,
+    :spawned => true,
     :speed => true,
     :speed_limit => true,
     :target_types => true,

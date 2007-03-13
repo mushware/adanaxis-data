@@ -3,7 +3,7 @@
 #
 # File data-adanaxis/spaces/local4/space.rb
 #
-# Copyright Andy Southgate 2006
+# Copyright Andy Southgate 2006-2007
 #
 # This file may be used and distributed under the terms of the Mushware
 # software licence version 1.1, under the terms for 'Proprietary original
@@ -15,9 +15,12 @@
 # This software carries NO WARRANTY of any kind.
 #
 ##############################################################################
-#%Header } 9btZJX1RwZdHfO/OWZksXQ
-# $Id: space.rb,v 1.4 2007/03/08 11:00:29 southa Exp $
+#%Header } 0h5/ucQc1uYad05hjCN3lQ
+# $Id: space.rb,v 1.5 2007/03/09 11:29:12 southa Exp $
 # $Log: space.rb,v $
+# Revision 1.5  2007/03/09 11:29:12  southa
+# Game end actions
+#
 # Revision 1.4  2007/03/08 11:00:29  southa
 # Level epilogue
 #
@@ -127,6 +130,15 @@ class Adanaxis_local4 < AdanaxisSpace
           :position => pos
         )
       end    
+    end
+
+    1.times do |param|
+      pos = MushVector.new(0, 0, 0, -600) + MushTools.cRandomUnitVector * (30 + rand(100));
+        mPieceLibrary.mRailCreate(
+          :colour => 'red',
+          :position => pos,
+          :is_jammer => true
+        )
     end
 
     (0..1).each do |i|

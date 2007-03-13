@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } ufp2oi5LTGHndv0Fk7nVFQ
-# $Id: AdanaxisPieceLibrary.rb,v 1.3 2007/03/06 21:05:17 southa Exp $
+# $Id: AdanaxisPieceLibrary.rb,v 1.4 2007/03/13 12:22:50 southa Exp $
 # $Log: AdanaxisPieceLibrary.rb,v $
+# Revision 1.4  2007/03/13 12:22:50  southa
+# Scanner symbols
+#
 # Revision 1.3  2007/03/06 21:05:17  southa
 # Level work
 #
@@ -108,17 +111,34 @@ class AdanaxisPieceLibrary < MushObject
     retVal
   end
 
+  def mCommonCreate(inPiece, inParams = {})
+    if inParams[:spawned]
+      # Create a flare for spawned pieces
+      $currentLogic.mEffects.mExplode(
+        :post => inPiece.mPost,
+        :embers => 0,
+        :explosions => 0,
+        :flares => 1,
+        :flare_scale_range => (20.0..25.0),
+        :flare_lifetime_range => (600..700)
+      )
+      # MushGame.cSoundPlay("spawning sound", mPost)
+    end
+  end
+
   # Creates an Attendant
   def mAttendantCreate(inParams = {})
     AdanaxisUtil.cSpellCheck(inParams)
-    AdanaxisPieceKhazi.cCreate(mAttendantParams(inParams))
+    newPiece = AdanaxisPieceKhazi.cCreate(mAttendantParams(inParams))
+    mCommonCreate(newPiece, inParams)
     @m_attendantNum += 1
   end    
 
   # Creates a Rail
   def mRailCreate(inParams = {})
     AdanaxisUtil.cSpellCheck(inParams)
-    AdanaxisPieceKhazi.cCreate(mRailParams(inParams))
+    newPiece = AdanaxisPieceKhazi.cCreate(mRailParams(inParams))
+    mCommonCreate(newPiece, inParams)
     @m_railNum += 1
   end
 

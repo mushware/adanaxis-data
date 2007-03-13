@@ -3,7 +3,7 @@
 #
 # File data-adanaxis/spaces/local2/space.rb
 #
-# Copyright Andy Southgate 2006
+# Copyright Andy Southgate 2006-2007
 #
 # This file may be used and distributed under the terms of the Mushware
 # software licence version 1.1, under the terms for 'Proprietary original
@@ -15,9 +15,12 @@
 # This software carries NO WARRANTY of any kind.
 #
 ##############################################################################
-#%Header } FEGeAD/l2v64LoOP6QjqtA
-# $Id: space.rb,v 1.16 2007/03/08 18:38:14 southa Exp $
+#%Header } NaY1ztsnwH04qOuOt5HYyg
+# $Id: space.rb,v 1.17 2007/03/09 11:29:12 southa Exp $
 # $Log: space.rb,v $
+# Revision 1.17  2007/03/09 11:29:12  southa
+# Game end actions
+#
 # Revision 1.16  2007/03/08 18:38:14  southa
 # Level progression
 #
@@ -79,7 +82,7 @@ class Adanaxis_local2 < AdanaxisSpace
   
   def mInitialPiecesCreate
     super
-    (-2..-2).each do |i|
+    (-2..2).each do |i|
       mPieceLibrary.mAttendantCreate(
         :colour => 'red',
         :post => MushPost.new(
@@ -105,7 +108,8 @@ class Adanaxis_local2 < AdanaxisSpace
         ),
         :waypoint => MushVector.new(i * 30, -0, i * 15, -250),
         :waypoint_msec => 15000,
-        :ai_state => :waypoint_timed
+        :ai_state => :waypoint_timed,
+        :spawned => true
       )
     end
     return true

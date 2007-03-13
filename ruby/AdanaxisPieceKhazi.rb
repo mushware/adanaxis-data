@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } Kz2b8xClmh0UFWw6DWvNVQ
-# $Id: AdanaxisPieceKhazi.rb,v 1.28 2006/12/14 15:59:22 southa Exp $
+# $Id: AdanaxisPieceKhazi.rb,v 1.29 2007/03/13 12:22:49 southa Exp $
 # $Log: AdanaxisPieceKhazi.rb,v $
+# Revision 1.29  2007/03/13 12:22:49  southa
+# Scanner symbols
+#
 # Revision 1.28  2006/12/14 15:59:22  southa
 # Fire and cutscene fixes
 #
@@ -134,6 +137,7 @@ class AdanaxisPieceKhazi < AdanaxisPiece
     @m_weaponName = inParams[:weapon] || :khazi_base
     @m_weapon = $currentGame.mSpace.mWeaponLibrary.mWeapon(@m_weaponName)
     @m_scannerSymbol = inParams[:scanner_symbol] || AdanaxisScanner::SYMBOL_KHAZI_PLAIN
+    @m_isJammer = inParams[:is_jammer] || false
   end
   
   def mFireHandle(event)
