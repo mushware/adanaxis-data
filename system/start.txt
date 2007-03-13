@@ -8,8 +8,11 @@
 #
 ##############################################################################
 #
-# $Id: start.txt,v 1.31 2007/03/09 19:50:10 southa Exp $
+# $Id: start.txt,v 1.32 2007/03/13 21:45:10 southa Exp $
 # $Log: start.txt,v $
+# Revision 1.32  2007/03/13 21:45:10  southa
+# Release process
+#
 # Revision 1.31  2007/03/09 19:50:10  southa
 # Resident textures
 #
@@ -142,7 +145,7 @@ configset('MUSHGL_DISPLAY_MODE', 2)
 configset('MUSHGL_TEXTURE_CACHE', 1)
 
 # Control whether texture files in the cache directory are deleted when the game exits 0=no, 1 or undefined=yes
-# configset('MUSHGL_TEXTURE_CACHE_PURGE', 1)
+configset('MUSHGL_TEXTURE_CACHE_PURGE', 1)
 
 # Control texture compression 0=off, 1 or undefined=on
 configset('MUSHGL_TEXTURE_COMPRESSION', 1)
