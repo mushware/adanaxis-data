@@ -3,7 +3,7 @@
 #
 # File data-adanaxis/ruby/AdanaxisPieceLibrary.rb
 #
-# Copyright Andy Southgate 2006
+# Copyright Andy Southgate 2006-2007
 #
 # This file may be used and distributed under the terms of the Mushware
 # software licence version 1.1, under the terms for 'Proprietary original
@@ -15,9 +15,12 @@
 # This software carries NO WARRANTY of any kind.
 #
 ##############################################################################
-#%Header } txNtx34pY3FGnAXYnq2bwA
-# $Id: AdanaxisPieceLibrary.rb,v 1.2 2007/03/06 11:34:00 southa Exp $
+#%Header } ufp2oi5LTGHndv0Fk7nVFQ
+# $Id: AdanaxisPieceLibrary.rb,v 1.3 2007/03/06 21:05:17 southa Exp $
 # $Log: AdanaxisPieceLibrary.rb,v $
+# Revision 1.3  2007/03/06 21:05:17  southa
+# Level work
+#
 # Revision 1.2  2007/03/06 11:34:00  southa
 # Space and precache fixes
 #
@@ -57,7 +60,7 @@ class AdanaxisPieceLibrary < MushObject
     retVal = @m_targetDefault
     
     case inParams[:colour]
-      when 'red':
+      when 'red'
         retVal = 'kb+p,'
       when 'blue'
         retVal = 'kr'
@@ -70,13 +73,40 @@ class AdanaxisPieceLibrary < MushObject
     retVal = @m_typeDefault
     
     case inParams[:colour]
-      when 'red':
+      when 'red'
         retVal = 'kr'
       when 'blue'
         retVal = 'kb'
     end
     retVal
   end  
+
+  def mScannerSymbol(inParams)
+    retVal = AdanaxisScanner::SYMBOL_KHAZI_PLAIN
+    isPower = (inParams[:hit_points] && inParams[:hit_points] >= 50)
+    hasRemnant = inParams[:remnant]
+    
+    case inParams[:colour]
+      when 'red'
+        if isPower
+          retVal = AdanaxisScanner::SYMBOL_POWERKHAZI_RED
+        elsif hasRemnant
+          retVal = AdanaxisScanner::SYMBOL_CARRIERKHAZI_RED
+        else
+          retVal = AdanaxisScanner::SYMBOL_KHAZI_RED
+        end
+          
+      when 'blue'
+        if isPower
+          retVal = AdanaxisScanner::SYMBOL_POWERKHAZI_BLUE
+        elsif hasRemnant
+          retVal = AdanaxisScanner::SYMBOL_CARRIERKHAZI_BLUE
+        else
+          retVal = AdanaxisScanner::SYMBOL_KHAZI_BLUE
+        end
+    end
+    retVal
+  end
 
   # Creates an Attendant
   def mAttendantCreate(inParams = {})
@@ -126,6 +156,9 @@ protected
     # Select the remnant left behind when rhe craft is destroyed
     retParams[:remnant] = $currentLogic.mRemnant.mLowGradeRemnant(@m_attendantNum)
     
+    # Set scanner symbol.  Needs to know remnant type, hence merge
+    retParams[:scanner_symbol] = mScannerSymbol(retParams.merge(inParams))
+    
     # Add paramters common to all pieces, i.e. position
     mKhaziAddBaseParams(retParams, inParams)
     
@@ -149,6 +182,9 @@ protected
     retParams[:target_types] = mTargetTypes(inParams)
     retParams[:remnant] = :player_rail
     
+    # Set scanner symbol.  Needs to know remnant type, hence merge
+    retParams[:scanner_symbol] = mScannerSymbol(retParams.merge(inParams))
+
     mKhaziAddBaseParams(retParams, inParams)
     
     retParams.merge!(inParams)

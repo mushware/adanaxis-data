@@ -3,7 +3,7 @@
 #
 # File data-adanaxis/ruby/AdanaxisPieceKhazi.rb
 #
-# Copyright Andy Southgate 2006
+# Copyright Andy Southgate 2006-2007
 #
 # This file may be used and distributed under the terms of the Mushware
 # software licence version 1.1, under the terms for 'Proprietary original
@@ -15,9 +15,12 @@
 # This software carries NO WARRANTY of any kind.
 #
 ##############################################################################
-#%Header } aGTJVbl7QyXIWVg5D1mEzg
-# $Id: AdanaxisPieceKhazi.rb,v 1.27 2006/11/14 20:28:36 southa Exp $
+#%Header } Kz2b8xClmh0UFWw6DWvNVQ
+# $Id: AdanaxisPieceKhazi.rb,v 1.28 2006/12/14 15:59:22 southa Exp $
 # $Log: AdanaxisPieceKhazi.rb,v $
+# Revision 1.28  2006/12/14 15:59:22  southa
+# Fire and cutscene fixes
+#
 # Revision 1.27  2006/11/14 20:28:36  southa
 # Added rail gun
 #
@@ -104,6 +107,7 @@ require 'Mushware.rb'
 require 'AdanaxisAIKhazi.rb'
 require 'AdanaxisEvents.rb'
 require 'AdanaxisPieceProjectile.rb'
+require 'AdanaxisScanner.rb'
 require 'AdanaxisUtil.rb'
 
 class AdanaxisPieceKhazi < AdanaxisPiece
@@ -129,6 +133,7 @@ class AdanaxisPieceKhazi < AdanaxisPiece
     @m_remnant = inParams[:remnant]
     @m_weaponName = inParams[:weapon] || :khazi_base
     @m_weapon = $currentGame.mSpace.mWeaponLibrary.mWeapon(@m_weaponName)
+    @m_scannerSymbol = inParams[:scanner_symbol] || AdanaxisScanner::SYMBOL_KHAZI_PLAIN
   end
   
   def mFireHandle(event)

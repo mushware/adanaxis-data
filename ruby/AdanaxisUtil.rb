@@ -3,7 +3,7 @@
 #
 # File data-adanaxis/ruby/AdanaxisUtil.rb
 #
-# Copyright Andy Southgate 2006
+# Copyright Andy Southgate 2006-2007
 #
 # This file may be used and distributed under the terms of the Mushware
 # software licence version 1.1, under the terms for 'Proprietary original
@@ -15,9 +15,12 @@
 # This software carries NO WARRANTY of any kind.
 #
 ##############################################################################
-#%Header } 63kk9LVPAcoFqUyUUPiQfg
-# $Id: AdanaxisUtil.rb,v 1.18 2007/03/07 16:59:43 southa Exp $
+#%Header } ybS7u9KMas6Wc8aax6KIow
+# $Id: AdanaxisUtil.rb,v 1.19 2007/03/09 11:29:12 southa Exp $
 # $Log: AdanaxisUtil.rb,v $
+# Revision 1.19  2007/03/09 11:29:12  southa
+# Game end actions
+#
 # Revision 1.18  2007/03/07 16:59:43  southa
 # Khazi spawning and level ends
 #
@@ -132,6 +135,7 @@ class AdanaxisUtil < MushObject
     :red_count => true,
     :remnant => true,
     :render_scale => true,
+    :scanner_symbol => true,
     :seek_acceleration => true,
     :seek_speed => true,
     :shield_ratio => true,
