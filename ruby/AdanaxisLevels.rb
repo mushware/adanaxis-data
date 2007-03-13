@@ -3,7 +3,7 @@
 #
 # File data-adanaxis/ruby/AdanaxisLevels.rb
 #
-# Copyright Andy Southgate 2006
+# Copyright Andy Southgate 2006-2007
 #
 # This file may be used and distributed under the terms of the Mushware
 # software licence version 1.1, under the terms for 'Proprietary original
@@ -15,9 +15,12 @@
 # This software carries NO WARRANTY of any kind.
 #
 ##############################################################################
-#%Header } YkolAA2/khvOmyZz3VmddA
-# $Id: AdanaxisLevels.rb,v 1.6 2007/03/08 11:00:29 southa Exp $
+#%Header } WBJJMYeqTaB9xZRfpmYjHg
+# $Id: AdanaxisLevels.rb,v 1.7 2007/03/09 11:29:12 southa Exp $
 # $Log: AdanaxisLevels.rb,v $
+# Revision 1.7  2007/03/09 11:29:12  southa
+# Game end actions
+#
 # Revision 1.6  2007/03/08 11:00:29  southa
 # Level epilogue
 #

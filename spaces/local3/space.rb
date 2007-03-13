@@ -3,7 +3,7 @@
 #
 # File data-adanaxis/spaces/local3/space.rb
 #
-# Copyright Andy Southgate 2006
+# Copyright Andy Southgate 2006-2007
 #
 # This file may be used and distributed under the terms of the Mushware
 # software licence version 1.1, under the terms for 'Proprietary original
@@ -15,9 +15,12 @@
 # This software carries NO WARRANTY of any kind.
 #
 ##############################################################################
-#%Header } rbe1dAp9hm8Sn3/J3+Or6g
-# $Id: space.rb,v 1.18 2007/02/08 17:55:13 southa Exp $
+#%Header } NCkXiEvbvrIQ/l9IsL09xQ
+# $Id: space.rb,v 1.19 2007/03/09 11:29:12 southa Exp $
 # $Log: space.rb,v $
+# Revision 1.19  2007/03/09 11:29:12  southa
+# Game end actions
+#
 # Revision 1.18  2007/02/08 17:55:13  southa
 # Common routines in space generation
 #

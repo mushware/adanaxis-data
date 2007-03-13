@@ -3,7 +3,7 @@
 #
 # File data-adanaxis/ruby/AdanaxisMaterialLibrary.rb
 #
-# Copyright Andy Southgate 2006
+# Copyright Andy Southgate 2006-2007
 #
 # This file may be used and distributed under the terms of the Mushware
 # software licence version 1.1, under the terms for 'Proprietary original
@@ -15,9 +15,12 @@
 # This software carries NO WARRANTY of any kind.
 #
 ##############################################################################
-#%Header } Qn1dyBC0obbg8YEx3MpSKg
-# $Id: AdanaxisMaterialLibrary.rb,v 1.21 2006/12/18 15:39:34 southa Exp $
+#%Header } bJ6qXAveCFJYH0dkyf+HDA
+# $Id: AdanaxisMaterialLibrary.rb,v 1.22 2007/02/08 17:55:12 southa Exp $
 # $Log: AdanaxisMaterialLibrary.rb,v $
+# Revision 1.22  2007/02/08 17:55:12  southa
+# Common routines in space generation
+#
 # Revision 1.21  2006/12/18 15:39:34  southa
 # Palette changes
 #

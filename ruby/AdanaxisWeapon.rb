@@ -3,7 +3,7 @@
 #
 # File data-adanaxis/ruby/AdanaxisWeapon.rb
 #
-# Copyright Andy Southgate 2006
+# Copyright Andy Southgate 2006-2007
 #
 # This file may be used and distributed under the terms of the Mushware
 # software licence version 1.1, under the terms for 'Proprietary original
@@ -15,9 +15,12 @@
 # This software carries NO WARRANTY of any kind.
 #
 ##############################################################################
-#%Header } Xu79QXYia2BFmo2DZ89f+A
-# $Id: AdanaxisWeapon.rb,v 1.8 2006/11/14 20:28:36 southa Exp $
+#%Header } bEQzfVf1A9UYNW61ocROSA
+# $Id: AdanaxisWeapon.rb,v 1.9 2006/12/11 18:54:18 southa Exp $
 # $Log: AdanaxisWeapon.rb,v $
+# Revision 1.9  2006/12/11 18:54:18  southa
+# Positional audio
+#
 # Revision 1.8  2006/11/14 20:28:36  southa
 # Added rail gun
 #

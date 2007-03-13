@@ -3,7 +3,7 @@
 #
 # File data-adanaxis/ruby/AdanaxisRender.rb
 #
-# Copyright Andy Southgate 2006
+# Copyright Andy Southgate 2006-2007
 #
 # This file may be used and distributed under the terms of the Mushware
 # software licence version 1.1, under the terms for 'Proprietary original
@@ -15,9 +15,12 @@
 # This software carries NO WARRANTY of any kind.
 #
 ##############################################################################
-#%Header } gALWTcpqRL4PXzPDNgzRcg
-# $Id: AdanaxisRender.rb,v 1.6 2006/11/09 23:53:59 southa Exp $
+#%Header } AlUSaOKRD2enrmW4odQShQ
+# $Id: AdanaxisRender.rb,v 1.7 2007/02/08 17:55:12 southa Exp $
 # $Log: AdanaxisRender.rb,v $
+# Revision 1.7  2007/02/08 17:55:12  southa
+# Common routines in space generation
+#
 # Revision 1.6  2006/11/09 23:53:59  southa
 # Explosion and texture loading
 #

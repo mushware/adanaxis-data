@@ -3,7 +3,7 @@
 #
 # File data-adanaxis/ruby/AdanaxisLogic.rb
 #
-# Copyright Andy Southgate 2006
+# Copyright Andy Southgate 2006-2007
 #
 # This file may be used and distributed under the terms of the Mushware
 # software licence version 1.1, under the terms for 'Proprietary original
@@ -15,9 +15,12 @@
 # This software carries NO WARRANTY of any kind.
 #
 ##############################################################################
-#%Header } OEQ7ye4+ICpoJw+Z14qbnQ
-# $Id: AdanaxisLogic.rb,v 1.15 2006/11/03 18:46:31 southa Exp $
+#%Header } sZuwFePX4Tuo1mTupna0xg
+# $Id: AdanaxisLogic.rb,v 1.16 2006/11/14 14:02:15 southa Exp $
 # $Log: AdanaxisLogic.rb,v $
+# Revision 1.16  2006/11/14 14:02:15  southa
+# Ball projectiles
+#
 # Revision 1.15  2006/11/03 18:46:31  southa
 # Damage effectors
 #

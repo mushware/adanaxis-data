@@ -3,7 +3,7 @@
 #
 # File data-adanaxis/ruby/AdanaxisTargetSelect.rb
 #
-# Copyright Andy Southgate 2006
+# Copyright Andy Southgate 2006-2007
 #
 # This file may be used and distributed under the terms of the Mushware
 # software licence version 1.1, under the terms for 'Proprietary original
@@ -15,9 +15,12 @@
 # This software carries NO WARRANTY of any kind.
 #
 ##############################################################################
-#%Header } PmZrlB540NRoM7MJ3U6CJQ
-# $Id$
-# $Log$
+#%Header } Nb/uybA3KTxF/RwUwSFIRg
+# $Id: AdanaxisTargetSelect.rb,v 1.1 2006/10/02 20:28:09 southa Exp $
+# $Log: AdanaxisTargetSelect.rb,v $
+# Revision 1.1  2006/10/02 20:28:09  southa
+# Object lookup and target selection
+#
 
 require 'Mushware.rb'
 

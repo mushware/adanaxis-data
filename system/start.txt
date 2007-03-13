@@ -8,8 +8,11 @@
 #
 ##############################################################################
 #
-# $Id: start.txt,v 1.30 2006/09/12 15:28:49 southa Exp $
+# $Id: start.txt,v 1.31 2007/03/09 19:50:10 southa Exp $
 # $Log: start.txt,v $
+# Revision 1.31  2007/03/09 19:50:10  southa
+# Resident textures
+#
 # Revision 1.30  2006/09/12 15:28:49  southa
 # World sphere
 #
@@ -102,18 +105,18 @@
 
 # Change the paths here if you detach the application from its data directory
 
-# On entry APPLPATH is set to the directory above the one the executable is in
-# configset("APPLPATH","/usr/local/bin/adanaxis")
+# On entry RESOURCES_PATH is set to the directory above the one the executable is in
+# configset("RESOURCES_PATH","/usr/local/bin/adanaxis")
 
-configset("GLOBAL_SPACES_PATH",$APPLPATH+"/spaces") 
-configset("GLOBAL_PIXELS_PATH",$APPLPATH+"/pixels") 
-configset("GLOBAL_WAVES_PATH",$APPLPATH+"/waves") 
-configset("SYSTEM_PATH",$APPLPATH+"/system")
-configset("RUBY_PATH",$APPLPATH+"/ruby")
+configset("GLOBAL_SPACES_PATH",$RESOURCES_PATH+"/spaces") 
+configset("GLOBAL_PIXELS_PATH",$RESOURCES_PATH+"/pixels") 
+configset("GLOBAL_WAVES_PATH",$RESOURCES_PATH+"/waves") 
+configset("SYSTEM_PATH",$RESOURCES_PATH+"/system")
+configset("RUBY_PATH",$RESOURCES_PATH+"/ruby")
 
 # Find somewhere to save our files.  Directory name first, then paths to check
 setsavepath(".adanaxis", $HOME, $SYSTEM_PATH, "/tmp")
-setcachepath("mushware-cache", $APPLPATH, $HOME+"/.adanaxis", $HOME, $SYSTEM_PATH, "/tmp")
+setcachepath("mushware-cache", $RESOURCES_PATH, $HOME+"/.adanaxis", $HOME, $SYSTEM_PATH, "/tmp")
 
 # Set registration code file path
 configset("REG_FILENAME", $GLOBAL_SAVE_PATH+"/reg.xml")

@@ -3,7 +3,7 @@
 #
 # File data-adanaxis/ruby/AdanaxisPieceEffector.rb
 #
-# Copyright Andy Southgate 2006
+# Copyright Andy Southgate 2006-2007
 #
 # This file may be used and distributed under the terms of the Mushware
 # software licence version 1.1, under the terms for 'Proprietary original
@@ -15,9 +15,12 @@
 # This software carries NO WARRANTY of any kind.
 #
 ##############################################################################
-#%Header } yTzlWjZhcDQjs3FNriJdaw
-# $Id: AdanaxisPieceEffector.rb,v 1.1 2006/11/03 18:46:31 southa Exp $
+#%Header } Go8gUlkOsaLZUOToZ9qVCw
+# $Id: AdanaxisPieceEffector.rb,v 1.2 2006/11/14 20:28:36 southa Exp $
 # $Log: AdanaxisPieceEffector.rb,v $
+# Revision 1.2  2006/11/14 20:28:36  southa
+# Added rail gun
+#
 # Revision 1.1  2006/11/03 18:46:31  southa
 # Damage effectors
 #

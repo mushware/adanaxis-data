@@ -3,7 +3,7 @@
 #
 # File data-adanaxis/pixels/MakeCosmos.rb
 #
-# Author Andy Southgate 2006
+# Author Andy Southgate 2006-2007
 #
 # This file contains original work by Andy Southgate.  The author and his
 # employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,9 +17,12 @@
 # This software carries NO WARRANTY of any kind.
 #
 ##############################################################################
-#%Header } GlOv4eqaA1+e+dQsFxDIuw
-# $Id: MakeCosmos.rb,v 1.1 2006/10/18 13:21:58 southa Exp $
+#%Header } J1GnEbuS+g4XtXTbkPAWeg
+# $Id: MakeCosmos.rb,v 1.2 2006/11/09 23:53:58 southa Exp $
 # $Log: MakeCosmos.rb,v $
+# Revision 1.2  2006/11/09 23:53:58  southa
+# Explosion and texture loading
+#
 # Revision 1.1  2006/10/18 13:21:58  southa
 # World rendering
 #

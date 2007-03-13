@@ -3,7 +3,7 @@
 #
 # File data-adanaxis/ruby/AdanaxisPieceProjectile.rb
 #
-# Copyright Andy Southgate 2006
+# Copyright Andy Southgate 2006-2007
 #
 # This file may be used and distributed under the terms of the Mushware
 # software licence version 1.1, under the terms for 'Proprietary original
@@ -15,9 +15,12 @@
 # This software carries NO WARRANTY of any kind.
 #
 ##############################################################################
-#%Header } JPjWkwGvzd5d5LJLXnphkQ
-# $Id: AdanaxisPieceProjectile.rb,v 1.14 2006/11/12 20:09:54 southa Exp $
+#%Header } DdAaNHgaE0A5Y2nw5Qn+Dg
+# $Id: AdanaxisPieceProjectile.rb,v 1.15 2006/11/14 14:02:15 southa Exp $
 # $Log: AdanaxisPieceProjectile.rb,v $
+# Revision 1.15  2006/11/14 14:02:15  southa
+# Ball projectiles
+#
 # Revision 1.14  2006/11/12 20:09:54  southa
 # Missile guidance
 #

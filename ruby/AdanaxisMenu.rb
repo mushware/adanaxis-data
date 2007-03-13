@@ -3,7 +3,7 @@
 #
 # File data-adanaxis/ruby/AdanaxisMenu.rb
 #
-# Copyright Andy Southgate 2006
+# Copyright Andy Southgate 2006-2007
 #
 # This file may be used and distributed under the terms of the Mushware
 # software licence version 1.1, under the terms for 'Proprietary original
@@ -15,9 +15,12 @@
 # This software carries NO WARRANTY of any kind.
 #
 ##############################################################################
-#%Header } jugTbpTzFS8mdBHUZaOpuw
-# $Id: AdanaxisMenu.rb,v 1.16 2006/11/08 18:30:53 southa Exp $
+#%Header } mBl0venVdYNO+qktuUEEYw
+# $Id: AdanaxisMenu.rb,v 1.17 2007/03/07 11:29:23 southa Exp $
 # $Log: AdanaxisMenu.rb,v $
+# Revision 1.17  2007/03/07 11:29:23  southa
+# Level permission
+#
 # Revision 1.16  2006/11/08 18:30:53  southa
 # Key and axis configuration
 #

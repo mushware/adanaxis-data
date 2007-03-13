@@ -3,7 +3,7 @@
 #
 # File data-adanaxis/ruby/AdanaxisEffects.rb
 #
-# Copyright Andy Southgate 2006
+# Copyright Andy Southgate 2006-2007
 #
 # This file may be used and distributed under the terms of the Mushware
 # software licence version 1.1, under the terms for 'Proprietary original
@@ -15,9 +15,12 @@
 # This software carries NO WARRANTY of any kind.
 #
 ##############################################################################
-#%Header } RVKExAJp3XSTK1irqyfmog
-# $Id: AdanaxisEffects.rb,v 1.4 2006/10/16 22:00:20 southa Exp $
+#%Header } mnNwuBeOv7iId5VtLmVtTA
+# $Id: AdanaxisEffects.rb,v 1.5 2006/11/09 23:53:59 southa Exp $
 # $Log: AdanaxisEffects.rb,v $
+# Revision 1.5  2006/11/09 23:53:59  southa
+# Explosion and texture loading
+#
 # Revision 1.4  2006/10/16 22:00:20  southa
 # Tweaks
 #

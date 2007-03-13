@@ -3,7 +3,7 @@
 #
 # File data-adanaxis/ruby/init.rb
 #
-# Author Andy Southgate 2006
+# Author Andy Southgate 2006-2007
 #
 # This file contains original work by Andy Southgate.  The author and his
 # employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,9 +17,12 @@
 # This software carries NO WARRANTY of any kind.
 #
 ##############################################################################
-#%Header } sDsEhHIN+GUpI3Anu4wz2g
-# $Id: init.rb,v 1.16 2006/08/03 13:49:58 southa Exp $
+#%Header } NDUBMGDbFbMg3e7L5GTPDQ
+# $Id: init.rb,v 1.17 2006/08/24 13:04:37 southa Exp $
 # $Log: init.rb,v $
+# Revision 1.17  2006/08/24 13:04:37  southa
+# Event handling
+#
 # Revision 1.16  2006/08/03 13:49:58  southa
 # X11 release work
 #

@@ -3,7 +3,7 @@
 #
 # File data-adanaxis/ruby/AdanaxisDashboard.rb
 #
-# Copyright Andy Southgate 2006
+# Copyright Andy Southgate 2006-2007
 #
 # This file may be used and distributed under the terms of the Mushware
 # software licence version 1.1, under the terms for 'Proprietary original
@@ -15,9 +15,12 @@
 # This software carries NO WARRANTY of any kind.
 #
 ##############################################################################
-#%Header } jlpar81vJMXtlQaf/66fpw
-# $Id: AdanaxisDashboard.rb,v 1.8 2007/03/08 21:51:01 southa Exp $
+#%Header } CaR/qMMGyQtQIAyjJAgFAw
+# $Id: AdanaxisDashboard.rb,v 1.9 2007/03/09 11:29:12 southa Exp $
 # $Log: AdanaxisDashboard.rb,v $
+# Revision 1.9  2007/03/09 11:29:12  southa
+# Game end actions
+#
 # Revision 1.8  2007/03/08 21:51:01  southa
 # Count display
 #

@@ -3,7 +3,7 @@
 #
 # File data-adanaxis/ruby/AdanaxisControl.rb
 #
-# Copyright Andy Southgate 2006
+# Copyright Andy Southgate 2006-2007
 #
 # This file may be used and distributed under the terms of the Mushware
 # software licence version 1.1, under the terms for 'Proprietary original
@@ -15,9 +15,12 @@
 # This software carries NO WARRANTY of any kind.
 #
 ##############################################################################
-#%Header } IRcBSpDhgaiF/A38RRaoLw
-# $Id: AdanaxisControl.rb,v 1.7 2006/11/03 18:46:31 southa Exp $
+#%Header } kiP1oCZC9+unfzvh3pC2sw
+# $Id: AdanaxisControl.rb,v 1.8 2006/11/08 18:30:53 southa Exp $
 # $Log: AdanaxisControl.rb,v $
+# Revision 1.8  2006/11/08 18:30:53  southa
+# Key and axis configuration
+#
 # Revision 1.7  2006/11/03 18:46:31  southa
 # Damage effectors
 #

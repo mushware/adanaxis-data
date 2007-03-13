@@ -3,7 +3,7 @@
 #
 # File data-adanaxis/ruby/AdanaxisAI.rb
 #
-# Copyright Andy Southgate 2006
+# Copyright Andy Southgate 2006-2007
 #
 # This file may be used and distributed under the terms of the Mushware
 # software licence version 1.1, under the terms for 'Proprietary original
@@ -15,9 +15,12 @@
 # This software carries NO WARRANTY of any kind.
 #
 ##############################################################################
-#%Header } ZJhgffsl43t4RqQcN4aPag
-# $Id: AdanaxisAI.rb,v 1.11 2006/11/12 20:09:54 southa Exp $
+#%Header } GANqTx9YWqp8MKUhMNdn3w
+# $Id: AdanaxisAI.rb,v 1.12 2007/03/06 21:05:16 southa Exp $
 # $Log: AdanaxisAI.rb,v $
+# Revision 1.12  2007/03/06 21:05:16  southa
+# Level work
+#
 # Revision 1.11  2006/11/12 20:09:54  southa
 # Missile guidance
 #

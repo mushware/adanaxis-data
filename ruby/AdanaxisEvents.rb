@@ -3,7 +3,7 @@
 #
 # File data-adanaxis/ruby/AdanaxisEvents.rb
 #
-# Copyright Andy Southgate 2006
+# Copyright Andy Southgate 2006-2007
 #
 # This file may be used and distributed under the terms of the Mushware
 # software licence version 1.1, under the terms for 'Proprietary original
@@ -15,9 +15,12 @@
 # This software carries NO WARRANTY of any kind.
 #
 ##############################################################################
-#%Header } fAZMXASsvVkN8FSXXDhczg
-# $Id: AdanaxisEvents.rb,v 1.5 2006/11/03 18:46:31 southa Exp $
+#%Header } ijYC1E7CqVOv5ELHytfIag
+# $Id: AdanaxisEvents.rb,v 1.6 2006/11/12 20:09:54 southa Exp $
 # $Log: AdanaxisEvents.rb,v $
+# Revision 1.6  2006/11/12 20:09:54  southa
+# Missile guidance
+#
 # Revision 1.5  2006/11/03 18:46:31  southa
 # Damage effectors
 #

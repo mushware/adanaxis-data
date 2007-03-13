@@ -3,7 +3,7 @@
 #
 # File data-adanaxis/ruby/AdanaxisPieceItem.rb
 #
-# Copyright Andy Southgate 2006
+# Copyright Andy Southgate 2006-2007
 #
 # This file may be used and distributed under the terms of the Mushware
 # software licence version 1.1, under the terms for 'Proprietary original
@@ -15,9 +15,12 @@
 # This software carries NO WARRANTY of any kind.
 #
 ##############################################################################
-#%Header } Wc8DiQMb3X3SK/ndcDlP7Q
-# $Id: AdanaxisPieceItem.rb,v 1.3 2006/10/30 19:36:38 southa Exp $
+#%Header } ygRkV9ChXriuw8IYWmXA3Q
+# $Id: AdanaxisPieceItem.rb,v 1.4 2006/11/01 10:07:13 southa Exp $
 # $Log: AdanaxisPieceItem.rb,v $
+# Revision 1.4  2006/11/01 10:07:13  southa
+# Shield handling
+#
 # Revision 1.3  2006/10/30 19:36:38  southa
 # Item collection
 #

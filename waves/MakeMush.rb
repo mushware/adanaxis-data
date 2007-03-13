@@ -3,7 +3,7 @@
 #
 # File data-adanaxis/waves/MakeMush.rb
 #
-# Author Andy Southgate 2006
+# Author Andy Southgate 2006-2007
 #
 # This file contains original work by Andy Southgate.  The author and his
 # employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,9 +17,12 @@
 # This software carries NO WARRANTY of any kind.
 #
 ##############################################################################
-#%Header } bA+zXF6spqUFrZuwIA4AWQ
-# $Id: MakeMush.rb,v 1.1 2006/11/05 09:31:23 southa Exp $
+#%Header } pGNwq50B3QvCxSNgCT4SLA
+# $Id: MakeMush.rb,v 1.2 2006/11/06 12:56:31 southa Exp $
 # $Log: MakeMush.rb,v $
+# Revision 1.2  2006/11/06 12:56:31  southa
+# MushFile work
+#
 # Revision 1.1  2006/11/05 09:31:23  southa
 # Mush file generation
 #

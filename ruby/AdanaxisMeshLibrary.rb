@@ -3,7 +3,7 @@
 #
 # File data-adanaxis/ruby/AdanaxisMeshLibrary.rb
 #
-# Copyright Andy Southgate 2006
+# Copyright Andy Southgate 2006-2007
 #
 # This file may be used and distributed under the terms of the Mushware
 # software licence version 1.1, under the terms for 'Proprietary original
@@ -15,9 +15,12 @@
 # This software carries NO WARRANTY of any kind.
 #
 ##############################################################################
-#%Header } 74bLa8v94NQFxupv0Pj/cA
-# $Id: AdanaxisMeshLibrary.rb,v 1.29 2006/12/18 15:39:35 southa Exp $
+#%Header } 8Ft/KCtkgdEE2CxrOoI0Rg
+# $Id: AdanaxisMeshLibrary.rb,v 1.30 2007/02/08 17:55:12 southa Exp $
 # $Log: AdanaxisMeshLibrary.rb,v $
+# Revision 1.30  2007/02/08 17:55:12  southa
+# Common routines in space generation
+#
 # Revision 1.29  2006/12/18 15:39:35  southa
 # Palette changes
 #

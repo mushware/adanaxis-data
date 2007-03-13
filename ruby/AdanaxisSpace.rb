@@ -3,7 +3,7 @@
 #
 # File data-adanaxis/ruby/AdanaxisSpace.rb
 #
-# Copyright Andy Southgate 2006
+# Copyright Andy Southgate 2006-2007
 #
 # This file may be used and distributed under the terms of the Mushware
 # software licence version 1.1, under the terms for 'Proprietary original
@@ -15,9 +15,12 @@
 # This software carries NO WARRANTY of any kind.
 #
 ##############################################################################
-#%Header } lR/lFdEFyXBbk1T1wsvmCw
-# $Id: AdanaxisSpace.rb,v 1.23 2007/03/08 18:38:14 southa Exp $
+#%Header } mHm1SC5zJI2Q1twa42Xtew
+# $Id: AdanaxisSpace.rb,v 1.24 2007/03/09 11:29:12 southa Exp $
 # $Log: AdanaxisSpace.rb,v $
+# Revision 1.24  2007/03/09 11:29:12  southa
+# Game end actions
+#
 # Revision 1.23  2007/03/08 18:38:14  southa
 # Level progression
 #

@@ -3,7 +3,7 @@
 #
 # File data-adanaxis/ruby/AdanaxisAIKhazi.rb
 #
-# Copyright Andy Southgate 2006
+# Copyright Andy Southgate 2006-2007
 #
 # This file may be used and distributed under the terms of the Mushware
 # software licence version 1.1, under the terms for 'Proprietary original
@@ -15,9 +15,12 @@
 # This software carries NO WARRANTY of any kind.
 #
 ##############################################################################
-#%Header } t2OZrln+ozaGV400ZK2yfA
-# $Id$
-# $Log$
+#%Header } vFcFUi6Q6o5UJz/4xLaADw
+# $Id: AdanaxisAIKhazi.rb,v 1.1 2006/09/30 13:46:32 southa Exp $
+# $Log: AdanaxisAIKhazi.rb,v $
+# Revision 1.1  2006/09/30 13:46:32  southa
+# Seek and patrol
+#
 
 require 'Mushware.rb'
 require 'AdanaxisAI.rb'

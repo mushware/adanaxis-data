@@ -3,7 +3,7 @@
 #
 # File data-adanaxis/ruby/AdanaxisMagazine.rb
 #
-# Copyright Andy Southgate 2006
+# Copyright Andy Southgate 2006-2007
 #
 # This file may be used and distributed under the terms of the Mushware
 # software licence version 1.1, under the terms for 'Proprietary original
@@ -15,9 +15,12 @@
 # This software carries NO WARRANTY of any kind.
 #
 ##############################################################################
-#%Header } SLGVbSnrcEA2s3jc7Q+/ZA
-# $Id$
-# $Log$
+#%Header } GPHu2Py9IcyCt6EJcemnkw
+# $Id: AdanaxisMagazine.rb,v 1.1 2006/11/17 20:08:34 southa Exp $
+# $Log: AdanaxisMagazine.rb,v $
+# Revision 1.1  2006/11/17 20:08:34  southa
+# Weapon change and ammo handling
+#
 
 class AdanaxisMagazine < MushObject
 

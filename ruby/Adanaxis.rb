@@ -3,7 +3,7 @@
 #
 # File data-adanaxis/ruby/Adanaxis.rb
 #
-# Copyright Andy Southgate 2006
+# Copyright Andy Southgate 2006-2007
 #
 # This file may be used and distributed under the terms of the Mushware
 # software licence version 1.1, under the terms for 'Proprietary original
@@ -15,9 +15,12 @@
 # This software carries NO WARRANTY of any kind.
 #
 ##############################################################################
-#%Header } Vr8SNTx01PRrZQGDsHJ+7Q
-# $Id: Adanaxis.rb,v 1.25 2006/11/17 20:08:33 southa Exp $
+#%Header } o3sT7zq/CK6Xl0ITUPO9yQ
+# $Id: Adanaxis.rb,v 1.26 2007/02/08 17:55:12 southa Exp $
 # $Log: Adanaxis.rb,v $
+# Revision 1.26  2007/02/08 17:55:12  southa
+# Common routines in space generation
+#
 # Revision 1.25  2006/11/17 20:08:33  southa
 # Weapon change and ammo handling
 #

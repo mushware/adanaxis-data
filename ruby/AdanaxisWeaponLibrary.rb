@@ -3,7 +3,7 @@
 #
 # File data-adanaxis/ruby/AdanaxisWeaponLibrary.rb
 #
-# Copyright Andy Southgate 2006
+# Copyright Andy Southgate 2006-2007
 #
 # This file may be used and distributed under the terms of the Mushware
 # software licence version 1.1, under the terms for 'Proprietary original
@@ -15,9 +15,12 @@
 # This software carries NO WARRANTY of any kind.
 #
 ##############################################################################
-#%Header } fqw0Kg8SFKBRqHTmFMXeGw
-# $Id: AdanaxisWeaponLibrary.rb,v 1.13 2006/12/14 15:59:23 southa Exp $
+#%Header } xz/Let9fpz2Hu9LmsyUkXg
+# $Id: AdanaxisWeaponLibrary.rb,v 1.14 2007/03/06 21:05:17 southa Exp $
 # $Log: AdanaxisWeaponLibrary.rb,v $
+# Revision 1.14  2007/03/06 21:05:17  southa
+# Level work
+#
 # Revision 1.13  2006/12/14 15:59:23  southa
 # Fire and cutscene fixes
 #

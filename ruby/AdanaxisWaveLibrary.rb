@@ -3,7 +3,7 @@
 #
 # File data-adanaxis/ruby/AdanaxisWaveLibrary.rb
 #
-# Copyright Andy Southgate 2006
+# Copyright Andy Southgate 2006-2007
 #
 # This file may be used and distributed under the terms of the Mushware
 # software licence version 1.1, under the terms for 'Proprietary original
@@ -15,9 +15,12 @@
 # This software carries NO WARRANTY of any kind.
 #
 ##############################################################################
-#%Header } 2oLE7H8JFTEPCMWkYH/dgw
-# $Id: AdanaxisWaveLibrary.rb,v 1.4 2006/11/10 20:17:11 southa Exp $
+#%Header } 3ZalhH8gcM2r3Pk8keeRGQ
+# $Id: AdanaxisWaveLibrary.rb,v 1.5 2006/12/16 10:57:21 southa Exp $
 # $Log: AdanaxisWaveLibrary.rb,v $
+# Revision 1.5  2006/12/16 10:57:21  southa
+# Encrypted files
+#
 # Revision 1.4  2006/11/10 20:17:11  southa
 # Audio work
 #

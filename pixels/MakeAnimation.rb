@@ -3,7 +3,7 @@
 #
 # File data-adanaxis/pixels/MakeAnimation.rb
 #
-# Author Andy Southgate 2006
+# Author Andy Southgate 2006-2007
 #
 # This file contains original work by Andy Southgate.  The author and his
 # employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,7 +17,7 @@
 # This software carries NO WARRANTY of any kind.
 #
 ##############################################################################
-#%Header } wiRuKRB5m8n2tOJ8EczYZw
+#%Header } u4xn8V1Gwtx6Sb7qFnMpwQ
 ##############################################################################
 #
 # File data-adanaxis/pixels/MakeAnimation.rb
@@ -36,8 +36,11 @@
 # This software carries NO WARRANTY of any kind.
 #
 ##############################################################################
-# $Id$
-# $Log$
+# $Id: MakeAnimation.rb,v 1.1 2006/10/05 15:39:16 southa Exp $
+# $Log: MakeAnimation.rb,v $
+# Revision 1.1  2006/10/05 15:39:16  southa
+# Explosion handling
+#
 
 $LOAD_PATH.push File.dirname($0)+"/../../scripts"
 require 'ProcessAnimation.rb'

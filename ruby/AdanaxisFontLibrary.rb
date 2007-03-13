@@ -3,7 +3,7 @@
 #
 # File data-adanaxis/ruby/AdanaxisFontLibrary.rb
 #
-# Copyright Andy Southgate 2006
+# Copyright Andy Southgate 2006-2007
 #
 # This file may be used and distributed under the terms of the Mushware
 # software licence version 1.1, under the terms for 'Proprietary original
@@ -15,9 +15,12 @@
 # This software carries NO WARRANTY of any kind.
 #
 ##############################################################################
-#%Header } ZGY5KHoT9+kVQm3zBeLowg
-# $Id: AdanaxisFontLibrary.rb,v 1.10 2006/11/23 14:40:28 southa Exp $
+#%Header } tDOTjfQCQVPmQfCMUJK5PQ
+# $Id: AdanaxisFontLibrary.rb,v 1.11 2007/03/08 21:51:01 southa Exp $
 # $Log: AdanaxisFontLibrary.rb,v $
+# Revision 1.11  2007/03/08 21:51:01  southa
+# Count display
+#
 # Revision 1.10  2006/11/23 14:40:28  southa
 # Intro cutscene
 #

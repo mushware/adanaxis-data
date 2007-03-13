@@ -3,7 +3,7 @@
 #
 # File data-adanaxis/ruby/AdanaxisPieceDeco.rb
 #
-# Copyright Andy Southgate 2006
+# Copyright Andy Southgate 2006-2007
 #
 # This file may be used and distributed under the terms of the Mushware
 # software licence version 1.1, under the terms for 'Proprietary original
@@ -15,9 +15,12 @@
 # This software carries NO WARRANTY of any kind.
 #
 ##############################################################################
-#%Header } xOGGCYeMt0BNCjURov3s3Q
-# $Id: AdanaxisPieceDeco.rb,v 1.5 2006/10/30 17:03:49 southa Exp $
+#%Header } 0E8SSmL7Q12OXGc5q+oEMw
+# $Id: AdanaxisPieceDeco.rb,v 1.6 2006/10/30 19:36:38 southa Exp $
 # $Log: AdanaxisPieceDeco.rb,v $
+# Revision 1.6  2006/10/30 19:36:38  southa
+# Item collection
+#
 # Revision 1.5  2006/10/30 17:03:49  southa
 # Remnants creation
 #
