@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } 7yVWfKTkiMq9xpFeLYGzFg
-# $Id: AdanaxisGame.rb,v 1.35 2007/03/09 19:50:10 southa Exp $
+# $Id: AdanaxisGame.rb,v 1.36 2007/03/12 21:05:59 southa Exp $
 # $Log: AdanaxisGame.rb,v $
+# Revision 1.36  2007/03/12 21:05:59  southa
+# Scanner symbols
+#
 # Revision 1.35  2007/03/09 19:50:10  southa
 # Resident textures
 #
@@ -193,7 +196,8 @@ class AdanaxisGame < MushObject
         when MushKeys::SDLK_SPACE, MushKeys::KEY_MOUSE0, MushKeys::SDLK_KP_ENTER, MushKeys::SDLK_RETURN
           if MushGame.cEpilogueRunMsec > 3000
             if MushGame.cEpilogueWon
-              @m_spaceName = @m_levels.mNextLevelKey(@m_spaceName)
+              newSpaceName = @m_levels.mNextLevelKey(@m_spaceName)
+              @m_spaceName = newSpaceName if newSpaceName
               MushGame.cNewGameEnter
             else
               # Keep current @m_spaceName
