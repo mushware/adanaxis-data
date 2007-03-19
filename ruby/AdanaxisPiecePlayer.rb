@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } CHX7r0rZjMqL29gSHS1beQ
-# $Id: AdanaxisPiecePlayer.rb,v 1.18 2007/03/07 16:59:43 southa Exp $
+# $Id: AdanaxisPiecePlayer.rb,v 1.19 2007/03/13 21:45:08 southa Exp $
 # $Log: AdanaxisPiecePlayer.rb,v $
+# Revision 1.19  2007/03/13 21:45:08  southa
+# Release process
+#
 # Revision 1.18  2007/03/07 16:59:43  southa
 # Khazi spawning and level ends
 #
@@ -115,7 +118,7 @@ class AdanaxisPiecePlayer < AdanaxisPiece
       :weapon_name => @m_weaponName,
       :ammo_count => @m_magazine.mAmmoCount(@m_weaponName)
     )
-    # Call player every time for consistent rapid fire
+
     @m_callInterval = 100
   end
 
@@ -133,10 +136,18 @@ class AdanaxisPiecePlayer < AdanaxisPiece
     return vuln
   end
   
-  def mDamageTake(inDamage)
+  def mDamageTake(inDamage, inPiece)
     @m_shield -= inDamage
     @m_shield = 0.0 if @m_shield < 0.0
-    super
+    amount = super
+    if amount > 0.0
+      amount /= 20.0
+      amount = 2.0 if amount > 2.0
+      amount = 0.5 if amount < 0.5
+      incomingVel = inPiece.mPost.velocity - mPost.velocity
+      mPost.angular_position.mInverse.mRotate(incomingVel)
+      $currentGame.mView.mDashboard.mDamageUpdate(amount, incomingVel)
+    end
   end
   
   def mNewWeapon(inWeapon)

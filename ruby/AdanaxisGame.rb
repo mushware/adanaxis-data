@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } 7yVWfKTkiMq9xpFeLYGzFg
-# $Id: AdanaxisGame.rb,v 1.36 2007/03/12 21:05:59 southa Exp $
+# $Id: AdanaxisGame.rb,v 1.37 2007/03/16 19:50:43 southa Exp $
 # $Log: AdanaxisGame.rb,v $
+# Revision 1.37  2007/03/16 19:50:43  southa
+# Damage indicators
+#
 # Revision 1.36  2007/03/12 21:05:59  southa
 # Scanner symbols
 #
@@ -186,7 +189,7 @@ class AdanaxisGame < MushObject
 
   def mCutSceneKeypress(inKey, inModifier, inIsDown)
     if inKey == 32 && inIsDown
-        MushGame.cCutSceneModeExit
+      MushGame.cCutSceneModeExit
     end
   end
 

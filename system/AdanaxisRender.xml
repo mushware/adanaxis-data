@@ -9,8 +9,11 @@
 #
 ##############################################################################
 #
-# $Id$
-# $Log$
+# $Id: AdanaxisRender.xml,v 1.1 2007/03/16 19:50:43 southa Exp $
+# $Log: AdanaxisRender.xml,v $
+# Revision 1.1  2007/03/16 19:50:43  southa
+# Damage indicators
+#
 -->
 <!-- Definition for the red damage markers that flash when the craft is hit -->
 <obj>
@@ -96,5 +99,12 @@
   (0,0,1,0.5)
  ) 
 )</damageColours>
-
+<damageAlphaFactors>(
+ (0.9,0,0,0.9),
+ (0.9,0,0,0.9),
+ (0.9,0,0,0.9),
+ (0.9,0,0,0.9),
+ (0.9,0,0,0.9,0.9,0,0,0.9),
+ (0.9,0,0,0.9,0.9,0,0,0.9)
+)</damageAlphaFactors>
 </obj>

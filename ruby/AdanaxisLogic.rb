@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } sZuwFePX4Tuo1mTupna0xg
-# $Id: AdanaxisLogic.rb,v 1.16 2006/11/14 14:02:15 southa Exp $
+# $Id: AdanaxisLogic.rb,v 1.17 2007/03/13 21:45:07 southa Exp $
 # $Log: AdanaxisLogic.rb,v $
+# Revision 1.17  2007/03/13 21:45:07  southa
+# Release process
+#
 # Revision 1.16  2006/11/14 14:02:15  southa
 # Ball projectiles
 #
@@ -121,8 +124,8 @@ class AdanaxisLogic < MushLogic
     hitPoints1 = event.mPiece1.mHitPoints
     hitPoints2 = event.mPiece2.mHitPoints
     
-    event.mPiece1.mDamageTake(hitPoints2 * event.mPiece2.mDamageFactor(event.mPiece1))
-    event.mPiece2.mDamageTake(hitPoints1 * event.mPiece1.mDamageFactor(event.mPiece2))
+    event.mPiece1.mDamageTake(hitPoints2 * event.mPiece2.mDamageFactor(event.mPiece1), event.mPiece2)
+    event.mPiece2.mDamageTake(hitPoints1 * event.mPiece1.mDamageFactor(event.mPiece2), event.mPiece1)
     
     # Send to each object with itself in the first position
     event.mPiece1.mEventHandle(event)

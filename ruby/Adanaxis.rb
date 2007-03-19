@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } o3sT7zq/CK6Xl0ITUPO9yQ
-# $Id: Adanaxis.rb,v 1.26 2007/02/08 17:55:12 southa Exp $
+# $Id: Adanaxis.rb,v 1.27 2007/03/13 21:45:06 southa Exp $
 # $Log: Adanaxis.rb,v $
+# Revision 1.27  2007/03/13 21:45:06  southa
+# Release process
+#
 # Revision 1.26  2007/02/08 17:55:12  southa
 # Common routines in space generation
 #
@@ -107,6 +110,7 @@ require 'AdanaxisShaderLibrary.rb'
 require 'AdanaxisSpace.rb'
 require 'AdanaxisTextureLibrary.rb'
 require 'AdanaxisUtil.rb'
+require 'AdanaxisVTools.rb'
 require 'AdanaxisWaveLibrary.rb'
 require 'AdanaxisWeapon.rb'
 require 'AdanaxisWeaponLibrary.rb'

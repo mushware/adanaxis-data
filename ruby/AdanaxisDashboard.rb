@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } CaR/qMMGyQtQIAyjJAgFAw
-# $Id: AdanaxisDashboard.rb,v 1.9 2007/03/09 11:29:12 southa Exp $
+# $Id: AdanaxisDashboard.rb,v 1.10 2007/03/13 21:45:07 southa Exp $
 # $Log: AdanaxisDashboard.rb,v $
+# Revision 1.10  2007/03/13 21:45:07  southa
+# Release process
+#
 # Revision 1.9  2007/03/09 11:29:12  southa
 # Game end actions
 #
@@ -46,6 +49,9 @@
 # Player collisions
 #
 
+require 'Mushware.rb'
+require 'AdanaxisVTools.rb'
+
 class AdanaxisDashboard < MushDashboard
   @@c_weaponFonts = {
     :player_base => 'basebox1-font',
@@ -71,6 +77,9 @@ class AdanaxisDashboard < MushDashboard
     @m_isBattle = false;
     @m_weaponFont = MushGLFont.new(:name => "basebox1-font")
     @m_valueSize = 0.06
+    @m_damage = []
+    6.times { @m_damage << MushTimedValue.new(1.0) }
+    @m_damageActive = true
   end
 
   def mUpdate(inParams = {})
@@ -85,6 +94,16 @@ class AdanaxisDashboard < MushDashboard
     if fontName
       @m_weaponFont = MushGLFont.new(:name => @@c_weaponFonts[fontName])
     end
+  end
+
+  def mDamageUpdate(inAmount, inIncomingVel)  
+    iconArray = AdanaxisVTools.cApproachVectorToDamageIcons(inIncomingVel)
+
+    @m_damage.each_with_index do |damageValue, i|
+      value = iconArray[i] || 0.0
+      damageValue.mValueSet(value * inAmount)
+    end
+    @m_damageActive = true
   end
 
   def mRenderValuesBeginTopLeft
@@ -192,6 +211,26 @@ class AdanaxisDashboard < MushDashboard
       else MushVector.new(1,1,1,alpha)
     end
 
-    mRenderValue(0, value, colour, @m_weaponFont)    
+    mRenderValue(0, value, colour, @m_weaponFont)
+    
+    mRenderDamage 
+  end
+  
+  def mDamageForValue(inTimedValue)
+    alpha = inTimedValue.mValue - (inTimedValue.mGameMsecSinceChange) / 2000.0
+    alpha = 0.0 if alpha < 0.0
+    return alpha
+  end
+  
+  def mRenderDamage
+    if @m_damageActive
+      totalDamage = 0
+      @m_damage.each_with_index do |damageValue, i|
+        damage = mDamageForValue(damageValue)
+        totalDamage += damage
+        AdanaxisRuby.cDamageIconSet(i, damage)
+      end
+      @m_damageActive = false if totalDamage < 0.01
+    end
   end
 end
