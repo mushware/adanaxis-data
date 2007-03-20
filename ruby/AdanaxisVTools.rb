@@ -17,19 +17,20 @@
 ##############################################################################
 #%Header } 2D0QmRQAfis84xvwMmp6gQ
 #
-# $Id$
-# $Log$
+# $Id: AdanaxisVTools.rb,v 1.1 2007/03/19 16:01:35 southa Exp $
+# $Log: AdanaxisVTools.rb,v $
+# Revision 1.1  2007/03/19 16:01:35  southa
+# Damage indicators
 #
 
 require 'Mushware.rb'
 
 class AdanaxisVTools < MushObject
-
   # Determine what damage icons to show when the player is hit
   def self.cApproachVectorToDamageIcons(inVel)
     mag = inVel.mMagnitude
     maxDisp = [inVel.x.abs, inVel.y.abs, inVel.z.abs].max   
-    if mag <= 0.0 || (maxDisp < mag * 0.3 && inVel.w > 0)
+    if mag <= 0.0 || (maxDisp < mag * 0.25 && inVel.w > 0)
        # Either small displacement and in front, or no velocity - light all icons
       retArray = Array.new(6, 1.0)
     else

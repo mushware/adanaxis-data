@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } 7yVWfKTkiMq9xpFeLYGzFg
-# $Id: AdanaxisGame.rb,v 1.37 2007/03/16 19:50:43 southa Exp $
+# $Id: AdanaxisGame.rb,v 1.38 2007/03/19 16:01:34 southa Exp $
 # $Log: AdanaxisGame.rb,v $
+# Revision 1.38  2007/03/19 16:01:34  southa
+# Damage indicators
+#
 # Revision 1.37  2007/03/16 19:50:43  southa
 # Damage indicators
 #
@@ -343,6 +346,14 @@ class AdanaxisGame < MushObject
     end    
   end
 
+  def mMenuDifficulty(params, input)
+    if input < 0
+      AdanaxisRuby.cConfigDifficultySet( (AdanaxisRuby.cConfigDifficulty + 2) % 3 )
+    else
+      AdanaxisRuby.cConfigDifficultySet( (AdanaxisRuby.cConfigDifficulty + 1) % 3 )
+    end
+  end
+  
   def mMenuAudioVolume(params, input)
     if input < 0
       MushGame.cAudioVolumeSet( (MushGame.cAudioVolume + 100) % 110 )
@@ -367,6 +378,20 @@ class AdanaxisGame < MushObject
     end
   end
   
+  def mMenuGLCompression(params, input)
+    case AdanaxisRuby.cUseGLCompression
+      when 0: AdanaxisRuby.cUseGLCompressionSet(1)
+      when 1: AdanaxisRuby.cUseGLCompressionSet(0)
+    end
+  end
+  
+  def mMenuGLShader(params, input)
+    case AdanaxisRuby.cUseGLShader
+      when 0: AdanaxisRuby.cUseGLShaderSet(1)
+      when 1: AdanaxisRuby.cUseGLShaderSet(0)
+    end
+  end
+
   def mMenuMouseSensitivity(params, input)
     mouseSens = MushGame.cMouseSensitivity
     if input < 0

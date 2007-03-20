@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } CaR/qMMGyQtQIAyjJAgFAw
-# $Id: AdanaxisDashboard.rb,v 1.10 2007/03/13 21:45:07 southa Exp $
+# $Id: AdanaxisDashboard.rb,v 1.11 2007/03/19 16:01:34 southa Exp $
 # $Log: AdanaxisDashboard.rb,v $
+# Revision 1.11  2007/03/19 16:01:34  southa
+# Damage indicators
+#
 # Revision 1.10  2007/03/13 21:45:07  southa
 # Release process
 #
@@ -78,7 +81,7 @@ class AdanaxisDashboard < MushDashboard
     @m_weaponFont = MushGLFont.new(:name => "basebox1-font")
     @m_valueSize = 0.06
     @m_damage = []
-    6.times { @m_damage << MushTimedValue.new(1.0) }
+    6.times { @m_damage << MushTimedValue.new(0.0) }
     @m_damageActive = true
   end
 
