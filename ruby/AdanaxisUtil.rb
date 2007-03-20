@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } ybS7u9KMas6Wc8aax6KIow
-# $Id: AdanaxisUtil.rb,v 1.20 2007/03/13 12:22:50 southa Exp $
+# $Id: AdanaxisUtil.rb,v 1.21 2007/03/13 18:21:36 southa Exp $
 # $Log: AdanaxisUtil.rb,v $
+# Revision 1.21  2007/03/13 18:21:36  southa
+# Scanner jamming
+#
 # Revision 1.20  2007/03/13 12:22:50  southa
 # Scanner symbols
 #
@@ -102,6 +105,7 @@ class AdanaxisUtil < MushObject
     :damage_frame => true,
     :deviation => true,
     :does_damage => true,
+    :effect_scale => true,
     :embers => true,
     :ember_lifetime_range => true,
     :ember_scale_range => true,

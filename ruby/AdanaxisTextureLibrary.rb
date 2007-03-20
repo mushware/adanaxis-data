@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } 6dpPnv49oOQywOR6vN4p5w
-# $Id: AdanaxisTextureLibrary.rb,v 1.34 2007/03/06 11:34:01 southa Exp $
+# $Id: AdanaxisTextureLibrary.rb,v 1.35 2007/03/09 19:50:10 southa Exp $
 # $Log: AdanaxisTextureLibrary.rb,v $
+# Revision 1.35  2007/03/09 19:50:10  southa
+# Resident textures
+#
 # Revision 1.34  2007/03/06 11:34:01  southa
 # Space and precache fixes
 #
@@ -96,15 +99,8 @@ class AdanaxisTextureLibrary < MushObject
     starTextureSize = 32 * (2 ** levelOfDetail)
     flareTextureSize = smallTextureSize
 
-    compressNear = case levelOfDetail
-      when 0..1: true
-      else false
-    end
-    
-    compressFar = case levelOfDetail
-      when 0..3: true
-      else false
-    end
+    compressNear = true
+    compressFar = true
 
 	# Standard palettes
 	MushGLTexture::cDefine(
