@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } bEQzfVf1A9UYNW61ocROSA
-# $Id: AdanaxisWeapon.rb,v 1.10 2007/03/13 21:45:09 southa Exp $
+# $Id: AdanaxisWeapon.rb,v 1.11 2007/03/21 11:56:05 southa Exp $
 # $Log: AdanaxisWeapon.rb,v $
+# Revision 1.11  2007/03/21 11:56:05  southa
+# Rail effects and damage icons
+#
 # Revision 1.10  2007/03/13 21:45:09  southa
 # Release process
 #
@@ -185,8 +188,8 @@ class AdanaxisWeapon < MushObject
     @m_offsetNumber += 1
     @m_offsetNumber = 0 if @m_offsetNumber >= @m_offsetSequence.size    
     
-    MushGame.cSoundPlay(@m_fireSound, projPost) if @m_fireSound
-    MushGame.cSoundPlay(@m_reloadSound, projPost) if @m_reloadSound
+    MushGame.cTiedSoundPlay("#{@m_fireSound}", projPost) if @m_fireSound
+    MushGame.cTiedSoundPlay("#{@m_reloadSound}", projPost) if @m_reloadSound
     nil
   end
   
