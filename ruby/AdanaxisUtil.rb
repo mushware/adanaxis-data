@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } ybS7u9KMas6Wc8aax6KIow
-# $Id: AdanaxisUtil.rb,v 1.21 2007/03/13 18:21:36 southa Exp $
+# $Id: AdanaxisUtil.rb,v 1.22 2007/03/20 20:36:55 southa Exp $
 # $Log: AdanaxisUtil.rb,v $
+# Revision 1.22  2007/03/20 20:36:55  southa
+# Solid renderer fixes
+#
 # Revision 1.21  2007/03/13 18:21:36  southa
 # Scanner jamming
 #
@@ -97,6 +100,7 @@ class AdanaxisUtil < MushObject
     :acceleration => true,
     :ai_params => true,
     :ai_state => true,
+    :alpha_stutter => true,
     :ammo_count => true,
     :angular_position => true,
     :angular_velocity => true,

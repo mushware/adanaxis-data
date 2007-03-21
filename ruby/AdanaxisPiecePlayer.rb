@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } CHX7r0rZjMqL29gSHS1beQ
-# $Id: AdanaxisPiecePlayer.rb,v 1.19 2007/03/13 21:45:08 southa Exp $
+# $Id: AdanaxisPiecePlayer.rb,v 1.20 2007/03/19 16:01:34 southa Exp $
 # $Log: AdanaxisPiecePlayer.rb,v $
+# Revision 1.20  2007/03/19 16:01:34  southa
+# Damage indicators
+#
 # Revision 1.19  2007/03/13 21:45:08  southa
 # Release process
 #
@@ -141,10 +144,13 @@ class AdanaxisPiecePlayer < AdanaxisPiece
     @m_shield = 0.0 if @m_shield < 0.0
     amount = super
     if amount > 0.0
-      amount /= 20.0
-      amount = 2.0 if amount > 2.0
-      amount = 0.5 if amount < 0.5
-      incomingVel = inPiece.mPost.velocity - mPost.velocity
+      amount = MushUtil.cClamped(amount / 20.0, 0.5, 2.0)
+
+      if inPiece.kind_of?(AdanaxisPieceEffector)
+        incomingVel = mPost.position - inPiece.mPost.position
+      else
+        incomingVel = inPiece.mPost.velocity - mPost.velocity
+      end
       mPost.angular_position.mInverse.mRotate(incomingVel)
       $currentGame.mView.mDashboard.mDamageUpdate(amount, incomingVel)
     end

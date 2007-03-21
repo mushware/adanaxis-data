@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } bEQzfVf1A9UYNW61ocROSA
-# $Id: AdanaxisWeapon.rb,v 1.9 2006/12/11 18:54:18 southa Exp $
+# $Id: AdanaxisWeapon.rb,v 1.10 2007/03/13 21:45:09 southa Exp $
 # $Log: AdanaxisWeapon.rb,v $
+# Revision 1.10  2007/03/13 21:45:09  southa
+# Release process
+#
 # Revision 1.9  2006/12/11 18:54:18  southa
 # Positional audio
 #
@@ -143,7 +146,6 @@ class AdanaxisWeapon < MushObject
     projPost = inEvent.mPost.dup
     offset = @m_offsetSequence[@m_offsetNumber].dup
     
-    
     # Apply the angular velocity in the object frame
     angVel = projPost.angular_position.mInverse
     @m_angularVelocity.mRotate(angVel)
@@ -172,9 +174,13 @@ class AdanaxisWeapon < MushObject
       :post => projPost,
       :lifetime_msec => lifetime
     )
-      
-
     
+    $currentLogic.mEffects.mFlareCreate(
+      :post => projPost,
+      :flare_lifetime_range => 400..500,
+      :flare_scale_range => 4.0..4.4
+    )
+
     @m_lastFireMsec = MushGame.cGameMsec
     @m_offsetNumber += 1
     @m_offsetNumber = 0 if @m_offsetNumber >= @m_offsetSequence.size    

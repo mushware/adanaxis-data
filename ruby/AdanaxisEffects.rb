@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } mnNwuBeOv7iId5VtLmVtTA
-# $Id: AdanaxisEffects.rb,v 1.5 2006/11/09 23:53:59 southa Exp $
+# $Id: AdanaxisEffects.rb,v 1.6 2007/03/13 21:45:07 southa Exp $
 # $Log: AdanaxisEffects.rb,v $
+# Revision 1.6  2007/03/13 21:45:07  southa
+# Release process
+#
 # Revision 1.5  2006/11/09 23:53:59  southa
 # Explosion and texture loading
 #
@@ -65,12 +68,8 @@ class AdanaxisEffects < MushObject
   def mApplySpeedRange(ioParams, inSymbol)
     speedRange = ioParams[inSymbol]
     if speedRange
-      unless speedRange.kind_of?(Range)
-        speedRange = (0.0..speedRange)
-      end
-
+      speed = MushUtil.cRandomValInRange(speedRange)
       ioParams[:post] = ioParams[:post].dup
-      speed = speedRange.begin + rand * (speedRange.end - speedRange.begin)
       dispVec = MushTools.cRandomUnitVector * speed
       ioParams[:post].velocity = ioParams[:post].velocity + dispVec
     end
@@ -78,21 +77,13 @@ class AdanaxisEffects < MushObject
   
   def mApplyScaleRange(ioParams, inSymbol)
     scaleRange = ioParams[inSymbol]
-    if scaleRange
-      unless scaleRange.kind_of?(Range)
-        scaleRange = (0.0..scaleRange)
-      end
-      ioParams[:render_scale] = scaleRange.begin + rand * (scaleRange.end - scaleRange.begin)
-    end
+    ioParams[:render_scale] = MushUtil.cRandomValInRange(scaleRange) if scaleRange
   end
   
   def mApplyLifetimeRange(ioParams, inSymbol)
     lifetimeRange = ioParams[inSymbol]
     if lifetimeRange
-      unless lifetimeRange.kind_of?(Range)
-        lifetimeRange = (0..lifetimeRange)
-      end
-      ioParams[:lifetime_msec] = lifetimeRange.begin + rand(lifetimeRange.end - lifetimeRange.begin)
+      ioParams[:lifetime_msec] = MushUtil.cRandomValInRange(lifetimeRange)
     end
   end
   
@@ -113,20 +104,21 @@ class AdanaxisEffects < MushObject
     mergedParams = @m_exploDefaults.merge(inParams)
   
   
-    meshNum = mergedParams[:explo_number]
-    if meshNum.kind_of?(Range)
-      meshNum = meshNum.begin + rand(meshNum.end - meshNum.begin)
+    exploNum = mergedParams[:explo_number]
+    if exploNum.kind_of?(Range)
+      exploNum = exploNum.begin + rand(exploNum.end - exploNum.begin)
     else
-      meshNum ||= rand(@m_numExploMeshes)
+      exploNum ||= rand(@m_numExploMeshes)
     end
 
-    mergedParams[:mesh_name] = "explo#{meshNum}"
+    mergedParams[:mesh_name] = "explo#{exploNum}"
     
     mApplySpeedRange(mergedParams, :explosion_speed_range)
     mApplyScaleRange(mergedParams, :explosion_scale_range)
     mApplyLifetimeRange(mergedParams, :explosion_lifetime_range)
     
     AdanaxisPieceDeco.cCreate(mergedParams)
+    return exploNum
   end
   
   def mFlareCreate(inParams = {})
@@ -146,6 +138,22 @@ class AdanaxisEffects < MushObject
     objParams = inParams.dup
     objParams[:post] = objParams[:post].dup
 
+    effectScale = objParams[:effect_scale]
+    if (effectScale)
+      rootScale = Math.sqrt(effectScale)
+      objParams[:ember_speed_range] ||= (rootScale * 0.3 .. rootScale * 1.0)
+      objParams[:ember_lifetime_range] ||= (1000 * rootScale .. 2000 * rootScale)
+      objParams[:explosion_scale_range] ||= (effectScale * 6.0 .. effectScale * 7.0)
+      objParams[:explosion_lifetime_range] ||= (rootScale * 1000 .. rootScale * 1200)
+      objParams[:flare_scale_range] ||= (effectScale * 12.0 .. effectScale * 15.0)
+      objParams[:flare_lifetime_range] ||= (rootScale * 1000 .. rootScale * 1200)
+      
+      exploMin = MushUtil.cClamped(Integer(effectScale)-2, 0, 5)
+      exploMax = MushUtil.cClamped(Integer(effectScale)+1, 2, 7)
+      
+      objParams[:explo_number] ||= (exploMin..exploMax)
+    end
+
     # Embers inherit a fraction of the object's velocity
     objParams[:post].velocity = objParams[:post].velocity * 0.5
   
@@ -153,8 +161,11 @@ class AdanaxisEffects < MushObject
     
     objParams[:post].velocity = MushVector.new(0,0,0,0)
     
-    (objParams[:explosions] || @m_numExplos).times { mExploCreate(objParams) }
+    exploNum = nil
+    (objParams[:explosions] || @m_numExplos).times { exploNum = mExploCreate(objParams) }
     (objParams[:flares] || @m_numFlares).times { mFlareCreate(objParams) }
+    
+    return exploNum
   end
 end
 

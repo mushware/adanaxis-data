@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } Go8gUlkOsaLZUOToZ9qVCw
-# $Id: AdanaxisPieceEffector.rb,v 1.2 2006/11/14 20:28:36 southa Exp $
+# $Id: AdanaxisPieceEffector.rb,v 1.3 2007/03/13 21:45:08 southa Exp $
 # $Log: AdanaxisPieceEffector.rb,v $
+# Revision 1.3  2007/03/13 21:45:08  southa
+# Release process
+#
 # Revision 1.2  2006/11/14 20:28:36  southa
 # Added rail gun
 #
@@ -50,6 +53,30 @@ class AdanaxisPieceEffector < AdanaxisPiece
       retVal = @m_damageFactor * factor
     end
     retVal
+  end
+
+  def mCollisionHandle(event)
+    if @m_rail
+      # Rail impact effect
+      if event.mCollisionPoint
+        $currentLogic.mEffects.mFlareCreate(
+          :post => MushPost.new(:position => event.mCollisionPoint),
+          :flare_lifetime_range => 400..500,
+          :flare_scale_range => 8.0..9.0,
+          :alpha_stutter => 0.5
+        )
+        $currentLogic.mEffects.mExplode(
+          :post => MushPost.new(:position => event.mCollisionPoint),
+          :effect_scale => 1.0,
+          :embers => 10,
+          :ember_speed_range => 0.1..0.2,
+          :explosions => 0,
+          :flares => 1,
+          :flare_lifetime_range => 900..1000,
+          :flare_scale_range => 2.0..2.1
+        )
+      end
+    end
   end
 
 end

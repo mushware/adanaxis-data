@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } ufp2oi5LTGHndv0Fk7nVFQ
-# $Id: AdanaxisPieceLibrary.rb,v 1.5 2007/03/13 18:21:36 southa Exp $
+# $Id: AdanaxisPieceLibrary.rb,v 1.6 2007/03/20 20:36:54 southa Exp $
 # $Log: AdanaxisPieceLibrary.rb,v $
+# Revision 1.6  2007/03/20 20:36:54  southa
+# Solid renderer fixes
+#
 # Revision 1.5  2007/03/13 18:21:36  southa
 # Scanner jamming
 #
@@ -40,7 +43,7 @@ class AdanaxisPieceLibrary < MushObject
     @m_typeDefault = 'k'
   
     @m_attendantDefaults = {
-      :effect_scale => 6.0,
+      :effect_scale => 1.0,
       :hit_points => 10.0,
       :type => @m_typeDefault,
       :seek_speed => 0.05,
@@ -49,7 +52,7 @@ class AdanaxisPieceLibrary < MushObject
     @m_attendantNum = 0
     
     @m_railDefaults = {
-      :effect_scale => 30.0,
+      :effect_scale => 5.0,
       :hit_points => 160.0,
       :type => @m_typeDefault,
       :seek_speed => 0.01,

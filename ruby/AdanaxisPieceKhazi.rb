@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } Kz2b8xClmh0UFWw6DWvNVQ
-# $Id: AdanaxisPieceKhazi.rb,v 1.30 2007/03/13 18:21:36 southa Exp $
+# $Id: AdanaxisPieceKhazi.rb,v 1.31 2007/03/20 20:36:54 southa Exp $
 # $Log: AdanaxisPieceKhazi.rb,v $
+# Revision 1.31  2007/03/20 20:36:54  southa
+# Solid renderer fixes
+#
 # Revision 1.30  2007/03/13 18:21:36  southa
 # Scanner jamming
 #
@@ -141,7 +144,7 @@ class AdanaxisPieceKhazi < AdanaxisPiece
     @m_weapon = $currentGame.mSpace.mWeaponLibrary.mWeapon(@m_weaponName)
     @m_scannerSymbol = inParams[:scanner_symbol] || AdanaxisScanner::SYMBOL_KHAZI_PLAIN
     @m_isJammer = inParams[:is_jammer] || false
-    @m_effectScale = inParams[:effect_scale] || @m_hitPoints
+    @m_effectScale = inParams[:effect_scale] || @m_hitPoints / 10.0
   end
   
   def mFireHandle(event)
@@ -182,19 +185,14 @@ class AdanaxisPieceKhazi < AdanaxisPiece
     isNuclear = event.mPiece2.kind_of?(AdanaxisPieceEffector) && !event.mPiece2.mRail
     numEmbers = isNuclear ? 0 : 100
     numFlares = isNuclear ? 0 : 1
-    $currentLogic.mEffects.mExplode(
+    exploNum = $currentLogic.mEffects.mExplode(
       :post => mPost,
       :embers => numEmbers,
       :explosions => 1,
       :flares => numFlares,
-      :ember_speed_range => (0.3..1.0),
-      :ember_lifetime_range => (2000..3000),
-      :explosion_scale_range => (0.6 * @m_effectScale .. 0.65 * @m_effectScale),
-      :explosion_lifetime_range => (120 * @m_effectScale .. 150 * @m_effectScale),
-      :flare_scale_range => (1 * @m_effectScale .. 1.1 * @m_effectScale),
-      :flare_lifetime_range => (600..700)
+      :effect_scale => @m_effectScale
       )
-    MushGame.cSoundPlay("explo#{rand(8)}", mPost)
+    MushGame.cSoundPlay("explo#{exploNum}", mPost) if exploNum
     
     objPost = mPost.dup
     angVel = MushTools.cRotationInXYPlane(Math::PI / 200);
