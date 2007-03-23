@@ -6,7 +6,7 @@
 # Copyright Andy Southgate 2006-2007
 #
 # This file may be used and distributed under the terms of the Mushware
-# software licence version 1.1, under the terms for 'Proprietary original
+# Software Licence version 1.2, under the terms for 'Proprietary original
 # source files'.  If not supplied with this software, a copy of the licence
 # can be obtained from Mushware Limited via http://www.mushware.com/.
 # One of your options under that licence is to use and distribute this file
@@ -15,9 +15,12 @@
 # This software carries NO WARRANTY of any kind.
 #
 ##############################################################################
-#%Header } ybS7u9KMas6Wc8aax6KIow
-# $Id: AdanaxisUtil.rb,v 1.22 2007/03/20 20:36:55 southa Exp $
+#%Header } lDJzWQbqKYTujby/WoRUQA
+# $Id: AdanaxisUtil.rb,v 1.23 2007/03/21 11:56:05 southa Exp $
 # $Log: AdanaxisUtil.rb,v $
+# Revision 1.23  2007/03/21 11:56:05  southa
+# Rail effects and damage icons
+#
 # Revision 1.22  2007/03/20 20:36:55  southa
 # Solid renderer fixes
 #
@@ -98,6 +101,7 @@ class AdanaxisUtil < MushObject
   
   @c_symbols = {
     :acceleration => true,
+    :ai_object => true,
     :ai_params => true,
     :ai_state => true,
     :alpha_stutter => true,
@@ -142,8 +146,8 @@ class AdanaxisUtil < MushObject
     :position => true,
     :post => true,
     :projectile_mesh => true,
-    :reload_sound => true,
     :rail => true,
+    :reload_sound => true,
     :red_count => true,
     :remnant => true,
     :render_scale => true,
@@ -152,6 +156,7 @@ class AdanaxisUtil < MushObject
     :seek_speed => true,
     :shield_ratio => true,
     :spawned => true,
+    :spawn_inhibit_limit => true,
     :speed => true,
     :speed_limit => true,
     :target_types => true,

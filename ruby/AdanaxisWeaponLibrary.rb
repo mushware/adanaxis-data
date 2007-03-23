@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } KYgLHF8t3YCZa/IBjNku9Q
-# $Id: AdanaxisWeaponLibrary.rb,v 1.15 2007/03/13 21:45:09 southa Exp $
+# $Id: AdanaxisWeaponLibrary.rb,v 1.16 2007/03/23 12:27:34 southa Exp $
 # $Log: AdanaxisWeaponLibrary.rb,v $
+# Revision 1.16  2007/03/23 12:27:34  southa
+# Added levels and Cistern mesh
+#
 # Revision 1.15  2007/03/13 21:45:09  southa
 # Release process
 #
@@ -140,7 +143,7 @@ class AdanaxisWeaponLibrary < MushObject
 
     @m_weapons[:player_rail] = AdanaxisWeapon.new(
       :projectile_mesh => 'rail1',
-      :rail => true,
+      :type => :rail,
       :angular_velocity => railAngVel,
       :hit_points => 50.0,
       :fire_rate_msec => 2000,
@@ -237,7 +240,7 @@ class AdanaxisWeaponLibrary < MushObject
     @m_weapons[:khazi_rail] = AdanaxisWeapon.new(
       :projectile_mesh => 'rail1',
       :hit_points => 40,
-      :rail => true,
+      :type => :rail,
       :lifetime_msec => 300,
       :offset_sequence => [
         MushVector.new(0,0,0,-6.0)
@@ -245,6 +248,18 @@ class AdanaxisWeaponLibrary < MushObject
       :fire_rate_msec => 5000,
       :fire_sound => 'fire6'
     )
+
+    @m_weapons[:khazi_spawner] = AdanaxisWeapon.new(
+      :type => :spawner,
+      :ammo_count => 10,
+      :speed => -0.2,
+      :offset_sequence => [
+        MushVector.new(0,0,0,15.0)
+      ],
+      :fire_rate_msec => 3000,
+      :fire_sound => 'fire9'
+    )
+
   end
   
   def mWeapon(inName)

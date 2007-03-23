@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } mlDJl4Ez45nYxZ6GWtlYdg
-# $Id: AdanaxisPieceKhazi.rb,v 1.32 2007/03/21 11:56:05 southa Exp $
+# $Id: AdanaxisPieceKhazi.rb,v 1.33 2007/03/23 12:27:34 southa Exp $
 # $Log: AdanaxisPieceKhazi.rb,v $
+# Revision 1.33  2007/03/23 12:27:34  southa
+# Added levels and Cistern mesh
+#
 # Revision 1.32  2007/03/21 11:56:05  southa
 # Rail effects and damage icons
 #
@@ -141,7 +144,7 @@ class AdanaxisPieceKhazi < AdanaxisPiece
       :patrol_acceleration => 0.01
     }.merge(inParams)
     
-    @m_ai = AdanaxisAIKhazi.new(aiParams)
+    @m_ai = (inParams[:ai_object] || AdanaxisAIKhazi).new(aiParams)
     @m_remnant = inParams[:remnant]
     @m_weaponName = inParams[:weapon] || nil
     @m_weapon = $currentGame.mSpace.mWeaponLibrary.mWeapon(@m_weaponName)

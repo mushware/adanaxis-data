@@ -6,7 +6,7 @@
 # Copyright Andy Southgate 2006-2007
 #
 # This file may be used and distributed under the terms of the Mushware
-# software licence version 1.1, under the terms for 'Proprietary original
+# Software Licence version 1.2, under the terms for 'Proprietary original
 # source files'.  If not supplied with this software, a copy of the licence
 # can be obtained from Mushware Limited via http://www.mushware.com/.
 # One of your options under that licence is to use and distribute this file
@@ -15,9 +15,12 @@
 # This software carries NO WARRANTY of any kind.
 #
 ##############################################################################
-#%Header } CHX7r0rZjMqL29gSHS1beQ
-# $Id: AdanaxisPiecePlayer.rb,v 1.20 2007/03/19 16:01:34 southa Exp $
+#%Header } 5J+8wl02X3QBR8InmLme/A
+# $Id: AdanaxisPiecePlayer.rb,v 1.21 2007/03/21 11:56:05 southa Exp $
 # $Log: AdanaxisPiecePlayer.rb,v $
+# Revision 1.21  2007/03/21 11:56:05  southa
+# Rail effects and damage icons
+#
 # Revision 1.20  2007/03/19 16:01:34  southa
 # Damage indicators
 #
@@ -112,7 +115,7 @@ class AdanaxisPiecePlayer < AdanaxisPiece
     @m_weaponName = @@c_weaponList[@m_weaponNum]
     @m_weapon = $currentGame.mSpace.mWeaponLibrary.mWeapon(@m_weaponName)
     @m_magazine = AdanaxisMagazine.new
-    @m_magazine.mPlayerLoadAll if $MUSHCONFIG['-DEBUG']
+    @m_magazine.mPlayerLoadAll if $MUSHCONFIG['DEBUG']
     @m_fireState = false
     @m_numActions = 0
     @m_lastAmmoAddMsec = 0

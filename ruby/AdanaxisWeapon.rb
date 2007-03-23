@@ -6,7 +6,7 @@
 # Copyright Andy Southgate 2006-2007
 #
 # This file may be used and distributed under the terms of the Mushware
-# software licence version 1.1, under the terms for 'Proprietary original
+# Software Licence version 1.2, under the terms for 'Proprietary original
 # source files'.  If not supplied with this software, a copy of the licence
 # can be obtained from Mushware Limited via http://www.mushware.com/.
 # One of your options under that licence is to use and distribute this file
@@ -15,9 +15,12 @@
 # This software carries NO WARRANTY of any kind.
 #
 ##############################################################################
-#%Header } bEQzfVf1A9UYNW61ocROSA
-# $Id: AdanaxisWeapon.rb,v 1.11 2007/03/21 11:56:05 southa Exp $
+#%Header } +/IAKqVqNkpQ23bxs/nmOg
+# $Id: AdanaxisWeapon.rb,v 1.12 2007/03/21 18:05:53 southa Exp $
 # $Log: AdanaxisWeapon.rb,v $
+# Revision 1.12  2007/03/21 18:05:53  southa
+# Tied sound fixes
+#
 # Revision 1.11  2007/03/21 11:56:05  southa
 # Rail effects and damage icons
 #
@@ -75,17 +78,33 @@ class AdanaxisWeapon < MushObject
     @m_aiParams = inParams[:ai_params]
     @m_numProjectiles = inParams[:num_projectiles] || 1
     @m_deviation = inParams[:deviation]
-    @m_rail = inParams[:rail]
+    @m_type = inParams[:type] || nil
+    @m_ammoCount = inParams[:ammo_count] || nil
+    @m_spawnLimit = inParams[:spawn_inhibit_limit] || 20 * (1+AdanaxisRuby.cGameDifficulty)
     @m_lastFireMsec = 0
   end
   
   def mFireOpportunityTake
     retVal = false
-    if @m_lastFireMsec + @m_fireRateMsec < MushGame.cGameMsec
+    if @m_lastFireMsec + @m_fireRateMsec < MushGame.cGameMsec && @m_ammoCount != 0
       @m_lastFireMsec = MushGame.cGameMsec
-      retVal = true
+      unless @m_type == :spawner && $currentGame.mSpace.mKhaziRedCount > @m_spawnLimit
+        retVal = true
+      end
     end
     retVal
+  end
+  
+  def mCommonFire(inEvent, inPiece, inProjPost)
+    @m_lastFireMsec = MushGame.cGameMsec
+    @m_offsetNumber += 1
+    @m_offsetNumber = 0 if @m_offsetNumber >= @m_offsetSequence.size    
+    
+    MushGame.cTiedSoundPlay(@m_fireSound, inProjPost) if @m_fireSound
+    MushGame.cTiedSoundPlay(@m_reloadSound, inProjPost) if @m_reloadSound
+
+    @m_ammoCount -= 1 if @m_ammoCount
+
   end
   
   def mProjectileFire(inEvent, inPiece)
@@ -136,12 +155,8 @@ class AdanaxisWeapon < MushObject
       )
     end
     
-    @m_lastFireMsec = MushGame.cGameMsec
-    @m_offsetNumber += 1
-    @m_offsetNumber = 0 if @m_offsetNumber >= @m_offsetSequence.size    
+    mCommonFire(inEvent, inPiece, projPost)
     
-    MushGame.cTiedSoundPlay(@m_fireSound, projPost) if @m_fireSound
-    MushGame.cTiedSoundPlay(@m_reloadSound, projPost) if @m_reloadSound
     nil
   end
   
@@ -184,20 +199,62 @@ class AdanaxisWeapon < MushObject
       :flare_scale_range => 4.0..4.4
     )
 
-    @m_lastFireMsec = MushGame.cGameMsec
-    @m_offsetNumber += 1
-    @m_offsetNumber = 0 if @m_offsetNumber >= @m_offsetSequence.size    
+    mCommonFire(inEvent, inPiece, projPost)
+
+    nil
+  end
+  
+  def mSpawnerFire(inEvent, inPiece)
+    projPost = inEvent.mPost.dup
     
-    MushGame.cTiedSoundPlay("#{@m_fireSound}", projPost) if @m_fireSound
-    MushGame.cTiedSoundPlay("#{@m_reloadSound}", projPost) if @m_reloadSound
+    # Get firer forward velocity but not transverse
+    vel = projPost.velocity
+    projPost.angular_position.mInverse.mRotate(vel)
+    vel.x = 0
+    vel.y = 0
+    vel.z = 0
+    vel.w = vel.w - @m_speed
+
+    offset = @m_offsetSequence[@m_offsetNumber].dup
+    
+    projPost.angular_position.mRotate(offset)
+    projPost.angular_position.mRotate(vel)
+    
+    projPost.position = projPost.position + offset
+    projPost.velocity = vel
+    
+    # Rotate spawned object so it faces the opposite way to the spawner
+    angPos = projPost.angular_position
+    # This combo send (x,y,z,w) to (-x,-y,-z,-w)
+    MushTools.cRotationInXYPlane(Math::PI).mRotate(angPos)
+    MushTools.cRotationInZWPlane(Math::PI).mRotate(angPos)
+    projPost.angular_position = angPos
+    
+    # Apply the angular velocity in the object frame
+    angVel = projPost.angular_position.mInverse
+    @m_angularVelocity.mRotate(angVel)
+    projPost.angular_position.mRotate(angVel)
+    projPost.angular_velocity = angVel
+    
+    baseVelocity = projPost.velocity
+    lifetime = @m_lifetimeMsec
+
+    $currentGame.mSpace.mPieceLibrary.mAttendantCreate(
+      :colour => 'red',
+      :post => projPost,
+      :spawned => true
+    )
+      
+    mCommonFire(inEvent, inPiece, projPost)
+
     nil
   end
   
   def mFire(inEvent, inPiece)
-    if @m_rail
-      mRailFire(inEvent, inPiece)
-    else
-      mProjectileFire(inEvent, inPiece)
+    case @m_type
+      when :rail : mRailFire(inEvent, inPiece)
+      when :spawner : mSpawnerFire(inEvent, inPiece)
+      else mProjectileFire(inEvent, inPiece)
     end
   end
 end

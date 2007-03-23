@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } fkP4xUsCfj1eVHkvRP5YMw
-# $Id: AdanaxisPieceLibrary.rb,v 1.7 2007/03/21 11:56:05 southa Exp $
+# $Id: AdanaxisPieceLibrary.rb,v 1.8 2007/03/23 12:27:34 southa Exp $
 # $Log: AdanaxisPieceLibrary.rb,v $
+# Revision 1.8  2007/03/23 12:27:34  southa
+# Added levels and Cistern mesh
+#
 # Revision 1.7  2007/03/21 11:56:05  southa
 # Rail effects and damage icons
 #
@@ -59,9 +62,10 @@ class AdanaxisPieceLibrary < MushObject
       :effect_scale => 2.5,
       :hit_points => 50.0,
       :type => @m_typeDefault,
+      :ai_object => AdanaxisAIKhaziCarrier,
       :seek_speed => 0.00,
       :seek_acceleration => 0.00,
-      :weapon => nil
+      :weapon => :khazi_spawner
     }
     @m_cisternNum = 0
     

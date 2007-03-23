@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } 1A8NPqtbBjVII7HPL44JTQ
-# $Id: AdanaxisTextureLibrary.rb,v 1.36 2007/03/20 20:36:54 southa Exp $
+# $Id: AdanaxisTextureLibrary.rb,v 1.37 2007/03/23 12:27:34 southa Exp $
 # $Log: AdanaxisTextureLibrary.rb,v $
+# Revision 1.37  2007/03/23 12:27:34  southa
+# Added levels and Cistern mesh
+#
 # Revision 1.36  2007/03/20 20:36:54  southa
 # Solid renderer fixes
 #
@@ -318,7 +321,7 @@ class AdanaxisTextureLibrary < MushObject
 		:scale         => [scale, scale, scale, scale],
     :numoctaves    => 8,
     :octaveratio   => 0.5,
-		:cache         => 0,
+		:cache         => 1,
     :compress      => compressNear
 	)
 
