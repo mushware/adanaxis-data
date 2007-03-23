@@ -6,7 +6,7 @@
 # Copyright Andy Southgate 2006-2007
 #
 # This file may be used and distributed under the terms of the Mushware
-# software licence version 1.1, under the terms for 'Proprietary original
+# Software Licence version 1.2, under the terms for 'Proprietary original
 # source files'.  If not supplied with this software, a copy of the licence
 # can be obtained from Mushware Limited via http://www.mushware.com/.
 # One of your options under that licence is to use and distribute this file
@@ -15,9 +15,12 @@
 # This software carries NO WARRANTY of any kind.
 #
 ##############################################################################
-#%Header } mHm1SC5zJI2Q1twa42Xtew
-# $Id: AdanaxisSpace.rb,v 1.24 2007/03/09 11:29:12 southa Exp $
+#%Header } vkczNSqA53jnWlTa0JJing
+# $Id: AdanaxisSpace.rb,v 1.25 2007/03/13 21:45:09 southa Exp $
 # $Log: AdanaxisSpace.rb,v $
+# Revision 1.25  2007/03/13 21:45:09  southa
+# Release process
+#
 # Revision 1.24  2007/03/09 11:29:12  southa
 # Game end actions
 #
@@ -115,6 +118,10 @@ class AdanaxisSpace < MushObject
     if File.file?(dialogueFile)
       MushGame.cGameDialoguesLoad(dialogueFile)
     end
+  end
+  
+  def mMusicAdd(inID, inName)
+      MushGame.cSoundStreamDefine(inID, MushConfig.cGlobalWavesPath+'/'+inName)
   end
   
   def mPrecacheListAdd(inNames)

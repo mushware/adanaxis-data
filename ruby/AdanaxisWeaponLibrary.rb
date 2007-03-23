@@ -6,7 +6,7 @@
 # Copyright Andy Southgate 2006-2007
 #
 # This file may be used and distributed under the terms of the Mushware
-# software licence version 1.1, under the terms for 'Proprietary original
+# Software Licence version 1.2, under the terms for 'Proprietary original
 # source files'.  If not supplied with this software, a copy of the licence
 # can be obtained from Mushware Limited via http://www.mushware.com/.
 # One of your options under that licence is to use and distribute this file
@@ -15,9 +15,12 @@
 # This software carries NO WARRANTY of any kind.
 #
 ##############################################################################
-#%Header } xz/Let9fpz2Hu9LmsyUkXg
-# $Id: AdanaxisWeaponLibrary.rb,v 1.14 2007/03/06 21:05:17 southa Exp $
+#%Header } KYgLHF8t3YCZa/IBjNku9Q
+# $Id: AdanaxisWeaponLibrary.rb,v 1.15 2007/03/13 21:45:09 southa Exp $
 # $Log: AdanaxisWeaponLibrary.rb,v $
+# Revision 1.15  2007/03/13 21:45:09  southa
+# Release process
+#
 # Revision 1.14  2007/03/06 21:05:17  southa
 # Level work
 #
@@ -245,6 +248,11 @@ class AdanaxisWeaponLibrary < MushObject
   end
   
   def mWeapon(inName)
-    return @m_weapons[inName.to_sym].dup
+    if inName
+      retVal = @m_weapons[inName.to_sym].dup
+    else
+      retVal = nil
+    end
+    retVal
   end
 end

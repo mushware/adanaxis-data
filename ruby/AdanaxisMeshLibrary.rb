@@ -6,7 +6,7 @@
 # Copyright Andy Southgate 2006-2007
 #
 # This file may be used and distributed under the terms of the Mushware
-# software licence version 1.1, under the terms for 'Proprietary original
+# Software Licence version 1.2, under the terms for 'Proprietary original
 # source files'.  If not supplied with this software, a copy of the licence
 # can be obtained from Mushware Limited via http://www.mushware.com/.
 # One of your options under that licence is to use and distribute this file
@@ -15,9 +15,12 @@
 # This software carries NO WARRANTY of any kind.
 #
 ##############################################################################
-#%Header } 8Ft/KCtkgdEE2CxrOoI0Rg
-# $Id: AdanaxisMeshLibrary.rb,v 1.30 2007/02/08 17:55:12 southa Exp $
+#%Header } uF839qwtiSp+ePtgY6Hnrw
+# $Id: AdanaxisMeshLibrary.rb,v 1.31 2007/03/13 21:45:08 southa Exp $
 # $Log: AdanaxisMeshLibrary.rb,v $
+# Revision 1.31  2007/03/13 21:45:08  southa
+# Release process
+#
 # Revision 1.30  2007/02/08 17:55:12  southa
 # Common routines in space generation
 #
@@ -74,6 +77,150 @@ class AdanaxisMeshLibrary
     @m_textureLibrary = inParams[:texture_library] || raise("No texture library supplied to mesh library")
   end
   
+  #
+  # Attendant mesh
+  #
+  # Cannon fodder, lots of them, quick to render
+  def mAttendantCreate(inName)
+    mesh = MushMesh.new(inName)
+
+    mesh.mBaseAdd(MushBasePrism.new(:order => 5))
+	
+    mesh.mBaseDisplacementAdd(MushDisplacement.new(
+		  :offset => MushVector.new(0,0,0,1),
+      :scale => MushVector.new(Math.sqrt(2),Math.sqrt(2),1,1)
+	  ))
+	
+    # Boom -z
+    mesh.mExtruderAdd(MushExtruder.new(
+      :sourceface => 2,
+      :displacement => MushDisplacement.new(
+        :offset => MushVector.new(0,0,-0.5,0),
+        :rotation => MushTools.cRotationInZWPlane(Math::PI/6),
+        :scale => 0.75
+      ),
+		  :num_iterations => 4
+    ))
+	  
+    # Boom +z
+    mesh.mExtruderAdd(MushExtruder.new(
+      :sourceface => 3,
+      :displacement => MushDisplacement.new(
+        :offset => MushVector.new(0,0,0.5,0),
+        :rotation => MushTools.cRotationInZWPlane(-Math::PI/6),
+        :scale => 0.75
+      ),
+      :num_iterations => 4
+    ))
+	  
+    # Nose
+    mesh.mExtruderAdd(MushExtruder.new(
+      :sourceface => 0,
+      :displacement => MushDisplacement.new(
+        :offset => MushVector.new(0,0,0,-1),
+        :scale => 0.6),
+  		:num_iterations => 3
+    ))
+
+    # Tail
+    mesh.mExtruderAdd(MushExtruder.new(
+      :sourceface => 1,
+      :displacement => MushDisplacement.new(
+        :offset => MushVector.new(0,0,0,1.0),
+        :scale => 0.75),
+  		:num_iterations => 1
+    ))
+
+    mesh.mMaterialAdd("#{inName}-mat")
+
+    mesh.mMake
+  end
+
+  #
+  # Cistern mesh
+  #
+  # A large carrier that spawns smaller craft as it goes along
+  def mKhaziCisternCreate(inName)
+    mesh = MushMesh.new(inName)
+
+    mesh.mBaseAdd(MushBasePrism.new(:order => 7))
+	
+    mesh.mBaseDisplacementAdd(MushDisplacement.new(
+		  :offset => MushVector.new(0,0,0,1),
+      :scale => MushVector.new(4*Math.sqrt(2),4*Math.sqrt(2),4,4)
+	  ))
+	
+  	  
+    # Nose
+    mesh.mExtruderAdd(MushExtruder.new(
+      :sourceface => 0,
+      :displacement => MushDisplacement.new(
+        :offset => MushVector.new(0,0,0,-1.5),
+        :scale => 0.8),
+  		:num_iterations => 1
+    ))
+
+    mesh.mExtruderAdd(MushExtruder.new(
+      :sourceface => 1*11+0,
+      :displacement => MushDisplacement.new(
+        :offset => MushVector.new(0,0,0,-1.0),
+        :scale => 0.5),
+  		:num_iterations => 1
+    ))
+
+    # Tail
+    mesh.mExtruderAdd(MushExtruder.new(
+      :sourceface => 1,
+      :displacement => MushDisplacement.new(
+        :offset => MushVector.new(0,0,0,1.5),
+        :scale => 0.75),
+  		:num_iterations => 1
+    ))
+  
+    mesh.mExtruderAdd(MushExtruder.new(
+      :sourceface => 3*10+1,
+      :displacement => MushDisplacement.new(
+        :offset => MushVector.new(0,0,0,2.0),
+        :scale => 1.0),
+  		:num_iterations => 1
+    ))
+    mesh.mExtruderAdd(MushExtruder.new(
+      :sourceface => 4*10+1,
+      :displacement => MushDisplacement.new(
+        :offset => MushVector.new(0,0,0,1.5),
+        :scale => 1.25),
+  		:num_iterations => 1
+    ))
+
+    # Boom -z
+    mesh.mExtruderAdd(MushExtruder.new(
+      :sourceface => 2,
+      :displacement => MushDisplacement.new(
+        :offset => MushVector.new(0,0,-3.0,0),
+        :rotation => MushTools.cRotationInZWPlane(-Math::PI/12),
+        :scale => 0.5
+      ),
+		  :num_iterations => 4
+    ))
+	  
+    # Boom +z
+    mesh.mExtruderAdd(MushExtruder.new(
+      :sourceface => 3,
+      :displacement => MushDisplacement.new(
+        :offset => MushVector.new(0,0,3.0,0),
+        :rotation => MushTools.cRotationInZWPlane(Math::PI/12),
+        :scale => 0.5
+      ),
+      :num_iterations => 4
+    ))
+
+
+    mesh.mMaterialAdd("#{inName}-mat")
+
+    mesh.mMake
+  end
+
+
   #
   # Khazi Rail
   #
@@ -190,71 +337,11 @@ class AdanaxisMeshLibrary
   end
 
   #
-  # Attendant mesh
-  #
-  # Cannon fodder, lots of them, quick to render
-  def mAttendantCreate(inName)
-    mesh = MushMesh.new(inName)
-
-    mesh.mBaseAdd(MushBasePrism.new(:order => 5))
-	
-    mesh.mBaseDisplacementAdd(MushDisplacement.new(
-		  :offset => MushVector.new(0,0,0,1),
-      :scale => MushVector.new(Math.sqrt(2),Math.sqrt(2),1,1)
-	  ))
-	
-    # Boom -z
-    mesh.mExtruderAdd(MushExtruder.new(
-      :sourceface => 2,
-      :displacement => MushDisplacement.new(
-        :offset => MushVector.new(0,0,-0.5,0),
-        :rotation => MushTools.cRotationInZWPlane(Math::PI/6),
-        :scale => 0.75
-      ),
-		  :num_iterations => 4
-    ))
-	  
-    # Boom +z
-    mesh.mExtruderAdd(MushExtruder.new(
-      :sourceface => 3,
-      :displacement => MushDisplacement.new(
-        :offset => MushVector.new(0,0,0.5,0),
-        :rotation => MushTools.cRotationInZWPlane(-Math::PI/6),
-        :scale => 0.75
-      ),
-      :num_iterations => 4
-    ))
-	  
-    # Nose
-    mesh.mExtruderAdd(MushExtruder.new(
-      :sourceface => 0,
-      :displacement => MushDisplacement.new(
-        :offset => MushVector.new(0,0,0,-1),
-        :scale => 0.6),
-  		:num_iterations => 3
-    ))
-
-    # Tail
-    mesh.mExtruderAdd(MushExtruder.new(
-      :sourceface => 1,
-      :displacement => MushDisplacement.new(
-        :offset => MushVector.new(0,0,0,1.0),
-        :scale => 0.75),
-  		:num_iterations => 1
-    ))
-
-    mesh.mMaterialAdd("#{inName}-mat")
-
-    mesh.mMake
-  end
-
-
-  #
-  # Attendant mesh
+  # Cleaner mesh
   #
   
-  def mKleenorCreate
-    mesh = MushMesh.new('kleenor')
+  def mCleanerCreate
+    mesh = MushMesh.new('cleaner')
 
     base1 = MushBasePrism.new(:order => 5)
 	
@@ -334,7 +421,7 @@ class AdanaxisMeshLibrary
   #mesh.mExtruderAdd(extruder5)
   #mesh.mExtruderAdd(extruder6)
   #mesh.mExtruderAdd(extruder7)
-  mesh.mMaterialAdd('attendant-mat')
+  mesh.mMaterialAdd('cleaner-mat')
 
     mesh.mMake
   end
@@ -696,12 +783,15 @@ class AdanaxisMeshLibrary
   end
   
   def mCreate
-    mKhaziRailCreate('rail')
-    mKhaziRailCreate('rail-red')
-    mKhaziRailCreate('rail-blue')
     mAttendantCreate('attendant')
     mAttendantCreate('attendant-red')
     mAttendantCreate('attendant-blue')
+    mKhaziCisternCreate('cistern')
+    mKhaziCisternCreate('cistern-red')
+    mKhaziCisternCreate('cistern-blue')
+    mKhaziRailCreate('rail')
+    mKhaziRailCreate('rail-red')
+    mKhaziRailCreate('rail-blue')
     
     mCubesCreate
     mProjectileCreate

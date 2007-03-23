@@ -6,18 +6,19 @@
 # Copyright Andy Southgate 2006-2007
 #
 # This file may be used and distributed under the terms of the Mushware
-# software licence version 1.1, under the terms for 'Proprietary original
-# source files'.  If not supplied with this software, a copy of the licence
-# can be obtained from Mushware Limited via http://www.mushware.com/.
-# One of your options under that licence is to use and distribute this file
-# under the terms of the GNU General Public Licence version 2.
+# Commercial Software Licence version 1.2.  If not supplied with this software
+# a copy of the licence can be obtained from Mushware Limited via
+# http://www.mushware.com/.
 #
 # This software carries NO WARRANTY of any kind.
 #
 ##############################################################################
-#%Header } 0h5/ucQc1uYad05hjCN3lQ
-# $Id: space.rb,v 1.5 2007/03/09 11:29:12 southa Exp $
+#%Header } 9ikhGcifyrg1myAUl8cjaQ
+# $Id: space.rb,v 1.6 2007/03/13 18:21:36 southa Exp $ 
 # $Log: space.rb,v $
+# Revision 1.6  2007/03/13 18:21:36  southa
+# Scanner jamming
+#
 # Revision 1.5  2007/03/09 11:29:12  southa
 # Game end actions
 #
@@ -99,7 +100,7 @@ class Adanaxis_local4 < AdanaxisSpace
   
   def mLoad(game)
     mLoadStandard(game)
-    MushGame.cSoundStreamDefine('game1', MushConfig.cGlobalWavesPath+'/mushware-except-for-this.ogg')
+    mMusicAdd('game1', 'mushware-sanity-fault.ogg')
   end
   
   def mPrecacheListBuild

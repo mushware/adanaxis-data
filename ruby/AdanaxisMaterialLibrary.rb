@@ -6,7 +6,7 @@
 # Copyright Andy Southgate 2006-2007
 #
 # This file may be used and distributed under the terms of the Mushware
-# software licence version 1.1, under the terms for 'Proprietary original
+# Software Licence version 1.2, under the terms for 'Proprietary original
 # source files'.  If not supplied with this software, a copy of the licence
 # can be obtained from Mushware Limited via http://www.mushware.com/.
 # One of your options under that licence is to use and distribute this file
@@ -15,9 +15,12 @@
 # This software carries NO WARRANTY of any kind.
 #
 ##############################################################################
-#%Header } bJ6qXAveCFJYH0dkyf+HDA
-# $Id: AdanaxisMaterialLibrary.rb,v 1.22 2007/02/08 17:55:12 southa Exp $
+#%Header } lXsM+tU6WDZHu5zVkn9QXA
+# $Id: AdanaxisMaterialLibrary.rb,v 1.23 2007/03/13 21:45:07 southa Exp $
 # $Log: AdanaxisMaterialLibrary.rb,v $
+# Revision 1.23  2007/03/13 21:45:07  southa
+# Release process
+#
 # Revision 1.22  2007/02/08 17:55:12  southa
 # Common routines in space generation
 #
@@ -76,36 +79,26 @@ class AdanaxisMaterialLibrary < MushObject
   end
 
   def mCreate
-    MushMaterial.cDefine(
-      :name => 'attendant-mat',
-      :mapping_type => :tiled,
-      :texture_names => ['attendant-tex']
-    )
-    MushMaterial.cDefine(
-      :name => 'attendant-red-mat',
-      :mapping_type => :tiled,
-      :texture_names => ['attendant-red-tex']
-    )
-    MushMaterial.cDefine(
-      :name => 'attendant-blue-mat',
-      :mapping_type => :tiled,
-      :texture_names => ['attendant-blue-tex']
-    )
-    MushMaterial.cDefine(
-      :name => 'rail-mat',
-      :mapping_type => :tiled,
-      :texture_names => ['rail-tex']
-    )
-    MushMaterial.cDefine(
-      :name => 'rail-red-mat',
-      :mapping_type => :tiled,
-      :texture_names => ['rail-red-tex']
-    )
-    MushMaterial.cDefine(
-      :name => 'rail-blue-mat',
-      :mapping_type => :tiled,
-      :texture_names => ['rail-blue-tex']
-    )
+    tiledList = [
+      'attendant',
+      'attendant-red',
+      'attendant-blue',
+      'cistern',
+      'cistern-red',
+      'cistern-blue',
+      'rail',
+      'rail-red',
+      'rail-blue'
+      ]
+      
+    tiledList.each do |name|
+      MushMaterial.cDefine(
+        :name => "#{name}-mat",
+        :mapping_type => :tiled,
+        :texture_names => ["#{name}-tex"]
+      )
+    end
+
     MushMaterial.cDefine(
       :name => 'player-mat',
       :mapping_type => :tiled,

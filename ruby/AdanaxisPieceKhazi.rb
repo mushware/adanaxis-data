@@ -6,7 +6,7 @@
 # Copyright Andy Southgate 2006-2007
 #
 # This file may be used and distributed under the terms of the Mushware
-# software licence version 1.1, under the terms for 'Proprietary original
+# Software Licence version 1.2, under the terms for 'Proprietary original
 # source files'.  If not supplied with this software, a copy of the licence
 # can be obtained from Mushware Limited via http://www.mushware.com/.
 # One of your options under that licence is to use and distribute this file
@@ -15,9 +15,12 @@
 # This software carries NO WARRANTY of any kind.
 #
 ##############################################################################
-#%Header } Kz2b8xClmh0UFWw6DWvNVQ
-# $Id: AdanaxisPieceKhazi.rb,v 1.31 2007/03/20 20:36:54 southa Exp $
+#%Header } mlDJl4Ez45nYxZ6GWtlYdg
+# $Id: AdanaxisPieceKhazi.rb,v 1.32 2007/03/21 11:56:05 southa Exp $
 # $Log: AdanaxisPieceKhazi.rb,v $
+# Revision 1.32  2007/03/21 11:56:05  southa
+# Rail effects and damage icons
+#
 # Revision 1.31  2007/03/20 20:36:54  southa
 # Solid renderer fixes
 #
@@ -140,7 +143,7 @@ class AdanaxisPieceKhazi < AdanaxisPiece
     
     @m_ai = AdanaxisAIKhazi.new(aiParams)
     @m_remnant = inParams[:remnant]
-    @m_weaponName = inParams[:weapon] || :khazi_base
+    @m_weaponName = inParams[:weapon] || nil
     @m_weapon = $currentGame.mSpace.mWeaponLibrary.mWeapon(@m_weaponName)
     @m_scannerSymbol = inParams[:scanner_symbol] || AdanaxisScanner::SYMBOL_KHAZI_PLAIN
     @m_isJammer = inParams[:is_jammer] || false
@@ -172,7 +175,7 @@ class AdanaxisPieceKhazi < AdanaxisPiece
   end
 
   def mFire
-    if @m_weapon.mFireOpportunityTake
+    if @m_weapon && @m_weapon.mFireOpportunityTake
       event = AdanaxisEventFire.new
       event.mPostSet(@m_post)
       $currentLogic.mEventConsume(event, @m_id, @m_id)

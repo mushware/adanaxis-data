@@ -6,7 +6,7 @@
 # Copyright Andy Southgate 2006-2007
 #
 # This file may be used and distributed under the terms of the Mushware
-# software licence version 1.1, under the terms for 'Proprietary original
+# Software Licence version 1.2, under the terms for 'Proprietary original
 # source files'.  If not supplied with this software, a copy of the licence
 # can be obtained from Mushware Limited via http://www.mushware.com/.
 # One of your options under that licence is to use and distribute this file
@@ -15,9 +15,12 @@
 # This software carries NO WARRANTY of any kind.
 #
 ##############################################################################
-#%Header } ufp2oi5LTGHndv0Fk7nVFQ
-# $Id: AdanaxisPieceLibrary.rb,v 1.6 2007/03/20 20:36:54 southa Exp $
+#%Header } fkP4xUsCfj1eVHkvRP5YMw
+# $Id: AdanaxisPieceLibrary.rb,v 1.7 2007/03/21 11:56:05 southa Exp $
 # $Log: AdanaxisPieceLibrary.rb,v $
+# Revision 1.7  2007/03/21 11:56:05  southa
+# Rail effects and damage icons
+#
 # Revision 1.6  2007/03/20 20:36:54  southa
 # Solid renderer fixes
 #
@@ -48,8 +51,19 @@ class AdanaxisPieceLibrary < MushObject
       :type => @m_typeDefault,
       :seek_speed => 0.05,
       :seek_acceleration => 0.01,
+      :weapon => :khazi_base
     }
     @m_attendantNum = 0
+    
+    @m_cisternDefaults = {
+      :effect_scale => 2.5,
+      :hit_points => 50.0,
+      :type => @m_typeDefault,
+      :seek_speed => 0.00,
+      :seek_acceleration => 0.00,
+      :weapon => nil
+    }
+    @m_cisternNum = 0
     
     @m_railDefaults = {
       :effect_scale => 5.0,
@@ -94,7 +108,7 @@ class AdanaxisPieceLibrary < MushObject
 
   def mScannerSymbol(inParams)
     retVal = AdanaxisScanner::SYMBOL_KHAZI_PLAIN
-    isPower = (inParams[:hit_points] && inParams[:hit_points] >= 50)
+    isPower = (inParams[:hit_points] && inParams[:hit_points] > 60.0)
     hasRemnant = inParams[:remnant]
     
     case inParams[:colour]
@@ -142,6 +156,14 @@ class AdanaxisPieceLibrary < MushObject
     @m_attendantNum += 1
   end    
 
+  # Creates a Cistern
+  def mCisternCreate(inParams = {})
+    AdanaxisUtil.cSpellCheck(inParams)
+    newPiece = AdanaxisPieceKhazi.cCreate(mCisternParams(inParams))
+    mCommonCreate(newPiece, inParams)
+    @m_cisternNum += 1
+  end    
+
   # Creates a Rail
   def mRailCreate(inParams = {})
     AdanaxisUtil.cSpellCheck(inParams)
@@ -152,6 +174,10 @@ class AdanaxisPieceLibrary < MushObject
 
   def mAttendantTex(*inColours)
     return inColours.collect { |name| "attendant-#{name}-tex" }
+  end
+
+  def mCisternTex(*inColours)
+    return inColours.collect { |name| "cistern-#{name}-tex" }
   end
 
   def mRailTex(*inColours)
@@ -175,6 +201,38 @@ protected
       when /(red|blue)/: "attendant-#$1"
       when nil:          "attendant"
       else raise "Unknown attendant colour #{inParams[:colour]}"
+    end
+    
+    # Derive type and target types, i.e. what this is and what it shoots at
+    retParams[:type] = mType(inParams)
+    retParams[:target_types] = mTargetTypes(inParams)
+    
+    # Select the remnant left behind when rhe craft is destroyed
+    retParams[:remnant] = $currentLogic.mRemnant.mLowGradeRemnant(@m_attendantNum)
+    
+    # Set scanner symbol.  Needs to know remnant type, hence merge
+    retParams[:scanner_symbol] = mScannerSymbol(retParams.merge(inParams))
+    
+    # Add paramters common to all pieces, i.e. position
+    mKhaziAddBaseParams(retParams, inParams)
+    
+    # Merge the input parameters so that they overwrite those we've calculated
+    retParams.merge!(inParams)
+    
+    retParams
+  end
+  
+  # Derive parameters for a Cistern
+  def mCisternParams(inParams = {})
+    
+    # Start with the defaults
+    retParams = @m_cisternDefaults
+    
+    # Choose a mesh name based on the colour
+    retParams[:mesh_name] = case inParams[:colour]
+      when /(red|blue)/: "cistern-#$1"
+      when nil:          "cistern"
+      else raise "Unknown cistern colour #{inParams[:colour]}"
     end
     
     # Derive type and target types, i.e. what this is and what it shoots at

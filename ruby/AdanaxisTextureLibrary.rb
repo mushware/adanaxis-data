@@ -6,7 +6,7 @@
 # Copyright Andy Southgate 2006-2007
 #
 # This file may be used and distributed under the terms of the Mushware
-# software licence version 1.1, under the terms for 'Proprietary original
+# Software Licence version 1.2, under the terms for 'Proprietary original
 # source files'.  If not supplied with this software, a copy of the licence
 # can be obtained from Mushware Limited via http://www.mushware.com/.
 # One of your options under that licence is to use and distribute this file
@@ -15,9 +15,12 @@
 # This software carries NO WARRANTY of any kind.
 #
 ##############################################################################
-#%Header } 6dpPnv49oOQywOR6vN4p5w
-# $Id: AdanaxisTextureLibrary.rb,v 1.35 2007/03/09 19:50:10 southa Exp $
+#%Header } 1A8NPqtbBjVII7HPL44JTQ
+# $Id: AdanaxisTextureLibrary.rb,v 1.36 2007/03/20 20:36:54 southa Exp $
 # $Log: AdanaxisTextureLibrary.rb,v $
+# Revision 1.36  2007/03/20 20:36:54  southa
+# Solid renderer fixes
+#
 # Revision 1.35  2007/03/09 19:50:10  southa
 # Resident textures
 #
@@ -303,6 +306,22 @@ class AdanaxisTextureLibrary < MushObject
     :compress      => compressNear
 	)
 	
+  scale = 0.2
+  MushGLTexture::cDefine(
+		:name          => 'cistern-red-tex',
+    :type          => 'CellNoise',
+    :meshname      => 'cistern-red',
+    :size          => [textureSize, textureSize],
+    :palette       => 'palette1',
+    :palettestart  => [0,0.6],
+    :palettevector => [0.99,0.4],
+		:scale         => [scale, scale, scale, scale],
+    :numoctaves    => 8,
+    :octaveratio   => 0.5,
+		:cache         => 0,
+    :compress      => compressNear
+	)
+
   scale = 0.1
 	MushGLTexture::cDefine(
 		:name          => 'rail-tex',

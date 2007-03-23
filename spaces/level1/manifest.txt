@@ -1,0 +1,19 @@
+#
+# Adanaxis manifest file
+#
+# Copyright Andy Southgate 2006-2007
+#
+# This file may be used and distributed under the terms of the Mushware
+# Commercial Software Licence version 1.2.  If not supplied with this software
+# a copy of the licence can be obtained from Mushware Limited via
+# http://www.mushware.com/.
+#
+# This software carries NO WARRANTY of any kind.
+#
+# $Id$
+# $Log$
+directory='level1'
+name='Skirmish'
+creator='Andy Southgate (www.mushware.com)'
+# permit='local1'
+next='level2'
