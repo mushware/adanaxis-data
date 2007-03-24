@@ -21,9 +21,40 @@ require 'Mushware.rb'
 require 'AdanaxisAIKhazi.rb'
 
 class AdanaxisAIKhaziCarrier < AdanaxisAIKhazi
-  def mStateActionWaypoint
-    retVal = super
+
+  AISTATE_DEPLOY=100
+
+  def mStateChangeDeploy(inDuration = nil)
+    mStateChangePatrol(inDuration)
+    mStateChange(AISTATE_DEPLOY)
+    nil
+  end
+
+  def mStateActionPatrolExit
+    mStateChangeDeploy(15000)
+  end
+
+  def mStateActionDeployExit
+    mStateChangePatrol(15000)
+  end
+
+  def mStateActionDeploy
+    retVal = mStateActionPatrol
     @r_piece.mFire
     retVal
   end
+  
+  def mActMain
+    callInterval = 100
+
+    case @m_state
+      when AISTATE_DEPLOY
+        callInterval = mStateActionDeploy
+        mStateActionDeployExit if mStateExpired?
+      else callInterval = super 
+    end
+
+    return callInterval
+  end
+
 end

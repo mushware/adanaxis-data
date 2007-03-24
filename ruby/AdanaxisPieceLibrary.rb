@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } fkP4xUsCfj1eVHkvRP5YMw
-# $Id: AdanaxisPieceLibrary.rb,v 1.8 2007/03/23 12:27:34 southa Exp $
+# $Id: AdanaxisPieceLibrary.rb,v 1.9 2007/03/23 18:39:08 southa Exp $
 # $Log: AdanaxisPieceLibrary.rb,v $
+# Revision 1.9  2007/03/23 18:39:08  southa
+# Carriers and spawning
+#
 # Revision 1.8  2007/03/23 12:27:34  southa
 # Added levels and Cistern mesh
 #
@@ -65,6 +68,8 @@ class AdanaxisPieceLibrary < MushObject
       :ai_object => AdanaxisAIKhaziCarrier,
       :seek_speed => 0.00,
       :seek_acceleration => 0.00,
+      :patrol_speed => 0.08,
+      :patrol_acceleration => 0.002,
       :weapon => :khazi_spawner
     }
     @m_cisternNum = 0

@@ -6,7 +6,7 @@
 # Copyright Andy Southgate 2006-2007
 #
 # This file may be used and distributed under the terms of the Mushware
-# software licence version 1.1, under the terms for 'Proprietary original
+# Software Licence version 1.2, under the terms for 'Proprietary original
 # source files'.  If not supplied with this software, a copy of the licence
 # can be obtained from Mushware Limited via http://www.mushware.com/.
 # One of your options under that licence is to use and distribute this file
@@ -15,9 +15,12 @@
 # This software carries NO WARRANTY of any kind.
 #
 ##############################################################################
-#%Header } GANqTx9YWqp8MKUhMNdn3w
-# $Id: AdanaxisAI.rb,v 1.12 2007/03/06 21:05:16 southa Exp $
+#%Header } w5eKF461Eep4mjTerVpQKg
+# $Id: AdanaxisAI.rb,v 1.13 2007/03/13 21:45:06 southa Exp $
 # $Log: AdanaxisAI.rb,v $
+# Revision 1.13  2007/03/13 21:45:06  southa
+# Release process
+#
 # Revision 1.12  2007/03/06 21:05:16  southa
 # Level work
 #
@@ -66,6 +69,7 @@ class AdanaxisAI < MushObject
   AISTATE_SEEK=5
   AISTATE_WAYPOINT=6
   AISTATE_PROJECTILE_SEEK=7
+  AISTATE_RAM=8
 
   def initialize(inParams = {})
     @m_state = AISTATE_DORMANT
@@ -78,13 +82,20 @@ class AdanaxisAI < MushObject
     @m_targetID = inParams[:target_id]
     @m_seekSpeed = inParams[:seek_speed] || 0.0
     @m_seekAcceleration = inParams[:seek_acceleration] || 0.0
-    @m_patrolSpeed = inParams[:patrol_speed] || 0.0
     @m_patrolAcceleration = inParams[:patrol_acceleration] || 0.0
+    @m_patrolMsec = inParams[:patrol_msec]
+    @m_patrolPoints = inParams[:patrol_points]
+    @m_patrolSpeed = inParams[:patrol_speed] || 0.0
     @m_targetTypes = inParams[:target_types] || "p"
     @m_overrideDeadMsec = inParams[:override_dead_msec] || 10000
     @m_lastOverrideMsec = nil
     @m_waypoint = inParams[:waypoint] || MushVector.new(rand(300)-150, rand(300)-150, rand(300)-150, -rand(300)-50)
     @m_waypointMsec = inParams[:waypoint_msec]
+
+    case inParams[:ai_state]
+    when :patrol
+      mStateChangePatrol(@m_patrolMsec)
+    end
   end
 
   def mTargetSelect
@@ -104,10 +115,26 @@ class AdanaxisAI < MushObject
     nil
   end
 
+  def mStateChangeDormant
+    mStateChange(AISTATE_DORMANT)
+  end
+  
   def mStateChangeSeek(duration)
     @m_stateDuration = duration
     mTargetSelect unless @m_targetID
     mStateChange(AISTATE_SEEK)
+    nil
+  end
+
+  def mStateChangePatrol(duration = nil)
+    @m_stateDuration = duration
+    @m_patrolIndex = 0
+    @m_patrolPoint = @m_patrolPoints[@m_patrolIndex]
+    if !@m_patrolPoint
+      mStateChange(AISTATE_DORMANT)
+      raise(RuntimeError, 'Patrol state entered without patrol points')
+    end
+    mStateChange(AISTATE_PATROL)
     nil
   end
 
@@ -123,7 +150,34 @@ class AdanaxisAI < MushObject
   end
 
   def mStateExpired?
-    (mMsecSinceStateChange > @m_stateDuration)
+    return @m_stateDuration && mMsecSinceStateChange > @m_stateDuration
+  end
+
+  def mStateActionPatrolExit
+    mStateChangeDormant
+  end
+  
+  def mStateActionPatrolNextPoint
+    @m_patrolIndex += 1
+    @m_patrolIndex = 0 if @m_patrolIndex >= @m_patrolPoints.size
+    @m_patrolPoint = @m_patrolPoints[@m_patrolIndex]
+  end
+
+  def mStateActionPatrol
+    if @m_patrolPoint
+      distToPoint2 = (@m_patrolPoint - @r_post.position).mMagnitudeSquared
+      if distToPoint2 < 100.0 * @m_patrolSpeed * @m_patrolSpeed
+        mStateActionPatrolNextPoint
+      end
+      
+      MushUtil.cRotateAndSeek(@r_post,
+        @m_patrolPoint, # Target
+        @m_patrolSpeed, # Maximum speed
+        @m_patrolAcceleration # Acceleration
+      )
+    end
+    
+    100
   end
 
   def mStateActionSeek
@@ -181,6 +235,9 @@ class AdanaxisAI < MushObject
         else
           mStateChangeSeek(15000)
         end
+      when AISTATE_PATROL
+        callInterval = mStateActionPatrol
+        mStateActionPatrolExit if mStateExpired?
       when AISTATE_SEEK : callInterval = mStateActionSeek
       else raise MushError.new("Bad aiState value #{@m_state}") 
     end

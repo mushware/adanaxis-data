@@ -14,8 +14,11 @@
 #
 ##############################################################################
 #%Header } himjbU5Z2u0qw2m4GmfqzA
-# $Id$
-# $Log$
+# $Id: space.rb,v 1.1 2007/03/23 12:27:35 southa Exp $
+# $Log: space.rb,v $
+# Revision 1.1  2007/03/23 12:27:35  southa
+# Added levels and Cistern mesh
+#
 
 require 'Mushware.rb'
 require 'Adanaxis.rb'
@@ -38,16 +41,27 @@ class Adanaxis_level2 < AdanaxisSpace
   
   def mInitialPiecesCreate
     super
-    (-2..2).each do |i|
+    (-0..0).each do |i|
+      patrolPoints = [
+        MushVector.new(i * 50, 200, -i*50, -100),
+        MushVector.new(i * 50, -200, 50, -100),
+        MushVector.new(i * 50, -200, i*50, -500),
+        MushVector.new(i * 50, 200, -50, -500),
+      ]
+    
+      angPos = MushTools.cRotationInXZPlane(Math::PI/2)
+      MushTools.cRotationInYWPlane(Math::PI/2).mRotate(angPos)
+      
       mPieceLibrary.mCisternCreate(
         :colour => 'red',
         :post => MushPost.new(
-          :position => MushVector.new(i * 50, -40, 0, -100-20*i.abs),
-          :angular_position => MushTools.cRandomOrientation
+          :position => MushVector.new(i * 50, -40, 0, -600-20*i.abs),
+          :velocity => MushVector.new(0, 0.1, 0, 0),
+          :angular_position => angPos
         ),
-        :waypoint => MushVector.new(i * 30, -0, i * 15, -250),
-        :waypoint_msec => 15000,
-        :ai_state => :waypoint_timed
+        :patrol_points => patrolPoints,
+        :patrol_msec => 6000,
+        :ai_state => :patrol
       )
     end
 

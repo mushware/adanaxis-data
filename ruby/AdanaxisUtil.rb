@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } lDJzWQbqKYTujby/WoRUQA
-# $Id: AdanaxisUtil.rb,v 1.23 2007/03/21 11:56:05 southa Exp $
+# $Id: AdanaxisUtil.rb,v 1.24 2007/03/23 18:39:08 southa Exp $
 # $Log: AdanaxisUtil.rb,v $
+# Revision 1.24  2007/03/23 18:39:08  southa
+# Carriers and spawning
+#
 # Revision 1.23  2007/03/21 11:56:05  southa
 # Rail effects and damage icons
 #
@@ -142,6 +145,8 @@ class AdanaxisUtil < MushObject
     :offset_sequence => true,
     :owner => true,
     :patrol_acceleration => true,
+    :patrol_msec => true,
+    :patrol_points => true,
     :patrol_speed => true,
     :position => true,
     :post => true,
