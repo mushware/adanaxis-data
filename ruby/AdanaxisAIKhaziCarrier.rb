@@ -30,12 +30,20 @@ class AdanaxisAIKhaziCarrier < AdanaxisAIKhazi
     nil
   end
 
+  def mStateActionRamExit
+    mStateChangeDeploy(10000)
+  end
+
   def mStateActionPatrolExit
     mStateChangeDeploy(15000)
   end
 
   def mStateActionDeployExit
-    mStateChangePatrol(15000)
+    if (@r_piece.mWeapon.mAmmoCount == 0 && AdanaxisRuby.cGameDifficulty > 0)
+      mStateChangeRam(60000)
+    else
+      mStateChangePatrol(15000)
+    end
   end
 
   def mStateActionDeploy

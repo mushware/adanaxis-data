@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } 5J+8wl02X3QBR8InmLme/A
-# $Id: AdanaxisPiecePlayer.rb,v 1.21 2007/03/21 11:56:05 southa Exp $
+# $Id: AdanaxisPiecePlayer.rb,v 1.22 2007/03/23 18:39:08 southa Exp $
 # $Log: AdanaxisPiecePlayer.rb,v $
+# Revision 1.22  2007/03/23 18:39:08  southa
+# Carriers and spawning
+#
 # Revision 1.21  2007/03/21 11:56:05  southa
 # Rail effects and damage icons
 #
@@ -115,7 +118,7 @@ class AdanaxisPiecePlayer < AdanaxisPiece
     @m_weaponName = @@c_weaponList[@m_weaponNum]
     @m_weapon = $currentGame.mSpace.mWeaponLibrary.mWeapon(@m_weaponName)
     @m_magazine = AdanaxisMagazine.new
-    @m_magazine.mPlayerLoadAll if $MUSHCONFIG['DEBUG']
+    @m_magazine.mPlayerLoadAll if $MUSHCONFIG['-DEBUG']
     @m_fireState = false
     @m_numActions = 0
     @m_lastAmmoAddMsec = 0

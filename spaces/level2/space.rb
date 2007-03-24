@@ -14,8 +14,11 @@
 #
 ##############################################################################
 #%Header } himjbU5Z2u0qw2m4GmfqzA
-# $Id: space.rb,v 1.1 2007/03/23 12:27:35 southa Exp $
+# $Id: space.rb,v 1.2 2007/03/24 14:06:28 southa Exp $
 # $Log: space.rb,v $
+# Revision 1.2  2007/03/24 14:06:28  southa
+# Cistern AI
+#
 # Revision 1.1  2007/03/23 12:27:35  southa
 # Added levels and Cistern mesh
 #
@@ -26,6 +29,8 @@ require 'Adanaxis.rb'
 class Adanaxis_level2 < AdanaxisSpace
   def initialize(inParams = {})
     super
+    mTimeoutSpawnAdd(:mSpawn0, 30000) if AdanaxisRuby.cGameDifficulty > 0
+    mTimeoutSpawnAdd(:mSpawn1, 60000) if AdanaxisRuby.cGameDifficulty > 1
   end
   
   def mLoad(game)
@@ -39,15 +44,16 @@ class Adanaxis_level2 < AdanaxisSpace
     mPrecacheListAdd(mPieceLibrary.mCisternTex('red'))
   end
   
-  def mInitialPiecesCreate
-    super
-    (-0..0).each do |i|
+  def mCisternCreate(inRange, inOffset = MushVector.new(0,0,0,0))
+    inRange.each do |i|
       patrolPoints = [
         MushVector.new(i * 50, 200, -i*50, -100),
         MushVector.new(i * 50, -200, 50, -100),
         MushVector.new(i * 50, -200, i*50, -500),
         MushVector.new(i * 50, 200, -50, -500),
       ]
+
+      patrolPoints.map! { |vec| inOffset + vec }
     
       angPos = MushTools.cRotationInXZPlane(Math::PI/2)
       MushTools.cRotationInYWPlane(Math::PI/2).mRotate(angPos)
@@ -55,16 +61,34 @@ class Adanaxis_level2 < AdanaxisSpace
       mPieceLibrary.mCisternCreate(
         :colour => 'red',
         :post => MushPost.new(
-          :position => MushVector.new(i * 50, -40, 0, -600-20*i.abs),
+          :position => MushVector.new(i * 50, -40, 0, -600-20*i.abs) + inOffset,
           :velocity => MushVector.new(0, 0.1, 0, 0),
           :angular_position => angPos
         ),
-        :patrol_points => patrolPoints,
-        :patrol_msec => 6000,
-        :ai_state => :patrol
+        :patrol_points => patrolPoints
       )
     end
-
+  end
+  
+  def mInitialPiecesCreate
+    super
+    mCisternCreate(0..0)
     mStandardCosmos(2)
+  end
+  
+  def mSpawn0
+    mCisternCreate(-1..1, MushVector.new(0,0,0,-200))
+  end
+
+  def mSpawn1
+    mCisternCreate(-2..2, MushVector.new(0,0,0,-400))
+    (-1..1).each do |i|
+      $currentLogic.mRemnant.mCreate(
+        :item_type => :player_heavy_missile,
+        :post => MushPost.new(
+          :position => MushVector.new(0, 0, 0, -500-5*i)),
+        :spawned => true
+      )
+    end
   end
 end

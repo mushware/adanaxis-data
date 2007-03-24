@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } lDJzWQbqKYTujby/WoRUQA
-# $Id: AdanaxisUtil.rb,v 1.24 2007/03/23 18:39:08 southa Exp $
+# $Id: AdanaxisUtil.rb,v 1.25 2007/03/24 14:06:28 southa Exp $
 # $Log: AdanaxisUtil.rb,v $
+# Revision 1.25  2007/03/24 14:06:28  southa
+# Cistern AI
+#
 # Revision 1.24  2007/03/23 18:39:08  southa
 # Carriers and spawning
 #
@@ -107,6 +110,7 @@ class AdanaxisUtil < MushObject
     :ai_object => true,
     :ai_params => true,
     :ai_state => true,
+    :ai_state_msec => true,
     :alpha_stutter => true,
     :ammo_count => true,
     :angular_position => true,
@@ -121,6 +125,7 @@ class AdanaxisUtil < MushObject
     :ember_lifetime_range => true,
     :ember_scale_range => true,
     :ember_speed_range => true,
+    :event => true,
     :explosions => true,
     :explosion_lifetime_range => true,
     :explosion_scale_range => true,
@@ -132,12 +137,14 @@ class AdanaxisUtil < MushObject
     :flare_lifetime_range => true,
     :flare_scale_range => true,
     :flare_speed_range => true,
+    :game_msec => true,
     :hit_points => true,
     :hit_point_ratio => true,
     :id_suffix => true,
     :is_battle => true,
     :is_jammer => true,
     :item_type => true,
+    :khazi_test => true,
     :load_sound => true,
     :lifetime_msec => true,
     :mesh_name => true,
@@ -145,13 +152,14 @@ class AdanaxisUtil < MushObject
     :offset_sequence => true,
     :owner => true,
     :patrol_acceleration => true,
-    :patrol_msec => true,
     :patrol_points => true,
     :patrol_speed => true,
     :position => true,
     :post => true,
     :projectile_mesh => true,
     :rail => true,
+    :ram_acceleration => true,
+    :ram_speed => true,
     :reload_sound => true,
     :red_count => true,
     :remnant => true,

@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } fkP4xUsCfj1eVHkvRP5YMw
-# $Id: AdanaxisPieceLibrary.rb,v 1.9 2007/03/23 18:39:08 southa Exp $
+# $Id: AdanaxisPieceLibrary.rb,v 1.10 2007/03/24 14:06:28 southa Exp $
 # $Log: AdanaxisPieceLibrary.rb,v $
+# Revision 1.10  2007/03/24 14:06:28  southa
+# Cistern AI
+#
 # Revision 1.9  2007/03/23 18:39:08  southa
 # Carriers and spawning
 #
@@ -66,11 +69,15 @@ class AdanaxisPieceLibrary < MushObject
       :hit_points => 50.0,
       :type => @m_typeDefault,
       :ai_object => AdanaxisAIKhaziCarrier,
-      :seek_speed => 0.00,
-      :seek_acceleration => 0.00,
       :patrol_speed => 0.08,
       :patrol_acceleration => 0.002,
-      :weapon => :khazi_spawner
+      :ram_speed => 0.1 + 0.1*AdanaxisRuby.cGameDifficulty,
+      :ram_acceleration => 0.005 + 0.002*AdanaxisRuby.cGameDifficulty,
+      :seek_speed => 0.00,
+      :seek_acceleration => 0.00,
+      :weapon => :attendant_spawner,
+      :ai_state_msec => 6000,
+      :ai_state => :patrol
     }
     @m_cisternNum = 0
     
@@ -249,7 +256,7 @@ protected
     retParams[:target_types] = mTargetTypes(inParams)
     
     # Select the remnant left behind when rhe craft is destroyed
-    retParams[:remnant] = $currentLogic.mRemnant.mLowGradeRemnant(@m_attendantNum)
+    retParams[:remnant] = $currentLogic.mRemnant.mMediumGradeRemnant(@m_cisternNum)
     
     # Set scanner symbol.  Needs to know remnant type, hence merge
     retParams[:scanner_symbol] = mScannerSymbol(retParams.merge(inParams))

@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } KYgLHF8t3YCZa/IBjNku9Q
-# $Id: AdanaxisWeaponLibrary.rb,v 1.16 2007/03/23 12:27:34 southa Exp $
+# $Id: AdanaxisWeaponLibrary.rb,v 1.17 2007/03/23 18:39:08 southa Exp $
 # $Log: AdanaxisWeaponLibrary.rb,v $
+# Revision 1.17  2007/03/23 18:39:08  southa
+# Carriers and spawning
+#
 # Revision 1.16  2007/03/23 12:27:34  southa
 # Added levels and Cistern mesh
 #
@@ -76,8 +79,11 @@ class AdanaxisWeaponLibrary < MushObject
   end
   
   def mCreate
-    if $currentLogic.mDifficulty == AdanaxisLogic::DIFFICULTY_EASY
+    case AdanaxisRuby.cGameDifficulty
+    when 0
       aiParams = {:seek_acceleration => 0.01}
+    when 1
+      aiParams = {:seek_acceleration => 0.005}
     end
     
     @m_weapons[:player_base] = AdanaxisWeapon.new(
@@ -119,7 +125,7 @@ class AdanaxisWeaponLibrary < MushObject
       :deviation => 0.1,
       :load_sound => 'load2',
       :fire_sound => 'fire2',
-      :ai_params => {:seek_acceleration => 0.02},
+      :ai_params => aiParams,
       :angular_velocity => MushRotation.new
     )
     @m_weapons[:player_quad_cannon] = AdanaxisWeapon.new(
@@ -249,7 +255,7 @@ class AdanaxisWeaponLibrary < MushObject
       :fire_sound => 'fire6'
     )
 
-    @m_weapons[:khazi_spawner] = AdanaxisWeapon.new(
+    @m_weapons[:attendant_spawner] = AdanaxisWeapon.new(
       :type => :spawner,
       :ammo_count => 10,
       :speed => -0.2,

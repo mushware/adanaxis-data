@@ -6,7 +6,7 @@
 # Copyright Andy Southgate 2006-2007
 #
 # This file may be used and distributed under the terms of the Mushware
-# software licence version 1.1, under the terms for 'Proprietary original
+# Software Licence version 1.2, under the terms for 'Proprietary original
 # source files'.  If not supplied with this software, a copy of the licence
 # can be obtained from Mushware Limited via http://www.mushware.com/.
 # One of your options under that licence is to use and distribute this file
@@ -15,9 +15,12 @@
 # This software carries NO WARRANTY of any kind.
 #
 ##############################################################################
-#%Header } iG1Jydh0YvxJ+Cgafj6HYQ
-# $Id: AdanaxisRemnant.rb,v 1.8 2007/02/08 17:55:12 southa Exp $
+#%Header } SegunpVg7kD2s34TL8IFOQ
+# $Id: AdanaxisRemnant.rb,v 1.9 2007/03/13 21:45:08 southa Exp $
 # $Log: AdanaxisRemnant.rb,v $
+# Revision 1.9  2007/03/13 21:45:08  southa
+# Release process
+#
 # Revision 1.8  2007/02/08 17:55:12  southa
 # Common routines in space generation
 #
@@ -50,6 +53,10 @@ class AdanaxisRemnant < MushObject
     @m_names = [
       :health1,
       :shield1,
+      :health2,
+      :shield2,
+      :health3,
+      :shield3,
       :player_base,
       :player_light_cannon,
       :player_quad_cannon,
@@ -81,9 +88,9 @@ class AdanaxisRemnant < MushObject
     itemParams = {}
     itemType = inParams[:item_type]
     case itemType
-      when :health1
+      when :health1,:health2,:health3 
         itemParams.merge!(@m_healthDefaults)
-      when :shield1
+      when :shield1,:shield3,:shield3
         itemParams.merge!(@m_shieldDefaults)
       when :player_base
         itemParams.merge!(@m_ammoDefaults)
@@ -138,6 +145,18 @@ class AdanaxisRemnant < MushObject
         MushGame.cSoundPlay("healthcollect1", inPiece.mPost)
       when :shield1
         inPiece.mLimitedShieldAdd(0.1) if inPiece.respond_to?(:mLimitedShieldAdd)
+        MushGame.cSoundPlay("shieldcollect1", inPiece.mPost)
+      when :health2
+        inPiece.mLimitedHealthAdd(0.2) if inPiece.respond_to?(:mLimitedHealthAdd)
+        MushGame.cSoundPlay("healthcollect1", inPiece.mPost)
+      when :shield2
+        inPiece.mLimitedShieldAdd(0.2) if inPiece.respond_to?(:mLimitedShieldAdd)
+        MushGame.cSoundPlay("shieldcollect1", inPiece.mPost)
+      when :health3
+        inPiece.mUnlimitedHealthAdd(0.5) if inPiece.respond_to?(:mUnlimitedHealthAdd)
+        MushGame.cSoundPlay("healthcollect1", inPiece.mPost)
+      when :shield3
+        inPiece.mUnlimitedShieldAdd(0.5) if inPiece.respond_to?(:mUnlimitedShieldAdd)
         MushGame.cSoundPlay("shieldcollect1", inPiece.mPost)
       when :player_base
         inPiece.mAmmoCollect(:player_base, 100) if inPiece.respond_to?(:mAmmoCollect)
@@ -195,6 +214,29 @@ class AdanaxisRemnant < MushObject
       retVal = :shield1
     elsif selector % 2 == 0
       retVal = :health1
+    end
+    retVal
+  end
+  
+  def mMediumGradeRemnant(inSequenceNum)
+    retVal = nil
+    
+    selector = mPseudoRandom(inSequenceNum)
+    
+    if selector == 0
+      retVal = :player_flak
+    elsif selector % 32 == 0
+      retVal = :player_rail
+    elsif selector % 16 == 0
+      retVal = :player_light_missile
+    elsif selector % 8 == 0
+      retVal = :player_heavy_cannon
+    elsif selector % 4 == 0
+      retVal = :shield3
+    elsif selector % 2 == 0
+      retVal = :player_flak
+    else
+      retVal = :health2    
     end
     retVal
   end

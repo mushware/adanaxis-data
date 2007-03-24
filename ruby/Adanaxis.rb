@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } vDSSB+gnZ1vv9lZW0ClqyA
-# $Id: Adanaxis.rb,v 1.28 2007/03/19 16:01:34 southa Exp $
+# $Id: Adanaxis.rb,v 1.29 2007/03/23 18:39:07 southa Exp $
 # $Log: Adanaxis.rb,v $
+# Revision 1.29  2007/03/23 18:39:07  southa
+# Carriers and spawning
+#
 # Revision 1.28  2007/03/19 16:01:34  southa
 # Damage indicators
 #
@@ -112,7 +115,9 @@ require 'AdanaxisRemnant.rb'
 require 'AdanaxisRender.rb'
 require 'AdanaxisShaderLibrary.rb'
 require 'AdanaxisSpace.rb'
+require 'AdanaxisTargetSelect.rb'
 require 'AdanaxisTextureLibrary.rb'
+require 'AdanaxisTriggeredEvent.rb'
 require 'AdanaxisUtil.rb'
 require 'AdanaxisVTools.rb'
 require 'AdanaxisWaveLibrary.rb'

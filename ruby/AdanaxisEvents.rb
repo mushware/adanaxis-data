@@ -6,7 +6,7 @@
 # Copyright Andy Southgate 2006-2007
 #
 # This file may be used and distributed under the terms of the Mushware
-# software licence version 1.1, under the terms for 'Proprietary original
+# Software Licence version 1.2, under the terms for 'Proprietary original
 # source files'.  If not supplied with this software, a copy of the licence
 # can be obtained from Mushware Limited via http://www.mushware.com/.
 # One of your options under that licence is to use and distribute this file
@@ -15,9 +15,12 @@
 # This software carries NO WARRANTY of any kind.
 #
 ##############################################################################
-#%Header } ijYC1E7CqVOv5ELHytfIag
-# $Id: AdanaxisEvents.rb,v 1.6 2006/11/12 20:09:54 southa Exp $
+#%Header } F/YHvFX3ZV3hGKYaFznGrw
+# $Id: AdanaxisEvents.rb,v 1.7 2007/03/13 21:45:07 southa Exp $
 # $Log: AdanaxisEvents.rb,v $
+# Revision 1.7  2007/03/13 21:45:07  southa
+# Release process
+#
 # Revision 1.6  2006/11/12 20:09:54  southa
 # Missile guidance
 #
@@ -55,3 +58,10 @@ class AdanaxisEventKeyState < MushEvent
   mush_accessor :m_keyNum, :m_state
 end
 
+class AdanaxisEventSpaceCall < MushEvent
+  def initialize
+    @m_method = nil
+  end
+  
+  mush_accessor :m_method
+end

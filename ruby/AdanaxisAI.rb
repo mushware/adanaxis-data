@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } w5eKF461Eep4mjTerVpQKg
-# $Id: AdanaxisAI.rb,v 1.13 2007/03/13 21:45:06 southa Exp $
+# $Id: AdanaxisAI.rb,v 1.14 2007/03/24 14:06:27 southa Exp $
 # $Log: AdanaxisAI.rb,v $
+# Revision 1.14  2007/03/24 14:06:27  southa
+# Cistern AI
+#
 # Revision 1.13  2007/03/13 21:45:06  southa
 # Release process
 #
@@ -80,11 +83,12 @@ class AdanaxisAI < MushObject
     
     # Parameters
     @m_targetID = inParams[:target_id]
+    @m_ramSpeed = inParams[:ram_speed] || 0.0
+    @m_ramAcceleration = inParams[:ram_acceleration] || 0.0
     @m_seekSpeed = inParams[:seek_speed] || 0.0
     @m_seekAcceleration = inParams[:seek_acceleration] || 0.0
     @m_patrolAcceleration = inParams[:patrol_acceleration] || 0.0
-    @m_patrolMsec = inParams[:patrol_msec]
-    @m_patrolPoints = inParams[:patrol_points]
+    @m_patrolPoints = inParams[:patrol_points] || []
     @m_patrolSpeed = inParams[:patrol_speed] || 0.0
     @m_targetTypes = inParams[:target_types] || "p"
     @m_overrideDeadMsec = inParams[:override_dead_msec] || 10000
@@ -94,7 +98,7 @@ class AdanaxisAI < MushObject
 
     case inParams[:ai_state]
     when :patrol
-      mStateChangePatrol(@m_patrolMsec)
+      mStateChangePatrol(inParams[:ai_state_msec])
     end
   end
 
@@ -119,6 +123,17 @@ class AdanaxisAI < MushObject
     mStateChange(AISTATE_DORMANT)
   end
   
+  def mStateChangeIdle
+    mStateChange(AISTATE_IDLE)
+  end
+  
+  def mStateChangeRam(duration)
+    @m_stateDuration = duration
+    mTargetSelect unless @m_targetID
+    mStateChange(AISTATE_RAM)
+    nil
+  end
+
   def mStateChangeSeek(duration)
     @m_stateDuration = duration
     mTargetSelect unless @m_targetID
@@ -180,12 +195,44 @@ class AdanaxisAI < MushObject
     100
   end
 
+  def mStateActionRamExit
+    mStateChangeDormant
+  end
+
+  def mStateActionRam
+    onTarget = false
+    mTargetSelect unless @m_targetID
+    unless @m_targetID
+      # No target to seek
+      mStateChangeIdle
+    else
+      begin
+        targetPiece = MushGame.cPieceLookup(@m_targetID)
+        targetPos = targetPiece.post.position
+        onTarget = MushUtil.cRotateAndSeek(@r_post,
+          targetPos, # Target
+          @m_ramSpeed, # Maximum speed
+          @m_ramAcceleration # Acceleration
+        )
+      rescue Exception => e
+        # Target probably destroyed
+        @m_targetID = nil
+      end
+    end
+    
+    100
+  end
+
+  def mStateActionSeekExit
+    mStateChangeDormant
+  end
+
   def mStateActionSeek
     onTarget = false
     mTargetSelect unless @m_targetID
     unless @m_targetID
       # No target to seek
-      mStateChange(AISTATE_IDLE)
+      mStateChangeIdle
     else
       begin
         targetPiece = MushGame.cPieceLookup(@m_targetID)
@@ -199,10 +246,6 @@ class AdanaxisAI < MushObject
         # Target probably destroyed
         @m_targetID = nil
       end
-    end
-    
-    if mStateExpired?
-      mStateChangeWaypoint(30000, @m_waypoint)
     end
     
     @r_piece.mFire if onTarget
@@ -238,7 +281,12 @@ class AdanaxisAI < MushObject
       when AISTATE_PATROL
         callInterval = mStateActionPatrol
         mStateActionPatrolExit if mStateExpired?
-      when AISTATE_SEEK : callInterval = mStateActionSeek
+      when AISTATE_RAM
+        callInterval = mStateActionRam
+        mStateActionRamExit if mStateExpired?
+      when AISTATE_SEEK
+        callInterval = mStateActionSeek
+        mStateActionPatrolExit if mStateExpired?
       else raise MushError.new("Bad aiState value #{@m_state}") 
     end
 

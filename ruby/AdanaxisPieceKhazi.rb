@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } mlDJl4Ez45nYxZ6GWtlYdg
-# $Id: AdanaxisPieceKhazi.rb,v 1.33 2007/03/23 12:27:34 southa Exp $
+# $Id: AdanaxisPieceKhazi.rb,v 1.34 2007/03/23 18:39:08 southa Exp $
 # $Log: AdanaxisPieceKhazi.rb,v $
+# Revision 1.34  2007/03/23 18:39:08  southa
+# Carriers and spawning
+#
 # Revision 1.33  2007/03/23 12:27:34  southa
 # Added levels and Cistern mesh
 #
@@ -151,6 +154,13 @@ class AdanaxisPieceKhazi < AdanaxisPiece
     @m_scannerSymbol = inParams[:scanner_symbol] || AdanaxisScanner::SYMBOL_KHAZI_PLAIN
     @m_isJammer = inParams[:is_jammer] || false
     @m_effectScale = inParams[:effect_scale] || @m_hitPoints / 10.0
+  end
+  
+  mush_reader :m_weapon, :m_weaponName
+  
+  def mWeaponChange(inWeapon)
+    @m_weaponName = inWeapon
+    @m_weapon = $currentGame.mSpace.mWeaponLibrary.mWeapon(@m_weaponName)
   end
   
   def mFireHandle(event)

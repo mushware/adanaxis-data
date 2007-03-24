@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } +/IAKqVqNkpQ23bxs/nmOg
-# $Id: AdanaxisWeapon.rb,v 1.12 2007/03/21 18:05:53 southa Exp $
+# $Id: AdanaxisWeapon.rb,v 1.13 2007/03/23 18:39:08 southa Exp $
 # $Log: AdanaxisWeapon.rb,v $
+# Revision 1.13  2007/03/23 18:39:08  southa
+# Carriers and spawning
+#
 # Revision 1.12  2007/03/21 18:05:53  southa
 # Tied sound fixes
 #
@@ -83,6 +86,8 @@ class AdanaxisWeapon < MushObject
     @m_spawnLimit = inParams[:spawn_inhibit_limit] || 20 * (1+AdanaxisRuby.cGameDifficulty)
     @m_lastFireMsec = 0
   end
+  
+  mush_reader :m_ammoCount
   
   def mFireOpportunityTake
     retVal = false

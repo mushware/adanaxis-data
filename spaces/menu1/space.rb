@@ -14,8 +14,11 @@
 #
 ##############################################################################
 #%Header } Y8LAjPinEa0KzjVuzAjC1Q
-# $Id: space.rb,v 1.19 2007/03/13 21:45:09 southa Exp $
+# $Id: space.rb,v 1.20 2007/03/23 12:27:35 southa Exp $
 # $Log: space.rb,v $
+# Revision 1.20  2007/03/23 12:27:35  southa
+# Added levels and Cistern mesh
+#
 # Revision 1.19  2007/03/13 21:45:09  southa
 # Release process
 #
@@ -95,7 +98,8 @@ class Adanaxis_menu1 < AdanaxisSpace
       :post => MushPost.new(
         :position => MushVector.new(0,0,0,-100),
         :angular_velocity => angVel
-        )
+        ),
+      :patrol_points => [MushVector.new(0,0,0,0)]
     )
 
     mStandardCosmos(2)

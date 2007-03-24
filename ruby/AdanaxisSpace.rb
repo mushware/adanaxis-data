@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } vkczNSqA53jnWlTa0JJing
-# $Id: AdanaxisSpace.rb,v 1.25 2007/03/13 21:45:09 southa Exp $
+# $Id: AdanaxisSpace.rb,v 1.26 2007/03/23 12:27:34 southa Exp $
 # $Log: AdanaxisSpace.rb,v $
+# Revision 1.26  2007/03/23 12:27:34  southa
+# Added levels and Cistern mesh
+#
 # Revision 1.25  2007/03/13 21:45:09  southa
 # Release process
 #
@@ -80,6 +83,7 @@ class AdanaxisSpace < MushObject
   def initialize(inParams = {})
     @m_gameInited = false
     @m_spawnList = []
+    @m_triggeredEvents = []
     @m_textureLibrary = AdanaxisTextureLibrary.new
     @m_materialLibrary = AdanaxisMaterialLibrary.new(:texture_library => @m_textureLibrary)
     @m_meshLibrary = AdanaxisMeshLibrary.new(:texture_library => @m_textureLibrary)
@@ -174,15 +178,24 @@ class AdanaxisSpace < MushObject
   end
   
   def mSpawn
-    spawner = @m_spawnList.shift
+    eventFound = false
     
-    retVal = false
-    retVal = send spawner if spawner # spawner is a symbol to call in this object
-    retVal
+    @m_triggeredEvents.reject! do |entry|
+      deleteThis = false
+      if !eventFound && entry.mKhaziTest == :zero_red
+        send entry.mEvent
+        eventFound = true
+        deleteThis = true
+      end
+      deleteThis
+    end
   end
   
-  def mSpawnAdd(*inSpawners)
-    @m_spawnList.concat inSpawners
+  def mSpawnAdd(inSpawner)
+    @m_triggeredEvents << AdanaxisTriggeredEvent.new(
+      :khazi_test => :zero_red,
+      :event => inSpawner
+    )
   end
 
   def mStandardCosmos(inSeed)
@@ -240,5 +253,28 @@ class AdanaxisSpace < MushObject
   end
   
   def mEpilogueRender
+  end
+  
+  def mTimeoutSpawnAdd(inSpawner, inTime)
+    @m_triggeredEvents << AdanaxisTriggeredEvent.new(
+      :game_msec => inTime,
+      :khazi_test => :zero_red,
+      :event => inSpawner
+    )
+  end
+
+  def mGameModeTick
+
+    gameMsec = MushGame.cGameMsec
+    
+    @m_triggeredEvents.reject! do |entry|
+      deleteThis = false
+      if entry.mGameMsec && entry.mGameMsec < gameMsec
+        send entry.mEvent
+        deleteThis = true
+      end
+      deleteThis
+    end
+
   end
 end

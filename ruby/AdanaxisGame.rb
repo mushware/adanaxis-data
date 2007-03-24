@@ -6,7 +6,7 @@
 # Copyright Andy Southgate 2006-2007
 #
 # This file may be used and distributed under the terms of the Mushware
-# software licence version 1.1, under the terms for 'Proprietary original
+# Software Licence version 1.2, under the terms for 'Proprietary original
 # source files'.  If not supplied with this software, a copy of the licence
 # can be obtained from Mushware Limited via http://www.mushware.com/.
 # One of your options under that licence is to use and distribute this file
@@ -15,9 +15,12 @@
 # This software carries NO WARRANTY of any kind.
 #
 ##############################################################################
-#%Header } 7yVWfKTkiMq9xpFeLYGzFg
-# $Id: AdanaxisGame.rb,v 1.38 2007/03/19 16:01:34 southa Exp $
+#%Header } 2fpFZATPRQNzn58XR/mr1A
+# $Id: AdanaxisGame.rb,v 1.39 2007/03/20 17:31:23 southa Exp $
 # $Log: AdanaxisGame.rb,v $
+# Revision 1.39  2007/03/20 17:31:23  southa
+# Difficulty and GL options
+#
 # Revision 1.38  2007/03/19 16:01:34  southa
 # Damage indicators
 #
@@ -161,6 +164,10 @@ class AdanaxisGame < MushObject
 
   def mPrecacheRender(inPercentage, inMB)
     @m_menuRender.mPrecacheRender(inPercentage, inMB)
+  end
+
+  def mGameModeTick
+    @m_space.mGameModeTick if @m_space
   end
 
   def mReset(allowResume)
