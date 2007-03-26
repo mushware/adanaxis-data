@@ -10,10 +10,13 @@
 #
 # This software carries NO WARRANTY of any kind.
 #
-# $Id$
-# $Log$
+# $Id: manifest.txt,v 1.1 2007/03/23 12:27:35 southa Exp $
+# $Log: manifest.txt,v $
+# Revision 1.1  2007/03/23 12:27:35  southa
+# Added levels and Cistern mesh
+#
 directory='level2'
-name='Rogue Carrier'
+name='Intervention'
 creator='Andy Southgate (www.mushware.com)'
 permit='level1'
 next='level3'

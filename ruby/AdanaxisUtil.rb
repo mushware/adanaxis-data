@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } lDJzWQbqKYTujby/WoRUQA
-# $Id: AdanaxisUtil.rb,v 1.25 2007/03/24 14:06:28 southa Exp $
+# $Id: AdanaxisUtil.rb,v 1.26 2007/03/24 18:07:23 southa Exp $
 # $Log: AdanaxisUtil.rb,v $
+# Revision 1.26  2007/03/24 18:07:23  southa
+# Level 3 work
+#
 # Revision 1.25  2007/03/24 14:06:28  southa
 # Cistern AI
 #
@@ -143,6 +146,7 @@ class AdanaxisUtil < MushObject
     :id_suffix => true,
     :is_battle => true,
     :is_jammer => true,
+    :is_rocket => true,
     :item_type => true,
     :khazi_test => true,
     :load_sound => true,

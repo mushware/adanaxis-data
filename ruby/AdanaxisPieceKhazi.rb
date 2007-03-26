@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } mlDJl4Ez45nYxZ6GWtlYdg
-# $Id: AdanaxisPieceKhazi.rb,v 1.34 2007/03/23 18:39:08 southa Exp $
+# $Id: AdanaxisPieceKhazi.rb,v 1.35 2007/03/24 18:07:22 southa Exp $
 # $Log: AdanaxisPieceKhazi.rb,v $
+# Revision 1.35  2007/03/24 18:07:22  southa
+# Level 3 work
+#
 # Revision 1.34  2007/03/23 18:39:08  southa
 # Carriers and spawning
 #
@@ -154,9 +157,10 @@ class AdanaxisPieceKhazi < AdanaxisPiece
     @m_scannerSymbol = inParams[:scanner_symbol] || AdanaxisScanner::SYMBOL_KHAZI_PLAIN
     @m_isJammer = inParams[:is_jammer] || false
     @m_effectScale = inParams[:effect_scale] || @m_hitPoints / 10.0
+    @m_colour = inParams[:colour]
   end
   
-  mush_reader :m_weapon, :m_weaponName
+  mush_reader :m_weapon, :m_weaponName, :m_colour
   
   def mWeaponChange(inWeapon)
     @m_weaponName = inWeapon

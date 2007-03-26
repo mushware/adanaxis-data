@@ -6,7 +6,7 @@
 # Copyright Andy Southgate 2006-2007
 #
 # This file may be used and distributed under the terms of the Mushware
-# software licence version 1.1, under the terms for 'Proprietary original
+# Software Licence version 1.2, under the terms for 'Proprietary original
 # source files'.  If not supplied with this software, a copy of the licence
 # can be obtained from Mushware Limited via http://www.mushware.com/.
 # One of your options under that licence is to use and distribute this file
@@ -15,9 +15,12 @@
 # This software carries NO WARRANTY of any kind.
 #
 ##############################################################################
-#%Header } DdAaNHgaE0A5Y2nw5Qn+Dg
-# $Id: AdanaxisPieceProjectile.rb,v 1.15 2006/11/14 14:02:15 southa Exp $
+#%Header } Ftyulp8KcXICSQ8hlthuNg
+# $Id: AdanaxisPieceProjectile.rb,v 1.16 2007/03/13 21:45:08 southa Exp $
 # $Log: AdanaxisPieceProjectile.rb,v $
+# Revision 1.16  2007/03/13 21:45:08  southa
+# Release process
+#
 # Revision 1.15  2006/11/14 14:02:15  southa
 # Ball projectiles
 #
@@ -85,6 +88,7 @@ class AdanaxisPieceProjectile < AdanaxisPiece
     else
       @m_callInterval = nil
     end
+    @m_isRocket = inParams[:is_rocket]
     
     return @m_callInterval
   end
@@ -96,11 +100,30 @@ class AdanaxisPieceProjectile < AdanaxisPiece
     
     if @m_ai
       @m_callInterval = @m_ai.mActByState(self)
+      @m_callInterval = 100 if @m_isRocket
     end
+    
+    mRocketEffect if @m_isRocket
     
     mSave
     
     @m_callInterval
+  end
+  
+  def mRocketEffect
+    flarePost = mPost.dup
+    
+    flareVel = MushVector.new(0,0,0,0.5)
+    mPost.angular_position.mRotate(flareVel)
+    flarePost.velocity = flarePost.velocity + flareVel
+    
+    flareScale = (mAgeMsec / 2000.0).mClamp(0.1, 5.0)
+    $currentLogic.mEffects.mFlareCreate(
+      :post => flarePost,
+      :flare_lifetime_range => 500..600,
+      :flare_scale_range => flareScale..flareScale * 1.2,
+      :alpha_stutter => 0
+    )
   end
   
   def mExplosionEffect
@@ -113,6 +136,15 @@ class AdanaxisPieceProjectile < AdanaxisPiece
         :flare_scale_range => @m_originalHitPoints,
         :flare_lifetime_range => (3000..6000)
       )
+      MushGame.cSoundPlay("explo5", mPost)
+    elsif @m_isRocket
+      $currentLogic.mEffects.mExplode(
+        :post => mPost,
+        :explosions => 1,
+        :flares => 1,
+        :effect_scale => 0.6
+      )
+      MushGame.cSoundPlay("explo0", mPost)
     else
       $currentLogic.mEffects.mExplode(
         :post => mPost,
@@ -125,7 +157,7 @@ class AdanaxisPieceProjectile < AdanaxisPiece
   end
 
   def mExpiryEffect
-    if @m_originalHitPoints > 50.0
+    if @m_originalHitPoints > 50.0 || @m_isRocket
       mExplosionEffect
     else
       $currentLogic.mEffects.mExplode(

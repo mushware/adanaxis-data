@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } 1A8NPqtbBjVII7HPL44JTQ
-# $Id: AdanaxisTextureLibrary.rb,v 1.37 2007/03/23 12:27:34 southa Exp $
+# $Id: AdanaxisTextureLibrary.rb,v 1.38 2007/03/23 18:39:08 southa Exp $
 # $Log: AdanaxisTextureLibrary.rb,v $
+# Revision 1.38  2007/03/23 18:39:08  southa
+# Carriers and spawning
+#
 # Revision 1.37  2007/03/23 12:27:34  southa
 # Added levels and Cistern mesh
 #
@@ -311,6 +314,21 @@ class AdanaxisTextureLibrary < MushObject
 	
   scale = 0.2
   MushGLTexture::cDefine(
+		:name          => 'cistern-tex',
+    :type          => 'CellNoise',
+    :meshname      => 'cistern',
+    :size          => [textureSize, textureSize],
+    :palette       => 'palette1',
+    :palettestart  => [0,0.5],
+    :palettevector => [0.99,0.0],
+		:scale         => [scale, scale, scale, scale],
+    :numoctaves    => 8,
+    :octaveratio   => 0.5,
+		:cache         => 1,
+    :compress      => compressNear
+	)
+
+  MushGLTexture::cDefine(
 		:name          => 'cistern-red-tex',
     :type          => 'CellNoise',
     :meshname      => 'cistern-red',
@@ -318,6 +336,21 @@ class AdanaxisTextureLibrary < MushObject
     :palette       => 'palette1',
     :palettestart  => [0,0.6],
     :palettevector => [0.99,0.4],
+		:scale         => [scale, scale, scale, scale],
+    :numoctaves    => 8,
+    :octaveratio   => 0.5,
+		:cache         => 1,
+    :compress      => compressNear
+	)
+
+  MushGLTexture::cDefine(
+		:name          => 'cistern-blue-tex',
+    :type          => 'CellNoise',
+    :meshname      => 'cistern-blue',
+    :size          => [textureSize, textureSize],
+    :palette       => 'palette1',
+    :palettestart  => [0,0.4],
+    :palettevector => [0.99,-0.4],
 		:scale         => [scale, scale, scale, scale],
     :numoctaves    => 8,
     :octaveratio   => 0.5,

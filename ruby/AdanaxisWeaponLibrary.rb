@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } KYgLHF8t3YCZa/IBjNku9Q
-# $Id: AdanaxisWeaponLibrary.rb,v 1.17 2007/03/23 18:39:08 southa Exp $
+# $Id: AdanaxisWeaponLibrary.rb,v 1.18 2007/03/24 18:07:23 southa Exp $
 # $Log: AdanaxisWeaponLibrary.rb,v $
+# Revision 1.18  2007/03/24 18:07:23  southa
+# Level 3 work
+#
 # Revision 1.17  2007/03/23 18:39:08  southa
 # Carriers and spawning
 #
@@ -174,6 +177,7 @@ class AdanaxisWeaponLibrary < MushObject
       :fire_sound => 'fire5'
     )
     @m_weapons[:player_light_missile] = AdanaxisWeapon.new(
+      :type => :rocket,
       :projectile_mesh => 'projectile1',
       :speed => 0.0,
       :acceleration => 0.01,
@@ -192,6 +196,7 @@ class AdanaxisWeaponLibrary < MushObject
       :angular_velocity => MushRotation.new
     )
     @m_weapons[:player_heavy_missile] = AdanaxisWeapon.new(
+      :type => :rocket,
       :projectile_mesh => 'projectile1',
       :speed => 0.0,
       :acceleration => 0.005,
@@ -210,6 +215,7 @@ class AdanaxisWeaponLibrary < MushObject
       :angular_velocity => MushRotation.new
     )
     @m_weapons[:player_flush] = AdanaxisWeapon.new(
+      :type => :rocket,
       :projectile_mesh => 'projectile1',
       :speed => 0.0,
       :acceleration => 0.005,

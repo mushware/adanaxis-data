@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } +/IAKqVqNkpQ23bxs/nmOg
-# $Id: AdanaxisWeapon.rb,v 1.13 2007/03/23 18:39:08 southa Exp $
+# $Id: AdanaxisWeapon.rb,v 1.14 2007/03/24 18:07:23 southa Exp $
 # $Log: AdanaxisWeapon.rb,v $
+# Revision 1.14  2007/03/24 18:07:23  southa
+# Level 3 work
+#
 # Revision 1.13  2007/03/23 18:39:08  southa
 # Carriers and spawning
 #
@@ -156,7 +159,8 @@ class AdanaxisWeapon < MushObject
         :hit_points => @m_hitPoints,
         :acceleration => @m_acceleration,
         :speed_limit => @m_speedLimit,
-        :ai_params => aiParams
+        :ai_params => aiParams,
+        :is_rocket => (@m_type == :rocket)
       )
     end
     
@@ -245,7 +249,7 @@ class AdanaxisWeapon < MushObject
     lifetime = @m_lifetimeMsec
 
     $currentGame.mSpace.mPieceLibrary.mAttendantCreate(
-      :colour => 'red',
+      :colour => inPiece.mColour,
       :post => projPost,
       :spawned => true
     )
