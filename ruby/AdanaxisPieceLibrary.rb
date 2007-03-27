@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } fkP4xUsCfj1eVHkvRP5YMw
-# $Id: AdanaxisPieceLibrary.rb,v 1.11 2007/03/24 18:07:22 southa Exp $
+# $Id: AdanaxisPieceLibrary.rb,v 1.12 2007/03/27 14:01:02 southa Exp $
 # $Log: AdanaxisPieceLibrary.rb,v $
+# Revision 1.12  2007/03/27 14:01:02  southa
+# Attendant AI
+#
 # Revision 1.11  2007/03/24 18:07:22  southa
 # Level 3 work
 #
@@ -87,7 +90,8 @@ class AdanaxisPieceLibrary < MushObject
       :ram_acceleration => 0.005 + 0.002*diff,
       :seek_speed => 0.00,
       :seek_acceleration => 0.00,
-      :weapon => :attendant_spawner
+      :weapon => :attendant_spawner,
+      :ammo_count => 10 + 10 * diff
     }
     @m_cisternNum = 0
     

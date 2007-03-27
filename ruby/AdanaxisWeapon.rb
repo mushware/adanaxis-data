@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } +/IAKqVqNkpQ23bxs/nmOg
-# $Id: AdanaxisWeapon.rb,v 1.14 2007/03/24 18:07:23 southa Exp $
+# $Id: AdanaxisWeapon.rb,v 1.15 2007/03/26 16:31:35 southa Exp $
 # $Log: AdanaxisWeapon.rb,v $
+# Revision 1.15  2007/03/26 16:31:35  southa
+# L2 work
+#
 # Revision 1.14  2007/03/24 18:07:23  southa
 # Level 3 work
 #
@@ -90,7 +93,7 @@ class AdanaxisWeapon < MushObject
     @m_lastFireMsec = 0
   end
   
-  mush_reader :m_ammoCount
+  mush_accessor :m_ammoCount
   
   def mFireOpportunityTake
     retVal = false

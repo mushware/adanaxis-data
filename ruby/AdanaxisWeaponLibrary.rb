@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } KYgLHF8t3YCZa/IBjNku9Q
-# $Id: AdanaxisWeaponLibrary.rb,v 1.18 2007/03/24 18:07:23 southa Exp $
+# $Id: AdanaxisWeaponLibrary.rb,v 1.19 2007/03/26 16:31:35 southa Exp $
 # $Log: AdanaxisWeaponLibrary.rb,v $
+# Revision 1.19  2007/03/26 16:31:35  southa
+# L2 work
+#
 # Revision 1.18  2007/03/24 18:07:23  southa
 # Level 3 work
 #
@@ -263,7 +266,7 @@ class AdanaxisWeaponLibrary < MushObject
 
     @m_weapons[:attendant_spawner] = AdanaxisWeapon.new(
       :type => :spawner,
-      :ammo_count => 10,
+      :ammo_count => 1,
       :speed => -0.2,
       :offset_sequence => [
         MushVector.new(0,0,0,15.0)

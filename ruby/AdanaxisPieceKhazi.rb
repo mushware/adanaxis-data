@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } mlDJl4Ez45nYxZ6GWtlYdg
-# $Id: AdanaxisPieceKhazi.rb,v 1.35 2007/03/24 18:07:22 southa Exp $
+# $Id: AdanaxisPieceKhazi.rb,v 1.36 2007/03/26 16:31:35 southa Exp $
 # $Log: AdanaxisPieceKhazi.rb,v $
+# Revision 1.36  2007/03/26 16:31:35  southa
+# L2 work
+#
 # Revision 1.35  2007/03/24 18:07:22  southa
 # Level 3 work
 #
@@ -154,6 +157,7 @@ class AdanaxisPieceKhazi < AdanaxisPiece
     @m_remnant = inParams[:remnant]
     @m_weaponName = inParams[:weapon] || nil
     @m_weapon = $currentGame.mSpace.mWeaponLibrary.mWeapon(@m_weaponName)
+    @m_weapon.mAmmoCountSet(inParams[:ammo_count]) if inParams[:ammo_count]
     @m_scannerSymbol = inParams[:scanner_symbol] || AdanaxisScanner::SYMBOL_KHAZI_PLAIN
     @m_isJammer = inParams[:is_jammer] || false
     @m_effectScale = inParams[:effect_scale] || @m_hitPoints / 10.0
