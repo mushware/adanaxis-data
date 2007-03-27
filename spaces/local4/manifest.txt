@@ -2,5 +2,6 @@
 directory='local4'
 name='Hardcore'
 creator='Andy Southgate (www.mushware.com)'
+visibility='hidden'
 permit='local3'
 next='local5'

@@ -1,7 +1,7 @@
 #%Header {
 ##############################################################################
 #
-# File data-adanaxis/ruby/AdanaxisAIKhazi.rb
+# File data-adanaxis/ruby/AdanaxisAIKhaziAttendant.rb
 #
 # Copyright Andy Southgate 2006-2007
 #
@@ -15,19 +15,38 @@
 # This software carries NO WARRANTY of any kind.
 #
 ##############################################################################
-#%Header } TDKdJigGp9CKLf8qZVAaXA
-# $Id: AdanaxisAIKhazi.rb,v 1.2 2007/03/13 21:45:06 southa Exp $
-# $Log: AdanaxisAIKhazi.rb,v $
-# Revision 1.2  2007/03/13 21:45:06  southa
-# Release process
+#%Header } 6UJyFE/GwtfMJb35bHRd3w
 #
-# Revision 1.1  2006/09/30 13:46:32  southa
-# Seek and patrol
-#
+# $Id$
+# $Log$
 
 require 'Mushware.rb'
-require 'AdanaxisAI.rb'
+require 'AdanaxisAIKhazi.rb'
 
-class AdanaxisAIKhazi < AdanaxisAI
+class AdanaxisAIKhaziAttendant < AdanaxisAIKhazi
+
+  def mStateActionIdle
+    mStateChangeSeek(15000)
+  end
+
+  def mStateActionEvadeExit
+    mStateChangeSeek(15000)
+  end
+  
+  def mStateActionRamExit
+    mStateChangeEvade(3000)
+  end
+
+  def mStateActionPatrolExit
+    mStateChangeSeek(15000)
+  end
+
+  def mStateActionSeekExit
+    mStateChangeEvade(4000)
+  end
+
+  def mStateActionWaypointExit
+    mStateChangeSeek(15000)
+  end
 
 end

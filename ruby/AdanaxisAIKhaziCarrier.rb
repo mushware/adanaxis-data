@@ -16,6 +16,9 @@
 #
 ##############################################################################
 #%Header } f3Z3qGihoRYiliZvQJrjSw
+#
+# $Id$
+# $Log$
 
 require 'Mushware.rb'
 require 'AdanaxisAIKhazi.rb'

@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } vDSSB+gnZ1vv9lZW0ClqyA
-# $Id: Adanaxis.rb,v 1.29 2007/03/23 18:39:07 southa Exp $
+# $Id: Adanaxis.rb,v 1.30 2007/03/24 18:07:21 southa Exp $
 # $Log: Adanaxis.rb,v $
+# Revision 1.30  2007/03/24 18:07:21  southa
+# Level 3 work
+#
 # Revision 1.29  2007/03/23 18:39:07  southa
 # Carriers and spawning
 #
@@ -91,6 +94,7 @@
 require 'Mushware.rb'
 require 'AdanaxisAI.rb'
 require 'AdanaxisAIKhazi.rb'
+require 'AdanaxisAIKhaziAttendant.rb'
 require 'AdanaxisAIKhaziCarrier.rb'
 require 'AdanaxisAIProjectile.rb'
 require 'AdanaxisDashboard.rb'

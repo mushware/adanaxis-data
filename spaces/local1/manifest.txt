@@ -2,4 +2,5 @@
 directory='local1'
 name='Intro'
 creator='Andy Southgate (www.mushware.com)'
+visibility='hidden'
 next='local2'

@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } w5eKF461Eep4mjTerVpQKg
-# $Id: AdanaxisAI.rb,v 1.14 2007/03/24 14:06:27 southa Exp $
+# $Id: AdanaxisAI.rb,v 1.15 2007/03/24 18:07:22 southa Exp $
 # $Log: AdanaxisAI.rb,v $
+# Revision 1.15  2007/03/24 18:07:22  southa
+# Level 3 work
+#
 # Revision 1.14  2007/03/24 14:06:27  southa
 # Cistern AI
 #
@@ -73,6 +76,7 @@ class AdanaxisAI < MushObject
   AISTATE_WAYPOINT=6
   AISTATE_PROJECTILE_SEEK=7
   AISTATE_RAM=8
+  AISTATE_EVADE=9
 
   def initialize(inParams = {})
     @m_state = AISTATE_DORMANT
@@ -83,22 +87,26 @@ class AdanaxisAI < MushObject
     
     # Parameters
     @m_targetID = inParams[:target_id]
-    @m_ramSpeed = inParams[:ram_speed] || 0.0
-    @m_ramAcceleration = inParams[:ram_acceleration] || 0.0
-    @m_seekSpeed = inParams[:seek_speed] || 0.0
-    @m_seekAcceleration = inParams[:seek_acceleration] || 0.0
-    @m_patrolAcceleration = inParams[:patrol_acceleration] || 0.0
+    @m_evadeAcceleration = inParams[:evade_acceleration] || 0
+    @m_evadeSpeed = inParams[:evade_speed] || 0
+    @m_patrolAcceleration = inParams[:patrol_acceleration] || 0
     @m_patrolPoints = inParams[:patrol_points] || []
-    @m_patrolSpeed = inParams[:patrol_speed] || 0.0
+    @m_patrolSpeed = inParams[:patrol_speed] || 0
+    @m_ramAcceleration = inParams[:ram_acceleration] || 0
+    @m_ramSpeed = inParams[:ram_speed] || 0
+    @m_seekAcceleration = inParams[:seek_acceleration] || 0
+    @m_seekSpeed = inParams[:seek_speed] || 0
     @m_targetTypes = inParams[:target_types] || "p"
     @m_overrideDeadMsec = inParams[:override_dead_msec] || 10000
     @m_lastOverrideMsec = nil
-    @m_waypoint = inParams[:waypoint] || MushVector.new(rand(300)-150, rand(300)-150, rand(300)-150, -rand(300)-50)
-    @m_waypointMsec = inParams[:waypoint_msec]
 
     case inParams[:ai_state]
+    when :evade
+      mStateChangeEvade(inParams[:ai_state_msec])    
     when :patrol
       mStateChangePatrol(inParams[:ai_state_msec])
+    when :waypoint
+      mStateChangeWaypoint(inParams[:waypoint], inParams[:ai_state_msec])    
     end
   end
 
@@ -121,6 +129,11 @@ class AdanaxisAI < MushObject
 
   def mStateChangeDormant
     mStateChange(AISTATE_DORMANT)
+  end
+  
+  def mStateChangeEvade(duration)
+    @m_stateDuration = duration
+    mStateChange(AISTATE_EVADE)
   end
   
   def mStateChangeIdle
@@ -153,9 +166,13 @@ class AdanaxisAI < MushObject
     nil
   end
 
-  def mStateChangeWaypoint(duration, waypoint)
-    @m_waypoint = waypoint
+  def mStateChangeWaypoint(waypoint, duration = nil)
     @m_stateDuration = duration
+    @m_waypoint = waypoint
+    if !@m_waypoint
+      mStateChange(AISTATE_DORMANT)
+      raise(RuntimeError, 'Waypoint state entered without waypoint')
+    end
     mStateChange(AISTATE_WAYPOINT)
     nil
   end
@@ -168,8 +185,32 @@ class AdanaxisAI < MushObject
     return @m_stateDuration && mMsecSinceStateChange > @m_stateDuration
   end
 
+  def mStateActionDormant
+    1000
+  end
+
+  def mStateActionEvadeExit
+    mStateChangeIdle
+  end
+
+  def mStateActionEvade
+    mTargetSelect unless @m_targetID
+    unless @m_targetID
+      # No target to seek
+      mStateChangeIdle
+    else
+      mStateChangeWaypoint(@r_post.position + MushTools.cRandomUnitVector * 100, @m_stateDuration)
+    end
+    
+    100
+  end
+
+  def mStateActionIdle
+    1000
+  end
+
   def mStateActionPatrolExit
-    mStateChangeDormant
+    mStateChangeIdle
   end
   
   def mStateActionPatrolNextPoint
@@ -196,7 +237,7 @@ class AdanaxisAI < MushObject
   end
 
   def mStateActionRamExit
-    mStateChangeDormant
+    mStateChangeIdle
   end
 
   def mStateActionRam
@@ -224,7 +265,7 @@ class AdanaxisAI < MushObject
   end
 
   def mStateActionSeekExit
-    mStateChangeDormant
+    mStateChangeIdle
   end
 
   def mStateActionSeek
@@ -253,17 +294,22 @@ class AdanaxisAI < MushObject
     100
   end
 
+  def mStateActionWaypointExit
+    mStateChangeIdle
+  end
+
   def mStateActionWaypoint
+    distToPoint2 = (@m_waypoint - @r_post.position).mMagnitudeSquared
+    if distToPoint2 < 100.0 * @m_patrolSpeed * @m_patrolSpeed
+      mStateActionWaypointExit
+    end
+
     MushUtil.cRotateAndSeek(@r_post,
       @m_waypoint, # Target
       @m_patrolSpeed, # Maximum speed
       @m_patrolAcceleration # Acceleration
     )
-    
-    if mStateExpired?
-      mStateChangeSeek(60000)
-    end
-      
+
     100
   end
   
@@ -271,13 +317,13 @@ class AdanaxisAI < MushObject
     callInterval = 100
 
     case @m_state
-      when AISTATE_IDLE : mStateChange(AISTATE_DORMANT)
       when AISTATE_DORMANT :
-        if @m_waypointMsec
-          mStateChangeWaypoint(@m_waypointMsec, @m_waypoint)
-        else
-          mStateChangeSeek(15000)
-        end
+        callInterval = mStateActionDormant
+      when AISTATE_EVADE
+        callInterval = mStateActionEvade
+        mStateActionEvadeExit if mStateExpired?
+      when AISTATE_IDLE
+        callInterval = mStateActionIdle
       when AISTATE_PATROL
         callInterval = mStateActionPatrol
         mStateActionPatrolExit if mStateExpired?
@@ -286,7 +332,10 @@ class AdanaxisAI < MushObject
         mStateActionRamExit if mStateExpired?
       when AISTATE_SEEK
         callInterval = mStateActionSeek
-        mStateActionPatrolExit if mStateExpired?
+        mStateActionSeekExit if mStateExpired?
+      when AISTATE_WAYPOINT
+        callInterval = mStateActionWaypoint
+        mStateActionWaypointExit if mStateExpired?
       else raise MushError.new("Bad aiState value #{@m_state}") 
     end
 

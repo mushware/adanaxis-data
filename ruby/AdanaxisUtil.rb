@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } lDJzWQbqKYTujby/WoRUQA
-# $Id: AdanaxisUtil.rb,v 1.26 2007/03/24 18:07:23 southa Exp $
+# $Id: AdanaxisUtil.rb,v 1.27 2007/03/26 16:31:35 southa Exp $
 # $Log: AdanaxisUtil.rb,v $
+# Revision 1.27  2007/03/26 16:31:35  southa
+# L2 work
+#
 # Revision 1.26  2007/03/24 18:07:23  southa
 # Level 3 work
 #
@@ -128,6 +131,8 @@ class AdanaxisUtil < MushObject
     :ember_lifetime_range => true,
     :ember_scale_range => true,
     :ember_speed_range => true,
+    :evade_acceleration => true,
+    :evade_speed => true,
     :event => true,
     :explosions => true,
     :explosion_lifetime_range => true,
@@ -182,7 +187,6 @@ class AdanaxisUtil < MushObject
     :velocity_factor => true,
     :vulnerability => true,
     :waypoint => true,
-    :waypoint_msec => true,
     :weapon => true,
     :weapon_name => true
     }

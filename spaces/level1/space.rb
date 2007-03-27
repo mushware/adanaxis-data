@@ -14,8 +14,11 @@
 #
 ##############################################################################
 #%Header } ymklWNnUsMW6L2JnkUUK9g
-# $Id$
-# $Log$
+# $Id: space.rb,v 1.1 2007/03/23 12:27:35 southa Exp $
+# $Log: space.rb,v $
+# Revision 1.1  2007/03/23 12:27:35  southa
+# Added levels and Cistern mesh
+#
 
 require 'Mushware.rb'
 require 'Adanaxis.rb'
@@ -46,8 +49,8 @@ class Adanaxis_level1 < AdanaxisSpace
           :angular_position => MushTools.cRandomOrientation
         ),
         :waypoint => MushVector.new(i * 30, -0, i * 15, -250),
-        :waypoint_msec => 15000,
-        :ai_state => :waypoint_timed
+        :ai_state => :waypoint,
+        :ai_state_msec => 15000
       )
     end
 
@@ -63,8 +66,8 @@ class Adanaxis_level1 < AdanaxisSpace
           :angular_position => MushTools.cRandomOrientation
         ),
         :waypoint => MushVector.new(i * 30, -0, i * 15, -250),
-        :waypoint_msec => 15000,
-        :ai_state => :waypoint_timed,
+        :ai_state => :waypoint,
+        :ai_state_msec => 15000,
         :spawned => true
       )
     end

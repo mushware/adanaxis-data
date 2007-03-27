@@ -2,5 +2,6 @@
 directory='local2'
 name='Skirmish'
 creator='Andy Southgate (www.mushware.com)'
+visibility='hidden'
 permit='local1'
 next='local3'

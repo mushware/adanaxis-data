@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } fkP4xUsCfj1eVHkvRP5YMw
-# $Id: AdanaxisPieceLibrary.rb,v 1.10 2007/03/24 14:06:28 southa Exp $
+# $Id: AdanaxisPieceLibrary.rb,v 1.11 2007/03/24 18:07:22 southa Exp $
 # $Log: AdanaxisPieceLibrary.rb,v $
+# Revision 1.11  2007/03/24 18:07:22  southa
+# Level 3 work
+#
 # Revision 1.10  2007/03/24 14:06:28  southa
 # Cistern AI
 #
@@ -54,12 +57,19 @@ class AdanaxisPieceLibrary < MushObject
     @m_targetDefault = 'p'
     @m_typeDefault = 'k'
   
+    diff = AdanaxisRuby.cGameDifficulty
+  
     @m_attendantDefaults = {
       :effect_scale => 1.0,
       :hit_points => 10.0,
       :type => @m_typeDefault,
-      :seek_speed => 0.05,
-      :seek_acceleration => 0.01,
+      :ai_object => AdanaxisAIKhaziAttendant,
+      :ai_state_msec => 3000,
+      :ai_state => :evade,
+      :evade_speed => 0.05*(1+diff),
+      :evade_acceleration => 0.01*(1+diff),
+      :seek_speed => 0.05*(1+diff),
+      :seek_acceleration => 0.01*(1+diff),
       :weapon => :khazi_base
     }
     @m_attendantNum = 0
@@ -69,15 +79,15 @@ class AdanaxisPieceLibrary < MushObject
       :hit_points => 50.0,
       :type => @m_typeDefault,
       :ai_object => AdanaxisAIKhaziCarrier,
+      :ai_state_msec => 6000,
+      :ai_state => :patrol,
       :patrol_speed => 0.08,
       :patrol_acceleration => 0.002,
-      :ram_speed => 0.1 + 0.1*AdanaxisRuby.cGameDifficulty,
-      :ram_acceleration => 0.005 + 0.002*AdanaxisRuby.cGameDifficulty,
+      :ram_speed => 0.1 + 0.1*diff,
+      :ram_acceleration => 0.005 + 0.002*diff,
       :seek_speed => 0.00,
       :seek_acceleration => 0.00,
-      :weapon => :attendant_spawner,
-      :ai_state_msec => 6000,
-      :ai_state => :patrol
+      :weapon => :attendant_spawner
     }
     @m_cisternNum = 0
     
