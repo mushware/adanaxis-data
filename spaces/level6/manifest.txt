@@ -10,17 +10,11 @@
 #
 # This software carries NO WARRANTY of any kind.
 #
-# $Id: manifest.txt,v 1.1 2007/03/28 14:45:46 southa Exp $
-# $Log: manifest.txt,v $
-# Revision 1.1  2007/03/28 14:45:46  southa
-# Level and AI standoff
-#
-# Revision 1.1  2007/03/27 15:34:42  southa
-# L4 and carrier ammo
-#
+# $Id$
+# $Log$
 
-directory='level5'
-name='Unrecognised Intelligence'
+directory='level6'
+name='Red Sector Six'
 creator='Andy Southgate (www.mushware.com)'
-permit='level4'
-next='level6'
+permit='level5'
+next='level7'
