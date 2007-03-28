@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } vDSSB+gnZ1vv9lZW0ClqyA
-# $Id: Adanaxis.rb,v 1.30 2007/03/24 18:07:21 southa Exp $
+# $Id: Adanaxis.rb,v 1.31 2007/03/27 14:01:02 southa Exp $
 # $Log: Adanaxis.rb,v $
+# Revision 1.31  2007/03/27 14:01:02  southa
+# Attendant AI
+#
 # Revision 1.30  2007/03/24 18:07:21  southa
 # Level 3 work
 #
@@ -96,6 +99,7 @@ require 'AdanaxisAI.rb'
 require 'AdanaxisAIKhazi.rb'
 require 'AdanaxisAIKhaziAttendant.rb'
 require 'AdanaxisAIKhaziCarrier.rb'
+require 'AdanaxisAIKhaziHarpik.rb'
 require 'AdanaxisAIProjectile.rb'
 require 'AdanaxisDashboard.rb'
 require 'AdanaxisEffects.rb'

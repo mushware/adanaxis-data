@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } 1A8NPqtbBjVII7HPL44JTQ
-# $Id: AdanaxisTextureLibrary.rb,v 1.38 2007/03/23 18:39:08 southa Exp $
+# $Id: AdanaxisTextureLibrary.rb,v 1.39 2007/03/26 16:31:35 southa Exp $
 # $Log: AdanaxisTextureLibrary.rb,v $
+# Revision 1.39  2007/03/26 16:31:35  southa
+# L2 work
+#
 # Revision 1.38  2007/03/23 18:39:08  southa
 # Carriers and spawning
 #
@@ -200,16 +203,19 @@ class AdanaxisTextureLibrary < MushObject
     )
   end
 
-  MushGLTexture::cDefine(
-    :name          => "ball1-tex",
-    :type          => 'TIFF',
-    :filename      => MushConfig.cGlobalPixelsPath+'/ball1.tiff',
-    :storagetype   => 'GL',
-    :cache         => 0,
-    :compress      => compressFar,
-    :resident      => 1
-  )
 
+  (1..2).each do |ballNum|
+    MushGLTexture::cDefine(
+      :name          => "ball#{ballNum}-tex",
+      :type          => 'TIFF',
+      :filename      => MushConfig.cGlobalPixelsPath+"/ball#{ballNum}.tiff",
+      :storagetype   => 'GL',
+      :cache         => 0,
+      :compress      => compressFar,
+      :resident      => 1
+    )
+  end
+  
   MushGLTexture::cDefine(
     :name          => "rail1-tex",
     :type          => 'TIFF',
@@ -354,6 +360,52 @@ class AdanaxisTextureLibrary < MushObject
 		:scale         => [scale, scale, scale, scale],
     :numoctaves    => 8,
     :octaveratio   => 0.5,
+		:cache         => 1,
+    :compress      => compressNear
+	)
+
+  scale = 0.5
+  MushGLTexture::cDefine(
+		:name          => 'harpik-tex',
+    :type          => 'CellNoise',
+    :meshname      => 'harpik',
+    :size          => [textureSize, textureSize],
+    :palette       => 'palette1',
+    :palettestart  => [0,0.5],
+    :palettevector => [0.99,0.0],
+		:scale         => [scale, scale, scale, scale/4],
+    :numoctaves    => 3,
+    :octaveratio   => 0.7,
+		:cache         => 1,
+    :compress      => compressNear
+	)
+
+  MushGLTexture::cDefine(
+		:name          => 'harpik-red-tex',
+    :type          => 'CellNoise',
+    :meshname      => 'harpik-red',
+    :size          => [textureSize, textureSize],
+    :palette       => 'palette1',
+    :palettestart  => [0,0.8],
+    :palettevector => [0.99,0.2],
+		:scale         => [scale, scale, scale, scale/4],
+    :numoctaves    => 3,
+    :octaveratio   => 0.7,
+		:cache         => 1,
+    :compress      => compressNear
+	)
+
+  MushGLTexture::cDefine(
+		:name          => 'harpik-blue-tex',
+    :type          => 'CellNoise',
+    :meshname      => 'harpik-blue',
+    :size          => [textureSize, textureSize],
+    :palette       => 'palette1',
+    :palettestart  => [0,0.2],
+    :palettevector => [0.99,-0.2],
+		:scale         => [scale, scale, scale, scale/4],
+    :numoctaves    => 3,
+    :octaveratio   => 0.7,
 		:cache         => 1,
     :compress      => compressNear
 	)

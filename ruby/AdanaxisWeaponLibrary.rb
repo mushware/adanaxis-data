@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } KYgLHF8t3YCZa/IBjNku9Q
-# $Id: AdanaxisWeaponLibrary.rb,v 1.19 2007/03/26 16:31:35 southa Exp $
+# $Id: AdanaxisWeaponLibrary.rb,v 1.20 2007/03/27 15:34:42 southa Exp $
 # $Log: AdanaxisWeaponLibrary.rb,v $
+# Revision 1.20  2007/03/27 15:34:42  southa
+# L4 and carrier ammo
+#
 # Revision 1.19  2007/03/26 16:31:35  southa
 # L2 work
 #
@@ -96,6 +99,7 @@ class AdanaxisWeaponLibrary < MushObject
       :projectile_mesh => 'ball1',
       :speed => 1.0,
       :hit_points => 1.0,
+      :lifetime_msec => 7000,
       :fire_rate_msec => 200,
       :offset_sequence => [
         MushVector.new(0,-0.5,0,0)
@@ -252,6 +256,31 @@ class AdanaxisWeaponLibrary < MushObject
       :speed => 0.5,
       :fire_rate_msec => 3000
     )
+
+    @m_weapons[:khazi_harpik_short] = AdanaxisWeapon.new(
+      :projectile_mesh => 'ball2',
+      :hit_points => 2.0,
+      :lifetime_msec => 2000,
+      :speed => 1.0,
+      :fire_rate_msec => 150,
+      :offset_sequence => [
+        MushVector.new(0,0,-1,-2),
+        MushVector.new(0,0,1,-2)
+      ]
+    )
+
+    @m_weapons[:khazi_harpik_long] = AdanaxisWeapon.new(
+      :projectile_mesh => 'ball1',
+      :hit_points => 1.0,
+      :lifetime_msec => 5000,
+      :speed => 0.5,
+      :fire_rate_msec => 3000,
+      :offset_sequence => [
+        MushVector.new(0,0,-1,-2),
+        MushVector.new(0,0,1,-2)
+      ]
+    )
+
     @m_weapons[:khazi_rail] = AdanaxisWeapon.new(
       :projectile_mesh => 'rail1',
       :hit_points => 40,
@@ -266,6 +295,7 @@ class AdanaxisWeaponLibrary < MushObject
 
     @m_weapons[:attendant_spawner] = AdanaxisWeapon.new(
       :type => :spawner,
+      :projectile_mesh => :attendant,
       :ammo_count => 1,
       :speed => -0.2,
       :offset_sequence => [
@@ -275,6 +305,17 @@ class AdanaxisWeaponLibrary < MushObject
       :fire_sound => 'fire9'
     )
 
+    @m_weapons[:harpik_spawner] = AdanaxisWeapon.new(
+      :type => :spawner,
+      :projectile_mesh => :harpik,
+      :ammo_count => 1,
+      :speed => -0.4,
+      :offset_sequence => [
+        MushVector.new(0,0,0,17.0)
+      ],
+      :fire_rate_msec => 2400,
+      :fire_sound => 'fire9'
+    )
   end
   
   def mWeapon(inName)

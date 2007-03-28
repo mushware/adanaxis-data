@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } mlDJl4Ez45nYxZ6GWtlYdg
-# $Id: AdanaxisPieceKhazi.rb,v 1.36 2007/03/26 16:31:35 southa Exp $
+# $Id: AdanaxisPieceKhazi.rb,v 1.37 2007/03/27 15:34:42 southa Exp $
 # $Log: AdanaxisPieceKhazi.rb,v $
+# Revision 1.37  2007/03/27 15:34:42  southa
+# L4 and carrier ammo
+#
 # Revision 1.36  2007/03/26 16:31:35  southa
 # L2 work
 #
@@ -167,8 +170,10 @@ class AdanaxisPieceKhazi < AdanaxisPiece
   mush_reader :m_weapon, :m_weaponName, :m_colour
   
   def mWeaponChange(inWeapon)
-    @m_weaponName = inWeapon
-    @m_weapon = $currentGame.mSpace.mWeaponLibrary.mWeapon(@m_weaponName)
+    if @m_weaponName != inWeapon
+      @m_weaponName = inWeapon
+      @m_weapon = $currentGame.mSpace.mWeaponLibrary.mWeapon(@m_weaponName)
+    end
   end
   
   def mFireHandle(event)

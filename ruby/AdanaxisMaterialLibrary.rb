@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } lXsM+tU6WDZHu5zVkn9QXA
-# $Id: AdanaxisMaterialLibrary.rb,v 1.23 2007/03/13 21:45:07 southa Exp $
+# $Id: AdanaxisMaterialLibrary.rb,v 1.24 2007/03/23 12:27:34 southa Exp $
 # $Log: AdanaxisMaterialLibrary.rb,v $
+# Revision 1.24  2007/03/23 12:27:34  southa
+# Added levels and Cistern mesh
+#
 # Revision 1.23  2007/03/13 21:45:07  southa
 # Release process
 #
@@ -86,6 +89,9 @@ class AdanaxisMaterialLibrary < MushObject
       'cistern',
       'cistern-red',
       'cistern-blue',
+      'harpik',
+      'harpik-red',
+      'harpik-blue',
       'rail',
       'rail-red',
       'rail-blue'

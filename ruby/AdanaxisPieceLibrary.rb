@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } fkP4xUsCfj1eVHkvRP5YMw
-# $Id: AdanaxisPieceLibrary.rb,v 1.12 2007/03/27 14:01:02 southa Exp $
+# $Id: AdanaxisPieceLibrary.rb,v 1.13 2007/03/27 15:34:42 southa Exp $
 # $Log: AdanaxisPieceLibrary.rb,v $
+# Revision 1.13  2007/03/27 15:34:42  southa
+# L4 and carrier ammo
+#
 # Revision 1.12  2007/03/27 14:01:02  southa
 # Attendant AI
 #
@@ -73,6 +76,7 @@ class AdanaxisPieceLibrary < MushObject
       :evade_acceleration => 0.01*(1+diff),
       :seek_speed => 0.05*(1+diff),
       :seek_acceleration => 0.01*(1+diff),
+      :seek_stand_off => 20.0,
       :weapon => :khazi_base
     }
     @m_attendantNum = 0
@@ -88,12 +92,28 @@ class AdanaxisPieceLibrary < MushObject
       :patrol_acceleration => 0.002,
       :ram_speed => 0.1 + 0.1*diff,
       :ram_acceleration => 0.005 + 0.002*diff,
-      :seek_speed => 0.00,
-      :seek_acceleration => 0.00,
+      :seek_speed => 0.0,
+      :seek_acceleration => 0.0,
       :weapon => :attendant_spawner,
       :ammo_count => 10 + 10 * diff
     }
     @m_cisternNum = 0
+    
+    @m_harpikDefaults = {
+      :effect_scale => 1.0,
+      :hit_points => 25.0,
+      :type => @m_typeDefault,
+      :ai_object => AdanaxisAIKhaziHarpik,
+      :ai_state_msec => 8000,
+      :ai_state => :seek,
+      :evade_speed => 0.1*(1+diff),
+      :evade_acceleration => 0.03*(1+diff),
+      :seek_speed => 0.1*(1+diff),
+      :seek_acceleration => 0.02*(1+diff),
+      :seek_stand_off => 50.0,
+      :weapon => :khazi_harpik_long
+    }
+    @m_harpikNum = 0
     
     @m_railDefaults = {
       :effect_scale => 5.0,
@@ -194,6 +214,14 @@ class AdanaxisPieceLibrary < MushObject
     @m_cisternNum += 1
   end    
 
+  # Creates a Harpik
+  def mHarpikCreate(inParams = {})
+    AdanaxisUtil.cSpellCheck(inParams)
+    newPiece = AdanaxisPieceKhazi.cCreate(mHarpikParams(inParams))
+    mCommonCreate(newPiece, inParams)
+    @m_harpikNum += 1
+  end    
+
   # Creates a Rail
   def mRailCreate(inParams = {})
     AdanaxisUtil.cSpellCheck(inParams)
@@ -210,6 +238,10 @@ class AdanaxisPieceLibrary < MushObject
     return inColours.collect { |name| "cistern-#{name}-tex" }
   end
 
+  def mHarpikTex(*inColours)
+    return inColours.collect { |name| "harpik-#{name}-tex" }
+  end
+
   def mRailTex(*inColours)
     return inColours.collect { |name| "rail-#{name}-tex" }
   end
@@ -224,7 +256,7 @@ protected
   def mAttendantParams(inParams = {})
     
     # Start with the defaults
-    retParams = @m_attendantDefaults
+    retParams = @m_attendantDefaults.dup
     
     # Choose a mesh name based on the colour
     retParams[:mesh_name] = case inParams[:colour]
@@ -256,7 +288,7 @@ protected
   def mCisternParams(inParams = {})
     
     # Start with the defaults
-    retParams = @m_cisternDefaults
+    retParams = @m_cisternDefaults.dup
     
     # Choose a mesh name based on the colour
     retParams[:mesh_name] = case inParams[:colour]
@@ -284,9 +316,41 @@ protected
     retParams
   end
   
+  # Derive parameters for a Harpik
+  def mHarpikParams(inParams = {})
+    
+    # Start with the defaults
+    retParams = @m_harpikDefaults.dup
+    
+    # Choose a mesh name based on the colour
+    retParams[:mesh_name] = case inParams[:colour]
+      when /(red|blue)/: "harpik-#$1"
+      when nil:          "harpik"
+      else raise "Unknown harpik colour #{inParams[:colour]}"
+    end
+    
+    # Derive type and target types, i.e. what this is and what it shoots at
+    retParams[:type] = mType(inParams)
+    retParams[:target_types] = mTargetTypes(inParams)
+    
+    # Select the remnant left behind when rhe craft is destroyed
+    retParams[:remnant] = $currentLogic.mRemnant.mMediumGradeRemnant(@m_harpikNum)
+    
+    # Set scanner symbol.  Needs to know remnant type, hence merge
+    retParams[:scanner_symbol] = mScannerSymbol(retParams.merge(inParams))
+    
+    # Add paramters common to all pieces, i.e. position
+    mKhaziAddBaseParams(retParams, inParams)
+    
+    # Merge the input parameters so that they overwrite those we've calculated
+    retParams.merge!(inParams)
+    
+    retParams
+  end
+  
   def mRailParams(inParams = {})
     
-    retParams = @m_railDefaults
+    retParams = @m_railDefaults.dup
     
     retParams[:mesh_name] = case inParams[:colour]
       when /(red|blue)/: "rail-#$1"

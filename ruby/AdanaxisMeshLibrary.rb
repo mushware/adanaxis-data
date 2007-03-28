@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } uF839qwtiSp+ePtgY6Hnrw
-# $Id: AdanaxisMeshLibrary.rb,v 1.31 2007/03/13 21:45:08 southa Exp $
+# $Id: AdanaxisMeshLibrary.rb,v 1.32 2007/03/23 12:27:34 southa Exp $
 # $Log: AdanaxisMeshLibrary.rb,v $
+# Revision 1.32  2007/03/23 12:27:34  southa
+# Added levels and Cistern mesh
+#
 # Revision 1.31  2007/03/13 21:45:08  southa
 # Release process
 #
@@ -220,6 +223,64 @@ class AdanaxisMeshLibrary
     mesh.mMake
   end
 
+  #
+  # Harpik mesh
+  #
+  # General purpose, and more dangerous than the Attendant
+  def mKhaziHarpikCreate(inName)
+    mesh = MushMesh.new(inName)
+
+    mesh.mBaseAdd(MushBasePrism.new(:order => 3))
+	
+    mesh.mBaseDisplacementAdd(MushDisplacement.new(
+		  :offset => MushVector.new(0,0,0,1),
+      :scale => MushVector.new(2,2,2,2)
+	  ))
+	
+    # Boom -z
+    mesh.mExtruderAdd(MushExtruder.new(
+      :sourceface => 2,
+      :displacement => MushDisplacement.new(
+        :offset => MushVector.new(0,0,-1.0,0),
+        :rotation => MushTools.cRotationInZWPlane(-Math::PI/6),
+        :scale => 0.75
+      ),
+		  :num_iterations => 6
+    ))
+	  
+    # Boom +z
+    mesh.mExtruderAdd(MushExtruder.new(
+      :sourceface => 3,
+      :displacement => MushDisplacement.new(
+        :offset => MushVector.new(0,0,1.0,0),
+        :rotation => MushTools.cRotationInZWPlane(Math::PI/6),
+        :scale => 0.75
+      ),
+      :num_iterations => 6
+    ))
+	  
+    # Nose
+    mesh.mExtruderAdd(MushExtruder.new(
+      :sourceface => 0,
+      :displacement => MushDisplacement.new(
+        :offset => MushVector.new(0,0,0,-1.5),
+        :scale => 0.6),
+  		:num_iterations => 4
+    ))
+
+    # Tail
+    mesh.mExtruderAdd(MushExtruder.new(
+      :sourceface => 1,
+      :displacement => MushDisplacement.new(
+        :offset => MushVector.new(0,0,0,1.5),
+        :scale => 1.25),
+  		:num_iterations => 1
+    ))
+
+    mesh.mMaterialAdd("#{inName}-mat")
+
+    mesh.mMake
+  end
 
   #
   # Khazi Rail
@@ -789,6 +850,9 @@ class AdanaxisMeshLibrary
     mKhaziCisternCreate('cistern')
     mKhaziCisternCreate('cistern-red')
     mKhaziCisternCreate('cistern-blue')
+    mKhaziHarpikCreate('harpik')
+    mKhaziHarpikCreate('harpik-red')
+    mKhaziHarpikCreate('harpik-blue')
     mKhaziRailCreate('rail')
     mKhaziRailCreate('rail-red')
     mKhaziRailCreate('rail-blue')

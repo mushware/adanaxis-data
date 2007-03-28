@@ -14,8 +14,11 @@
 #
 ##############################################################################
 #%Header } Y8LAjPinEa0KzjVuzAjC1Q
-# $Id: space.rb,v 1.20 2007/03/23 12:27:35 southa Exp $
+# $Id: space.rb,v 1.21 2007/03/24 18:07:23 southa Exp $
 # $Log: space.rb,v $
+# Revision 1.21  2007/03/24 18:07:23  southa
+# Level 3 work
+#
 # Revision 1.20  2007/03/23 12:27:35  southa
 # Added levels and Cistern mesh
 #
@@ -83,7 +86,7 @@ class Adanaxis_menu1 < AdanaxisSpace
 
   def mPrecacheListBuild
     super
-    mPrecacheListAdd(mPieceLibrary.mCisternTex('red'))
+    mPrecacheListAdd(mPieceLibrary.mHarpikTex('red'))
   end
   
   def mInitialPiecesCreate
@@ -93,7 +96,7 @@ class Adanaxis_menu1 < AdanaxisSpace
     MushTools.cRotationInZWPlane(Math::PI / 473).mRotate(angVel);
     MushTools.cRotationInYZPlane(Math::PI / 670).mRotate(angVel);
 
-    mPieceLibrary.mCisternCreate(
+    mPieceLibrary.mHarpikCreate(
       :colour => 'red',
       :post => MushPost.new(
         :position => MushVector.new(0,0,0,-100),
@@ -102,7 +105,7 @@ class Adanaxis_menu1 < AdanaxisSpace
       :patrol_points => [MushVector.new(0,0,0,0)]
     )
 
-    mStandardCosmos(2)
+    mStandardCosmos(1)
   end
 
   def mIsMenuBackdrop

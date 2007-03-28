@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } lDJzWQbqKYTujby/WoRUQA
-# $Id: AdanaxisUtil.rb,v 1.27 2007/03/26 16:31:35 southa Exp $
+# $Id: AdanaxisUtil.rb,v 1.28 2007/03/27 14:01:03 southa Exp $
 # $Log: AdanaxisUtil.rb,v $
+# Revision 1.28  2007/03/27 14:01:03  southa
+# Attendant AI
+#
 # Revision 1.27  2007/03/26 16:31:35  southa
 # L2 work
 #
@@ -176,6 +179,7 @@ class AdanaxisUtil < MushObject
     :scanner_symbol => true,
     :seek_acceleration => true,
     :seek_speed => true,
+    :seek_stand_off => true,
     :shield_ratio => true,
     :spawned => true,
     :spawn_inhibit_limit => true,

@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } SegunpVg7kD2s34TL8IFOQ
-# $Id: AdanaxisRemnant.rb,v 1.9 2007/03/13 21:45:08 southa Exp $
+# $Id: AdanaxisRemnant.rb,v 1.10 2007/03/24 18:07:22 southa Exp $
 # $Log: AdanaxisRemnant.rb,v $
+# Revision 1.10  2007/03/24 18:07:22  southa
+# Level 3 work
+#
 # Revision 1.9  2007/03/13 21:45:08  southa
 # Release process
 #
@@ -168,16 +171,16 @@ class AdanaxisRemnant < MushObject
         inPiece.mAmmoCollect(:player_quad_cannon, 100) if inPiece.respond_to?(:mAmmoCollect)
         MushGame.cSoundPlay("load2", inPiece.mPost)
       when :player_flak
-        inPiece.mAmmoCollect(:player_flak, 30) if inPiece.respond_to?(:mAmmoCollect)
+        inPiece.mAmmoCollect(:player_flak, 20) if inPiece.respond_to?(:mAmmoCollect)
         MushGame.cSoundPlay("load3", inPiece.mPost)
       when :player_heavy_cannon
         inPiece.mAmmoCollect(:player_heavy_cannon, 100) if inPiece.respond_to?(:mAmmoCollect)
         MushGame.cSoundPlay("load4", inPiece.mPost)
       when :player_rail
-        inPiece.mAmmoCollect(:player_rail, 10) if inPiece.respond_to?(:mAmmoCollect)
+        inPiece.mAmmoCollect(:player_rail, 6) if inPiece.respond_to?(:mAmmoCollect)
         MushGame.cSoundPlay("load5", inPiece.mPost)
       when :player_light_missile
-        inPiece.mAmmoCollect(:player_light_missile, 10) if inPiece.respond_to?(:mAmmoCollect)
+        inPiece.mAmmoCollect(:player_light_missile, 6) if inPiece.respond_to?(:mAmmoCollect)
         MushGame.cSoundPlay("load6", inPiece.mPost)
       when :player_heavy_missile
         inPiece.mAmmoCollect(:player_heavy_missile, 3) if inPiece.respond_to?(:mAmmoCollect)

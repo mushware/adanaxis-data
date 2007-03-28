@@ -1,7 +1,7 @@
 #%Header {
 ##############################################################################
 #
-# File data-adanaxis/spaces/level4/space.rb
+# File data-adanaxis/spaces/level5/space.rb
 #
 # Copyright Andy Southgate 2006-2007
 #
@@ -13,7 +13,7 @@
 # This software carries NO WARRANTY of any kind.
 #
 ##############################################################################
-#%Header } wE/Qn4CN09yXiKKazPP1eg
+#%Header } /dF+kikiX5afV2t2RiuQ7A
 # $Id: space.rb,v 1.1 2007/03/27 15:34:43 southa Exp $
 # $Log: space.rb,v $
 # Revision 1.1  2007/03/27 15:34:43  southa
@@ -35,7 +35,7 @@
 require 'Mushware.rb'
 require 'Adanaxis.rb'
 
-class Adanaxis_level4 < AdanaxisSpace
+class Adanaxis_level5 < AdanaxisSpace
   def initialize(inParams = {})
     super
     mTimeoutSpawnAdd(:mSpawn0, 13000)
@@ -50,26 +50,27 @@ class Adanaxis_level4 < AdanaxisSpace
   def mPrecacheListBuild
     super
     mPrecacheListAdd(mPieceLibrary.mAttendantTex('red', 'blue'))
-    mPrecacheListAdd(mPieceLibrary.mCisternTex('red'))
-    mPrecacheListAdd(mPieceLibrary.mRailTex('red'))
+    mPrecacheListAdd(mPieceLibrary.mCisternTex('red', 'blue'))
+    mPrecacheListAdd(mPieceLibrary.mHarpikTex('red'))
   end
   
   def mInitialPiecesCreate
     super
     MushTools.cRandomSeedSet(4)
     
-    1.times do |param|
-      ['red'].each do |colour|
-        mPieceLibrary.mRailCreate(
-          :colour => colour,
-          :position => MushVector.new(0, 0, 0, -600)
+    (1+AdanaxisRuby.cGameDifficulty).times do |param|
+      mPieceLibrary.mHarpikCreate(
+        :colour => 'red',
+        :post => MushPost.new(
+          :position => MushVector.new(-30+60*param, 0, 0, -100-30*param),
+          :angular_position => MushTools.cRandomOrientation
         )
-      end    
+      )
     end
     
-    15.times do |param|
+    5.times do |param|
       ['blue'].each do |colour|
-        pos = MushVector.new(0, 0, 0, -150) +
+        pos = MushVector.new(0, 0, 0, -300) +
           MushTools.cRandomUnitVector * (20 + rand(100));
         
         mPieceLibrary.mAttendantCreate(
@@ -104,7 +105,23 @@ class Adanaxis_level4 < AdanaxisSpace
           MushVector.new(-20,50,0,-700),
           MushVector.new(-20,-50,0,-500)
           ],
-      :ammo_count => 15 + 10 * AdanaxisRuby.cGameDifficulty
+      :ammo_count => 25 + 15 * AdanaxisRuby.cGameDifficulty,
+      :weapon => (AdanaxisRuby.cGameDifficulty > 1) ? :harpik_spawner : :attendant_spawner
     )
+    
+    mPieceLibrary.mCisternCreate(
+      :colour => 'blue',
+      :post => MushPost.new(
+        :position => MushVector.new(100,500,0,-500),
+        :velocity => MushVector.new(0, -1.0, 0, 0)
+      ),
+      :spawned => true,
+      :patrol_points => [
+          MushVector.new(50,-50,0,-700),
+          MushVector.new(50,50,0,-500)
+          ],
+      :ammo_count => 10 + 10 * AdanaxisRuby.cGameDifficulty
+    )
+
   end
 end

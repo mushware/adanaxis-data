@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } w5eKF461Eep4mjTerVpQKg
-# $Id: AdanaxisAI.rb,v 1.15 2007/03/24 18:07:22 southa Exp $
+# $Id: AdanaxisAI.rb,v 1.16 2007/03/27 14:01:02 southa Exp $
 # $Log: AdanaxisAI.rb,v $
+# Revision 1.16  2007/03/27 14:01:02  southa
+# Attendant AI
+#
 # Revision 1.15  2007/03/24 18:07:22  southa
 # Level 3 work
 #
@@ -96,6 +99,7 @@ class AdanaxisAI < MushObject
     @m_ramSpeed = inParams[:ram_speed] || 0
     @m_seekAcceleration = inParams[:seek_acceleration] || 0
     @m_seekSpeed = inParams[:seek_speed] || 0
+    @m_seekStandOff = inParams[:seek_stand_off] || 0
     @m_targetTypes = inParams[:target_types] || "p"
     @m_overrideDeadMsec = inParams[:override_dead_msec] || 10000
     @m_lastOverrideMsec = nil
@@ -105,9 +109,15 @@ class AdanaxisAI < MushObject
       mStateChangeEvade(inParams[:ai_state_msec])    
     when :patrol
       mStateChangePatrol(inParams[:ai_state_msec])
+    when :seek
+      mStateChangeSeek(inParams[:ai_state_msec])    
     when :waypoint
       mStateChangeWaypoint(inParams[:waypoint], inParams[:ai_state_msec])    
     end
+  end
+
+  def mFire
+    @r_piece.mFire
   end
 
   def mTargetSelect
@@ -149,7 +159,6 @@ class AdanaxisAI < MushObject
 
   def mStateChangeSeek(duration)
     @m_stateDuration = duration
-    mTargetSelect unless @m_targetID
     mStateChange(AISTATE_SEEK)
     nil
   end
@@ -281,7 +290,8 @@ class AdanaxisAI < MushObject
         onTarget = MushUtil.cRotateAndSeek(@r_post,
           targetPos, # Target
           @m_seekSpeed, # Maximum speed
-          @m_seekAcceleration # Acceleration
+          @m_seekAcceleration, # Acceleration
+          @m_seekStandOff # Stand off distance
         )
       rescue Exception => e
         # Target probably destroyed
@@ -289,7 +299,7 @@ class AdanaxisAI < MushObject
       end
     end
     
-    @r_piece.mFire if onTarget
+    mFire if onTarget
     
     100
   end

@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } +/IAKqVqNkpQ23bxs/nmOg
-# $Id: AdanaxisWeapon.rb,v 1.15 2007/03/26 16:31:35 southa Exp $
+# $Id: AdanaxisWeapon.rb,v 1.16 2007/03/27 15:34:42 southa Exp $
 # $Log: AdanaxisWeapon.rb,v $
+# Revision 1.16  2007/03/27 15:34:42  southa
+# L4 and carrier ammo
+#
 # Revision 1.15  2007/03/26 16:31:35  southa
 # L2 work
 #
@@ -251,12 +254,21 @@ class AdanaxisWeapon < MushObject
     baseVelocity = projPost.velocity
     lifetime = @m_lifetimeMsec
 
-    $currentGame.mSpace.mPieceLibrary.mAttendantCreate(
-      :colour => inPiece.mColour,
-      :post => projPost,
-      :spawned => true
-    )
-      
+    case @m_projectileMesh
+      when :harpik
+        $currentGame.mSpace.mPieceLibrary.mHarpikCreate(
+          :colour => inPiece.mColour,
+          :post => projPost,
+          :spawned => true
+        )
+      else
+        $currentGame.mSpace.mPieceLibrary.mAttendantCreate(
+          :colour => inPiece.mColour,
+          :post => projPost,
+          :spawned => true
+        )
+    end
+    
     mCommonFire(inEvent, inPiece, projPost)
 
     nil

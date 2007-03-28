@@ -1,0 +1,140 @@
+<!--
+##############################################################################
+#
+# This file contains original work by Andy Southgate.  Contact details can be
+# found at http://www.mushware.com.  This file was placed in the Public
+# Domain by Andy Southgate and Mushware Limited in 2005.
+#
+# This software carries NO WARRANTY of any kind.
+#
+##############################################################################
+#
+# $Id: dialogues.xml,v 1.1 2007/03/27 15:34:42 southa Exp $
+# $Log: dialogues.xml,v $
+# Revision 1.1  2007/03/27 15:34:42  southa
+# L4 and carrier ammo
+#
+# Revision 1.2  2007/03/26 16:31:36  southa
+# L2 work
+#
+# Revision 1.1  2007/03/23 12:27:35  southa
+# Added levels and Cistern mesh
+#
+# Revision 1.3  2007/03/08 18:38:14  southa
+# Level progression
+#
+# Revision 1.2  2007/03/07 11:29:23  southa
+# Level permission
+#
+# Revision 1.1  2006/08/01 23:21:48  southa
+# Rendering demo content
+#
+#
+-->
+<obj>(
+"start1"=<obj type="GameDialogue">
+<strings>(
+<obj type="GameStringSpec">
+<string type="GLString">
+<fontRef type="GLFontRef">
+<name>"font-mono1"</name>
+<size>1.0</size>
+</fontRef>
+<value>"Unrecognised"</value>
+<alignment>0</alignment>
+</string>
+<posticity type="MushPiePosticity">
+<pos>(0,0.12,0,0)</pos>
+<vel>(0,0,0,0)</vel>
+</posticity>
+<startColour>(1,1,1,0)</startColour>
+<midColour>(1,1,1,0.5)</midColour>
+<endColour>(1,0,0,0)</endColour>
+<startTime>0</startTime>
+<endTime>300</endTime>
+<fadeTime>100</fadeTime>
+<startSize>0.04</startSize>
+<midSize>0.04</midSize>
+<endSize>0.10</endSize>
+</obj>)
+</strings>
+<sounds>()</sounds>
+<soundStreams>(
+ <obj type="GameSoundStreamSpec">
+  <soundStreamRef>"game1"</soundStreamRef>
+  <loop>10000</loop>
+  <startTime>0</startTime>
+ </obj>
+)</soundStreams>
+</obj>
+,
+"dead1"=<obj type="GameDialogue">
+<strings>(
+<obj type="GameStringSpec">
+<string type="GLString">
+<fontRef type="GLFontRef">
+<name>"font-mono1"</name>
+<size>1.0</size>
+</fontRef>
+<value>"Mission Failed"</value>
+<alignment>0</alignment>
+</string>
+<posticity type="MushPiePosticity">
+<angPos>((0,0,0,0),(0,0,0,0))</angPos>
+<angVel>((0,0,0,0),(0,0,0,0))</angVel>
+<pos>(0,0.12,0,0)</pos>
+<vel>(0,0,0,0)</vel>
+</posticity>
+<startColour>(1,1,1,0)</startColour>
+<midColour>(1,1,1,0.5)</midColour>
+<endColour>(1,0,0,0)</endColour>
+<startTime>0</startTime>
+<endTime>300</endTime>
+<fadeTime>100</fadeTime>
+<startSize>0.04</startSize>
+<midSize>0.04</midSize>
+<endSize>0.10</endSize>
+</obj>)
+</strings>
+<sounds>()</sounds>
+<soundStreams>()</soundStreams>
+<killSound>""</killSound>
+<age>0</age>
+<expired>0</expired>
+</obj>
+,
+"won1"=<obj type="GameDialogue">
+<strings>(
+<obj type="GameStringSpec">
+<string type="GLString">
+<fontRef type="GLFontRef">
+<name>"font-mono1"</name>
+<size>1.0</size>
+</fontRef>
+<value>"Mission Successful"</value>
+<alignment>0</alignment>
+</string>
+<posticity type="MushPiePosticity">
+<angPos>((0,0,0,0),(0,0,0,0))</angPos>
+<angVel>((0,0,0,0),(0,0,0,0))</angVel>
+<pos>(0,0.12,0,0)</pos>
+<vel>(0,0,0,0)</vel>
+</posticity>
+<startColour>(1,1,1,0)</startColour>
+<midColour>(1,1,1,0.5)</midColour>
+<endColour>(1,0,0,0)</endColour>
+<startTime>0</startTime>
+<endTime>300</endTime>
+<fadeTime>100</fadeTime>
+<startSize>0.04</startSize>
+<midSize>0.04</midSize>
+<endSize>0.10</endSize>
+</obj>)
+</strings>
+<sounds>()</sounds>
+<soundStreams>()</soundStreams>
+<killSound>""</killSound>
+<age>0</age>
+<expired>0</expired>
+</obj>
+)</obj>
