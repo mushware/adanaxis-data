@@ -6,18 +6,19 @@
 # Copyright Andy Southgate 2006-2007
 #
 # This file may be used and distributed under the terms of the Mushware
-# software licence version 1.1, under the terms for 'Proprietary original
-# source files'.  If not supplied with this software, a copy of the licence
-# can be obtained from Mushware Limited via http://www.mushware.com/.
-# One of your options under that licence is to use and distribute this file
-# under the terms of the GNU General Public Licence version 2.
+# Commercial Software Licence version 1.2.  If not supplied with this software
+# a copy of the licence can be obtained from Mushware Limited via
+# http://www.mushware.com/.
 #
 # This software carries NO WARRANTY of any kind.
 #
 ##############################################################################
-#%Header } mWTm77aAGlZDsW05Wkc+1g
-# $Id: space.rb,v 1.5 2007/02/08 17:55:13 southa Exp $
+#%Header } CulvS5fp7kD3KMiSLsH+QA
+# $Id: space.rb,v 1.6 2007/03/13 21:45:10 southa Exp $
 # $Log: space.rb,v $
+# Revision 1.6  2007/03/13 21:45:10  southa
+# Release process
+#
 # Revision 1.5  2007/02/08 17:55:13  southa
 # Common routines in space generation
 #
