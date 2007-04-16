@@ -6,7 +6,7 @@
 # Copyright Andy Southgate 2006-2007
 #
 # This file may be used and distributed under the terms of the Mushware
-# software licence version 1.1, under the terms for 'Proprietary original
+# Software Licence version 1.2, under the terms for 'Proprietary original
 # source files'.  If not supplied with this software, a copy of the licence
 # can be obtained from Mushware Limited via http://www.mushware.com/.
 # One of your options under that licence is to use and distribute this file
@@ -15,10 +15,13 @@
 # This software carries NO WARRANTY of any kind.
 #
 ##############################################################################
-#%Header } 2D0QmRQAfis84xvwMmp6gQ
+#%Header } GClYIpWC1wiDKDZ25rvXXg
 #
-# $Id: AdanaxisVTools.rb,v 1.1 2007/03/19 16:01:35 southa Exp $
+# $Id: AdanaxisVTools.rb,v 1.2 2007/03/20 17:31:23 southa Exp $
 # $Log: AdanaxisVTools.rb,v $
+# Revision 1.2  2007/03/20 17:31:23  southa
+# Difficulty and GL options
+#
 # Revision 1.1  2007/03/19 16:01:35  southa
 # Damage indicators
 #

@@ -6,7 +6,7 @@
 # Copyright Andy Southgate 2006-2007
 #
 # This file may be used and distributed under the terms of the Mushware
-# software licence version 1.1, under the terms for 'Proprietary original
+# Software Licence version 1.2, under the terms for 'Proprietary original
 # source files'.  If not supplied with this software, a copy of the licence
 # can be obtained from Mushware Limited via http://www.mushware.com/.
 # One of your options under that licence is to use and distribute this file
@@ -15,9 +15,12 @@
 # This software carries NO WARRANTY of any kind.
 #
 ##############################################################################
-#%Header } sZuwFePX4Tuo1mTupna0xg
-# $Id: AdanaxisLogic.rb,v 1.17 2007/03/13 21:45:07 southa Exp $
+#%Header } SsERqqTu8PUucnnSijYM3w
+# $Id: AdanaxisLogic.rb,v 1.18 2007/03/19 16:01:34 southa Exp $
 # $Log: AdanaxisLogic.rb,v $
+# Revision 1.18  2007/03/19 16:01:34  southa
+# Damage indicators
+#
 # Revision 1.17  2007/03/13 21:45:07  southa
 # Release process
 #

@@ -14,8 +14,11 @@
 #
 ##############################################################################
 #%Header } XHmX2Dj5udGZEFsoJLFMNg
-# $Id: space.rb,v 1.1 2007/03/28 14:45:46 southa Exp $
+# $Id: space.rb,v 1.1 2007/03/28 15:56:59 southa Exp $
 # $Log: space.rb,v $
+# Revision 1.1  2007/03/28 15:56:59  southa
+# Level work
+#
 # Revision 1.1  2007/03/28 14:45:46  southa
 # Level and AI standoff
 #
@@ -60,8 +63,9 @@ class Adanaxis_level6 < AdanaxisSpace
   def mInitialPiecesCreate
     super
     MushTools.cRandomSeedSet(6)
+    diff = AdanaxisRuby.cGameDifficulty
     
-    2.times do |param|
+    ((diff < 1)?1:2).times do |param|
       ['blue', 'red', 'red'].each do |colour|
         mPieceLibrary.mHarpikCreate(
           :colour => colour,
@@ -74,7 +78,7 @@ class Adanaxis_level6 < AdanaxisSpace
       end
     end
     
-    20.times do |param|
+    ((diff<1)?10:20).times do |param|
       ['blue', 'red', 'red'].each do |colour|
         mPieceLibrary.mAttendantCreate(
           :colour => colour,
@@ -125,7 +129,7 @@ class Adanaxis_level6 < AdanaxisSpace
           MushVector.new(50,-50,0,-400),
           MushVector.new(50,50,0,-200)
           ],
-      :ammo_count => 10 + 10 * AdanaxisRuby.cGameDifficulty
+      :ammo_count => 30 - 5 * AdanaxisRuby.cGameDifficulty
     )
 
   end
