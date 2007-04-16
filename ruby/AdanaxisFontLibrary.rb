@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } Y6P53luswsVYO+3zyRcMNg
-# $Id: AdanaxisFontLibrary.rb,v 1.12 2007/03/13 21:45:07 southa Exp $
+# $Id: AdanaxisFontLibrary.rb,v 1.13 2007/04/16 08:41:06 southa Exp $
 # $Log: AdanaxisFontLibrary.rb,v $
+# Revision 1.13  2007/04/16 08:41:06  southa
+# Level and header mods
+#
 # Revision 1.12  2007/03/13 21:45:07  southa
 # Release process
 #
@@ -52,13 +55,13 @@ class AdanaxisFontLibrary < MushObject
   DASHBOARD_RED_COUNT = 2
   DASHBOARD_BLUE_COUNT = 3
 
-  SYMBOL_SCAN_WHITE = 0
-  SYMBOL_SCAN_RED = 1
-  SYMBOL_SCAN_GREEN = 2
-  SYMBOL_SCAN_X = 8
-  SYMBOL_SCAN_Y = 9
-  SYMBOL_SCAN_Z = 10
-  SYMBOL_SCAN_W = 11
+  SYMBOL_SCAN_WHITE = 8
+  SYMBOL_SCAN_RED = 9
+  SYMBOL_SCAN_GREEN = 10
+  SYMBOL_SCAN_X = 16
+  SYMBOL_SCAN_Y = 17
+  SYMBOL_SCAN_Z = 18
+  SYMBOL_SCAN_W = 19
 
   def initialize(inParams = {})
     @m_textureLibrary = inParams[:texture_library] || raise("No texture library supplied to font library")

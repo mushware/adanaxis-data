@@ -1,0 +1,5 @@
+# Manifest file
+directory='intro1'
+name='Familiarisation sequence'
+creator='Andy Southgate (www.mushware.com)'
+next='level1'

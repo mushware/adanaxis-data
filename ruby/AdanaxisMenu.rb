@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } JTAKYTlwnGnpnrXHiVmopA
-# $Id: AdanaxisMenu.rb,v 1.19 2007/03/20 17:31:23 southa Exp $
+# $Id: AdanaxisMenu.rb,v 1.20 2007/04/16 08:41:06 southa Exp $
 # $Log: AdanaxisMenu.rb,v $
+# Revision 1.20  2007/04/16 08:41:06  southa
+# Level and header mods
+#
 # Revision 1.19  2007/03/20 17:31:23  southa
 # Difficulty and GL options
 #
@@ -411,6 +414,7 @@ class AdanaxisMenu < MushObject
         ["Game difficulty      : #{difficultyName}", :mMenuDifficulty],
         ["Audio volume         : #{MushGame.cAudioVolume}%", :mMenuAudioVolume],
         ["Music volume         : #{MushGame.cMusicVolume}%", :mMenuMusicVolume],
+        ["Voiceover volume     : #{MushGame.cVoiceVolume}%", :mMenuVoiceVolume],
         ["Texture detail       : #{detailName}", :mMenuTextureDetail],
         ["Brightness           : #{'%2.2f'%MushGame.cBrightness}", :mMenuBrightness],
         ["Mouse sensitivity    : #{'%2.2f'%MushGame.cMouseSensitivity}", :mMenuMouseSensitivity],

@@ -14,8 +14,11 @@
 #
 ##############################################################################
 #%Header } ymklWNnUsMW6L2JnkUUK9g
-# $Id: space.rb,v 1.1 2007/03/23 12:27:35 southa Exp $
+# $Id: space.rb,v 1.2 2007/03/27 14:01:03 southa Exp $
 # $Log: space.rb,v $
+# Revision 1.2  2007/03/27 14:01:03  southa
+# Attendant AI
+#
 # Revision 1.1  2007/03/23 12:27:35  southa
 # Added levels and Cistern mesh
 #
@@ -32,6 +35,7 @@ class Adanaxis_level1 < AdanaxisSpace
   def mLoad(game)
     mLoadStandard(game)
     mMusicAdd('game1', 'mushware-extensions-to-space.ogg')
+    MushGame.cSoundDefine("voice-intro", "mush://waves/voice-L1.ogg")
   end
   
   def mPrecacheListBuild

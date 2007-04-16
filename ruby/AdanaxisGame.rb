@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } 2fpFZATPRQNzn58XR/mr1A
-# $Id: AdanaxisGame.rb,v 1.39 2007/03/20 17:31:23 southa Exp $
+# $Id: AdanaxisGame.rb,v 1.40 2007/03/24 18:07:22 southa Exp $
 # $Log: AdanaxisGame.rb,v $
+# Revision 1.40  2007/03/24 18:07:22  southa
+# Level 3 work
+#
 # Revision 1.39  2007/03/20 17:31:23  southa
 # Difficulty and GL options
 #
@@ -374,6 +377,14 @@ class AdanaxisGame < MushObject
       MushGame.cMusicVolumeSet( (MushGame.cMusicVolume + 100) % 110 )
     else
       MushGame.cMusicVolumeSet( (MushGame.cMusicVolume + 10) % 110 )
+    end
+  end
+  
+  def mMenuVoiceVolume(params, input)
+    if input < 0
+      MushGame.cVoiceVolumeSet( (MushGame.cVoiceVolume + 100) % 110 )
+    else
+      MushGame.cVoiceVolumeSet( (MushGame.cVoiceVolume + 10) % 110 )
     end
   end
   
