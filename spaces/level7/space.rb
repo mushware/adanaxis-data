@@ -1,7 +1,7 @@
 #%Header {
 ##############################################################################
 #
-# File data-adanaxis/spaces/level6/space.rb
+# File data-adanaxis/spaces/level7/space.rb
 #
 # Author Andy Southgate 2006-2007
 #
@@ -17,48 +17,24 @@
 # This software carries NO WARRANTY of any kind.
 #
 ##############################################################################
-#%Header } dqrpGHv21yM1TW5BwkiS2g
+#%Header } hH7QU36AMkddIhBdLRAoKQ
 # $Id: space.rb,v 1.2 2007/04/16 08:41:07 southa Exp $
 # $Log: space.rb,v $
-# Revision 1.2  2007/04/16 08:41:07  southa
-# Level and header mods
-#
-# Revision 1.1  2007/03/28 15:56:59  southa
-# Level work
-#
-# Revision 1.1  2007/03/28 14:45:46  southa
-# Level and AI standoff
-#
-# Revision 1.1  2007/03/27 15:34:43  southa
-# L4 and carrier ammo
-#
-# Revision 1.4  2007/03/26 16:31:36  southa
-# L2 work
-#
-# Revision 1.3  2007/03/24 18:07:23  southa
-# Level 3 work
-#
-# Revision 1.2  2007/03/24 14:06:28  southa
-# Cistern AI
-#
-# Revision 1.1  2007/03/23 12:27:35  southa
-# Added levels and Cistern mesh
-#
 
 require 'Mushware.rb'
 require 'Adanaxis.rb'
 
-class Adanaxis_level6 < AdanaxisSpace
+class Adanaxis_level7 < AdanaxisSpace
   def initialize(inParams = {})
     super
-    mTimeoutSpawnAdd(:mSpawn0, 13000)
+    mTimeoutSpawnAdd(:mSpawn0, 180000)
     mIsBattleSet(true)
   end
   
   def mLoad(game)
     mLoadStandard(game)
-    mMusicAdd('game1', 'mushware-respiration.ogg')
-    MushGame.cSoundDefine("voice-intro", "mush://waves/voice-L6.ogg")
+    mMusicAdd('game1', 'mushware-sanity-fault.ogg')
+    MushGame.cSoundDefine("voice-intro", "mush://waves/voice-L7.ogg")
   end
   
   def mPrecacheListBuild
@@ -66,14 +42,27 @@ class Adanaxis_level6 < AdanaxisSpace
     mPrecacheListAdd(mPieceLibrary.mAttendantTex('red', 'blue'))
     mPrecacheListAdd(mPieceLibrary.mCisternTex('red', 'blue'))
     mPrecacheListAdd(mPieceLibrary.mHarpikTex('red', 'blue'))
+    mPrecacheListAdd(mPieceLibrary.mRailTex('red', 'blue'))
   end
   
   def mInitialPiecesCreate
     super
-    MushTools.cRandomSeedSet(6)
+    MushTools.cRandomSeedSet(7)
     diff = AdanaxisRuby.cGameDifficulty
+  
+    ((-diff-1)..(diff+1)).each do |param|
+      mPieceLibrary.mRailCreate(
+        :colour => 'red',
+        :post => MushPost.new(
+          :position => MushVector.new(param*50, param.abs*20, param*40, -400-param.abs*10),
+          :angular_position => MushTools.cRotationInXWPlane(Math::PI)
+        ),
+        :ai_state => :dormant,
+        :ai_state_msec => 80000 - 30000 * diff
+      )  
+    end
     
-    ((diff < 1)?1:2).times do |param|
+    0.times do |param|
       ['blue', 'red', 'red'].each do |colour|
         mPieceLibrary.mHarpikCreate(
           :colour => colour,
@@ -86,31 +75,40 @@ class Adanaxis_level6 < AdanaxisSpace
       end
     end
     
-    ((diff<1)?10:20).times do |param|
-      ['blue', 'red', 'red'].each do |colour|
-        mPieceLibrary.mAttendantCreate(
-          :colour => colour,
-          :post => MushPost.new(
-            :position => MushVector.new((colour == 'red')?-100:100, 0, 0, -200) +
-            MushTools.cRandomUnitVector * (20 + rand(100)),
-            :angular_position => MushTools.cRandomOrientation
-          )
+    (-15..15).each do |param|
+      mPieceLibrary.mAttendantCreate(
+        :colour => 'blue',
+        :post => MushPost.new(
+          :position => MushVector.new(20*param, 100, 0, -150) +
+          MushTools.cRandomUnitVector * (20 + rand(100)),
+          :angular_position => MushTools.cRandomOrientation
         )
-      end
+      )
+    end
+    
+    (-8..8).each do |param|
+      mPieceLibrary.mAttendantCreate(
+        :colour => 'red',
+        :post => MushPost.new(
+          :position => MushVector.new(10*param, -100, -200, -600) +
+          MushTools.cRandomUnitVector * (20 + rand(100)),
+          :angular_position => MushTools.cRandomOrientation
+        )
+      )
     end
 
     $currentLogic.mRemnant.mCreate(
       :item_type => (AdanaxisRuby.cGameDifficulty < 1) ? :player_light_missile : :player_heavy_cannon,
       :post => MushPost.new(
-        :position => MushVector.new(0, 0, 0, -20)
+        :position => MushVector.new(-4, 0, 0, -40)
       )
     )
     
-    mStandardCosmos(6)
+    mStandardCosmos(7)
   end
   
   def mSpawn0
-    MushTools.cRandomSeedSet(6)
+    MushTools.cRandomSeedSet(7)
     mPieceLibrary.mCisternCreate(
       :colour => 'red',
       :post => MushPost.new(

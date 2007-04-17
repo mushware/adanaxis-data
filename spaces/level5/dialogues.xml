@@ -12,8 +12,11 @@
 #
 ##############################################################################
 #
-# $Id: dialogues.xml,v 1.1 2007/03/28 14:45:46 southa Exp $
+# $Id: dialogues.xml,v 1.2 2007/03/28 15:56:58 southa Exp $
 # $Log: dialogues.xml,v $
+# Revision 1.2  2007/03/28 15:56:58  southa
+# Level work
+#
 # Revision 1.1  2007/03/28 14:45:46  southa
 # Level and AI standoff
 #
@@ -44,14 +47,11 @@
 <string type="GLString">
 <fontRef type="GLFontRef">
 <name>"font-mono1"</name>
-<size>1.0</size>
 </fontRef>
 <value>"Unrecognised Intelligence"</value>
-<alignment>0</alignment>
 </string>
 <posticity type="MushPiePosticity">
 <pos>(0,0.12,0,0)</pos>
-<vel>(0,0,0,0)</vel>
 </posticity>
 <startColour>(1,1,1,0)</startColour>
 <midColour>(1,1,1,0.5)</midColour>
@@ -59,17 +59,21 @@
 <startTime>0</startTime>
 <endTime>300</endTime>
 <fadeTime>100</fadeTime>
-<startSize>0.03</startSize>
-<midSize>0.03</midSize>
+<startSize>0.04</startSize>
+<midSize>0.04</midSize>
 <endSize>0.10</endSize>
 </obj>)
 </strings>
-<sounds>()</sounds>
+<voices>(
+<obj type="GameSoundSpec">
+  <soundRef>"voice-intro"</soundRef>
+  <startTime>0</startTime>
+</obj>)</voices>
 <soundStreams>(
  <obj type="GameSoundStreamSpec">
   <soundStreamRef>"game1"</soundStreamRef>
   <loop>10000</loop>
-  <startTime>0</startTime>
+  <startTime>100</startTime>
  </obj>
 )</soundStreams>
 </obj>
@@ -80,16 +84,11 @@
 <string type="GLString">
 <fontRef type="GLFontRef">
 <name>"font-mono1"</name>
-<size>1.0</size>
 </fontRef>
 <value>"Mission Failed"</value>
-<alignment>0</alignment>
 </string>
 <posticity type="MushPiePosticity">
-<angPos>((0,0,0,0),(0,0,0,0))</angPos>
-<angVel>((0,0,0,0),(0,0,0,0))</angVel>
 <pos>(0,0.12,0,0)</pos>
-<vel>(0,0,0,0)</vel>
 </posticity>
 <startColour>(1,1,1,0)</startColour>
 <midColour>(1,1,1,0.5)</midColour>
@@ -102,12 +101,47 @@
 <endSize>0.10</endSize>
 </obj>)
 </strings>
-<sounds>()</sounds>
-<soundStreams>()</soundStreams>
-<killSound>""</killSound>
-<age>0</age>
-<expired>0</expired>
-</obj>
+<voices>(
+ <obj type="GameSoundSpec">
+  <soundRef>"voice-E5-1"</soundRef>
+  <startTime>100</startTime>
+ </obj>
+)</voices></obj>
+,
+"lost1"=<obj type="GameDialogue">
+<strings>(
+<obj type="GameStringSpec">
+<string type="GLString">
+<fontRef type="GLFontRef">
+<name>"font-mono1"</name>
+</fontRef>
+<value>"Mission Failed"</value>
+</string>
+<posticity type="MushPiePosticity">
+<pos>(0,0.12,0,0)</pos>
+</posticity>
+<startColour>(1,1,1,0)</startColour>
+<midColour>(1,1,1,0.5)</midColour>
+<endColour>(1,0,0,0)</endColour>
+<startTime>0</startTime>
+<endTime>300</endTime>
+<fadeTime>100</fadeTime>
+<startSize>0.04</startSize>
+<midSize>0.04</midSize>
+<endSize>0.10</endSize>
+</obj>)
+</strings>
+<voices>(
+ <obj type="GameSoundSpec">
+  <soundRef>"voice-E11-5"</soundRef>
+  <startTime>50</startTime>
+ </obj>
+ ,
+ <obj type="GameSoundSpec">
+  <soundRef>"voice-E5-2"</soundRef>
+  <startTime>250</startTime>
+ </obj>
+)</voices></obj>
 ,
 "won1"=<obj type="GameDialogue">
 <strings>(
@@ -115,16 +149,11 @@
 <string type="GLString">
 <fontRef type="GLFontRef">
 <name>"font-mono1"</name>
-<size>1.0</size>
 </fontRef>
 <value>"Mission Successful"</value>
-<alignment>0</alignment>
 </string>
 <posticity type="MushPiePosticity">
-<angPos>((0,0,0,0),(0,0,0,0))</angPos>
-<angVel>((0,0,0,0),(0,0,0,0))</angVel>
 <pos>(0,0.12,0,0)</pos>
-<vel>(0,0,0,0)</vel>
 </posticity>
 <startColour>(1,1,1,0)</startColour>
 <midColour>(1,1,1,0.5)</midColour>
@@ -137,10 +166,16 @@
 <endSize>0.10</endSize>
 </obj>)
 </strings>
-<sounds>()</sounds>
-<soundStreams>()</soundStreams>
-<killSound>""</killSound>
-<age>0</age>
-<expired>0</expired>
+<voices>(
+ <obj type="GameSoundSpec">
+  <soundRef>"voice-E10-1"</soundRef>
+  <startTime>0</startTime>
+ </obj>
+ ,
+ <obj type="GameSoundSpec">
+  <soundRef>"voice-E4-2"</soundRef>
+  <startTime>200</startTime>
+ </obj> 
+)</voices>
 </obj>
 )</obj>

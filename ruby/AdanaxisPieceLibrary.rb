@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } fkP4xUsCfj1eVHkvRP5YMw
-# $Id: AdanaxisPieceLibrary.rb,v 1.13 2007/03/27 15:34:42 southa Exp $
+# $Id: AdanaxisPieceLibrary.rb,v 1.14 2007/03/28 14:45:46 southa Exp $
 # $Log: AdanaxisPieceLibrary.rb,v $
+# Revision 1.14  2007/03/28 14:45:46  southa
+# Level and AI standoff
+#
 # Revision 1.13  2007/03/27 15:34:42  southa
 # L4 and carrier ammo
 #
@@ -119,10 +122,16 @@ class AdanaxisPieceLibrary < MushObject
       :effect_scale => 5.0,
       :hit_points => 160.0,
       :type => @m_typeDefault,
-      :seek_speed => 0.01,
-      :seek_acceleration => 0.003,
-      :patrol_speed => 0.01,
-      :patrol_acceleration => 0.003,
+      :ai_object => AdanaxisAIKhaziRail,
+      :ai_state_msec => 8000,
+      :ai_state => :evade,
+      :evade_speed => 0.02*(1+diff),
+      :evade_acceleration => 0.006*(1+diff),
+      :seek_speed => 0.01*(1+diff),
+      :seek_acceleration => 0.003*(1+diff),
+      :override_dead_msec => 20000,
+      :patrol_speed => 0.01*(1+diff),
+      :patrol_acceleration => 0.003*(1+diff),
       :remnant => :player_rail,
       :weapon => :khazi_rail
     }

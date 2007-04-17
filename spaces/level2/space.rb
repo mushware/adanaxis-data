@@ -18,8 +18,11 @@
 #
 ##############################################################################
 #%Header } ki7f3zF4dsHAYDyMx/ZYpA
-# $Id: space.rb,v 1.4 2007/03/26 16:31:36 southa Exp $
+# $Id: space.rb,v 1.5 2007/04/17 10:08:12 southa Exp $
 # $Log: space.rb,v $
+# Revision 1.5  2007/04/17 10:08:12  southa
+# Voice work
+#
 # Revision 1.4  2007/03/26 16:31:36  southa
 # L2 work
 #
@@ -84,5 +87,6 @@ class Adanaxis_level2 < AdanaxisSpace
         )
       end
     end
+    MushGame.cVoicePlay('voice-E3-2') # 'Hostile import detected'
   end
 end

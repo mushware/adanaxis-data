@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } w5eKF461Eep4mjTerVpQKg
-# $Id: AdanaxisAI.rb,v 1.16 2007/03/27 14:01:02 southa Exp $
+# $Id: AdanaxisAI.rb,v 1.17 2007/03/28 14:45:45 southa Exp $
 # $Log: AdanaxisAI.rb,v $
+# Revision 1.17  2007/03/28 14:45:45  southa
+# Level and AI standoff
+#
 # Revision 1.16  2007/03/27 14:01:02  southa
 # Attendant AI
 #
@@ -105,6 +108,8 @@ class AdanaxisAI < MushObject
     @m_lastOverrideMsec = nil
 
     case inParams[:ai_state]
+    when :dormant
+      mStateChangeDormant(inParams[:ai_state_msec])    
     when :evade
       mStateChangeEvade(inParams[:ai_state_msec])    
     when :patrol
@@ -137,7 +142,8 @@ class AdanaxisAI < MushObject
     nil
   end
 
-  def mStateChangeDormant
+  def mStateChangeDormant(duration)
+    @m_stateDuration = duration
     mStateChange(AISTATE_DORMANT)
   end
   
@@ -192,6 +198,10 @@ class AdanaxisAI < MushObject
 
   def mStateExpired?
     return @m_stateDuration && mMsecSinceStateChange > @m_stateDuration
+  end
+
+  def mStateActionDormantExit
+    mStateChangeIdle
   end
 
   def mStateActionDormant
@@ -329,6 +339,7 @@ class AdanaxisAI < MushObject
     case @m_state
       when AISTATE_DORMANT :
         callInterval = mStateActionDormant
+        mStateActionDormantExit if mStateExpired?
       when AISTATE_EVADE
         callInterval = mStateActionEvade
         mStateActionEvadeExit if mStateExpired?

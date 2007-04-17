@@ -3,19 +3,26 @@
 #
 # File data-adanaxis/spaces/level4/space.rb
 #
-# Copyright Andy Southgate 2006-2007
+# Author Andy Southgate 2006-2007
 #
-# This file may be used and distributed under the terms of the Mushware
-# Commercial Software Licence version 1.2.  If not supplied with this software
-# a copy of the licence can be obtained from Mushware Limited via
-# http://www.mushware.com/.
+# This file contains original work by Andy Southgate.  The author and his
+# employer (Mushware Limited) irrevocably waive all of their copyright rights
+# vested in this particular version of this file to the furthest extent
+# permitted.  The author and Mushware Limited also irrevocably waive any and
+# all of their intellectual property rights arising from said file and its
+# creation that would otherwise restrict the rights of any party to use and/or
+# distribute the use of, the techniques and methods used herein.  A written
+# waiver can be obtained via http://www.mushware.com/.
 #
 # This software carries NO WARRANTY of any kind.
 #
 ##############################################################################
-#%Header } wE/Qn4CN09yXiKKazPP1eg
-# $Id: space.rb,v 1.1 2007/03/27 15:34:43 southa Exp $
+#%Header } jgCCzVzRcDJxU9v8ohj0NQ
+# $Id: space.rb,v 1.2 2007/03/28 14:45:46 southa Exp $
 # $Log: space.rb,v $
+# Revision 1.2  2007/03/28 14:45:46  southa
+# Level and AI standoff
+#
 # Revision 1.1  2007/03/27 15:34:43  southa
 # L4 and carrier ammo
 #
@@ -38,13 +45,14 @@ require 'Adanaxis.rb'
 class Adanaxis_level4 < AdanaxisSpace
   def initialize(inParams = {})
     super
-    mTimeoutSpawnAdd(:mSpawn0, 13000)
+    mTimeoutSpawnAdd(:mSpawn0, 17000)
     mIsBattleSet(true)
   end
   
   def mLoad(game)
     mLoadStandard(game)
     mMusicAdd('game1', 'mushware-disturbed-sleep.ogg')
+    MushGame.cSoundDefine("voice-intro", "mush://waves/voice-L4.ogg")
   end
   
   def mPrecacheListBuild
@@ -57,12 +65,14 @@ class Adanaxis_level4 < AdanaxisSpace
   def mInitialPiecesCreate
     super
     MushTools.cRandomSeedSet(4)
-    
+    diff = AdanaxisRuby.cGameDifficulty
     1.times do |param|
       ['red'].each do |colour|
         mPieceLibrary.mRailCreate(
           :colour => colour,
-          :position => MushVector.new(0, 0, 0, -600)
+          :position => MushVector.new(0, 0, 0, -600),
+          :ai_state => :dormant,
+          :ai_state_msec => 180000 - 40000 * diff
         )
       end    
     end
@@ -79,7 +89,7 @@ class Adanaxis_level4 < AdanaxisSpace
       end
     end
 
-    if AdanaxisRuby.cGameDifficulty < 1
+    if diff < 1
       $currentLogic.mRemnant.mCreate(
         :item_type => :player_light_missile,
         :post => MushPost.new(
@@ -106,5 +116,6 @@ class Adanaxis_level4 < AdanaxisSpace
           ],
       :ammo_count => 15 + 10 * AdanaxisRuby.cGameDifficulty
     )
+    MushGame.cVoicePlay('voice-E3-3') # 'Hostile import detected'
   end
 end

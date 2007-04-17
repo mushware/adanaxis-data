@@ -3,19 +3,26 @@
 #
 # File data-adanaxis/spaces/level5/space.rb
 #
-# Copyright Andy Southgate 2006-2007
+# Author Andy Southgate 2006-2007
 #
-# This file may be used and distributed under the terms of the Mushware
-# Commercial Software Licence version 1.2.  If not supplied with this software
-# a copy of the licence can be obtained from Mushware Limited via
-# http://www.mushware.com/.
+# This file contains original work by Andy Southgate.  The author and his
+# employer (Mushware Limited) irrevocably waive all of their copyright rights
+# vested in this particular version of this file to the furthest extent
+# permitted.  The author and Mushware Limited also irrevocably waive any and
+# all of their intellectual property rights arising from said file and its
+# creation that would otherwise restrict the rights of any party to use and/or
+# distribute the use of, the techniques and methods used herein.  A written
+# waiver can be obtained via http://www.mushware.com/.
 #
 # This software carries NO WARRANTY of any kind.
 #
 ##############################################################################
-#%Header } /dF+kikiX5afV2t2RiuQ7A
-# $Id: space.rb,v 1.1 2007/03/27 15:34:43 southa Exp $
+#%Header } sMTEr0qApN5xjmey4QYEfw
+# $Id: space.rb,v 1.1 2007/03/28 14:45:46 southa Exp $
 # $Log: space.rb,v $
+# Revision 1.1  2007/03/28 14:45:46  southa
+# Level and AI standoff
+#
 # Revision 1.1  2007/03/27 15:34:43  southa
 # L4 and carrier ammo
 #
@@ -38,13 +45,14 @@ require 'Adanaxis.rb'
 class Adanaxis_level5 < AdanaxisSpace
   def initialize(inParams = {})
     super
-    mTimeoutSpawnAdd(:mSpawn0, 13000)
+    mTimeoutSpawnAdd(:mSpawn0, 15000)
     mIsBattleSet(true)
   end
   
   def mLoad(game)
     mLoadStandard(game)
     mMusicAdd('game1', 'mushware-disturbed-sleep.ogg')
+    MushGame.cSoundDefine("voice-intro", "mush://waves/voice-L5.ogg")
   end
   
   def mPrecacheListBuild
@@ -62,7 +70,7 @@ class Adanaxis_level5 < AdanaxisSpace
       mPieceLibrary.mHarpikCreate(
         :colour => 'red',
         :post => MushPost.new(
-          :position => MushVector.new(-30+60*param, 0, 0, -100-30*param),
+          :position => MushVector.new(-30+60*param, 0, 0, -160+30*param),
           :angular_position => MushTools.cRandomOrientation
         )
       )
@@ -123,5 +131,6 @@ class Adanaxis_level5 < AdanaxisSpace
       :ammo_count => 10 + 10 * AdanaxisRuby.cGameDifficulty
     )
 
+    MushGame.cVoicePlay('voice-E3-1') # 'Hostile import detected'
   end
 end

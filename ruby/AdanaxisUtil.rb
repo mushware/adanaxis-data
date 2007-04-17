@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } lDJzWQbqKYTujby/WoRUQA
-# $Id: AdanaxisUtil.rb,v 1.28 2007/03/27 14:01:03 southa Exp $
+# $Id: AdanaxisUtil.rb,v 1.29 2007/03/28 14:45:46 southa Exp $
 # $Log: AdanaxisUtil.rb,v $
+# Revision 1.29  2007/03/28 14:45:46  southa
+# Level and AI standoff
+#
 # Revision 1.28  2007/03/27 14:01:03  southa
 # Attendant AI
 #
@@ -162,6 +165,7 @@ class AdanaxisUtil < MushObject
     :mesh_name => true,
     :num_projectiles => true,
     :offset_sequence => true,
+    :override_dead_msec => true,
     :owner => true,
     :patrol_acceleration => true,
     :patrol_points => true,
