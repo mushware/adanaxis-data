@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } XfyFHmUDC1Twjz+2BDP/kQ
-# $Id: AdanaxisWaveLibrary.rb,v 1.6 2007/03/13 21:45:09 southa Exp $
+# $Id: AdanaxisWaveLibrary.rb,v 1.7 2007/04/16 08:41:07 southa Exp $
 # $Log: AdanaxisWaveLibrary.rb,v $
+# Revision 1.7  2007/04/16 08:41:07  southa
+# Level and header mods
+#
 # Revision 1.6  2007/03/13 21:45:09  southa
 # Release process
 #
@@ -50,5 +53,15 @@ class AdanaxisWaveLibrary < MushObject
     MushGame.cSoundDefine("shieldcollect1", "mush://waves/sdog-shieldcollect1.wav|#{MushConfig.cGlobalWavesPath}/collect1.wav")
     MushGame.cSoundDefine("healthcollect1", "mush://waves/sdog-healthcollect1.wav|#{MushConfig.cGlobalWavesPath}/collect1.wav")
 
+    (1..11).each do |i|
+      case i
+        when 9,10: num=4
+        when 11: num=6
+        else num=3
+      end
+      (1..num).each do |j|
+        MushGame.cSoundDefine("voice-E#{i}-#{j}", "mush://waves/voice-E#{i}-#{j}.ogg")
+      end
+    end
   end
 end

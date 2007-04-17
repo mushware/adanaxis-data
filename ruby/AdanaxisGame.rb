@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } 2fpFZATPRQNzn58XR/mr1A
-# $Id: AdanaxisGame.rb,v 1.40 2007/03/24 18:07:22 southa Exp $
+# $Id: AdanaxisGame.rb,v 1.41 2007/04/16 18:50:57 southa Exp $
 # $Log: AdanaxisGame.rb,v $
+# Revision 1.41  2007/04/16 18:50:57  southa
+# Voice work
+#
 # Revision 1.40  2007/03/24 18:07:22  southa
 # Level 3 work
 #
@@ -182,6 +185,10 @@ class AdanaxisGame < MushObject
 
   def mEpilogueStartDead
     MushGame.cNamedDialoguesAdd('^dead')
+  end
+  
+  def mEpilogueStartLost
+    MushGame.cNamedDialoguesAdd('^lost')
   end
   
   def mEpilogueStartWon

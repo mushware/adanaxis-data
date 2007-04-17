@@ -14,8 +14,11 @@
 #
 ##############################################################################
 #%Header } ymklWNnUsMW6L2JnkUUK9g
-# $Id: space.rb,v 1.2 2007/03/27 14:01:03 southa Exp $
+# $Id: space.rb,v 1.3 2007/04/16 18:50:58 southa Exp $
 # $Log: space.rb,v $
+# Revision 1.3  2007/04/16 18:50:58  southa
+# Voice work
+#
 # Revision 1.2  2007/03/27 14:01:03  southa
 # Attendant AI
 #
@@ -75,6 +78,7 @@ class Adanaxis_level1 < AdanaxisSpace
         :spawned => true
       )
     end
+    MushGame.cVoicePlay('voice-E3-1') # 'Hostile import detected'
     return true
   end
 end
