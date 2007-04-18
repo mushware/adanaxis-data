@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } I5I5PreDB+b1tW+GtXsmJg
-# $Id: space.rb,v 1.22 2007/03/28 14:45:47 southa Exp $
+# $Id: space.rb,v 1.23 2007/04/18 09:21:57 southa Exp $
 # $Log: space.rb,v $
+# Revision 1.23  2007/04/18 09:21:57  southa
+# Header and level fixes
+#
 # Revision 1.22  2007/03/28 14:45:47  southa
 # Level and AI standoff
 #
@@ -90,7 +93,7 @@ class Adanaxis_menu1 < AdanaxisSpace
   end
 
   def mPrecacheListBuild
-    super
+    # Don't call super
     mPrecacheListAdd(mPieceLibrary.mHarpikTex('red'))
   end
   

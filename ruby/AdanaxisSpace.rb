@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } U1S8GssKDgFSsNiwIrKzyw
-# $Id: AdanaxisSpace.rb,v 1.27 2007/03/24 18:07:23 southa Exp $
+# $Id: AdanaxisSpace.rb,v 1.28 2007/04/18 09:21:54 southa Exp $
 # $Log: AdanaxisSpace.rb,v $
+# Revision 1.28  2007/04/18 09:21:54  southa
+# Header and level fixes
+#
 # Revision 1.27  2007/03/24 18:07:23  southa
 # Level 3 work
 #
@@ -132,7 +135,7 @@ class AdanaxisSpace < MushObject
   end
   
   def mPrecacheListAdd(inNames)
-    raise "Precache list not built yet" unless @m_precacheList
+    @m_precacheList = [] unless @m_precacheList
     if inNames === String
       @m_precacheList.unshift inNames
     else

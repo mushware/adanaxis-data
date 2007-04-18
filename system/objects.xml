@@ -11,6 +11,9 @@
 #
 # $$
 # $Log: objects.xml,v $
+# Revision 1.4  2006/07/31 11:01:34  southa
+# Music and dialogues
+#
 # Revision 1.3  2006/07/28 16:52:18  southa
 # Options work
 #
@@ -30,16 +33,11 @@
 <string type="GLString">
 <fontRef type="GLFontRef">
 <name>"font-mono1"</name>
-<size>1.0</size>
 </fontRef>
 <value>"Recovery Mode"</value>
-<alignment>0</alignment>
 </string>
 <posticity type="MushPiePosticity">
-<angPos>((0,0,0,0),(0,0,0,0))</angPos>
-<angVel>((0,0,0,0),(0,0,0,0))</angVel>
-<pos>(0,0,0,0)</pos>
-<vel>(0,0,0,0)</vel>
+<pos>(0,-0.04,0,0)</pos>
 </posticity>
 <startColour>(1.0,0.8,0.8,0.5)</startColour>
 <midColour>(1.0,0.8,0.8,1.0)</midColour>
@@ -48,14 +46,9 @@
 <endTime>1000</endTime>
 <fadeTime>50</fadeTime>
 <startSize>0.03</startSize>
-<midSize>0.03</midSize>
+<midSize>0.04</midSize>
 <endSize>0.03</endSize>
 </obj>)
 </strings>
-<sounds>()</sounds>
-<soundStreams>()</soundStreams>
-<killSound>""</killSound>
-<age>0</age>
-<expired>0</expired>
 </obj>
 )</obj>
