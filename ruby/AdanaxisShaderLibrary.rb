@@ -6,7 +6,7 @@
 # Copyright Andy Southgate 2006-2007
 #
 # This file may be used and distributed under the terms of the Mushware
-# Software Licence version 1.2, under the terms for 'Proprietary original
+# Software Licence version 1.3, under the terms for 'Proprietary original
 # source files'.  If not supplied with this software, a copy of the licence
 # can be obtained from Mushware Limited via http://www.mushware.com/.
 # One of your options under that licence is to use and distribute this file
@@ -15,9 +15,12 @@
 # This software carries NO WARRANTY of any kind.
 #
 ##############################################################################
-#%Header } vdF8znlFR2k3qLr0ShNEYg
-# $Id: AdanaxisShaderLibrary.rb,v 1.5 2007/03/13 21:45:08 southa Exp $
+#%Header } Q4rfL/ZXaaSkdsOQvuWNeg
+# $Id: AdanaxisShaderLibrary.rb,v 1.6 2007/04/16 08:41:06 southa Exp $
 # $Log: AdanaxisShaderLibrary.rb,v $
+# Revision 1.6  2007/04/16 08:41:06  southa
+# Level and header mods
+#
 # Revision 1.5  2007/03/13 21:45:08  southa
 # Release process
 #

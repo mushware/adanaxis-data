@@ -6,16 +6,21 @@
 # Copyright Andy Southgate 2006-2007
 #
 # This file may be used and distributed under the terms of the Mushware
-# Commercial Software Licence version 1.2.  If not supplied with this software
-# a copy of the licence can be obtained from Mushware Limited via
-# http://www.mushware.com/.
+# Software Licence version 1.3, under the terms for 'Proprietary original
+# source files'.  If not supplied with this software, a copy of the licence
+# can be obtained from Mushware Limited via http://www.mushware.com/.
+# One of your options under that licence is to use and distribute this file
+# under the terms of the GNU General Public Licence version 2.
 #
 # This software carries NO WARRANTY of any kind.
 #
 ##############################################################################
-#%Header } 9ikhGcifyrg1myAUl8cjaQ
-# $Id: space.rb,v 1.6 2007/03/13 18:21:36 southa Exp $ 
+#%Header } +nDmSEYs257nZHfpiar9Aw
+# $Id: space.rb,v 1.7 2007/03/23 12:27:35 southa Exp $ 
 # $Log: space.rb,v $
+# Revision 1.7  2007/03/23 12:27:35  southa
+# Added levels and Cistern mesh
+#
 # Revision 1.6  2007/03/13 18:21:36  southa
 # Scanner jamming
 #

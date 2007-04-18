@@ -6,7 +6,7 @@
 # Copyright Andy Southgate 2006-2007
 #
 # This file may be used and distributed under the terms of the Mushware
-# Software Licence version 1.2, under the terms for 'Proprietary original
+# Software Licence version 1.3, under the terms for 'Proprietary original
 # source files'.  If not supplied with this software, a copy of the licence
 # can be obtained from Mushware Limited via http://www.mushware.com/.
 # One of your options under that licence is to use and distribute this file
@@ -15,9 +15,12 @@
 # This software carries NO WARRANTY of any kind.
 #
 ##############################################################################
-#%Header } 2RnvwBcd3d85+HX1opom5w
-# $Id: AdanaxisAIKhaziAttendant.rb,v 1.1 2007/03/27 14:01:02 southa Exp $
-# $Log: AdanaxisAIKhaziAttendant.rb,v $
+#%Header } KquJ2LoaPKky37EvVhjtXQ
+# $Id: AdanaxisAIKhaziRail.rb,v 1.1 2007/04/17 21:16:33 southa Exp $
+# $Log: AdanaxisAIKhaziRail.rb,v $
+# Revision 1.1  2007/04/17 21:16:33  southa
+# Level work
+#
 
 require 'Mushware.rb'
 require 'AdanaxisAIKhazi.rb'

@@ -6,16 +6,21 @@
 # Copyright Andy Southgate 2006-2007
 #
 # This file may be used and distributed under the terms of the Mushware
-# Commercial Software Licence version 1.2.  If not supplied with this software
-# a copy of the licence can be obtained from Mushware Limited via
-# http://www.mushware.com/.
+# Software Licence version 1.3, under the terms for 'Proprietary original
+# source files'.  If not supplied with this software, a copy of the licence
+# can be obtained from Mushware Limited via http://www.mushware.com/.
+# One of your options under that licence is to use and distribute this file
+# under the terms of the GNU General Public Licence version 2.
 #
 # This software carries NO WARRANTY of any kind.
 #
 ##############################################################################
-#%Header } Y8LAjPinEa0KzjVuzAjC1Q
-# $Id: space.rb,v 1.21 2007/03/24 18:07:23 southa Exp $
+#%Header } I5I5PreDB+b1tW+GtXsmJg
+# $Id: space.rb,v 1.22 2007/03/28 14:45:47 southa Exp $
 # $Log: space.rb,v $
+# Revision 1.22  2007/03/28 14:45:47  southa
+# Level and AI standoff
+#
 # Revision 1.21  2007/03/24 18:07:23  southa
 # Level 3 work
 #

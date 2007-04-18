@@ -1,17 +1,26 @@
+#%Header {
+##############################################################################
 #
-# Adanaxis manifest file
+# File data-adanaxis/spaces/level7/manifest.txt
 #
 # Copyright Andy Southgate 2006-2007
 #
 # This file may be used and distributed under the terms of the Mushware
-# Commercial Software Licence version 1.2.  If not supplied with this software
-# a copy of the licence can be obtained from Mushware Limited via
-# http://www.mushware.com/.
+# Software Licence version 1.3, under the terms for 'Proprietary original
+# source files'.  If not supplied with this software, a copy of the licence
+# can be obtained from Mushware Limited via http://www.mushware.com/.
+# One of your options under that licence is to use and distribute this file
+# under the terms of the GNU General Public Licence version 2.
 #
 # This software carries NO WARRANTY of any kind.
 #
-# $Id: manifest.txt,v 1.1 2007/03/28 15:56:59 southa Exp $
+##############################################################################
+#%Header } uuxZtKI2Tuv2lr4ajyW36g
+# $Id: manifest.txt,v 1.1 2007/04/17 21:16:34 southa Exp $
 # $Log: manifest.txt,v $
+# Revision 1.1  2007/04/17 21:16:34  southa
+# Level work
+#
 
 directory='level7'
 name='Beams of Light'

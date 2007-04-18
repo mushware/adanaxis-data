@@ -6,7 +6,7 @@
 # Copyright Andy Southgate 2006-2007
 #
 # This file may be used and distributed under the terms of the Mushware
-# Software Licence version 1.2, under the terms for 'Proprietary original
+# Software Licence version 1.3, under the terms for 'Proprietary original
 # source files'.  If not supplied with this software, a copy of the licence
 # can be obtained from Mushware Limited via http://www.mushware.com/.
 # One of your options under that licence is to use and distribute this file
@@ -15,9 +15,12 @@
 # This software carries NO WARRANTY of any kind.
 #
 ##############################################################################
-#%Header } SegunpVg7kD2s34TL8IFOQ
-# $Id: AdanaxisRemnant.rb,v 1.10 2007/03/24 18:07:22 southa Exp $
+#%Header } TeQSvIOQ8zUHU6UFuV+1sQ
+# $Id: AdanaxisRemnant.rb,v 1.11 2007/03/28 14:45:46 southa Exp $
 # $Log: AdanaxisRemnant.rb,v $
+# Revision 1.11  2007/03/28 14:45:46  southa
+# Level and AI standoff
+#
 # Revision 1.10  2007/03/24 18:07:22  southa
 # Level 3 work
 #

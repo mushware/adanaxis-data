@@ -1,15 +1,28 @@
+#%Header {
 ##############################################################################
 #
-# This file contains original work by Andy Southgate.  Contact details can be
-# found at http://www.mushware.co.uk.  This file was placed in the Public
-# Domain by Andy Southgate and Mushware Limited in 2005.
+# File data-adanaxis/system/start.txt
+#
+# Author Andy Southgate 2006-2007
+#
+# This file contains original work by Andy Southgate.  The author and his
+# employer (Mushware Limited) irrevocably waive all of their copyright rights
+# vested in this particular version of this file to the furthest extent
+# permitted.  The author and Mushware Limited also irrevocably waive any and
+# all of their intellectual property rights arising from said file and its
+# creation that would otherwise restrict the rights of any party to use and/or
+# distribute the use of, the techniques and methods used herein.  A written
+# waiver can be obtained via http://www.mushware.com/.
 #
 # This software carries NO WARRANTY of any kind.
 #
 ##############################################################################
-#
-# $Id: start.txt,v 1.32 2007/03/13 21:45:10 southa Exp $
+#%Header } pQw6UBGrukp0QOB1l19i1Q
+# $Id: start.txt,v 1.33 2007/03/13 22:56:46 southa Exp $
 # $Log: start.txt,v $
+# Revision 1.33  2007/03/13 22:56:46  southa
+# Release work
+#
 # Revision 1.32  2007/03/13 21:45:10  southa
 # Release process
 #

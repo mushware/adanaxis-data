@@ -6,7 +6,7 @@
 # Copyright Andy Southgate 2006-2007
 #
 # This file may be used and distributed under the terms of the Mushware
-# Software Licence version 1.2, under the terms for 'Proprietary original
+# Software Licence version 1.3, under the terms for 'Proprietary original
 # source files'.  If not supplied with this software, a copy of the licence
 # can be obtained from Mushware Limited via http://www.mushware.com/.
 # One of your options under that licence is to use and distribute this file
@@ -15,9 +15,12 @@
 # This software carries NO WARRANTY of any kind.
 #
 ##############################################################################
-#%Header } vkczNSqA53jnWlTa0JJing
-# $Id: AdanaxisSpace.rb,v 1.26 2007/03/23 12:27:34 southa Exp $
+#%Header } U1S8GssKDgFSsNiwIrKzyw
+# $Id: AdanaxisSpace.rb,v 1.27 2007/03/24 18:07:23 southa Exp $
 # $Log: AdanaxisSpace.rb,v $
+# Revision 1.27  2007/03/24 18:07:23  southa
+# Level 3 work
+#
 # Revision 1.26  2007/03/23 12:27:34  southa
 # Added levels and Cistern mesh
 #

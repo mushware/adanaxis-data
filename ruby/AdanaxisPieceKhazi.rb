@@ -6,7 +6,7 @@
 # Copyright Andy Southgate 2006-2007
 #
 # This file may be used and distributed under the terms of the Mushware
-# Software Licence version 1.2, under the terms for 'Proprietary original
+# Software Licence version 1.3, under the terms for 'Proprietary original
 # source files'.  If not supplied with this software, a copy of the licence
 # can be obtained from Mushware Limited via http://www.mushware.com/.
 # One of your options under that licence is to use and distribute this file
@@ -15,9 +15,12 @@
 # This software carries NO WARRANTY of any kind.
 #
 ##############################################################################
-#%Header } mlDJl4Ez45nYxZ6GWtlYdg
-# $Id: AdanaxisPieceKhazi.rb,v 1.37 2007/03/27 15:34:42 southa Exp $
+#%Header } 789lRZlkGd4CN1rbUN5znQ
+# $Id: AdanaxisPieceKhazi.rb,v 1.38 2007/03/28 14:45:46 southa Exp $
 # $Log: AdanaxisPieceKhazi.rb,v $
+# Revision 1.38  2007/03/28 14:45:46  southa
+# Level and AI standoff
+#
 # Revision 1.37  2007/03/27 15:34:42  southa
 # L4 and carrier ammo
 #
