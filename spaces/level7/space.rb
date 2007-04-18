@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } CN/AtDZjAIBjtYsLPBQz1g
-# $Id: space.rb,v 1.1 2007/04/17 21:16:34 southa Exp $
+# $Id: space.rb,v 1.2 2007/04/18 09:21:56 southa Exp $
 # $Log: space.rb,v $
+# Revision 1.2  2007/04/18 09:21:56  southa
+# Header and level fixes
+#
 # Revision 1.1  2007/04/17 21:16:34  southa
 # Level work
 #
@@ -43,7 +46,7 @@ class Adanaxis_level7 < AdanaxisSpace
     mPrecacheListAdd(mPieceLibrary.mAttendantTex('red', 'blue'))
     mPrecacheListAdd(mPieceLibrary.mCisternTex('red', 'blue'))
     mPrecacheListAdd(mPieceLibrary.mHarpikTex('red', 'blue'))
-    mPrecacheListAdd(mPieceLibrary.mRailTex('red', 'blue'))
+    mPrecacheListAdd(mPieceLibrary.mRailTex('red'))
   end
   
   def mInitialPiecesCreate

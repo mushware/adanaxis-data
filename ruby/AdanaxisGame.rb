@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } UAdc9x+ji8+Grkjo5O0RyQ
-# $Id: AdanaxisGame.rb,v 1.42 2007/04/17 10:08:12 southa Exp $
+# $Id: AdanaxisGame.rb,v 1.43 2007/04/18 09:21:52 southa Exp $
 # $Log: AdanaxisGame.rb,v $
+# Revision 1.43  2007/04/18 09:21:52  southa
+# Header and level fixes
+#
 # Revision 1.42  2007/04/17 10:08:12  southa
 # Voice work
 #
@@ -253,7 +256,7 @@ class AdanaxisGame < MushObject
         case inKey
           when MushKeys::SDLK_ESCAPE
             if @m_currentMenu == AdanaxisMenu::MENU_TOPLEVEL
-              MushGame.cGameModeEnter
+              MushGame.cGameModeEnter unless @m_spaceName =~ /^menu/
             else
               if @m_currentMenu == AdanaxisMenu::MENU_OPTIONS &&
                 (@m_entryDisplayMode != MushGame.cDisplayModeString || @m_textureDetail != MushGame.cTextureDetail)

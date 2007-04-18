@@ -9,8 +9,11 @@
 #
 ##############################################################################
 #
-# $Id: dialogues.xml,v 1.4 2007/03/08 18:38:14 southa Exp $
+# $Id: dialogues.xml,v 1.1 2007/04/16 18:50:58 southa Exp $
 # $Log: dialogues.xml,v $
+# Revision 1.1  2007/04/16 18:50:58  southa
+# Voice work
+#
 # Revision 1.4  2007/03/08 18:38:14  southa
 # Level progression
 #
@@ -46,7 +49,8 @@
 <startSize>0.04</startSize>
 <midSize>0.04</midSize>
 <endSize>0.10</endSize>
-</obj>,
+</obj>
+,
 <obj type="GameStringSpec">
 <string type="GLString">
 <fontRef type="GLFontRef">
@@ -66,6 +70,28 @@
 <startSize>0.04</startSize>
 <midSize>0.04</midSize>
 <endSize>0.10</endSize>
+</obj>
+,
+<obj type="GameStringSpec">
+<string type="GLString">
+<fontRef type="GLFontRef">
+<name>"font-mono1"</name>
+</fontRef>
+<value>"(Space bar to abort sequence)"</value>
+<alignment>-1</alignment>
+</string>
+<posticity type="MushPiePosticity">
+<pos>(-0.5,-0.30,0,0)</pos>
+</posticity>
+<startColour>(1,1,1,0)</startColour>
+<midColour>(1,1,1,0.5)</midColour>
+<endColour>(1,0,0,0)</endColour>
+<startTime>0</startTime>
+<endTime>300</endTime>
+<fadeTime>100</fadeTime>
+<startSize>0.02</startSize>
+<midSize>0.02</midSize>
+<endSize>0.02</endSize>
 </obj>)
 </strings>
 </obj>

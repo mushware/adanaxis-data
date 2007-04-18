@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } 2vHoeuQtq7uXNiCz/Cuycw
-# $Id: AdanaxisDashboard.rb,v 1.13 2007/04/16 08:41:05 southa Exp $
+# $Id: AdanaxisDashboard.rb,v 1.14 2007/04/18 09:21:52 southa Exp $
 # $Log: AdanaxisDashboard.rb,v $
+# Revision 1.14  2007/04/18 09:21:52  southa
+# Header and level fixes
+#
 # Revision 1.13  2007/04/16 08:41:05  southa
 # Level and header mods
 #
@@ -98,7 +101,7 @@ class AdanaxisDashboard < MushDashboard
     @m_ammoCount.mCompareAndSet(inParams[:ammo_count]) if inParams[:ammo_count]
     @m_redCount.mCompareAndSet(inParams[:red_count]) if inParams[:red_count]
     @m_blueCount.mCompareAndSet(inParams[:blue_count]) if inParams[:blue_count]
-    @m_isBattle = inParams[:is_battle] if inParams[:is_battle]
+    @m_isBattle = inParams[:is_battle] if inParams[:is_battle] != nil
     fontName = inParams[:weapon_name]
     if fontName
       @m_weaponFont = MushGLFont.new(:name => @@c_weaponFonts[fontName])
