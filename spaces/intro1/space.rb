@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } BLIgGQcfjwjZeWyYjOVX4g
-# $Id: space.rb,v 1.1 2007/04/16 18:50:58 southa Exp $
+# $Id: space.rb,v 1.2 2007/04/18 09:21:55 southa Exp $
 # $Log: space.rb,v $
+# Revision 1.2  2007/04/18 09:21:55  southa
+# Header and level fixes
+#
 # Revision 1.1  2007/04/16 18:50:58  southa
 # Voice work
 #
@@ -44,6 +47,7 @@ class Adanaxis_intro1 < AdanaxisSpace
   
   def mLoad(game)
     mLoadStandard(game)
+    mMusicAdd('game1', 'mushware-familiarisation.ogg')
     15.times do |i|
       MushGame.cSoundDefine("voice-F#{i+1}", "mush://waves/voice-F#{i+1}.ogg")
     end

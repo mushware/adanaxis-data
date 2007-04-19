@@ -18,8 +18,11 @@
 #
 ##############################################################################
 #%Header } pQw6UBGrukp0QOB1l19i1Q
-# $Id: start.txt,v 1.33 2007/03/13 22:56:46 southa Exp $
+# $Id: start.txt,v 1.34 2007/04/18 09:21:57 southa Exp $
 # $Log: start.txt,v $
+# Revision 1.34  2007/04/18 09:21:57  southa
+# Header and level fixes
+#
 # Revision 1.33  2007/03/13 22:56:46  southa
 # Release work
 #
@@ -186,7 +189,3 @@ configstringadd('displaylighting', 'dynamic', 'none=None&dynamic=Dynamic')
 
 # Load the system font
 loadfontmap('font-mono1',$GLOBAL_PIXELS_PATH+'/font-mono1.tiff',8,12,337,768)
-
-residentsound('fire', $GLOBAL_WAVES_PATH+'/fire.wav')
-residentsound('explode', $GLOBAL_WAVES_PATH+'/explode.wav')
-soundstream('adanaxis-music1',$GLOBAL_WAVES_PATH+'/game_12.ogg')

@@ -9,8 +9,11 @@
 #
 ##############################################################################
 #
-# $Id: dialogues.xml,v 1.1 2007/04/16 18:50:58 southa Exp $
+# $Id: dialogues.xml,v 1.2 2007/04/18 20:08:39 southa Exp $
 # $Log: dialogues.xml,v $
+# Revision 1.2  2007/04/18 20:08:39  southa
+# Tweaks and fixes
+#
 # Revision 1.1  2007/04/16 18:50:58  southa
 # Voice work
 #
@@ -94,6 +97,13 @@
 <endSize>0.02</endSize>
 </obj>)
 </strings>
+<soundStreams>(
+ <obj type="GameSoundStreamSpec">
+  <soundStreamRef>"game1"</soundStreamRef>
+  <loop>10000</loop>
+  <startTime>0</startTime>
+ </obj>
+)</soundStreams>
 </obj>
 ,
 "won1"=<obj type="GameDialogue">

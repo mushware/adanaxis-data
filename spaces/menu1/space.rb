@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } I5I5PreDB+b1tW+GtXsmJg
-# $Id: space.rb,v 1.23 2007/04/18 09:21:57 southa Exp $
+# $Id: space.rb,v 1.24 2007/04/18 12:44:36 southa Exp $
 # $Log: space.rb,v $
+# Revision 1.24  2007/04/18 12:44:36  southa
+# Cache purge fix and pre-release tweaks
+#
 # Revision 1.23  2007/04/18 09:21:57  southa
 # Header and level fixes
 #
@@ -93,21 +96,22 @@ class Adanaxis_menu1 < AdanaxisSpace
   end
 
   def mPrecacheListBuild
-    # Don't call super
-    mPrecacheListAdd(mPieceLibrary.mHarpikTex('red'))
+    # Don't call super - needn't cache entire cosmos, explosions etc.
+    mPrecacheListAdd(mPieceLibrary.mAttendantTex('red'))
   end
   
   def mInitialPiecesCreate
     super
 
-    angVel = MushTools.cRotationInXYPlane(Math::PI / 200);
-    MushTools.cRotationInZWPlane(Math::PI / 473).mRotate(angVel);
-    MushTools.cRotationInYZPlane(Math::PI / 670).mRotate(angVel);
+    angVel = MushTools.cRotationInXYPlane(Math::PI / 700);
+    MushTools.cRotationInZWPlane(Math::PI / 873).mRotate(angVel);
+    MushTools.cRotationInYZPlane(Math::PI / 970).mRotate(angVel);
 
-    mPieceLibrary.mHarpikCreate(
+    mPieceLibrary.mAttendantCreate(
       :colour => 'red',
       :post => MushPost.new(
-        :position => MushVector.new(0,0,0,-100),
+        :position => MushVector.new(0,0,0,-15),
+        :angular_position => MushTools.cRandomOrientation,
         :angular_velocity => angVel
         ),
       :patrol_points => [MushVector.new(0,0,0,0)]
