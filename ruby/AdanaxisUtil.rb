@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } fmcUR/puBAQN1IsolXK4VQ
-# $Id: AdanaxisUtil.rb,v 1.30 2007/04/17 21:16:33 southa Exp $
+# $Id: AdanaxisUtil.rb,v 1.31 2007/04/18 09:21:54 southa Exp $
 # $Log: AdanaxisUtil.rb,v $
+# Revision 1.31  2007/04/18 09:21:54  southa
+# Header and level fixes
+#
 # Revision 1.30  2007/04/17 21:16:33  southa
 # Level work
 #
@@ -159,6 +162,7 @@ class AdanaxisUtil < MushObject
     :hit_point_ratio => true,
     :id_suffix => true,
     :is_battle => true,
+    :is_primary => true,
     :is_jammer => true,
     :is_rocket => true,
     :item_type => true,

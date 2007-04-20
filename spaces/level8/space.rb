@@ -36,18 +36,29 @@ class Adanaxis_level8 < AdanaxisSpace
   end
   
   def mPrecacheListBuild
-    super
+    # super
     mPrecacheListAdd(mPieceLibrary.mAttendantTex('red', 'blue'))
     mPrecacheListAdd(mPieceLibrary.mCisternTex('red', 'blue'))
-    mPrecacheListAdd(mPieceLibrary.mHarpikTex('red', 'blue'))
+    mPrecacheListAdd(mPieceLibrary.mWarehouseTex('blue'))
     mPrecacheListAdd(mPieceLibrary.mRailTex('red'))
   end
-  
+
   def mInitialPiecesCreate
     super
-    MushTools.cRandomSeedSet(7)
+    MushTools.cRandomSeedSet(8)
     diff = AdanaxisRuby.cGameDifficulty
   
+    (-1..1).each do |param|
+      mPieceLibrary.mWarehouseCreate(
+        :colour => 'blue',
+        :post => MushPost.new(
+          :position => MushVector.new(30*param, -50+10*param, 0, -250-100*param)
+        ),
+        :is_primary => true
+      )
+    end
+  
+  if false
     ((-diff-1)..(diff+1)).each do |param|
       mPieceLibrary.mRailCreate(
         :colour => 'red',
@@ -84,6 +95,8 @@ class Adanaxis_level8 < AdanaxisSpace
       )
     end
     
+    end
+    
     (-8..8).each do |param|
       mPieceLibrary.mAttendantCreate(
         :colour => 'red',
@@ -95,6 +108,8 @@ class Adanaxis_level8 < AdanaxisSpace
       )
     end
 
+
+    
     $currentLogic.mRemnant.mCreate(
       :item_type => (AdanaxisRuby.cGameDifficulty < 1) ? :player_light_missile : :player_heavy_cannon,
       :post => MushPost.new(
@@ -102,11 +117,11 @@ class Adanaxis_level8 < AdanaxisSpace
       )
     )
     
-    mStandardCosmos(7)
+    mStandardCosmos(8)
   end
   
   def mSpawn0
-    MushTools.cRandomSeedSet(7)
+    MushTools.cRandomSeedSet(8)
     mPieceLibrary.mCisternCreate(
       :colour => 'red',
       :post => MushPost.new(

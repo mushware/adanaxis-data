@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } Z/0IM/eblOZbcUQpYNCCfg
-# $Id: Adanaxis.rb,v 1.33 2007/04/17 21:16:32 southa Exp $
+# $Id: Adanaxis.rb,v 1.34 2007/04/18 09:21:51 southa Exp $
 # $Log: Adanaxis.rb,v $
+# Revision 1.34  2007/04/18 09:21:51  southa
+# Header and level fixes
+#
 # Revision 1.33  2007/04/17 21:16:32  southa
 # Level work
 #
@@ -106,7 +109,9 @@ require 'AdanaxisAIKhazi.rb'
 require 'AdanaxisAIKhaziAttendant.rb'
 require 'AdanaxisAIKhaziCarrier.rb'
 require 'AdanaxisAIKhaziHarpik.rb'
+require 'AdanaxisAIKhaziInert.rb'
 require 'AdanaxisAIKhaziRail.rb'
+require 'AdanaxisAIKhaziWarehouse.rb'
 require 'AdanaxisAIProjectile.rb'
 require 'AdanaxisDashboard.rb'
 require 'AdanaxisEffects.rb'

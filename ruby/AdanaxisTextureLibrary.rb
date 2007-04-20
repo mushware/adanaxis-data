@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } /HC+dJWnGXbdJxstPsjAXw
-# $Id: AdanaxisTextureLibrary.rb,v 1.40 2007/03/28 14:45:46 southa Exp $
+# $Id: AdanaxisTextureLibrary.rb,v 1.41 2007/04/18 09:21:54 southa Exp $
 # $Log: AdanaxisTextureLibrary.rb,v $
+# Revision 1.41  2007/04/18 09:21:54  southa
+# Header and level fixes
+#
 # Revision 1.40  2007/03/28 14:45:46  southa
 # Level and AI standoff
 #
@@ -277,6 +280,21 @@ class AdanaxisTextureLibrary < MushObject
   scale = 1.4
 
 	MushGLTexture::cDefine(
+		:name          => 'drone-tex',
+    :type          => 'CellNoise',
+    :meshname      => 'drone',
+    :size          => [textureSize, textureSize],
+    :palette       => 'palette1',
+    :palettestart  => [0,0.5],
+    :palettevector => [0.99,0],
+		:scale         => [scale, scale, scale, scale],
+    :numoctaves    => 8,
+    :octaveratio   => 0.5,
+		:cache         => 1,
+    :compress      => compressNear
+	)
+  
+	MushGLTexture::cDefine(
 		:name          => 'attendant-tex',
     :type          => 'CellNoise',
     :meshname      => 'attendant',
@@ -410,6 +428,52 @@ class AdanaxisTextureLibrary < MushObject
     :numoctaves    => 3,
     :octaveratio   => 0.7,
 		:cache         => 1,
+    :compress      => compressNear
+	)
+  
+  scale = 0.1
+  MushGLTexture::cDefine(
+		:name          => 'warehouse-tex',
+    :type          => 'CellNoise',
+    :meshname      => 'warehouse',
+    :size          => [textureSize, textureSize],
+    :palette       => 'palette1',
+    :palettestart  => [0,0.5],
+    :palettevector => [4.0,0.0],
+		:scale         => [scale, scale, scale, scale],
+    :numoctaves    => 8,
+    :octaveratio   => 0.625,
+		:cache         => 1,
+    :compress      => compressNear
+	)
+
+  MushGLTexture::cDefine(
+		:name          => 'warehouse-red-tex',
+    :type          => 'CellNoise',
+    :meshname      => 'warehouse-red',
+    :size          => [textureSize, textureSize],
+    :palette       => 'palette1',
+    :palettestart  => [0,0.4],
+    :palettevector => [4.0,0.6],
+		:scale         => [scale, scale, scale, scale/1.5],
+    :numoctaves    => 8,
+    :octaveratio   => 0.625,
+		:cache         => 1,
+    :compress      => compressNear
+	)
+
+  MushGLTexture::cDefine(
+		:name          => 'warehouse-blue-tex',
+    :type          => 'CellNoise',
+    :meshname      => 'warehouse-blue',
+    :size          => [textureSize, textureSize],
+    :palette       => 'palette1',
+    :palettestart  => [0,0.6],
+    :palettevector => [4.0,-0.6],
+		:scale         => [scale, scale, scale, scale/1.5],
+    :numoctaves    => 8,
+    :octaveratio   => 0.625,
+		:cache         => 0,
     :compress      => compressNear
 	)
 

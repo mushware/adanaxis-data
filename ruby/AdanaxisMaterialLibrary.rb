@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } bqsHAu0ZNmRoY3PNh6U9Cw
-# $Id: AdanaxisMaterialLibrary.rb,v 1.25 2007/03/28 14:45:45 southa Exp $
+# $Id: AdanaxisMaterialLibrary.rb,v 1.26 2007/04/18 09:21:52 southa Exp $
 # $Log: AdanaxisMaterialLibrary.rb,v $
+# Revision 1.26  2007/04/18 09:21:52  southa
+# Header and level fixes
+#
 # Revision 1.25  2007/03/28 14:45:45  southa
 # Level and AI standoff
 #
@@ -86,6 +89,7 @@ class AdanaxisMaterialLibrary < MushObject
 
   def mCreate
     tiledList = [
+      'drone',
       'attendant',
       'attendant-red',
       'attendant-blue',
@@ -95,6 +99,9 @@ class AdanaxisMaterialLibrary < MushObject
       'harpik',
       'harpik-red',
       'harpik-blue',
+      'warehouse',
+      'warehouse-red',
+      'warehouse-blue',
       'rail',
       'rail-red',
       'rail-blue'

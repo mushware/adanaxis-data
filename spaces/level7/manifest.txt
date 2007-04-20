@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } uuxZtKI2Tuv2lr4ajyW36g
-# $Id: manifest.txt,v 1.2 2007/04/18 09:21:56 southa Exp $
+# $Id: manifest.txt,v 1.3 2007/04/20 09:49:33 southa Exp $
 # $Log: manifest.txt,v $
+# Revision 1.3  2007/04/20 09:49:33  southa
+# Created
+#
 # Revision 1.2  2007/04/18 09:21:56  southa
 # Header and level fixes
 #
@@ -29,4 +32,4 @@ directory='level7'
 name='Beams of Light'
 creator='Andy Southgate (www.mushware.com)'
 permit='level6'
-next='level7'
+next='level8'

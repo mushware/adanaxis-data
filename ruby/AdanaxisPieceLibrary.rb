@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } 1ZJk8/vLNeRQNZGYELq9QQ
-# $Id: AdanaxisPieceLibrary.rb,v 1.15 2007/04/17 21:16:33 southa Exp $
+# $Id: AdanaxisPieceLibrary.rb,v 1.16 2007/04/18 09:21:53 southa Exp $
 # $Log: AdanaxisPieceLibrary.rb,v $
+# Revision 1.16  2007/04/18 09:21:53  southa
+# Header and level fixes
+#
 # Revision 1.15  2007/04/17 21:16:33  southa
 # Level work
 #
@@ -71,6 +74,14 @@ class AdanaxisPieceLibrary < MushObject
   
     diff = AdanaxisRuby.cGameDifficulty
   
+    @m_droneDefaults = {
+      :effect_scale => 0.5,
+      :hit_points => 1.0,
+      :type => @m_typeDefault,
+      :ai_object => AdanaxisAIKhaziInert
+    }
+    @m_droneNum = 0
+
     @m_attendantDefaults = {
       :effect_scale => 1.0,
       :hit_points => 10.0,
@@ -120,6 +131,21 @@ class AdanaxisPieceLibrary < MushObject
       :weapon => :khazi_harpik_long
     }
     @m_harpikNum = 0
+
+    @m_warehouseDefaults = {
+      :effect_scale => 2.0,
+      :hit_points => 40.0,
+      :type => @m_typeDefault,
+      :ai_object => AdanaxisAIKhaziWarehouse,
+      :ai_state_msec => 1000,
+      :ai_state => :dormant,
+      :evade_speed => 0.01*(1+diff),
+      :evade_acceleration => 0.003*(1+diff),
+      :seek_speed => 0.01*(1+diff),
+      :seek_acceleration => 0.002*(1+diff),
+      :seek_stand_off => 100.0
+    }
+    @m_warehouseNum = 0
     
     @m_railDefaults = {
       :effect_scale => 5.0,
@@ -170,12 +196,15 @@ class AdanaxisPieceLibrary < MushObject
 
   def mScannerSymbol(inParams)
     retVal = AdanaxisScanner::SYMBOL_KHAZI_PLAIN
+    isPrimary = inParams[:is_primary] || false
     isPower = (inParams[:hit_points] && inParams[:hit_points] > 60.0)
     hasRemnant = inParams[:remnant]
     
     case inParams[:colour]
       when 'red'
-        if isPower
+        if isPrimary
+          retVal = AdanaxisScanner::SYMBOL_PRIMARYKHAZI_RED
+        elsif isPower
           retVal = AdanaxisScanner::SYMBOL_POWERKHAZI_RED
         elsif hasRemnant
           retVal = AdanaxisScanner::SYMBOL_CARRIERKHAZI_RED
@@ -184,7 +213,9 @@ class AdanaxisPieceLibrary < MushObject
         end
           
       when 'blue'
-        if isPower
+        if isPrimary
+          retVal = AdanaxisScanner::SYMBOL_PRIMARYKHAZI_BLUE
+        elsif isPower
           retVal = AdanaxisScanner::SYMBOL_POWERKHAZI_BLUE
         elsif hasRemnant
           retVal = AdanaxisScanner::SYMBOL_CARRIERKHAZI_BLUE
@@ -210,6 +241,14 @@ class AdanaxisPieceLibrary < MushObject
     end
   end
 
+  # Creates a Drone
+  def mDroneCreate(inParams = {})
+    AdanaxisUtil.cSpellCheck(inParams)
+    newPiece = AdanaxisPieceKhazi.cCreate(mDroneParams(inParams))
+    mCommonCreate(newPiece, inParams)
+    @m_droneNum += 1
+  end    
+
   # Creates an Attendant
   def mAttendantCreate(inParams = {})
     AdanaxisUtil.cSpellCheck(inParams)
@@ -234,12 +273,24 @@ class AdanaxisPieceLibrary < MushObject
     @m_harpikNum += 1
   end    
 
+  # Creates a Warehouse
+  def mWarehouseCreate(inParams = {})
+    AdanaxisUtil.cSpellCheck(inParams)
+    newPiece = AdanaxisPieceKhazi.cCreate(mWarehouseParams(inParams))
+    mCommonCreate(newPiece, inParams)
+    @m_warehouseNum += 1
+  end    
+
   # Creates a Rail
   def mRailCreate(inParams = {})
     AdanaxisUtil.cSpellCheck(inParams)
     newPiece = AdanaxisPieceKhazi.cCreate(mRailParams(inParams))
     mCommonCreate(newPiece, inParams)
     @m_railNum += 1
+  end
+
+  def mDroneTex(*inColours)
+    return inColours.collect { |name| "drone-#{name}-tex" }
   end
 
   def mAttendantTex(*inColours)
@@ -254,6 +305,10 @@ class AdanaxisPieceLibrary < MushObject
     return inColours.collect { |name| "harpik-#{name}-tex" }
   end
 
+  def mWarehouseTex(*inColours)
+    return inColours.collect { |name| "warehouse-#{name}-tex" }
+  end
+
   def mRailTex(*inColours)
     return inColours.collect { |name| "rail-#{name}-tex" }
   end
@@ -264,6 +319,34 @@ protected
     ioParams[:post] = MushPost.new(:position => inParams[:position]) if inParams[:position]
   end
   
+  # Derive parameters for a Drone
+  def mDroneParams(inParams = {})
+    
+    # Start with the defaults
+    retParams = @m_droneDefaults.dup
+    
+    # Choose a mesh name based on the colour
+    retParams[:mesh_name] = 'drone'
+    
+    # Derive type and target types, i.e. what this is and what it shoots at
+    retParams[:type] = mType(inParams)
+    retParams[:target_types] = mTargetTypes(inParams)
+    
+    # Select the remnant left behind when rhe craft is destroyed
+    retParams[:remnant] = $currentLogic.mRemnant.mLowGradeRemnant(@m_attendantNum)
+    
+    # Set scanner symbol.  Needs to know remnant type, hence merge
+    retParams[:scanner_symbol] = mScannerSymbol(retParams.merge(inParams))
+    
+    # Add paramters common to all pieces, i.e. position
+    mKhaziAddBaseParams(retParams, inParams)
+    
+    # Merge the input parameters so that they overwrite those we've calculated
+    retParams.merge!(inParams)
+    
+    retParams
+  end
+
   # Derive parameters for an Attendant
   def mAttendantParams(inParams = {})
     
@@ -360,6 +443,26 @@ protected
     retParams
   end
   
+  # Derive parameters for a Warehouse
+  def mWarehouseParams(inParams = {})
+    
+    retParams = @m_warehouseDefaults.dup
+    
+    retParams[:mesh_name] = case inParams[:colour]
+      when /(red|blue)/: "warehouse-#$1"
+      when nil:          "warehouse"
+      else raise "Unknown warehouse colour #{inParams[:colour]}"
+    end
+    
+    retParams[:type] = mType(inParams)
+    retParams[:target_types] = mTargetTypes(inParams)
+    retParams[:remnant] = $currentLogic.mRemnant.mMediumGradeRemnant(@m_cisternNum)
+    retParams[:scanner_symbol] = mScannerSymbol(retParams.merge(inParams))
+    mKhaziAddBaseParams(retParams, inParams)    
+    retParams.merge!(inParams)
+    retParams
+  end
+  
   def mRailParams(inParams = {})
     
     retParams = @m_railDefaults.dup
@@ -373,14 +476,9 @@ protected
     retParams[:type] = mType(inParams)
     retParams[:target_types] = mTargetTypes(inParams)
     retParams[:remnant] = :player_rail
-    
-    # Set scanner symbol.  Needs to know remnant type, hence merge
     retParams[:scanner_symbol] = mScannerSymbol(retParams.merge(inParams))
-
     mKhaziAddBaseParams(retParams, inParams)
-    
     retParams.merge!(inParams)
-    
     retParams
   end
 end

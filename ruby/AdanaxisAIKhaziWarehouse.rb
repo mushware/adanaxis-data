@@ -1,7 +1,7 @@
 #%Header {
 ##############################################################################
 #
-# File data-adanaxis/ruby/AdanaxisScanner.rb
+# File data-adanaxis/ruby/AdanaxisAIKhaziWarehouse.rb
 #
 # Copyright Andy Southgate 2006-2007
 #
@@ -15,31 +15,43 @@
 # This software carries NO WARRANTY of any kind.
 #
 ##############################################################################
-#%Header } 3ixNYyF7yKzKEC8tfCDMDQ
+#%Header } 3umSoFeovs9HOTqwJkrQBQ
 #
-# $Id: AdanaxisScanner.rb,v 1.3 2007/04/18 09:21:53 southa Exp $
-# $Log: AdanaxisScanner.rb,v $
-# Revision 1.3  2007/04/18 09:21:53  southa
-# Header and level fixes
-#
-# Revision 1.2  2007/04/16 08:41:06  southa
-# Level and header mods
-#
-# Revision 1.1  2007/03/13 12:22:50  southa
-# Scanner symbols
-#
+# $Id$
+# $Log$
 #
 
 require 'Mushware.rb'
+require 'AdanaxisAIKhazi.rb'
 
-class AdanaxisScanner < MushObject
-  SYMBOL_KHAZI_PLAIN = 8
-  SYMBOL_KHAZI_RED = 0
-  SYMBOL_KHAZI_BLUE = 1
-  SYMBOL_POWERKHAZI_RED = 2
-  SYMBOL_POWERKHAZI_BLUE = 3
-  SYMBOL_PRIMARYKHAZI_RED = 4
-  SYMBOL_PRIMARYKHAZI_BLUE = 5
-  SYMBOL_CARRIERKHAZI_RED = 6
-  SYMBOL_CARRIERKHAZI_BLUE = 7
+class AdanaxisAIKhaziWarehouse < AdanaxisAIKhazi
+
+  def mStateActionIdle
+    mStateChangeDormant(60000)
+  end
+
+  def mStateActionDormantExit
+    mStateChangeDormant(60000)
+  end
+  
+  def mStateActionEvadeExit
+    mStateChangePatrol(60000)
+  end
+  
+  def mStateActionRamExit
+    mStateChangePatrol(60000)
+  end
+
+  def mStateActionPatrolExit
+    mStateChangePatrol(60000)
+  end
+
+  def mStateActionSeekExit
+    mStateChangePatrol(60000)
+  end
+
+  def mStateActionWaypointExit
+    mStateChangePatrol(60000)
+  end
+
 end

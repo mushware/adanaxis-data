@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } WbjKV0UNx6NxJkbQBQ14fA
-# $Id: AdanaxisMeshLibrary.rb,v 1.33 2007/03/28 14:45:45 southa Exp $
+# $Id: AdanaxisMeshLibrary.rb,v 1.34 2007/04/18 09:21:52 southa Exp $
 # $Log: AdanaxisMeshLibrary.rb,v $
+# Revision 1.34  2007/04/18 09:21:52  southa
+# Header and level fixes
+#
 # Revision 1.33  2007/03/28 14:45:45  southa
 # Level and AI standoff
 #
@@ -81,6 +84,63 @@ class AdanaxisMeshLibrary
 
   def initialize(inParams = {})
     @m_textureLibrary = inParams[:texture_library] || raise("No texture library supplied to mesh library")
+  end
+
+  #
+  # Drone mesh
+  #
+  # Cannon fodder, does nothing
+  def mDroneCreate(inName)
+    mesh = MushMesh.new(inName)
+
+    mesh.mBaseAdd(MushBasePrism.new(:order => 5))
+	
+    mesh.mBaseDisplacementAdd(MushDisplacement.new(
+		  :offset => MushVector.new(0,0,0,1),
+      :scale => MushVector.new(Math.sqrt(2),Math.sqrt(2),1,1)
+	  ))
+	
+    # Boom -z
+    mesh.mExtruderAdd(MushExtruder.new(
+      :sourceface => 2,
+      :displacement => MushDisplacement.new(
+        :offset => MushVector.new(0,0,-0.5,0),
+        :scale => 0.75
+      ),
+		  :num_iterations => 1
+    ))
+	  
+    # Boom +z
+    mesh.mExtruderAdd(MushExtruder.new(
+      :sourceface => 3,
+      :displacement => MushDisplacement.new(
+        :offset => MushVector.new(0,0,0.5,0),
+        :scale => 0.75
+      ),
+      :num_iterations => 1
+    ))
+	  
+    # Nose
+    mesh.mExtruderAdd(MushExtruder.new(
+      :sourceface => 0,
+      :displacement => MushDisplacement.new(
+        :offset => MushVector.new(0,0,0,-1),
+        :scale => 0.9),
+  		:num_iterations => 2
+    ))
+
+    # Tail
+    mesh.mExtruderAdd(MushExtruder.new(
+      :sourceface => 1,
+      :displacement => MushDisplacement.new(
+        :offset => MushVector.new(0,0,0,1.0),
+        :scale => 0.9),
+  		:num_iterations => 2
+    ))
+
+    mesh.mMaterialAdd("#{inName}-mat")
+
+    mesh.mMake
   end
   
   #
@@ -280,6 +340,151 @@ class AdanaxisMeshLibrary
   		:num_iterations => 1
     ))
 
+    mesh.mMaterialAdd("#{inName}-mat")
+
+    mesh.mMake
+  end
+  
+  #
+  # Warehouse mesh
+  #
+  # A large transport ship carrying valuable cargo
+  def mKhaziWarehouseCreate(inName)
+    mesh = MushMesh.new(inName)
+
+    mesh.mBaseAdd(MushBasePrism.new(:order => 6))
+	
+    mesh.mBaseDisplacementAdd(MushDisplacement.new(
+		  :offset => MushVector.new(0,0,0,1),
+      :scale => MushVector.new(3*Math.sqrt(2),2*Math.sqrt(2),3,4)
+	  ))
+	
+  	  
+    # Nose
+    mesh.mExtruderAdd(MushExtruder.new(
+      :sourceface => 0,
+      :displacement => MushDisplacement.new(
+        :offset => MushVector.new(0,0,0,-1.5),
+        :scale => 0.8),
+  		:num_iterations => 1
+    ))
+
+    mesh.mExtruderAdd(MushExtruder.new(
+      :sourceface => 1*9+1,
+      :displacement => MushDisplacement.new(
+        :offset => MushVector.new(0,0,0,-1.0),
+        :scale => 0.5),
+  		:num_iterations => 1
+    ))
+
+    # Tail
+    mesh.mExtruderAdd(MushExtruder.new(
+      :sourceface => 1,
+      :displacement => MushDisplacement.new(
+        :offset => MushVector.new(0,0,0,1.5),
+        :scale => 0.75),
+  		:num_iterations => 1
+    ))
+  
+    mesh.mExtruderAdd(MushExtruder.new(
+      :sourceface => 3*9+1,
+      :displacement => MushDisplacement.new(
+        :offset => MushVector.new(0,0,0,2.0),
+        :scale => 0.8),
+  		:num_iterations => 1
+    ))
+    mesh.mExtruderAdd(MushExtruder.new(
+      :sourceface => 4*9+1,
+      :displacement => MushDisplacement.new(
+        :offset => MushVector.new(0,0,0,1.5),
+        :scale => 1.0),
+  		:num_iterations => 1
+    ))
+    mesh.mExtruderAdd(MushExtruder.new(
+      :sourceface => 5*9+1,
+      :displacement => MushDisplacement.new(
+        :offset => MushVector.new(0,0,0,0.75),
+        :scale => 1.25),
+  		:num_iterations => 1
+    ))
+
+    # Boom -z
+    mesh.mExtruderAdd(MushExtruder.new(
+      :sourceface => 2,
+      :displacement => MushDisplacement.new(
+        :offset => MushVector.new(0,0,-1.0,0),
+        :scale => 0.5
+      ),
+		  :num_iterations => 1
+    ))
+	  
+    mesh.mExtruderAdd(MushExtruder.new(
+      :sourceface => 7*9+1,
+      :displacement => MushDisplacement.new(
+        :offset => MushVector.new(0,0,-2.0,0),
+        :scale => 0.8
+      ),
+		  :num_iterations => 1
+    ))
+	  
+    mesh.mExtruderAdd(MushExtruder.new(
+      :sourceface => 7*9+11*1+1,
+      :displacement => MushDisplacement.new(
+        :offset => MushVector.new(0,0,-1.0,0),
+        :scale => 1/0.75
+      ),
+		  :num_iterations => 1
+    ))
+	  
+    mesh.mExtruderAdd(MushExtruder.new(
+      :sourceface => 7*9+11*2+1,
+      :displacement => MushDisplacement.new(
+        :offset => MushVector.new(0,0,-2.0,0),
+        :rotation => MushTools.cRotationInZWPlane(-Math::PI/30),
+        :scale => 1.0
+      ),
+		  :num_iterations => 1
+    ))
+    
+    # Boom +z
+
+    mesh.mExtruderAdd(MushExtruder.new(
+      :sourceface => 3,
+      :displacement => MushDisplacement.new(
+        :offset => MushVector.new(0,0,1.0,0),
+        :scale => 0.5
+      ),
+		  :num_iterations => 1
+    ))
+    
+    mesh.mExtruderAdd(MushExtruder.new(
+      :sourceface => 7*9+11*4+1,
+      :displacement => MushDisplacement.new(
+        :offset => MushVector.new(0,0,2.0,0),
+        :scale => 0.8
+      ),
+		  :num_iterations => 1
+    ))
+	  
+    mesh.mExtruderAdd(MushExtruder.new(
+      :sourceface => 7*9+11*5+1,
+      :displacement => MushDisplacement.new(
+        :offset => MushVector.new(0,0,1.0,0),
+        :scale => 1/0.75
+      ),
+		  :num_iterations => 1
+    ))
+	  
+    mesh.mExtruderAdd(MushExtruder.new(
+      :sourceface => 7*9+11*6+1,
+      :displacement => MushDisplacement.new(
+        :offset => MushVector.new(0,0,2.0,0),
+        :rotation => MushTools.cRotationInZWPlane(-Math::PI/30),
+        :scale => 1.0
+      ),
+		  :num_iterations => 1
+    ))
+        
     mesh.mMaterialAdd("#{inName}-mat")
 
     mesh.mMake
@@ -847,6 +1052,7 @@ class AdanaxisMeshLibrary
   end
   
   def mCreate
+    mDroneCreate('drone')
     mAttendantCreate('attendant')
     mAttendantCreate('attendant-red')
     mAttendantCreate('attendant-blue')
@@ -856,6 +1062,9 @@ class AdanaxisMeshLibrary
     mKhaziHarpikCreate('harpik')
     mKhaziHarpikCreate('harpik-red')
     mKhaziHarpikCreate('harpik-blue')
+    mKhaziWarehouseCreate('warehouse')
+    mKhaziWarehouseCreate('warehouse-red')
+    mKhaziWarehouseCreate('warehouse-blue')
     mKhaziRailCreate('rail')
     mKhaziRailCreate('rail-red')
     mKhaziRailCreate('rail-blue')
