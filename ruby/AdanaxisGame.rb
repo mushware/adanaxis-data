@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } UAdc9x+ji8+Grkjo5O0RyQ
-# $Id: AdanaxisGame.rb,v 1.43 2007/04/18 09:21:52 southa Exp $
+# $Id: AdanaxisGame.rb,v 1.44 2007/04/18 20:08:39 southa Exp $
 # $Log: AdanaxisGame.rb,v $
+# Revision 1.44  2007/04/18 20:08:39  southa
+# Tweaks and fixes
+#
 # Revision 1.43  2007/04/18 09:21:52  southa
 # Header and level fixes
 #
@@ -185,7 +188,7 @@ class AdanaxisGame < MushObject
   def mReset(allowResume)
     @m_currentMenu = AdanaxisMenu::MENU_TOPLEVEL
     @m_menuSet.mReset(@m_currentMenu)
-    @m_menuSet.allowResume = allowResume
+    @m_menuSet.mAllowResumeSet(allowResume)
     @m_menuSet.mUpdate(@m_currentMenu)
   end
 
@@ -248,8 +251,8 @@ class AdanaxisGame < MushObject
     
     if inIsDown
       menu = @m_menuSet.mMenu(@m_currentMenu)
-      
-      if (@m_menuSet.axisKeyWait || @m_menuSet.keyWait)
+
+      if (@m_menuSet.mAxisKeyWait || @m_menuSet.mKeyWait)
         inKey = 0 if inKey == 27
         menu.mKeypress(self, inKey)
       else

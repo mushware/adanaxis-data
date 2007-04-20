@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } zHmHS9uI4vGQYvQQWY9i9w
-# $Id: AdanaxisMenu.rb,v 1.21 2007/04/16 18:50:57 southa Exp $
+# $Id: AdanaxisMenu.rb,v 1.22 2007/04/18 09:21:52 southa Exp $
 # $Log: AdanaxisMenu.rb,v $
+# Revision 1.22  2007/04/18 09:21:52  southa
+# Header and level fixes
+#
 # Revision 1.21  2007/04/16 18:50:57  southa
 # Voice work
 #
@@ -201,8 +204,8 @@ class AdanaxisMenu < MushObject
     @m_allowResume = false
   end
   
-  attr_reader :axisKeyWait, :keyWait
-  attr_accessor :allowResume
+  mush_reader :m_axisKeyWait, :m_keyWait
+  mush_accessor :m_allowResume
   
   def mAxisMenuEntry(name, which)
     [ name+AdanaxisControl.cAxisName(which),
