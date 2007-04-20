@@ -1,7 +1,7 @@
 #%Header {
 ##############################################################################
 #
-# File data-adanaxis/spaces/level7/manifest.txt
+# File data-adanaxis/spaces/level8/manifest.txt
 #
 # Copyright Andy Southgate 2006-2007
 #
@@ -15,18 +15,12 @@
 # This software carries NO WARRANTY of any kind.
 #
 ##############################################################################
-#%Header } uuxZtKI2Tuv2lr4ajyW36g
+#%Header } BqxxbXmCtGGs3EbrilFDuA
 # $Id: manifest.txt,v 1.2 2007/04/18 09:21:56 southa Exp $
 # $Log: manifest.txt,v $
-# Revision 1.2  2007/04/18 09:21:56  southa
-# Header and level fixes
-#
-# Revision 1.1  2007/04/17 21:16:34  southa
-# Level work
-#
 
-directory='level7'
-name='Beams of Light'
+directory='level8'
+name='Convoy'
 creator='Andy Southgate (www.mushware.com)'
-permit='level6'
-next='level7'
+permit='level7'
+next='level9'
