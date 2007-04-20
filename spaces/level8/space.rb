@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } mmDxSdwqzPsJ4lPOi2WIag
-# $Id: space.rb,v 1.3 2007/04/18 20:08:39 southa Exp $
+# $Id: space.rb,v 1.2 2007/04/20 12:07:08 southa Exp $
 # $Log: space.rb,v $
+# Revision 1.2  2007/04/20 12:07:08  southa
+# Khazi Warehouse and level 8
+#
 
 require 'Mushware.rb'
 require 'Adanaxis.rb'
@@ -47,15 +50,59 @@ class Adanaxis_level8 < AdanaxisSpace
     super
     MushTools.cRandomSeedSet(8)
     diff = AdanaxisRuby.cGameDifficulty
+
+    # Blue convoy
+    
+    vel = MushVector.new(0,0,0,-0.1)
+    angPos = MushTools.cRotationInXZPlane(Math::PI/2)
   
     (-1..1).each do |param|
       mPieceLibrary.mWarehouseCreate(
         :colour => 'blue',
         :post => MushPost.new(
-          :position => MushVector.new(30*param, -50+10*param, 0, -250-100*param)
+          :position => MushVector.new(10*param, -50+10*param, 0, -250-100*param),
+          :velocity => vel,
+          :angular_position => angPos
         ),
         :is_primary => true
       )
+    end
+  
+    [-1,1].each do |param|
+      mPieceLibrary.mCisternCreate(
+        :colour => 'blue',
+        :post => MushPost.new(
+          :position => MushVector.new(60*param, -50, 0, -300),
+          :velocity => vel,
+          :angular_position => angPos
+        ),
+        :patrol_points => [
+          MushVector.new(60*param, -50, 0, -3000),
+          MushVector.new(60*param, -50, 0, 0)
+          ],
+        :ammo_count => 15 - 5 * AdanaxisRuby.cGameDifficulty,
+        :ai_state => :patrol,
+        :ai_state_msec => 10000+250*param
+      )
+    end
+  
+    (3-diff).times do |i|
+      [-1,1].each do |param|
+        mPieceLibrary.mHarpikCreate(
+          :colour => 'blue',
+          :post => MushPost.new(
+            :position => MushVector.new(30*param*(i+1), -30, 0, -500+100*i),
+            :velocity => vel,
+            :angular_position => angPos
+          ),
+          :patrol_points => [
+            MushVector.new(30*param, -50, 0, -3000),
+            MushVector.new(30*param, -50, 0, 0)
+            ],
+          :ai_state => :patrol,
+          :ai_state_msec => 8000+250*param
+        )
+    end
     end
   
   if false

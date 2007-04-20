@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } /HC+dJWnGXbdJxstPsjAXw
-# $Id: AdanaxisTextureLibrary.rb,v 1.41 2007/04/18 09:21:54 southa Exp $
+# $Id: AdanaxisTextureLibrary.rb,v 1.42 2007/04/20 12:07:08 southa Exp $
 # $Log: AdanaxisTextureLibrary.rb,v $
+# Revision 1.42  2007/04/20 12:07:08  southa
+# Khazi Warehouse and level 8
+#
 # Revision 1.41  2007/04/18 09:21:54  southa
 # Header and level fixes
 #
@@ -473,7 +476,7 @@ class AdanaxisTextureLibrary < MushObject
 		:scale         => [scale, scale, scale, scale/1.5],
     :numoctaves    => 8,
     :octaveratio   => 0.625,
-		:cache         => 0,
+		:cache         => 1,
     :compress      => compressNear
 	)
 
