@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } NPNGLY1+dq16kMgllVanKg
-# $Id: AdanaxisAIKhaziHarpik.rb,v 1.1 2007/03/28 14:45:45 southa Exp $
+# $Id: AdanaxisAIKhaziHarpik.rb,v 1.2 2007/04/18 09:21:51 southa Exp $
 # $Log: AdanaxisAIKhaziHarpik.rb,v $
+# Revision 1.2  2007/04/18 09:21:51  southa
+# Header and level fixes
+#
 # Revision 1.1  2007/03/28 14:45:45  southa
 # Level and AI standoff
 #
@@ -42,6 +45,10 @@ class AdanaxisAIKhaziHarpik < AdanaxisAIKhazi
   def mFire
     mWeaponChoose
     super
+  end
+  
+  def mStateActionDormantExit
+    mStateChangeEvade(3000)
   end
 
   def mStateActionIdle

@@ -17,8 +17,11 @@
 ##############################################################################
 #%Header } txxMP32rR1qcSjFQodkSuA
 #
-# $Id: AdanaxisAIKhaziCarrier.rb,v 1.4 2007/03/27 14:01:02 southa Exp $
+# $Id: AdanaxisAIKhaziCarrier.rb,v 1.5 2007/04/18 09:21:51 southa Exp $
 # $Log: AdanaxisAIKhaziCarrier.rb,v $
+# Revision 1.5  2007/04/18 09:21:51  southa
+# Header and level fixes
+#
 # Revision 1.4  2007/03/27 14:01:02  southa
 # Attendant AI
 #
@@ -34,6 +37,10 @@ class AdanaxisAIKhaziCarrier < AdanaxisAIKhazi
     mStateChangePatrol(inDuration)
     mStateChange(AISTATE_DEPLOY)
     nil
+  end
+
+  def mStateActionDormantExit
+    mStateChangeDeploy(10000)
   end
 
   def mStateActionRamExit

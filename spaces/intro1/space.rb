@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } BLIgGQcfjwjZeWyYjOVX4g
-# $Id: space.rb,v 1.2 2007/04/18 09:21:55 southa Exp $
+# $Id: space.rb,v 1.3 2007/04/19 12:57:57 southa Exp $
 # $Log: space.rb,v $
+# Revision 1.3  2007/04/19 12:57:57  southa
+# Prerelease work
+#
 # Revision 1.2  2007/04/18 09:21:55  southa
 # Header and level fixes
 #
@@ -400,9 +403,8 @@ class Adanaxis_intro1 < AdanaxisSpace
       MushTools.cRotationInZWPlane(Math::PI * 2 * param[5]).mRotate(angPos);
       MushTools.cRotationInYZPlane(Math::PI * 2 * param[6]).mRotate(angPos);
 
-      khazi = AdanaxisPieceKhazi.cCreate(
-        :mesh_name => "attendant",
-        :hit_points => 1.0,
+      khazi = mPieceLibrary.mDroneCreate(
+        :colour => 'red',
         :post => MushPost.new(
           :position => pos,
           :angular_position => angPos,
