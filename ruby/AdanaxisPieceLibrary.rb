@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } 1ZJk8/vLNeRQNZGYELq9QQ
-# $Id: AdanaxisPieceLibrary.rb,v 1.16 2007/04/18 09:21:53 southa Exp $
+# $Id: AdanaxisPieceLibrary.rb,v 1.17 2007/04/20 12:07:08 southa Exp $
 # $Log: AdanaxisPieceLibrary.rb,v $
+# Revision 1.17  2007/04/20 12:07:08  southa
+# Khazi Warehouse and level 8
+#
 # Revision 1.16  2007/04/18 09:21:53  southa
 # Header and level fixes
 #
@@ -191,6 +194,7 @@ class AdanaxisPieceLibrary < MushObject
       when 'blue'
         retVal = 'kb'
     end
+    retVal += 'p' if inParams[:is_primary];
     retVal
   end  
 

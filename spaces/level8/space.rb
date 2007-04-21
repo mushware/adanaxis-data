@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } mmDxSdwqzPsJ4lPOi2WIag
-# $Id: space.rb,v 1.2 2007/04/20 12:07:08 southa Exp $
+# $Id: space.rb,v 1.3 2007/04/20 19:28:09 southa Exp $
 # $Log: space.rb,v $
+# Revision 1.3  2007/04/20 19:28:09  southa
+# Level 8 work
+#
 # Revision 1.2  2007/04/20 12:07:08  southa
 # Khazi Warehouse and level 8
 #
@@ -30,6 +33,7 @@ class Adanaxis_level8 < AdanaxisSpace
     super
     mTimeoutSpawnAdd(:mSpawn0, 180000)
     mIsBattleSet(true)
+    mPrimarySet(PRIMARY_BLUE)
   end
   
   def mLoad(game)
@@ -42,8 +46,9 @@ class Adanaxis_level8 < AdanaxisSpace
     # super
     mPrecacheListAdd(mPieceLibrary.mAttendantTex('red', 'blue'))
     mPrecacheListAdd(mPieceLibrary.mCisternTex('red', 'blue'))
-    mPrecacheListAdd(mPieceLibrary.mWarehouseTex('blue'))
-    mPrecacheListAdd(mPieceLibrary.mRailTex('red'))
+    mPrecacheListAdd(mPieceLibrary.mHarpikTex('red', 'blue'))
+     mPrecacheListAdd(mPieceLibrary.mWarehouseTex('blue'))
+    # mPrecacheListAdd(mPieceLibrary.mRailTex('red'))
   end
 
   def mInitialPiecesCreate
@@ -53,7 +58,7 @@ class Adanaxis_level8 < AdanaxisSpace
 
     # Blue convoy
     
-    vel = MushVector.new(0,0,0,-0.1)
+    vel = MushVector.new(0,0,0,-0.05*(1+diff))
     angPos = MushTools.cRotationInXZPlane(Math::PI/2)
   
     (-1..1).each do |param|
@@ -68,6 +73,7 @@ class Adanaxis_level8 < AdanaxisSpace
       )
     end
   
+
     [-1,1].each do |param|
       mPieceLibrary.mCisternCreate(
         :colour => 'blue',
@@ -102,10 +108,10 @@ class Adanaxis_level8 < AdanaxisSpace
           :ai_state => :patrol,
           :ai_state_msec => 8000+250*param
         )
+      end
     end
-    end
-  
-  if false
+    
+  if true
     ((-diff-1)..(diff+1)).each do |param|
       mPieceLibrary.mRailCreate(
         :colour => 'red',
@@ -114,7 +120,7 @@ class Adanaxis_level8 < AdanaxisSpace
           :angular_position => MushTools.cRotationInXWPlane(Math::PI)
         ),
         :ai_state => :dormant,
-        :ai_state_msec => 80000 - 30000 * diff
+        :ai_state_msec => 6000
       )  
     end
     
@@ -131,7 +137,7 @@ class Adanaxis_level8 < AdanaxisSpace
       end
     end
     
-    (-15..15).each do |param|
+    (13..15).each do |param|
       mPieceLibrary.mAttendantCreate(
         :colour => 'blue',
         :post => MushPost.new(
@@ -144,7 +150,7 @@ class Adanaxis_level8 < AdanaxisSpace
     
     end
     
-    (-8..8).each do |param|
+    (-15..15).each do |param|
       mPieceLibrary.mAttendantCreate(
         :colour => 'red',
         :post => MushPost.new(
