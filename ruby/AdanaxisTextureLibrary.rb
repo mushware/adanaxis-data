@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } /HC+dJWnGXbdJxstPsjAXw
-# $Id: AdanaxisTextureLibrary.rb,v 1.42 2007/04/20 12:07:08 southa Exp $
+# $Id: AdanaxisTextureLibrary.rb,v 1.43 2007/04/20 19:28:08 southa Exp $
 # $Log: AdanaxisTextureLibrary.rb,v $
+# Revision 1.43  2007/04/20 19:28:08  southa
+# Level 8 work
+#
 # Revision 1.42  2007/04/20 12:07:08  southa
 # Khazi Warehouse and level 8
 #
@@ -213,7 +216,7 @@ class AdanaxisTextureLibrary < MushObject
   end
 
 
-  (1..2).each do |ballNum|
+  (1..3).each do |ballNum|
     MushGLTexture::cDefine(
       :name          => "ball#{ballNum}-tex",
       :type          => 'TIFF',
@@ -430,6 +433,52 @@ class AdanaxisTextureLibrary < MushObject
 		:scale         => [scale, scale, scale, scale/4],
     :numoctaves    => 3,
     :octaveratio   => 0.7,
+		:cache         => 1,
+    :compress      => compressNear
+	)
+  
+  scale = 0.5
+  MushGLTexture::cDefine(
+		:name          => 'limescale-tex',
+    :type          => 'CellNoise',
+    :meshname      => 'limescale',
+    :size          => [textureSize, textureSize],
+    :palette       => 'palette3',
+    :palettestart  => [0,0.5],
+    :palettevector => [4.0,0.0],
+		:scale         => [scale, scale, scale, scale],
+    :numoctaves    => 8,
+    :octaveratio   => 0.5,
+		:cache         => 1,
+    :compress      => compressNear
+	)
+
+  MushGLTexture::cDefine(
+		:name          => 'limescale-red-tex',
+    :type          => 'CellNoise',
+    :meshname      => 'limescale-red',
+    :size          => [textureSize, textureSize],
+    :palette       => 'palette1',
+    :palettestart  => [0.8,0.6],
+    :palettevector => [0,0.4],
+		:scale         => [scale, scale, scale, scale],
+    :numoctaves    => 8,
+    :octaveratio   => 0.5,
+		:cache         => 1,
+    :compress      => compressNear
+	)
+
+  MushGLTexture::cDefine(
+		:name          => 'limescale-blue-tex',
+    :type          => 'CellNoise',
+    :meshname      => 'limescale-blue',
+    :size          => [textureSize, textureSize],
+    :palette       => 'palette3',
+    :palettestart  => [0,0.6],
+    :palettevector => [4.0,-0.6],
+		:scale         => [scale, scale, scale, scale],
+    :numoctaves    => 8,
+    :octaveratio   => 0.5,
 		:cache         => 1,
     :compress      => compressNear
 	)

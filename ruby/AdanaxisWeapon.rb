@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } NnXS337B+7+SGRgiikvl+A
-# $Id: AdanaxisWeapon.rb,v 1.17 2007/03/28 14:45:46 southa Exp $
+# $Id: AdanaxisWeapon.rb,v 1.18 2007/04/18 09:21:54 southa Exp $
 # $Log: AdanaxisWeapon.rb,v $
+# Revision 1.18  2007/04/18 09:21:54  southa
+# Header and level fixes
+#
 # Revision 1.17  2007/03/28 14:45:46  southa
 # Level and AI standoff
 #
@@ -96,6 +99,7 @@ class AdanaxisWeapon < MushObject
     @m_type = inParams[:type] || nil
     @m_ammoCount = inParams[:ammo_count] || nil
     @m_spawnLimit = inParams[:spawn_inhibit_limit] || 20 * (1+AdanaxisRuby.cGameDifficulty)
+    @m_alphaStutter = inParams[:alpha_stutter] || 0.0
     @m_lastFireMsec = 0
   end
   
@@ -169,7 +173,8 @@ class AdanaxisWeapon < MushObject
         :acceleration => @m_acceleration,
         :speed_limit => @m_speedLimit,
         :ai_params => aiParams,
-        :is_rocket => (@m_type == :rocket)
+        :is_rocket => (@m_type == :rocket),
+        :alpha_stutter => @m_alphaStutter
       )
     end
     

@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } I5I5PreDB+b1tW+GtXsmJg
-# $Id: space.rb,v 1.24 2007/04/18 12:44:36 southa Exp $
+# $Id: space.rb,v 1.25 2007/04/19 12:57:57 southa Exp $
 # $Log: space.rb,v $
+# Revision 1.25  2007/04/19 12:57:57  southa
+# Prerelease work
+#
 # Revision 1.24  2007/04/18 12:44:36  southa
 # Cache purge fix and pre-release tweaks
 #
@@ -107,10 +110,10 @@ class Adanaxis_menu1 < AdanaxisSpace
     MushTools.cRotationInZWPlane(Math::PI / 873).mRotate(angVel);
     MushTools.cRotationInYZPlane(Math::PI / 970).mRotate(angVel);
 
-    mPieceLibrary.mAttendantCreate(
+    mPieceLibrary.mLimescaleCreate(
       :colour => 'red',
       :post => MushPost.new(
-        :position => MushVector.new(0,0,0,-15),
+        :position => MushVector.new(0,0,0,-30),
         :angular_position => MushTools.cRandomOrientation,
         :angular_velocity => angVel
         ),

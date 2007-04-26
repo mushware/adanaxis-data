@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } WbjKV0UNx6NxJkbQBQ14fA
-# $Id: AdanaxisMeshLibrary.rb,v 1.34 2007/04/18 09:21:52 southa Exp $
+# $Id: AdanaxisMeshLibrary.rb,v 1.35 2007/04/20 12:07:08 southa Exp $
 # $Log: AdanaxisMeshLibrary.rb,v $
+# Revision 1.35  2007/04/20 12:07:08  southa
+# Khazi Warehouse and level 8
+#
 # Revision 1.34  2007/04/18 09:21:52  southa
 # Header and level fixes
 #
@@ -485,6 +488,121 @@ class AdanaxisMeshLibrary
 		  :num_iterations => 1
     ))
         
+    mesh.mMaterialAdd("#{inName}-mat")
+
+    mesh.mMake
+  end
+
+  #
+  # Khazi Limescale
+  #
+  # Dangerous khazi
+  #
+  def mKhaziLimescaleCreate(inName)
+    mesh = MushMesh.new(inName)
+
+    mesh.mBaseAdd(MushBasePrism.new(:order => 4))
+	
+    mesh.mBaseDisplacementAdd(MushDisplacement.new(
+		  :offset => MushVector.new(0,0,0,2),
+      :scale => MushVector.new(2*Math.sqrt(2),2*Math.sqrt(2),2,2)
+	  ))
+	
+    arms = 2.0
+  
+    # Nose 1
+    mesh.mExtruderAdd(MushExtruder.new(
+      :sourceface => 0,
+      :displacement => MushDisplacement.new(
+        :offset => MushVector.new(0,0,0,-2),
+        :scale => 0.9),
+  		:num_iterations => 2
+    ))
+    
+    # Nose 2
+    mesh.mExtruderAdd(MushExtruder.new(
+      :sourceface => 8+7,
+      :displacement => MushDisplacement.new(
+        :offset => MushVector.new(0,0,0,-1),
+        :scale => 0.4),
+  		:num_iterations => 2
+    ))
+  
+    # Boom -x
+    mesh.mExtruderAdd(MushExtruder.new(
+      :sourceface => 6,
+      :displacement => MushDisplacement.new(
+        :offset => MushVector.new(-arms,0,0,0),
+        :rotation => MushTools.cRotationInXWPlane(-Math::PI/4),
+        :scale => 0.5
+      ),
+		  :num_iterations => 3
+    ))
+	  
+    # Boom +x
+    mesh.mExtruderAdd(MushExtruder.new(
+      :sourceface => 4,
+      :displacement => MushDisplacement.new(
+        :offset => MushVector.new(arms,0,0,0),
+        :rotation => MushTools.cRotationInXWPlane(Math::PI/4),
+        :scale => 0.5
+      ),
+      :num_iterations => 3
+    ))
+	  
+    # Boom -y
+    mesh.mExtruderAdd(MushExtruder.new(
+      :sourceface => 7,
+      :displacement => MushDisplacement.new(
+        :offset => MushVector.new(0,-arms,0,0),
+        :rotation => MushTools.cRotationInYWPlane(-Math::PI/4),
+        :scale => 0.5
+      ),
+		  :num_iterations => 3
+    ))
+	  
+    # Boom +y
+    mesh.mExtruderAdd(MushExtruder.new(
+      :sourceface => 5,
+      :displacement => MushDisplacement.new(
+        :offset => MushVector.new(0,arms,0,0),
+        :rotation => MushTools.cRotationInYWPlane(Math::PI/4),
+        :scale => 0.5
+      ),
+      :num_iterations => 3
+    ))
+	  
+    # Boom -z
+    mesh.mExtruderAdd(MushExtruder.new(
+      :sourceface => 2,
+      :displacement => MushDisplacement.new(
+        :offset => MushVector.new(0,0,-arms,0),
+        :rotation => MushTools.cRotationInZWPlane(-Math::PI/4),
+        :scale => 0.5
+      ),
+		  :num_iterations => 3
+    ))
+	  
+    # Boom +z
+    mesh.mExtruderAdd(MushExtruder.new(
+      :sourceface => 3,
+      :displacement => MushDisplacement.new(
+        :offset => MushVector.new(0,0,arms,0),
+        :rotation => MushTools.cRotationInZWPlane(Math::PI/4),
+        :scale => 0.5
+      ),
+      :num_iterations => 3
+    ))
+
+    # Tail
+    mesh.mExtruderAdd(MushExtruder.new(
+      :sourceface => 1,
+      :displacement => MushDisplacement.new(
+        :offset => MushVector.new(0,0,0,1.0),
+        :scale => 0.5),
+  		:num_iterations => 1
+    ))
+
     mesh.mMaterialAdd("#{inName}-mat")
 
     mesh.mMake
@@ -1015,6 +1133,17 @@ class AdanaxisMeshLibrary
       mesh =  MushMesh.new("ball#{i}")
       base1 = MushBaseSingleFacet.new(:order => 4)
       mesh.mBaseAdd(base1)
+      case i
+        when 3
+          baseDisplacement1 = MushDisplacement.new(
+            :scale => MushVector.new(3,3,3,3)
+          )
+        else
+          baseDisplacement1 = MushDisplacement.new(
+            :scale => MushVector.new(1,1,1,1)
+          )
+      end
+      mesh.mBaseDisplacementAdd(baseDisplacement1)
       mesh.mBillboardRandomSet(true)
       mesh.mMaterialAdd("ball#{i}-mat")
       mesh.mMake
@@ -1059,6 +1188,9 @@ class AdanaxisMeshLibrary
     mKhaziCisternCreate('cistern')
     mKhaziCisternCreate('cistern-red')
     mKhaziCisternCreate('cistern-blue')
+    mKhaziLimescaleCreate('limescale')
+    mKhaziLimescaleCreate('limescale-red')
+    mKhaziLimescaleCreate('limescale-blue')
     mKhaziHarpikCreate('harpik')
     mKhaziHarpikCreate('harpik-red')
     mKhaziHarpikCreate('harpik-blue')

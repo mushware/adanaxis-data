@@ -1,7 +1,7 @@
 #%Header {
 ##############################################################################
 #
-# File data-adanaxis/spaces/level8/space.rb
+# File data-adanaxis/spaces/level9/space.rb
 #
 # Copyright Andy Southgate 2006-2007
 #
@@ -15,7 +15,7 @@
 # This software carries NO WARRANTY of any kind.
 #
 ##############################################################################
-#%Header } mmDxSdwqzPsJ4lPOi2WIag
+#%Header } 3BadEfDnMuygiU6qswQnkA
 # $Id: space.rb,v 1.5 2007/04/21 18:05:47 southa Exp $
 # $Log: space.rb,v $
 # Revision 1.5  2007/04/21 18:05:47  southa
@@ -34,32 +34,32 @@
 require 'Mushware.rb'
 require 'Adanaxis.rb'
 
-class Adanaxis_level8 < AdanaxisSpace
+class Adanaxis_level9 < AdanaxisSpace
   def initialize(inParams = {})
     super
     mTimeoutSpawnAdd(:mSpawn0, 180000)
     mIsBattleSet(true)
-    mPrimarySet(PRIMARY_BLUE)
   end
   
   def mLoad(game)
     mLoadStandard(game)
-    mMusicAdd('game1', 'mushware-sanity-fault.ogg')
-    MushGame.cSoundDefine("voice-intro", "mush://waves/voice-L8.ogg")
+    mMusicAdd('game1', 'mushware-respiration.ogg')
+    MushGame.cSoundDefine("voice-intro", "mush://waves/voice-L9.ogg")
   end
   
   def mPrecacheListBuild
-    super
+    # super
     mPrecacheListAdd(mPieceLibrary.mAttendantTex('red', 'blue'))
     mPrecacheListAdd(mPieceLibrary.mCisternTex('red', 'blue'))
     mPrecacheListAdd(mPieceLibrary.mHarpikTex('red', 'blue'))
-    mPrecacheListAdd(mPieceLibrary.mWarehouseTex('blue'))
-    mPrecacheListAdd(mPieceLibrary.mRailTex('red'))
+    mPrecacheListAdd(mPieceLibrary.mLimescaleTex('red'))
+    # mPrecacheListAdd(mPieceLibrary.mWarehouseTex('blue'))
+    # mPrecacheListAdd(mPieceLibrary.mRailTex('red'))
   end
 
   def mInitialPiecesCreate
     super
-    MushTools.cRandomSeedSet(8)
+    MushTools.cRandomSeedSet(9)
     diff = AdanaxisRuby.cGameDifficulty
 
     # Blue convoy
@@ -68,14 +68,13 @@ class Adanaxis_level8 < AdanaxisSpace
     angPos = MushTools.cRotationInXZPlane(Math::PI/2)
   
     (-1..1).each do |param|
-      mPieceLibrary.mWarehouseCreate(
-        :colour => 'blue',
+      mPieceLibrary.mLimescaleCreate(
+        :colour => 'red',
         :post => MushPost.new(
           :position => MushVector.new(10*param, -50+10*param, 0, -250-100*param),
           :velocity => vel,
           :angular_position => angPos
         ),
-        :remnant => :player_heavy_missile,
         :is_primary => true
       )
     end
@@ -131,9 +130,9 @@ class Adanaxis_level8 < AdanaxisSpace
       )
     end
     
-    2.times do |param|
+    3.times do |param|
       mPieceLibrary.mRailCreate(
-        :colour => 'red',
+        :colour => 'blue',
         :post => MushPost.new(
           :position => MushVector.new(-200, -200, 0, -300-100*param)
         ),
@@ -187,11 +186,11 @@ class Adanaxis_level8 < AdanaxisSpace
       )
     )
     
-    mStandardCosmos(8)
+    mStandardCosmos(9)
   end
   
   def mSpawn0
-    MushTools.cRandomSeedSet(8)
+    MushTools.cRandomSeedSet(9)
     diff = AdanaxisRuby.cGameDifficulty
 
     [-1,1].each do |param|
@@ -228,6 +227,6 @@ class Adanaxis_level8 < AdanaxisSpace
       end
     end
 
-    MushGame.cVoicePlay('voice-E3-1') # 'Hostile import detected'
+    MushGame.cVoicePlay('voice-E3-2') # 'Hostile import detected'
   end
 end

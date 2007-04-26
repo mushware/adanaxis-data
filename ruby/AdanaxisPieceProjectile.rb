@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } PNkEy8poIR1TMPjg3VIf3g
-# $Id: AdanaxisPieceProjectile.rb,v 1.17 2007/03/26 16:31:35 southa Exp $
+# $Id: AdanaxisPieceProjectile.rb,v 1.18 2007/04/18 09:21:53 southa Exp $
 # $Log: AdanaxisPieceProjectile.rb,v $
+# Revision 1.18  2007/04/18 09:21:53  southa
+# Header and level fixes
+#
 # Revision 1.17  2007/03/26 16:31:35  southa
 # L2 work
 #
@@ -130,7 +133,7 @@ class AdanaxisPieceProjectile < AdanaxisPiece
   end
   
   def mExplosionEffect
-    if @m_originalHitPoints > 50.0
+    if @m_originalHitPoints >= 50.0
       $currentLogic.mEffects.mExplode(
         :post => mPost,
         :embers => 0,
@@ -140,7 +143,7 @@ class AdanaxisPieceProjectile < AdanaxisPiece
         :flare_lifetime_range => (3000..6000)
       )
       MushGame.cSoundPlay("explo5", mPost)
-    elsif @m_isRocket
+    elsif @m_isRocket || @m_originalHitPoints >= 20.0
       $currentLogic.mEffects.mExplode(
         :post => mPost,
         :explosions => 1,

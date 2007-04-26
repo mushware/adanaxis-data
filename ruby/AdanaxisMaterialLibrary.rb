@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } bqsHAu0ZNmRoY3PNh6U9Cw
-# $Id: AdanaxisMaterialLibrary.rb,v 1.26 2007/04/18 09:21:52 southa Exp $
+# $Id: AdanaxisMaterialLibrary.rb,v 1.27 2007/04/20 12:07:08 southa Exp $
 # $Log: AdanaxisMaterialLibrary.rb,v $
+# Revision 1.27  2007/04/20 12:07:08  southa
+# Khazi Warehouse and level 8
+#
 # Revision 1.26  2007/04/18 09:21:52  southa
 # Header and level fixes
 #
@@ -99,6 +102,9 @@ class AdanaxisMaterialLibrary < MushObject
       'harpik',
       'harpik-red',
       'harpik-blue',
+      'limescale',
+      'limescale-red',
+      'limescale-blue',
       'warehouse',
       'warehouse-red',
       'warehouse-blue',

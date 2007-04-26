@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } goFdaP60AnkwLWjY5u69Hw
-# $Id: AdanaxisAI.rb,v 1.18 2007/04/17 21:16:33 southa Exp $
+# $Id: AdanaxisAI.rb,v 1.19 2007/04/18 09:21:51 southa Exp $
 # $Log: AdanaxisAI.rb,v $
+# Revision 1.19  2007/04/18 09:21:51  southa
+# Header and level fixes
+#
 # Revision 1.18  2007/04/17 21:16:33  southa
 # Level work
 #
@@ -152,6 +155,7 @@ class AdanaxisAI < MushObject
   
   def mStateChangeEvade(duration)
     @m_stateDuration = duration
+    @m_evadePoint = nil
     mStateChange(AISTATE_EVADE)
   end
   
@@ -219,9 +223,20 @@ class AdanaxisAI < MushObject
     mTargetSelect unless @m_targetID
     unless @m_targetID
       # No target to seek
-      mStateChangeIdle
+      mStateActionEvadeExit
     else
-      mStateChangeWaypoint(@r_post.position + MushTools.cRandomUnitVector * 100, @m_stateDuration)
+      @m_evadePoint = @r_post.position + MushTools.cRandomUnitVector * 100 unless @m_evadePoint
+
+      distToPoint2 = (@m_evadePoint - @r_post.position).mMagnitudeSquared
+      if distToPoint2 < 100.0 * @m_evadeSpeed * @m_evadeSpeed
+        mStateActionEvadeExit
+      end
+
+      MushUtil.cRotateAndSeek(@r_post,
+        @m_evadePoint, # Target
+        @m_evadeSpeed, # Maximum speed
+        @m_evadeAcceleration # Acceleration
+      )
     end
     
     100

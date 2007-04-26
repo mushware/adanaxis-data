@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } 1ZJk8/vLNeRQNZGYELq9QQ
-# $Id: AdanaxisPieceLibrary.rb,v 1.17 2007/04/20 12:07:08 southa Exp $
+# $Id: AdanaxisPieceLibrary.rb,v 1.18 2007/04/21 09:41:05 southa Exp $
 # $Log: AdanaxisPieceLibrary.rb,v $
+# Revision 1.18  2007/04/21 09:41:05  southa
+# Level work
+#
 # Revision 1.17  2007/04/20 12:07:08  southa
 # Khazi Warehouse and level 8
 #
@@ -134,6 +137,22 @@ class AdanaxisPieceLibrary < MushObject
       :weapon => :khazi_harpik_long
     }
     @m_harpikNum = 0
+
+    @m_limescaleDefaults = {
+      :effect_scale => 3.5,
+      :hit_points => 60.0,
+      :type => @m_typeDefault,
+      :ai_object => AdanaxisAIKhaziLimescale,
+      :ai_state_msec => 8000,
+      :ai_state => :seek,
+      :evade_speed => 0.2*(1+diff),
+      :evade_acceleration => 0.02*(1+diff),
+      :seek_speed => 0.2*(1+diff),
+      :seek_acceleration => 0.02*(1+diff),
+      :seek_stand_off => 200.0,
+      :weapon => :khazi_limescale
+    }
+    @m_limescaleNum = 0
 
     @m_warehouseDefaults = {
       :effect_scale => 2.0,
@@ -277,6 +296,14 @@ class AdanaxisPieceLibrary < MushObject
     @m_harpikNum += 1
   end    
 
+  # Creates a Limescale
+  def mLimescaleCreate(inParams = {})
+    AdanaxisUtil.cSpellCheck(inParams)
+    newPiece = AdanaxisPieceKhazi.cCreate(mLimescaleParams(inParams))
+    mCommonCreate(newPiece, inParams)
+    @m_limescaleNum += 1
+  end    
+
   # Creates a Warehouse
   def mWarehouseCreate(inParams = {})
     AdanaxisUtil.cSpellCheck(inParams)
@@ -307,6 +334,10 @@ class AdanaxisPieceLibrary < MushObject
 
   def mHarpikTex(*inColours)
     return inColours.collect { |name| "harpik-#{name}-tex" }
+  end
+
+  def mLimescaleTex(*inColours)
+    return inColours.collect { |name| "limescale-#{name}-tex" }
   end
 
   def mWarehouseTex(*inColours)
@@ -442,6 +473,28 @@ protected
     mKhaziAddBaseParams(retParams, inParams)
     
     # Merge the input parameters so that they overwrite those we've calculated
+    retParams.merge!(inParams)
+    
+    retParams
+  end
+  
+  def mLimescaleParams(inParams = {})
+    retParams = @m_limescaleDefaults.dup
+    retParams[:mesh_name] = case inParams[:colour]
+      when /(red|blue)/: "limescale-#$1"
+      when nil:          "limescale"
+      else raise "Unknown limescale colour #{inParams[:colour]}"
+    end
+    
+    retParams[:type] = mType(inParams)
+    retParams[:target_types] = mTargetTypes(inParams)
+
+    retParams[:remnant] = :player_heavy_cannon
+    
+    retParams[:scanner_symbol] = mScannerSymbol(retParams.merge(inParams))
+    
+    mKhaziAddBaseParams(retParams, inParams)
+
     retParams.merge!(inParams)
     
     retParams

@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } bHT09Ckq2jpnilxRX3ZW6w
-# $Id: AdanaxisWeaponLibrary.rb,v 1.21 2007/03/28 14:45:46 southa Exp $
+# $Id: AdanaxisWeaponLibrary.rb,v 1.22 2007/04/18 09:21:54 southa Exp $
 # $Log: AdanaxisWeaponLibrary.rb,v $
+# Revision 1.22  2007/04/18 09:21:54  southa
+# Header and level fixes
+#
 # Revision 1.21  2007/03/28 14:45:46  southa
 # Level and AI standoff
 #
@@ -282,6 +285,20 @@ class AdanaxisWeaponLibrary < MushObject
         MushVector.new(0,0,-1,-2),
         MushVector.new(0,0,1,-2)
       ]
+    )
+
+    @m_weapons[:khazi_limescale] = AdanaxisWeapon.new(
+      :projectile_mesh => 'ball3',
+      :hit_points => 20.0,
+      :lifetime_msec => 10000,
+      :speed => 1.0,
+      :fire_rate_msec => 5000,
+      :offset_sequence => [
+        MushVector.new(0,0,0,-6.0)
+      ],
+      :alpha_stutter => 0.3,
+      :fire_sound => 'fire8'
+      
     )
 
     @m_weapons[:khazi_rail] = AdanaxisWeapon.new(
