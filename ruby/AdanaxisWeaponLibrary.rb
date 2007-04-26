@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } bHT09Ckq2jpnilxRX3ZW6w
-# $Id: AdanaxisWeaponLibrary.rb,v 1.22 2007/04/18 09:21:54 southa Exp $
+# $Id: AdanaxisWeaponLibrary.rb,v 1.23 2007/04/26 13:12:39 southa Exp $
 # $Log: AdanaxisWeaponLibrary.rb,v $
+# Revision 1.23  2007/04/26 13:12:39  southa
+# Limescale and level 9
+#
 # Revision 1.22  2007/04/18 09:21:54  southa
 # Header and level fixes
 #
@@ -317,9 +320,9 @@ class AdanaxisWeaponLibrary < MushObject
       :type => :spawner,
       :projectile_mesh => :attendant,
       :ammo_count => 1,
-      :speed => -0.2,
+      :speed => -0.3,
       :offset_sequence => [
-        MushVector.new(0,0,0,15.0)
+        MushVector.new(0,0,0,16.0)
       ],
       :fire_rate_msec => 3000,
       :fire_sound => 'fire9'
@@ -329,13 +332,27 @@ class AdanaxisWeaponLibrary < MushObject
       :type => :spawner,
       :projectile_mesh => :harpik,
       :ammo_count => 1,
-      :speed => -0.4,
+      :speed => -0.5,
       :offset_sequence => [
-        MushVector.new(0,0,0,17.0)
+        MushVector.new(0,0,0,18.0)
       ],
       :fire_rate_msec => 2400,
       :fire_sound => 'fire9'
     )
+
+
+    @m_weapons[:limescale_spawner] = AdanaxisWeapon.new(
+      :type => :spawner,
+      :projectile_mesh => :limescale,
+      :ammo_count => 1,
+      :speed => -1.0,
+      :offset_sequence => [
+        MushVector.new(0,0,0,22.0)
+      ],
+      :fire_rate_msec => 4000,
+      :fire_sound => 'fire9'
+    )
+
   end
   
   def mWeapon(inName)

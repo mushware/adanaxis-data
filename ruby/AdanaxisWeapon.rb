@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } NnXS337B+7+SGRgiikvl+A
-# $Id: AdanaxisWeapon.rb,v 1.18 2007/04/18 09:21:54 southa Exp $
+# $Id: AdanaxisWeapon.rb,v 1.19 2007/04/26 13:12:39 southa Exp $
 # $Log: AdanaxisWeapon.rb,v $
+# Revision 1.19  2007/04/26 13:12:39  southa
+# Limescale and level 9
+#
 # Revision 1.18  2007/04/18 09:21:54  southa
 # Header and level fixes
 #
@@ -263,6 +266,12 @@ class AdanaxisWeapon < MushObject
     lifetime = @m_lifetimeMsec
 
     case @m_projectileMesh
+      when :limescale
+        $currentGame.mSpace.mPieceLibrary.mLimescaleCreate(
+          :colour => inPiece.mColour,
+          :post => projPost,
+          :spawned => true
+        )
       when :harpik
         $currentGame.mSpace.mPieceLibrary.mHarpikCreate(
           :colour => inPiece.mColour,
