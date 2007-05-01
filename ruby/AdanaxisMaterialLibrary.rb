@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } bqsHAu0ZNmRoY3PNh6U9Cw
-# $Id: AdanaxisMaterialLibrary.rb,v 1.27 2007/04/20 12:07:08 southa Exp $
+# $Id: AdanaxisMaterialLibrary.rb,v 1.28 2007/04/26 13:12:39 southa Exp $
 # $Log: AdanaxisMaterialLibrary.rb,v $
+# Revision 1.28  2007/04/26 13:12:39  southa
+# Limescale and level 9
+#
 # Revision 1.27  2007/04/20 12:07:08  southa
 # Khazi Warehouse and level 8
 #
@@ -99,6 +102,9 @@ class AdanaxisMaterialLibrary < MushObject
       'cistern',
       'cistern-red',
       'cistern-blue',
+      'freshener',
+      'freshener-red',
+      'freshener-blue',
       'harpik',
       'harpik-red',
       'harpik-blue',

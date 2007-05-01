@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } KquJ2LoaPKky37EvVhjtXQ
-# $Id: AdanaxisAIKhaziRail.rb,v 1.1 2007/04/17 21:16:33 southa Exp $
+# $Id: AdanaxisAIKhaziRail.rb,v 1.2 2007/04/18 09:21:51 southa Exp $
 # $Log: AdanaxisAIKhaziRail.rb,v $
+# Revision 1.2  2007/04/18 09:21:51  southa
+# Header and level fixes
+#
 # Revision 1.1  2007/04/17 21:16:33  southa
 # Level work
 #
@@ -36,6 +39,7 @@ class AdanaxisAIKhaziRail < AdanaxisAIKhazi
   end
   
   def mStateActionEvadeExit
+    mTargetSelect # Always reselect target
     mStateChangeSeek(40000)
   end
   

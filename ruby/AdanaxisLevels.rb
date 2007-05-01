@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } PrKvSfbZuMOrmRVQXdN9Qw
-# $Id: AdanaxisLevels.rb,v 1.9 2007/04/16 08:41:06 southa Exp $
+# $Id: AdanaxisLevels.rb,v 1.10 2007/04/18 09:21:52 southa Exp $
 # $Log: AdanaxisLevels.rb,v $
+# Revision 1.10  2007/04/18 09:21:52  southa
+# Header and level fixes
+#
 # Revision 1.9  2007/04/16 08:41:06  southa
 # Level and header mods
 #
@@ -94,6 +97,20 @@ class AdanaxisLevels
     Dir.foreach(spacePath) do |leafName|
       next if leafName == 'CVS' || leafName =~ /\./
       mScanLevel(spacePath+'/'+leafName)
+    end
+    @m_levels.sort! do |x, y|
+      if x =~ /^(\w+)(\d+)/
+        xName, xNum = $1, $1
+        if y =~ /^(\w+)(\d+)/
+          yName, yNum = $1, $2
+          if xName != yName
+            compVal = xName <=> yName
+          else
+            compVal = xNum <=> yNum
+          end
+        end
+      end
+      compVal || x <=> y
     end
   end
   

@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } WbjKV0UNx6NxJkbQBQ14fA
-# $Id: AdanaxisMeshLibrary.rb,v 1.35 2007/04/20 12:07:08 southa Exp $
+# $Id: AdanaxisMeshLibrary.rb,v 1.36 2007/04/26 13:12:39 southa Exp $
 # $Log: AdanaxisMeshLibrary.rb,v $
+# Revision 1.36  2007/04/26 13:12:39  southa
+# Limescale and level 9
+#
 # Revision 1.35  2007/04/20 12:07:08  southa
 # Khazi Warehouse and level 8
 #
@@ -271,7 +274,7 @@ class AdanaxisMeshLibrary
       ),
 		  :num_iterations => 4
     ))
-	  
+    
     # Boom +z
     mesh.mExtruderAdd(MushExtruder.new(
       :sourceface => 3,
@@ -283,6 +286,115 @@ class AdanaxisMeshLibrary
       :num_iterations => 4
     ))
 
+
+    mesh.mMaterialAdd("#{inName}-mat")
+
+    mesh.mMake
+  end
+
+  #
+  # Khazi Freshener
+  #
+  # Inert khazi carrying a radiated countermeasure
+  #
+  def mKhaziFreshenerCreate(inName)
+  
+    mesh = MushMesh.new(inName)
+
+    mesh.mBaseAdd(MushBasePrism.new(:order => 4))
+	
+    mesh.mBaseDisplacementAdd(MushDisplacement.new(
+		  :offset => MushVector.new(0,0,0,0),
+      :scale => MushVector.new(2*Math.sqrt(2),2*Math.sqrt(2),2,2)
+	  ))
+	
+    arms = 2.0
+    scale = 0.8
+    iter = 5
+  
+    # Boom -x
+    mesh.mExtruderAdd(MushExtruder.new(
+      :sourceface => 6,
+      :displacement => MushDisplacement.new(
+        :offset => MushVector.new(-arms,0,0,0),
+        :rotation => MushTools.cRotationInXWPlane(-Math::PI/32),
+        :scale => scale
+      ),
+		  :num_iterations => iter
+    ))
+	  
+    # Boom +x
+    mesh.mExtruderAdd(MushExtruder.new(
+      :sourceface => 4,
+      :displacement => MushDisplacement.new(
+        :offset => MushVector.new(arms,0,0,0),
+        :rotation => MushTools.cRotationInXWPlane(Math::PI/32),
+        :scale => scale
+      ),
+      :num_iterations => iter
+    ))
+	  
+    # Boom -y
+    mesh.mExtruderAdd(MushExtruder.new(
+      :sourceface => 7,
+      :displacement => MushDisplacement.new(
+        :offset => MushVector.new(0,-arms,0,0),
+        :rotation => MushTools.cRotationInYWPlane(-Math::PI/32),
+        :scale => scale
+      ),
+		  :num_iterations => iter
+    ))
+	  
+    # Boom +y
+    mesh.mExtruderAdd(MushExtruder.new(
+      :sourceface => 5,
+      :displacement => MushDisplacement.new(
+        :offset => MushVector.new(0,arms,0,0),
+        :rotation => MushTools.cRotationInYWPlane(Math::PI/32),
+        :scale => scale
+      ),
+      :num_iterations => iter
+    ))
+	  
+    # Boom -z
+    mesh.mExtruderAdd(MushExtruder.new(
+      :sourceface => 2,
+      :displacement => MushDisplacement.new(
+        :offset => MushVector.new(0,0,-arms,0),
+        :rotation => MushTools.cRotationInZWPlane(-Math::PI/32),
+        :scale => scale
+      ),
+		  :num_iterations => iter
+    ))
+	  
+    # Boom +z
+    mesh.mExtruderAdd(MushExtruder.new(
+      :sourceface => 3,
+      :displacement => MushDisplacement.new(
+        :offset => MushVector.new(0,0,arms,0),
+        :rotation => MushTools.cRotationInZWPlane(Math::PI/32),
+        :scale => scale
+      ),
+      :num_iterations => iter
+    ))
+
+    # Boom -w
+    mesh.mExtruderAdd(MushExtruder.new(
+      :sourceface => 0,
+      :displacement => MushDisplacement.new(
+        :offset => MushVector.new(0,0,0,-arms),
+        :scale => scale),
+  		:num_iterations => iter
+    ))
+  
+    # Boom +w
+    mesh.mExtruderAdd(MushExtruder.new(
+      :sourceface => 1,
+      :displacement => MushDisplacement.new(
+        :offset => MushVector.new(0,0,0,arms),
+        :scale => scale),
+  		:num_iterations => iter
+    ))
 
     mesh.mMaterialAdd("#{inName}-mat")
 
@@ -1188,6 +1300,9 @@ class AdanaxisMeshLibrary
     mKhaziCisternCreate('cistern')
     mKhaziCisternCreate('cistern-red')
     mKhaziCisternCreate('cistern-blue')
+    mKhaziFreshenerCreate('freshener')
+    mKhaziFreshenerCreate('freshener-red')
+    mKhaziFreshenerCreate('freshener-blue')
     mKhaziLimescaleCreate('limescale')
     mKhaziLimescaleCreate('limescale-red')
     mKhaziLimescaleCreate('limescale-blue')

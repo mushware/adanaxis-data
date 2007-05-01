@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } 3BadEfDnMuygiU6qswQnkA
-# $Id: space.rb,v 1.1 2007/04/26 13:12:40 southa Exp $
+# $Id: space.rb,v 1.2 2007/04/26 16:22:41 southa Exp $
 # $Log: space.rb,v $
+# Revision 1.2  2007/04/26 16:22:41  southa
+# Level 9
+#
 # Revision 1.1  2007/04/26 13:12:40  southa
 # Limescale and level 9
 #
@@ -50,7 +53,7 @@ class Adanaxis_level9 < AdanaxisSpace
   end
   
   def mPrecacheListBuild
-    # super
+    super
     mPrecacheListAdd(mPieceLibrary.mAttendantTex('red'))
     mPrecacheListAdd(mPieceLibrary.mCisternTex('red'))
     mPrecacheListAdd(mPieceLibrary.mHarpikTex('red'))

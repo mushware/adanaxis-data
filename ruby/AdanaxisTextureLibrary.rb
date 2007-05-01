@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } /HC+dJWnGXbdJxstPsjAXw
-# $Id: AdanaxisTextureLibrary.rb,v 1.43 2007/04/20 19:28:08 southa Exp $
+# $Id: AdanaxisTextureLibrary.rb,v 1.44 2007/04/26 13:12:39 southa Exp $
 # $Log: AdanaxisTextureLibrary.rb,v $
+# Revision 1.44  2007/04/26 13:12:39  southa
+# Limescale and level 9
+#
 # Revision 1.43  2007/04/20 19:28:08  southa
 # Level 8 work
 #
@@ -393,6 +396,52 @@ class AdanaxisTextureLibrary < MushObject
 
   scale = 0.5
   MushGLTexture::cDefine(
+		:name          => 'freshener-tex',
+    :type          => 'CellNoise',
+    :meshname      => 'freshener',
+    :size          => [textureSize, textureSize],
+    :palette       => 'palette3',
+    :palettestart  => [0.5,0.0],
+    :palettevector => [0,1.0],
+		:scale         => [scale, scale, scale, scale],
+    :numoctaves    => 8,
+    :octaveratio   => 0.5,
+		:cache         => 1,
+    :compress      => compressNear
+	)
+
+  MushGLTexture::cDefine(
+		:name          => 'freshener-red-tex',
+    :type          => 'CellNoise',
+    :meshname      => 'freshener-red',
+    :size          => [textureSize, textureSize],
+    :palette       => 'palette1',
+    :palettestart  => [0.5,0.0],
+    :palettevector => [0.5,1.0],
+		:scale         => [scale, scale, scale, scale],
+    :numoctaves    => 8,
+    :octaveratio   => 0.5,
+		:cache         => 1,
+    :compress      => compressNear
+	)
+
+  MushGLTexture::cDefine(
+		:name          => 'freshener-blue-tex',
+    :type          => 'CellNoise',
+    :meshname      => 'freshener-blue',
+    :size          => [textureSize, textureSize],
+    :palette       => 'palette3',
+    :palettestart  => [0.5,0.0],
+    :palettevector => [-0.5,1.0],
+		:scale         => [scale, scale, scale, scale],
+    :numoctaves    => 8,
+    :octaveratio   => 0.5,
+		:cache         => 1,
+    :compress      => compressNear
+	)
+
+  scale = 0.5
+  MushGLTexture::cDefine(
 		:name          => 'harpik-tex',
     :type          => 'CellNoise',
     :meshname      => 'harpik',
@@ -443,9 +492,9 @@ class AdanaxisTextureLibrary < MushObject
     :type          => 'CellNoise',
     :meshname      => 'limescale',
     :size          => [textureSize, textureSize],
-    :palette       => 'palette3',
-    :palettestart  => [0,0.5],
-    :palettevector => [4.0,0.0],
+    :palette       => 'palette1',
+    :palettestart  => [0.1,0.3],
+    :palettevector => [0,0.4],
 		:scale         => [scale, scale, scale, scale],
     :numoctaves    => 8,
     :octaveratio   => 0.5,
@@ -473,9 +522,9 @@ class AdanaxisTextureLibrary < MushObject
     :type          => 'CellNoise',
     :meshname      => 'limescale-blue',
     :size          => [textureSize, textureSize],
-    :palette       => 'palette3',
-    :palettestart  => [0,0.6],
-    :palettevector => [4.0,-0.6],
+    :palette       => 'palette1',
+    :palettestart  => [0.8,0.4],
+    :palettevector => [0,-0.4],
 		:scale         => [scale, scale, scale, scale],
     :numoctaves    => 8,
     :octaveratio   => 0.5,

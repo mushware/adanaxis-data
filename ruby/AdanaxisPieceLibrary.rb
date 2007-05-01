@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } 1ZJk8/vLNeRQNZGYELq9QQ
-# $Id: AdanaxisPieceLibrary.rb,v 1.18 2007/04/21 09:41:05 southa Exp $
+# $Id: AdanaxisPieceLibrary.rb,v 1.19 2007/04/26 13:12:39 southa Exp $
 # $Log: AdanaxisPieceLibrary.rb,v $
+# Revision 1.19  2007/04/26 13:12:39  southa
+# Limescale and level 9
+#
 # Revision 1.18  2007/04/21 09:41:05  southa
 # Level work
 #
@@ -121,6 +124,17 @@ class AdanaxisPieceLibrary < MushObject
       :ammo_count => 10 + 10 * diff
     }
     @m_cisternNum = 0
+    
+    @m_freshenerDefaults = {
+      :effect_scale => 3.0,
+      :hit_points => 45.0,
+      :type => @m_typeDefault,
+      :ai_object => AdanaxisAIKhaziInert,
+      :ai_state_msec => 1000,
+      :ai_state => :dormant,
+      :is_jammer => true
+    }
+    @m_freshenerNum = 0
     
     @m_harpikDefaults = {
       :effect_scale => 1.0,
@@ -288,6 +302,14 @@ class AdanaxisPieceLibrary < MushObject
     @m_cisternNum += 1
   end    
 
+  # Creates a Freshener
+  def mFreshenerCreate(inParams = {})
+    AdanaxisUtil.cSpellCheck(inParams)
+    newPiece = AdanaxisPieceKhazi.cCreate(mFreshenerParams(inParams))
+    mCommonCreate(newPiece, inParams)
+    @m_freshenerNum += 1
+  end    
+
   # Creates a Harpik
   def mHarpikCreate(inParams = {})
     AdanaxisUtil.cSpellCheck(inParams)
@@ -330,6 +352,10 @@ class AdanaxisPieceLibrary < MushObject
 
   def mCisternTex(*inColours)
     return inColours.collect { |name| "cistern-#{name}-tex" }
+  end
+
+  def mFreshenerTex(*inColours)
+    return inColours.collect { |name| "freshener-#{name}-tex" }
   end
 
   def mHarpikTex(*inColours)
@@ -446,6 +472,26 @@ protected
     retParams
   end
   
+  # Derive parameters for a Freshener
+  def mFreshenerParams(inParams = {})
+    
+    retParams = @m_freshenerDefaults.dup
+    
+    retParams[:mesh_name] = case inParams[:colour]
+      when /(red|blue)/: "freshener-#$1"
+      when nil:          "freshener"
+      else raise "Unknown freshener colour #{inParams[:colour]}"
+    end
+    
+    retParams[:type] = mType(inParams)
+    retParams[:target_types] = mTargetTypes(inParams)
+    retParams[:remnant] = $currentLogic.mRemnant.mMediumGradeRemnant(@m_freshenerNum)
+    retParams[:scanner_symbol] = mScannerSymbol(retParams.merge(inParams))
+    mKhaziAddBaseParams(retParams, inParams)    
+    retParams.merge!(inParams)
+    retParams
+  end
+  
   # Derive parameters for a Harpik
   def mHarpikParams(inParams = {})
     
@@ -513,7 +559,7 @@ protected
     
     retParams[:type] = mType(inParams)
     retParams[:target_types] = mTargetTypes(inParams)
-    retParams[:remnant] = $currentLogic.mRemnant.mMediumGradeRemnant(@m_cisternNum)
+    retParams[:remnant] = $currentLogic.mRemnant.mMediumGradeRemnant(@m_warehouseNum)
     retParams[:scanner_symbol] = mScannerSymbol(retParams.merge(inParams))
     mKhaziAddBaseParams(retParams, inParams)    
     retParams.merge!(inParams)
