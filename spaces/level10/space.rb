@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } iCN5T5T2b75xmirMSkYdbA
-# $Id: space.rb,v 1.2 2007/04/26 16:22:41 southa Exp $
+# $Id: space.rb,v 1.1 2007/05/01 16:40:07 southa Exp $
 # $Log: space.rb,v $
+# Revision 1.1  2007/05/01 16:40:07  southa
+# Level 10
+#
 # Revision 1.2  2007/04/26 16:22:41  southa
 # Level 9
 #
@@ -44,9 +47,10 @@ class Adanaxis_level10 < AdanaxisSpace
   def initialize(inParams = {})
     super
     if AdanaxisRuby.cGameDifficulty > 1
-      mTimeoutSpawnAdd(:mSpawn0, 20000)
+      mTimeoutSpawnAdd(:mSpawn0, 60000)
     end
     mTimeoutSpawnAdd(:mSpawn1, 120000)
+
     mPrimarySet(PRIMARY_RED)
   end
   
@@ -75,8 +79,6 @@ class Adanaxis_level10 < AdanaxisSpace
     MushTools.cRotationInZWPlane(Math::PI / 1314).mRotate(angVel);
     MushTools.cRotationInYZPlane(Math::PI / 1575).mRotate(angVel);
 
-    # Red convoy
-    
     vel = MushVector.new(-0.05*(1+diff),0,0,0)
     angPos = MushTools.cRotationInXZPlane(Math::PI/2)
   
@@ -174,7 +176,7 @@ class Adanaxis_level10 < AdanaxisSpace
         :ai_state_msec => 8000+250*param,
         :remnant => case diff
                       when 0: :player_heavy_missile
-                      when 1: :player_rail_missile
+                      when 1: :player_rail
                       else :player_light_missile
                     end
       )
@@ -190,8 +192,8 @@ class Adanaxis_level10 < AdanaxisSpace
     mStandardCosmos(10)
   end
   
-  def mSpawn0
-    MushTools.cRandomSeedSet(10)
+    def mSpawn0
+    MushTools.cRandomSeedSet(11)
     diff = AdanaxisRuby.cGameDifficulty
 
     [-1,1].each do |param|
@@ -213,11 +215,11 @@ class Adanaxis_level10 < AdanaxisSpace
       )
     end
 
-    MushGame.cVoicePlay('voice-E3-3') # 'Hostile import detected'
+    MushGame.cVoicePlay('voice-E3-1') # 'Hostile import detected'
   end
 
   def mSpawn1
-    MushTools.cRandomSeedSet(10)
+    MushTools.cRandomSeedSet(11)
     diff = AdanaxisRuby.cGameDifficulty
     [-1,1].each do |param|
       mPieceLibrary.mCisternCreate(
@@ -238,4 +240,5 @@ class Adanaxis_level10 < AdanaxisSpace
       )
     end
   end
+  
 end

@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } PrKvSfbZuMOrmRVQXdN9Qw
-# $Id: AdanaxisLevels.rb,v 1.10 2007/04/18 09:21:52 southa Exp $
+# $Id: AdanaxisLevels.rb,v 1.11 2007/05/01 16:40:06 southa Exp $
 # $Log: AdanaxisLevels.rb,v $
+# Revision 1.11  2007/05/01 16:40:06  southa
+# Level 10
+#
 # Revision 1.10  2007/04/18 09:21:52  southa
 # Header and level fixes
 #
@@ -99,9 +102,9 @@ class AdanaxisLevels
       mScanLevel(spacePath+'/'+leafName)
     end
     @m_levels.sort! do |x, y|
-      if x =~ /^(\w+)(\d+)/
-        xName, xNum = $1, $1
-        if y =~ /^(\w+)(\d+)/
+      if x[KEY] =~ /^(\w+)(\d+)/
+        xName, xNum = $1, $2
+        if y[KEY] =~ /^(\w+)(\d+)/
           yName, yNum = $1, $2
           if xName != yName
             compVal = xName <=> yName
@@ -110,7 +113,7 @@ class AdanaxisLevels
           end
         end
       end
-      compVal || x <=> y
+      compVal || x[KEY] <=> y[KEY]
     end
   end
   

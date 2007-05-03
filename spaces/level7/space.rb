@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } CN/AtDZjAIBjtYsLPBQz1g
-# $Id: space.rb,v 1.2 2007/04/18 09:21:56 southa Exp $
+# $Id: space.rb,v 1.3 2007/04/18 20:08:39 southa Exp $
 # $Log: space.rb,v $
+# Revision 1.3  2007/04/18 20:08:39  southa
+# Tweaks and fixes
+#
 # Revision 1.2  2007/04/18 09:21:56  southa
 # Header and level fixes
 #
@@ -64,19 +67,6 @@ class Adanaxis_level7 < AdanaxisSpace
         :ai_state => :dormant,
         :ai_state_msec => 80000 - 30000 * diff
       )  
-    end
-    
-    0.times do |param|
-      ['blue', 'red', 'red'].each do |colour|
-        mPieceLibrary.mHarpikCreate(
-          :colour => colour,
-          :post => MushPost.new(
-            :position => MushVector.new((colour == 'red')?-100:100, 0, 0, -200) +
-            MushTools.cRandomUnitVector * (20 + rand(100)),
-            :angular_position => MushTools.cRandomOrientation
-          )
-        )
-      end
     end
     
     (-15..15).each do |param|
