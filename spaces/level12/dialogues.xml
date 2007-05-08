@@ -29,7 +29,7 @@
 <fontRef type="GLFontRef">
 <name>"font-mono1"</name>
 </fontRef>
-<value>"Beaming"</value>
+<value>"Guided Ordnance"</value>
 </string>
 <posticity type="MushPiePosticity">
 <pos>(0,0.12,0,0)</pos>
@@ -84,7 +84,7 @@
 </strings>
 <voices>(
  <obj type="GameSoundSpec">
-  <soundRef>"voice-E5-1"</soundRef>
+  <soundRef>"voice-E5-2"</soundRef>
   <startTime>100</startTime>
  </obj>
 )</voices></obj>
@@ -114,12 +114,12 @@
 </strings>
 <voices>(
  <obj type="GameSoundSpec">
-  <soundRef>"voice-E11-5"</soundRef>
+  <soundRef>"voice-E11-6"</soundRef>
   <startTime>50</startTime>
  </obj>
  ,
  <obj type="GameSoundSpec">
-  <soundRef>"voice-E5-1"</soundRef>
+  <soundRef>"voice-E5-2"</soundRef>
   <startTime>250</startTime>
  </obj>
 )</voices></obj>
@@ -149,14 +149,9 @@
 </strings>
 <voices>(
  <obj type="GameSoundSpec">
-  <soundRef>"voice-E10-2"</soundRef>
+  <soundRef>"voice-E10-4"</soundRef>
   <startTime>0</startTime>
  </obj>
- ,
- <obj type="GameSoundSpec">
-  <soundRef>"voice-E4-2"</soundRef>
-  <startTime>200</startTime>
- </obj> 
 )</voices>
 </obj>
 )</obj>

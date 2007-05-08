@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } 1ZJk8/vLNeRQNZGYELq9QQ
-# $Id: AdanaxisPieceLibrary.rb,v 1.19 2007/04/26 13:12:39 southa Exp $
+# $Id: AdanaxisPieceLibrary.rb,v 1.20 2007/05/01 16:40:06 southa Exp $
 # $Log: AdanaxisPieceLibrary.rb,v $
+# Revision 1.20  2007/05/01 16:40:06  southa
+# Level 10
+#
 # Revision 1.19  2007/04/26 13:12:39  southa
 # Limescale and level 9
 #
@@ -167,6 +170,22 @@ class AdanaxisPieceLibrary < MushObject
       :weapon => :khazi_limescale
     }
     @m_limescaleNum = 0
+
+    @m_vendorDefaults = {
+      :effect_scale => 1.0,
+      :hit_points => 30.0,
+      :type => @m_typeDefault,
+      :ai_object => AdanaxisAIKhaziVendor,
+      :ai_state_msec => 3000,
+      :ai_state => :evade,
+      :evade_speed => 0.05*(1+diff),
+      :evade_acceleration => 0.01*(1+diff),
+      :seek_speed => 0.05*(1+diff),
+      :seek_acceleration => 0.01*(1+diff),
+      :seek_stand_off => 20.0,
+      :weapon => :khazi_light_missile
+    }
+    @m_vendorNum = 0
 
     @m_warehouseDefaults = {
       :effect_scale => 2.0,
@@ -326,6 +345,14 @@ class AdanaxisPieceLibrary < MushObject
     @m_limescaleNum += 1
   end    
 
+  # Creates a Vendor
+  def mVendorCreate(inParams = {})
+    AdanaxisUtil.cSpellCheck(inParams)
+    newPiece = AdanaxisPieceKhazi.cCreate(mVendorParams(inParams))
+    mCommonCreate(newPiece, inParams)
+    @m_vendorNum += 1
+  end    
+
   # Creates a Warehouse
   def mWarehouseCreate(inParams = {})
     AdanaxisUtil.cSpellCheck(inParams)
@@ -364,6 +391,10 @@ class AdanaxisPieceLibrary < MushObject
 
   def mLimescaleTex(*inColours)
     return inColours.collect { |name| "limescale-#{name}-tex" }
+  end
+
+  def mVendorTex(*inColours)
+    return inColours.collect { |name| "vendor-#{name}-tex" }
   end
 
   def mWarehouseTex(*inColours)
@@ -545,6 +576,25 @@ protected
     
     retParams
   end
+  
+  def mVendorParams(inParams = {})
+    retParams = @m_vendorDefaults.dup
+    
+    retParams[:mesh_name] = case inParams[:colour]
+      when /(red|blue)/: "vendor-#$1"
+      when nil:          "vendor"
+      else raise "Unknown vendor colour #{inParams[:colour]}"
+    end
+    
+    retParams[:type] = mType(inParams)
+    retParams[:target_types] = mTargetTypes(inParams)
+    retParams[:remnant] = :player_light_missile
+    retParams[:scanner_symbol] = mScannerSymbol(retParams.merge(inParams))
+    mKhaziAddBaseParams(retParams, inParams)    
+    retParams.merge!(inParams)
+    retParams
+  end
+
   
   # Derive parameters for a Warehouse
   def mWarehouseParams(inParams = {})

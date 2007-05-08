@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } bHT09Ckq2jpnilxRX3ZW6w
-# $Id: AdanaxisWeaponLibrary.rb,v 1.23 2007/04/26 13:12:39 southa Exp $
+# $Id: AdanaxisWeaponLibrary.rb,v 1.24 2007/04/26 16:22:41 southa Exp $
 # $Log: AdanaxisWeaponLibrary.rb,v $
+# Revision 1.24  2007/04/26 16:22:41  southa
+# Level 9
+#
 # Revision 1.23  2007/04/26 13:12:39  southa
 # Limescale and level 9
 #
@@ -314,6 +317,30 @@ class AdanaxisWeaponLibrary < MushObject
       ],
       :fire_rate_msec => 5000,
       :fire_sound => 'fire6'
+    )
+
+    @m_weapons[:khazi_light_missile] = AdanaxisWeapon.new(
+      :type => :rocket,
+      :projectile_mesh => 'projectile1',
+      :speed => 0.0,
+      :acceleration => 0.01,
+      :speed_limit => 4.0,
+      :hit_points => 15.0,
+      :fire_rate_msec => 7000,
+      :lifetime_msec => 6000,
+      :offset_sequence => [
+        MushVector.new(-3,0,0,-1),
+        MushVector.new(3,0,0,-1),
+        MushVector.new(0,-3,0,-1),
+        MushVector.new(0,3,0,-1),
+        MushVector.new(0,0,-3,-1),
+        MushVector.new(0,0,3,-1)
+      ],
+      :load_sound => 'load6',
+      :fire_sound => 'fire6',
+      :reload_sound => 'load6',
+      :ai_params => {:seek_acceleration => 0.01},
+      :angular_velocity => MushRotation.new
     )
 
     @m_weapons[:attendant_spawner] = AdanaxisWeapon.new(

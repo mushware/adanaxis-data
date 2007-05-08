@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } goFdaP60AnkwLWjY5u69Hw
-# $Id: AdanaxisAI.rb,v 1.19 2007/04/18 09:21:51 southa Exp $
+# $Id: AdanaxisAI.rb,v 1.20 2007/04/26 13:12:38 southa Exp $
 # $Log: AdanaxisAI.rb,v $
+# Revision 1.20  2007/04/26 13:12:38  southa
+# Limescale and level 9
+#
 # Revision 1.19  2007/04/18 09:21:51  southa
 # Header and level fixes
 #
@@ -126,6 +129,8 @@ class AdanaxisAI < MushObject
       mStateChangeWaypoint(inParams[:waypoint], inParams[:ai_state_msec])    
     end
   end
+
+  mush_reader :m_targetID
 
   def mFire
     @r_piece.mFire

@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } bqsHAu0ZNmRoY3PNh6U9Cw
-# $Id: AdanaxisMaterialLibrary.rb,v 1.28 2007/04/26 13:12:39 southa Exp $
+# $Id: AdanaxisMaterialLibrary.rb,v 1.29 2007/05/01 16:40:06 southa Exp $
 # $Log: AdanaxisMaterialLibrary.rb,v $
+# Revision 1.29  2007/05/01 16:40:06  southa
+# Level 10
+#
 # Revision 1.28  2007/04/26 13:12:39  southa
 # Limescale and level 9
 #
@@ -111,6 +114,9 @@ class AdanaxisMaterialLibrary < MushObject
       'limescale',
       'limescale-red',
       'limescale-blue',
+      'vendor',
+      'vendor-red',
+      'vendor-blue',
       'warehouse',
       'warehouse-red',
       'warehouse-blue',

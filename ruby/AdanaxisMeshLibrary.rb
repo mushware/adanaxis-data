@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } WbjKV0UNx6NxJkbQBQ14fA
-# $Id: AdanaxisMeshLibrary.rb,v 1.36 2007/04/26 13:12:39 southa Exp $
+# $Id: AdanaxisMeshLibrary.rb,v 1.37 2007/05/01 16:40:06 southa Exp $
 # $Log: AdanaxisMeshLibrary.rb,v $
+# Revision 1.37  2007/05/01 16:40:06  southa
+# Level 10
+#
 # Revision 1.36  2007/04/26 13:12:39  southa
 # Limescale and level 9
 #
@@ -452,6 +455,114 @@ class AdanaxisMeshLibrary
       :displacement => MushDisplacement.new(
         :offset => MushVector.new(0,0,0,1.5),
         :scale => 1.25),
+  		:num_iterations => 1
+    ))
+
+    mesh.mMaterialAdd("#{inName}-mat")
+
+    mesh.mMake
+  end
+  
+  #
+  # Vendor mesh
+  #
+  # A rcoket-firing khazi
+  def mKhaziVendorCreate(inName)
+    mesh = MushMesh.new(inName)
+
+    mesh.mBaseAdd(MushBasePrism.new(:order => 4))
+	
+    mesh.mBaseDisplacementAdd(MushDisplacement.new(
+		  :offset => MushVector.new(0,0,0,2),
+      :scale => MushVector.new(2*Math.sqrt(2),2*Math.sqrt(2),2,4)
+	  ))
+	
+    arms = 2.0
+  
+    # Nose 1
+    mesh.mExtruderAdd(MushExtruder.new(
+      :sourceface => 0,
+      :displacement => MushDisplacement.new(
+        :offset => MushVector.new(0,0,0,-2),
+        :scale => 0.7),
+  		:num_iterations => 2
+    ))
+    
+    # Nose 2
+    mesh.mExtruderAdd(MushExtruder.new(
+      :sourceface => 8+7,
+      :displacement => MushDisplacement.new(
+        :offset => MushVector.new(0,0,0,-2),
+        :scale => 0.9),
+  		:num_iterations => 2
+    ))
+  
+    # Boom -x
+    mesh.mExtruderAdd(MushExtruder.new(
+      :sourceface => 6,
+      :displacement => MushDisplacement.new(
+        :offset => MushVector.new(-arms,0,0,0),
+        :scale => 0.8
+      ),
+		  :num_iterations => 1
+    ))
+	  
+    # Boom +x
+    mesh.mExtruderAdd(MushExtruder.new(
+      :sourceface => 4,
+      :displacement => MushDisplacement.new(
+        :offset => MushVector.new(arms,0,0,0),
+        :scale => 0.8
+      ),
+      :num_iterations => 1
+    ))
+	  
+    # Boom -y
+    mesh.mExtruderAdd(MushExtruder.new(
+      :sourceface => 7,
+      :displacement => MushDisplacement.new(
+        :offset => MushVector.new(0,-arms,0,0),
+        :scale => 0.8
+      ),
+		  :num_iterations => 1
+    ))
+	  
+    # Boom +y
+    mesh.mExtruderAdd(MushExtruder.new(
+      :sourceface => 5,
+      :displacement => MushDisplacement.new(
+        :offset => MushVector.new(0,arms,0,0),
+        :scale => 0.8
+      ),
+      :num_iterations => 1
+    ))
+	  
+    # Boom -z
+    mesh.mExtruderAdd(MushExtruder.new(
+      :sourceface => 2,
+      :displacement => MushDisplacement.new(
+        :offset => MushVector.new(0,0,-arms,0),
+        :scale => 0.8
+      ),
+		  :num_iterations => 1
+    ))
+	  
+    # Boom +z
+    mesh.mExtruderAdd(MushExtruder.new(
+      :sourceface => 3,
+      :displacement => MushDisplacement.new(
+        :offset => MushVector.new(0,0,arms,0),
+        :scale => 0.8
+      ),
+      :num_iterations => 1
+    ))
+
+    # Tail
+    mesh.mExtruderAdd(MushExtruder.new(
+      :sourceface => 1,
+      :displacement => MushDisplacement.new(
+        :offset => MushVector.new(0,0,0,2.0),
+        :scale => 0.7),
   		:num_iterations => 1
     ))
 
@@ -1309,6 +1420,9 @@ class AdanaxisMeshLibrary
     mKhaziHarpikCreate('harpik')
     mKhaziHarpikCreate('harpik-red')
     mKhaziHarpikCreate('harpik-blue')
+    mKhaziVendorCreate('vendor')
+    mKhaziVendorCreate('vendor-red')
+    mKhaziVendorCreate('vendor-blue')
     mKhaziWarehouseCreate('warehouse')
     mKhaziWarehouseCreate('warehouse-red')
     mKhaziWarehouseCreate('warehouse-blue')

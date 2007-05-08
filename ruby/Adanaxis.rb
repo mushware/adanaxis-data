@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } Z/0IM/eblOZbcUQpYNCCfg
-# $Id: Adanaxis.rb,v 1.35 2007/04/20 12:07:07 southa Exp $
+# $Id: Adanaxis.rb,v 1.36 2007/04/26 13:12:38 southa Exp $
 # $Log: Adanaxis.rb,v $
+# Revision 1.36  2007/04/26 13:12:38  southa
+# Limescale and level 9
+#
 # Revision 1.35  2007/04/20 12:07:07  southa
 # Khazi Warehouse and level 8
 #
@@ -115,6 +118,7 @@ require 'AdanaxisAIKhaziHarpik.rb'
 require 'AdanaxisAIKhaziInert.rb'
 require 'AdanaxisAIKhaziLimescale.rb'
 require 'AdanaxisAIKhaziRail.rb'
+require 'AdanaxisAIKhaziVendor.rb'
 require 'AdanaxisAIKhaziWarehouse.rb'
 require 'AdanaxisAIProjectile.rb'
 require 'AdanaxisDashboard.rb'
