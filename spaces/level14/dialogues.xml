@@ -12,26 +12,8 @@
 #
 ##############################################################################
 #
-# $Id: dialogues.xml,v 1.2 2007/04/17 21:16:33 southa Exp $
+# $Id: dialogues.xml,v 1.2 2007/05/08 15:28:14 southa Exp $
 # $Log: dialogues.xml,v $
-# Revision 1.2  2007/04/17 21:16:33  southa
-# Level work
-#
-# Revision 1.1  2007/04/01 19:44:42  southa
-# Created
-#
-# Revision 1.1  2007/03/23 12:27:35  southa
-# Added levels and Cistern mesh
-#
-# Revision 1.3  2007/03/08 18:38:14  southa
-# Level progression
-#
-# Revision 1.2  2007/03/07 11:29:23  southa
-# Level permission
-#
-# Revision 1.1  2006/08/01 23:21:48  southa
-# Rendering demo content
-#
 #
 -->
 <obj>(
@@ -42,7 +24,7 @@
 <fontRef type="GLFontRef">
 <name>"font-mono1"</name>
 </fontRef>
-<value>"Rogue Carrier"</value>
+<value>"Radiated warfare"</value>
 </string>
 <posticity type="MushPiePosticity">
 <pos>(0,0.12,0,0)</pos>
@@ -127,12 +109,12 @@
 </strings>
 <voices>(
  <obj type="GameSoundSpec">
-  <soundRef>"voice-E11-3"</soundRef>
+  <soundRef>"voice-E11-6"</soundRef>
   <startTime>50</startTime>
  </obj>
  ,
  <obj type="GameSoundSpec">
-  <soundRef>"voice-E5-3"</soundRef>
+  <soundRef>"voice-E5-2"</soundRef>
   <startTime>250</startTime>
  </obj>
 )</voices></obj>
@@ -173,14 +155,14 @@
 )</voices>
 </obj>
 ,
-"import1"=<obj type="GameDialogue">
+"unjammed1"=<obj type="GameDialogue">
 <strings>(
 <obj type="GameStringSpec">
 <string type="GLString">
 <fontRef type="GLFontRef">
 <name>"font-mono1"</name>
 </fontRef>
-<value>"Weapons imported"</value>
+<value>"Countermeasures eliminated"</value>
 </string>
 <posticity type="MushPiePosticity">
 <pos>(0,0.12,0,0)</pos>

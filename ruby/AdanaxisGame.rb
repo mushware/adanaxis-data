@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } UAdc9x+ji8+Grkjo5O0RyQ
-# $Id: AdanaxisGame.rb,v 1.44 2007/04/18 20:08:39 southa Exp $
+# $Id: AdanaxisGame.rb,v 1.45 2007/04/20 16:46:03 southa Exp $
 # $Log: AdanaxisGame.rb,v $
+# Revision 1.45  2007/04/20 16:46:03  southa
+# Key configuration fix
+#
 # Revision 1.44  2007/04/18 20:08:39  southa
 # Tweaks and fixes
 #
@@ -183,6 +186,10 @@ class AdanaxisGame < MushObject
 
   def mGameModeTick
     @m_space.mGameModeTick if @m_space
+  end
+
+  def mJammersEliminated
+    @m_space.mJammersEliminated if @m_space
   end
 
   def mReset(allowResume)

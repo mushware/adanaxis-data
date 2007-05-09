@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } 789lRZlkGd4CN1rbUN5znQ
-# $Id: AdanaxisPieceKhazi.rb,v 1.39 2007/04/18 09:21:53 southa Exp $
+# $Id: AdanaxisPieceKhazi.rb,v 1.40 2007/05/08 15:28:13 southa Exp $
 # $Log: AdanaxisPieceKhazi.rb,v $
+# Revision 1.40  2007/05/08 15:28:13  southa
+# Level 12
+#
 # Revision 1.39  2007/04/18 09:21:53  southa
 # Header and level fixes
 #
@@ -210,7 +213,7 @@ class AdanaxisPieceKhazi < AdanaxisPiece
     if @m_weapon && @m_weapon.mFireOpportunityTake
       event = AdanaxisEventFire.new
       event.mPostSet(@m_post)
-      if @m_ai
+      if @m_ai && @m_ai.mTargetID
         event.mTargetIDSet(@m_ai.mTargetID)
       end
       $currentLogic.mEventConsume(event, @m_id, @m_id)

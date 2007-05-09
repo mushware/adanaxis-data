@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } NnXS337B+7+SGRgiikvl+A
-# $Id: AdanaxisWeapon.rb,v 1.19 2007/04/26 13:12:39 southa Exp $
+# $Id: AdanaxisWeapon.rb,v 1.20 2007/04/26 16:22:41 southa Exp $
 # $Log: AdanaxisWeapon.rb,v $
+# Revision 1.20  2007/04/26 16:22:41  southa
+# Level 9
+#
 # Revision 1.19  2007/04/26 13:12:39  southa
 # Limescale and level 9
 #
@@ -151,10 +154,14 @@ class AdanaxisWeapon < MushObject
     projPost.velocity = vel
     
     # Apply the angular velocity in the object frame
-    angVel = projPost.angular_position.mInverse
-    @m_angularVelocity.mRotate(angVel)
-    projPost.angular_position.mRotate(angVel)
-    projPost.angular_velocity = angVel
+    if @m_type == :rocket
+      projPost.angular_velocity = MushRotation.new
+    else
+      angVel = projPost.angular_position.mInverse
+      @m_angularVelocity.mRotate(angVel)
+      projPost.angular_position.mRotate(angVel)
+      projPost.angular_velocity = angVel
+    end
     
     if @m_aiParams
       aiParams = @m_aiParams.merge(
@@ -274,6 +281,12 @@ class AdanaxisWeapon < MushObject
         )
       when :harpik
         $currentGame.mSpace.mPieceLibrary.mHarpikCreate(
+          :colour => inPiece.mColour,
+          :post => projPost,
+          :spawned => true
+        )
+      when :vendor
+        $currentGame.mSpace.mPieceLibrary.mVendorCreate(
           :colour => inPiece.mColour,
           :post => projPost,
           :spawned => true

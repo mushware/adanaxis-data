@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } bHT09Ckq2jpnilxRX3ZW6w
-# $Id: AdanaxisWeaponLibrary.rb,v 1.24 2007/04/26 16:22:41 southa Exp $
+# $Id: AdanaxisWeaponLibrary.rb,v 1.25 2007/05/08 15:28:14 southa Exp $
 # $Log: AdanaxisWeaponLibrary.rb,v $
+# Revision 1.25  2007/05/08 15:28:14  southa
+# Level 12
+#
 # Revision 1.24  2007/04/26 16:22:41  southa
 # Level 9
 #
@@ -375,6 +378,18 @@ class AdanaxisWeaponLibrary < MushObject
       :speed => -1.0,
       :offset_sequence => [
         MushVector.new(0,0,0,22.0)
+      ],
+      :fire_rate_msec => 4000,
+      :fire_sound => 'fire9'
+    )
+
+    @m_weapons[:vendor_spawner] = AdanaxisWeapon.new(
+      :type => :spawner,
+      :projectile_mesh => :vendor,
+      :ammo_count => 1,
+      :speed => -1.0,
+      :offset_sequence => [
+        MushVector.new(0,0,0,20.0)
       ],
       :fire_rate_msec => 4000,
       :fire_sound => 'fire9'
