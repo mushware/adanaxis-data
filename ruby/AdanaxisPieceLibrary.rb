@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } 1ZJk8/vLNeRQNZGYELq9QQ
-# $Id: AdanaxisPieceLibrary.rb,v 1.20 2007/05/01 16:40:06 southa Exp $
+# $Id: AdanaxisPieceLibrary.rb,v 1.21 2007/05/08 15:28:13 southa Exp $
 # $Log: AdanaxisPieceLibrary.rb,v $
+# Revision 1.21  2007/05/08 15:28:13  southa
+# Level 12
+#
 # Revision 1.20  2007/05/01 16:40:06  southa
 # Level 10
 #
@@ -127,6 +130,18 @@ class AdanaxisPieceLibrary < MushObject
       :ammo_count => 10 + 10 * diff
     }
     @m_cisternNum = 0
+    
+    @m_floaterDefaults = {
+      :effect_scale => 4.0,
+      :hit_points => 40.0,
+      :type => @m_typeDefault,
+      :ai_object => AdanaxisAIKhaziFloater,
+      :ai_state_msec => 1000,
+      :ai_state => :dormant,
+      :seek_speed => 0.2*(1+diff),
+      :seek_acceleration => 0.01*(1+diff)
+    }
+    @m_floaterNum = 0
     
     @m_freshenerDefaults = {
       :effect_scale => 3.0,
@@ -321,6 +336,14 @@ class AdanaxisPieceLibrary < MushObject
     @m_cisternNum += 1
   end    
 
+  # Creates a Floater
+  def mFloaterCreate(inParams = {})
+    AdanaxisUtil.cSpellCheck(inParams)
+    newPiece = AdanaxisPieceKhazi.cCreate(mFloaterParams(inParams))
+    mCommonCreate(newPiece, inParams)
+    @m_floaterNum += 1
+  end    
+
   # Creates a Freshener
   def mFreshenerCreate(inParams = {})
     AdanaxisUtil.cSpellCheck(inParams)
@@ -379,6 +402,10 @@ class AdanaxisPieceLibrary < MushObject
 
   def mCisternTex(*inColours)
     return inColours.collect { |name| "cistern-#{name}-tex" }
+  end
+
+  def mFloaterTex(*inColours)
+    return inColours.collect { |name| "floater-#{name}-tex" }
   end
 
   def mFreshenerTex(*inColours)
@@ -500,6 +527,26 @@ protected
     # Merge the input parameters so that they overwrite those we've calculated
     retParams.merge!(inParams)
     
+    retParams
+  end
+  
+  # Derive parameters for a Floater
+  def mFloaterParams(inParams = {})
+    
+    retParams = @m_floaterDefaults.dup
+    
+    retParams[:mesh_name] = case inParams[:colour]
+      when /(red|blue)/: "floater-#$1"
+      when nil:          "floater"
+      else raise "Unknown floater colour #{inParams[:colour]}"
+    end
+    
+    retParams[:type] = mType(inParams)
+    retParams[:target_types] = mTargetTypes(inParams)
+    retParams[:remnant] = $currentLogic.mRemnant.mMediumGradeRemnant(@m_floaterNum)
+    retParams[:scanner_symbol] = mScannerSymbol(retParams.merge(inParams))
+    mKhaziAddBaseParams(retParams, inParams)    
+    retParams.merge!(inParams)
     retParams
   end
   

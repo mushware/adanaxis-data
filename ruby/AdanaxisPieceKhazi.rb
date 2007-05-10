@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } 789lRZlkGd4CN1rbUN5znQ
-# $Id: AdanaxisPieceKhazi.rb,v 1.40 2007/05/08 15:28:13 southa Exp $
+# $Id: AdanaxisPieceKhazi.rb,v 1.41 2007/05/09 19:24:43 southa Exp $
 # $Log: AdanaxisPieceKhazi.rb,v $
+# Revision 1.41  2007/05/09 19:24:43  southa
+# Level 14
+#
 # Revision 1.40  2007/05/08 15:28:13  southa
 # Level 12
 #
@@ -259,7 +262,32 @@ class AdanaxisPieceKhazi < AdanaxisPiece
     end
   end
   
-
+  def mDamageFrameCreate(inHitPoints)
+    AdanaxisPieceEffector.cCreate(
+      :mesh_name => 'nuke_splash',
+      :post => mPost,
+      :owner => mId,
+      :lifetime_msec => 0,
+      :hit_points => inHitPoints,
+      :vulnerability => 0.0
+    )
+  end
+  
+  def mDetonate
+    # For mines
+    mExpireFlagSet(true)
+    mDamageFrameCreate(@m_originalHitPoints * 4)
+    
+    $currentLogic.mEffects.mExplode(
+        :post => mPost,
+        :embers => 0,
+        :explosions => 0,
+        :flares => 2,
+        :flare_scale_range => @m_originalHitPoints * 4,
+        :flare_lifetime_range => (3000..6000)
+      )
+    MushGame.cSoundPlay('explo7', mPost)
+  end
 end
 
 # Class: AdanaxisPieceKhazi

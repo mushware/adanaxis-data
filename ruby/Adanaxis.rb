@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } Z/0IM/eblOZbcUQpYNCCfg
-# $Id: Adanaxis.rb,v 1.36 2007/04/26 13:12:38 southa Exp $
+# $Id: Adanaxis.rb,v 1.37 2007/05/08 15:28:13 southa Exp $
 # $Log: Adanaxis.rb,v $
+# Revision 1.37  2007/05/08 15:28:13  southa
+# Level 12
+#
 # Revision 1.36  2007/04/26 13:12:38  southa
 # Limescale and level 9
 #
@@ -114,6 +117,7 @@ require 'AdanaxisAI.rb'
 require 'AdanaxisAIKhazi.rb'
 require 'AdanaxisAIKhaziAttendant.rb'
 require 'AdanaxisAIKhaziCarrier.rb'
+require 'AdanaxisAIKhaziFloater.rb'
 require 'AdanaxisAIKhaziHarpik.rb'
 require 'AdanaxisAIKhaziInert.rb'
 require 'AdanaxisAIKhaziLimescale.rb'

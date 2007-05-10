@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } /HC+dJWnGXbdJxstPsjAXw
-# $Id: AdanaxisTextureLibrary.rb,v 1.45 2007/05/01 16:40:06 southa Exp $
+# $Id: AdanaxisTextureLibrary.rb,v 1.46 2007/05/08 15:28:14 southa Exp $
 # $Log: AdanaxisTextureLibrary.rb,v $
+# Revision 1.46  2007/05/08 15:28:14  southa
+# Level 12
+#
 # Revision 1.45  2007/05/01 16:40:06  southa
 # Level 10
 #
@@ -397,6 +400,52 @@ class AdanaxisTextureLibrary < MushObject
     :compress      => compressNear
 	)
 
+  scale = 0.1
+  MushGLTexture::cDefine(
+		:name          => 'floater-tex',
+    :type          => 'CellNoise',
+    :meshname      => 'floater',
+    :size          => [textureSize, textureSize],
+    :palette       => 'palette1',
+    :palettestart  => [0,0.5],
+    :palettevector => [1.0,0.0],
+		:scale         => [scale, scale, scale, scale],
+    :numoctaves    => 8,
+    :octaveratio   => 0.5,
+		:cache         => 1,
+    :compress      => compressNear
+	)
+
+  MushGLTexture::cDefine(
+		:name          => 'floater-red-tex',
+    :type          => 'CellNoise',
+    :meshname      => 'floater-red',
+    :size          => [textureSize, textureSize],
+    :palette       => 'palette1',
+    :palettestart  => [0,0.4],
+    :palettevector => [1.0,0.6],
+		:scale         => [scale, scale, scale, scale],
+    :numoctaves    => 8,
+    :octaveratio   => 0.5,
+		:cache         => 1,
+    :compress      => compressNear
+	)
+
+  MushGLTexture::cDefine(
+		:name          => 'floater-blue-tex',
+    :type          => 'CellNoise',
+    :meshname      => 'floater-blue',
+    :size          => [textureSize, textureSize],
+    :palette       => 'palette1',
+    :palettestart  => [0,0.6],
+    :palettevector => [1.0,-0.6],
+		:scale         => [scale, scale, scale, scale],
+    :numoctaves    => 8,
+    :octaveratio   => 0.5,
+		:cache         => 1,
+    :compress      => compressNear
+	)
+  
   scale = 0.5
   MushGLTexture::cDefine(
 		:name          => 'freshener-tex',

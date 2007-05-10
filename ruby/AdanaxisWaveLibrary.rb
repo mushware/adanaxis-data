@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } fswJrGp2CRzwBzlfc3lwPQ
-# $Id: AdanaxisWaveLibrary.rb,v 1.8 2007/04/17 10:08:12 southa Exp $
+# $Id: AdanaxisWaveLibrary.rb,v 1.9 2007/04/18 09:21:54 southa Exp $
 # $Log: AdanaxisWaveLibrary.rb,v $
+# Revision 1.9  2007/04/18 09:21:54  southa
+# Header and level fixes
+#
 # Revision 1.8  2007/04/17 10:08:12  southa
 # Voice work
 #
@@ -45,7 +48,7 @@
 
 class AdanaxisWaveLibrary < MushObject
   def mCreate
-    MushGame.cSoundDefine('nuke_explo1', "mush://waves/sdog-explo7.wav|#{MushConfig.cGlobalWavesPath}/collect1.wav")
+    MushGame.cSoundDefine('nuke_explo1', "mush://waves/sdog-explo7.wav|#{MushConfig.cGlobalWavesPath}/explode.wav")
     8.times do |i|
       MushGame.cSoundDefine("explo#{i}", "mush://waves/sdog-explo#{i}.wav|#{MushConfig.cGlobalWavesPath}/explode.wav")
     end

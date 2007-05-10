@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } WbjKV0UNx6NxJkbQBQ14fA
-# $Id: AdanaxisMeshLibrary.rb,v 1.37 2007/05/01 16:40:06 southa Exp $
+# $Id: AdanaxisMeshLibrary.rb,v 1.38 2007/05/08 15:28:13 southa Exp $
 # $Log: AdanaxisMeshLibrary.rb,v $
+# Revision 1.38  2007/05/08 15:28:13  southa
+# Level 12
+#
 # Revision 1.37  2007/05/01 16:40:06  southa
 # Level 10
 #
@@ -105,7 +108,7 @@ class AdanaxisMeshLibrary
     mesh.mBaseAdd(MushBasePrism.new(:order => 5))
 	
     mesh.mBaseDisplacementAdd(MushDisplacement.new(
-		  :offset => MushVector.new(0,0,0,1),
+		  :offset => MushVector.new(0,0,0,0),
       :scale => MushVector.new(Math.sqrt(2),Math.sqrt(2),1,1)
 	  ))
 	
@@ -289,6 +292,64 @@ class AdanaxisMeshLibrary
       :num_iterations => 4
     ))
 
+
+    mesh.mMaterialAdd("#{inName}-mat")
+
+    mesh.mMake
+  end
+
+  #
+  # Khazi Floater mesh
+  #
+  # Smart mine
+  #
+  def mKhaziFloaterCreate(inName)
+    mesh = MushMesh.new(inName)
+
+    mesh.mBaseAdd(MushBasePrism.new(:order => 5))
+	
+    mesh.mBaseDisplacementAdd(MushDisplacement.new(
+		  :offset => MushVector.new(0,0,0,0),
+      :scale => MushVector.new(Math.sqrt(2),Math.sqrt(2),1,1) * 2
+	  ))
+	
+    # Boom -z
+    mesh.mExtruderAdd(MushExtruder.new(
+      :sourceface => 2,
+      :displacement => MushDisplacement.new(
+        :offset => MushVector.new(0,0,-1,0),
+        :scale => 0.5
+      ),
+		  :num_iterations => 1
+    ))
+	  
+    # Boom +z
+    mesh.mExtruderAdd(MushExtruder.new(
+      :sourceface => 3,
+      :displacement => MushDisplacement.new(
+        :offset => MushVector.new(0,0,1,0),
+        :scale => 0.5
+      ),
+      :num_iterations => 1
+    ))
+	  
+    # Nose
+    mesh.mExtruderAdd(MushExtruder.new(
+      :sourceface => 0,
+      :displacement => MushDisplacement.new(
+        :offset => MushVector.new(0,0,0,-2),
+        :scale => 0.7),
+  		:num_iterations => 2
+    ))
+
+    # Tail
+    mesh.mExtruderAdd(MushExtruder.new(
+      :sourceface => 1,
+      :displacement => MushDisplacement.new(
+        :offset => MushVector.new(0,0,0,2),
+        :scale => 0.7),
+  		:num_iterations => 2
+    ))
 
     mesh.mMaterialAdd("#{inName}-mat")
 
@@ -1411,6 +1472,9 @@ class AdanaxisMeshLibrary
     mKhaziCisternCreate('cistern')
     mKhaziCisternCreate('cistern-red')
     mKhaziCisternCreate('cistern-blue')
+    mKhaziFloaterCreate('floater')
+    mKhaziFloaterCreate('floater-red')
+    mKhaziFloaterCreate('floater-blue')
     mKhaziFreshenerCreate('freshener')
     mKhaziFreshenerCreate('freshener-red')
     mKhaziFreshenerCreate('freshener-blue')
