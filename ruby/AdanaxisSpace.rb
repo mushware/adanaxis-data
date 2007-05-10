@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } U1S8GssKDgFSsNiwIrKzyw
-# $Id: AdanaxisSpace.rb,v 1.29 2007/04/18 12:44:36 southa Exp $
+# $Id: AdanaxisSpace.rb,v 1.30 2007/04/21 09:41:06 southa Exp $
 # $Log: AdanaxisSpace.rb,v $
+# Revision 1.30  2007/04/21 09:41:06  southa
+# Level work
+#
 # Revision 1.29  2007/04/18 12:44:36  southa
 # Cache purge fix and pre-release tweaks
 #
@@ -112,6 +115,7 @@ class AdanaxisSpace < MushObject
     @m_isBattle = false;
     # If primary is set, the level is complete when all primary targets are destroyed
     @m_primary = PRIMARY_NONE;
+    @m_retinaSpin = 0.0;
     
     @m_textFont = MushGLFont.new(:name => (inParams[:font] || 'library-font1'));
     @m_precacheIndex = 0
@@ -123,7 +127,7 @@ class AdanaxisSpace < MushObject
   mush_reader :m_textureLibrary, :m_materialLibrary, :m_meshLibrary,
               :m_weaponLibrary, :m_fontLibrary, :m_pieceLibrary
               
-  mush_accessor :m_khaziCount, :m_khaziRedCount, :m_khaziBlueCount, :m_isBattle, :m_primary
+  mush_accessor :m_khaziCount, :m_khaziRedCount, :m_khaziBlueCount, :m_isBattle, :m_primary, :m_retinaSpin
   
   def mLoadStandard(game)
     @m_fontLibrary.mCreate

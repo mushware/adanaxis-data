@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } XoqG0JV9lVapjqhhSCgfAQ
-# $Id: AdanaxisPiecePlayer.rb,v 1.25 2007/03/27 14:01:02 southa Exp $
+# $Id: AdanaxisPiecePlayer.rb,v 1.26 2007/04/18 09:21:53 southa Exp $
 # $Log: AdanaxisPiecePlayer.rb,v $
+# Revision 1.26  2007/04/18 09:21:53  southa
+# Header and level fixes
+#
 # Revision 1.25  2007/03/27 14:01:02  southa
 # Attendant AI
 #
@@ -249,12 +252,13 @@ class AdanaxisPiecePlayer < AdanaxisPiece
         end
         @m_lastAmmoAddMsec = MushGame.cGameMsec
       end
-      
-      $currentGame.mView.mDashboard.mUpdate(
-        :hit_point_ratio => mHitPointRatio,
-        :shield_ratio => mShieldRatio
-      )
     end
+    
+    $currentGame.mView.mDashboard.mUpdate(
+      :hit_point_ratio => mHitPointRatio,
+      :shield_ratio => mShieldRatio
+    )
+    
     @m_numActions += 1
     callInterval
   end

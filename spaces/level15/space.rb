@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } x4jjUAPFAvR1t2j7NMwrhA
-# $Id: space.rb,v 1.1 2007/05/09 14:56:49 southa Exp $
+# $Id: space.rb,v 1.1 2007/05/10 11:44:12 southa Exp $
 # $Log: space.rb,v $
+# Revision 1.1  2007/05/10 11:44:12  southa
+# Level15
+#
 
 require 'Mushware.rb'
 require 'Adanaxis.rb'
@@ -52,9 +55,9 @@ class Adanaxis_level15 < AdanaxisSpace
 
     vel = MushVector.new(0,0,0,-0.02*(4+diff))
     angPos = MushTools.cRotationInXZPlane(Math::PI/2)
-    angVel = MushTools.cRotationInXYPlane(Math::PI / 1200);
-    MushTools.cRotationInZWPlane(Math::PI / 1314).mRotate(angVel);
-    MushTools.cRotationInYZPlane(Math::PI / 1575).mRotate(angVel);
+    angVel = MushTools.cRotationInXYPlane(Math::PI / 240);
+    MushTools.cRotationInZWPlane(Math::PI / 314).mRotate(angVel);
+    MushTools.cRotationInYZPlane(Math::PI / 575).mRotate(angVel);
 
     # Red mines
     
