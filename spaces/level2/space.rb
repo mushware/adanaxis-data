@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } drMlHpUBUzFxxKfTddXPFg
-# $Id: space.rb,v 1.6 2007/04/17 21:16:33 southa Exp $
+# $Id: space.rb,v 1.7 2007/04/18 09:21:55 southa Exp $
 # $Log: space.rb,v $
+# Revision 1.7  2007/04/18 09:21:55  southa
+# Header and level fixes
+#
 # Revision 1.6  2007/04/17 21:16:33  southa
 # Level work
 #
@@ -64,7 +67,7 @@ class Adanaxis_level2 < AdanaxisSpace
     6.times do |param|
       ['red', 'red', 'blue'].each do |colour|
         pos = MushVector.new(((colour == 'red') ? -90 : 90), 0, 0, -300) +
-          MushTools.cRandomUnitVector * (20 + rand(100));
+          MushTools.cRandomUnitVector * (20 + rand(100))
         
         mPieceLibrary.mAttendantCreate(
           :colour => colour,

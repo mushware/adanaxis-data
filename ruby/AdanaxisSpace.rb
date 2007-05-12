@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } U1S8GssKDgFSsNiwIrKzyw
-# $Id: AdanaxisSpace.rb,v 1.30 2007/04/21 09:41:06 southa Exp $
+# $Id: AdanaxisSpace.rb,v 1.31 2007/05/10 14:06:25 southa Exp $
 # $Log: AdanaxisSpace.rb,v $
+# Revision 1.31  2007/05/10 14:06:25  southa
+# Level 16 and retina spin
+#
 # Revision 1.30  2007/04/21 09:41:06  southa
 # Level work
 #
@@ -296,5 +299,8 @@ class AdanaxisSpace < MushObject
       deleteThis
     end
 
+  end
+  
+  def mJammersEliminated
   end
 end
