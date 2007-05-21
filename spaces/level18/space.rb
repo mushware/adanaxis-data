@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } QHuBwU97CjDbl6vwXxpUvA
-# $Id: space.rb,v 1.1 2007/05/09 14:56:49 southa Exp $
+# $Id: space.rb,v 1.1 2007/05/21 13:32:52 southa Exp $
 # $Log: space.rb,v $
+# Revision 1.1  2007/05/21 13:32:52  southa
+# Flush weapon
+#
 
 require 'Mushware.rb'
 require 'Adanaxis.rb'
@@ -123,6 +126,18 @@ class Adanaxis_level18 < AdanaxisSpace
         ),
         :ai_state => :dormant,
         :ai_state_msec => 6000
+      )
+    end
+
+    3.times do |param|
+      mPieceLibrary.mAttendantCreate(
+        :colour => 'red',
+        :post => MushPost.new(
+          :position => MushVector.new(0-10*param, 0, 0, -200) +
+          MushTools.cRandomUnitVector * (20 + rand(100)),
+          :angular_position => MushTools.cRandomOrientation
+        ),
+        :weapon => :khazi_flush
       )
     end
 

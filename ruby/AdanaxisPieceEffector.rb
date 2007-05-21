@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } 7ky2F4mlY59mOd1Z/8r/dg
-# $Id: AdanaxisPieceEffector.rb,v 1.6 2007/04/18 09:21:53 southa Exp $
+# $Id: AdanaxisPieceEffector.rb,v 1.7 2007/05/21 13:32:51 southa Exp $
 # $Log: AdanaxisPieceEffector.rb,v $
+# Revision 1.7  2007/05/21 13:32:51  southa
+# Flush weapon
+#
 # Revision 1.6  2007/04/18 09:21:53  southa
 # Header and level fixes
 #
@@ -118,6 +121,14 @@ class AdanaxisPieceEffector < AdanaxisPiece
       angVel = event.mPiece2.mPost.angular_velocity
       angAccel.mRotate(angVel)
       event.mPiece2.mPost.angular_velocity = MushTools::cSlerp(angVel, MushRotation.new, 0.01)
+      
+      if event.mPiece2.kind_of?(AdanaxisPiecePlayer)
+        # Different behaviour for player
+        playerAngPos = event.mPiece2.mPost.angular_position
+        100.times {angAccel.mRotate(playerAngPos)}
+        event.mPiece2.mPost.angular_position = playerAngPos
+        event.mPiece2.mPost.position = event.mPiece2.mPost.position + vel
+      end
     elsif @m_rail
       # Rail impact effect
       if event.mCollisionPoint
