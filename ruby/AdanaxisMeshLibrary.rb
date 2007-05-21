@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } WbjKV0UNx6NxJkbQBQ14fA
-# $Id: AdanaxisMeshLibrary.rb,v 1.38 2007/05/08 15:28:13 southa Exp $
+# $Id: AdanaxisMeshLibrary.rb,v 1.39 2007/05/10 11:44:11 southa Exp $
 # $Log: AdanaxisMeshLibrary.rb,v $
+# Revision 1.39  2007/05/10 11:44:11  southa
+# Level15
+#
 # Revision 1.38  2007/05/08 15:28:13  southa
 # Level 12
 #
@@ -1450,11 +1453,15 @@ class AdanaxisMeshLibrary
   end
   
   def mDamageFramesCreate
-    ['nuke_splash'].each do |prefix|
+    ['nuke_splash', 'flush_splash'].each do |prefix|
       mesh = MushMesh.new("#{prefix}")
       base1 = MushBaseSingleFacet.new(:order => 4)
+      scale = case prefix
+        when 'nuke_splash' : 1000
+        else 200
+      end
       baseDisplacement1 = MushDisplacement.new(
-        :scale => MushVector.new(1000, 1000, 1000, 1000)
+        :scale => MushVector.new(scale, scale, scale, scale)
       )
       mesh.mBaseAdd(base1)
       mesh.mBillboardSet(true)

@@ -1,7 +1,7 @@
 #%Header {
 ##############################################################################
 #
-# File data-adanaxis/spaces/level16/manifest.txt
+# File data-adanaxis/spaces/level18/manifest.txt
 #
 # Copyright Andy Southgate 2006-2007
 #
@@ -15,16 +15,12 @@
 # This software carries NO WARRANTY of any kind.
 #
 ##############################################################################
-#%Header } 7ctI6X06jNB/du7SOpHBQQ
-# $Id: manifest.txt,v 1.1 2007/05/10 14:06:26 southa Exp $
+#%Header } mKejDQN596VQths3ZEurjg
+# $Id: manifest.txt,v 1.1 2007/05/09 14:56:49 southa Exp $
 # $Log: manifest.txt,v $
-# Revision 1.1  2007/05/10 14:06:26  southa
-# Level 16 and retina spin
-#
-#
 
-directory='level16'
-name='Import Failure'
+directory='level18'
+name='Gravity Waves'
 creator='Andy Southgate (www.mushware.com)'
-permit='level15'
-next='level18'
+permit='level16'
+next='level19'

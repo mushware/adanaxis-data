@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } fmcUR/puBAQN1IsolXK4VQ
-# $Id: AdanaxisUtil.rb,v 1.31 2007/04/18 09:21:54 southa Exp $
+# $Id: AdanaxisUtil.rb,v 1.32 2007/04/20 12:07:08 southa Exp $
 # $Log: AdanaxisUtil.rb,v $
+# Revision 1.32  2007/04/20 12:07:08  southa
+# Khazi Warehouse and level 8
+#
 # Revision 1.31  2007/04/18 09:21:54  southa
 # Header and level fixes
 #
@@ -162,8 +165,9 @@ class AdanaxisUtil < MushObject
     :hit_point_ratio => true,
     :id_suffix => true,
     :is_battle => true,
-    :is_primary => true,
+    :is_flush => true,
     :is_jammer => true,
+    :is_primary => true,
     :is_rocket => true,
     :item_type => true,
     :khazi_test => true,

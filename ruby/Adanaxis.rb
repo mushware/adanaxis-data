@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } Z/0IM/eblOZbcUQpYNCCfg
-# $Id: Adanaxis.rb,v 1.37 2007/05/08 15:28:13 southa Exp $
+# $Id: Adanaxis.rb,v 1.38 2007/05/10 11:44:11 southa Exp $
 # $Log: Adanaxis.rb,v $
+# Revision 1.38  2007/05/10 11:44:11  southa
+# Level15
+#
 # Revision 1.37  2007/05/08 15:28:13  southa
 # Level 12
 #
@@ -123,6 +126,7 @@ require 'AdanaxisAIKhaziInert.rb'
 require 'AdanaxisAIKhaziLimescale.rb'
 require 'AdanaxisAIKhaziRail.rb'
 require 'AdanaxisAIKhaziVendor.rb'
+require 'AdanaxisAIKhaziVortex.rb'
 require 'AdanaxisAIKhaziWarehouse.rb'
 require 'AdanaxisAIProjectile.rb'
 require 'AdanaxisDashboard.rb'

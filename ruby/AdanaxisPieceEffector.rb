@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } 7ky2F4mlY59mOd1Z/8r/dg
-# $Id: AdanaxisPieceEffector.rb,v 1.5 2007/04/16 08:41:06 southa Exp $
+# $Id: AdanaxisPieceEffector.rb,v 1.6 2007/04/18 09:21:53 southa Exp $
 # $Log: AdanaxisPieceEffector.rb,v $
+# Revision 1.6  2007/04/18 09:21:53  southa
+# Header and level fixes
+#
 # Revision 1.5  2007/04/16 08:41:06  southa
 # Level and header mods
 #
@@ -45,6 +48,15 @@ class AdanaxisPieceEffector < AdanaxisPiece
     @m_owner = inParams[:owner] || ""
     @m_lifeMsec = inParams[:lifetime_msec] || 0
     @m_rail = inParams[:rail] || false
+    @m_isFlush = inParams[:is_flush] || false
+    
+    if @m_isFlush
+      @m_callInterval = 100
+    else
+      @m_callInterval = nil
+    end
+    
+    return @m_callInterval 
   end
   
   mush_accessor :m_rail
@@ -61,8 +73,52 @@ class AdanaxisPieceEffector < AdanaxisPiece
     retVal
   end
 
+  def mFlushEffect
+    flarePost = mPost.dup
+    
+    flareOffset = MushTools.cRandomUnitVector * (5+rand(10))
+    flareVel = flareOffset * -0.03
+
+    flarePost.position = flarePost.position + flareOffset
+    flarePost.velocity = flareVel
+    
+    $currentLogic.mEffects.mExploCreate(
+      :post => flarePost,
+      :explosion_lifetime_range => 600..600,
+      :explosion_scale_range => 1.5..2.0,
+      :alpha_stutter => 0
+    )
+  end
+  
+  def mActionTimer
+    if @m_isFlush
+      mLoad
+      mFlushEffect
+    end    
+    @m_callInterval
+  end
+
+  
   def mCollisionHandle(event)
-    if @m_rail
+    if @m_isFlush
+      distVec = event.mPiece2.mPost.position - mPost.position
+      dist = distVec.mMagnitude
+      dist = 10 if dist < 10
+      angScale = 0.01 / dist
+      distNorm = distVec * (1/dist)
+      angAccel = MushTools.cRotationInXWPlane(distNorm.x*angScale)
+      MushTools.cRotationInZWPlane(distNorm.y*angScale).mRotate(angAccel)
+      MushTools.cRotationInYZPlane(distNorm.z*angScale).mRotate(angAccel)
+      MushTools.cRotationInXYPlane(distNorm.w*angScale).mRotate(angAccel)
+      angAccel.mNormalise!
+      
+
+      vel = event.mPiece2.mPost.velocity
+      event.mPiece2.mPost.velocity = vel - distNorm * (0.2/dist)
+      angVel = event.mPiece2.mPost.angular_velocity
+      angAccel.mRotate(angVel)
+      event.mPiece2.mPost.angular_velocity = MushTools::cSlerp(angVel, MushRotation.new, 0.01)
+    elsif @m_rail
       # Rail impact effect
       if event.mCollisionPoint
         $currentLogic.mEffects.mFlareCreate(
@@ -83,6 +139,8 @@ class AdanaxisPieceEffector < AdanaxisPiece
         )
       end
     end
+    
+  
   end
 
 end

@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } XoqG0JV9lVapjqhhSCgfAQ
-# $Id: AdanaxisPiecePlayer.rb,v 1.26 2007/04/18 09:21:53 southa Exp $
+# $Id: AdanaxisPiecePlayer.rb,v 1.27 2007/05/10 14:06:25 southa Exp $
 # $Log: AdanaxisPiecePlayer.rb,v $
+# Revision 1.27  2007/05/10 14:06:25  southa
+# Level 16 and retina spin
+#
 # Revision 1.26  2007/04/18 09:21:53  southa
 # Header and level fixes
 #
@@ -130,7 +133,7 @@ class AdanaxisPiecePlayer < AdanaxisPiece
     @m_weaponName = @@c_weaponList[@m_weaponNum]
     @m_weapon = $currentGame.mSpace.mWeaponLibrary.mWeapon(@m_weaponName)
     @m_magazine = AdanaxisMagazine.new
-    @m_magazine.mPlayerLoadAll if $MUSHCONFIG['-DEBUG']
+    @m_magazine.mPlayerLoadAll if $MUSHCONFIG['DEBUG']
     @m_fireState = false
     @m_numActions = 0
     @m_lastAmmoAddMsec = 0

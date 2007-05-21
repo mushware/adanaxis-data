@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } PNkEy8poIR1TMPjg3VIf3g
-# $Id: AdanaxisPieceProjectile.rb,v 1.18 2007/04/18 09:21:53 southa Exp $
+# $Id: AdanaxisPieceProjectile.rb,v 1.19 2007/04/26 13:12:39 southa Exp $
 # $Log: AdanaxisPieceProjectile.rb,v $
+# Revision 1.19  2007/04/26 13:12:39  southa
+# Limescale and level 9
+#
 # Revision 1.18  2007/04/18 09:21:53  southa
 # Header and level fixes
 #
@@ -95,6 +98,7 @@ class AdanaxisPieceProjectile < AdanaxisPiece
       @m_callInterval = nil
     end
     @m_isRocket = inParams[:is_rocket]
+    @m_isFlush = inParams[:is_flush]
     
     return @m_callInterval
   end
@@ -194,6 +198,33 @@ class AdanaxisPieceProjectile < AdanaxisPiece
     )
   end
 
+  def mFlushFrameCreate
+    framePost = mPost.dup
+    framePost.velocity = MushVector.new
+    AdanaxisPieceEffector.cCreate(
+      :mesh_name => 'flush_splash',
+      :post => framePost,
+      :owner => mOwner,
+      :lifetime_msec => 15000,
+      :hit_points => 1.0,
+      :vulnerability => 0.0,
+      :is_flush => true
+    )
+    $currentLogic.mEffects.mFlareCreate(
+      :post => framePost,
+      :flare_lifetime_range => 18000..18000,
+      :flare_scale_range => 4.0..4.0,
+      :alpha_stutter => 0.2
+    )
+    $currentLogic.mEffects.mFlareCreate(
+      :post => framePost,
+      :flare_lifetime_range => 3000..3000,
+      :flare_scale_range => 20.0..20.0,
+      :alpha_stutter => 1.0
+    )
+    MushGame.cSoundPlay('explo6', framePost)
+  end
+
   def mFatalCollisionHandle(event)
     super
     mExplosionEffect
@@ -206,6 +237,10 @@ class AdanaxisPieceProjectile < AdanaxisPiece
   end
   
   def mCollisionHandle(event)
+    if @m_isFlush
+      mFlushFrameCreate
+    end
+    
     if @m_damageFrame
       # Collisions don't affect damage frames - they just expire
     else
@@ -218,10 +253,10 @@ class AdanaxisPieceProjectile < AdanaxisPiece
     unless @m_damageFrame
       mLoad
       mExpiryEffect
-      if @m_originalHitPoints > 10.0
-        unless @m_damageFrame
-          mDamageFrameCreate
-        end
+      if @m_isFlush
+        mFlushFrameCreate
+      elsif @m_originalHitPoints > 10.0
+        mDamageFrameCreate
       end
     end
   end

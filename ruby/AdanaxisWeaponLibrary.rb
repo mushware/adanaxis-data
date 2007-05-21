@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } bHT09Ckq2jpnilxRX3ZW6w
-# $Id: AdanaxisWeaponLibrary.rb,v 1.25 2007/05/08 15:28:14 southa Exp $
+# $Id: AdanaxisWeaponLibrary.rb,v 1.26 2007/05/09 19:24:43 southa Exp $
 # $Log: AdanaxisWeaponLibrary.rb,v $
+# Revision 1.26  2007/05/09 19:24:43  southa
+# Level 14
+#
 # Revision 1.25  2007/05/08 15:28:14  southa
 # Level 12
 #
@@ -239,17 +242,21 @@ class AdanaxisWeaponLibrary < MushObject
     @m_weapons[:player_flush] = AdanaxisWeapon.new(
       :type => :rocket,
       :projectile_mesh => 'projectile1',
-      :speed => 0.0,
-      :acceleration => 0.005,
-      :speed_limit => 0.5,
-      :hit_points => 0.0,
+      :speed => 0.2,
+      :acceleration => 0.01,
+      :speed_limit => 2.0,
+      :hit_points => 20.0,
       :fire_rate_msec => 2000,
-      :lifetime_msec => 6000,
+      :lifetime_msec => 10000,
       :offset_sequence => [
         MushVector.new(0,-0.5,0,0)
       ],
+      :is_flush => true,
       :load_sound => 'load8',
-      :fire_sound => 'fire8'
+      :fire_sound => 'fire8',
+      :reload_sound => 'load8',
+      :ai_params => {:seek_acceleration => 0.1},
+      :angular_velocity => MushRotation.new
     )
     
     @m_weapons[:player_nuclear] = AdanaxisWeapon.new(
