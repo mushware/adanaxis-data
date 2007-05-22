@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } 7ky2F4mlY59mOd1Z/8r/dg
-# $Id: AdanaxisPieceEffector.rb,v 1.7 2007/05/21 13:32:51 southa Exp $
+# $Id: AdanaxisPieceEffector.rb,v 1.8 2007/05/21 17:04:42 southa Exp $
 # $Log: AdanaxisPieceEffector.rb,v $
+# Revision 1.8  2007/05/21 17:04:42  southa
+# Player effectors
+#
 # Revision 1.7  2007/05/21 13:32:51  southa
 # Flush weapon
 #
@@ -124,10 +127,7 @@ class AdanaxisPieceEffector < AdanaxisPiece
       
       if event.mPiece2.kind_of?(AdanaxisPiecePlayer)
         # Different behaviour for player
-        playerAngPos = event.mPiece2.mPost.angular_position
-        100.times {angAccel.mRotate(playerAngPos)}
-        event.mPiece2.mPost.angular_position = playerAngPos
-        event.mPiece2.mPost.position = event.mPiece2.mPost.position + vel
+        event.mPiece2.mControlReleasedSet(true)
       end
     elsif @m_rail
       # Rail impact effect
