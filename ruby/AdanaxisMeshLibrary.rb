@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } WbjKV0UNx6NxJkbQBQ14fA
-# $Id: AdanaxisMeshLibrary.rb,v 1.39 2007/05/10 11:44:11 southa Exp $
+# $Id: AdanaxisMeshLibrary.rb,v 1.40 2007/05/21 13:32:51 southa Exp $
 # $Log: AdanaxisMeshLibrary.rb,v $
+# Revision 1.40  2007/05/21 13:32:51  southa
+# Flush weapon
+#
 # Revision 1.39  2007/05/10 11:44:11  southa
 # Level15
 #
@@ -530,7 +533,7 @@ class AdanaxisMeshLibrary
   #
   # Vendor mesh
   #
-  # A rcoket-firing khazi
+  # A rocket-firing khazi
   def mKhaziVendorCreate(inName)
     mesh = MushMesh.new(inName)
 
@@ -635,6 +638,114 @@ class AdanaxisMeshLibrary
     mesh.mMake
   end
   
+  #
+  # Vortex mesh
+  #
+  # A flush-firing khazi
+  def mKhaziVortexCreate(inName)
+    mesh = MushMesh.new(inName)
+
+    mesh.mBaseAdd(MushBasePrism.new(:order => 4))
+	
+    mesh.mBaseDisplacementAdd(MushDisplacement.new(
+		  :offset => MushVector.new(0,0,0,2),
+      :scale => MushVector.new(2*Math.sqrt(2),2*Math.sqrt(2),2,4)
+	  ))
+	
+    arms = 2.0
+  
+    # Nose 1
+    mesh.mExtruderAdd(MushExtruder.new(
+      :sourceface => 0,
+      :displacement => MushDisplacement.new(
+        :offset => MushVector.new(0,0,0,-2),
+        :scale => 0.7),
+  		:num_iterations => 2
+    ))
+    
+    # Nose 2
+    mesh.mExtruderAdd(MushExtruder.new(
+      :sourceface => 8+7,
+      :displacement => MushDisplacement.new(
+        :offset => MushVector.new(0,0,0,-2),
+        :scale => 0.9),
+  		:num_iterations => 2
+    ))
+  
+    # Boom -x
+    mesh.mExtruderAdd(MushExtruder.new(
+      :sourceface => 6,
+      :displacement => MushDisplacement.new(
+        :offset => MushVector.new(-arms,0,0,0),
+        :scale => 0.8
+      ),
+		  :num_iterations => 1
+    ))
+	  
+    # Boom +x
+    mesh.mExtruderAdd(MushExtruder.new(
+      :sourceface => 4,
+      :displacement => MushDisplacement.new(
+        :offset => MushVector.new(arms,0,0,0),
+        :scale => 0.8
+      ),
+      :num_iterations => 1
+    ))
+	  
+    # Boom -y
+    mesh.mExtruderAdd(MushExtruder.new(
+      :sourceface => 7,
+      :displacement => MushDisplacement.new(
+        :offset => MushVector.new(0,-arms,0,0),
+        :scale => 0.8
+      ),
+		  :num_iterations => 1
+    ))
+	  
+    # Boom +y
+    mesh.mExtruderAdd(MushExtruder.new(
+      :sourceface => 5,
+      :displacement => MushDisplacement.new(
+        :offset => MushVector.new(0,arms,0,0),
+        :scale => 0.8
+      ),
+      :num_iterations => 1
+    ))
+	  
+    # Boom -z
+    mesh.mExtruderAdd(MushExtruder.new(
+      :sourceface => 2,
+      :displacement => MushDisplacement.new(
+        :offset => MushVector.new(0,0,-arms,0),
+        :scale => 0.8
+      ),
+		  :num_iterations => 1
+    ))
+	  
+    # Boom +z
+    mesh.mExtruderAdd(MushExtruder.new(
+      :sourceface => 3,
+      :displacement => MushDisplacement.new(
+        :offset => MushVector.new(0,0,arms,0),
+        :scale => 0.8
+      ),
+      :num_iterations => 1
+    ))
+
+    # Tail
+    mesh.mExtruderAdd(MushExtruder.new(
+      :sourceface => 1,
+      :displacement => MushDisplacement.new(
+        :offset => MushVector.new(0,0,0,2.0),
+        :scale => 0.7),
+  		:num_iterations => 1
+    ))
+
+    mesh.mMaterialAdd("#{inName}-mat")
+
+    mesh.mMake
+  end
+
   #
   # Warehouse mesh
   #
@@ -1458,7 +1569,7 @@ class AdanaxisMeshLibrary
       base1 = MushBaseSingleFacet.new(:order => 4)
       scale = case prefix
         when 'nuke_splash' : 1000
-        else 200
+        else 150
       end
       baseDisplacement1 = MushDisplacement.new(
         :scale => MushVector.new(scale, scale, scale, scale)
@@ -1494,6 +1605,9 @@ class AdanaxisMeshLibrary
     mKhaziVendorCreate('vendor')
     mKhaziVendorCreate('vendor-red')
     mKhaziVendorCreate('vendor-blue')
+    mKhaziVortexCreate('vortex')
+    mKhaziVortexCreate('vortex-red')
+    mKhaziVortexCreate('vortex-blue')
     mKhaziWarehouseCreate('warehouse')
     mKhaziWarehouseCreate('warehouse-red')
     mKhaziWarehouseCreate('warehouse-blue')

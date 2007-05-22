@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } bHT09Ckq2jpnilxRX3ZW6w
-# $Id: AdanaxisWeaponLibrary.rb,v 1.27 2007/05/21 13:32:52 southa Exp $
+# $Id: AdanaxisWeaponLibrary.rb,v 1.28 2007/05/21 17:04:42 southa Exp $
 # $Log: AdanaxisWeaponLibrary.rb,v $
+# Revision 1.28  2007/05/21 17:04:42  southa
+# Player effectors
+#
 # Revision 1.27  2007/05/21 13:32:52  southa
 # Flush weapon
 #
@@ -363,8 +366,8 @@ class AdanaxisWeaponLibrary < MushObject
       :acceleration => 0.01,
       :speed_limit => 2.0,
       :hit_points => 5.0,
-      :fire_rate_msec => 15000,
-      :lifetime_msec => 10000,
+      :fire_rate_msec => 10000,
+      :lifetime_msec => 8000,
       :offset_sequence => [
         MushVector.new(0,-0.5,0,0)
       ],

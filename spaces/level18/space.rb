@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } QHuBwU97CjDbl6vwXxpUvA
-# $Id: space.rb,v 1.1 2007/05/21 13:32:52 southa Exp $
+# $Id: space.rb,v 1.2 2007/05/21 17:04:42 southa Exp $
 # $Log: space.rb,v $
+# Revision 1.2  2007/05/21 17:04:42  southa
+# Player effectors
+#
 # Revision 1.1  2007/05/21 13:32:52  southa
 # Flush weapon
 #
@@ -29,7 +32,6 @@ class Adanaxis_level18 < AdanaxisSpace
   def initialize(inParams = {})
     super
     mIsBattleSet(false)
-    mPrimarySet(PRIMARY_RED)
   end
   
   def mLoad(game)
@@ -44,7 +46,7 @@ class Adanaxis_level18 < AdanaxisSpace
     mPrecacheListAdd(mPieceLibrary.mCisternTex('red', 'blue'))
     mPrecacheListAdd(mPieceLibrary.mHarpikTex('red'))
     mPrecacheListAdd(mPieceLibrary.mLimescaleTex('red'))
-    mPrecacheListAdd(mPieceLibrary.mWarehouseTex('red'))
+    mPrecacheListAdd(mPieceLibrary.mVortexTex('red'))
     mPrecacheListAdd(mPieceLibrary.mRailTex('red'))
   end
 
@@ -58,17 +60,17 @@ class Adanaxis_level18 < AdanaxisSpace
     vel = MushVector.new(0,0,0,-0.05*(1+diff))
     angPos = MushTools.cRotationInXZPlane(Math::PI/2)
   
-    (-1..1).each do |param1|
+    (0..diff).each do |param1|
       (-1..1).each do |param2|
-        mPieceLibrary.mWarehouseCreate(
+        mPieceLibrary.mVortexCreate(
           :colour => 'red',
           :post => MushPost.new(
             :position => MushVector.new(10*param1+50*param2, -50+10*param1, 0, -250-100*param1),
             :velocity => vel,
             :angular_position => angPos
           ),
-          :remnant => (diff < 1) ? :player_light_missile : :player_quad_cannon,
-          :is_primary => true
+          :ai_state => :evade,
+          :ai_state_msec => 10000+1000*param1+200*param2
         )
       end
     end
@@ -118,7 +120,7 @@ class Adanaxis_level18 < AdanaxisSpace
      
     # Red forces
     
-    4.times do |param|
+    3.times do |param|
       mPieceLibrary.mRailCreate(
         :colour => 'red',
         :post => MushPost.new(
@@ -136,8 +138,7 @@ class Adanaxis_level18 < AdanaxisSpace
           :position => MushVector.new(0-10*param, 0, 0, -200) +
           MushTools.cRandomUnitVector * (20 + rand(100)),
           :angular_position => MushTools.cRandomOrientation
-        ),
-        :weapon => :khazi_flush
+        )
       )
     end
 

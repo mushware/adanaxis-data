@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } bqsHAu0ZNmRoY3PNh6U9Cw
-# $Id: AdanaxisMaterialLibrary.rb,v 1.30 2007/05/08 15:28:13 southa Exp $
+# $Id: AdanaxisMaterialLibrary.rb,v 1.31 2007/05/10 11:44:11 southa Exp $
 # $Log: AdanaxisMaterialLibrary.rb,v $
+# Revision 1.31  2007/05/10 11:44:11  southa
+# Level15
+#
 # Revision 1.30  2007/05/08 15:28:13  southa
 # Level 12
 #
@@ -123,6 +126,9 @@ class AdanaxisMaterialLibrary < MushObject
       'vendor',
       'vendor-red',
       'vendor-blue',
+      'vortex',
+      'vortex-red',
+      'vortex-blue',
       'warehouse',
       'warehouse-red',
       'warehouse-blue',

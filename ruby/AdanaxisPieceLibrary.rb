@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } 1ZJk8/vLNeRQNZGYELq9QQ
-# $Id: AdanaxisPieceLibrary.rb,v 1.21 2007/05/08 15:28:13 southa Exp $
+# $Id: AdanaxisPieceLibrary.rb,v 1.22 2007/05/10 11:44:11 southa Exp $
 # $Log: AdanaxisPieceLibrary.rb,v $
+# Revision 1.22  2007/05/10 11:44:11  southa
+# Level15
+#
 # Revision 1.21  2007/05/08 15:28:13  southa
 # Level 12
 #
@@ -202,6 +205,22 @@ class AdanaxisPieceLibrary < MushObject
     }
     @m_vendorNum = 0
 
+    @m_vortexDefaults = {
+      :effect_scale => 5.0,
+      :hit_points => 100.0,
+      :type => @m_typeDefault,
+      :ai_object => AdanaxisAIKhaziVortex,
+      :ai_state_msec => 3000,
+      :ai_state => :evade,
+      :evade_speed => 0.05*(1+diff),
+      :evade_acceleration => 0.01*(1+diff),
+      :seek_speed => 0.05*(1+diff),
+      :seek_acceleration => 0.01*(1+diff),
+      :seek_stand_off => 100.0,
+      :weapon => :khazi_flush
+    }
+    @m_vortexNum = 0
+
     @m_warehouseDefaults = {
       :effect_scale => 2.0,
       :hit_points => 40.0,
@@ -376,6 +395,14 @@ class AdanaxisPieceLibrary < MushObject
     @m_vendorNum += 1
   end    
 
+  # Creates a Vortex
+  def mVortexCreate(inParams = {})
+    AdanaxisUtil.cSpellCheck(inParams)
+    newPiece = AdanaxisPieceKhazi.cCreate(mVortexParams(inParams))
+    mCommonCreate(newPiece, inParams)
+    @m_vortexNum += 1
+  end    
+
   # Creates a Warehouse
   def mWarehouseCreate(inParams = {})
     AdanaxisUtil.cSpellCheck(inParams)
@@ -422,6 +449,10 @@ class AdanaxisPieceLibrary < MushObject
 
   def mVendorTex(*inColours)
     return inColours.collect { |name| "vendor-#{name}-tex" }
+  end
+
+  def mVortexTex(*inColours)
+    return inColours.collect { |name| "vortex-#{name}-tex" }
   end
 
   def mWarehouseTex(*inColours)
@@ -642,6 +673,23 @@ protected
     retParams
   end
 
+  def mVortexParams(inParams = {})
+    retParams = @m_vortexDefaults.dup
+    
+    retParams[:mesh_name] = case inParams[:colour]
+      when /(red|blue)/: "vortex-#$1"
+      when nil:          "vortex"
+      else raise "Unknown vortex colour #{inParams[:colour]}"
+    end
+    
+    retParams[:type] = mType(inParams)
+    retParams[:target_types] = mTargetTypes(inParams)
+    retParams[:remnant] = :player_flush
+    retParams[:scanner_symbol] = mScannerSymbol(retParams.merge(inParams))
+    mKhaziAddBaseParams(retParams, inParams)    
+    retParams.merge!(inParams)
+    retParams
+  end
   
   # Derive parameters for a Warehouse
   def mWarehouseParams(inParams = {})

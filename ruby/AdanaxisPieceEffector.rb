@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } 7ky2F4mlY59mOd1Z/8r/dg
-# $Id: AdanaxisPieceEffector.rb,v 1.8 2007/05/21 17:04:42 southa Exp $
+# $Id: AdanaxisPieceEffector.rb,v 1.9 2007/05/22 12:59:08 southa Exp $
 # $Log: AdanaxisPieceEffector.rb,v $
+# Revision 1.9  2007/05/22 12:59:08  southa
+# Vortex effect on player
+#
 # Revision 1.8  2007/05/21 17:04:42  southa
 # Player effectors
 #
@@ -117,7 +120,6 @@ class AdanaxisPieceEffector < AdanaxisPiece
       MushTools.cRotationInYZPlane(distNorm.z*angScale).mRotate(angAccel)
       MushTools.cRotationInXYPlane(distNorm.w*angScale).mRotate(angAccel)
       angAccel.mNormalise!
-      
 
       vel = event.mPiece2.mPost.velocity
       event.mPiece2.mPost.velocity = vel - distNorm * (0.2/dist)
@@ -150,8 +152,5 @@ class AdanaxisPieceEffector < AdanaxisPiece
         )
       end
     end
-    
-  
   end
-
 end

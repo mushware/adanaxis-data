@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } /HC+dJWnGXbdJxstPsjAXw
-# $Id: AdanaxisTextureLibrary.rb,v 1.46 2007/05/08 15:28:14 southa Exp $
+# $Id: AdanaxisTextureLibrary.rb,v 1.47 2007/05/10 11:44:12 southa Exp $
 # $Log: AdanaxisTextureLibrary.rb,v $
+# Revision 1.47  2007/05/10 11:44:12  southa
+# Level15
+#
 # Revision 1.46  2007/05/08 15:28:14  southa
 # Level 12
 #
@@ -621,6 +624,52 @@ class AdanaxisTextureLibrary < MushObject
     :meshname      => 'vendor-blue',
     :size          => [textureSize, textureSize],
     :palette       => 'palette1',
+    :palettestart  => [0,0.6],
+    :palettevector => [1.0,-0.6],
+		:scale         => [scale, scale, scale, scale],
+    :numoctaves    => 8,
+    :octaveratio   => 0.5,
+		:cache         => 1,
+    :compress      => compressNear
+	)
+  
+  scale = 0.1
+  MushGLTexture::cDefine(
+		:name          => 'vortex-tex',
+    :type          => 'CellNoise',
+    :meshname      => 'vortex',
+    :size          => [textureSize, textureSize],
+    :palette       => 'palette3',
+    :palettestart  => [0,0.5],
+    :palettevector => [1.0,0.0],
+		:scale         => [scale, scale, scale, scale],
+    :numoctaves    => 8,
+    :octaveratio   => 0.5,
+		:cache         => 1,
+    :compress      => compressNear
+	)
+
+  MushGLTexture::cDefine(
+		:name          => 'vortex-red-tex',
+    :type          => 'CellNoise',
+    :meshname      => 'vortex-red',
+    :size          => [textureSize, textureSize],
+    :palette       => 'palette3',
+    :palettestart  => [0,0.4],
+    :palettevector => [1.0,0.6],
+		:scale         => [scale, scale, scale, scale],
+    :numoctaves    => 8,
+    :octaveratio   => 0.5,
+		:cache         => 1,
+    :compress      => compressNear
+	)
+
+  MushGLTexture::cDefine(
+		:name          => 'vortex-blue-tex',
+    :type          => 'CellNoise',
+    :meshname      => 'vortex-blue',
+    :size          => [textureSize, textureSize],
+    :palette       => 'palette3',
     :palettestart  => [0,0.6],
     :palettevector => [1.0,-0.6],
 		:scale         => [scale, scale, scale, scale],
