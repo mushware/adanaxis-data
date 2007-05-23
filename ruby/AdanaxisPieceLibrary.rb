@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } 1ZJk8/vLNeRQNZGYELq9QQ
-# $Id: AdanaxisPieceLibrary.rb,v 1.22 2007/05/10 11:44:11 southa Exp $
+# $Id: AdanaxisPieceLibrary.rb,v 1.23 2007/05/22 16:44:58 southa Exp $
 # $Log: AdanaxisPieceLibrary.rb,v $
+# Revision 1.23  2007/05/22 16:44:58  southa
+# Level 18
+#
 # Revision 1.22  2007/05/10 11:44:11  southa
 # Level15
 #
@@ -216,7 +219,7 @@ class AdanaxisPieceLibrary < MushObject
       :evade_acceleration => 0.01*(1+diff),
       :seek_speed => 0.05*(1+diff),
       :seek_acceleration => 0.01*(1+diff),
-      :seek_stand_off => 100.0,
+      :seek_stand_off => 300.0,
       :weapon => :khazi_flush
     }
     @m_vortexNum = 0

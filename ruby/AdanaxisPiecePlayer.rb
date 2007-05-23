@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } XoqG0JV9lVapjqhhSCgfAQ
-# $Id: AdanaxisPiecePlayer.rb,v 1.28 2007/05/21 13:32:52 southa Exp $
+# $Id: AdanaxisPiecePlayer.rb,v 1.29 2007/05/22 12:59:09 southa Exp $
 # $Log: AdanaxisPiecePlayer.rb,v $
+# Revision 1.29  2007/05/22 12:59:09  southa
+# Vortex effect on player
+#
 # Revision 1.28  2007/05/21 13:32:52  southa
 # Flush weapon
 #
@@ -136,7 +139,7 @@ class AdanaxisPiecePlayer < AdanaxisPiece
     @m_weaponName = @@c_weaponList[@m_weaponNum]
     @m_weapon = $currentGame.mSpace.mWeaponLibrary.mWeapon(@m_weaponName)
     @m_magazine = AdanaxisMagazine.new
-    @m_magazine.mPlayerLoadAll if $MUSHCONFIG['DEBUG']
+    @m_magazine.mPlayerLoadAll if $MUSHCONFIG['-DEBUG']
     @m_fireState = false
     @m_numActions = 0
     @m_lastAmmoAddMsec = 0

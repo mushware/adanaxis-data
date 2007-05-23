@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } bHT09Ckq2jpnilxRX3ZW6w
-# $Id: AdanaxisWeaponLibrary.rb,v 1.28 2007/05/21 17:04:42 southa Exp $
+# $Id: AdanaxisWeaponLibrary.rb,v 1.29 2007/05/22 16:44:59 southa Exp $
 # $Log: AdanaxisWeaponLibrary.rb,v $
+# Revision 1.29  2007/05/22 16:44:59  southa
+# Level 18
+#
 # Revision 1.28  2007/05/21 17:04:42  southa
 # Player effectors
 #
@@ -369,7 +372,7 @@ class AdanaxisWeaponLibrary < MushObject
       :fire_rate_msec => 10000,
       :lifetime_msec => 8000,
       :offset_sequence => [
-        MushVector.new(0,-0.5,0,0)
+        MushVector.new(0,0,0,-8.0)
       ],
       :is_flush => true,
       :load_sound => 'load8',

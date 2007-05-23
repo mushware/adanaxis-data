@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } WbjKV0UNx6NxJkbQBQ14fA
-# $Id: AdanaxisMeshLibrary.rb,v 1.40 2007/05/21 13:32:51 southa Exp $
+# $Id: AdanaxisMeshLibrary.rb,v 1.41 2007/05/22 16:44:58 southa Exp $
 # $Log: AdanaxisMeshLibrary.rb,v $
+# Revision 1.41  2007/05/22 16:44:58  southa
+# Level 18
+#
 # Revision 1.40  2007/05/21 13:32:51  southa
 # Flush weapon
 #
@@ -645,101 +648,62 @@ class AdanaxisMeshLibrary
   def mKhaziVortexCreate(inName)
     mesh = MushMesh.new(inName)
 
-    mesh.mBaseAdd(MushBasePrism.new(:order => 4))
+    mesh.mBaseAdd(MushBasePrism.new(:order => 7))
 	
     mesh.mBaseDisplacementAdd(MushDisplacement.new(
-		  :offset => MushVector.new(0,0,0,2),
-      :scale => MushVector.new(2*Math.sqrt(2),2*Math.sqrt(2),2,4)
+		  :offset => MushVector.new(0,0,0,1),
+      :scale => MushVector.new(4*Math.sqrt(2),4*Math.sqrt(2),4,4)
 	  ))
 	
-    arms = 2.0
-  
-    # Nose 1
+  	  
+    # Nose
     mesh.mExtruderAdd(MushExtruder.new(
       :sourceface => 0,
       :displacement => MushDisplacement.new(
-        :offset => MushVector.new(0,0,0,-2),
-        :scale => 0.7),
-  		:num_iterations => 2
+        :offset => MushVector.new(0,0,0,-1.5),
+        :scale => 0.8),
+  		:num_iterations => 3
     ))
-    
-    # Nose 2
+
     mesh.mExtruderAdd(MushExtruder.new(
-      :sourceface => 8+7,
+      :sourceface => 3*10+1,
       :displacement => MushDisplacement.new(
-        :offset => MushVector.new(0,0,0,-2),
-        :scale => 0.9),
-  		:num_iterations => 2
-    ))
-  
-    # Boom -x
-    mesh.mExtruderAdd(MushExtruder.new(
-      :sourceface => 6,
-      :displacement => MushDisplacement.new(
-        :offset => MushVector.new(-arms,0,0,0),
-        :scale => 0.8
-      ),
-		  :num_iterations => 1
-    ))
-	  
-    # Boom +x
-    mesh.mExtruderAdd(MushExtruder.new(
-      :sourceface => 4,
-      :displacement => MushDisplacement.new(
-        :offset => MushVector.new(arms,0,0,0),
-        :scale => 0.8
-      ),
-      :num_iterations => 1
-    ))
-	  
-    # Boom -y
-    mesh.mExtruderAdd(MushExtruder.new(
-      :sourceface => 7,
-      :displacement => MushDisplacement.new(
-        :offset => MushVector.new(0,-arms,0,0),
-        :scale => 0.8
-      ),
-		  :num_iterations => 1
-    ))
-	  
-    # Boom +y
-    mesh.mExtruderAdd(MushExtruder.new(
-      :sourceface => 5,
-      :displacement => MushDisplacement.new(
-        :offset => MushVector.new(0,arms,0,0),
-        :scale => 0.8
-      ),
-      :num_iterations => 1
-    ))
-	  
-    # Boom -z
-    mesh.mExtruderAdd(MushExtruder.new(
-      :sourceface => 2,
-      :displacement => MushDisplacement.new(
-        :offset => MushVector.new(0,0,-arms,0),
-        :scale => 0.8
-      ),
-		  :num_iterations => 1
-    ))
-	  
-    # Boom +z
-    mesh.mExtruderAdd(MushExtruder.new(
-      :sourceface => 3,
-      :displacement => MushDisplacement.new(
-        :offset => MushVector.new(0,0,arms,0),
-        :scale => 0.8
-      ),
-      :num_iterations => 1
+        :offset => MushVector.new(0,0,0,-1.0),
+        :scale => 0.5),
+  		:num_iterations => 3
     ))
 
     # Tail
     mesh.mExtruderAdd(MushExtruder.new(
       :sourceface => 1,
       :displacement => MushDisplacement.new(
-        :offset => MushVector.new(0,0,0,2.0),
-        :scale => 0.7),
+        :offset => MushVector.new(0,0,0,1.5),
+        :scale => 0.75),
   		:num_iterations => 1
     ))
+
+    # Boom -z
+    mesh.mExtruderAdd(MushExtruder.new(
+      :sourceface => 2,
+      :displacement => MushDisplacement.new(
+        :offset => MushVector.new(0,0,-3.0,0),
+        :rotation => MushTools.cRotationInXZPlane(-Math::PI/4),
+        :scale => 0.6
+      ),
+		  :num_iterations => 4
+    ))
+    
+    # Boom +z
+    mesh.mExtruderAdd(MushExtruder.new(
+      :sourceface => 3,
+      :displacement => MushDisplacement.new(
+        :offset => MushVector.new(0,0,3.0,0),
+        :rotation => MushTools.cRotationInXZPlane(Math::PI/4),
+        :scale => 0.6
+      ),
+      :num_iterations => 4
+    ))
+
 
     mesh.mMaterialAdd("#{inName}-mat")
 

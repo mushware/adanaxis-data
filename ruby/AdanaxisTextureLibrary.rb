@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } /HC+dJWnGXbdJxstPsjAXw
-# $Id: AdanaxisTextureLibrary.rb,v 1.47 2007/05/10 11:44:12 southa Exp $
+# $Id: AdanaxisTextureLibrary.rb,v 1.48 2007/05/22 16:44:58 southa Exp $
 # $Log: AdanaxisTextureLibrary.rb,v $
+# Revision 1.48  2007/05/22 16:44:58  southa
+# Level 18
+#
 # Revision 1.47  2007/05/10 11:44:12  southa
 # Level15
 #
@@ -656,7 +659,7 @@ class AdanaxisTextureLibrary < MushObject
     :size          => [textureSize, textureSize],
     :palette       => 'palette3',
     :palettestart  => [0,0.4],
-    :palettevector => [1.0,0.6],
+    :palettevector => [2.0,0.7],
 		:scale         => [scale, scale, scale, scale],
     :numoctaves    => 8,
     :octaveratio   => 0.5,
@@ -671,7 +674,7 @@ class AdanaxisTextureLibrary < MushObject
     :size          => [textureSize, textureSize],
     :palette       => 'palette3',
     :palettestart  => [0,0.6],
-    :palettevector => [1.0,-0.6],
+    :palettevector => [2.0,-0.7],
 		:scale         => [scale, scale, scale, scale],
     :numoctaves    => 8,
     :octaveratio   => 0.5,

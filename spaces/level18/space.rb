@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } QHuBwU97CjDbl6vwXxpUvA
-# $Id: space.rb,v 1.2 2007/05/21 17:04:42 southa Exp $
+# $Id: space.rb,v 1.3 2007/05/22 16:44:59 southa Exp $
 # $Log: space.rb,v $
+# Revision 1.3  2007/05/22 16:44:59  southa
+# Level 18
+#
 # Revision 1.2  2007/05/21 17:04:42  southa
 # Player effectors
 #
@@ -31,7 +34,7 @@ require 'Adanaxis.rb'
 class Adanaxis_level18 < AdanaxisSpace
   def initialize(inParams = {})
     super
-    mIsBattleSet(false)
+    mIsBattleSet(true)
   end
   
   def mLoad(game)
@@ -43,9 +46,7 @@ class Adanaxis_level18 < AdanaxisSpace
   def mPrecacheListBuild
     super
     mPrecacheListAdd(mPieceLibrary.mAttendantTex('red', 'blue'))
-    mPrecacheListAdd(mPieceLibrary.mCisternTex('red', 'blue'))
-    mPrecacheListAdd(mPieceLibrary.mHarpikTex('red'))
-    mPrecacheListAdd(mPieceLibrary.mLimescaleTex('red'))
+    mPrecacheListAdd(mPieceLibrary.mCisternTex('blue'))
     mPrecacheListAdd(mPieceLibrary.mVortexTex('red'))
     mPrecacheListAdd(mPieceLibrary.mRailTex('red'))
   end
@@ -55,72 +56,25 @@ class Adanaxis_level18 < AdanaxisSpace
     MushTools.cRandomSeedSet(18)
     diff = AdanaxisRuby.cGameDifficulty
 
-    # Red convoy
+    # Red forces
 
     vel = MushVector.new(0,0,0,-0.05*(1+diff))
     angPos = MushTools.cRotationInXZPlane(Math::PI/2)
   
-    (0..diff).each do |param1|
-      (-1..1).each do |param2|
+    (0..2+diff).each do |param1|
         mPieceLibrary.mVortexCreate(
           :colour => 'red',
           :post => MushPost.new(
-            :position => MushVector.new(10*param1+50*param2, -50+10*param1, 0, -250-100*param1),
+            :position => MushVector.new(100*param1, -300+10*param1, 0, -250-100*param1),
             :velocity => vel,
             :angular_position => angPos
           ),
           :ai_state => :evade,
-          :ai_state_msec => 10000+1000*param1+200*param2
+          :ai_state_msec => 10000+1000*param1
         )
-      end
     end
     
-    [-1,1].each do |param|
-      mPieceLibrary.mCisternCreate(
-        :colour => 'red',
-        :post => MushPost.new(
-          :position => MushVector.new(90*param, -50, 0, -300),
-          :velocity => vel,
-          :angular_position => angPos
-        ),
-        :patrol_points => [
-          MushVector.new(90*param, -50, 0, -3000),
-          MushVector.new(90*param, -50, 0, 0)
-          ],
-        :ammo_count => 10 - 2 * diff,
-        :ai_state => :patrol,
-        :ai_state_msec => 10000+250*param,
-        :weapon => case diff
-                    when 0: :attendant_spawner
-                    when 1: :harpik_spawner
-                    else :limescale_spawner
-                  end,
-        :is_primary => true
-      )
-    end
-  
-    (3-diff).times do |i|
-      [-1,1].each do |param|
-        mPieceLibrary.mHarpikCreate(
-          :colour => 'red',
-          :post => MushPost.new(
-            :position => MushVector.new(30*param*(i+1), -30, 0, -500+100*i),
-            :velocity => vel,
-            :angular_position => angPos
-          ),
-          :patrol_points => [
-            MushVector.new(30*param, -50, 0, -3000),
-            MushVector.new(30*param, -50, 0, 0)
-            ],
-          :ai_state => :patrol,
-          :ai_state_msec => 8000+250*param
-        )
-      end
-    end
-     
-    # Red forces
-    
-    3.times do |param|
+    diff.times do |param|
       mPieceLibrary.mRailCreate(
         :colour => 'red',
         :post => MushPost.new(
@@ -155,6 +109,17 @@ class Adanaxis_level18 < AdanaxisSpace
       )
     end
     
+    (-10..10).each do |param|
+      mPieceLibrary.mAttendantCreate(
+        :colour => 'blue',
+        :post => MushPost.new(
+          :position => MushVector.new(10*param, 0, 50, -400) +
+          MushTools.cRandomUnitVector * (20 + rand(100)),
+          :angular_position => MushTools.cRandomOrientation
+        )
+      )
+    end
+    
     mPieceLibrary.mCisternCreate(
       :colour => 'blue',
       :post => MushPost.new(
@@ -169,15 +134,20 @@ class Adanaxis_level18 < AdanaxisSpace
       :ai_state_msec => 2000,
       :weapon => :attendant_spawner
     )
-    
-    if diff < 2
-      $currentLogic.mRemnant.mCreate(
-        :item_type => (diff < 1) ? :player_heavy_missile : :player_heavy_cannon,
-        :post => MushPost.new(
-          :position => MushVector.new(-4, 0, 0, -40)
-        )
+
+    $currentLogic.mRemnant.mCreate(
+      :item_type => (diff < 1) ? :player_light_missile : :player_heavy_cannon,
+      :post => MushPost.new(
+        :position => MushVector.new(-4, 0, 0, -40)
       )
-    end
+    )
+   
+    $currentLogic.mRemnant.mCreate(
+      :item_type => (diff < 2) ? :player_quad_cannon : :player_base,
+      :post => MushPost.new(
+        :position => MushVector.new(-4, 0, 0, -50)
+      )
+    )
     
     mStandardCosmos(18)
   end
