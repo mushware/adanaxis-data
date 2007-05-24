@@ -17,8 +17,11 @@
 ##############################################################################
 #%Header } 3umSoFeovs9HOTqwJkrQBQ
 #
-# $Id$
-# $Log$
+# $Id: AdanaxisAIKhaziWarehouse.rb,v 1.1 2007/04/20 12:07:07 southa Exp $
+# $Log: AdanaxisAIKhaziWarehouse.rb,v $
+# Revision 1.1  2007/04/20 12:07:07  southa
+# Khazi Warehouse and level 8
+#
 #
 
 require 'Mushware.rb'
@@ -31,7 +34,7 @@ class AdanaxisAIKhaziWarehouse < AdanaxisAIKhazi
   end
 
   def mStateActionDormantExit
-    mStateChangeDormant(60000)
+    mStateChangePatrol(60000)
   end
   
   def mStateActionEvadeExit

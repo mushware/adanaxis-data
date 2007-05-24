@@ -16,11 +16,14 @@
 #
 ##############################################################################
 #%Header } mKejDQN596VQths3ZEurjg
-# $Id: manifest.txt,v 1.1 2007/05/09 14:56:49 southa Exp $
+# $Id: manifest.txt,v 1.1 2007/05/21 13:32:52 southa Exp $
 # $Log: manifest.txt,v $
+# Revision 1.1  2007/05/21 13:32:52  southa
+# Flush weapon
+#
 
 directory='level18'
 name='Gravity Waves'
 creator='Andy Southgate (www.mushware.com)'
-permit='level16'
+permit='level17'
 next='level19'

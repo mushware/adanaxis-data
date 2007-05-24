@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } goFdaP60AnkwLWjY5u69Hw
-# $Id: AdanaxisAI.rb,v 1.20 2007/04/26 13:12:38 southa Exp $
+# $Id: AdanaxisAI.rb,v 1.21 2007/05/08 15:28:13 southa Exp $
 # $Log: AdanaxisAI.rb,v $
+# Revision 1.21  2007/05/08 15:28:13  southa
+# Level 12
+#
 # Revision 1.20  2007/04/26 13:12:38  southa
 # Limescale and level 9
 #
@@ -105,7 +108,7 @@ class AdanaxisAI < MushObject
     @m_evadeAcceleration = inParams[:evade_acceleration] || 0
     @m_evadeSpeed = inParams[:evade_speed] || 0
     @m_patrolAcceleration = inParams[:patrol_acceleration] || 0
-    @m_patrolPoints = inParams[:patrol_points] || []
+    @m_patrolPoints = inParams[:patrol_points] || [MushVector.new(0,0,0,0)]
     @m_patrolSpeed = inParams[:patrol_speed] || 0
     @m_ramAcceleration = inParams[:ram_acceleration] || 0
     @m_ramSpeed = inParams[:ram_speed] || 0

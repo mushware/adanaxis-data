@@ -1,7 +1,7 @@
 #%Header {
 ##############################################################################
 #
-# File data-adanaxis/spaces/level16/manifest.txt
+# File data-adanaxis/spaces/level17/manifest.txt
 #
 # Copyright Andy Southgate 2006-2007
 #
@@ -15,19 +15,15 @@
 # This software carries NO WARRANTY of any kind.
 #
 ##############################################################################
-#%Header } 7ctI6X06jNB/du7SOpHBQQ
-# $Id: manifest.txt,v 1.2 2007/05/21 13:32:52 southa Exp $
+#%Header } 2kORbneNQ971Sg9RG6/arA
+# $Id: manifest.txt,v 1.1 2007/05/09 19:24:43 southa Exp $
 # $Log: manifest.txt,v $
-# Revision 1.2  2007/05/21 13:32:52  southa
-# Flush weapon
-#
-# Revision 1.1  2007/05/10 14:06:26  southa
-# Level 16 and retina spin
-#
+# Revision 1.1  2007/05/09 19:24:43  southa
+# Level 14
 #
 
-directory='level16'
-name='Import Failure'
+directory='level17'
+name='Factory'
 creator='Andy Southgate (www.mushware.com)'
-permit='level15'
-next='level17'
+permit='level16'
+next='level18'
