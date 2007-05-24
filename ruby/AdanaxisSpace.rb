@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } U1S8GssKDgFSsNiwIrKzyw
-# $Id: AdanaxisSpace.rb,v 1.31 2007/05/10 14:06:25 southa Exp $
+# $Id: AdanaxisSpace.rb,v 1.32 2007/05/12 14:20:47 southa Exp $
 # $Log: AdanaxisSpace.rb,v $
+# Revision 1.32  2007/05/12 14:20:47  southa
+# Level 16
+#
 # Revision 1.31  2007/05/10 14:06:25  southa
 # Level 16 and retina spin
 #
@@ -282,6 +285,14 @@ class AdanaxisSpace < MushObject
     @m_triggeredEvents << AdanaxisTriggeredEvent.new(
       :game_msec => inTime,
       :khazi_test => :zero_red,
+      :event => inSpawner
+    )
+  end
+
+  def mTimeOnlySpawnAdd(inSpawner, inTime)
+    @m_triggeredEvents << AdanaxisTriggeredEvent.new(
+      :game_msec => inTime,
+      :khazi_test => :none,
       :event => inSpawner
     )
   end
