@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } fmcUR/puBAQN1IsolXK4VQ
-# $Id: AdanaxisUtil.rb,v 1.32 2007/04/20 12:07:08 southa Exp $
+# $Id: AdanaxisUtil.rb,v 1.33 2007/05/21 13:32:52 southa Exp $
 # $Log: AdanaxisUtil.rb,v $
+# Revision 1.33  2007/05/21 13:32:52  southa
+# Flush weapon
+#
 # Revision 1.32  2007/04/20 12:07:08  southa
 # Khazi Warehouse and level 8
 #
@@ -200,6 +203,7 @@ class AdanaxisUtil < MushObject
     :spawn_inhibit_limit => true,
     :speed => true,
     :speed_limit => true,
+    :target_id => true,
     :target_types => true,
     :type => true,
     :velocity => true,

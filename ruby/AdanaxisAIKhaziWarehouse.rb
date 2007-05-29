@@ -17,8 +17,11 @@
 ##############################################################################
 #%Header } 3umSoFeovs9HOTqwJkrQBQ
 #
-# $Id: AdanaxisAIKhaziWarehouse.rb,v 1.1 2007/04/20 12:07:07 southa Exp $
+# $Id: AdanaxisAIKhaziWarehouse.rb,v 1.2 2007/05/24 15:13:49 southa Exp $
 # $Log: AdanaxisAIKhaziWarehouse.rb,v $
+# Revision 1.2  2007/05/24 15:13:49  southa
+# Level 17
+#
 # Revision 1.1  2007/04/20 12:07:07  southa
 # Khazi Warehouse and level 8
 #
@@ -29,6 +32,10 @@ require 'AdanaxisAIKhazi.rb'
 
 class AdanaxisAIKhaziWarehouse < AdanaxisAIKhazi
 
+  def mTargetOverride(inTargetID)
+    # Always ignore
+  end
+  
   def mStateActionIdle
     mStateChangeDormant(60000)
   end
@@ -49,8 +56,40 @@ class AdanaxisAIKhaziWarehouse < AdanaxisAIKhazi
     mStateChangePatrol(60000)
   end
 
+  def mStateActionSeek
+    onTarget = false
+    mTargetSelect unless @m_targetID
+    unless @m_targetID
+      # No target to seek
+      mStateChangeIdle
+    else
+      begin
+        targetPiece = MushGame.cPieceLookup(@m_targetID)
+        targetPos = targetPiece.post.position
+        onTarget = MushUtil.cRotateAndSeek(@r_post,
+          targetPos, # Target
+          @m_seekSpeed, # Maximum speed
+          @m_seekAcceleration, # Acceleration
+          @m_seekStandOff # Stand off distance
+        )
+        # Don't fire unless close.  Warehouse is always carrying items for transfer
+        targetDist2 = (targetPiece.post.position - @r_post.position).mMagnitudeSquared
+        onTarget = false if targetDist2 > 10000
+      rescue Exception => e
+        # Target probably destroyed
+        @m_targetID = nil
+      end
+    end
+    
+    mFire if onTarget
+    
+    100
+  end
+
   def mStateActionSeekExit
-    mStateChangePatrol(60000)
+    if mTargetID
+      mStateChangeSeek(60000)
+    end
   end
 
   def mStateActionWaypointExit

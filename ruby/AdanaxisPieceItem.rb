@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } JwYK9TlZH6EZ6PPVJV1ydQ
-# $Id: AdanaxisPieceItem.rb,v 1.6 2007/04/16 08:41:06 southa Exp $
+# $Id: AdanaxisPieceItem.rb,v 1.7 2007/04/18 09:21:53 southa Exp $
 # $Log: AdanaxisPieceItem.rb,v $
+# Revision 1.7  2007/04/18 09:21:53  southa
+# Header and level fixes
+#
 # Revision 1.6  2007/04/16 08:41:06  southa
 # Level and header mods
 #
@@ -45,6 +48,7 @@ class AdanaxisPieceItem < AdanaxisPiece
     AdanaxisUtil.cSpellCheck(inParams)
     @m_defaultType = "i"
     super
+    @m_owner = inParams[:owner] || ""
     @m_lifeMsec = inParams[:lifetime_msec] || 0
     mDamageFactorSet(inParams[:damage_factor] || 0.0)
     @m_itemType = inParams[:item_type] || raise(RuntimeError, "No item_type supplied")
@@ -54,8 +58,8 @@ class AdanaxisPieceItem < AdanaxisPiece
   mush_accessor :m_itemType
   
   def mVulnerability
-    # Items are fairly invulnerable for a period after creation
-    return (mAgeMsec < 2000) ? 0.1 : 1.0
+    # Items are invulnerable for a period after creation
+    return (mAgeMsec < 2000) ? 0.0 : 1.0
   end
   
   def mActionTimer

@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } bHT09Ckq2jpnilxRX3ZW6w
-# $Id: AdanaxisWeaponLibrary.rb,v 1.29 2007/05/22 16:44:59 southa Exp $
+# $Id: AdanaxisWeaponLibrary.rb,v 1.30 2007/05/23 19:14:59 southa Exp $
 # $Log: AdanaxisWeaponLibrary.rb,v $
+# Revision 1.30  2007/05/23 19:14:59  southa
+# Level 18
+#
 # Revision 1.29  2007/05/22 16:44:59  southa
 # Level 18
 #
@@ -429,6 +432,19 @@ class AdanaxisWeaponLibrary < MushObject
       ],
       :fire_rate_msec => 4000,
       :fire_sound => 'fire9'
+    )
+
+    @m_weapons[:khazi_resupply] = AdanaxisWeapon.new(
+      :type => :item,
+      :item_type => :player_rail,
+      :projectile_mesh => 'railbox1',
+      :hit_points => 5.0,
+      :lifetime_msec => 5000,
+      :speed => 0.5,
+      :fire_rate_msec => 5000,
+      :offset_sequence => [
+        MushVector.new(0,0,0,-4)
+      ]
     )
 
   end

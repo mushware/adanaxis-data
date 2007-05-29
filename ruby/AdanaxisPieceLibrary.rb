@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } 1ZJk8/vLNeRQNZGYELq9QQ
-# $Id: AdanaxisPieceLibrary.rb,v 1.23 2007/05/22 16:44:58 southa Exp $
+# $Id: AdanaxisPieceLibrary.rb,v 1.24 2007/05/23 19:14:58 southa Exp $
 # $Log: AdanaxisPieceLibrary.rb,v $
+# Revision 1.24  2007/05/23 19:14:58  southa
+# Level 18
+#
 # Revision 1.23  2007/05/22 16:44:58  southa
 # Level 18
 #
@@ -233,9 +236,9 @@ class AdanaxisPieceLibrary < MushObject
       :ai_state => :dormant,
       :evade_speed => 0.01*(1+diff),
       :evade_acceleration => 0.003*(1+diff),
-      :seek_speed => 0.01*(1+diff),
-      :seek_acceleration => 0.002*(1+diff),
-      :seek_stand_off => 100.0
+      :seek_speed => 0.05,
+      :seek_acceleration => 0.01,
+      :seek_stand_off => 50.0
     }
     @m_warehouseNum = 0
     

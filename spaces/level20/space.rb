@@ -1,7 +1,7 @@
 #%Header {
 ##############################################################################
 #
-# File data-adanaxis/spaces/level19/space.rb
+# File data-adanaxis/spaces/level20/space.rb
 #
 # Copyright Andy Southgate 2006-2007
 #
@@ -15,25 +15,19 @@
 # This software carries NO WARRANTY of any kind.
 #
 ##############################################################################
-#%Header } QLp8boJLu+7xoQ+lucGG8w
+#%Header } IIwv2NLoondPHjF47Y20wg
 # $Id: space.rb,v 1.1 2007/05/24 16:59:43 southa Exp $
 # $Log: space.rb,v $
-# Revision 1.1  2007/05/24 16:59:43  southa
-# Level 19
-#
 
 require 'Mushware.rb'
 require 'Adanaxis.rb'
 
-class Adanaxis_level19 < AdanaxisSpace
+class Adanaxis_level20 < AdanaxisSpace
   def initialize(inParams = {})
     super
 
-    mTimeoutSpawnAdd(:mSpawn0, 20000) if AdanaxisRuby.cGameDifficulty > 0
-    mTimeoutSpawnAdd(:mSpawn1, 60000) if AdanaxisRuby.cGameDifficulty > 1
-
-    mTimeOnlySpawnAdd(:mSpawn2, 90000)
-    mTimeOnlySpawnAdd(:mSpawn3, 120000)
+    #mTimeoutSpawnAdd(:mSpawn0, 20000) if AdanaxisRuby.cGameDifficulty > 0
+    #mTimeoutSpawnAdd(:mSpawn1, 60000) if AdanaxisRuby.cGameDifficulty > 1
     
     mIsBattleSet(true)
   end
@@ -41,11 +35,11 @@ class Adanaxis_level19 < AdanaxisSpace
   def mLoad(game)
     mLoadStandard(game)
     mMusicAdd('game1', 'mushware-sanity-fault.ogg')
-    MushGame.cSoundDefine("voice-intro", "mush://waves/voice-L19.ogg")
+    MushGame.cSoundDefine("voice-intro", "mush://waves/voice-L20.ogg")
   end
   
   def mPrecacheListBuild
-    super
+    ### super
     mPrecacheListAdd(mPieceLibrary.mAttendantTex('red', 'blue'))
     mPrecacheListAdd(mPieceLibrary.mCisternTex('red', 'blue'))
     mPrecacheListAdd(mPieceLibrary.mFreshenerTex('red'))
@@ -57,7 +51,7 @@ class Adanaxis_level19 < AdanaxisSpace
 
   def mInitialPiecesCreate
     super
-    MushTools.cRandomSeedSet(19)
+    MushTools.cRandomSeedSet(20)
     diff = AdanaxisRuby.cGameDifficulty
 
     angVel = MushTools.cRotationInXYPlane(Math::PI / 1200);
@@ -66,82 +60,80 @@ class Adanaxis_level19 < AdanaxisSpace
   
     vel = MushVector.new(-0.05*(1+diff),0,0,0)
     angPos = MushTools.cRotationInXZPlane(Math::PI/2)
-  
-    1.times do |param|
-      mPieceLibrary.mFreshenerCreate(
-        :colour => 'red',
-        :post => MushPost.new(
-          :position => MushVector.new(20, 20, -100, -800),
-          :angular_velocity => angVel
-        )
-      )
-    end
     
-    (2+diff).times do |param|
+    (6+2*diff).times do |param|
         mPieceLibrary.mRailCreate(
           :colour => 'red',
           :post => MushPost.new(
-            :position => MushVector.new(0, 0, 0, -600) +
-            MushTools.cRandomUnitVector * (20 + rand(100)),
+            :position => MushVector.new(-30, 0, 50, -400-100*param),
             :angular_position => MushTools.cRandomOrientation
           ),
           :ai_state => :dormant,
-          :ai_state_msec => 30000
+          :ai_state_msec => 3000,
+          :ammo_count => 1
         )
     end
     
-    4.times do |param|
-      ['blue', 'red'].each do |colour|
-        mPieceLibrary.mHarpikCreate(
-          :colour => colour,
-          :post => MushPost.new(
-            :position => MushVector.new(300, 0, 0, -500+((colour == 'red')?-200:200)) +
-            MushTools.cRandomUnitVector * (20 + rand(100)),
-            :angular_position => MushTools.cRandomOrientation
-          )
-        )
-      end
-    end
-
-    [-1,1].each do |param|
-      mPieceLibrary.mCisternCreate(
-        :colour => 'red',
-        :post => MushPost.new(
-          :position => MushVector.new(100*param, -20, 0, -250+100*param),
-          :velocity => vel,
-          :angular_position => angPos
-        ),
-        :patrol_points => [
-          MushVector.new(-200, 50*param, 0, -250),
-          MushVector.new(200, 50*param, 0, -250)
-          ],
-        :ammo_count => 2 + 2 * diff,
-        :ai_state => :patrol,
-        :ai_state_msec => 10000+250*param
-      )
-    end
-   
-    [-1,1].each do |param|
+    (6+2*diff).times do |param|
       mPieceLibrary.mWarehouseCreate(
         :colour => 'red',
         :post => MushPost.new(
-          :position => MushVector.new(50, 100*param, -400, -250+50*param),
+          :position => MushVector.new(-30, 0, 50, -400-100*param) +
+              MushTools.cRandomUnitVector * (300+20*param),
           :angular_position => angPos
         ),
         :patrol_points => [
           MushVector.new(-300, 100*param, -400, -250+50**param),
           MushVector.new(300, 100*param, -400, -250+50**param)
           ],
-        :ai_state => :patrol,
+        :ai_state => :seek,
         :ai_state_msec => 8000+250*param,
-        :remnant => :player_rail
+        :target_id => "kr:#{param}",
+        :target_types => "kr",
+        :remnant => :player_rail,
+        :weapon => :khazi_resupply
+      )
+    end
+    
+    1.times do |param|
+      mPieceLibrary.mFreshenerCreate(
+        :colour => 'red',
+        :post => MushPost.new(
+          :position => MushVector.new(20, 20, -1000, -800),
+          :angular_velocity => angVel
+        )
+      )
+    end
+    
+    4.times do |param|
+      ['blue', 'red', 'red'].each do |colour|
+        mPieceLibrary.mHarpikCreate(
+          :colour => colour,
+          :post => MushPost.new(
+            :position => MushVector.new(500, 0, 0, -500+((colour == 'red')?-200:200)) +
+              MushTools.cRandomUnitVector * (20 + rand(100)),
+            :angular_position => MushTools.cRandomOrientation
+          )
+        )
+      end
+    end
+    
+    2.times do |param|
+      mPieceLibrary.mRailCreate(
+        :colour => 'blue',
+        :post => MushPost.new(
+          :position => MushVector.new(400, 200, -50, -700-100*param),
+          :angular_position => MushTools.cRandomOrientation
+        ),
+        :ai_state => :dormant,
+        :ai_state_msec => 3000
       )
     end
     
     mPieceLibrary.mCisternCreate(
       :colour => 'blue',
       :post => MushPost.new(
-        :position => MushVector.new(100, -20, 0, -1400),
+        :position => MushVector.new(1000, -20, 0, -1000),
         :velocity => vel,
         :angular_position => angPos
       ),
@@ -178,7 +170,7 @@ class Adanaxis_level19 < AdanaxisSpace
     )
 
           
-    mStandardCosmos(19)
+    mStandardCosmos(20)
   end
   
   def mSpawn0
@@ -220,35 +212,7 @@ class Adanaxis_level19 < AdanaxisSpace
       :ai_state_msec => 6000,
       :weapon => :vendor_spawner
     )  
-    MushGame.cVoicePlay('voice-E3-2') # 'Hostile import detected'
-
-    return true
-  end
-
-  def mSpawn2
-    MushGame.cVoicePlay('voice-E6-1') # 'Caution is advised'
-    MushGame.cNamedDialoguesAdd('^eta')
-    return false
-  end
-
-  def mSpawn3
-    MushTools.cRandomSeedSet(10)
-    8.times do |param|
-        mPieceLibrary.mRailCreate(
-          :colour => 'red',
-          :post => MushPost.new(
-            :position => MushVector.new(0, 0, 0, -1200) +
-            MushTools.cRandomUnitVector * (20 + rand(100)),
-            :angular_position => MushTools.cRandomOrientation
-          ),
-          :spawned => true,
-          :ai_state => :dormant,
-          :ai_state_msec => 10000
-        )
-    end
-    
-    MushGame.cVoicePlay('voice-E3-1') # 'Hostile import detected'
-    MushGame.cNamedDialoguesAdd('^reinforce')
+    MushGame.cVoicePlay('voice-E3-2') # 'Hostile inport detected'
 
     return true
   end

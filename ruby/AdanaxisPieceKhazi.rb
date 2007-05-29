@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } 789lRZlkGd4CN1rbUN5znQ
-# $Id: AdanaxisPieceKhazi.rb,v 1.41 2007/05/09 19:24:43 southa Exp $
+# $Id: AdanaxisPieceKhazi.rb,v 1.42 2007/05/10 11:44:11 southa Exp $
 # $Log: AdanaxisPieceKhazi.rb,v $
+# Revision 1.42  2007/05/10 11:44:11  southa
+# Level15
+#
 # Revision 1.41  2007/05/09 19:24:43  southa
 # Level 14
 #
@@ -223,6 +226,13 @@ class AdanaxisPieceKhazi < AdanaxisPiece
     end
   end
   
+  def mCollectItem(inItem)
+    if @m_weaponName == :khazi_rail && inItem.mItemType == :player_rail
+      @m_weapon.mAmmoCountSet(@m_weapon.mAmmoCount + 6)
+      MushGame.cSoundPlay("load4", mPost)
+    end
+  end
+  
   def mFatalCollisionHandle(event)
     super
     # Choose numbers
@@ -259,6 +269,12 @@ class AdanaxisPieceKhazi < AdanaxisPiece
     case event.mPiece2
       when AdanaxisPieceProjectile:
         @m_ai.mTargetOverride(otherPiece.mOwner)
+        
+      when AdanaxisPieceItem:
+        if @m_hitPoints > 0.0
+          mCollectItem(event.mPiece2)
+          event.mPiece2.mExpireFlagSet(true)
+        end
     end
   end
   

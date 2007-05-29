@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } NnXS337B+7+SGRgiikvl+A
-# $Id: AdanaxisWeapon.rb,v 1.21 2007/05/09 19:24:43 southa Exp $
+# $Id: AdanaxisWeapon.rb,v 1.22 2007/05/21 13:32:52 southa Exp $
 # $Log: AdanaxisWeapon.rb,v $
+# Revision 1.22  2007/05/21 13:32:52  southa
+# Flush weapon
+#
 # Revision 1.21  2007/05/09 19:24:43  southa
 # Level 14
 #
@@ -106,6 +109,7 @@ class AdanaxisWeapon < MushObject
     @m_numProjectiles = inParams[:num_projectiles] || 1
     @m_deviation = inParams[:deviation]
     @m_type = inParams[:type] || nil
+    @m_itemType = inParams[:item_type] || nil
     @m_ammoCount = inParams[:ammo_count] || nil
     @m_spawnLimit = inParams[:spawn_inhibit_limit] || 20 * (1+AdanaxisRuby.cGameDifficulty)
     @m_alphaStutter = inParams[:alpha_stutter] || 0.0
@@ -179,6 +183,63 @@ class AdanaxisWeapon < MushObject
       projPost.velocity = baseVelocity + MushTools.cRandomUnitVector * @m_deviation if @m_deviation
       lifetime = @m_lifetimeMsec.begin + rand(@m_lifetimeMsec.end - @m_lifetimeMsec.begin) if @m_lifetimeMsec.kind_of?(Range)
       AdanaxisPieceProjectile.cCreate(
+        :mesh_name => @m_projectileMesh,
+        :post => projPost,
+        :owner => inPiece.mId,
+        :lifetime_msec => lifetime,
+        :hit_points => @m_hitPoints,
+        :acceleration => @m_acceleration,
+        :speed_limit => @m_speedLimit,
+        :ai_params => aiParams,
+        :is_rocket => (@m_type == :rocket),
+        :is_flush => @m_isFlush,
+        :alpha_stutter => @m_alphaStutter
+      )
+    end
+    
+    mCommonFire(inEvent, inPiece, projPost)
+    
+    nil
+  end
+  
+  def mItemFire(inEvent, inPiece)
+    projPost = inEvent.mPost.dup
+    
+    vel = projPost.velocity
+    projPost.angular_position.mInverse.mRotate(vel)
+    vel.x = 0
+    vel.y = 0
+    vel.z = 0
+    vel.w = vel.w - @m_speed
+
+    offset = @m_offsetSequence[@m_offsetNumber].dup
+    
+    projPost.angular_position.mRotate(offset)
+    projPost.angular_position.mRotate(vel)
+    
+    projPost.position = projPost.position + offset
+    projPost.velocity = vel
+    
+    # Apply the angular velocity in the object frame
+
+    angVel = projPost.angular_position.mInverse
+    @m_angularVelocity.mRotate(angVel)
+    projPost.angular_position.mRotate(angVel)
+    projPost.angular_velocity = angVel
+    
+    if @m_aiParams
+      aiParams = @m_aiParams.merge(
+        :target_id => inEvent.mTargetID
+      )
+    end
+    
+    baseVelocity = projPost.velocity
+    lifetime = @m_lifetimeMsec
+    @m_numProjectiles.times do
+      projPost.velocity = baseVelocity + MushTools.cRandomUnitVector * @m_deviation if @m_deviation
+      lifetime = @m_lifetimeMsec.begin + rand(@m_lifetimeMsec.end - @m_lifetimeMsec.begin) if @m_lifetimeMsec.kind_of?(Range)
+      AdanaxisPieceItem.cCreate(
+        :item_type => @m_itemType,
         :mesh_name => @m_projectileMesh,
         :post => projPost,
         :owner => inPiece.mId,
@@ -311,8 +372,9 @@ class AdanaxisWeapon < MushObject
   
   def mFire(inEvent, inPiece)
     case @m_type
-      when :rail : mRailFire(inEvent, inPiece)
+      when :item : mItemFire(inEvent, inPiece)
       when :spawner : mSpawnerFire(inEvent, inPiece)
+      when :rail : mRailFire(inEvent, inPiece)
       else mProjectileFire(inEvent, inPiece)
     end
   end
