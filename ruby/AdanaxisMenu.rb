@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } zHmHS9uI4vGQYvQQWY9i9w
-# $Id: AdanaxisMenu.rb,v 1.22 2007/04/18 09:21:52 southa Exp $
+# $Id: AdanaxisMenu.rb,v 1.23 2007/04/20 16:46:03 southa Exp $
 # $Log: AdanaxisMenu.rb,v $
+# Revision 1.23  2007/04/20 16:46:03  southa
+# Key configuration fix
+#
 # Revision 1.22  2007/04/18 09:21:52  southa
 # Header and level fixes
 #
@@ -246,6 +249,10 @@ class AdanaxisMenu < MushObject
     permit = level[AdanaxisLevels::PARAMS]['permit']
     if permit && !AdanaxisRuby.cRecordTime(permit)
       flags = {:grey => true}
+    end
+    if level[AdanaxisLevels::PARAMS]['unavailable']
+      flags = {:grey => true}
+      name = '['+name+']'
     end
     [ name, :mMenuGameSelect, level[AdanaxisLevels::KEY], flags ]
   end

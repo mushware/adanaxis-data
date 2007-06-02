@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } PrKvSfbZuMOrmRVQXdN9Qw
-# $Id: AdanaxisLevels.rb,v 1.11 2007/05/01 16:40:06 southa Exp $
+# $Id: AdanaxisLevels.rb,v 1.12 2007/05/03 18:00:32 southa Exp $
 # $Log: AdanaxisLevels.rb,v $
+# Revision 1.12  2007/05/03 18:00:32  southa
+# Level 11
+#
 # Revision 1.11  2007/05/01 16:40:06  southa
 # Level 10
 #
@@ -50,6 +53,7 @@ require 'Mushware.rb'
 
 class AdanaxisLevels
   LEVEL_MANIFEST_NAME = 'manifest.txt'
+  LEVEL_SPACE_NAME = 'space.rb'
   KEY = 0
   PARAMS = 1
   def initialize
@@ -58,8 +62,8 @@ class AdanaxisLevels
   end
   
   def mScanLevel(path)
-    manifestFile = "#{path}/#{LEVEL_MANIFEST_NAME}"
-    manifestFile.untaint
+    manifestFile = "#{path}/#{LEVEL_MANIFEST_NAME}".untaint
+    spaceFile = "#{path}/#{LEVEL_SPACE_NAME}".untaint
     baseName = File.basename(path).untaint
     unless File.file?(manifestFile)
       puts "Manifest file #{manifestFile} missing from space directory" 
@@ -84,6 +88,10 @@ class AdanaxisLevels
       if paramHash['directory'] != baseName
         paramHash['name'] = baseName
         puts "Discarding level name because directory in manifest '#{paramHash['directory']}' doesn't match actual directory '#{baseName}'"
+      end
+      
+      unless File.file?(spaceFile)
+        paramHash['unavailable'] = true
       end
       
       @m_levels.push [baseName, paramHash]

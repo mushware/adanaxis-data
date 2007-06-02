@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } UAdc9x+ji8+Grkjo5O0RyQ
-# $Id: AdanaxisGame.rb,v 1.45 2007/04/20 16:46:03 southa Exp $
+# $Id: AdanaxisGame.rb,v 1.46 2007/05/09 19:24:43 southa Exp $
 # $Log: AdanaxisGame.rb,v $
+# Revision 1.46  2007/05/09 19:24:43  southa
+# Level 14
+#
 # Revision 1.45  2007/04/20 16:46:03  southa
 # Key configuration fix
 #
@@ -126,11 +129,7 @@ class AdanaxisGame < MushObject
     @m_showHidden = false;
   end
   
-  mush_accessor :m_space, :m_view
-  
-  def mSpaceName
-    @m_spaceName
-  end
+  mush_accessor :m_space, :m_spaceName, :m_view
   
   def mSpaceObjectName
     'Adanaxis_'+@m_spaceName
@@ -154,6 +153,7 @@ class AdanaxisGame < MushObject
   
   def mLoad
     mMushLoad
+    raise "Level unavailable (no space.rb file)" unless File.file?(mSpacePath+'/space.rb')
     require(mSpacePath+'/space.rb')
     @m_space = eval("#{mSpaceObjectName}.new", binding, mSpacePath+'/space.rb', 1)
     @m_space.mLoad(self)

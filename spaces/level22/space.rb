@@ -1,7 +1,7 @@
 #%Header {
 ##############################################################################
 #
-# File data-adanaxis/spaces/level20/space.rb
+# File data-adanaxis/spaces/level22/space.rb
 #
 # Copyright Andy Southgate 2006-2007
 #
@@ -15,17 +15,14 @@
 # This software carries NO WARRANTY of any kind.
 #
 ##############################################################################
-#%Header } IIwv2NLoondPHjF47Y20wg
+#%Header } YLUoLTgMqqE4ZOb+i1Hc1g
 # $Id: space.rb,v 1.1 2007/05/29 13:25:57 southa Exp $
 # $Log: space.rb,v $
-# Revision 1.1  2007/05/29 13:25:57  southa
-# Level 20
-#
 
 require 'Mushware.rb'
 require 'Adanaxis.rb'
 
-class Adanaxis_level20 < AdanaxisSpace
+class Adanaxis_level21 < AdanaxisSpace
   def initialize(inParams = {})
     super
     
@@ -35,22 +32,24 @@ class Adanaxis_level20 < AdanaxisSpace
   def mLoad(game)
     mLoadStandard(game)
     mMusicAdd('game1', 'mushware-sanity-fault.ogg')
-    MushGame.cSoundDefine("voice-intro", "mush://waves/voice-L20.ogg")
+    MushGame.cSoundDefine("voice-intro", "mush://waves/voice-L21.ogg")
   end
   
   def mPrecacheListBuild
-    super
-    mPrecacheListAdd(mPieceLibrary.mAttendantTex('blue'))
-    mPrecacheListAdd(mPieceLibrary.mCisternTex('blue'))
-    mPrecacheListAdd(mPieceLibrary.mFreshenerTex('red'))
+    ### super
+    mPrecacheListAdd(mPieceLibrary.mAttendantTex('red', 'blue'))
+    mPrecacheListAdd(mPieceLibrary.mCisternTex('red', 'blue'))
+    mPrecacheListAdd(mPieceLibrary.mFreshenerTex('blue'))
     mPrecacheListAdd(mPieceLibrary.mHarpikTex('red', 'blue'))
     mPrecacheListAdd(mPieceLibrary.mRailTex('red', 'blue'))
+    mPrecacheListAdd(mPieceLibrary.mLimescaleTex('red', 'blue'))
+    mPrecacheListAdd(mPieceLibrary.mVendorTex('red', 'blue'))
     mPrecacheListAdd(mPieceLibrary.mWarehouseTex('red'))
   end
 
   def mInitialPiecesCreate
     super
-    MushTools.cRandomSeedSet(20)
+    MushTools.cRandomSeedSet(21)
     diff = AdanaxisRuby.cGameDifficulty
 
     angVel = MushTools.cRotationInXYPlane(Math::PI / 1200);
@@ -60,47 +59,26 @@ class Adanaxis_level20 < AdanaxisSpace
     vel = MushVector.new(-0.05*(1+diff),0,0,0)
     angPos = MushTools.cRotationInXZPlane(Math::PI/2)
     
-    (6+2*diff).times do |param|
-        mPieceLibrary.mRailCreate(
-          :colour => 'red',
-          :post => MushPost.new(
-            :position => MushVector.new(-30, 0, 50, -400-100*param),
-            :angular_position => MushTools.cRandomOrientation
-          ),
-          :ai_state => :dormant,
-          :ai_state_msec => 3000,
-          :ammo_count => 1
-        )
-    end
-    
-    (6+2*diff).times do |param|
-      mPieceLibrary.mWarehouseCreate(
+    (3+3*diff).times do |param|
+      mPieceLibrary.mVendorCreate(
         :colour => 'red',
         :post => MushPost.new(
-          :position => MushVector.new(-30, 0, 50, -400-100*param) +
-              MushTools.cRandomUnitVector * (300+20*param),
-          :angular_position => angPos
-        ),
-        :patrol_points => [
-          MushVector.new(-300, 100*param, -400, -250+50**param),
-          MushVector.new(300, 100*param, -400, -250+50**param)
-          ],
-        :ai_state => :seek,
-        :ai_state_msec => 8000+250*param,
-        :target_id => "kr:#{param}",
-        :target_types => "kr",
-        :remnant => :player_rail,
-        :weapon => :khazi_resupply
+          :position => MushVector.new(0, 0, 0, -300) +
+          MushTools.cRandomUnitVector * (50 + rand((diff+0.5)*100)),
+          :angular_position => MushTools.cRandomOrientation
+        )
       )
     end
     
-    1.times do |param|
+    4.times do |param|
       mPieceLibrary.mFreshenerCreate(
-        :colour => 'red',
+        :colour => 'blue',
         :post => MushPost.new(
-          :position => MushVector.new(20, 20, -1000, -800),
+          :position => MushVector.new(200, -200, -100, -300-100*param),
           :angular_velocity => angVel
-        )
+        ),
+        :is_jammer => false,
+        
       )
     end
     
@@ -168,6 +146,6 @@ class Adanaxis_level20 < AdanaxisSpace
       )
     )
           
-    mStandardCosmos(20)
+    mStandardCosmos(21)
   end
 end

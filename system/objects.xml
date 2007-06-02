@@ -11,6 +11,9 @@
 #
 # $$
 # $Log: objects.xml,v $
+# Revision 1.5  2007/04/18 12:44:36  southa
+# Cache purge fix and pre-release tweaks
+#
 # Revision 1.4  2006/07/31 11:01:34  southa
 # Music and dialogues
 #
@@ -42,6 +45,31 @@
 <startColour>(1.0,0.8,0.8,0.5)</startColour>
 <midColour>(1.0,0.8,0.8,1.0)</midColour>
 <endColour>(1,0.0,0.0,0)</endColour>
+<startTime>50</startTime>
+<endTime>1000</endTime>
+<fadeTime>50</fadeTime>
+<startSize>0.03</startSize>
+<midSize>0.04</midSize>
+<endSize>0.03</endSize>
+</obj>)
+</strings>
+</obj>
+,
+"levelfailed1"=<obj type="GameDialogue">
+<strings>(
+<obj type="GameStringSpec">
+<string type="GLString">
+<fontRef type="GLFontRef">
+<name>"font-mono1"</name>
+</fontRef>
+<value>"Level failed to Load"</value>
+</string>
+<posticity type="MushPiePosticity">
+<pos>(0,-0.04,0,0)</pos>
+</posticity>
+<startColour>(1.0,0.3,0.3,0.5)</startColour>
+<midColour>(1.0,0.3,0.3,1.0)</midColour>
+<endColour>(1,0.3,0.3,0)</endColour>
 <startTime>50</startTime>
 <endTime>1000</endTime>
 <fadeTime>50</fadeTime>
