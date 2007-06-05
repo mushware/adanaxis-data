@@ -12,8 +12,11 @@
 #
 ##############################################################################
 #
-# $Id: dialogues.xml,v 1.1 2007/05/29 13:25:57 southa Exp $
+# $Id: dialogues.xml,v 1.1 2007/06/02 15:56:57 southa Exp $
 # $Log: dialogues.xml,v $
+# Revision 1.1  2007/06/02 15:56:57  southa
+# Shader fix and prerelease work
+#
 -->
 <obj>(
 "start1"=<obj type="GameDialogue">
@@ -23,7 +26,7 @@
 <fontRef type="GLFontRef">
 <name>"font-mono1"</name>
 </fontRef>
-<value>"A Useful Countermeasure"</value>
+<value>"High Yield Devices"</value>
 </string>
 <posticity type="MushPiePosticity">
 <pos>(0,0.12,0,0)</pos>
@@ -78,7 +81,7 @@
 </strings>
 <voices>(
  <obj type="GameSoundSpec">
-  <soundRef>"voice-E5-2"</soundRef>
+  <soundRef>"voice-E5-1"</soundRef>
   <startTime>100</startTime>
  </obj>
 )</voices></obj>
@@ -108,12 +111,12 @@
 </strings>
 <voices>(
  <obj type="GameSoundSpec">
-  <soundRef>"voice-E11-3"</soundRef>
+  <soundRef>"voice-E11-5"</soundRef>
   <startTime>50</startTime>
  </obj>
  ,
  <obj type="GameSoundSpec">
-  <soundRef>"voice-E5-2"</soundRef>
+  <soundRef>"voice-E5-3"</soundRef>
   <startTime>250</startTime>
  </obj>
 )</voices></obj>
@@ -143,8 +146,8 @@
 </strings>
 <voices>(
  <obj type="GameSoundSpec">
-  <soundRef>"voice-E10-2"</soundRef>
-  <startTime>0</startTime>
+  <soundRef>"voice-E10-4"</soundRef>
+  <startTime>50</startTime>
  </obj>
 )</voices>
 </obj>

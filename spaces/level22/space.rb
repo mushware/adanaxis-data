@@ -16,23 +16,27 @@
 #
 ##############################################################################
 #%Header } YLUoLTgMqqE4ZOb+i1Hc1g
-# $Id: space.rb,v 1.1 2007/05/29 13:25:57 southa Exp $
+# $Id: space.rb,v 1.1 2007/06/02 15:56:57 southa Exp $
 # $Log: space.rb,v $
+# Revision 1.1  2007/06/02 15:56:57  southa
+# Shader fix and prerelease work
+#
 
 require 'Mushware.rb'
 require 'Adanaxis.rb'
 
-class Adanaxis_level21 < AdanaxisSpace
+class Adanaxis_level22 < AdanaxisSpace
   def initialize(inParams = {})
     super
     
     mIsBattleSet(true)
+    mPrimarySet(PRIMARY_BLUE)
   end
   
   def mLoad(game)
     mLoadStandard(game)
-    mMusicAdd('game1', 'mushware-sanity-fault.ogg')
-    MushGame.cSoundDefine("voice-intro", "mush://waves/voice-L21.ogg")
+    mMusicAdd('game1', 'mushware-disturbed-sleep.ogg')
+    MushGame.cSoundDefine("voice-intro", "mush://waves/voice-L22.ogg")
   end
   
   def mPrecacheListBuild
@@ -49,41 +53,92 @@ class Adanaxis_level21 < AdanaxisSpace
 
   def mInitialPiecesCreate
     super
-    MushTools.cRandomSeedSet(21)
+    MushTools.cRandomSeedSet(22)
     diff = AdanaxisRuby.cGameDifficulty
 
     angVel = MushTools.cRotationInXYPlane(Math::PI / 1200);
     MushTools.cRotationInZWPlane(Math::PI / 1314).mRotate(angVel);
     MushTools.cRotationInYZPlane(Math::PI / 1575).mRotate(angVel);
   
-    vel = MushVector.new(-0.05*(1+diff),0,0,0)
+    vel = MushVector.new(0,0,0,-0.1)
     angPos = MushTools.cRotationInXZPlane(Math::PI/2)
     
-    (3+3*diff).times do |param|
-      mPieceLibrary.mVendorCreate(
-        :colour => 'red',
-        :post => MushPost.new(
-          :position => MushVector.new(0, 0, 0, -300) +
-          MushTools.cRandomUnitVector * (50 + rand((diff+0.5)*100)),
-          :angular_position => MushTools.cRandomOrientation
+    # Blue convoy
+    (-1..1).each do |param1|
+      (-1..1).each do |param2|
+        pos = MushVector.new(-10*param1+50*param2, -50+10*param1, 0, -250-100*param1-20*param2.abs)
+        mPieceLibrary.mWarehouseCreate(
+          :colour => 'blue',
+          :post => MushPost.new(
+            :position => pos,
+            :velocity => vel,
+            :angular_position => angPos
+          ),
+          :patrol_points => [
+            pos + MushVector.new(0, 0, 0, -10000)
+          ],
+          :ai_state => :patrol,
+          :ai_state_msec => 30000,
+          :remnant => :player_rail,
+          :is_primary => true
         )
-      )
+      end
     end
-    
-    4.times do |param|
-      mPieceLibrary.mFreshenerCreate(
+        
+    [-1,1].each do |param|
+      mPieceLibrary.mVendorCreate(
         :colour => 'blue',
         :post => MushPost.new(
-          :position => MushVector.new(200, -200, -100, -300-100*param),
-          :angular_velocity => angVel
+          :position => MushVector.new(100*param, -50, 0, -300),
+          :velocity => vel,
+          :angular_position => angPos
         ),
-        :is_jammer => false,
-        
+        :patrol_points => [
+          MushVector.new(200*param, 0, 0, -10000)
+        ],
+        :ai_state => :patrol,
+        :ai_state_msec => 31000
       )
     end
-    
-    4.times do |param|
-      ['blue', 'red', 'red'].each do |colour|
+        
+    [-1,1].each do |param|
+      mPieceLibrary.mCisternCreate(
+        :colour => 'blue',
+        :post => MushPost.new(
+          :position => MushVector.new(100*param, -40, -20, -200),
+          :velocity => vel,
+          :angular_position => angPos
+        ),
+        :patrol_points => [
+          MushVector.new(1000*param, -50, 0, -10000)
+        ],
+        :ai_state => :patrol,
+        :ai_state_msec => 30000+200*param,
+        :weapon => :harpik_spawner,
+        :ammo_count => 15-5*diff
+      )
+    end
+        
+    2.times do |param|
+      pos = MushVector.new(-10,-50,80,-250-100*param)
+      mPieceLibrary.mRailCreate(
+        :colour => 'blue',
+        :post => MushPost.new(
+          :position => pos,
+          :velocity => vel,
+          :angular_position => angPos
+        ),
+        :patrol_points => [
+          pos + MushVector.new(0, 0, 0, -10000)
+        ],
+        :patrol_speed => 0.1,
+        :ai_state => :patrol,
+        :ai_state_msec => 29000
+      )
+    end    
+        
+    12.times do |param|
+      ['red'].each do |colour|
         mPieceLibrary.mHarpikCreate(
           :colour => colour,
           :post => MushPost.new(
@@ -97,7 +152,7 @@ class Adanaxis_level21 < AdanaxisSpace
     
     2.times do |param|
       mPieceLibrary.mRailCreate(
-        :colour => 'blue',
+        :colour => 'red',
         :post => MushPost.new(
           :position => MushVector.new(400, 200, -50, -700-100*param),
           :angular_position => MushTools.cRandomOrientation
@@ -106,22 +161,6 @@ class Adanaxis_level21 < AdanaxisSpace
         :ai_state_msec => 3000
       )
     end
-    
-    mPieceLibrary.mCisternCreate(
-      :colour => 'blue',
-      :post => MushPost.new(
-        :position => MushVector.new(1000, -20, 0, -1000),
-        :velocity => vel,
-        :angular_position => angPos
-      ),
-      :patrol_points => [
-        MushVector.new(-200, 200, 0, -1000),
-        MushVector.new(200, 200, 0, -1000)
-        ],
-      :ammo_count => 15,
-      :ai_state => :patrol,
-      :ai_state_msec => 10000
-    )
   
     $currentLogic.mRemnant.mCreate(
       :item_type => (AdanaxisRuby.cGameDifficulty < 2) ? :player_light_missile : :player_heavy_cannon,
@@ -146,6 +185,6 @@ class Adanaxis_level21 < AdanaxisSpace
       )
     )
           
-    mStandardCosmos(21)
+    mStandardCosmos(22)
   end
 end
