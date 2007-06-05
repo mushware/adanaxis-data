@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } NnXS337B+7+SGRgiikvl+A
-# $Id: AdanaxisWeapon.rb,v 1.22 2007/05/21 13:32:52 southa Exp $
+# $Id: AdanaxisWeapon.rb,v 1.23 2007/05/29 13:25:56 southa Exp $
 # $Log: AdanaxisWeapon.rb,v $
+# Revision 1.23  2007/05/29 13:25:56  southa
+# Level 20
+#
 # Revision 1.22  2007/05/21 13:32:52  southa
 # Flush weapon
 #
@@ -114,6 +117,7 @@ class AdanaxisWeapon < MushObject
     @m_spawnLimit = inParams[:spawn_inhibit_limit] || 20 * (1+AdanaxisRuby.cGameDifficulty)
     @m_alphaStutter = inParams[:alpha_stutter] || 0.0
     @m_isFlush = inParams[:is_flush]
+    @m_jammable = inParams[:jammable]
     @m_lastFireMsec = 0
   end
   
@@ -175,6 +179,9 @@ class AdanaxisWeapon < MushObject
       aiParams = @m_aiParams.merge(
         :target_id => inEvent.mTargetID
       )
+      if @m_jammable && $currentGame.mSpace.mJamming
+        aiParams[:seek_acceleration] *= -1.0
+      end
     end
     
     baseVelocity = projPost.velocity

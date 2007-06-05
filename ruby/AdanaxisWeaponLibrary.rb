@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } bHT09Ckq2jpnilxRX3ZW6w
-# $Id: AdanaxisWeaponLibrary.rb,v 1.30 2007/05/23 19:14:59 southa Exp $
+# $Id: AdanaxisWeaponLibrary.rb,v 1.31 2007/05/29 13:25:57 southa Exp $
 # $Log: AdanaxisWeaponLibrary.rb,v $
+# Revision 1.31  2007/05/29 13:25:57  southa
+# Level 20
+#
 # Revision 1.30  2007/05/23 19:14:59  southa
 # Level 18
 #
@@ -362,6 +365,7 @@ class AdanaxisWeaponLibrary < MushObject
       :fire_sound => 'fire6',
       :reload_sound => 'load6',
       :ai_params => {:seek_acceleration => 0.01},
+      :jammable => true,
       :angular_velocity => MushRotation.new
     )
 
@@ -382,6 +386,7 @@ class AdanaxisWeaponLibrary < MushObject
       :fire_sound => 'fire8',
       :reload_sound => 'load8',
       :ai_params => {:seek_acceleration => 0.1},
+      :jammable => true,
       :angular_velocity => MushRotation.new
     )
 

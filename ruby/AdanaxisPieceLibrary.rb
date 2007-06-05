@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } 1ZJk8/vLNeRQNZGYELq9QQ
-# $Id: AdanaxisPieceLibrary.rb,v 1.24 2007/05/23 19:14:58 southa Exp $
+# $Id: AdanaxisPieceLibrary.rb,v 1.25 2007/05/29 13:25:56 southa Exp $
 # $Log: AdanaxisPieceLibrary.rb,v $
+# Revision 1.25  2007/05/29 13:25:56  southa
+# Level 20
+#
 # Revision 1.24  2007/05/23 19:14:58  southa
 # Level 18
 #
@@ -206,7 +209,7 @@ class AdanaxisPieceLibrary < MushObject
       :evade_acceleration => 0.01*(1+diff),
       :seek_speed => 0.05*(1+diff),
       :seek_acceleration => 0.01*(1+diff),
-      :seek_stand_off => 20.0,
+      :seek_stand_off => 50.0,
       :weapon => :khazi_light_missile
     }
     @m_vendorNum = 0

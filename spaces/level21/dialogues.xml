@@ -12,8 +12,11 @@
 #
 ##############################################################################
 #
-# $Id: dialogues.xml,v 1.1 2007/05/29 13:25:57 southa Exp $
+# $Id: dialogues.xml,v 1.1 2007/06/02 15:56:57 southa Exp $
 # $Log: dialogues.xml,v $
+# Revision 1.1  2007/06/02 15:56:57  southa
+# Shader fix and prerelease work
+#
 -->
 <obj>(
 "start1"=<obj type="GameDialogue">
@@ -147,5 +150,30 @@
   <startTime>0</startTime>
  </obj>
 )</voices>
+</obj>
+,
+"unjammed1"=<obj type="GameDialogue">
+<strings>(
+<obj type="GameStringSpec">
+<string type="GLString">
+<fontRef type="GLFontRef">
+<name>"font-mono1"</name>
+</fontRef>
+<value>"Countermeasures eliminated"</value>
+</string>
+<posticity type="MushPiePosticity">
+<pos>(0,0.12,0,0)</pos>
+</posticity>
+<startColour>(1,1,1,0)</startColour>
+<midColour>(1,1,1,0.5)</midColour>
+<endColour>(1,0,0,0)</endColour>
+<startTime>0</startTime>
+<endTime>300</endTime>
+<fadeTime>100</fadeTime>
+<startSize>0.03</startSize>
+<midSize>0.03</midSize>
+<endSize>0.0</endSize>
+</obj>)
+</strings>
 </obj>
 )</obj>

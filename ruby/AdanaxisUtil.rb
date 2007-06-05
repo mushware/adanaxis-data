@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } fmcUR/puBAQN1IsolXK4VQ
-# $Id: AdanaxisUtil.rb,v 1.33 2007/05/21 13:32:52 southa Exp $
+# $Id: AdanaxisUtil.rb,v 1.34 2007/05/29 13:25:56 southa Exp $
 # $Log: AdanaxisUtil.rb,v $
+# Revision 1.34  2007/05/29 13:25:56  southa
+# Level 20
+#
 # Revision 1.33  2007/05/21 13:32:52  southa
 # Flush weapon
 #
@@ -173,6 +176,7 @@ class AdanaxisUtil < MushObject
     :is_primary => true,
     :is_rocket => true,
     :item_type => true,
+    :jammable => true,
     :khazi_test => true,
     :load_sound => true,
     :lifetime_msec => true,

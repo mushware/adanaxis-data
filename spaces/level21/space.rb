@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } VN2cbP6xgmWO1fbzkAqZ7Q
-# $Id: space.rb,v 1.1 2007/05/29 13:25:57 southa Exp $
+# $Id: space.rb,v 1.1 2007/06/02 15:56:57 southa Exp $
 # $Log: space.rb,v $
+# Revision 1.1  2007/06/02 15:56:57  southa
+# Shader fix and prerelease work
+#
 
 require 'Mushware.rb'
 require 'Adanaxis.rb'
@@ -27,6 +30,7 @@ class Adanaxis_level21 < AdanaxisSpace
     super
     
     mIsBattleSet(true)
+    mJammingSet(true)
   end
   
   def mLoad(game)
@@ -36,15 +40,13 @@ class Adanaxis_level21 < AdanaxisSpace
   end
   
   def mPrecacheListBuild
-    ### super
-    mPrecacheListAdd(mPieceLibrary.mAttendantTex('red', 'blue'))
+    super
+    mPrecacheListAdd(mPieceLibrary.mAttendantTex('blue'))
     mPrecacheListAdd(mPieceLibrary.mCisternTex('red', 'blue'))
     mPrecacheListAdd(mPieceLibrary.mFreshenerTex('blue'))
     mPrecacheListAdd(mPieceLibrary.mHarpikTex('red', 'blue'))
-    mPrecacheListAdd(mPieceLibrary.mRailTex('red', 'blue'))
-    mPrecacheListAdd(mPieceLibrary.mLimescaleTex('red', 'blue'))
-    mPrecacheListAdd(mPieceLibrary.mVendorTex('red', 'blue'))
-    mPrecacheListAdd(mPieceLibrary.mWarehouseTex('red'))
+    mPrecacheListAdd(mPieceLibrary.mRailTex('red'))
+    mPrecacheListAdd(mPieceLibrary.mVendorTex('red'))
   end
 
   def mInitialPiecesCreate
@@ -77,8 +79,7 @@ class Adanaxis_level21 < AdanaxisSpace
           :position => MushVector.new(200, -200, -100, -300-100*param),
           :angular_velocity => angVel
         ),
-        :is_jammer => false,
-        
+        :is_jammer => true
       )
     end
     
@@ -97,16 +98,35 @@ class Adanaxis_level21 < AdanaxisSpace
     
     2.times do |param|
       mPieceLibrary.mRailCreate(
-        :colour => 'blue',
+        :colour => 'red',
         :post => MushPost.new(
-          :position => MushVector.new(400, 200, -50, -700-100*param),
+          :position => MushVector.new(-400, -200, -50, -500-100*param),
           :angular_position => MushTools.cRandomOrientation
         ),
         :ai_state => :dormant,
-        :ai_state_msec => 3000
+        :ai_state_msec => 15000
       )
     end
     
+    mPieceLibrary.mCisternCreate(
+      :colour => 'red',
+      :post => MushPost.new(
+        :position => MushVector.new(-500, -200, -50, -500),
+        :velocity => vel,
+        :angular_position => angPos
+      ),
+      :patrol_points => [
+        MushVector.new(-500, -200, -200, -1000),
+        MushVector.new(-200, 0, 200, -1000),
+        MushVector.new(-200, 0, 200, -500),
+        MushVector.new(-500, -200, -200, -500)
+        ],
+      :ammo_count => 5+10*diff,
+      :ai_state => :patrol,
+      :ai_state_msec => 10000,
+      :weapon => :vendor_spawner
+    )
+  
     mPieceLibrary.mCisternCreate(
       :colour => 'blue',
       :post => MushPost.new(
@@ -126,7 +146,7 @@ class Adanaxis_level21 < AdanaxisSpace
     $currentLogic.mRemnant.mCreate(
       :item_type => (AdanaxisRuby.cGameDifficulty < 2) ? :player_light_missile : :player_heavy_cannon,
       :post => MushPost.new(
-        :position => MushVector.new(3, 0 , 0, -20)
+        :position => MushVector.new(-10, 0 , 0, -20)
       )
     )
     
@@ -134,7 +154,7 @@ class Adanaxis_level21 < AdanaxisSpace
       $currentLogic.mRemnant.mCreate(
         :item_type => :player_heavy_cannon,
         :post => MushPost.new(
-          :position => MushVector.new(5, 1, 0, -40)
+          :position => MushVector.new(0, 0, 0, -40)
         )
       )
     end
@@ -142,10 +162,15 @@ class Adanaxis_level21 < AdanaxisSpace
     $currentLogic.mRemnant.mCreate(
       :item_type => :player_heavy_missile,
       :post => MushPost.new(
-        :position => MushVector.new(7, 2, 0, -80)
+        :position => MushVector.new(10, 0, 0, -80)
       )
     )
           
     mStandardCosmos(21)
+  end
+  
+  def mJammersEliminated
+    mJammingSet(false)
+    MushGame.cNamedDialoguesAdd('^unjammed')
   end
 end
