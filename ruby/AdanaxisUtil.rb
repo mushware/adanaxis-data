@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } fmcUR/puBAQN1IsolXK4VQ
-# $Id: AdanaxisUtil.rb,v 1.34 2007/05/29 13:25:56 southa Exp $
+# $Id: AdanaxisUtil.rb,v 1.35 2007/06/05 12:15:14 southa Exp $
 # $Log: AdanaxisUtil.rb,v $
+# Revision 1.35  2007/06/05 12:15:14  southa
+# Level 21
+#
 # Revision 1.34  2007/05/29 13:25:56  southa
 # Level 20
 #
@@ -175,6 +178,7 @@ class AdanaxisUtil < MushObject
     :is_jammer => true,
     :is_primary => true,
     :is_rocket => true,
+    :is_stealth => true,
     :item_type => true,
     :jammable => true,
     :khazi_test => true,

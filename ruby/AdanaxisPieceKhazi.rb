@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } 789lRZlkGd4CN1rbUN5znQ
-# $Id: AdanaxisPieceKhazi.rb,v 1.43 2007/05/29 13:25:56 southa Exp $
+# $Id: AdanaxisPieceKhazi.rb,v 1.44 2007/06/06 12:24:13 southa Exp $
 # $Log: AdanaxisPieceKhazi.rb,v $
+# Revision 1.44  2007/06/06 12:24:13  southa
+# Level 22
+#
 # Revision 1.43  2007/05/29 13:25:56  southa
 # Level 20
 #
@@ -181,6 +184,7 @@ class AdanaxisPieceKhazi < AdanaxisPiece
     @m_weapon.mAmmoCountSet(inParams[:ammo_count]) if inParams[:ammo_count]
     @m_scannerSymbol = inParams[:scanner_symbol] || AdanaxisScanner::SYMBOL_KHAZI_PLAIN
     @m_isJammer = inParams[:is_jammer] || false
+    @m_isStealth = inParams[:is_stealth] || false
     @m_effectScale = inParams[:effect_scale] || @m_hitPoints / 10.0
     @m_colour = inParams[:colour]
   end
