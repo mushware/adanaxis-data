@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } I5I5PreDB+b1tW+GtXsmJg
-# $Id: space.rb,v 1.25 2007/04/19 12:57:57 southa Exp $
+# $Id: space.rb,v 1.26 2007/04/26 13:12:40 southa Exp $
 # $Log: space.rb,v $
+# Revision 1.26  2007/04/26 13:12:40  southa
+# Limescale and level 9
+#
 # Revision 1.25  2007/04/19 12:57:57  southa
 # Prerelease work
 #
@@ -110,7 +113,7 @@ class Adanaxis_menu1 < AdanaxisSpace
     MushTools.cRotationInZWPlane(Math::PI / 873).mRotate(angVel);
     MushTools.cRotationInYZPlane(Math::PI / 970).mRotate(angVel);
 
-    mPieceLibrary.mLimescaleCreate(
+    mPieceLibrary.mBleachCreate(
       :colour => 'red',
       :post => MushPost.new(
         :position => MushVector.new(0,0,0,-30),

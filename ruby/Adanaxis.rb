@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } Z/0IM/eblOZbcUQpYNCCfg
-# $Id: Adanaxis.rb,v 1.38 2007/05/10 11:44:11 southa Exp $
+# $Id: Adanaxis.rb,v 1.39 2007/05/21 13:32:51 southa Exp $
 # $Log: Adanaxis.rb,v $
+# Revision 1.39  2007/05/21 13:32:51  southa
+# Flush weapon
+#
 # Revision 1.38  2007/05/10 11:44:11  southa
 # Level15
 #
@@ -119,6 +122,7 @@ require 'Mushware.rb'
 require 'AdanaxisAI.rb'
 require 'AdanaxisAIKhazi.rb'
 require 'AdanaxisAIKhaziAttendant.rb'
+require 'AdanaxisAIKhaziBleach.rb'
 require 'AdanaxisAIKhaziCarrier.rb'
 require 'AdanaxisAIKhaziFloater.rb'
 require 'AdanaxisAIKhaziHarpik.rb'

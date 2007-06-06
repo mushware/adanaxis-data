@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } YLUoLTgMqqE4ZOb+i1Hc1g
-# $Id: space.rb,v 1.1 2007/06/02 15:56:57 southa Exp $
+# $Id: space.rb,v 1.2 2007/06/05 14:57:38 southa Exp $
 # $Log: space.rb,v $
+# Revision 1.2  2007/06/05 14:57:38  southa
+# Level 22 work
+#
 # Revision 1.1  2007/06/02 15:56:57  southa
 # Shader fix and prerelease work
 #
@@ -30,7 +33,6 @@ class Adanaxis_level22 < AdanaxisSpace
     super
     
     mIsBattleSet(true)
-    mPrimarySet(PRIMARY_BLUE)
   end
   
   def mLoad(game)
@@ -40,15 +42,13 @@ class Adanaxis_level22 < AdanaxisSpace
   end
   
   def mPrecacheListBuild
-    ### super
-    mPrecacheListAdd(mPieceLibrary.mAttendantTex('red', 'blue'))
-    mPrecacheListAdd(mPieceLibrary.mCisternTex('red', 'blue'))
-    mPrecacheListAdd(mPieceLibrary.mFreshenerTex('blue'))
+    super
+    mPrecacheListAdd(mPieceLibrary.mBleachTex('red'))
+    mPrecacheListAdd(mPieceLibrary.mCisternTex('blue'))
     mPrecacheListAdd(mPieceLibrary.mHarpikTex('red', 'blue'))
     mPrecacheListAdd(mPieceLibrary.mRailTex('red', 'blue'))
-    mPrecacheListAdd(mPieceLibrary.mLimescaleTex('red', 'blue'))
-    mPrecacheListAdd(mPieceLibrary.mVendorTex('red', 'blue'))
-    mPrecacheListAdd(mPieceLibrary.mWarehouseTex('red'))
+    mPrecacheListAdd(mPieceLibrary.mVendorTex('blue'))
+    mPrecacheListAdd(mPieceLibrary.mWarehouseTex('blue'))
   end
 
   def mInitialPiecesCreate
@@ -79,8 +79,7 @@ class Adanaxis_level22 < AdanaxisSpace
           ],
           :ai_state => :patrol,
           :ai_state_msec => 30000,
-          :remnant => :player_rail,
-          :is_primary => true
+          :remnant => :player_heavy_missile
         )
       end
     end
@@ -137,7 +136,23 @@ class Adanaxis_level22 < AdanaxisSpace
       )
     end    
         
-    12.times do |param|
+    # Red forces    
+    
+    4.times do |param|
+      mPieceLibrary.mBleachCreate(
+        :colour => 'red',
+        :post => MushPost.new(
+          :position => MushVector.new(800, 100, -50, -300-300*param),
+          :velocity => MushVector.new(0,0,0,0),
+          :angular_position => angPos
+        ),
+        :ai_state => :dormant,
+        :ai_state_msec => 3000+1000*param,
+        :ammo_count => 1
+      )
+    end
+    
+    6.times do |param|
       ['red'].each do |colour|
         mPieceLibrary.mHarpikCreate(
           :colour => colour,
@@ -158,30 +173,32 @@ class Adanaxis_level22 < AdanaxisSpace
           :angular_position => MushTools.cRandomOrientation
         ),
         :ai_state => :dormant,
-        :ai_state_msec => 3000
+        :ai_state_msec => 3000+1000*param
       )
     end
-  
+    
+
     $currentLogic.mRemnant.mCreate(
-      :item_type => (AdanaxisRuby.cGameDifficulty < 2) ? :player_light_missile : :player_heavy_cannon,
+      :item_type => :player_heavy_cannon,
       :post => MushPost.new(
-        :position => MushVector.new(3, 0 , 0, -20)
+        :position => MushVector.new(0, -2, 0, -40)
       )
     )
-    
-    if diff < 1
+
+ 
+    (3-diff).times do |i|
       $currentLogic.mRemnant.mCreate(
-        :item_type => :player_heavy_cannon,
+        :item_type => :player_heavy_missile,
         :post => MushPost.new(
-          :position => MushVector.new(5, 1, 0, -40)
+          :position => MushVector.new(0, -2, 0, -20+2*i)
         )
       )
     end
- 
+    
     $currentLogic.mRemnant.mCreate(
-      :item_type => :player_heavy_missile,
+      :item_type => :player_flush,
       :post => MushPost.new(
-        :position => MushVector.new(7, 2, 0, -80)
+        :position => MushVector.new(0,-2, 0, -60)
       )
     )
           

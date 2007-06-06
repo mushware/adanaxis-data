@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } /HC+dJWnGXbdJxstPsjAXw
-# $Id: AdanaxisTextureLibrary.rb,v 1.48 2007/05/22 16:44:58 southa Exp $
+# $Id: AdanaxisTextureLibrary.rb,v 1.49 2007/05/23 19:14:58 southa Exp $
 # $Log: AdanaxisTextureLibrary.rb,v $
+# Revision 1.49  2007/05/23 19:14:58  southa
+# Level 18
+#
 # Revision 1.48  2007/05/22 16:44:58  southa
 # Level 18
 #
@@ -353,6 +356,53 @@ class AdanaxisTextureLibrary < MushObject
     :palette       => 'palette1',
     :palettestart  => [0,0.1],
     :palettevector => [0.99,0],
+		:scale         => [scale, scale, scale, scale],
+    :numoctaves    => 8,
+    :octaveratio   => 0.5,
+		:cache         => 1,
+    :compress      => compressNear
+	)
+
+	
+  scale = 0.2
+  MushGLTexture::cDefine(
+		:name          => 'bleach-tex',
+    :type          => 'CellNoise',
+    :meshname      => 'bleach',
+    :size          => [textureSize, textureSize],
+    :palette       => 'palette3',
+    :palettestart  => [0,0.5],
+    :palettevector => [4.0,0.0],
+		:scale         => [scale, scale, scale, scale],
+    :numoctaves    => 8,
+    :octaveratio   => 0.5,
+		:cache         => 1,
+    :compress      => compressNear
+	)
+
+  MushGLTexture::cDefine(
+		:name          => 'bleach-red-tex',
+    :type          => 'CellNoise',
+    :meshname      => 'bleach-red',
+    :size          => [textureSize, textureSize],
+    :palette       => 'palette3',
+    :palettestart  => [0,0.6],
+    :palettevector => [4.0,3.0],
+		:scale         => [scale, scale, scale, scale],
+    :numoctaves    => 8,
+    :octaveratio   => 0.5,
+		:cache         => 1,
+    :compress      => compressNear
+	)
+
+  MushGLTexture::cDefine(
+		:name          => 'bleach-blue-tex',
+    :type          => 'CellNoise',
+    :meshname      => 'bleach-blue',
+    :size          => [textureSize, textureSize],
+    :palette       => 'palette3',
+    :palettestart  => [0,0.4],
+    :palettevector => [4.0,-3.0],
 		:scale         => [scale, scale, scale, scale],
     :numoctaves    => 8,
     :octaveratio   => 0.5,

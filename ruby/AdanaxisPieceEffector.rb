@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } 7ky2F4mlY59mOd1Z/8r/dg
-# $Id: AdanaxisPieceEffector.rb,v 1.9 2007/05/22 12:59:08 southa Exp $
+# $Id: AdanaxisPieceEffector.rb,v 1.10 2007/05/22 16:44:58 southa Exp $
 # $Log: AdanaxisPieceEffector.rb,v $
+# Revision 1.10  2007/05/22 16:44:58  southa
+# Level 18
+#
 # Revision 1.9  2007/05/22 12:59:08  southa
 # Vortex effect on player
 #
@@ -68,7 +71,7 @@ class AdanaxisPieceEffector < AdanaxisPiece
     return @m_callInterval 
   end
   
-  mush_accessor :m_rail
+  mush_accessor :m_rail, :m_owner
   
   def mDamageFactor(inPiece)
     if @m_rail

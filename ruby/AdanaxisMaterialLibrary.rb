@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } bqsHAu0ZNmRoY3PNh6U9Cw
-# $Id: AdanaxisMaterialLibrary.rb,v 1.31 2007/05/10 11:44:11 southa Exp $
+# $Id: AdanaxisMaterialLibrary.rb,v 1.32 2007/05/22 16:44:58 southa Exp $
 # $Log: AdanaxisMaterialLibrary.rb,v $
+# Revision 1.32  2007/05/22 16:44:58  southa
+# Level 18
+#
 # Revision 1.31  2007/05/10 11:44:11  southa
 # Level15
 #
@@ -108,6 +111,9 @@ class AdanaxisMaterialLibrary < MushObject
       'attendant',
       'attendant-red',
       'attendant-blue',
+      'bleach',
+      'bleach-red',
+      'bleach-blue',
       'cistern',
       'cistern-red',
       'cistern-blue',

@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } bHT09Ckq2jpnilxRX3ZW6w
-# $Id: AdanaxisWeaponLibrary.rb,v 1.31 2007/05/29 13:25:57 southa Exp $
+# $Id: AdanaxisWeaponLibrary.rb,v 1.32 2007/06/05 12:15:14 southa Exp $
 # $Log: AdanaxisWeaponLibrary.rb,v $
+# Revision 1.32  2007/06/05 12:15:14  southa
+# Level 21
+#
 # Revision 1.31  2007/05/29 13:25:57  southa
 # Level 20
 #
@@ -388,6 +391,19 @@ class AdanaxisWeaponLibrary < MushObject
       :ai_params => {:seek_acceleration => 0.1},
       :jammable => true,
       :angular_velocity => MushRotation.new
+    )
+
+    @m_weapons[:khazi_nuclear] = AdanaxisWeapon.new(
+      :projectile_mesh => 'projectile2',
+      :speed => 1.0,
+      :hit_points => 500.0,
+      :fire_rate_msec => 10000,
+      :lifetime_msec => 5000,
+      :offset_sequence => [
+        MushVector.new(0,0,0,-4)
+      ],
+      :load_sound => 'load9',
+      :fire_sound => 'fire9'
     )
 
     @m_weapons[:attendant_spawner] = AdanaxisWeapon.new(

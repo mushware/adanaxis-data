@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } WbjKV0UNx6NxJkbQBQ14fA
-# $Id: AdanaxisMeshLibrary.rb,v 1.41 2007/05/22 16:44:58 southa Exp $
+# $Id: AdanaxisMeshLibrary.rb,v 1.42 2007/05/23 19:14:58 southa Exp $
 # $Log: AdanaxisMeshLibrary.rb,v $
+# Revision 1.42  2007/05/23 19:14:58  southa
+# Level 18
+#
 # Revision 1.41  2007/05/22 16:44:58  southa
 # Level 18
 #
@@ -216,6 +219,89 @@ class AdanaxisMeshLibrary
         :offset => MushVector.new(0,0,0,1.0),
         :scale => 0.75),
   		:num_iterations => 1
+    ))
+
+    mesh.mMaterialAdd("#{inName}-mat")
+
+    mesh.mMake
+  end
+
+  #
+  # Bleach mesh
+  #
+  # A large khazi with a heavy weapon
+  def mKhaziBleachCreate(inName)
+    mesh = MushMesh.new(inName)
+
+    mesh.mBaseAdd(MushBasePrism.new(:order => 7))
+	
+    mesh.mBaseDisplacementAdd(MushDisplacement.new(
+		  :offset => MushVector.new(0,0,0,1),
+      :scale => MushVector.new(4,4,6,6)
+	  ))
+	
+  	  
+    # Nose
+    mesh.mExtruderAdd(MushExtruder.new(
+      :sourceface => 0,
+      :displacement => MushDisplacement.new(
+        :offset => MushVector.new(0,0,0,-4),
+        :scale => 0.8),
+  		:num_iterations => 1
+    ))
+
+    mesh.mExtruderAdd(MushExtruder.new(
+      :sourceface => 1*11+0,
+      :displacement => MushDisplacement.new(
+        :offset => MushVector.new(0,0,0,-2),
+        :scale => 0.5),
+  		:num_iterations => 1
+    ))
+
+    # Tail
+    mesh.mExtruderAdd(MushExtruder.new(
+      :sourceface => 1,
+      :displacement => MushDisplacement.new(
+        :offset => MushVector.new(0,0,0,4),
+        :scale => 0.75),
+  		:num_iterations => 1
+    ))
+  
+    mesh.mExtruderAdd(MushExtruder.new(
+      :sourceface => 3*10+1,
+      :displacement => MushDisplacement.new(
+        :offset => MushVector.new(0,0,0,5),
+        :scale => 1.0),
+  		:num_iterations => 1
+    ))
+    mesh.mExtruderAdd(MushExtruder.new(
+      :sourceface => 4*10+1,
+      :displacement => MushDisplacement.new(
+        :offset => MushVector.new(0,0,0,4),
+        :scale => 1.25),
+  		:num_iterations => 2
+    ))
+
+    # Boom -z
+    mesh.mExtruderAdd(MushExtruder.new(
+      :sourceface => 2,
+      :displacement => MushDisplacement.new(
+        :offset => MushVector.new(0,0,-4.0,0),
+        :rotation => MushTools.cRotationInZWPlane(Math::PI/6),
+        :scale => 0.9
+      ),
+		  :num_iterations => 4
+    ))
+    
+    # Boom +z
+    mesh.mExtruderAdd(MushExtruder.new(
+      :sourceface => 3,
+      :displacement => MushDisplacement.new(
+        :offset => MushVector.new(0,0,4.0,0),
+        :rotation => MushTools.cRotationInZWPlane(-Math::PI/6),
+        :scale => 0.9
+      ),
+      :num_iterations => 4
     ))
 
     mesh.mMaterialAdd("#{inName}-mat")
@@ -1551,6 +1637,9 @@ class AdanaxisMeshLibrary
     mAttendantCreate('attendant')
     mAttendantCreate('attendant-red')
     mAttendantCreate('attendant-blue')
+    mKhaziBleachCreate('bleach')
+    mKhaziBleachCreate('bleach-red')
+    mKhaziBleachCreate('bleach-blue')
     mKhaziCisternCreate('cistern')
     mKhaziCisternCreate('cistern-red')
     mKhaziCisternCreate('cistern-blue')

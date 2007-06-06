@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } 789lRZlkGd4CN1rbUN5znQ
-# $Id: AdanaxisPieceKhazi.rb,v 1.42 2007/05/10 11:44:11 southa Exp $
+# $Id: AdanaxisPieceKhazi.rb,v 1.43 2007/05/29 13:25:56 southa Exp $
 # $Log: AdanaxisPieceKhazi.rb,v $
+# Revision 1.43  2007/05/29 13:25:56  southa
+# Level 20
+#
 # Revision 1.42  2007/05/10 11:44:11  southa
 # Level15
 #
@@ -258,7 +261,11 @@ class AdanaxisPieceKhazi < AdanaxisPiece
     
     case event.mPiece2
       when AdanaxisPieceProjectile:
-        mRemnantCreate if event.mPiece2.mOwner =~ /^p/
+        mRemnantCreate if event.mPiece2.mOwner =~ /^p/      
+      when AdanaxisPieceEffector:
+        if event.mPiece2.mOwner =~ /^p/ && !event.mPiece2.mRail
+          mRemnantCreate
+        end
     end
     
   end

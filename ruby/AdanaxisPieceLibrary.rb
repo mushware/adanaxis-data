@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } 1ZJk8/vLNeRQNZGYELq9QQ
-# $Id: AdanaxisPieceLibrary.rb,v 1.25 2007/05/29 13:25:56 southa Exp $
+# $Id: AdanaxisPieceLibrary.rb,v 1.26 2007/06/05 12:15:13 southa Exp $
 # $Log: AdanaxisPieceLibrary.rb,v $
+# Revision 1.26  2007/06/05 12:15:13  southa
+# Level 21
+#
 # Revision 1.25  2007/05/29 13:25:56  southa
 # Level 20
 #
@@ -124,6 +127,22 @@ class AdanaxisPieceLibrary < MushObject
       :weapon => :khazi_base
     }
     @m_attendantNum = 0
+    
+    @m_bleachDefaults = {
+      :effect_scale => 10.0,
+      :hit_points => 250.0,
+      :type => @m_typeDefault,
+      :ai_object => AdanaxisAIKhaziBleach,
+      :ai_state_msec => 3000,
+      :ai_state => :evade,
+      :evade_speed => 0.05*(1+diff),
+      :evade_acceleration => 0.01*(1+diff),
+      :seek_speed => 0.2,
+      :seek_acceleration => 0.005,
+      :seek_stand_off => 200.0,
+      :weapon => :khazi_nuclear
+    }
+    @m_bleachNum = 0
     
     @m_cisternDefaults = {
       :effect_scale => 2.5,
@@ -356,6 +375,14 @@ class AdanaxisPieceLibrary < MushObject
     @m_attendantNum += 1
   end    
 
+  # Creates a Bleach
+  def mBleachCreate(inParams = {})
+    AdanaxisUtil.cSpellCheck(inParams)
+    newPiece = AdanaxisPieceKhazi.cCreate(mBleachParams(inParams))
+    mCommonCreate(newPiece, inParams)
+    @m_bleachNum += 1
+  end    
+
   # Creates a Cistern
   def mCisternCreate(inParams = {})
     AdanaxisUtil.cSpellCheck(inParams)
@@ -434,6 +461,10 @@ class AdanaxisPieceLibrary < MushObject
 
   def mAttendantTex(*inColours)
     return inColours.collect { |name| "attendant-#{name}-tex" }
+  end
+
+  def mBleachTex(*inColours)
+    return inColours.collect { |name| "bleach-#{name}-tex" }
   end
 
   def mCisternTex(*inColours)
@@ -538,6 +569,26 @@ protected
     retParams
   end
   
+  # Derive parameters for a Bleach
+  def mBleachParams(inParams = {})
+    
+    retParams = @m_bleachDefaults.dup
+    
+    retParams[:mesh_name] = case inParams[:colour]
+      when /(red|blue)/: "bleach-#$1"
+      when nil:          "bleach"
+      else raise "Unknown bleach colour #{inParams[:colour]}"
+    end
+    
+    retParams[:type] = mType(inParams)
+    retParams[:target_types] = mTargetTypes(inParams)
+    retParams[:remnant] = :player_nuclear
+    retParams[:scanner_symbol] = mScannerSymbol(retParams.merge(inParams))
+    mKhaziAddBaseParams(retParams, inParams)    
+    retParams.merge!(inParams)
+    retParams
+  end
+
   # Derive parameters for a Cistern
   def mCisternParams(inParams = {})
     
