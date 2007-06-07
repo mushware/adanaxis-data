@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } 4UoOmDoJxK4joUFm/5ePgQ
-# $Id: space.rb,v 1.1 2007/05/10 14:06:26 southa Exp $
+# $Id: space.rb,v 1.2 2007/05/12 14:20:47 southa Exp $
 # $Log: space.rb,v $
+# Revision 1.2  2007/05/12 14:20:47  southa
+# Level 16
+#
 # Revision 1.1  2007/05/10 14:06:26  southa
 # Level 16 and retina spin
 #
@@ -30,6 +33,7 @@ class Adanaxis_level16 < AdanaxisSpace
   def initialize(inParams = {})
     super
     mRetinaSpinSet(AdanaxisRuby.cGameDifficulty+1.0)
+    mPermanentSpinSet(true)
   end
   
   def mLoad(game)

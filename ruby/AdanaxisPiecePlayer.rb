@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } XoqG0JV9lVapjqhhSCgfAQ
-# $Id: AdanaxisPiecePlayer.rb,v 1.29 2007/05/22 12:59:09 southa Exp $
+# $Id: AdanaxisPiecePlayer.rb,v 1.30 2007/05/23 19:14:58 southa Exp $
 # $Log: AdanaxisPiecePlayer.rb,v $
+# Revision 1.30  2007/05/23 19:14:58  southa
+# Level 18
+#
 # Revision 1.29  2007/05/22 12:59:09  southa
 # Vortex effect on player
 #
@@ -144,6 +147,7 @@ class AdanaxisPiecePlayer < AdanaxisPiece
     @m_numActions = 0
     @m_lastAmmoAddMsec = 0
     @m_controlReleased = false
+    @m_thrustReleased = $currentGame.mSpace.mPermanentThrust
     
     $currentGame.mView.mDashboard.mUpdate(
       :weapon_name => @m_weaponName,
@@ -153,7 +157,7 @@ class AdanaxisPiecePlayer < AdanaxisPiece
     @m_callInterval = 100
   end
 
-  mush_accessor :m_shield, :m_originalShield, :m_magazine, :m_controlReleased
+  mush_accessor :m_shield, :m_originalShield, :m_magazine, :m_controlReleased, :m_thrustReleased
   
   def mShieldRatio
     @m_shield / @m_originalShield
