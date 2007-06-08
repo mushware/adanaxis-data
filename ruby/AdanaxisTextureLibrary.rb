@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } /HC+dJWnGXbdJxstPsjAXw
-# $Id: AdanaxisTextureLibrary.rb,v 1.49 2007/05/23 19:14:58 southa Exp $
+# $Id: AdanaxisTextureLibrary.rb,v 1.50 2007/06/06 12:24:13 southa Exp $
 # $Log: AdanaxisTextureLibrary.rb,v $
+# Revision 1.50  2007/06/06 12:24:13  southa
+# Level 22
+#
 # Revision 1.49  2007/05/23 19:14:58  southa
 # Level 18
 #
@@ -456,6 +459,52 @@ class AdanaxisTextureLibrary < MushObject
     :compress      => compressNear
 	)
 
+  scale = 0.5
+  MushGLTexture::cDefine(
+		:name          => 'door-tex',
+    :type          => 'CellNoise',
+    :meshname      => 'door',
+    :size          => [textureSize, textureSize],
+    :palette       => 'palette3',
+    :palettestart  => [0,0.5],
+    :palettevector => [4.0,0.0],
+		:scale         => [scale, scale, scale, scale],
+    :numoctaves    => 4,
+    :octaveratio   => 0.5,
+		:cache         => 1,
+    :compress      => compressNear
+	)
+
+  MushGLTexture::cDefine(
+		:name          => 'door-red-tex',
+    :type          => 'CellNoise',
+    :meshname      => 'door-red',
+    :size          => [textureSize, textureSize],
+    :palette       => 'palette3',
+    :palettestart  => [0,0.6],
+    :palettevector => [4.0,3.0],
+		:scale         => [scale, scale, scale, scale],
+    :numoctaves    => 4,
+    :octaveratio   => 0.5,
+		:cache         => 0,
+    :compress      => compressNear
+	)
+
+  MushGLTexture::cDefine(
+		:name          => 'door-blue-tex',
+    :type          => 'CellNoise',
+    :meshname      => 'door-blue',
+    :size          => [textureSize, textureSize],
+    :palette       => 'palette3',
+    :palettestart  => [0,0.4],
+    :palettevector => [4.0,-3.0],
+		:scale         => [scale, scale, scale, scale],
+    :numoctaves    => 4,
+    :octaveratio   => 0.5,
+		:cache         => 1,
+    :compress      => compressNear
+	)
+	
   scale = 0.1
   MushGLTexture::cDefine(
 		:name          => 'floater-tex',

@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } 789lRZlkGd4CN1rbUN5znQ
-# $Id: AdanaxisPieceKhazi.rb,v 1.44 2007/06/06 12:24:13 southa Exp $
+# $Id: AdanaxisPieceKhazi.rb,v 1.45 2007/06/06 15:11:20 southa Exp $
 # $Log: AdanaxisPieceKhazi.rb,v $
+# Revision 1.45  2007/06/06 15:11:20  southa
+# Level 23
+#
 # Revision 1.44  2007/06/06 12:24:13  southa
 # Level 22
 #
@@ -191,6 +194,13 @@ class AdanaxisPieceKhazi < AdanaxisPiece
   
   mush_reader :m_weapon, :m_weaponName, :m_colour
   
+  def mDamageTake(inDamage, inPiece)
+    # Hard targets only affected by high yield weapons, so
+    unless mOriginalHitPoints >= 500.0 && inPiece.mHitPoints < 100.0
+      super
+    end
+  end
+  
   def mWeaponChange(inWeapon)
     if @m_weaponName != inWeapon
       @m_weaponName = inWeapon
@@ -276,10 +286,9 @@ class AdanaxisPieceKhazi < AdanaxisPiece
   
   def mCollisionHandle(event)
     super
-    otherPiece = event.mPiece2
     case event.mPiece2
       when AdanaxisPieceProjectile:
-        @m_ai.mTargetOverride(otherPiece.mOwner)
+        @m_ai.mTargetOverride(event.mPiece2.mOwner)
         
       when AdanaxisPieceItem:
         if @m_hitPoints > 0.0

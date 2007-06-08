@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } WbjKV0UNx6NxJkbQBQ14fA
-# $Id: AdanaxisMeshLibrary.rb,v 1.42 2007/05/23 19:14:58 southa Exp $
+# $Id: AdanaxisMeshLibrary.rb,v 1.43 2007/06/06 12:24:12 southa Exp $
 # $Log: AdanaxisMeshLibrary.rb,v $
+# Revision 1.43  2007/06/06 12:24:12  southa
+# Level 22
+#
 # Revision 1.42  2007/05/23 19:14:58  southa
 # Level 18
 #
@@ -386,6 +389,59 @@ class AdanaxisMeshLibrary
       ),
       :num_iterations => 4
     ))
+
+
+    mesh.mMaterialAdd("#{inName}-mat")
+
+    mesh.mMake
+  end
+
+  #
+  # Door mesh
+  #
+  # A transport gate
+  def mKhaziDoorCreate(inName)
+    mesh = MushMesh.new(inName)
+
+    mesh.mBaseAdd(MushBasePrism.new(:order => 7))
+	
+    mesh.mBaseDisplacementAdd(MushDisplacement.new(
+		  :offset => MushVector.new(0,0,0,-30),
+      :scale => MushVector.new(8*Math.sqrt(2),8*Math.sqrt(2),8,8)
+	  ))
+
+    # Boom -z
+    mesh.mExtruderAdd(MushExtruder.new(
+      :sourceface => 2,
+      :displacement => MushDisplacement.new(
+        :offset => MushVector.new(0,0,-8.0,0),
+        :rotation => MushTools.cRotationInZWPlane(-Math::PI/12),
+        :scale => 1
+      ),
+		  :num_iterations => 12
+    ))
+    
+    # Boom +z
+    mesh.mExtruderAdd(MushExtruder.new(
+      :sourceface => 3,
+      :displacement => MushDisplacement.new(
+        :offset => MushVector.new(0,0,8.0,0),
+        :rotation => MushTools.cRotationInZWPlane(Math::PI/12),
+        :scale => 1
+      ),
+      :num_iterations => 12
+    ))
+
+    # Loop closing piece
+    mesh.mExtruderAdd(MushExtruder.new(
+      :sourceface => 11*11+0,
+      :displacement => MushDisplacement.new(
+        :offset => MushVector.new(0,0,8.0,0),
+        :scale => 1
+      ),
+		  :num_iterations => 3
+    ))
+    
 
 
     mesh.mMaterialAdd("#{inName}-mat")
@@ -1643,6 +1699,9 @@ class AdanaxisMeshLibrary
     mKhaziCisternCreate('cistern')
     mKhaziCisternCreate('cistern-red')
     mKhaziCisternCreate('cistern-blue')
+    mKhaziDoorCreate('door')
+    mKhaziDoorCreate('door-red')
+    mKhaziDoorCreate('door-blue')
     mKhaziFloaterCreate('floater')
     mKhaziFloaterCreate('floater-red')
     mKhaziFloaterCreate('floater-blue')

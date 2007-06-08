@@ -1,0 +1,151 @@
+<!--
+##############################################################################
+#
+# Copyright Andy Southgate 2006-2007
+#
+# This file may be used and distributed under the terms of the Mushware
+# Commercial Software Licence version 1.2.  If not supplied with this software
+# a copy of the licence can be obtained from Mushware Limited via
+# http://www.mushware.com/.
+#
+# This software carries NO WARRANTY of any kind.
+#
+##############################################################################
+#
+# $Id: dialogues.xml,v 1.1 2007/06/08 13:17:14 southa Exp $
+# $Log: dialogues.xml,v $
+-->
+<obj>(
+"start1"=<obj type="GameDialogue">
+<strings>(
+<obj type="GameStringSpec">
+<string type="GLString">
+<fontRef type="GLFontRef">
+<name>"font-mono1"</name>
+</fontRef>
+<value>"Transport Gate"</value>
+</string>
+<posticity type="MushPiePosticity">
+<pos>(0,0.12,0,0)</pos>
+</posticity>
+<startColour>(1,1,1,0)</startColour>
+<midColour>(1,1,1,0.5)</midColour>
+<endColour>(1,0,0,0)</endColour>
+<startTime>0</startTime>
+<endTime>300</endTime>
+<fadeTime>100</fadeTime>
+<startSize>0.04</startSize>
+<midSize>0.04</midSize>
+<endSize>0.10</endSize>
+</obj>)
+</strings>
+<voices>(
+<obj type="GameSoundSpec">
+  <soundRef>"voice-intro"</soundRef>
+  <startTime>100</startTime>
+</obj>)</voices>
+<soundStreams>(
+ <obj type="GameSoundStreamSpec">
+  <soundStreamRef>"game1"</soundStreamRef>
+  <loop>10000</loop>
+  <startTime>0</startTime>
+ </obj>
+)</soundStreams>
+</obj>
+,
+"dead1"=<obj type="GameDialogue">
+<strings>(
+<obj type="GameStringSpec">
+<string type="GLString">
+<fontRef type="GLFontRef">
+<name>"font-mono1"</name>
+</fontRef>
+<value>"Mission Failed"</value>
+</string>
+<posticity type="MushPiePosticity">
+<pos>(0,0.12,0,0)</pos>
+</posticity>
+<startColour>(1,1,1,0)</startColour>
+<midColour>(1,1,1,0.5)</midColour>
+<endColour>(1,0,0,0)</endColour>
+<startTime>0</startTime>
+<endTime>300</endTime>
+<fadeTime>100</fadeTime>
+<startSize>0.04</startSize>
+<midSize>0.04</midSize>
+<endSize>0.10</endSize>
+</obj>)
+</strings>
+<voices>(
+ <obj type="GameSoundSpec">
+  <soundRef>"voice-E5-2"</soundRef>
+  <startTime>100</startTime>
+ </obj>
+)</voices></obj>
+,
+"lost1"=<obj type="GameDialogue">
+<strings>(
+<obj type="GameStringSpec">
+<string type="GLString">
+<fontRef type="GLFontRef">
+<name>"font-mono1"</name>
+</fontRef>
+<value>"Mission Failed"</value>
+</string>
+<posticity type="MushPiePosticity">
+<pos>(0,0.12,0,0)</pos>
+</posticity>
+<startColour>(1,1,1,0)</startColour>
+<midColour>(1,1,1,0.5)</midColour>
+<endColour>(1,0,0,0)</endColour>
+<startTime>0</startTime>
+<endTime>300</endTime>
+<fadeTime>100</fadeTime>
+<startSize>0.04</startSize>
+<midSize>0.04</midSize>
+<endSize>0.10</endSize>
+</obj>)
+</strings>
+<voices>(
+ <obj type="GameSoundSpec">
+  <soundRef>"voice-E11-3"</soundRef>
+  <startTime>50</startTime>
+ </obj>
+ ,
+ <obj type="GameSoundSpec">
+  <soundRef>"voice-E5-3"</soundRef>
+  <startTime>250</startTime>
+ </obj>
+)</voices></obj>
+,
+"won1"=<obj type="GameDialogue">
+<strings>(
+<obj type="GameStringSpec">
+<string type="GLString">
+<fontRef type="GLFontRef">
+<name>"font-mono1"</name>
+</fontRef>
+<value>"Mission Successful"</value>
+</string>
+<posticity type="MushPiePosticity">
+<pos>(0,0.12,0,0)</pos>
+</posticity>
+<startColour>(1,1,1,0)</startColour>
+<midColour>(1,1,1,0.5)</midColour>
+<endColour>(1,0,0,0)</endColour>
+<startTime>0</startTime>
+<endTime>300</endTime>
+<fadeTime>100</fadeTime>
+<startSize>0.04</startSize>
+<midSize>0.04</midSize>
+<endSize>0.10</endSize>
+</obj>)
+</strings>
+<voices>(
+ <obj type="GameSoundSpec">
+  <soundRef>"voice-E10-3"</soundRef>
+  <startTime>0</startTime>
+ </obj>
+)</voices>
+</obj>
+)</obj>

@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } 1ZJk8/vLNeRQNZGYELq9QQ
-# $Id: AdanaxisPieceLibrary.rb,v 1.26 2007/06/05 12:15:13 southa Exp $
+# $Id: AdanaxisPieceLibrary.rb,v 1.27 2007/06/06 12:24:13 southa Exp $
 # $Log: AdanaxisPieceLibrary.rb,v $
+# Revision 1.27  2007/06/06 12:24:13  southa
+# Level 22
+#
 # Revision 1.26  2007/06/05 12:15:13  southa
 # Level 21
 #
@@ -161,6 +164,16 @@ class AdanaxisPieceLibrary < MushObject
       :ammo_count => 10 + 10 * diff
     }
     @m_cisternNum = 0
+    
+    @m_doorDefaults = {
+      :effect_scale => 10.0,
+      :hit_points => 1000.0,
+      :type => @m_typeDefault,
+      :ai_object => AdanaxisAIKhaziInert,
+      :ai_state_msec => 60000,
+      :ai_state => :dormant
+    }
+    @m_doorNum = 0
     
     @m_floaterDefaults = {
       :effect_scale => 4.0,
@@ -391,6 +404,14 @@ class AdanaxisPieceLibrary < MushObject
     @m_cisternNum += 1
   end    
 
+  # Creates a Door
+  def mDoorCreate(inParams = {})
+    AdanaxisUtil.cSpellCheck(inParams)
+    newPiece = AdanaxisPieceKhazi.cCreate(mDoorParams(inParams))
+    mCommonCreate(newPiece, inParams)
+    @m_doorNum += 1
+  end    
+
   # Creates a Floater
   def mFloaterCreate(inParams = {})
     AdanaxisUtil.cSpellCheck(inParams)
@@ -469,6 +490,10 @@ class AdanaxisPieceLibrary < MushObject
 
   def mCisternTex(*inColours)
     return inColours.collect { |name| "cistern-#{name}-tex" }
+  end
+
+  def mDoorTex(*inColours)
+    return inColours.collect { |name| "door-#{name}-tex" }
   end
 
   def mFloaterTex(*inColours)
@@ -618,6 +643,26 @@ protected
     # Merge the input parameters so that they overwrite those we've calculated
     retParams.merge!(inParams)
     
+    retParams
+  end
+  
+  # Derive parameters for a Door
+  def mDoorParams(inParams = {})
+    
+    retParams = @m_doorDefaults.dup
+    
+    retParams[:mesh_name] = case inParams[:colour]
+      when /(red|blue)/: "door-#$1"
+      when nil:          "door"
+      else raise "Unknown door colour #{inParams[:colour]}"
+    end
+    
+    retParams[:type] = mType(inParams)
+    retParams[:target_types] = mTargetTypes(inParams)
+    retParams[:remnant] = :player_nuclear
+    retParams[:scanner_symbol] = mScannerSymbol(retParams.merge(inParams))
+    mKhaziAddBaseParams(retParams, inParams)    
+    retParams.merge!(inParams)
     retParams
   end
   

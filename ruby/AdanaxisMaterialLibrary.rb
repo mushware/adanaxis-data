@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } bqsHAu0ZNmRoY3PNh6U9Cw
-# $Id: AdanaxisMaterialLibrary.rb,v 1.32 2007/05/22 16:44:58 southa Exp $
+# $Id: AdanaxisMaterialLibrary.rb,v 1.33 2007/06/06 12:24:12 southa Exp $
 # $Log: AdanaxisMaterialLibrary.rb,v $
+# Revision 1.33  2007/06/06 12:24:12  southa
+# Level 22
+#
 # Revision 1.32  2007/05/22 16:44:58  southa
 # Level 18
 #
@@ -117,6 +120,9 @@ class AdanaxisMaterialLibrary < MushObject
       'cistern',
       'cistern-red',
       'cistern-blue',
+      'door',
+      'door-red',
+      'door-blue',
       'floater',
       'floater-red',
       'floater-blue',

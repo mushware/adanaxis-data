@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } 7ky2F4mlY59mOd1Z/8r/dg
-# $Id: AdanaxisPieceEffector.rb,v 1.10 2007/05/22 16:44:58 southa Exp $
+# $Id: AdanaxisPieceEffector.rb,v 1.11 2007/06/06 12:24:13 southa Exp $
 # $Log: AdanaxisPieceEffector.rb,v $
+# Revision 1.11  2007/06/06 12:24:13  southa
+# Level 22
+#
 # Revision 1.10  2007/05/22 16:44:58  southa
 # Level 18
 #
@@ -113,26 +116,28 @@ class AdanaxisPieceEffector < AdanaxisPiece
   
   def mCollisionHandle(event)
     if @m_isFlush
-      distVec = event.mPiece2.mPost.position - mPost.position
-      dist = distVec.mMagnitude
-      dist = 10 if dist < 10
-      angScale = 0.01 / dist
-      distNorm = distVec * (1/dist)
-      angAccel = MushTools.cRotationInXWPlane(distNorm.x*angScale)
-      MushTools.cRotationInZWPlane(distNorm.y*angScale).mRotate(angAccel)
-      MushTools.cRotationInYZPlane(distNorm.z*angScale).mRotate(angAccel)
-      MushTools.cRotationInXYPlane(distNorm.w*angScale).mRotate(angAccel)
-      angAccel.mNormalise!
+      unless event.mPiece2.mOriginalHitPoints > 500.0 # Don't move heavy objects
+        distVec = event.mPiece2.mPost.position - mPost.position
+        dist = distVec.mMagnitude
+        dist = 10 if dist < 10
+        angScale = 0.01 / dist
+        distNorm = distVec * (1/dist)
+        angAccel = MushTools.cRotationInXWPlane(distNorm.x*angScale)
+        MushTools.cRotationInZWPlane(distNorm.y*angScale).mRotate(angAccel)
+        MushTools.cRotationInYZPlane(distNorm.z*angScale).mRotate(angAccel)
+        MushTools.cRotationInXYPlane(distNorm.w*angScale).mRotate(angAccel)
+        angAccel.mNormalise!
 
-      vel = event.mPiece2.mPost.velocity
-      event.mPiece2.mPost.velocity = vel - distNorm * (0.2/dist)
-      angVel = event.mPiece2.mPost.angular_velocity
-      angAccel.mRotate(angVel)
-      event.mPiece2.mPost.angular_velocity = MushTools::cSlerp(angVel, MushRotation.new, 0.01)
-      
-      if event.mPiece2.kind_of?(AdanaxisPiecePlayer)
-        # Different behaviour for player
-        event.mPiece2.mControlReleasedSet(true)
+        vel = event.mPiece2.mPost.velocity
+        event.mPiece2.mPost.velocity = vel - distNorm * (0.2/dist)
+        angVel = event.mPiece2.mPost.angular_velocity
+        angAccel.mRotate(angVel)
+        event.mPiece2.mPost.angular_velocity = MushTools::cSlerp(angVel, MushRotation.new, 0.01)
+        
+        if event.mPiece2.kind_of?(AdanaxisPiecePlayer)
+          # Different behaviour for player
+          event.mPiece2.mControlReleasedSet(true)
+        end
       end
     elsif @m_rail
       # Rail impact effect
