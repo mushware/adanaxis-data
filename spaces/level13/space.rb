@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } Zse+fgKyml13WLpasUTWpA
-# $Id: space.rb,v 1.6 2007/04/26 13:12:39 southa Exp $
+# $Id: space.rb,v 1.1 2007/05/09 14:56:49 southa Exp $
 # $Log: space.rb,v $
+# Revision 1.1  2007/05/09 14:56:49  southa
+# Level 13
+#
 #
 
 require 'Mushware.rb'
@@ -58,14 +61,21 @@ class Adanaxis_level13 < AdanaxisSpace
   
     (-1..1).each do |param1|
       (-1..1).each do |param2|
+        pos = MushVector.new(10*param1+50*param2, -50+10*param1, 0, -250-100*param1)
         mPieceLibrary.mWarehouseCreate(
           :colour => 'red',
           :post => MushPost.new(
-            :position => MushVector.new(10*param1+50*param2, -50+10*param1, 0, -250-100*param1),
+            :position => pos,
             :velocity => vel,
             :angular_position => angPos
           ),
+          :patrol_points => [
+            pos + MushVector.new(0, 0, 0, -2000),
+            pos
+          ],
           :remnant => (diff < 1) ? :player_light_missile : :player_quad_cannon,
+          :ai_state => :patrol,
+          :ai_state_msec => 60000,
           :is_primary => true
         )
       end

@@ -18,8 +18,11 @@
 #
 ##############################################################################
 #%Header } pQw6UBGrukp0QOB1l19i1Q
-# $Id: start.txt,v 1.35 2007/04/19 12:57:57 southa Exp $
+# $Id: start.txt,v 1.36 2007/04/20 12:07:09 southa Exp $
 # $Log: start.txt,v $
+# Revision 1.36  2007/04/20 12:07:09  southa
+# Khazi Warehouse and level 8
+#
 # Revision 1.35  2007/04/19 12:57:57  southa
 # Prerelease work
 #
@@ -164,7 +167,7 @@ configset('MUSHGL_DISPLAY_MODE', 2)
 configset('MUSHGL_TEXTURE_CACHE', 1)
 
 # Control whether texture files in the cache directory are deleted when the game exits 0=no, 1 or undefined=yes
-configset('MUSHGL_TEXTURE_CACHE_PURGE', 0)
+# configset('MUSHGL_TEXTURE_CACHE_PURGE', 0)
 
 # Control texture compression 0=off, 1 or undefined=on
 configset('MUSHGL_TEXTURE_COMPRESSION', 1)
