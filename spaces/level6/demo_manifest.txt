@@ -1,0 +1,37 @@
+#%Header {
+##############################################################################
+#
+# File data-adanaxis/spaces/level6/demo_manifest.txt
+#
+# Author Andy Southgate 2006-2007
+#
+# This file contains original work by Andy Southgate.  The author and his
+# employer (Mushware Limited) irrevocably waive all of their copyright rights
+# vested in this particular version of this file to the furthest extent
+# permitted.  The author and Mushware Limited also irrevocably waive any and
+# all of their intellectual property rights arising from said file and its
+# creation that would otherwise restrict the rights of any party to use and/or
+# distribute the use of, the techniques and methods used herein.  A written
+# waiver can be obtained via http://www.mushware.com/.
+#
+# This software carries NO WARRANTY of any kind.
+#
+##############################################################################
+#%Header } vP6MEOasBtq9Ft0l8bib2A
+# $Id: manifest.txt,v 1.3 2007/04/18 09:21:56 southa Exp $
+# $Log: manifest.txt,v $
+# Revision 1.3  2007/04/18 09:21:56  southa
+# Header and level fixes
+#
+# Revision 1.2  2007/04/17 21:16:34  southa
+# Level work
+#
+# Revision 1.1  2007/03/28 15:56:59  southa
+# Level work
+#
+
+directory='level6'
+name='Red Sector'
+creator='Andy Southgate (www.mushware.com)'
+permit='level1'
+next='level8'

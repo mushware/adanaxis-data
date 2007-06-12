@@ -16,7 +16,9 @@
 #
 ##############################################################################
 #%Header } 5Ih7DJivY1mm41exIGTAMA
-# Manifest file
+# $Id$
+# $Log$
+
 directory='intro1'
 name='Familiarisation sequence'
 creator='Andy Southgate (www.mushware.com)'

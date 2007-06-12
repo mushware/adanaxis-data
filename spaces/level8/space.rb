@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } mmDxSdwqzPsJ4lPOi2WIag
-# $Id: space.rb,v 1.5 2007/04/21 18:05:47 southa Exp $
+# $Id: space.rb,v 1.6 2007/04/26 13:12:39 southa Exp $
 # $Log: space.rb,v $
+# Revision 1.6  2007/04/26 13:12:39  southa
+# Limescale and level 9
+#
 # Revision 1.5  2007/04/21 18:05:47  southa
 # Level 8
 #
@@ -68,18 +71,24 @@ class Adanaxis_level8 < AdanaxisSpace
     angPos = MushTools.cRotationInXZPlane(Math::PI/2)
   
     (-1..1).each do |param|
+      pos = MushVector.new(10*param, -50+10*param, 0, -250-100*param)
       mPieceLibrary.mWarehouseCreate(
         :colour => 'blue',
         :post => MushPost.new(
-          :position => MushVector.new(10*param, -50+10*param, 0, -250-100*param),
+          :position => pos,
           :velocity => vel,
           :angular_position => angPos
         ),
+        :patrol_points => [
+          pos + MushVector.new(0, 0, 0, -2000),
+          pos
+        ],
+        :ai_state => :patrol,
+        :ai_state_msec => 60000,
         :remnant => :player_heavy_missile,
         :is_primary => true
       )
     end
-  
 
     [-1,1].each do |param|
       mPieceLibrary.mCisternCreate(
