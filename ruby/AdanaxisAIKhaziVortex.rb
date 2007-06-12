@@ -17,8 +17,11 @@
 ##############################################################################
 #%Header } krf3dLTthr3a3LZ9TozvBA
 #
-# $Id: AdanaxisAIKhaziVendor.rb,v 1.1 2007/05/08 15:28:13 southa Exp $
-# $Log: AdanaxisAIKhaziVendor.rb,v $
+# $Id: AdanaxisAIKhaziVortex.rb,v 1.1 2007/05/21 13:32:51 southa Exp $
+# $Log: AdanaxisAIKhaziVortex.rb,v $
+# Revision 1.1  2007/05/21 13:32:51  southa
+# Flush weapon
+#
 #
 
 require 'Mushware.rb'
@@ -26,6 +29,10 @@ require 'AdanaxisAIKhazi.rb'
 
 class AdanaxisAIKhaziVortex < AdanaxisAIKhazi
 
+  def mStateActionDormantExit
+    mStateChangeEvade(3000)
+  end
+  
   def mStateActionIdle
     mStateChangeSeek(15000)
   end

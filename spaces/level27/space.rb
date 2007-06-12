@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } g26FZwwRSpbpDR2fnufv+Q
-# $Id: space.rb,v 1.2 2007/06/02 15:56:57 southa Exp $
+# $Id: space.rb,v 1.1 2007/06/11 20:06:13 southa Exp $
 # $Log: space.rb,v $
+# Revision 1.1  2007/06/11 20:06:13  southa
+# Compatibility fixes and level 27
+#
 
 require 'Mushware.rb'
 require 'Adanaxis.rb'
@@ -40,11 +43,12 @@ class Adanaxis_level27 < AdanaxisSpace
   def mPrecacheListBuild
     super
     mPrecacheListAdd(mPieceLibrary.mAttendantTex('blue'))
-    mPrecacheListAdd(mPieceLibrary.mCisternTex('blue'))
+    mPrecacheListAdd(mPieceLibrary.mCisternTex('red', 'blue'))
     mPrecacheListAdd(mPieceLibrary.mFreshenerTex('red'))
-    mPrecacheListAdd(mPieceLibrary.mHarpikTex('red', 'blue'))
+    mPrecacheListAdd(mPieceLibrary.mHarpikTex('red'))
     mPrecacheListAdd(mPieceLibrary.mRailTex('red', 'blue'))
-    mPrecacheListAdd(mPieceLibrary.mWarehouseTex('red'))
+    mPrecacheListAdd(mPieceLibrary.mVendorTex('red'))
+    mPrecacheListAdd(mPieceLibrary.mWarehouseTex('blue'))
   end
 
   def mInitialPiecesCreate
@@ -81,8 +85,8 @@ class Adanaxis_level27 < AdanaxisSpace
           :angular_position => angPos
         ),
         :patrol_points => [
-          MushVector.new(-300, 100*param, -400, -250+50**param),
-          MushVector.new(300, 100*param, -400, -250+50**param)
+          MushVector.new(-300, 100*param, -400, -250+50*param),
+          MushVector.new(300, 100*param, -400, -250+50*param)
           ],
         :ai_state => :seek,
         :ai_state_msec => 8000+250*param,
@@ -207,13 +211,13 @@ class Adanaxis_level27 < AdanaxisSpace
     )
     
     (1+diff).times do |param|
-        mPieceLibrary.mVendorCreate(
-      :colour => 'red',
-      :post => MushPost.new(
-        :position => MushVector.new(-100+100*param,0,0,200)
-      ),
-      :spawned => true
-    ) 
+      mPieceLibrary.mVendorCreate(
+        :colour => 'red',
+        :post => MushPost.new(
+          :position => MushVector.new(-100+100*param,0,0,200)
+        ),
+        :spawned => true
+      ) 
     end
     
     MushGame.cVoicePlay('voice-E3-1') # 'Hostile import detected'

@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } q96UgcPC6fNFilSzbpsHhQ
-# $Id: space.rb,v 1.5 2007/04/17 11:37:40 southa Exp $
+# $Id: space.rb,v 1.6 2007/04/18 09:21:55 southa Exp $
 # $Log: space.rb,v $
+# Revision 1.6  2007/04/18 09:21:55  southa
+# Header and level fixes
+#
 # Revision 1.5  2007/04/17 11:37:40  southa
 # Graphics fix
 #
@@ -40,7 +43,6 @@ require 'Adanaxis.rb'
 class Adanaxis_level1 < AdanaxisSpace
   def initialize(inParams = {})
     super
-    mSpawnAdd(:mSpawn0)
   end
   
   def mLoad(game)
@@ -70,23 +72,5 @@ class Adanaxis_level1 < AdanaxisSpace
     end
 
     mStandardCosmos(1)
-  end
-  
-  def mSpawn0
-    (-1..1).each do |i|
-      mPieceLibrary.mAttendantCreate(
-        :colour => 'red',
-        :post => MushPost.new(
-          :position => MushVector.new(i * 50, -40, 0, -100-20*i.abs),
-          :angular_position => MushTools.cRandomOrientation
-        ),
-        :waypoint => MushVector.new(i * 30, -0, i * 15, -250),
-        :ai_state => :waypoint,
-        :ai_state_msec => 15000,
-        :spawned => true
-      )
-    end
-    MushGame.cVoicePlay('voice-E3-1') # 'Hostile import detected'
-    return true
   end
 end

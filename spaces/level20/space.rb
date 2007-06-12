@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } IIwv2NLoondPHjF47Y20wg
-# $Id: space.rb,v 1.1 2007/05/29 13:25:57 southa Exp $
+# $Id: space.rb,v 1.2 2007/06/02 15:56:57 southa Exp $
 # $Log: space.rb,v $
+# Revision 1.2  2007/06/02 15:56:57  southa
+# Shader fix and prerelease work
+#
 # Revision 1.1  2007/05/29 13:25:57  southa
 # Level 20
 #
@@ -82,8 +85,8 @@ class Adanaxis_level20 < AdanaxisSpace
           :angular_position => angPos
         ),
         :patrol_points => [
-          MushVector.new(-300, 100*param, -400, -250+50**param),
-          MushVector.new(300, 100*param, -400, -250+50**param)
+          MushVector.new(-300, 100*param, -400, -250+50*param),
+          MushVector.new(300, 100*param, -400, -250+50*param)
           ],
         :ai_state => :seek,
         :ai_state_msec => 8000+250*param,

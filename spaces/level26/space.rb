@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } bojfsHj9PyfDBtEFgmQxTw
-# $Id: space.rb,v 1.1 2007/06/08 13:17:14 southa Exp $
+# $Id: space.rb,v 1.1 2007/06/08 16:23:04 southa Exp $
 # $Log: space.rb,v $
+# Revision 1.1  2007/06/08 16:23:04  southa
+# Level 26
+#
 
 require 'Mushware.rb'
 require 'Adanaxis.rb'
@@ -120,8 +123,8 @@ class Adanaxis_level26 < AdanaxisSpace
           :angular_position => angPos
         ),
         :patrol_points => [
-          MushVector.new(-300, 100*param, -400, -250+50**param),
-          MushVector.new(300, 100*param, -400, -250+50**param)
+          MushVector.new(-300, 100*param, -400, -250+50*param),
+          MushVector.new(300, 100*param, -400, -250+50*param)
           ],
         :ai_state => :patrol,
         :ai_state_msec => 8000+250*param,
