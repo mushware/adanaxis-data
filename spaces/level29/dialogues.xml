@@ -14,12 +14,8 @@
 #
 ##############################################################################
 #
-# $Id: dialogues.xml,v 1.1 2007/05/09 19:24:43 southa Exp $
+# $Id: dialogues.xml,v 1.1 2007/06/12 11:09:37 southa Exp $
 # $Log: dialogues.xml,v $
-# Revision 1.1  2007/05/09 19:24:43  southa
-# Level 14
-#
-#
 -->
 <obj>(
 "start1"=<obj type="GameDialogue">
@@ -29,7 +25,7 @@
 <fontRef type="GLFontRef">
 <name>"font-mono1"</name>
 </fontRef>
-<value>"Radiated warfare"</value>
+<value>"Augmentation"</value>
 </string>
 <posticity type="MushPiePosticity">
 <pos>(0,0.12,0,0)</pos>
@@ -84,7 +80,7 @@
 </strings>
 <voices>(
  <obj type="GameSoundSpec">
-  <soundRef>"voice-E5-2"</soundRef>
+  <soundRef>"voice-E5-3"</soundRef>
   <startTime>100</startTime>
  </obj>
 )</voices></obj>
@@ -114,12 +110,12 @@
 </strings>
 <voices>(
  <obj type="GameSoundSpec">
-  <soundRef>"voice-E11-6"</soundRef>
+  <soundRef>"voice-E11-4"</soundRef>
   <startTime>50</startTime>
  </obj>
  ,
  <obj type="GameSoundSpec">
-  <soundRef>"voice-E5-2"</soundRef>
+  <soundRef>"voice-E5-1"</soundRef>
   <startTime>250</startTime>
  </obj>
 )</voices></obj>
@@ -149,39 +145,9 @@
 </strings>
 <voices>(
  <obj type="GameSoundSpec">
-  <soundRef>"voice-E10-3"</soundRef>
+  <soundRef>"voice-E10-4"</soundRef>
   <startTime>0</startTime>
  </obj>
- ,
- <obj type="GameSoundSpec">
-  <soundRef>"voice-E4-3"</soundRef>
-  <startTime>200</startTime>
- </obj> 
 )</voices>
-</obj>
-,
-"unjammed1"=<obj type="GameDialogue">
-<strings>(
-<obj type="GameStringSpec">
-<string type="GLString">
-<fontRef type="GLFontRef">
-<name>"font-mono1"</name>
-</fontRef>
-<value>"Countermeasures eliminated"</value>
-</string>
-<posticity type="MushPiePosticity">
-<pos>(0,0.12,0,0)</pos>
-</posticity>
-<startColour>(1,1,1,0)</startColour>
-<midColour>(1,1,1,0.5)</midColour>
-<endColour>(1,0,0,0)</endColour>
-<startTime>0</startTime>
-<endTime>300</endTime>
-<fadeTime>100</fadeTime>
-<startSize>0.03</startSize>
-<midSize>0.03</midSize>
-<endSize>0.0</endSize>
-</obj>)
-</strings>
 </obj>
 )</obj>

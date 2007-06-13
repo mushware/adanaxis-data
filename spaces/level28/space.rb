@@ -16,11 +16,11 @@
 #
 ##############################################################################
 #%Header } PyjZgKO+Zh1BoaVMqvODDA
-# $Id: space.rb,v 1.1 2007/06/08 13:17:14 southa Exp $
+# $Id: space.rb,v 1.1 2007/06/12 11:09:37 southa Exp $
 # $Log: space.rb,v $
-
-require 'Mushware.rb'
-require 'Adanaxis.rb'
+# Revision 1.1  2007/06/12 11:09:37  southa
+# Level 28
+#
 
 require 'Mushware.rb'
 require 'Adanaxis.rb'

@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } goFdaP60AnkwLWjY5u69Hw
-# $Id: AdanaxisAI.rb,v 1.21 2007/05/08 15:28:13 southa Exp $
+# $Id: AdanaxisAI.rb,v 1.22 2007/05/24 15:13:49 southa Exp $
 # $Log: AdanaxisAI.rb,v $
+# Revision 1.22  2007/05/24 15:13:49  southa
+# Level 17
+#
 # Revision 1.21  2007/05/08 15:28:13  southa
 # Level 12
 #
@@ -262,6 +265,7 @@ class AdanaxisAI < MushObject
     @m_patrolIndex += 1
     @m_patrolIndex = 0 if @m_patrolIndex >= @m_patrolPoints.size
     @m_patrolPoint = @m_patrolPoints[@m_patrolIndex]
+    puts "New index #{@m_patrolIndex} point #{@m_patrolPoint}"
   end
 
   def mStateActionPatrol

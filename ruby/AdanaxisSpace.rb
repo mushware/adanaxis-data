@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } U1S8GssKDgFSsNiwIrKzyw
-# $Id: AdanaxisSpace.rb,v 1.34 2007/06/05 12:15:13 southa Exp $
+# $Id: AdanaxisSpace.rb,v 1.35 2007/06/07 13:23:01 southa Exp $
 # $Log: AdanaxisSpace.rb,v $
+# Revision 1.35  2007/06/07 13:23:01  southa
+# Level 24
+#
 # Revision 1.34  2007/06/05 12:15:13  southa
 # Level 21
 #
@@ -131,6 +134,7 @@ class AdanaxisSpace < MushObject
     @m_jamming = false;
     @m_permanentSpin = false;
     @m_permanentThrust = false;
+    @m_speedAugmentation = false;
     @m_textFont = MushGLFont.new(:name => (inParams[:font] || 'library-font1'));
     @m_precacheIndex = 0
     
@@ -142,7 +146,8 @@ class AdanaxisSpace < MushObject
               :m_weaponLibrary, :m_fontLibrary, :m_pieceLibrary
               
   mush_accessor :m_khaziCount, :m_khaziRedCount, :m_khaziBlueCount, :m_isBattle,
-    :m_primary, :m_retinaSpin, :m_jamming, :m_permanentSpin, :m_permanentThrust
+    :m_primary, :m_retinaSpin, :m_jamming, :m_permanentSpin, :m_permanentThrust,
+    :m_speedAugmentation
   
   def mLoadStandard(game)
     @m_fontLibrary.mCreate
