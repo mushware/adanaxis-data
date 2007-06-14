@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } mmDxSdwqzPsJ4lPOi2WIag
-# $Id: space.rb,v 1.6 2007/04/26 13:12:39 southa Exp $
+# $Id: space.rb,v 1.7 2007/06/12 13:36:22 southa Exp $
 # $Log: space.rb,v $
+# Revision 1.7  2007/06/12 13:36:22  southa
+# Demo configuration
+#
 # Revision 1.6  2007/04/26 13:12:39  southa
 # Limescale and level 9
 #
@@ -70,7 +73,7 @@ class Adanaxis_level8 < AdanaxisSpace
     vel = MushVector.new(0,0,0,-0.05*(1+diff))
     angPos = MushTools.cRotationInXZPlane(Math::PI/2)
   
-    (-1..1).each do |param|
+    (-2..2).each do |param|
       pos = MushVector.new(10*param, -50+10*param, 0, -250-100*param)
       mPieceLibrary.mWarehouseCreate(
         :colour => 'blue',
@@ -196,6 +199,13 @@ class Adanaxis_level8 < AdanaxisSpace
       )
     )
     
+    $currentLogic.mRemnant.mCreate(
+      :item_type => :player_flak,
+      :post => MushPost.new(
+        :position => MushVector.new(-4, 0, 0, -50)
+      )
+    )
+
     mStandardCosmos(8)
   end
   

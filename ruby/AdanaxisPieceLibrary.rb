@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } 1ZJk8/vLNeRQNZGYELq9QQ
-# $Id: AdanaxisPieceLibrary.rb,v 1.27 2007/06/06 12:24:13 southa Exp $
+# $Id: AdanaxisPieceLibrary.rb,v 1.28 2007/06/08 16:23:03 southa Exp $
 # $Log: AdanaxisPieceLibrary.rb,v $
+# Revision 1.28  2007/06/08 16:23:03  southa
+# Level 26
+#
 # Revision 1.27  2007/06/06 12:24:13  southa
 # Level 22
 #
@@ -214,6 +217,16 @@ class AdanaxisPieceLibrary < MushObject
     }
     @m_harpikNum = 0
 
+    @m_hubDefaults = {
+      :effect_scale => 30.0,
+      :hit_points => 3000.0,
+      :type => @m_typeDefault,
+      :ai_object => AdanaxisAIKhaziInert,
+      :ai_state_msec => 60000,
+      :ai_state => :dormant
+    }
+    @m_hubNum = 0
+    
     @m_limescaleDefaults = {
       :effect_scale => 3.5,
       :hit_points => 60.0,
@@ -436,6 +449,14 @@ class AdanaxisPieceLibrary < MushObject
     @m_harpikNum += 1
   end    
 
+  # Creates a Hub
+  def mHubCreate(inParams = {})
+    AdanaxisUtil.cSpellCheck(inParams)
+    newPiece = AdanaxisPieceKhazi.cCreate(mHubParams(inParams))
+    mCommonCreate(newPiece, inParams)
+    @m_hubNum += 1
+  end    
+
   # Creates a Limescale
   def mLimescaleCreate(inParams = {})
     AdanaxisUtil.cSpellCheck(inParams)
@@ -506,6 +527,10 @@ class AdanaxisPieceLibrary < MushObject
 
   def mHarpikTex(*inColours)
     return inColours.collect { |name| "harpik-#{name}-tex" }
+  end
+
+  def mHubTex(*inColours)
+    return inColours.collect { |name| "hub-#{name}-tex" }
   end
 
   def mLimescaleTex(*inColours)
@@ -735,6 +760,26 @@ protected
     # Merge the input parameters so that they overwrite those we've calculated
     retParams.merge!(inParams)
     
+    retParams
+  end
+  
+    # Derive parameters for a Hub
+  def mHubParams(inParams = {})
+    
+    retParams = @m_hubDefaults.dup
+    
+    retParams[:mesh_name] = case inParams[:colour]
+      when /(red|blue)/: "hub-#$1"
+      when nil:          "hub"
+      else raise "Unknown hub colour #{inParams[:colour]}"
+    end
+    
+    retParams[:type] = mType(inParams)
+    retParams[:target_types] = mTargetTypes(inParams)
+    retParams[:remnant] = :player_nuclear
+    retParams[:scanner_symbol] = mScannerSymbol(retParams.merge(inParams))
+    mKhaziAddBaseParams(retParams, inParams)    
+    retParams.merge!(inParams)
     retParams
   end
   

@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } RYsTHDgIdNXN0sJ5dpl8vw
-# $Id: AdanaxisMagazine.rb,v 1.3 2007/04/16 08:41:06 southa Exp $
+# $Id: AdanaxisMagazine.rb,v 1.4 2007/04/18 09:21:52 southa Exp $
 # $Log: AdanaxisMagazine.rb,v $
+# Revision 1.4  2007/04/18 09:21:52  southa
+# Header and level fixes
+#
 # Revision 1.3  2007/04/16 08:41:06  southa
 # Level and header mods
 #
@@ -51,8 +54,8 @@ class AdanaxisMagazine < MushObject
     @m_limit[:player_heavy_cannon] = 800
     @m_limit[:player_light_missile] = 50
     @m_limit[:player_heavy_missile] = 50
-    @m_limit[:player_flush] = 10
-    @m_limit[:player_nuclear] = 10
+    @m_limit[:player_flush] = 3
+    @m_limit[:player_nuclear] = 1
   end
   
   def mPlayerLoadAll
@@ -65,7 +68,7 @@ class AdanaxisMagazine < MushObject
     @m_count[:player_light_missile] = 30
     @m_count[:player_heavy_missile] = 10
     @m_count[:player_flush] = 3
-    @m_count[:player_nuclear] = 3
+    @m_count[:player_nuclear] = 1
   end
 
   def mAmmoAvailable(inType)

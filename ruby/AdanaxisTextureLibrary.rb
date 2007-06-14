@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } /HC+dJWnGXbdJxstPsjAXw
-# $Id: AdanaxisTextureLibrary.rb,v 1.50 2007/06/06 12:24:13 southa Exp $
+# $Id: AdanaxisTextureLibrary.rb,v 1.51 2007/06/08 16:23:03 southa Exp $
 # $Log: AdanaxisTextureLibrary.rb,v $
+# Revision 1.51  2007/06/08 16:23:03  southa
+# Level 26
+#
 # Revision 1.50  2007/06/06 12:24:13  southa
 # Level 22
 #
@@ -464,7 +467,7 @@ class AdanaxisTextureLibrary < MushObject
 		:name          => 'door-tex',
     :type          => 'CellNoise',
     :meshname      => 'door',
-    :size          => [textureSize, textureSize],
+    :size          => [largeTextureSize, largeTextureSize],
     :palette       => 'palette3',
     :palettestart  => [0,0.5],
     :palettevector => [4.0,0.0],
@@ -479,14 +482,14 @@ class AdanaxisTextureLibrary < MushObject
 		:name          => 'door-red-tex',
     :type          => 'CellNoise',
     :meshname      => 'door-red',
-    :size          => [textureSize, textureSize],
+    :size          => [largeTextureSize, largeTextureSize],
     :palette       => 'palette3',
     :palettestart  => [0,0.6],
     :palettevector => [4.0,3.0],
 		:scale         => [scale, scale, scale, scale],
     :numoctaves    => 4,
     :octaveratio   => 0.5,
-		:cache         => 0,
+		:cache         => 1,
     :compress      => compressNear
 	)
 
@@ -494,7 +497,7 @@ class AdanaxisTextureLibrary < MushObject
 		:name          => 'door-blue-tex',
     :type          => 'CellNoise',
     :meshname      => 'door-blue',
-    :size          => [textureSize, textureSize],
+    :size          => [largeTextureSize, largeTextureSize],
     :palette       => 'palette3',
     :palettestart  => [0,0.4],
     :palettevector => [4.0,-3.0],
@@ -643,6 +646,52 @@ class AdanaxisTextureLibrary < MushObject
     :compress      => compressNear
 	)
   
+  scale = 0.05
+  MushGLTexture::cDefine(
+		:name          => 'hub-tex',
+    :type          => 'CellNoise',
+    :meshname      => 'hub',
+    :size          => [largeTextureSize, largeTextureSize],
+    :palette       => 'palette1',
+    :palettestart  => [0,0.5],
+    :palettevector => [4.0,0.0],
+		:scale         => [scale, scale, scale, scale],
+    :numoctaves    => 8,
+    :octaveratio   => 0.4,
+		:cache         => 1,
+    :compress      => compressNear
+	)
+
+  MushGLTexture::cDefine(
+		:name          => 'hub-red-tex',
+    :type          => 'CellNoise',
+    :meshname      => 'hub-red',
+    :size          => [largeTextureSize, largeTextureSize],
+    :palette       => 'palette1',
+    :palettestart  => [0,0.9],
+    :palettevector => [1.0,0],
+		:scale         => [scale, scale, scale, scale],
+    :numoctaves    => 8,
+    :octaveratio   => 0.4,
+		:cache         => 1,
+    :compress      => compressNear
+	)
+
+  MushGLTexture::cDefine(
+		:name          => 'hub-blue-tex',
+    :type          => 'CellNoise',
+    :meshname      => 'hub-blue',
+    :size          => [largeTextureSize, largeTextureSize],
+    :palette       => 'palette1',
+    :palettestart  => [0,0.4],
+    :palettevector => [4.0,-3.0],
+		:scale         => [scale, scale, scale, scale],
+    :numoctaves    => 8,
+    :octaveratio   => 0.4,
+		:cache         => 1,
+    :compress      => compressNear
+	)
+	
   scale = 0.5
   MushGLTexture::cDefine(
 		:name          => 'limescale-tex',

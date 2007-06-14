@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } bqsHAu0ZNmRoY3PNh6U9Cw
-# $Id: AdanaxisMaterialLibrary.rb,v 1.33 2007/06/06 12:24:12 southa Exp $
+# $Id: AdanaxisMaterialLibrary.rb,v 1.34 2007/06/08 16:23:02 southa Exp $
 # $Log: AdanaxisMaterialLibrary.rb,v $
+# Revision 1.34  2007/06/08 16:23:02  southa
+# Level 26
+#
 # Revision 1.33  2007/06/06 12:24:12  southa
 # Level 22
 #
@@ -132,6 +135,9 @@ class AdanaxisMaterialLibrary < MushObject
       'harpik',
       'harpik-red',
       'harpik-blue',
+      'hub',
+      'hub-red',
+      'hub-blue',
       'limescale',
       'limescale-red',
       'limescale-blue',

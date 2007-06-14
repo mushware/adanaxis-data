@@ -53,7 +53,7 @@
 <fontRef type="GLFontRef">
 <name>"font-mono1"</name>
 </fontRef>
-<value>"Gaming in four spatial dimensions"</value>
+<value>"A game in four spatial dimensions"</value>
 </string>
 <posticity type="MushPiePosticity">
 <pos>(0,-0.3,0,0)</pos>
@@ -75,7 +75,7 @@
 <fontRef type="GLFontRef">
 <name>"font-mono1"</name>
 </fontRef>
-<value>"End of Demo"</value>
+<value>"Developed by"</value>
 </string>
 <posticity type="MushPiePosticity">
 <pos>(0,-0.3,0,0)</pos>
@@ -84,12 +84,12 @@
 <startColour>(1,1,1,0)</startColour>
 <midColour>(1,1,1,0.5)</midColour>
 <endColour>(1,0,0,0)</endColour>
-<startTime>300</startTime>
-<endTime>1300</endTime>
+<startTime>400</startTime>
+<endTime>1400</endTime>
 <fadeTime>100</fadeTime>
-<startSize>0.02</startSize>
-<midSize>0.02</midSize>
-<endSize>0.02</endSize>
+<startSize>0.025</startSize>
+<midSize>0.025</midSize>
+<endSize>0.025</endSize>
 </obj>
 ,
 <obj type="GameStringSpec">
@@ -97,7 +97,7 @@
 <fontRef type="GLFontRef">
 <name>"font-mono1"</name>
 </fontRef>
-<value>"The full version is available from"</value>
+<value>"Andy Southgate"</value>
 </string>
 <posticity type="MushPiePosticity">
 <pos>(0,-0.3,0,0)</pos>
@@ -119,29 +119,7 @@
 <fontRef type="GLFontRef">
 <name>"font-mono1"</name>
 </fontRef>
-<value>"www.mushware.com"</value>
-</string>
-<posticity type="MushPiePosticity">
-<pos>(0,-0.3,0,0)</pos>
-<vel>(0,0.0005,0,0)</vel>
-</posticity>
-<startColour>(1,1,1,0)</startColour>
-<midColour>(0.8,0.8,1,0.5)</midColour>
-<endColour>(0.8,0.8,1,0)</endColour>
-<startTime>650</startTime>
-<endTime>1650</endTime>
-<fadeTime>100</fadeTime>
-<startSize>0.03</startSize>
-<midSize>0.03</midSize>
-<endSize>0.03</endSize>
-</obj>
-,
-<obj type="GameStringSpec">
-<string type="GLString">
-<fontRef type="GLFontRef">
-<name>"font-mono1"</name>
-</fontRef>
-<value>"30 varied missions with many different"</value>
+<value>"Voice acting"</value>
 </string>
 <posticity type="MushPiePosticity">
 <pos>(0,-0.3,0,0)</pos>
@@ -153,9 +131,9 @@
 <startTime>800</startTime>
 <endTime>1800</endTime>
 <fadeTime>100</fadeTime>
-<startSize>0.02</startSize>
-<midSize>0.02</midSize>
-<endSize>0.02</endSize>
+<startSize>0.025</startSize>
+<midSize>0.025</midSize>
+<endSize>0.025</endSize>
 </obj>
 ,
 <obj type="GameStringSpec">
@@ -163,7 +141,7 @@
 <fontRef type="GLFontRef">
 <name>"font-mono1"</name>
 </fontRef>
-<value>"targets, allies and weapons"</value>
+<value>"Linda Bard"</value>
 </string>
 <posticity type="MushPiePosticity">
 <pos>(0,-0.3,0,0)</pos>
@@ -185,39 +163,17 @@
 <fontRef type="GLFontRef">
 <name>"font-mono1"</name>
 </fontRef>
-<value>"Adanaxis"</value>
+<value>"www.studiobard.com"</value>
 </string>
 <posticity type="MushPiePosticity">
 <pos>(0,-0.3,0,0)</pos>
 <vel>(0,0.0005,0,0)</vel>
 </posticity>
 <startColour>(1,1,1,0)</startColour>
-<midColour>(1,1,1,0.5)</midColour>
-<endColour>(1,0,0,0)</endColour>
-<startTime>1300</startTime>
-<endTime>2300</endTime>
-<fadeTime>100</fadeTime>
-<startSize>0.03</startSize>
-<midSize>0.03</midSize>
-<endSize>0.03</endSize>
-</obj>
-,
-<obj type="GameStringSpec">
-<string type="GLString">
-<fontRef type="GLFontRef">
-<name>"font-mono1"</name>
-</fontRef>
-<value>"A mere glimpse of the potential of"</value>
-</string>
-<posticity type="MushPiePosticity">
-<pos>(0,-0.3,0,0)</pos>
-<vel>(0,0.0005,0,0)</vel>
-</posticity>
-<startColour>(1,1,1,0)</startColour>
-<midColour>(1,1,1,0.5)</midColour>
-<endColour>(1,0,0,0)</endColour>
-<startTime>1500</startTime>
-<endTime>2500</endTime>
+<midColour>(0.8,0.8,1,0.5)</midColour>
+<endColour>(0.8,0.8,1,0)</endColour>
+<startTime>1000</startTime>
+<endTime>2000</endTime>
 <fadeTime>100</fadeTime>
 <startSize>0.02</startSize>
 <midSize>0.02</midSize>
@@ -229,7 +185,7 @@
 <fontRef type="GLFontRef">
 <name>"font-mono1"</name>
 </fontRef>
-<value>"game worlds where space itself is different"</value>
+<value>"Audio Effects"</value>
 </string>
 <posticity type="MushPiePosticity">
 <pos>(0,-0.3,0,0)</pos>
@@ -238,6 +194,72 @@
 <startColour>(1,1,1,0)</startColour>
 <midColour>(1,1,1,0.5)</midColour>
 <endColour>(1,0,0,0)</endColour>
+<startTime>1200</startTime>
+<endTime>2200</endTime>
+<fadeTime>100</fadeTime>
+<startSize>0.025</startSize>
+<midSize>0.025</midSize>
+<endSize>0.025</endSize>
+</obj>
+,
+<obj type="GameStringSpec">
+<string type="GLString">
+<fontRef type="GLFontRef">
+<name>"font-mono1"</name>
+</fontRef>
+<value>"www.sounddogs.com"</value>
+</string>
+<posticity type="MushPiePosticity">
+<pos>(0,-0.3,0,0)</pos>
+<vel>(0,0.0005,0,0)</vel>
+</posticity>
+<startColour>(1,1,1,0)</startColour>
+<midColour>(0.8,0.8,1,0.5)</midColour>
+<endColour>(0.8,0.8,1,0)</endColour>
+<startTime>1300</startTime>
+<endTime>2300</endTime>
+<fadeTime>100</fadeTime>
+<startSize>0.02</startSize>
+<midSize>0.02</midSize>
+<endSize>0.02</endSize>
+</obj>
+,
+<obj type="GameStringSpec">
+<string type="GLString">
+<fontRef type="GLFontRef">
+<name>"font-mono1"</name>
+</fontRef>
+<value>"Explosion graphics"</value>
+</string>
+<posticity type="MushPiePosticity">
+<pos>(0,-0.3,0,0)</pos>
+<vel>(0,0.0005,0,0)</vel>
+</posticity>
+<startColour>(1,1,1,0)</startColour>
+<midColour>(1,1,1,0.5)</midColour>
+<endColour>(1,0,0,0)</endColour>
+<startTime>1500</startTime>
+<endTime>2500</endTime>
+<fadeTime>100</fadeTime>
+<startSize>0.025</startSize>
+<midSize>0.025</midSize>
+<endSize>0.025</endSize>
+</obj>
+,
+<obj type="GameStringSpec">
+<string type="GLString">
+<fontRef type="GLFontRef">
+<name>"font-mono1"</name>
+</fontRef>
+<value>"www.artbeats.com"</value>
+</string>
+<posticity type="MushPiePosticity">
+<pos>(0,-0.3,0,0)</pos>
+<vel>(0,0.0005,0,0)</vel>
+</posticity>
+<startColour>(1,1,1,0)</startColour>
+<midColour>(0.8,0.8,1,0.5)</midColour>
+<endColour>(0.8,0.8,1,0)</endColour>
 <startTime>1600</startTime>
 <endTime>2600</endTime>
 <fadeTime>100</fadeTime>
@@ -251,7 +273,7 @@
 <fontRef type="GLFontRef">
 <name>"font-mono1"</name>
 </fontRef>
-<value>"Their future is not easy to predict,"</value>
+<value>"Space images"</value>
 </string>
 <posticity type="MushPiePosticity">
 <pos>(0,-0.3,0,0)</pos>
@@ -263,9 +285,9 @@
 <startTime>1800</startTime>
 <endTime>2800</endTime>
 <fadeTime>100</fadeTime>
-<startSize>0.02</startSize>
-<midSize>0.02</midSize>
-<endSize>0.02</endSize>
+<startSize>0.025</startSize>
+<midSize>0.025</midSize>
+<endSize>0.025</endSize>
 </obj>
 ,
 <obj type="GameStringSpec">
@@ -273,15 +295,15 @@
 <fontRef type="GLFontRef">
 <name>"font-mono1"</name>
 </fontRef>
-<value>"but each moment spent with them in mind"</value>
+<value>"www.nasa.gov"</value>
 </string>
 <posticity type="MushPiePosticity">
 <pos>(0,-0.3,0,0)</pos>
 <vel>(0,0.0005,0,0)</vel>
 </posticity>
 <startColour>(1,1,1,0)</startColour>
-<midColour>(1,1,1,0.5)</midColour>
-<endColour>(1,0,0,0)</endColour>
+<midColour>(0.8,0.8,1,0.5)</midColour>
+<endColour>(0.8,0.8,1,0)</endColour>
 <startTime>1900</startTime>
 <endTime>2900</endTime>
 <fadeTime>100</fadeTime>
@@ -295,7 +317,7 @@
 <fontRef type="GLFontRef">
 <name>"font-mono1"</name>
 </fontRef>
-<value>"can only bring them closer"</value>
+<value>"Adanaxis"</value>
 </string>
 <posticity type="MushPiePosticity">
 <pos>(0,-0.3,0,0)</pos>
@@ -303,58 +325,79 @@
 </posticity>
 <startColour>(1,1,1,0)</startColour>
 <midColour>(1,1,1,0.5)</midColour>
-<endColour>(1,0,0,0)</endColour>
-<startTime>2000</startTime>
-<endTime>3000</endTime>
-<fadeTime>100</fadeTime>
-<startSize>0.02</startSize>
-<midSize>0.02</midSize>
-<endSize>0.02</endSize>
-</obj>
-,
-<obj type="GameStringSpec">
-<string type="GLString">
-<fontRef type="GLFontRef">
-<name>"font-mono1"</name>
-</fontRef>
-<value>"Thank you for taking the time"</value>
-</string>
-<posticity type="MushPiePosticity">
-<pos>(0,-0.3,0,0)</pos>
-<vel>(0,0.0005,0,0)</vel>
-</posticity>
-<startColour>(1,1,1,0)</startColour>
-<midColour>(1,1,1,0.5)</midColour>
-<endColour>(1,0,0,0)</endColour>
-<startTime>2200</startTime>
-<endTime>3200</endTime>
-<fadeTime>100</fadeTime>
-<startSize>0.02</startSize>
-<midSize>0.02</midSize>
-<endSize>0.02</endSize>
-</obj>
-,
-<obj type="GameStringSpec">
-<string type="GLString">
-<fontRef type="GLFontRef">
-<name>"font-mono1"</name>
-</fontRef>
-<value>"Andy Southgate"</value>
-<alignment>-1</alignment>
-</string>
-<posticity type="MushPiePosticity">
-<pos>(0.1,-0.3,0,0)</pos>
-<vel>(0,0.0005,0,0)</vel>
-</posticity>
-<startColour>(1,1,1,0)</startColour>
-<midColour>(1,1,1,0.4)</midColour>
 <endColour>(1,0,0,0)</endColour>
 <startTime>2300</startTime>
 <endTime>3300</endTime>
 <fadeTime>100</fadeTime>
-<startSize>0.015</startSize>
-<midSize>0.015</midSize>
-<endSize>0.015</endSize>
+<startSize>0.03</startSize>
+<midSize>0.03</midSize>
+<endSize>0.03</endSize>
+</obj>
+,
+<obj type="GameStringSpec">
+<string type="GLString">
+<fontRef type="GLFontRef">
+<name>"font-mono1"</name>
+</fontRef>
+<value>"One day the experience of"</value>
+</string>
+<posticity type="MushPiePosticity">
+<pos>(0,-0.3,0,0)</pos>
+<vel>(0,0.0005,0,0)</vel>
+</posticity>
+<startColour>(1,1,1,0)</startColour>
+<midColour>(1,1,1,0.5)</midColour>
+<endColour>(1,0,0,0)</endColour>
+<startTime>2500</startTime>
+<endTime>3500</endTime>
+<fadeTime>100</fadeTime>
+<startSize>0.02</startSize>
+<midSize>0.02</midSize>
+<endSize>0.02</endSize>
+</obj>
+,
+<obj type="GameStringSpec">
+<string type="GLString">
+<fontRef type="GLFontRef">
+<name>"font-mono1"</name>
+</fontRef>
+<value>"a 4D world may be real..."</value>
+</string>
+<posticity type="MushPiePosticity">
+<pos>(0,-0.3,0,0)</pos>
+<vel>(0,0.0005,0,0)</vel>
+</posticity>
+<startColour>(1,1,1,0)</startColour>
+<midColour>(1,1,1,0.5)</midColour>
+<endColour>(1,0,0,0)</endColour>
+<startTime>2600</startTime>
+<endTime>3600</endTime>
+<fadeTime>100</fadeTime>
+<startSize>0.02</startSize>
+<midSize>0.02</midSize>
+<endSize>0.02</endSize>
+</obj>
+,
+<obj type="GameStringSpec">
+<string type="GLString">
+<fontRef type="GLFontRef">
+<name>"font-mono1"</name>
+</fontRef>
+<value>"In another lifetime"</value>
+</string>
+<posticity type="MushPiePosticity">
+<pos>(0,-0.3,0,0)</pos>
+<vel>(0,0.0005,0,0)</vel>
+</posticity>
+<startColour>(1,1,1,0)</startColour>
+<midColour>(1,1,1,0.5)</midColour>
+<endColour>(1,0,0,0)</endColour>
+<startTime>2900</startTime>
+<endTime>3900</endTime>
+<fadeTime>100</fadeTime>
+<startSize>0.02</startSize>
+<midSize>0.02</midSize>
+<endSize>0.02</endSize>
 </obj>
 ,
 <obj type="GameStringSpec">
