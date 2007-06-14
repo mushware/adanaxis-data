@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } RYsTHDgIdNXN0sJ5dpl8vw
-# $Id: AdanaxisMagazine.rb,v 1.4 2007/04/18 09:21:52 southa Exp $
+# $Id: AdanaxisMagazine.rb,v 1.5 2007/06/14 12:14:14 southa Exp $
 # $Log: AdanaxisMagazine.rb,v $
+# Revision 1.5  2007/06/14 12:14:14  southa
+# Level 30
+#
 # Revision 1.4  2007/04/18 09:21:52  southa
 # Header and level fixes
 #
@@ -56,6 +59,8 @@ class AdanaxisMagazine < MushObject
     @m_limit[:player_heavy_missile] = 50
     @m_limit[:player_flush] = 3
     @m_limit[:player_nuclear] = 1
+    
+    @m_warningShown = false
   end
   
   def mPlayerLoadAll
@@ -87,5 +92,10 @@ class AdanaxisMagazine < MushObject
   def mLimitedAmmoAdd(inType, inNumber)
     @m_count[inType] += inNumber
     @m_count[inType] = @m_limit[inType] if @m_count[inType] > @m_limit[inType]
+    
+    if inType == :player_nuclear && !@m_warningShown
+      @m_warningShown = true
+      MushGame.cNamedDialoguesAdd('^nuclear')
+    end
   end
 end

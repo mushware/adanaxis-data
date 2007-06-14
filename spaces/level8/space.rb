@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } mmDxSdwqzPsJ4lPOi2WIag
-# $Id: space.rb,v 1.7 2007/06/12 13:36:22 southa Exp $
+# $Id: space.rb,v 1.8 2007/06/14 12:14:16 southa Exp $
 # $Log: space.rb,v $
+# Revision 1.8  2007/06/14 12:14:16  southa
+# Level 30
+#
 # Revision 1.7  2007/06/12 13:36:22  southa
 # Demo configuration
 #
@@ -186,7 +189,7 @@ class Adanaxis_level8 < AdanaxisSpace
           MushVector.new(-50,-20,0,-1000),
           MushVector.new(-50,-20,0,-800)
           ],
-      :ammo_count => 30,
+      :ammo_count => 15,
       :ai_state => :dormant,
       :ai_state_msec => 6000,
       :weapon => :attendant_spawner
@@ -198,11 +201,18 @@ class Adanaxis_level8 < AdanaxisSpace
         :position => MushVector.new(-4, 0, 0, -40)
       )
     )
-    
+
     $currentLogic.mRemnant.mCreate(
       :item_type => :player_flak,
       :post => MushPost.new(
         :position => MushVector.new(-4, 0, 0, -50)
+      )
+    )
+
+    $currentLogic.mRemnant.mCreate(
+      :item_type => :player_quad_cannon,
+      :post => MushPost.new(
+        :position => MushVector.new(-4, 0, 0, -60)
       )
     )
 
@@ -225,7 +235,7 @@ class Adanaxis_level8 < AdanaxisSpace
             MushVector.new(50*param,20*param,0,-1000),
             MushVector.new(50*param,20*param,0,-800)
             ],
-        :ammo_count => 20,
+        :ammo_count => 6,
         :ai_state => :dormant,
         :ai_state_msec => 12000,
         :weapon => :attendant_spawner

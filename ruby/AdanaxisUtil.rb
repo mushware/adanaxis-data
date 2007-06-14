@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } fmcUR/puBAQN1IsolXK4VQ
-# $Id: AdanaxisUtil.rb,v 1.35 2007/06/05 12:15:14 southa Exp $
+# $Id: AdanaxisUtil.rb,v 1.36 2007/06/06 15:11:20 southa Exp $
 # $Log: AdanaxisUtil.rb,v $
+# Revision 1.36  2007/06/06 15:11:20  southa
+# Level 23
+#
 # Revision 1.35  2007/06/05 12:15:14  southa
 # Level 21
 #
@@ -146,6 +149,7 @@ class AdanaxisUtil < MushObject
     :angular_position => true,
     :angular_velocity => true,
     :blue_count => true,
+    :blue_total => true,
     :colour => true,
     :damage_frame => true,
     :deviation => true,
@@ -194,12 +198,14 @@ class AdanaxisUtil < MushObject
     :patrol_speed => true,
     :position => true,
     :post => true,
+    :primary => true,
     :projectile_mesh => true,
     :rail => true,
     :ram_acceleration => true,
     :ram_speed => true,
     :reload_sound => true,
     :red_count => true,
+    :red_total => true,
     :remnant => true,
     :render_scale => true,
     :scanner_symbol => true,

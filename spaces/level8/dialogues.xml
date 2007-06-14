@@ -14,8 +14,11 @@
 #
 ##############################################################################
 #
-# $Id: dialogues.xml,v 1.1 2007/04/20 09:49:33 southa Exp $
+# $Id: dialogues.xml,v 1.2 2007/06/13 14:08:45 southa Exp $
 # $Log: dialogues.xml,v $
+# Revision 1.2  2007/06/13 14:08:45  southa
+# Level 29
+#
 # Revision 1.1  2007/04/20 09:49:33  southa
 # Created
 #
@@ -42,7 +45,49 @@
 <startSize>0.04</startSize>
 <midSize>0.04</midSize>
 <endSize>0.10</endSize>
-</obj>)
+</obj>,
+<obj type="GameStringSpec">
+<string type="GLString">
+<fontRef type="GLFontRef">
+<name>"font-mono1"</name>
+</fontRef>
+<value>"There are five carriers to protect"</value>
+</string>
+<posticity type="MushPiePosticity">
+<pos>(0,-0.12,0,0)</pos>
+</posticity>
+<startColour>(1,1,1,0)</startColour>
+<midColour>(1,1,1,0.5)</midColour>
+<endColour>(1,0,0,0)</endColour>
+<startTime>0</startTime>
+<endTime>500</endTime>
+<fadeTime>100</fadeTime>
+<startSize>0.02</startSize>
+<midSize>0.02</midSize>
+<endSize>0.02</endSize>
+</obj>
+,
+<obj type="GameStringSpec">
+<string type="GLString">
+<fontRef type="GLFontRef">
+<name>"font-mono1"</name>
+</fontRef>
+<value>"(shown as P5 in the counts above)"</value>
+</string>
+<posticity type="MushPiePosticity">
+<pos>(0,-0.15,0,0)</pos>
+</posticity>
+<startColour>(1,1,1,0)</startColour>
+<midColour>(1,1,1,0.5)</midColour>
+<endColour>(1,0,0,0)</endColour>
+<startTime>0</startTime>
+<endTime>500</endTime>
+<fadeTime>100</fadeTime>
+<startSize>0.02</startSize>
+<midSize>0.02</midSize>
+<endSize>0.02</endSize>
+</obj>
+)
 </strings>
 <voices>(
 <obj type="GameSoundSpec">

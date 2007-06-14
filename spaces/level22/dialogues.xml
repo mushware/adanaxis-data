@@ -14,8 +14,11 @@
 #
 ##############################################################################
 #
-# $Id: dialogues.xml,v 1.2 2007/06/05 14:57:38 southa Exp $
+# $Id: dialogues.xml,v 1.3 2007/06/13 14:08:43 southa Exp $
 # $Log: dialogues.xml,v $
+# Revision 1.3  2007/06/13 14:08:43  southa
+# Level 29
+#
 # Revision 1.2  2007/06/05 14:57:38  southa
 # Level 22 work
 #
@@ -155,5 +158,30 @@
   <startTime>50</startTime>
  </obj>
 )</voices>
+</obj>
+,
+"nuclear1"=<obj type="GameDialogue">
+<strings>(
+<obj type="GameStringSpec">
+<string type="GLString">
+<fontRef type="GLFontRef">
+<name>"font-mono1"</name>
+</fontRef>
+<value>"This weapon takes 10 seconds to load"</value>
+</string>
+<posticity type="MushPiePosticity">
+<pos>(0,0.12,0,0)</pos>
+</posticity>
+<startColour>(1,1,1,0)</startColour>
+<midColour>(1,1,1,0.5)</midColour>
+<endColour>(1,0,0,0)</endColour>
+<startTime>0</startTime>
+<endTime>300</endTime>
+<fadeTime>100</fadeTime>
+<startSize>0.02</startSize>
+<midSize>0.02</midSize>
+<endSize>0.2</endSize>
+</obj>)
+</strings>
 </obj>
 )</obj>

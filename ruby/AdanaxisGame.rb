@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } UAdc9x+ji8+Grkjo5O0RyQ
-# $Id: AdanaxisGame.rb,v 1.46 2007/05/09 19:24:43 southa Exp $
+# $Id: AdanaxisGame.rb,v 1.47 2007/06/02 15:56:56 southa Exp $
 # $Log: AdanaxisGame.rb,v $
+# Revision 1.47  2007/06/02 15:56:56  southa
+# Shader fix and prerelease work
+#
 # Revision 1.46  2007/05/09 19:24:43  southa
 # Level 14
 #
@@ -157,7 +160,7 @@ class AdanaxisGame < MushObject
     require(mSpacePath+'/space.rb')
     @m_space = eval("#{mSpaceObjectName}.new", binding, mSpacePath+'/space.rb', 1)
     @m_space.mLoad(self)
-    mView.mDashboard.mUpdate(:is_battle => @m_space.mIsBattle)
+    mView.mDashboard.mUpdate(:is_battle => @m_space.mIsBattle, :primary => @m_space.mPrimary)
     self
   end
 
@@ -211,14 +214,17 @@ class AdanaxisGame < MushObject
     MushGame.cNamedDialoguesAdd('^won')
   end
 
-  def mKhaziCountUpdate(inKhazi, inRedKhazi, inBlueKhazi)
+  def mKhaziCountUpdate(inKhazi, inRedKhaziCount, inBlueKhaziCount, inRedKhaziTotal, inBlueKhaziTotal)
     mView.mDashboard.mUpdate(
-      :red_count => inRedKhazi,
-      :blue_count => inBlueKhazi)
+      :red_count => inRedKhaziCount,
+      :blue_count => inBlueKhaziCount,
+      :red_total => inRedKhaziTotal,
+      :blue_total => inBlueKhaziTotal
+      )
       
     @m_space.mKhaziCountSet(inKhazi)
-    @m_space.mKhaziRedCountSet(inRedKhazi)
-    @m_space.mKhaziBlueCountSet(inBlueKhazi)
+    @m_space.mKhaziRedCountSet(inRedKhaziCount)
+    @m_space.mKhaziBlueCountSet(inBlueKhaziCount)
     
     return @m_space.mGameState
   end

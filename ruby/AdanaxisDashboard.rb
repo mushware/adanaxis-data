@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } 2vHoeuQtq7uXNiCz/Cuycw
-# $Id: AdanaxisDashboard.rb,v 1.14 2007/04/18 09:21:52 southa Exp $
+# $Id: AdanaxisDashboard.rb,v 1.15 2007/04/18 20:08:39 southa Exp $
 # $Log: AdanaxisDashboard.rb,v $
+# Revision 1.15  2007/04/18 20:08:39  southa
+# Tweaks and fixes
+#
 # Revision 1.14  2007/04/18 09:21:52  southa
 # Header and level fixes
 #
@@ -86,7 +89,10 @@ class AdanaxisDashboard < MushDashboard
     @m_ammoCount = MushTimedValue.new(0)
     @m_redCount = MushTimedValue.new(0)
     @m_blueCount = MushTimedValue.new(0)
+    @m_redTotal = MushTimedValue.new(0)
+    @m_blueTotal = MushTimedValue.new(0)
     @m_isBattle = false;
+    @m_primary = AdanaxisSpace::PRIMARY_NONE;
     @m_weaponFont = MushGLFont.new(:name => "basebox1-font")
     @m_valueSize = 0.06
     @m_damage = []
@@ -101,7 +107,10 @@ class AdanaxisDashboard < MushDashboard
     @m_ammoCount.mCompareAndSet(inParams[:ammo_count]) if inParams[:ammo_count]
     @m_redCount.mCompareAndSet(inParams[:red_count]) if inParams[:red_count]
     @m_blueCount.mCompareAndSet(inParams[:blue_count]) if inParams[:blue_count]
+    @m_redTotal.mCompareAndSet(inParams[:red_total]) if inParams[:red_total]
+    @m_blueTotal.mCompareAndSet(inParams[:blue_total]) if inParams[:blue_total]
     @m_isBattle = inParams[:is_battle] if inParams[:is_battle] != nil
+    @m_primary = inParams[:primary] if inParams[:primary] != nil
     fontName = inParams[:weapon_name]
     if fontName
       @m_weaponFont = MushGLFont.new(:name => @@c_weaponFonts[fontName])
@@ -170,18 +179,34 @@ class AdanaxisDashboard < MushDashboard
   def mRender(inParams = {})
     mRenderValuesBeginTopLeft
 
-    alpha = mAlphaForValue(@m_redCount)
-    value = Integer(@m_redCount.mValue) 
+    if @m_primary == AdanaxisSpace::PRIMARY_RED 
+      alpha = mAlphaForValue(@m_redCount)
+      value = Integer(@m_redCount.mValue) 
+      value = 0 if value < 0
+      colour = MushVector.new(1,0.3,0.3,alpha)
+      
+      mRenderValue(AdanaxisFontLibrary::DASHBOARD_RED_COUNT, "P#{value}", colour)
+    end
+    
+    alpha = mAlphaForValue(@m_redTotal)
+    value = Integer(@m_redTotal.mValue) 
     value = 0 if value < 0
     colour = MushVector.new(1,0.3,0.3,alpha)
     
     mRenderValue(AdanaxisFontLibrary::DASHBOARD_RED_COUNT, value, colour)
     
-    if (@m_isBattle)
-      # mRenderValuesBeginTopRight
-
-      alpha = mAlphaForValue(@m_blueCount)
-      value = Integer(@m_blueCount.mValue) 
+    if @m_isBattle
+      if @m_primary == AdanaxisSpace::PRIMARY_BLUE 
+        alpha = mAlphaForValue(@m_blueCount)
+        value = Integer(@m_blueCount.mValue) 
+        value = 0 if value < 0
+        colour = MushVector.new(0.3,0.3,1,alpha)
+        
+        mRenderValue(AdanaxisFontLibrary::DASHBOARD_BLUE_COUNT, "P#{value}", colour)
+      end
+    
+      alpha = mAlphaForValue(@m_blueTotal)
+      value = Integer(@m_blueTotal.mValue) 
       value = 0 if value < 0
       colour = MushVector.new(0.3,0.3,1,alpha)
       

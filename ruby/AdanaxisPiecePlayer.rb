@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } XoqG0JV9lVapjqhhSCgfAQ
-# $Id: AdanaxisPiecePlayer.rb,v 1.30 2007/05/23 19:14:58 southa Exp $
+# $Id: AdanaxisPiecePlayer.rb,v 1.31 2007/06/07 13:23:01 southa Exp $
 # $Log: AdanaxisPiecePlayer.rb,v $
+# Revision 1.31  2007/06/07 13:23:01  southa
+# Level 24
+#
 # Revision 1.30  2007/05/23 19:14:58  southa
 # Level 18
 #
@@ -217,22 +220,20 @@ class AdanaxisPiecePlayer < AdanaxisPiece
   end
   
   def mFire
-    if @m_hitPoints > 0.0 && @m_weapon.mFireOpportunityTake
-      if @m_magazine.mAmmoCount(@m_weaponName) <= 0
-        @@c_weaponList.reverse_each do |name|
-          if @m_magazine.mAmmoCount(name) > 0
-            mNewWeapon(name)
-            break
-          end
+    if @m_magazine.mAmmoCount(@m_weaponName) <= 0
+      @@c_weaponList.reverse_each do |name|
+        if @m_magazine.mAmmoCount(name) > 0
+          mNewWeapon(name)
+          break
         end
-      else
-        event = AdanaxisEventFire.new
-        event.mPostSet(@m_post)
-        event.mTargetIDSet(AdanaxisRuby.cPlayerTargetID)
-        $currentLogic.mEventConsume(event, @m_id, @m_id)
-        @m_magazine.mAmmoDecrement(@m_weaponName)
-        $currentGame.mView.mDashboard.mUpdate(:ammo_count => @m_magazine.mAmmoCount(@m_weaponName))
       end
+    elsif @m_hitPoints > 0.0 && @m_weapon.mFireOpportunityTake
+      event = AdanaxisEventFire.new
+      event.mPostSet(@m_post)
+      event.mTargetIDSet(AdanaxisRuby.cPlayerTargetID)
+      $currentLogic.mEventConsume(event, @m_id, @m_id)
+      @m_magazine.mAmmoDecrement(@m_weaponName)
+      $currentGame.mView.mDashboard.mUpdate(:ammo_count => @m_magazine.mAmmoCount(@m_weaponName))
     end
   end
   
