@@ -14,8 +14,11 @@
 #
 ##############################################################################
 #
-# $Id: dialogues.xml,v 1.2 2007/05/08 15:28:14 southa Exp $
+# $Id: dialogues.xml,v 1.3 2007/06/13 14:08:42 southa Exp $
 # $Log: dialogues.xml,v $
+# Revision 1.3  2007/06/13 14:08:42  southa
+# Level 29
+#
 # Revision 1.2  2007/05/08 15:28:14  southa
 # Level 12
 #
@@ -48,7 +51,71 @@
 <startSize>0.04</startSize>
 <midSize>0.04</midSize>
 <endSize>0.10</endSize>
-</obj>)
+</obj>
+,
+<obj type="GameStringSpec">
+<string type="GLString">
+<fontRef type="GLFontRef">
+<name>"font-mono1"</name>
+</fontRef>
+<value>"When active, beam artillery units select"</value>
+</string>
+<posticity type="MushPiePosticity">
+<pos>(0,-0.17,0,0)</pos>
+</posticity>
+<startColour>(1,1,1,0)</startColour>
+<midColour>(1,1,1,0.5)</midColour>
+<endColour>(1,0,0,0)</endColour>
+<startTime>0</startTime>
+<endTime>500</endTime>
+<fadeTime>100</fadeTime>
+<startSize>0.02</startSize>
+<midSize>0.02</midSize>
+<endSize>0.02</endSize>
+</obj>
+,
+<obj type="GameStringSpec">
+<string type="GLString">
+<fontRef type="GLFontRef">
+<name>"font-mono1"</name>
+</fontRef>
+<value>"their nearest target and fire repeatedly"</value>
+</string>
+<posticity type="MushPiePosticity">
+<pos>(0,-0.20,0,0)</pos>
+</posticity>
+<startColour>(1,1,1,0)</startColour>
+<midColour>(1,1,1,0.5)</midColour>
+<endColour>(1,0,0,0)</endColour>
+<startTime>0</startTime>
+<endTime>500</endTime>
+<fadeTime>100</fadeTime>
+<startSize>0.02</startSize>
+<midSize>0.02</midSize>
+<endSize>0.02</endSize>
+</obj>
+,
+<obj type="GameStringSpec">
+<string type="GLString">
+<fontRef type="GLFontRef">
+<name>"font-mono1"</name>
+</fontRef>
+<value>"Don't be it"</value>
+</string>
+<posticity type="MushPiePosticity">
+<pos>(0,-0.185,0,0)</pos>
+</posticity>
+<startColour>(1,1,1,0)</startColour>
+<midColour>(1,1,1,0.5)</midColour>
+<endColour>(1,0,0,0)</endColour>
+<startTime>600</startTime>
+<endTime>1100</endTime>
+<fadeTime>100</fadeTime>
+<startSize>0.02</startSize>
+<midSize>0.02</midSize>
+<endSize>0.02</endSize>
+</obj>
+)
 </strings>
 <voices>(
 <obj type="GameSoundSpec">

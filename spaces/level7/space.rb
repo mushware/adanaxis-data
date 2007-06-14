@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } CN/AtDZjAIBjtYsLPBQz1g
-# $Id: space.rb,v 1.3 2007/04/18 20:08:39 southa Exp $
+# $Id: space.rb,v 1.4 2007/05/03 18:00:33 southa Exp $
 # $Log: space.rb,v $
+# Revision 1.4  2007/05/03 18:00:33  southa
+# Level 11
+#
 # Revision 1.3  2007/04/18 20:08:39  southa
 # Tweaks and fixes
 #
@@ -97,6 +100,15 @@ class Adanaxis_level7 < AdanaxisSpace
         :position => MushVector.new(-4, 0, 0, -40)
       )
     )
+    
+    2.times do |i|
+      $currentLogic.mRemnant.mCreate(
+        :item_type => :player_quad_cannon,
+        :post => MushPost.new(
+          :position => MushVector.new(-4, 0, 0, -40-10*i)
+        )
+      )
+    end
     
     mStandardCosmos(7)
   end

@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } lfsbRIQdD74bmTYBTtLE+A
-# $Id: AdanaxisEffects.rb,v 1.8 2007/04/16 08:41:06 southa Exp $
+# $Id: AdanaxisEffects.rb,v 1.9 2007/04/18 09:21:52 southa Exp $
 # $Log: AdanaxisEffects.rb,v $
+# Revision 1.9  2007/04/18 09:21:52  southa
+# Header and level fixes
+#
 # Revision 1.8  2007/04/16 08:41:06  southa
 # Level and header mods
 #
@@ -154,7 +157,7 @@ class AdanaxisEffects < MushObject
       objParams[:flare_scale_range] ||= (effectScale * 12.0 .. effectScale * 15.0)
       objParams[:flare_lifetime_range] ||= (rootScale * 1000 .. rootScale * 1200)
       
-      exploMin = MushUtil.cClamped(Integer(effectScale)-2, 0, 5)
+      exploMin = MushUtil.cClamped(Integer(effectScale)-2, 0, 6)
       exploMax = MushUtil.cClamped(Integer(effectScale)+1, 2, 7)
       
       objParams[:explo_number] ||= (exploMin..exploMax)

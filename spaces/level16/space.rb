@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } 4UoOmDoJxK4joUFm/5ePgQ
-# $Id: space.rb,v 1.2 2007/05/12 14:20:47 southa Exp $
+# $Id: space.rb,v 1.3 2007/06/07 13:23:02 southa Exp $
 # $Log: space.rb,v $
+# Revision 1.3  2007/06/07 13:23:02  southa
+# Level 24
+#
 # Revision 1.2  2007/05/12 14:20:47  southa
 # Level 16
 #
@@ -123,7 +126,7 @@ class Adanaxis_level16 < AdanaxisSpace
         ),
         :patrol_points => [
           MushVector.new(-30, 200+100*param, -100, -350+150*param),
-          MushVector.new(-30, 200+100*param, -100, -350+150*param)
+          MushVector.new(-30, -200+100*param, -100, -350+150*param)
           ],
         :ai_state => :patrol,
         :ai_state_msec => 8000+250*param,

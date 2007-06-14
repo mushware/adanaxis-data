@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } LfDt4410f/7FcPcNMQkEFA
-# $Id: space.rb,v 1.1 2007/05/03 18:00:33 southa Exp $
+# $Id: space.rb,v 1.1 2007/05/08 15:28:14 southa Exp $
 # $Log: space.rb,v $
+# Revision 1.1  2007/05/08 15:28:14  southa
+# Level 12
+#
 
 require 'Mushware.rb'
 require 'Adanaxis.rb'
@@ -68,7 +71,9 @@ class Adanaxis_level12 < AdanaxisSpace
           :position => MushVector.new(0, 0, 0, -300) +
           MushTools.cRandomUnitVector * (50 + rand((diff+0.5)*100)),
           :angular_position => MushTools.cRandomOrientation
-        )
+        ),
+        :ai_state => :evade,
+        :ai_state_msec => 8000+250*param
       )
     end
 

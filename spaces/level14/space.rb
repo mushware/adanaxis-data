@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } 2X3gqe0fBxSYfVpwW5qRkA
-# $Id: space.rb,v 1.1 2007/05/03 18:00:33 southa Exp $
+# $Id: space.rb,v 1.1 2007/05/09 19:24:43 southa Exp $
 # $Log: space.rb,v $
+# Revision 1.1  2007/05/09 19:24:43  southa
+# Level 14
+#
 
 require 'Mushware.rb'
 require 'Adanaxis.rb'
@@ -29,7 +32,7 @@ class Adanaxis_level14 < AdanaxisSpace
     mTimeoutSpawnAdd(:mSpawn2, 20000)
 
     if AdanaxisRuby.cGameDifficulty > 0
-      mTimeoutSpawnAdd(:mSpawn0, 20000)
+      mTimeoutSpawnAdd(:mSpawn0, 30000)
       mTimeoutSpawnAdd(:mSpawn1, 60000)
     end
     mTimeoutSpawnAdd(:mSpawn2, 120000)
@@ -138,7 +141,7 @@ class Adanaxis_level14 < AdanaxisSpace
         ),
         :patrol_points => [
           MushVector.new(-30, 200+100*param, -100, -350+150*param),
-          MushVector.new(-30, 200+100*param, -100, -350+150*param)
+          MushVector.new(-30, -200+100*param, -100, -350+150*param)
           ],
         :ai_state => :patrol,
         :ai_state_msec => 8000+250*param,
