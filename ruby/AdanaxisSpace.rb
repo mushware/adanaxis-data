@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } U1S8GssKDgFSsNiwIrKzyw
-# $Id: AdanaxisSpace.rb,v 1.35 2007/06/07 13:23:01 southa Exp $
+# $Id: AdanaxisSpace.rb,v 1.36 2007/06/13 14:08:41 southa Exp $
 # $Log: AdanaxisSpace.rb,v $
+# Revision 1.36  2007/06/13 14:08:41  southa
+# Level 29
+#
 # Revision 1.35  2007/06/07 13:23:01  southa
 # Level 24
 #
@@ -195,6 +198,8 @@ class AdanaxisSpace < MushObject
     10.times { |i| @m_precacheList << "ember#{i}-tex" }
     10.times { |i| @m_precacheList << "star#{i}-tex" }
     10.times { |i| @m_precacheList << "flare#{i}-tex" }
+    (1..3).each { |i| @m_precacheList << "ball#{i}-tex" }
+    (1..1).each { |i| @m_precacheList << "projectile#{i}-tex" }
   end
   
   def mPrecache

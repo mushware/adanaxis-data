@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } zHmHS9uI4vGQYvQQWY9i9w
-# $Id: AdanaxisMenu.rb,v 1.23 2007/04/20 16:46:03 southa Exp $
+# $Id: AdanaxisMenu.rb,v 1.24 2007/06/02 15:56:56 southa Exp $
 # $Log: AdanaxisMenu.rb,v $
+# Revision 1.24  2007/06/02 15:56:56  southa
+# Shader fix and prerelease work
+#
 # Revision 1.23  2007/04/20 16:46:03  southa
 # Key configuration fix
 #
@@ -252,7 +255,7 @@ class AdanaxisMenu < MushObject
     end
     if level[AdanaxisLevels::PARAMS]['unavailable']
       flags = {:grey => true}
-      name = '['+name+']'
+      name = ' ('+name+')'
     end
     [ name, :mMenuGameSelect, level[AdanaxisLevels::KEY], flags ]
   end
