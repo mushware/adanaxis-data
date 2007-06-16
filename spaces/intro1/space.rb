@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } BLIgGQcfjwjZeWyYjOVX4g
-# $Id: space.rb,v 1.3 2007/04/19 12:57:57 southa Exp $
+# $Id: space.rb,v 1.4 2007/04/21 18:05:47 southa Exp $
 # $Log: space.rb,v $
+# Revision 1.4  2007/04/21 18:05:47  southa
+# Level 8
+#
 # Revision 1.3  2007/04/19 12:57:57  southa
 # Prerelease work
 #
@@ -74,7 +77,9 @@ class Adanaxis_intro1 < AdanaxisSpace
     @m_scannerSize = 0.02
     @m_mouseOffset = MushVector.new(0, 0, 0, 0)
     @m_text = []
-    @m_singleButton = true
+    
+    @m_singleButton = (MushGame.cPackageID =~ /-macosx-/)
+    
     @m_positions = [
       MushVector.new(0.0, 0.0, -0.45, 0),
       MushVector.new(0.0, 0.0, -0.77, 0),
