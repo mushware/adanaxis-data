@@ -18,8 +18,11 @@
 #
 ##############################################################################
 #%Header } pQw6UBGrukp0QOB1l19i1Q
-# $Id: start.txt,v 1.36 2007/04/20 12:07:09 southa Exp $
+# $Id: start.txt,v 1.37 2007/06/11 20:06:13 southa Exp $
 # $Log: start.txt,v $
+# Revision 1.37  2007/06/11 20:06:13  southa
+# Compatibility fixes and level 27
+#
 # Revision 1.36  2007/04/20 12:07:09  southa
 # Khazi Warehouse and level 8
 #
@@ -180,7 +183,7 @@ configset('MUSHGL_TEXTURE_COMPRESSION', 1)
 # and so on, up to X11_MODE_9
 
 # Uses the SDL_ListModes function to determine X11 modes
-# configset('X11_USE_SDL_LISTMODES', 1)
+configset('X11_USE_SDL_LISTMODES', 1)
 
 # Load the dialogues
 GameDialogueLoad($SYSTEM_PATH+'/objects.xml')
