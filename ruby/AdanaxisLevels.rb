@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } PrKvSfbZuMOrmRVQXdN9Qw
-# $Id: AdanaxisLevels.rb,v 1.13 2007/06/02 15:56:56 southa Exp $
+# $Id: AdanaxisLevels.rb,v 1.14 2007/06/26 16:27:50 southa Exp $
 # $Log: AdanaxisLevels.rb,v $
+# Revision 1.14  2007/06/26 16:27:50  southa
+# X11 tweaks
+#
 # Revision 1.13  2007/06/02 15:56:56  southa
 # Shader fix and prerelease work
 #
@@ -69,7 +72,7 @@ class AdanaxisLevels
   def mScanLevel(path)
     manifestFile = "#{path}/#{LEVEL_MANIFEST_NAME}".untaint
     if @m_isDemo
-      demoManifestFile = "#{path}/#{LEVEL_MANIFEST_NAME}".untaint
+      demoManifestFile = "#{path}/#{LEVEL_DEMO_MANIFEST_NAME}".untaint
       if File.file?(demoManifestFile)
         manifestFile = demoManifestFile
       end
