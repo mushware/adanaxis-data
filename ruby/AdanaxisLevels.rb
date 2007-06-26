@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } PrKvSfbZuMOrmRVQXdN9Qw
-# $Id: AdanaxisLevels.rb,v 1.12 2007/05/03 18:00:32 southa Exp $
+# $Id: AdanaxisLevels.rb,v 1.13 2007/06/02 15:56:56 southa Exp $
 # $Log: AdanaxisLevels.rb,v $
+# Revision 1.13  2007/06/02 15:56:56  southa
+# Shader fix and prerelease work
+#
 # Revision 1.12  2007/05/03 18:00:32  southa
 # Level 11
 #
@@ -53,20 +56,28 @@ require 'Mushware.rb'
 
 class AdanaxisLevels
   LEVEL_MANIFEST_NAME = 'manifest.txt'
+  LEVEL_DEMO_MANIFEST_NAME = 'demo_manifest.txt'
   LEVEL_SPACE_NAME = 'space.rb'
   KEY = 0
   PARAMS = 1
   def initialize
     @m_levels = []
     @m_validParams = %w{directory name creator visibility permit next}
+    @m_isDemo = (MushGame.cPackageID =~ /_demo-/)
   end
-  
+
   def mScanLevel(path)
     manifestFile = "#{path}/#{LEVEL_MANIFEST_NAME}".untaint
+    if @m_isDemo
+      demoManifestFile = "#{path}/#{LEVEL_MANIFEST_NAME}".untaint
+      if File.file?(demoManifestFile)
+        manifestFile = demoManifestFile
+      end
+    end
     spaceFile = "#{path}/#{LEVEL_SPACE_NAME}".untaint
     baseName = File.basename(path).untaint
     unless File.file?(manifestFile)
-      puts "Manifest file #{manifestFile} missing from space directory" 
+      puts "Manifest file #{manifestFile} missing from space directory"
     else
       paramHash = {}
       File.open(manifestFile) do |file|
@@ -84,24 +95,24 @@ class AdanaxisLevels
           end
         end
       end
-      
+
       if paramHash['directory'] != baseName
         paramHash['name'] = baseName
         puts "Discarding level name because directory in manifest '#{paramHash['directory']}' doesn't match actual directory '#{baseName}'"
       end
-      
+
       unless File.file?(spaceFile)
         paramHash['unavailable'] = true
       end
-      
+
       @m_levels.push [baseName, paramHash]
     end
   end
-  
+
   def mLevelList
     @m_levels
   end
-  
+
   def mScanForLevels
     @m_levels = []
     spacePath = MushConfig.cGlobalSpacesPath
@@ -124,14 +135,14 @@ class AdanaxisLevels
       compVal || x[KEY] <=> y[KEY]
     end
   end
-  
+
   def mLevelFind(inKey)
     @m_levels.each do |level|
       return level if inKey == level[AdanaxisLevels::KEY]
     end
     nil
   end
-  
+
   def mNextLevelKey(inCurrent)
     retVal = nil
     level = mLevelFind(inCurrent)
