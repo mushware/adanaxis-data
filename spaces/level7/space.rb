@@ -6,7 +6,7 @@
 # Copyright Andy Southgate 2006-2007
 #
 # This file may be used and distributed under the terms of the Mushware
-# Software Licence version 1.3, under the terms for 'Proprietary original
+# Software Licence version 1.4, under the terms for 'Proprietary original
 # source files'.  If not supplied with this software, a copy of the licence
 # can be obtained from Mushware Limited via http://www.mushware.com/.
 # One of your options under that licence is to use and distribute this file
@@ -15,9 +15,12 @@
 # This software carries NO WARRANTY of any kind.
 #
 ##############################################################################
-#%Header } CN/AtDZjAIBjtYsLPBQz1g
-# $Id: space.rb,v 1.4 2007/05/03 18:00:33 southa Exp $
+#%Header } dbzR4qWxpHUpa7A9LtWGAQ
+# $Id: space.rb,v 1.5 2007/06/14 22:24:28 southa Exp $
 # $Log: space.rb,v $
+# Revision 1.5  2007/06/14 22:24:28  southa
+# Level and gameplay tweaks
+#
 # Revision 1.4  2007/05/03 18:00:33  southa
 # Level 11
 #

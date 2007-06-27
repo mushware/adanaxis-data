@@ -6,7 +6,7 @@
 # Copyright Andy Southgate 2006-2007
 #
 # This file may be used and distributed under the terms of the Mushware
-# Software Licence version 1.3, under the terms for 'Proprietary original
+# Software Licence version 1.4, under the terms for 'Proprietary original
 # source files'.  If not supplied with this software, a copy of the licence
 # can be obtained from Mushware Limited via http://www.mushware.com/.
 # One of your options under that licence is to use and distribute this file
@@ -15,9 +15,12 @@
 # This software carries NO WARRANTY of any kind.
 #
 ##############################################################################
-#%Header } +nDmSEYs257nZHfpiar9Aw
-# $Id: space.rb,v 1.7 2007/03/23 12:27:35 southa Exp $ 
+#%Header } pTNbCmBcm3e2sTy5IgV1fg
+# $Id: space.rb,v 1.8 2007/04/18 09:21:57 southa Exp $ 
 # $Log: space.rb,v $
+# Revision 1.8  2007/04/18 09:21:57  southa
+# Header and level fixes
+#
 # Revision 1.7  2007/03/23 12:27:35  southa
 # Added levels and Cistern mesh
 #

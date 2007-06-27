@@ -6,7 +6,7 @@
 # Copyright Andy Southgate 2006-2007
 #
 # This file may be used and distributed under the terms of the Mushware
-# Software Licence version 1.3, under the terms for 'Proprietary original
+# Software Licence version 1.4, under the terms for 'Proprietary original
 # source files'.  If not supplied with this software, a copy of the licence
 # can be obtained from Mushware Limited via http://www.mushware.com/.
 # One of your options under that licence is to use and distribute this file
@@ -15,9 +15,12 @@
 # This software carries NO WARRANTY of any kind.
 #
 ##############################################################################
-#%Header } goFdaP60AnkwLWjY5u69Hw
-# $Id: AdanaxisAI.rb,v 1.23 2007/06/13 14:08:41 southa Exp $
+#%Header } jdaTlpT5VDypkvAKnvFTkQ
+# $Id: AdanaxisAI.rb,v 1.24 2007/06/14 12:14:14 southa Exp $
 # $Log: AdanaxisAI.rb,v $
+# Revision 1.24  2007/06/14 12:14:14  southa
+# Level 30
+#
 # Revision 1.23  2007/06/13 14:08:41  southa
 # Level 29
 #

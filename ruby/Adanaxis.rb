@@ -6,7 +6,7 @@
 # Copyright Andy Southgate 2006-2007
 #
 # This file may be used and distributed under the terms of the Mushware
-# Software Licence version 1.3, under the terms for 'Proprietary original
+# Software Licence version 1.4, under the terms for 'Proprietary original
 # source files'.  If not supplied with this software, a copy of the licence
 # can be obtained from Mushware Limited via http://www.mushware.com/.
 # One of your options under that licence is to use and distribute this file
@@ -15,9 +15,12 @@
 # This software carries NO WARRANTY of any kind.
 #
 ##############################################################################
-#%Header } Z/0IM/eblOZbcUQpYNCCfg
-# $Id: Adanaxis.rb,v 1.39 2007/05/21 13:32:51 southa Exp $
+#%Header } WZAjh1Ck3/qet6A18QYVLA
+# $Id: Adanaxis.rb,v 1.40 2007/06/06 12:24:12 southa Exp $
 # $Log: Adanaxis.rb,v $
+# Revision 1.40  2007/06/06 12:24:12  southa
+# Level 22
+#
 # Revision 1.39  2007/05/21 13:32:51  southa
 # Flush weapon
 #

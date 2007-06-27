@@ -6,7 +6,7 @@
 # Copyright Andy Southgate 2006-2007
 #
 # This file may be used and distributed under the terms of the Mushware
-# Software Licence version 1.3, under the terms for 'Proprietary original
+# Software Licence version 1.4, under the terms for 'Proprietary original
 # source files'.  If not supplied with this software, a copy of the licence
 # can be obtained from Mushware Limited via http://www.mushware.com/.
 # One of your options under that licence is to use and distribute this file
@@ -15,9 +15,12 @@
 # This software carries NO WARRANTY of any kind.
 #
 ##############################################################################
-#%Header } bHT09Ckq2jpnilxRX3ZW6w
-# $Id: AdanaxisWeaponLibrary.rb,v 1.32 2007/06/05 12:15:14 southa Exp $
+#%Header } oyPp6LLoBemiYxeqWvVkLQ
+# $Id: AdanaxisWeaponLibrary.rb,v 1.33 2007/06/06 12:24:13 southa Exp $
 # $Log: AdanaxisWeaponLibrary.rb,v $
+# Revision 1.33  2007/06/06 12:24:13  southa
+# Level 22
+#
 # Revision 1.32  2007/06/05 12:15:14  southa
 # Level 21
 #

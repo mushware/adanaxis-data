@@ -6,7 +6,7 @@
 # Copyright Andy Southgate 2006-2007
 #
 # This file may be used and distributed under the terms of the Mushware
-# Software Licence version 1.3, under the terms for 'Proprietary original
+# Software Licence version 1.4, under the terms for 'Proprietary original
 # source files'.  If not supplied with this software, a copy of the licence
 # can be obtained from Mushware Limited via http://www.mushware.com/.
 # One of your options under that licence is to use and distribute this file
@@ -15,10 +15,13 @@
 # This software carries NO WARRANTY of any kind.
 #
 ##############################################################################
-#%Header } krf3dLTthr3a3LZ9TozvBA
+#%Header } IgWUEmDUW8eJCIX6RdT8dw
 #
-# $Id: AdanaxisAIKhaziVortex.rb,v 1.1 2007/05/21 13:32:51 southa Exp $
+# $Id: AdanaxisAIKhaziVortex.rb,v 1.2 2007/06/12 11:09:35 southa Exp $
 # $Log: AdanaxisAIKhaziVortex.rb,v $
+# Revision 1.2  2007/06/12 11:09:35  southa
+# Level 28
+#
 # Revision 1.1  2007/05/21 13:32:51  southa
 # Flush weapon
 #
