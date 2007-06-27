@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } l97Ib/NWwJDBKLvwtns7Kw
-# $Id: space.rb,v 1.20 2007/04/18 09:21:56 southa Exp $
+# $Id: space.rb,v 1.21 2007/06/27 12:58:20 southa Exp $
 # $Log: space.rb,v $
+# Revision 1.21  2007/06/27 12:58:20  southa
+# Debian packaging
+#
 # Revision 1.20  2007/04/18 09:21:56  southa
 # Header and level fixes
 #
@@ -78,17 +81,17 @@ class Adanaxis_local2 < AdanaxisSpace
     super
     mSpawnAdd(:mSpawn0)
   end
-  
+
   def mLoad(game)
     mLoadStandard(game)
     MushGame.cSoundStreamDefine('game1', MushConfig.cGlobalWavesPath+'/mushware-except-for-this.ogg')
   end
-  
+
   def mPrecacheListBuild
     super
     mPrecacheListAdd(mPieceLibrary.mAttendantTex('red'))
   end
-  
+
   def mInitialPiecesCreate
     super
     (-2..2).each do |i|
@@ -106,7 +109,7 @@ class Adanaxis_local2 < AdanaxisSpace
 
     mStandardCosmos(2)
   end
-  
+
   def mSpawn0
     (-1..1).each do |i|
       mPieceLibrary.mAttendantCreate(

@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } WX3sivsE+1heTZjq6BFBLg
-# $Id: space.rb,v 1.1 2007/06/06 15:11:21 southa Exp $
+# $Id: space.rb,v 1.2 2007/06/27 12:58:17 southa Exp $
 # $Log: space.rb,v $
+# Revision 1.2  2007/06/27 12:58:17  southa
+# Debian packaging
+#
 # Revision 1.1  2007/06/06 15:11:21  southa
 # Level 23
 #
@@ -31,13 +34,13 @@ class Adanaxis_level23 < AdanaxisSpace
     mIsBattleSet(true)
     mPrimarySet(PRIMARY_BLUE)
   end
-  
+
   def mLoad(game)
     mLoadStandard(game)
     mMusicAdd('game1', 'mushware-extensions-to-space.ogg')
     MushGame.cSoundDefine("voice-intro", "mush://waves/voice-L23.ogg")
   end
-  
+
   def mPrecacheListBuild
     super
     mPrecacheListAdd(mPieceLibrary.mAttendantTex('blue'))
@@ -60,7 +63,7 @@ class Adanaxis_level23 < AdanaxisSpace
     MushTools.cRotationInYZPlane(Math::PI / 575).mRotate(angVel);
 
     # Red mines
-    
+
     [-1,1].each do |paramX|
       [-1,1].each do |paramY|
         [-3,-1,1].each do |paramW|
@@ -91,7 +94,7 @@ class Adanaxis_level23 < AdanaxisSpace
         ),
         :is_jammer => true
       )
-      
+
       mPieceLibrary.mFloaterCreate(
         :colour => 'red',
         :post => MushPost.new(
@@ -105,7 +108,7 @@ class Adanaxis_level23 < AdanaxisSpace
     end
 
     # Blue convoy
-  
+
     (-1..1).each do |param1|
       (-1..1).each do |param2|
         pos = MushVector.new(10*param1+50*param2, -50+10*param1, 0, -250-100*param1)
@@ -127,7 +130,7 @@ class Adanaxis_level23 < AdanaxisSpace
         )
       end
     end
-    
+
     [-1,1].each do |param|
       mPieceLibrary.mCisternCreate(
         :colour => 'blue',
@@ -146,7 +149,7 @@ class Adanaxis_level23 < AdanaxisSpace
         :weapon => :attendant_spawner
       )
     end
-  
+
     if diff < 1
       [-1,1].each do |param|
         mPieceLibrary.mHarpikCreate(
@@ -178,7 +181,7 @@ class Adanaxis_level23 < AdanaxisSpace
         )
       )
     end
-    
+
     if diff < 1
       mPieceLibrary.mCisternCreate(
         :colour => 'blue',
@@ -204,7 +207,7 @@ class Adanaxis_level23 < AdanaxisSpace
         )
       )
     end
-    
+
     $currentLogic.mRemnant.mCreate(
       :item_type => (diff < 1) ? :player_heavy_missile : :player_heavy_cannon,
       :post => MushPost.new(
@@ -214,7 +217,7 @@ class Adanaxis_level23 < AdanaxisSpace
 
     mStandardCosmos(23)
   end
-  
+
   def mJammersEliminated
     mJammingSet(false)
     MushGame.cNamedDialoguesAdd('^unjammed')

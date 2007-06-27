@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } IeZp/vxDwMQ4zrKn1tkfoA
-# $Id: space.rb,v 1.3 2007/06/14 22:24:27 southa Exp $
+# $Id: space.rb,v 1.4 2007/06/27 12:58:14 southa Exp $
 # $Log: space.rb,v $
+# Revision 1.4  2007/06/27 12:58:14  southa
+# Debian packaging
+#
 # Revision 1.3  2007/06/14 22:24:27  southa
 # Level and gameplay tweaks
 #
@@ -59,13 +62,13 @@ class Adanaxis_level10 < AdanaxisSpace
 
     mPrimarySet(PRIMARY_RED)
   end
-  
+
   def mLoad(game)
     mLoadStandard(game)
     mMusicAdd('game1', 'mushware-disturbed-sleep.ogg')
     MushGame.cSoundDefine("voice-intro", "mush://waves/voice-L10.ogg")
   end
-  
+
   def mPrecacheListBuild
     super
     mPrecacheListAdd(mPieceLibrary.mAttendantTex('red', 'blue'))
@@ -87,7 +90,7 @@ class Adanaxis_level10 < AdanaxisSpace
 
     vel = MushVector.new(-0.05*(1+diff),0,0,0)
     angPos = MushTools.cRotationInXZPlane(Math::PI/2)
-  
+
     (0..0).each do |param|
       freshPos = MushVector.new(150, 150, -100*param, -1500)
       mPieceLibrary.mFreshenerCreate(
@@ -141,7 +144,7 @@ class Adanaxis_level10 < AdanaxisSpace
         :ai_state_msec => 10000+250*param
       )
     end
-  
+
     (-4*diff..4*diff).each do |param|
       mPieceLibrary.mAttendantCreate(
         :colour => 'red',
@@ -165,7 +168,7 @@ class Adanaxis_level10 < AdanaxisSpace
         :ai_state_msec => 4000+250*param
       )
     end
-   
+
     [-1,1].each do |param|
       mPieceLibrary.mWarehouseCreate(
         :colour => 'red',
@@ -187,17 +190,17 @@ class Adanaxis_level10 < AdanaxisSpace
                     end
       )
     end
-    
+
     $currentLogic.mRemnant.mCreate(
       :item_type => (AdanaxisRuby.cGameDifficulty < 1) ? :player_light_missile : :player_flak,
       :post => MushPost.new(
         :position => MushVector.new(4, 2, 0, -40)
       )
     )
-    
+
     mStandardCosmos(10)
   end
-  
+
     def mSpawn0
     MushTools.cRandomSeedSet(11)
     diff = AdanaxisRuby.cGameDifficulty
@@ -246,5 +249,5 @@ class Adanaxis_level10 < AdanaxisSpace
       )
     end
   end
-  
+
 end

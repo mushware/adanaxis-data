@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } HuDs1Iqw5CV0x548c6YnyQ
-# $Id: space.rb,v 1.22 2007/04/18 09:21:56 southa Exp $
+# $Id: space.rb,v 1.23 2007/06/27 12:58:20 southa Exp $
 # $Log: space.rb,v $
+# Revision 1.23  2007/06/27 12:58:20  southa
+# Debian packaging
+#
 # Revision 1.22  2007/04/18 09:21:56  southa
 # Header and level fixes
 #
@@ -96,7 +99,7 @@ class Adanaxis_local3 < AdanaxisSpace
     super
     mIsBattleSet(true)
   end
-  
+
   def mLoad(game)
     mLoadStandard(game)
     MushGame.cSoundStreamDefine('game1', MushConfig.cGlobalWavesPath+'/mushware-respiration.ogg')
@@ -105,7 +108,7 @@ class Adanaxis_local3 < AdanaxisSpace
 
   def mPrecache
     super
-  
+
     num = @preCached
     # Must still increment @preCached if cPrecache throws
     @preCached += 1
@@ -117,17 +120,17 @@ class Adanaxis_local3 < AdanaxisSpace
       when 51     : MushGLTexture.cPrecache("projectile1-tex")
       when 52     : MushGLTexture.cPrecache("projectile2-tex")
     end
-    
+
     num
   end
-  
-  def mInitialPiecesCreate  
+
+  def mInitialPiecesCreate
     super
     50.times do |param|
       ['red', 'blue'].each do |colour|
         pos = MushVector.new((colour == 'red') ? -100 : 100, 0, 0, -400) +
           MushTools.cRandomUnitVector * (30 + rand(100));
-        
+
         mPieceLibrary.mAttendantCreate(
           :colour => colour,
           :position => pos
@@ -139,7 +142,7 @@ class Adanaxis_local3 < AdanaxisSpace
       isRed = true
       thisType = isRed ? "kr" : "kb"
       targetTypes = isRed ? "kb+p,k,p" : "kr,k,p"
-      
+
       pos = MushVector.new(isRed ? -200 : 200, 0, 0, -400) + MushTools.cRandomUnitVector * (30 + rand(100));
       khazi = AdanaxisPieceKhazi.cCreate(
         :mesh_name => "rail",
@@ -153,12 +156,12 @@ class Adanaxis_local3 < AdanaxisSpace
         :seek_acceleration => 0.003,
         :patrol_speed => 0.01,
         :patrol_acceleration => 0.003,
-        
+
         :remnant => $currentLogic.mRemnant.mStandardRemnant(param),
         :weapon => :khazi_rail
       )
     end
-    
+
     1000.times do |i|
       pos = MushTools.cRandomUnitVector * (7 + 20 * rand)
       world = AdanaxisWorld.new(
@@ -168,6 +171,6 @@ class Adanaxis_local3 < AdanaxisSpace
         )
       )
     end
-    
+
   end
 end

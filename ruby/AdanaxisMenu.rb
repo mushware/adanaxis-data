@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } GNi1POqLNjzyJkWRwNeuIQ
-# $Id: AdanaxisMenu.rb,v 1.25 2007/06/15 12:45:48 southa Exp $
+# $Id: AdanaxisMenu.rb,v 1.26 2007/06/27 12:58:11 southa Exp $
 # $Log: AdanaxisMenu.rb,v $
+# Revision 1.26  2007/06/27 12:58:11  southa
+# Debian packaging
+#
 # Revision 1.25  2007/06/15 12:45:48  southa
 # Prerelease work
 #
@@ -74,7 +77,7 @@ class AdanaxisMenu < MushObject
   MENU_ADV_KEYS = 6
   MENU_CHOOSE_LEVEL = 7
   MENU_OPTIONS = 8
-  
+
   def initialize
     @m_menuCommon = {
       :size => 0.02,
@@ -82,24 +85,24 @@ class AdanaxisMenu < MushObject
       :title_colour => MushVector.new(1,1,1,0.7),
       :grey_colour => MushVector.new(1,1,1,0.3)
     }
-    
+
     @m_topLevelMenu = MushMenu.new(
       @m_menuCommon.merge(
         {
           :title => "Adanaxis",
-          :menu => [  
+          :menu => [
             ["(Requires update)", :mResume],
             ["Back", :mMenuBack]
           ]
         }
       )
     )
-    
+
     @m_controlMenu = MushMenu.new(
       @m_menuCommon.merge(
         {
           :title => "Controls",
-          :menu => [  
+          :menu => [
             ["Keys", :mToMenu, MENU_KEYS],
             ["Mouse", :mToMenu, MENU_MOUSE],
             ["Joystick", :mToMenu, MENU_JOYSTICK],
@@ -109,61 +112,61 @@ class AdanaxisMenu < MushObject
         }
       )
     )
-    
+
     @m_keysMenu = MushMenu.new(
       @m_menuCommon.merge(
         {
           :title => "Key Controls",
-          :menu => [  
+          :menu => [
             ["(Requires update)", :mMenuBack, MENU_KEYS],
             ["Back", :mMenuBack]
           ]
         }
       )
     )
-    
+
     @m_mouseMenu = MushMenu.new(
       @m_menuCommon.merge(
         {
           :title => "Mouse Control",
-          :menu => [  
+          :menu => [
             ["(Requires update)", :mMenuBack, MENU_KEYS],
             ["Back", :mMenuBack]
           ]
         }
       )
     )
-    
+
     @m_joystickMenu = MushMenu.new(
       @m_menuCommon.merge(
         {
           :title => "Joystick Control",
-          :menu => [  
+          :menu => [
             ["(Requires update)", :mMenuBack, MENU_KEYS],
             ["Back", :mMenuBack]
           ]
         }
       )
     )
-    
-        
+
+
     @m_advAxesMenu = MushMenu.new(
       @m_menuCommon.merge(
         {
           :title => "Advanced Axes",
-          :menu => [  
+          :menu => [
             ["(Requires update)", :mMenuBack, MENU_KEYS],
             ["Back", :mMenuBack]
           ]
         }
       )
     )
-    
+
     @m_advKeysMenu = MushMenu.new(
       @m_menuCommon.merge(
         {
           :title => "Advanced Keys",
-          :menu => [  
+          :menu => [
             ["(Requires update)", :mMenuBack, MENU_KEYS],
             ["Back", :mMenuBack]
           ]
@@ -176,7 +179,7 @@ class AdanaxisMenu < MushObject
         {
           :title => "Choose level",
           :leftright => true,
-          :menu => [  
+          :menu => [
             ["(Requires update)", :mMenuBack, MENU_TOPLEVEL],
             ["Back", :mMenuBack]
           ]
@@ -189,14 +192,14 @@ class AdanaxisMenu < MushObject
         {
           :title => "Options",
           :leftright => true,
-          :menu => [  
+          :menu => [
             ["(Requires update)", :mMenuBack, MENU_TOPLEVEL],
             ["Back", :mMenuBack]
           ]
         }
       )
     )
-    
+
     @m_menuSet = [
       @m_topLevelMenu,
       @m_controlMenu,
@@ -212,10 +215,10 @@ class AdanaxisMenu < MushObject
     @m_keyWait = nil
     @m_allowResume = false
   end
-  
+
   mush_reader :m_axisKeyWait, :m_keyWait
   mush_accessor :m_allowResume
-  
+
   def mAxisMenuEntry(name, which)
     [ name+AdanaxisControl.cAxisName(which),
       :mMenuAxis,
@@ -236,7 +239,7 @@ class AdanaxisMenu < MushObject
       ]
     end
   end
-  
+
   def mKeyMenuEntry(name, which)
     if @m_keyWait == which
       [ name+"<press>",
@@ -250,7 +253,7 @@ class AdanaxisMenu < MushObject
       ]
     end
   end
-  
+
   def mNewLevelMenuEntry(name, level)
     permit = level[AdanaxisLevels::PARAMS]['permit']
     if permit && !AdanaxisRuby.cRecordTime(permit)
@@ -262,11 +265,11 @@ class AdanaxisMenu < MushObject
     end
     [ name, :mMenuGameSelect, level[AdanaxisLevels::KEY], flags ]
   end
-  
+
   def mReset(menu)
     @m_menuSet[menu].current = 0
   end
-  
+
   def mUpdateLevels(levelList, showHidden)
     @m_menuSet[MENU_CHOOSE_LEVEL].menu = []
     levelList.each do |level|
@@ -276,10 +279,10 @@ class AdanaxisMenu < MushObject
     end
     @m_menuSet[MENU_CHOOSE_LEVEL].menu.push ["Back", :mMenuBack, MENU_TOPLEVEL]
   end
-  
+
   def mUpdate(menu)
     if menu == MENU_TOPLEVEL
-        menuArray = [  
+        menuArray = [
               ["New Game", :mToMenu, MENU_CHOOSE_LEVEL],
               ["Controls", :mToMenu, MENU_CONTROL],
               ["Options", :mMenuToOptions],
@@ -288,12 +291,12 @@ class AdanaxisMenu < MushObject
         if @m_allowResume
           menuArray.unshift ["Resume", :mMenuResume]
         end
-        
+
         @m_menuSet[MENU_TOPLEVEL].menu = menuArray
     end
 
     if menu == MENU_KEYS
-      @m_menuSet[MENU_KEYS].menu = [  
+      @m_menuSet[MENU_KEYS].menu = [
         mAxisKeyMenuEntry("Dodge left      : ", AdanaxisControl::AXISKEY_X_MINUS),
         mAxisKeyMenuEntry("Dodge right     : ", AdanaxisControl::AXISKEY_X_PLUS),
         mAxisKeyMenuEntry("Forward         : ", AdanaxisControl::AXISKEY_W_MINUS),
@@ -306,9 +309,9 @@ class AdanaxisMenu < MushObject
         ["Back", :mMenuBack, MENU_CONTROL]
       ]
     end
-    
+
     if menu == MENU_MOUSE
-      @m_menuSet[MENU_MOUSE].menu = [  
+      @m_menuSet[MENU_MOUSE].menu = [
         mAxisMenuEntry(   "Aim left/right        : ", AdanaxisControl::AXIS_XW),
         mAxisKeyMenuEntry(" - only with keypress : ", AdanaxisControl::AXISKEY_XW_REQUIRED),
         mAxisMenuEntry(   "Aim up/down           : ", AdanaxisControl::AXIS_YW),
@@ -319,7 +322,7 @@ class AdanaxisMenu < MushObject
         ["Back", :mMenuBack, MENU_CONTROL]
       ]
     end
-    
+
     if menu == MENU_JOYSTICK
       @m_menuSet[MENU_JOYSTICK].menu = [
         ["Use joystick", :mMenuUseJoystick],
@@ -331,7 +334,7 @@ class AdanaxisMenu < MushObject
         ["Back", :mMenuBack, MENU_CONTROL]
       ]
     end
-    
+
     if menu == MENU_ADV_AXES
       @m_menuSet[MENU_ADV_AXES].menu = [
         mAxisMenuEntry(   "Move X                : ", AdanaxisControl::AXIS_X),
@@ -359,7 +362,7 @@ class AdanaxisMenu < MushObject
         ["Back", :mMenuBack, MENU_CONTROL]
       ]
     end
-    
+
     if menu == MENU_ADV_KEYS
       @m_menuSet[MENU_ADV_KEYS].menu = [
         mKeyMenuEntry("Weapon 0              : ", AdanaxisControl::KEY_WEAPON_0),
@@ -398,7 +401,7 @@ class AdanaxisMenu < MushObject
         ["Back", :mMenuBack, MENU_CONTROL]
       ]
     end
-    
+
     if menu == MENU_OPTIONS
       detailName = case MushGame.cTextureDetail
         when 0: "Low"
@@ -427,7 +430,7 @@ class AdanaxisMenu < MushObject
         when 2: "Unavailable"
         else "Unknown"
       end
-      
+
       @m_menuSet[MENU_OPTIONS].menu = [
         ["Display mode         : "+MushGame.cDisplayModeString, :mMenuDisplayMode],
         ["Game difficulty      : #{difficultyName}", :mMenuDifficulty],
@@ -441,18 +444,18 @@ class AdanaxisMenu < MushObject
         ["Use compiled shaders : #{useGLShaderName}", :mMenuGLShader],
         ["Back", :mMenuDisplayReset, MENU_TOPLEVEL]
       ]
-      
+
     end
   end
-  
+
   def mMenu(index)
     @m_menuSet[index]
   end
-  
+
   def mWaitForAxisKey(which)
     @m_axisKeyWait = which
   end
-  
+
   def mWaitForKey(which)
     @m_keyWait = which
   end

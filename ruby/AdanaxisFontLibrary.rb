@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } S4su0J0hNauRx9jalcH0rA
-# $Id: AdanaxisFontLibrary.rb,v 1.15 2007/04/18 09:21:52 southa Exp $
+# $Id: AdanaxisFontLibrary.rb,v 1.16 2007/06/27 12:58:10 southa Exp $
 # $Log: AdanaxisFontLibrary.rb,v $
+# Revision 1.16  2007/06/27 12:58:10  southa
+# Debian packaging
+#
 # Revision 1.15  2007/04/18 09:21:52  southa
 # Header and level fixes
 #
@@ -80,7 +83,7 @@ class AdanaxisFontLibrary < MushObject
       :filename      => MushConfig.cGlobalPixelsPath+'/font-mono1.tiff',
 		  :cache         => 0
 	  )
-  
+
 	  MushGLFont.new(
       :name => 'library-font1',
       :texture_name => 'library-font1-tex',
@@ -88,14 +91,14 @@ class AdanaxisFontLibrary < MushObject
       :extent => [337/8.0, 768/12.0],
       :size => 0.05
     )
-    
+
     MushGLTexture::cDefine(
 		  :name          => 'symbol1-font-tex',
       :type          => 'TIFF',
 		  :filename      => MushConfig.cGlobalPixelsPath+'/symbol1.tiff',
 		  :cache         => 0
 	  )
-    
+
     MushGLFont.new(
       :name => 'symbol1-font',
       :texture_name => 'symbol1-font-tex',
@@ -103,14 +106,14 @@ class AdanaxisFontLibrary < MushObject
       :extent => [512.0/8, 512.0/8],
       :size => 1
     )
-    
+
     MushGLTexture::cDefine(
 		  :name          => 'dashboard1-font-tex',
       :type          => 'TIFF',
 		  :filename      => MushConfig.cGlobalPixelsPath+'/dashboard1.tiff',
 		  :cache         => 0
 	  )
-    
+
     MushGLFont.new(
       :name => 'dashboard1-font',
       :texture_name => 'dashboard1-font-tex',
@@ -118,7 +121,7 @@ class AdanaxisFontLibrary < MushObject
       :extent => [256.0/2, 256.0/2],
       :size => 1
     )
-    
+
     # Reuse object textures for font
     @m_textureLibrary.mBoxNames.each do |name|
       MushGLFont.new(
@@ -128,7 +131,7 @@ class AdanaxisFontLibrary < MushObject
         :extent => [256.0, 256.0],
         :size => 1
       )
-      
+
     # Control tutorial fonts
     %w{ mouse1 mouseleftpressed1 mouserightpressed1 spacebar1 spacebarpressed1
         cross1 tick1 }.each do |name|
@@ -138,7 +141,7 @@ class AdanaxisFontLibrary < MushObject
 		    :filename      => MushConfig.cGlobalPixelsPath+"/#{name}.tiff",
 		    :cache         => 0
 	    )
-      
+
       if name =~ /^space/
         extent = [512.0, 256.0]
         fontSize = [2, 1]
@@ -146,7 +149,7 @@ class AdanaxisFontLibrary < MushObject
         extent = [256.0, 256.0]
         fontSize = 1
       end
-      
+
       MushGLFont.new(
         :name => "#{name}-font",
         :texture_name => "#{name}-font-tex",
@@ -155,7 +158,7 @@ class AdanaxisFontLibrary < MushObject
         :size => fontSize
       )
     end
-      
+
     end
   end
 end

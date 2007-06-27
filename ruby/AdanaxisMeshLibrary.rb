@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } 1+nN+UfbwYVRd4qPOAKSDw
-# $Id: AdanaxisMeshLibrary.rb,v 1.45 2007/06/14 12:14:15 southa Exp $
+# $Id: AdanaxisMeshLibrary.rb,v 1.46 2007/06/27 12:58:11 southa Exp $
 # $Log: AdanaxisMeshLibrary.rb,v $
+# Revision 1.46  2007/06/27 12:58:11  southa
+# Debian packaging
+#
 # Revision 1.45  2007/06/14 12:14:15  southa
 # Level 30
 #
@@ -127,12 +130,12 @@ class AdanaxisMeshLibrary
     mesh = MushMesh.new(inName)
 
     mesh.mBaseAdd(MushBasePrism.new(:order => 5))
-	
+
     mesh.mBaseDisplacementAdd(MushDisplacement.new(
 		  :offset => MushVector.new(0,0,0,0),
       :scale => MushVector.new(Math.sqrt(2),Math.sqrt(2),1,1)
 	  ))
-	
+
     # Boom -z
     mesh.mExtruderAdd(MushExtruder.new(
       :sourceface => 2,
@@ -142,7 +145,7 @@ class AdanaxisMeshLibrary
       ),
 		  :num_iterations => 1
     ))
-	  
+
     # Boom +z
     mesh.mExtruderAdd(MushExtruder.new(
       :sourceface => 3,
@@ -152,7 +155,7 @@ class AdanaxisMeshLibrary
       ),
       :num_iterations => 1
     ))
-	  
+
     # Nose
     mesh.mExtruderAdd(MushExtruder.new(
       :sourceface => 0,
@@ -175,7 +178,7 @@ class AdanaxisMeshLibrary
 
     mesh.mMake
   end
-  
+
   #
   # Attendant mesh
   #
@@ -184,12 +187,12 @@ class AdanaxisMeshLibrary
     mesh = MushMesh.new(inName)
 
     mesh.mBaseAdd(MushBasePrism.new(:order => 5))
-	
+
     mesh.mBaseDisplacementAdd(MushDisplacement.new(
 		  :offset => MushVector.new(0,0,0,1),
       :scale => MushVector.new(Math.sqrt(2),Math.sqrt(2),1,1)
 	  ))
-	
+
     # Boom -z
     mesh.mExtruderAdd(MushExtruder.new(
       :sourceface => 2,
@@ -200,7 +203,7 @@ class AdanaxisMeshLibrary
       ),
 		  :num_iterations => 4
     ))
-	  
+
     # Boom +z
     mesh.mExtruderAdd(MushExtruder.new(
       :sourceface => 3,
@@ -211,7 +214,7 @@ class AdanaxisMeshLibrary
       ),
       :num_iterations => 4
     ))
-	  
+
     # Nose
     mesh.mExtruderAdd(MushExtruder.new(
       :sourceface => 0,
@@ -243,13 +246,13 @@ class AdanaxisMeshLibrary
     mesh = MushMesh.new(inName)
 
     mesh.mBaseAdd(MushBasePrism.new(:order => 7))
-	
+
     mesh.mBaseDisplacementAdd(MushDisplacement.new(
 		  :offset => MushVector.new(0,0,0,1),
       :scale => MushVector.new(4,4,6,6)
 	  ))
-	
-  	  
+
+
     # Nose
     mesh.mExtruderAdd(MushExtruder.new(
       :sourceface => 0,
@@ -275,7 +278,7 @@ class AdanaxisMeshLibrary
         :scale => 0.75),
   		:num_iterations => 1
     ))
-  
+
     mesh.mExtruderAdd(MushExtruder.new(
       :sourceface => 3*10+1,
       :displacement => MushDisplacement.new(
@@ -301,7 +304,7 @@ class AdanaxisMeshLibrary
       ),
 		  :num_iterations => 4
     ))
-    
+
     # Boom +z
     mesh.mExtruderAdd(MushExtruder.new(
       :sourceface => 3,
@@ -326,13 +329,13 @@ class AdanaxisMeshLibrary
     mesh = MushMesh.new(inName)
 
     mesh.mBaseAdd(MushBasePrism.new(:order => 7))
-	
+
     mesh.mBaseDisplacementAdd(MushDisplacement.new(
 		  :offset => MushVector.new(0,0,0,1),
       :scale => MushVector.new(4*Math.sqrt(2),4*Math.sqrt(2),4,4)
 	  ))
-	
-  	  
+
+
     # Nose
     mesh.mExtruderAdd(MushExtruder.new(
       :sourceface => 0,
@@ -358,7 +361,7 @@ class AdanaxisMeshLibrary
         :scale => 0.75),
   		:num_iterations => 1
     ))
-  
+
     mesh.mExtruderAdd(MushExtruder.new(
       :sourceface => 3*10+1,
       :displacement => MushDisplacement.new(
@@ -384,7 +387,7 @@ class AdanaxisMeshLibrary
       ),
 		  :num_iterations => 4
     ))
-    
+
     # Boom +z
     mesh.mExtruderAdd(MushExtruder.new(
       :sourceface => 3,
@@ -410,7 +413,7 @@ class AdanaxisMeshLibrary
     mesh = MushMesh.new(inName)
 
     mesh.mBaseAdd(MushBasePrism.new(:order => 7))
-	
+
     mesh.mBaseDisplacementAdd(MushDisplacement.new(
 		  :offset => MushVector.new(0,0,0,-30),
       :scale => MushVector.new(8*Math.sqrt(2),8*Math.sqrt(2),8,8)
@@ -426,7 +429,7 @@ class AdanaxisMeshLibrary
       ),
 		  :num_iterations => 12
     ))
-    
+
     # Boom +z
     mesh.mExtruderAdd(MushExtruder.new(
       :sourceface => 3,
@@ -447,7 +450,7 @@ class AdanaxisMeshLibrary
       ),
 		  :num_iterations => 3
     ))
-    
+
 
 
     mesh.mMaterialAdd("#{inName}-mat")
@@ -464,12 +467,12 @@ class AdanaxisMeshLibrary
     mesh = MushMesh.new(inName)
 
     mesh.mBaseAdd(MushBasePrism.new(:order => 5))
-	
+
     mesh.mBaseDisplacementAdd(MushDisplacement.new(
 		  :offset => MushVector.new(0,0,0,0),
       :scale => MushVector.new(Math.sqrt(2),Math.sqrt(2),1,1) * 2
 	  ))
-	
+
     # Boom -z
     mesh.mExtruderAdd(MushExtruder.new(
       :sourceface => 2,
@@ -479,7 +482,7 @@ class AdanaxisMeshLibrary
       ),
 		  :num_iterations => 1
     ))
-	  
+
     # Boom +z
     mesh.mExtruderAdd(MushExtruder.new(
       :sourceface => 3,
@@ -489,7 +492,7 @@ class AdanaxisMeshLibrary
       ),
       :num_iterations => 1
     ))
-	  
+
     # Nose
     mesh.mExtruderAdd(MushExtruder.new(
       :sourceface => 0,
@@ -519,20 +522,20 @@ class AdanaxisMeshLibrary
   # Inert khazi carrying a radiated countermeasure
   #
   def mKhaziFreshenerCreate(inName)
-  
+
     mesh = MushMesh.new(inName)
 
     mesh.mBaseAdd(MushBasePrism.new(:order => 4))
-	
+
     mesh.mBaseDisplacementAdd(MushDisplacement.new(
 		  :offset => MushVector.new(0,0,0,0),
       :scale => MushVector.new(2*Math.sqrt(2),2*Math.sqrt(2),2,2)
 	  ))
-	
+
     arms = 2.0
     scale = 0.8
     iter = 5
-  
+
     # Boom -x
     mesh.mExtruderAdd(MushExtruder.new(
       :sourceface => 6,
@@ -543,7 +546,7 @@ class AdanaxisMeshLibrary
       ),
 		  :num_iterations => iter
     ))
-	  
+
     # Boom +x
     mesh.mExtruderAdd(MushExtruder.new(
       :sourceface => 4,
@@ -554,7 +557,7 @@ class AdanaxisMeshLibrary
       ),
       :num_iterations => iter
     ))
-	  
+
     # Boom -y
     mesh.mExtruderAdd(MushExtruder.new(
       :sourceface => 7,
@@ -565,7 +568,7 @@ class AdanaxisMeshLibrary
       ),
 		  :num_iterations => iter
     ))
-	  
+
     # Boom +y
     mesh.mExtruderAdd(MushExtruder.new(
       :sourceface => 5,
@@ -576,7 +579,7 @@ class AdanaxisMeshLibrary
       ),
       :num_iterations => iter
     ))
-	  
+
     # Boom -z
     mesh.mExtruderAdd(MushExtruder.new(
       :sourceface => 2,
@@ -587,7 +590,7 @@ class AdanaxisMeshLibrary
       ),
 		  :num_iterations => iter
     ))
-	  
+
     # Boom +z
     mesh.mExtruderAdd(MushExtruder.new(
       :sourceface => 3,
@@ -607,7 +610,7 @@ class AdanaxisMeshLibrary
         :scale => scale),
   		:num_iterations => iter
     ))
-  
+
     # Boom +w
     mesh.mExtruderAdd(MushExtruder.new(
       :sourceface => 1,
@@ -630,12 +633,12 @@ class AdanaxisMeshLibrary
     mesh = MushMesh.new(inName)
 
     mesh.mBaseAdd(MushBasePrism.new(:order => 3))
-	
+
     mesh.mBaseDisplacementAdd(MushDisplacement.new(
 		  :offset => MushVector.new(0,0,0,1),
       :scale => MushVector.new(2,2,2,2)
 	  ))
-	
+
     # Boom -z
     mesh.mExtruderAdd(MushExtruder.new(
       :sourceface => 2,
@@ -646,7 +649,7 @@ class AdanaxisMeshLibrary
       ),
 		  :num_iterations => 6
     ))
-	  
+
     # Boom +z
     mesh.mExtruderAdd(MushExtruder.new(
       :sourceface => 3,
@@ -657,7 +660,7 @@ class AdanaxisMeshLibrary
       ),
       :num_iterations => 6
     ))
-	  
+
     # Nose
     mesh.mExtruderAdd(MushExtruder.new(
       :sourceface => 0,
@@ -680,7 +683,7 @@ class AdanaxisMeshLibrary
 
     mesh.mMake
   end
-  
+
   #
   # Hub mesh
   #
@@ -689,12 +692,12 @@ class AdanaxisMeshLibrary
     mesh = MushMesh.new(inName)
 
     mesh.mBaseAdd(MushBasePrism.new(:order => 9))
-	
+
     mesh.mBaseDisplacementAdd(MushDisplacement.new(
 		  :offset => MushVector.new(0,0,0,0),
       :scale => MushVector.new(80*Math.sqrt(2),80*Math.sqrt(2),80,40)
 	  ))
-	
+
     # Nose
     mesh.mExtruderAdd(MushExtruder.new(
       :sourceface => 0,
@@ -720,7 +723,7 @@ class AdanaxisMeshLibrary
         :scale => 0.75),
   		:num_iterations => 1
     ))
-  
+
     mesh.mExtruderAdd(MushExtruder.new(
       :sourceface => 3*12+1,
       :displacement => MushDisplacement.new(
@@ -738,7 +741,7 @@ class AdanaxisMeshLibrary
       ),
 		  :num_iterations => 1
     ))
-    
+
     mesh.mExtruderAdd(MushExtruder.new(
       :sourceface => 5*12+1,
       :displacement => MushDisplacement.new(
@@ -746,7 +749,7 @@ class AdanaxisMeshLibrary
         :scale => 0.5),
   		:num_iterations => 1
     ))
-    
+
     # Boom +z
     mesh.mExtruderAdd(MushExtruder.new(
       :sourceface => 3,
@@ -756,7 +759,7 @@ class AdanaxisMeshLibrary
       ),
       :num_iterations => 1
     ))
-    
+
     mesh.mExtruderAdd(MushExtruder.new(
       :sourceface => 7*12+5,
       :displacement => MushDisplacement.new(
@@ -764,7 +767,7 @@ class AdanaxisMeshLibrary
         :scale => 0.5),
   		:num_iterations => 1
     ))
-    
+
 
     mesh.mMaterialAdd("#{inName}-mat")
 
@@ -779,14 +782,14 @@ class AdanaxisMeshLibrary
     mesh = MushMesh.new(inName)
 
     mesh.mBaseAdd(MushBasePrism.new(:order => 4))
-	
+
     mesh.mBaseDisplacementAdd(MushDisplacement.new(
 		  :offset => MushVector.new(0,0,0,2),
       :scale => MushVector.new(2*Math.sqrt(2),2*Math.sqrt(2),2,4)
 	  ))
-	
+
     arms = 2.0
-  
+
     # Nose 1
     mesh.mExtruderAdd(MushExtruder.new(
       :sourceface => 0,
@@ -795,7 +798,7 @@ class AdanaxisMeshLibrary
         :scale => 0.7),
   		:num_iterations => 2
     ))
-    
+
     # Nose 2
     mesh.mExtruderAdd(MushExtruder.new(
       :sourceface => 8+7,
@@ -804,7 +807,7 @@ class AdanaxisMeshLibrary
         :scale => 0.9),
   		:num_iterations => 2
     ))
-  
+
     # Boom -x
     mesh.mExtruderAdd(MushExtruder.new(
       :sourceface => 6,
@@ -814,7 +817,7 @@ class AdanaxisMeshLibrary
       ),
 		  :num_iterations => 1
     ))
-	  
+
     # Boom +x
     mesh.mExtruderAdd(MushExtruder.new(
       :sourceface => 4,
@@ -824,7 +827,7 @@ class AdanaxisMeshLibrary
       ),
       :num_iterations => 1
     ))
-	  
+
     # Boom -y
     mesh.mExtruderAdd(MushExtruder.new(
       :sourceface => 7,
@@ -834,7 +837,7 @@ class AdanaxisMeshLibrary
       ),
 		  :num_iterations => 1
     ))
-	  
+
     # Boom +y
     mesh.mExtruderAdd(MushExtruder.new(
       :sourceface => 5,
@@ -844,7 +847,7 @@ class AdanaxisMeshLibrary
       ),
       :num_iterations => 1
     ))
-	  
+
     # Boom -z
     mesh.mExtruderAdd(MushExtruder.new(
       :sourceface => 2,
@@ -854,7 +857,7 @@ class AdanaxisMeshLibrary
       ),
 		  :num_iterations => 1
     ))
-	  
+
     # Boom +z
     mesh.mExtruderAdd(MushExtruder.new(
       :sourceface => 3,
@@ -878,7 +881,7 @@ class AdanaxisMeshLibrary
 
     mesh.mMake
   end
-  
+
   #
   # Vortex mesh
   #
@@ -887,13 +890,13 @@ class AdanaxisMeshLibrary
     mesh = MushMesh.new(inName)
 
     mesh.mBaseAdd(MushBasePrism.new(:order => 7))
-	
+
     mesh.mBaseDisplacementAdd(MushDisplacement.new(
 		  :offset => MushVector.new(0,0,0,1),
       :scale => MushVector.new(4*Math.sqrt(2),4*Math.sqrt(2),4,4)
 	  ))
-	
-  	  
+
+
     # Nose
     mesh.mExtruderAdd(MushExtruder.new(
       :sourceface => 0,
@@ -930,7 +933,7 @@ class AdanaxisMeshLibrary
       ),
 		  :num_iterations => 4
     ))
-    
+
     # Boom +z
     mesh.mExtruderAdd(MushExtruder.new(
       :sourceface => 3,
@@ -956,13 +959,13 @@ class AdanaxisMeshLibrary
     mesh = MushMesh.new(inName)
 
     mesh.mBaseAdd(MushBasePrism.new(:order => 6))
-	
+
     mesh.mBaseDisplacementAdd(MushDisplacement.new(
 		  :offset => MushVector.new(0,0,0,1),
       :scale => MushVector.new(3*Math.sqrt(2),2*Math.sqrt(2),3,4)
 	  ))
-	
-  	  
+
+
     # Nose
     mesh.mExtruderAdd(MushExtruder.new(
       :sourceface => 0,
@@ -988,7 +991,7 @@ class AdanaxisMeshLibrary
         :scale => 0.75),
   		:num_iterations => 1
     ))
-  
+
     mesh.mExtruderAdd(MushExtruder.new(
       :sourceface => 3*9+1,
       :displacement => MushDisplacement.new(
@@ -1020,7 +1023,7 @@ class AdanaxisMeshLibrary
       ),
 		  :num_iterations => 1
     ))
-	  
+
     mesh.mExtruderAdd(MushExtruder.new(
       :sourceface => 7*9+1,
       :displacement => MushDisplacement.new(
@@ -1029,7 +1032,7 @@ class AdanaxisMeshLibrary
       ),
 		  :num_iterations => 1
     ))
-	  
+
     mesh.mExtruderAdd(MushExtruder.new(
       :sourceface => 7*9+11*1+1,
       :displacement => MushDisplacement.new(
@@ -1038,7 +1041,7 @@ class AdanaxisMeshLibrary
       ),
 		  :num_iterations => 1
     ))
-	  
+
     mesh.mExtruderAdd(MushExtruder.new(
       :sourceface => 7*9+11*2+1,
       :displacement => MushDisplacement.new(
@@ -1048,7 +1051,7 @@ class AdanaxisMeshLibrary
       ),
 		  :num_iterations => 1
     ))
-    
+
     # Boom +z
 
     mesh.mExtruderAdd(MushExtruder.new(
@@ -1059,7 +1062,7 @@ class AdanaxisMeshLibrary
       ),
 		  :num_iterations => 1
     ))
-    
+
     mesh.mExtruderAdd(MushExtruder.new(
       :sourceface => 7*9+11*4+1,
       :displacement => MushDisplacement.new(
@@ -1068,7 +1071,7 @@ class AdanaxisMeshLibrary
       ),
 		  :num_iterations => 1
     ))
-	  
+
     mesh.mExtruderAdd(MushExtruder.new(
       :sourceface => 7*9+11*5+1,
       :displacement => MushDisplacement.new(
@@ -1077,7 +1080,7 @@ class AdanaxisMeshLibrary
       ),
 		  :num_iterations => 1
     ))
-	  
+
     mesh.mExtruderAdd(MushExtruder.new(
       :sourceface => 7*9+11*6+1,
       :displacement => MushDisplacement.new(
@@ -1087,7 +1090,7 @@ class AdanaxisMeshLibrary
       ),
 		  :num_iterations => 1
     ))
-        
+
     mesh.mMaterialAdd("#{inName}-mat")
 
     mesh.mMake
@@ -1102,14 +1105,14 @@ class AdanaxisMeshLibrary
     mesh = MushMesh.new(inName)
 
     mesh.mBaseAdd(MushBasePrism.new(:order => 4))
-	
+
     mesh.mBaseDisplacementAdd(MushDisplacement.new(
 		  :offset => MushVector.new(0,0,0,2),
       :scale => MushVector.new(2*Math.sqrt(2),2*Math.sqrt(2),2,2)
 	  ))
-	
+
     arms = 2.0
-  
+
     # Nose 1
     mesh.mExtruderAdd(MushExtruder.new(
       :sourceface => 0,
@@ -1118,7 +1121,7 @@ class AdanaxisMeshLibrary
         :scale => 0.9),
   		:num_iterations => 2
     ))
-    
+
     # Nose 2
     mesh.mExtruderAdd(MushExtruder.new(
       :sourceface => 8+7,
@@ -1127,7 +1130,7 @@ class AdanaxisMeshLibrary
         :scale => 0.4),
   		:num_iterations => 2
     ))
-  
+
     # Boom -x
     mesh.mExtruderAdd(MushExtruder.new(
       :sourceface => 6,
@@ -1138,7 +1141,7 @@ class AdanaxisMeshLibrary
       ),
 		  :num_iterations => 3
     ))
-	  
+
     # Boom +x
     mesh.mExtruderAdd(MushExtruder.new(
       :sourceface => 4,
@@ -1149,7 +1152,7 @@ class AdanaxisMeshLibrary
       ),
       :num_iterations => 3
     ))
-	  
+
     # Boom -y
     mesh.mExtruderAdd(MushExtruder.new(
       :sourceface => 7,
@@ -1160,7 +1163,7 @@ class AdanaxisMeshLibrary
       ),
 		  :num_iterations => 3
     ))
-	  
+
     # Boom +y
     mesh.mExtruderAdd(MushExtruder.new(
       :sourceface => 5,
@@ -1171,7 +1174,7 @@ class AdanaxisMeshLibrary
       ),
       :num_iterations => 3
     ))
-	  
+
     # Boom -z
     mesh.mExtruderAdd(MushExtruder.new(
       :sourceface => 2,
@@ -1182,7 +1185,7 @@ class AdanaxisMeshLibrary
       ),
 		  :num_iterations => 3
     ))
-	  
+
     # Boom +z
     mesh.mExtruderAdd(MushExtruder.new(
       :sourceface => 3,
@@ -1217,14 +1220,14 @@ class AdanaxisMeshLibrary
     mesh = MushMesh.new(inName)
 
     mesh.mBaseAdd(MushBasePrism.new(:order => 4))
-	
+
     mesh.mBaseDisplacementAdd(MushDisplacement.new(
 		  :offset => MushVector.new(0,0,0,2),
       :scale => MushVector.new(2*Math.sqrt(2),2*Math.sqrt(2),2,2)
 	  ))
-	
+
     arms = 2.0
-  
+
     # Nose 1
     mesh.mExtruderAdd(MushExtruder.new(
       :sourceface => 0,
@@ -1233,7 +1236,7 @@ class AdanaxisMeshLibrary
         :scale => 1.1),
   		:num_iterations => 2
     ))
-    
+
     # Nose 2
     mesh.mExtruderAdd(MushExtruder.new(
       :sourceface => 8+7,
@@ -1242,7 +1245,7 @@ class AdanaxisMeshLibrary
         :scale => 0.7),
   		:num_iterations => 3
     ))
-  
+
     # Boom -x
     mesh.mExtruderAdd(MushExtruder.new(
       :sourceface => 6,
@@ -1253,7 +1256,7 @@ class AdanaxisMeshLibrary
       ),
 		  :num_iterations => 5
     ))
-	  
+
     # Boom +x
     mesh.mExtruderAdd(MushExtruder.new(
       :sourceface => 4,
@@ -1264,7 +1267,7 @@ class AdanaxisMeshLibrary
       ),
       :num_iterations => 5
     ))
-	  
+
     # Boom -y
     mesh.mExtruderAdd(MushExtruder.new(
       :sourceface => 7,
@@ -1275,7 +1278,7 @@ class AdanaxisMeshLibrary
       ),
 		  :num_iterations => 5
     ))
-	  
+
     # Boom +y
     mesh.mExtruderAdd(MushExtruder.new(
       :sourceface => 5,
@@ -1286,7 +1289,7 @@ class AdanaxisMeshLibrary
       ),
       :num_iterations => 5
     ))
-	  
+
     # Boom -z
     mesh.mExtruderAdd(MushExtruder.new(
       :sourceface => 2,
@@ -1297,7 +1300,7 @@ class AdanaxisMeshLibrary
       ),
 		  :num_iterations => 5
     ))
-	  
+
     # Boom +z
     mesh.mExtruderAdd(MushExtruder.new(
       :sourceface => 3,
@@ -1326,17 +1329,17 @@ class AdanaxisMeshLibrary
   #
   # Cleaner mesh
   #
-  
+
   def mCleanerCreate
     mesh = MushMesh.new('cleaner')
 
     base1 = MushBasePrism.new(:order => 5)
-	
+
 	baseDisplacement1 = MushDisplacement.new(
 		:offset => MushVector.new(0,0,0,0),
         :scale => MushVector.new(Math.sqrt(2),Math.sqrt(2),1,1)
 	  )
-	
+
     extruder1 = MushExtruder.new(
         :sourceface => 2,
         :displacement => MushDisplacement.new(
@@ -1345,7 +1348,7 @@ class AdanaxisMeshLibrary
             :scale => 0.8),
 		:num_iterations => 8
       )
-	  
+
     extruder2 = MushExtruder.new(
         :sourceface => 3,
         :displacement => MushDisplacement.new(
@@ -1354,7 +1357,7 @@ class AdanaxisMeshLibrary
             :scale => 0.8),
 		:num_iterations => 8
       )
-	  
+
     extruder3 = MushExtruder.new(
         :sourceface => 0,
         :displacement => MushDisplacement.new(
@@ -1417,12 +1420,12 @@ class AdanaxisMeshLibrary
     mesh = MushMesh.new('player')
 
     base1 = MushBasePrism.new(:order => 4)
-	
+
 	  baseDisplacement1 = MushDisplacement.new(
 		  :offset => MushVector.new(0,0,0,0),
       :scale => MushVector.new(Math.sqrt(2),Math.sqrt(2),1,1)
 	  )
-	
+
     extruder1 = MushExtruder.new(
       :sourceface => 2,
       :displacement => MushDisplacement.new(
@@ -1431,7 +1434,7 @@ class AdanaxisMeshLibrary
       :scale => 0.8),
 		  :num_iterations => 5
     )
-	  
+
     extruder2 = MushExtruder.new(
       :sourceface => 3,
       :displacement => MushDisplacement.new(
@@ -1440,7 +1443,7 @@ class AdanaxisMeshLibrary
       :scale => 0.8),
       :num_iterations => 5
     )
-	  
+
     extruder3 = MushExtruder.new(
       :sourceface => 0,
       :displacement => MushDisplacement.new(
@@ -1463,17 +1466,17 @@ class AdanaxisMeshLibrary
   #
   # Axes mesh
   #
-  
+
   def mAxesCreate
     mesh = MushMesh.new('axes')
 
     base1 = MushBasePrism.new(:order => 4)
-	
+
 	baseDisplacement1 = MushDisplacement.new(
 		:offset => MushVector.new(2,2,2,2),
         :scale => MushVector.new(Math.sqrt(2),Math.sqrt(2),1,1)
 	  )
-	
+
     extruder1 = MushExtruder.new(
         :sourceface => 0,
         :displacement => MushDisplacement.new(
@@ -1482,7 +1485,7 @@ class AdanaxisMeshLibrary
             :scale => 1.0),
 		:num_iterations => 4
       )
-	  
+
     extruder2 = MushExtruder.new(
         :sourceface => 2,
         :displacement => MushDisplacement.new(
@@ -1491,7 +1494,7 @@ class AdanaxisMeshLibrary
             :scale => 1.0),
 		:num_iterations => 4
       )
-	  
+
     extruder3 = MushExtruder.new(
         :sourceface => 7,
         :displacement => MushDisplacement.new(
@@ -1520,12 +1523,12 @@ class AdanaxisMeshLibrary
 
     mesh.mMake
   end
-  
-  
+
+
   #
   # Cube meshes
   #
-  
+
   def mCubesCreate
   	baseDisplacement1 = MushDisplacement.new(
         :scale => MushVector.new(0.9*Math.sqrt(2),0.9*Math.sqrt(2),0.9,0.9)
@@ -1556,22 +1559,22 @@ class AdanaxisMeshLibrary
       mesh.mMake
     end
   end
-  
-  
+
+
   #
   # Projectile mesh
   #
-  
+
   def mProjectileCreate
     mesh =  MushMesh.new('projectile1')
 
     base1 = MushBasePrism.new(:order => 5)
-    
+
     baseDisplacement1 = MushDisplacement.new(
       :offset => MushVector.new(0,0,0,0.5),
           :scale => MushVector.new(0.25,0.25,0.20,1)
       )
-    
+
       extruder1 = MushExtruder.new(
         :sourceface => 0,
         :displacement => MushDisplacement.new(
@@ -1585,18 +1588,18 @@ class AdanaxisMeshLibrary
     mesh.mBaseDisplacementAdd(baseDisplacement1)
       mesh.mExtruderAdd(extruder1)
     mesh.mMaterialAdd('projectile1-mat')
-    
+
     mesh.mMake
-    
+
     mesh =  MushMesh.new('projectile2')
 
     base1 = MushBasePrism.new(:order => 9)
-    
+
     baseDisplacement1 = MushDisplacement.new(
       :offset => MushVector.new(0,0,0,2),
           :scale => MushVector.new(1,1,0.8,4)
       )
-    
+
       extruder1 = MushExtruder.new(
           :sourceface => 0,
           :displacement => MushDisplacement.new(
@@ -1610,7 +1613,7 @@ class AdanaxisMeshLibrary
     mesh.mBaseDisplacementAdd(baseDisplacement1)
     mesh.mExtruderAdd(extruder1)
     mesh.mMaterialAdd('projectile2-mat')
-    
+
     mesh.mMake
 
   end
@@ -1618,17 +1621,17 @@ class AdanaxisMeshLibrary
   #
   # World mesh
   #
-  
+
   def mWorldCreate
 	mesh =  MushMesh.new('world1')
 
 	base1 = MushBasePrism.new(:order => 4)
-	
+
 	baseDisplacement1 = MushDisplacement.new(
 		:offset => MushVector.new(0,0,0,0),
         :scale => MushVector.new(142,142,100,100)
 	  )
-	
+
     extruder1 = MushExtruder.new(
         :sourceface => 0,
         :displacement => MushDisplacement.new(
@@ -1650,14 +1653,14 @@ class AdanaxisMeshLibrary
     mesh.mExtruderAdd(extruder1)
     mesh.mExtruderAdd(extruder2)
 	mesh.mMaterialAdd('world1-mat')
-	
+
 	mesh.mMake
   end
 
   #
   # Single facet meshes
   #
-  
+
   def mEmbersCreate
     10.times do |i|
       mesh =  MushMesh.new("ember#{i}")
@@ -1667,7 +1670,7 @@ class AdanaxisMeshLibrary
       mesh.mMaterialAdd("ember#{i}-mat")
       mesh.mMake
     end
-  end  
+  end
 
   def mFlaresCreate
     10.times do |i|
@@ -1678,7 +1681,7 @@ class AdanaxisMeshLibrary
       mesh.mMaterialAdd("flare#{i}-mat")
       mesh.mMake
     end
-  end  
+  end
 
   def mStarsCreate
     10.times do |i|
@@ -1690,7 +1693,7 @@ class AdanaxisMeshLibrary
       mesh.mMake
     end
   end
-    
+
   def mExploCreate
     8.times do |i|
       mesh =  MushMesh.new("explo#{i}")
@@ -1700,7 +1703,7 @@ class AdanaxisMeshLibrary
       mesh.mMaterialAdd("explo#{i}-mat")
       mesh.mMake
     end
-  end  
+  end
 
   def mCosmosCreate
     @m_textureLibrary.mCosmos1Names.size.times do |i|
@@ -1711,7 +1714,7 @@ class AdanaxisMeshLibrary
       mesh.mMaterialAdd("cosmos1-#{i}-mat")
       mesh.mMake
     end
-  end  
+  end
 
   def mRandomCosmosName
     num = rand(@m_textureLibrary.mCosmos1Names.size)
@@ -1749,7 +1752,7 @@ class AdanaxisMeshLibrary
       mesh.mMake
     end
   end
-  
+
   def mRailsCreate
     10.times do |i|
       mesh =  MushMesh.new("rail#{i}")
@@ -1764,7 +1767,7 @@ class AdanaxisMeshLibrary
       mesh.mMake
     end
   end
-  
+
   def mDamageFramesCreate
     ['nuke_splash', 'flush_splash'].each do |prefix|
       mesh = MushMesh.new("#{prefix}")
@@ -1783,7 +1786,7 @@ class AdanaxisMeshLibrary
       mesh.mMake
     end
   end
-  
+
   def mCreate
     mDroneCreate('drone')
     mAttendantCreate('attendant')
@@ -1825,7 +1828,7 @@ class AdanaxisMeshLibrary
     mKhaziRailCreate('rail')
     mKhaziRailCreate('rail-red')
     mKhaziRailCreate('rail-blue')
-    
+
     mCubesCreate
     mProjectileCreate
     mWorldCreate

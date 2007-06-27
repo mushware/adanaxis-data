@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } HJ6CxXNa4ZfxnccJPd3Wcw
-# $Id: space.rb,v 1.1 2007/05/24 15:13:50 southa Exp $
+# $Id: space.rb,v 1.2 2007/06/27 12:58:15 southa Exp $
 # $Log: space.rb,v $
+# Revision 1.2  2007/06/27 12:58:15  southa
+# Debian packaging
+#
 # Revision 1.1  2007/05/24 15:13:50  southa
 # Level 17
 #
@@ -31,19 +34,19 @@ require 'Adanaxis.rb'
 class Adanaxis_level17 < AdanaxisSpace
   def initialize(inParams = {})
     super
-    
+
     mTimeoutSpawnAdd(:mSpawn0, 80000) if AdanaxisRuby.cGameDifficulty > 0
     mTimeoutSpawnAdd(:mSpawn1, 60000) if AdanaxisRuby.cGameDifficulty > 1
-    
+
     mIsBattleSet(false)
   end
-  
+
   def mLoad(game)
     mLoadStandard(game)
     mMusicAdd('game1', 'mushware-extensions-to-space.ogg')
     MushGame.cSoundDefine("voice-intro", "mush://waves/voice-L17.ogg")
   end
-  
+
   def mPrecacheListBuild
     super
     mPrecacheListAdd(mPieceLibrary.mAttendantTex('red'))
@@ -62,10 +65,10 @@ class Adanaxis_level17 < AdanaxisSpace
     angVel = MushTools.cRotationInXYPlane(Math::PI / 1200);
     MushTools.cRotationInZWPlane(Math::PI / 1314).mRotate(angVel);
     MushTools.cRotationInYZPlane(Math::PI / 1575).mRotate(angVel);
-  
+
     vel = MushVector.new(-0.05*(1+diff),0,0,0)
     angPos = MushTools.cRotationInXZPlane(Math::PI/2)
-    
+
     8.times do |param|
       mPieceLibrary.mHarpikCreate(
         :colour => 'red',
@@ -119,7 +122,7 @@ class Adanaxis_level17 < AdanaxisSpace
         :weapon => :harpik_spawner
       )
     end
-   
+
     [-1,1].each do |param|
       mPieceLibrary.mWarehouseCreate(
         :colour => 'red',
@@ -136,7 +139,7 @@ class Adanaxis_level17 < AdanaxisSpace
         :remnant => :player_rail
       )
     end
-    
+
     (4-diff).times do |i|
       $currentLogic.mRemnant.mCreate(
         :item_type => :player_heavy_cannon,
@@ -145,10 +148,10 @@ class Adanaxis_level17 < AdanaxisSpace
         )
       )
     end
-    
+
     mStandardCosmos(17)
   end
-  
+
   def mSpawn0
     diff = AdanaxisRuby.cGameDifficulty
     mPieceLibrary.mCisternCreate(
@@ -193,7 +196,7 @@ class Adanaxis_level17 < AdanaxisSpace
         :weapon => :harpik_spawner
       )
     end
-          
+
     mPieceLibrary.mCisternCreate(
       :colour => 'red',
       :post => MushPost.new(
@@ -209,7 +212,7 @@ class Adanaxis_level17 < AdanaxisSpace
       :ai_state => :dormant,
       :ai_state_msec => 6000,
       :weapon => :vendor_spawner
-    )  
+    )
 
     MushGame.cVoicePlay('voice-E1-1') # 'Guided ordnance detected'
     return true

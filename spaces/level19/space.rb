@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } 1wkoB/N29VT5x+SykwmO0A
-# $Id: space.rb,v 1.3 2007/06/12 11:09:36 southa Exp $
+# $Id: space.rb,v 1.4 2007/06/27 12:58:16 southa Exp $
 # $Log: space.rb,v $
+# Revision 1.4  2007/06/27 12:58:16  southa
+# Debian packaging
+#
 # Revision 1.3  2007/06/12 11:09:36  southa
 # Level 28
 #
@@ -40,16 +43,16 @@ class Adanaxis_level19 < AdanaxisSpace
 
     mTimeOnlySpawnAdd(:mSpawn2, 90000)
     mTimeOnlySpawnAdd(:mSpawn3, 120000)
-    
+
     mIsBattleSet(true)
   end
-  
+
   def mLoad(game)
     mLoadStandard(game)
     mMusicAdd('game1', 'mushware-sanity-fault.ogg')
     MushGame.cSoundDefine("voice-intro", "mush://waves/voice-L19.ogg")
   end
-  
+
   def mPrecacheListBuild
     super
     mPrecacheListAdd(mPieceLibrary.mAttendantTex('red', 'blue'))
@@ -69,10 +72,10 @@ class Adanaxis_level19 < AdanaxisSpace
     angVel = MushTools.cRotationInXYPlane(Math::PI / 1200);
     MushTools.cRotationInZWPlane(Math::PI / 1314).mRotate(angVel);
     MushTools.cRotationInYZPlane(Math::PI / 1575).mRotate(angVel);
-  
+
     vel = MushVector.new(-0.05*(1+diff),0,0,0)
     angPos = MushTools.cRotationInXZPlane(Math::PI/2)
-  
+
     1.times do |param|
       mPieceLibrary.mFreshenerCreate(
         :colour => 'red',
@@ -82,7 +85,7 @@ class Adanaxis_level19 < AdanaxisSpace
         )
       )
     end
-    
+
     (2+diff).times do |param|
         mPieceLibrary.mRailCreate(
           :colour => 'red',
@@ -95,7 +98,7 @@ class Adanaxis_level19 < AdanaxisSpace
           :ai_state_msec => 30000
         )
     end
-    
+
     4.times do |param|
       ['blue', 'red'].each do |colour|
         mPieceLibrary.mHarpikCreate(
@@ -126,7 +129,7 @@ class Adanaxis_level19 < AdanaxisSpace
         :ai_state_msec => 10000+250*param
       )
     end
-   
+
     [-1,1].each do |param|
       mPieceLibrary.mWarehouseCreate(
         :colour => 'red',
@@ -143,7 +146,7 @@ class Adanaxis_level19 < AdanaxisSpace
         :remnant => :player_rail
       )
     end
-    
+
     mPieceLibrary.mCisternCreate(
       :colour => 'blue',
       :post => MushPost.new(
@@ -159,14 +162,14 @@ class Adanaxis_level19 < AdanaxisSpace
       :ai_state => :patrol,
       :ai_state_msec => 10000
     )
-  
+
     $currentLogic.mRemnant.mCreate(
       :item_type => (AdanaxisRuby.cGameDifficulty < 2) ? :player_light_missile : :player_heavy_cannon,
       :post => MushPost.new(
         :position => MushVector.new(3, 0 , 0, -20)
       )
     )
-    
+
     if diff < 1
       $currentLogic.mRemnant.mCreate(
         :item_type => :player_heavy_cannon,
@@ -175,7 +178,7 @@ class Adanaxis_level19 < AdanaxisSpace
         )
       )
     end
- 
+
     $currentLogic.mRemnant.mCreate(
       :item_type => :player_heavy_missile,
       :post => MushPost.new(
@@ -183,10 +186,10 @@ class Adanaxis_level19 < AdanaxisSpace
       )
     )
 
-          
+
     mStandardCosmos(19)
   end
-  
+
   def mSpawn0
     diff = AdanaxisRuby.cGameDifficulty
 
@@ -209,7 +212,7 @@ class Adanaxis_level19 < AdanaxisSpace
 
   def mSpawn1
     diff = AdanaxisRuby.cGameDifficulty
-          
+
     mPieceLibrary.mCisternCreate(
       :colour => 'red',
       :post => MushPost.new(
@@ -225,7 +228,7 @@ class Adanaxis_level19 < AdanaxisSpace
       :ai_state => :dormant,
       :ai_state_msec => 6000,
       :weapon => :vendor_spawner
-    )  
+    )
     MushGame.cVoicePlay('voice-E3-2') # 'Hostile import detected'
 
     return true
@@ -252,7 +255,7 @@ class Adanaxis_level19 < AdanaxisSpace
           :ai_state_msec => 10000
         )
     end
-    
+
     MushGame.cVoicePlay('voice-E3-1') # 'Hostile import detected'
     MushGame.cNamedDialoguesAdd('^reinforce')
 

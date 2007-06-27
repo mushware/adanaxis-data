@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } 4LtYymInhExNdpOqSAaaUA
-# $Id: AdanaxisUtil.rb,v 1.37 2007/06/14 18:55:10 southa Exp $
+# $Id: AdanaxisUtil.rb,v 1.38 2007/06/27 12:58:12 southa Exp $
 # $Log: AdanaxisUtil.rb,v $
+# Revision 1.38  2007/06/27 12:58:12  southa
+# Debian packaging
+#
 # Revision 1.37  2007/06/14 18:55:10  southa
 # Level and display tweaks
 #
@@ -140,7 +143,7 @@ class AdanaxisUtil < MushObject
       end
     end
   end
-  
+
   @c_symbols = {
     :acceleration => true,
     :ai_object => true,

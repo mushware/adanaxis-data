@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } /CLhMQeLenBvuR33lAQjXA
-# $Id: AdanaxisPiecePlayer.rb,v 1.32 2007/06/14 18:55:10 southa Exp $
+# $Id: AdanaxisPiecePlayer.rb,v 1.33 2007/06/27 12:58:12 southa Exp $
 # $Log: AdanaxisPiecePlayer.rb,v $
+# Revision 1.33  2007/06/27 12:58:12  southa
+# Debian packaging
+#
 # Revision 1.32  2007/06/14 18:55:10  southa
 # Level and display tweaks
 #
@@ -122,7 +125,7 @@ require 'AdanaxisEvents.rb'
 class AdanaxisPiecePlayer < AdanaxisPiece
   extend MushRegistered
   mushRegistered_install
-  
+
   @@c_weaponList = [
     :player_base,
     :player_light_cannon,
@@ -135,7 +138,7 @@ class AdanaxisPiecePlayer < AdanaxisPiece
     :player_flush,
     :player_nuclear
   ]
-  
+
   def initialize(inParams = {})
     AdanaxisUtil.cSpellCheck(inParams)
     @m_defaultType = "p"
@@ -154,7 +157,7 @@ class AdanaxisPiecePlayer < AdanaxisPiece
     @m_lastAmmoAddMsec = 0
     @m_controlReleased = false
     @m_thrustReleased = $currentGame.mSpace.mPermanentThrust
-    
+
     $currentGame.mView.mDashboard.mUpdate(
       :weapon_name => @m_weaponName,
       :ammo_count => @m_magazine.mAmmoCount(@m_weaponName)
@@ -164,19 +167,19 @@ class AdanaxisPiecePlayer < AdanaxisPiece
   end
 
   mush_accessor :m_shield, :m_originalShield, :m_magazine, :m_controlReleased, :m_thrustReleased
-  
+
   def mShieldRatio
     @m_shield / @m_originalShield
   end
-  
+
   def mVulnerability
     vuln = ((150.0 - @m_shield) / 150.0) - 0.2
     vuln = 0.0 if vuln < 0.0
     vuln = 1.0 if vuln > 1.0 || @m_shield == 0
-    
+
     return vuln
   end
-  
+
   def mDamageTake(inDamage, inPiece)
     @m_shield -= inDamage
     @m_shield = 0.0 if @m_shield < 0.0
@@ -193,7 +196,7 @@ class AdanaxisPiecePlayer < AdanaxisPiece
       $currentGame.mView.mDashboard.mDamageUpdate(amount, incomingVel)
     end
   end
-  
+
   def mNewWeapon(inWeapon)
     if inWeapon.kind_of?(Symbol)
       @m_weaponNum = @@c_weaponList.index(inWeapon)
@@ -212,16 +215,16 @@ class AdanaxisPiecePlayer < AdanaxisPiece
       :ammo_count => @m_magazine.mAmmoCount(@m_weaponName)
     )
   end
-  
+
   def mAmmoCollect(inType, inCount)
     mMagazine.mLimitedAmmoAdd(inType, inCount)
-    
+
     weaponNum = @@c_weaponList.index(inType)
     if weaponNum && weaponNum > @m_weaponNum
       mNewWeapon(weaponNum)
     end
   end
-  
+
   def mFire
     if @m_magazine.mAmmoCount(@m_weaponName) <= 0
       @@c_weaponList.reverse_each do |name|
@@ -239,7 +242,7 @@ class AdanaxisPiecePlayer < AdanaxisPiece
       $currentGame.mView.mDashboard.mUpdate(:ammo_count => @m_magazine.mAmmoCount(@m_weaponName))
     end
   end
-  
+
   def mEventHandle(event)
     case event
       when AdanaxisEventFire: mFireHandle(event)
@@ -248,10 +251,10 @@ class AdanaxisPiecePlayer < AdanaxisPiece
     end
     @m_callInterval
   end
-  
+
   def mActionTimer
     callInterval = @m_callInterval
-    
+
     if @m_fireState || (@m_numActions % 8) == 0
       mLoad
 
@@ -260,7 +263,7 @@ class AdanaxisPiecePlayer < AdanaxisPiece
         # Short call interval for smooth rapid fire
         callInterval = 0
       end
-      
+
       if @m_lastAmmoAddMsec + 1000 < MushGame.cGameMsec
         if @m_magazine.mAmmoCount(:player_base) < 100
           @m_magazine.mLimitedAmmoAdd(:player_base, 1)
@@ -271,21 +274,21 @@ class AdanaxisPiecePlayer < AdanaxisPiece
         @m_lastAmmoAddMsec = MushGame.cGameMsec
       end
     end
-    
+
     $currentGame.mView.mDashboard.mUpdate(
       :hit_point_ratio => mHitPointRatio,
       :shield_ratio => mShieldRatio
     )
-    
+
     @m_numActions += 1
     callInterval
   end
-  
+
   def mCollectItem(inItem)
     $currentLogic.mRemnant.mCollect(inItem, self)
     $currentGame.mView.mDashboard.mUpdate(:ammo_count => @m_magazine.mAmmoCount(@m_weaponName))
   end
-  
+
   def mFatalCollisionHandle(event)
     super
 
@@ -294,7 +297,7 @@ class AdanaxisPiecePlayer < AdanaxisPiece
       disp = MushVector.new(0,0,0,-10 * (i+1))
       post.angular_position.mRotate(disp)
       post.position = post.position + disp
-        
+
       $currentLogic.mEffects.mExplode(
         :post => post,
         :embers => 0,
@@ -307,7 +310,7 @@ class AdanaxisPiecePlayer < AdanaxisPiece
         :flare_lifetime_range => (1000..2000)
         )
     end
-    
+
     post = event.mPiece1.post.dup
     post.velocity = MushVector.new(0,0,0,0)
     disp = MushVector.new(0,0,0,-1)
@@ -322,7 +325,7 @@ class AdanaxisPiecePlayer < AdanaxisPiece
         :ember_speed_range => (0.05..0.1),
         :ember_lifetime_range => (40000..60000)
     )
-    
+
     post = event.mPiece1.post.dup
     disp = MushVector.new(-10,0,0,0)
     post.angular_position.mRotate(disp)
@@ -334,11 +337,11 @@ class AdanaxisPiecePlayer < AdanaxisPiece
     post.position = post.position + disp
     MushGame.cSoundPlay("explo6", post)
     MushGame.cSoundPlay("explo7", mPost)
-        
+
     # Remove other object
     event.mPiece2.mExpireFlagSet(true)
   end
-  
+
   def mCollisionHandle(event)
     super
 
@@ -350,14 +353,14 @@ class AdanaxisPiecePlayer < AdanaxisPiece
         end
     end
   end
-  
+
   def mFireHandle(event)
     mLoad
     if @m_weapon
       @m_weapon.mFire(event, self)
     end
   end
-  
+
   def mKeyStateHandle(event)
     mLoad
     event.mState.each_with_index do |state, i|
@@ -366,7 +369,7 @@ class AdanaxisPiecePlayer < AdanaxisPiece
       if keyNum == AdanaxisControl::KEY_FIRE
         @m_fireState = state
       end
-    
+
       if state
         numWeapons = @@c_weaponList.size
         case keyNum

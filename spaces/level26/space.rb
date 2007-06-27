@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } UkLg/5hi5aJQKxMZ1xTDFA
-# $Id: space.rb,v 1.2 2007/06/12 11:09:37 southa Exp $
+# $Id: space.rb,v 1.3 2007/06/27 12:58:17 southa Exp $
 # $Log: space.rb,v $
+# Revision 1.3  2007/06/27 12:58:17  southa
+# Debian packaging
+#
 # Revision 1.2  2007/06/12 11:09:37  southa
 # Level 28
 #
@@ -33,7 +36,7 @@ class Adanaxis_level26 < AdanaxisSpace
     super
 
     diff = AdanaxisRuby.cGameDifficulty
-    
+
     20.times do |i|
       mTimeOnlySpawnAdd(:mWarehouseAdd, 30000+i*20000)
     end
@@ -47,20 +50,20 @@ class Adanaxis_level26 < AdanaxisSpace
     mTimeOnlySpawnAdd(:mVortexAdd, 20000) if diff > 0
     mTimeOnlySpawnAdd(:mRailAdd, 40000) if diff > 1
     mTimeOnlySpawnAdd(:mVortexAdd, 60000) if diff > 1
-    
+
     mTimeOnlySpawnAdd(:mSpawn0, 60000)
     mTimeOnlySpawnAdd(:mSpawn0, 120000)
-   
+
     mIsBattleSet(true)
     mPrimarySet(PRIMARY_RED)
   end
-  
+
   def mLoad(game)
     mLoadStandard(game)
     mMusicAdd('game1', 'mushware-except-for-this.ogg')
     MushGame.cSoundDefine("voice-intro", "mush://waves/voice-L26.ogg")
   end
-  
+
   def mPrecacheListBuild
     super
     mPrecacheListAdd(mPieceLibrary.mAttendantTex('blue'))
@@ -81,12 +84,12 @@ class Adanaxis_level26 < AdanaxisSpace
     angVel = MushTools.cRotationInXYPlane(Math::PI / 1200);
     MushTools.cRotationInZWPlane(Math::PI / 1314).mRotate(angVel);
     MushTools.cRotationInYZPlane(Math::PI / 1575).mRotate(angVel);
-  
+
     vel = MushVector.new(-0.05*(1+diff),0,0,0)
     angPos = MushTools.cRotationInYZPlane(Math::PI/2)
     MushTools.cRotationInXWPlane(Math::PI/2).mRotate(angPos)
     MushTools.cRotationInXYPlane(Math::PI/2).mRotate(angPos)
-  
+
     1.times do |param|
       mPieceLibrary.mDoorCreate(
         :colour => 'red',
@@ -117,7 +120,7 @@ class Adanaxis_level26 < AdanaxisSpace
         :weapon => :harpik_spawner
       )
     end
-   
+
     [-1,1].each do |param|
       mPieceLibrary.mWarehouseCreate(
         :colour => 'red',
@@ -134,7 +137,7 @@ class Adanaxis_level26 < AdanaxisSpace
         :remnant => :player_rail
       )
     end
-    
+
     mPieceLibrary.mCisternCreate(
       :colour => 'blue',
       :post => MushPost.new(
@@ -151,7 +154,7 @@ class Adanaxis_level26 < AdanaxisSpace
       :ai_state_msec => 10000,
       :weapon => :harpik_spawner
     )
-    
+
     3.times do |param|
       mPieceLibrary.mVendorCreate(
         :colour => 'blue',
@@ -162,7 +165,7 @@ class Adanaxis_level26 < AdanaxisSpace
         )
       )
     end
-    
+
     3.times do |param|
       mPieceLibrary.mLimescaleCreate(
         :colour => 'blue',
@@ -173,7 +176,7 @@ class Adanaxis_level26 < AdanaxisSpace
         )
       )
     end
- 
+
     2.times do |param|
       $currentLogic.mRemnant.mCreate(
         :item_type => :player_heavy_cannon,
@@ -182,7 +185,7 @@ class Adanaxis_level26 < AdanaxisSpace
         )
       )
     end
-          
+
     1.times do |param|
       $currentLogic.mRemnant.mCreate(
         :item_type => :player_rail,
@@ -191,7 +194,7 @@ class Adanaxis_level26 < AdanaxisSpace
         )
       )
     end
-         
+
     3.times do |param|
       $currentLogic.mRemnant.mCreate(
         :item_type => :player_flak,
@@ -200,10 +203,10 @@ class Adanaxis_level26 < AdanaxisSpace
         )
       )
     end
-            
+
     mStandardCosmos(26)
   end
-  
+
   def mSpawn0
     mPieceLibrary.mCisternCreate(
       :colour => 'blue',
@@ -234,11 +237,11 @@ class Adanaxis_level26 < AdanaxisSpace
       ),
       :spawned => true
     )
-    
+
     return true
   end
 
-  
+
   def mCisternAdd
     diff = AdanaxisRuby.cGameDifficulty
 
@@ -300,7 +303,7 @@ class Adanaxis_level26 < AdanaxisSpace
       ),
       :spawned => true
     )
-    
+
     return true
   end
 
@@ -316,7 +319,7 @@ class Adanaxis_level26 < AdanaxisSpace
       ),
       :spawned => true
     )
-    
+
     return true
   end
 
@@ -330,7 +333,7 @@ class Adanaxis_level26 < AdanaxisSpace
       ),
       :spawned => true
     )
-    
+
     return true
   end
 

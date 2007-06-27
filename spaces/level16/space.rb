@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } x4NITWE/e2mwJiNtsiQ1sA
-# $Id: space.rb,v 1.4 2007/06/14 22:24:27 southa Exp $
+# $Id: space.rb,v 1.5 2007/06/27 12:58:15 southa Exp $
 # $Log: space.rb,v $
+# Revision 1.5  2007/06/27 12:58:15  southa
+# Debian packaging
+#
 # Revision 1.4  2007/06/14 22:24:27  southa
 # Level and gameplay tweaks
 #
@@ -41,13 +44,13 @@ class Adanaxis_level16 < AdanaxisSpace
     mRetinaSpinSet(AdanaxisRuby.cGameDifficulty+1.0)
     mPermanentSpinSet(true)
   end
-  
+
   def mLoad(game)
     mLoadStandard(game)
     mMusicAdd('game1', 'mushware-disturbed-sleep.ogg')
     MushGame.cSoundDefine("voice-intro", "mush://waves/voice-L16.ogg")
   end
-  
+
   def mPrecacheListBuild
     super
     mPrecacheListAdd(mPieceLibrary.mAttendantTex('red'))
@@ -65,10 +68,10 @@ class Adanaxis_level16 < AdanaxisSpace
     angVel = MushTools.cRotationInXYPlane(Math::PI / 1200);
     MushTools.cRotationInZWPlane(Math::PI / 1314).mRotate(angVel);
     MushTools.cRotationInYZPlane(Math::PI / 1575).mRotate(angVel);
-  
+
     vel = MushVector.new(-0.05*(1+diff),0,0,0)
     angPos = MushTools.cRotationInXZPlane(Math::PI/2)
-  
+
     (-diff..diff).each do |param|
       mPieceLibrary.mFreshenerCreate(
         :colour => 'red',
@@ -136,14 +139,14 @@ class Adanaxis_level16 < AdanaxisSpace
         :remnant => :player_light_missile
       )
     end
-    
+
     $currentLogic.mRemnant.mCreate(
       :item_type => (AdanaxisRuby.cGameDifficulty < 2) ? :player_light_missile : :player_heavy_cannon,
       :post => MushPost.new(
         :position => MushVector.new(6*diff, 6*diff, 6*diff, -20)
       )
     )
-    
+
     mStandardCosmos(16)
   end
 end

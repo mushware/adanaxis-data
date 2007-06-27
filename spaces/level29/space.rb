@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } i1JMVDtuSpfHIqXhV9HjJQ
-# $Id: space.rb,v 1.1 2007/06/13 14:08:44 southa Exp $
+# $Id: space.rb,v 1.2 2007/06/27 12:58:18 southa Exp $
 # $Log: space.rb,v $
+# Revision 1.2  2007/06/27 12:58:18  southa
+# Debian packaging
+#
 # Revision 1.1  2007/06/13 14:08:44  southa
 # Level 29
 #
@@ -31,13 +34,13 @@ class Adanaxis_level29 < AdanaxisSpace
     mPrimarySet(PRIMARY_RED)
     mSpeedAugmentationSet(true)
   end
-  
+
   def mLoad(game)
     mLoadStandard(game)
     mMusicAdd('game1', 'mushware-respiration.ogg')
     MushGame.cSoundDefine("voice-intro", "mush://waves/voice-L29.ogg")
   end
-  
+
   def mPrecacheListBuild
     super
     mPrecacheListAdd(mPieceLibrary.mAttendantTex('red', 'blue'))
@@ -56,10 +59,10 @@ class Adanaxis_level29 < AdanaxisSpace
     angVel = MushTools.cRotationInXYPlane(Math::PI / 1200);
     MushTools.cRotationInZWPlane(Math::PI / 1314).mRotate(angVel);
     MushTools.cRotationInYZPlane(Math::PI / 1575).mRotate(angVel);
-  
+
     vel = MushVector.new(0,0,0,-10.0)
     angPos = MushTools.cRotationInXZPlane(Math::PI/2)
-  
+
     (-1..1).each do |param1|
       (-1..1).each do |param2|
         mPieceLibrary.mWarehouseCreate(
@@ -95,7 +98,7 @@ class Adanaxis_level29 < AdanaxisSpace
           :ai_state_msec => 12000+1000*param
         )
     end
-    
+
     2.times do |param|
         mPieceLibrary.mRailCreate(
           :colour => 'blue',
@@ -108,7 +111,7 @@ class Adanaxis_level29 < AdanaxisSpace
           :ai_state_msec => 9500+1000*param
         )
     end
-    
+
     15.times do |param|
       ['blue', 'red'].each do |colour|
         mPieceLibrary.mAttendantCreate(
@@ -152,7 +155,7 @@ class Adanaxis_level29 < AdanaxisSpace
         :weapon => :limescale_spawner
       )
     end
-  
+
     if diff < 2
       $currentLogic.mRemnant.mCreate(
         :item_type => :player_rail,
@@ -168,7 +171,7 @@ class Adanaxis_level29 < AdanaxisSpace
         :position => MushVector.new(1, 1 , 0, -20)
       )
     )
-    
+
     if diff < 1
       $currentLogic.mRemnant.mCreate(
         :item_type => :player_heavy_cannon,
@@ -177,7 +180,7 @@ class Adanaxis_level29 < AdanaxisSpace
         )
       )
     end
-    
+
     mStandardCosmos(29)
   end
 end

@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } fCKaGUAeHXb6sG0R4aZGMQ
-# $Id: AdanaxisControl.rb,v 1.11 2007/04/18 09:21:52 southa Exp $
+# $Id: AdanaxisControl.rb,v 1.12 2007/06/27 12:58:10 southa Exp $
 # $Log: AdanaxisControl.rb,v $
+# Revision 1.12  2007/06/27 12:58:10  southa
+# Debian packaging
+#
 # Revision 1.11  2007/04/18 09:21:52  southa
 # Header and level fixes
 #
@@ -60,19 +63,19 @@ class AdanaxisControl
   AXISKEY_XY_MINUS    = 16
   AXISKEY_XY_PLUS     = 17
   AXISKEY_XY_REQUIRED = 18
-  
+
   AXISKEY_ZW_MINUS    = 20
   AXISKEY_ZW_PLUS     = 21
   AXISKEY_ZW_REQUIRED = 22
-  
+
   AXISKEY_XZ_MINUS    = 24
   AXISKEY_XZ_PLUS     = 25
   AXISKEY_XZ_REQUIRED = 26
-  
+
   AXISKEY_YW_MINUS    = 28
   AXISKEY_YW_PLUS     = 29
   AXISKEY_YW_REQUIRED = 30
-  
+
   AXISKEY_XW_MINUS    = 32
   AXISKEY_XW_PLUS     = 33
   AXISKEY_XW_REQUIRED = 34

@@ -15,9 +15,11 @@
 # This software carries NO WARRANTY of any kind.
 #
 ##############################################################################
-#%Header } 0/+/WU9nlN6gOxSaFqE2Cw
-# $Id: space.rb,v 1.8 2007/04/18 09:21:57 southa Exp $
+# $Id: space.rb,v 1.9 2007/06/27 12:58:21 southa Exp $
 # $Log: space.rb,v $
+# Revision 1.9  2007/06/27 12:58:21  southa
+# Debian packaging
+#
 # Revision 1.8  2007/04/18 09:21:57  southa
 # Header and level fixes
 #
@@ -54,7 +56,7 @@ class Adanaxis_river1 < AdanaxisSpace
     super
     @preCached = 0
   end
-  
+
   def mLoad(game)
     mLoadStandard(game)
     MushGame.cSoundStreamDefine('theme1', MushConfig.cGlobalWavesPath+'/mushware-adanaxistheme.ogg')
@@ -69,10 +71,10 @@ class Adanaxis_river1 < AdanaxisSpace
       when 9   : MushGLTexture.cPrecache("river1-tex")
       when 19 : MushGLTexture.cPrecache("ground1-tex")
     end
-    
+
     3 * num
   end
-  
+
   def mInitialPiecesCreate
     super
 
@@ -95,7 +97,7 @@ class Adanaxis_river1 < AdanaxisSpace
         end
       end
     end
-      
+
     1000.times do |i|
       pos = MushTools.cRandomUnitVector * (30 + rand(100))
       world = AdanaxisWorld.new(
@@ -105,6 +107,6 @@ class Adanaxis_river1 < AdanaxisSpace
           )
         )
     end
-    
+
   end
 end

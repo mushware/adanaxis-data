@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } oyPp6LLoBemiYxeqWvVkLQ
-# $Id: AdanaxisWeaponLibrary.rb,v 1.33 2007/06/06 12:24:13 southa Exp $
+# $Id: AdanaxisWeaponLibrary.rb,v 1.34 2007/06/27 12:58:13 southa Exp $
 # $Log: AdanaxisWeaponLibrary.rb,v $
+# Revision 1.34  2007/06/27 12:58:13  southa
+# Debian packaging
+#
 # Revision 1.33  2007/06/06 12:24:13  southa
 # Level 22
 #
@@ -125,7 +128,7 @@ class AdanaxisWeaponLibrary < MushObject
   def initialize(inParams = {})
     @m_weapons = {}
   end
-  
+
   def mCreate
     case AdanaxisRuby.cGameDifficulty
     when 0
@@ -133,7 +136,7 @@ class AdanaxisWeaponLibrary < MushObject
     when 1
       aiParams = {:seek_acceleration => 0.005}
     end
-    
+
     @m_weapons[:player_base] = AdanaxisWeapon.new(
       :projectile_mesh => 'ball1',
       :speed => 1.0,
@@ -191,7 +194,7 @@ class AdanaxisWeaponLibrary < MushObject
       :load_sound => 'load3',
       :fire_sound => 'fire3'
     )
-    
+
     railAngVel = MushTools.cRotationInXYPlane(0.04)
     MushTools.cRotationInXZPlane(0.1).mRotate(railAngVel)
     MushTools.cRotationInYZPlane(0.14).mRotate(railAngVel)
@@ -279,7 +282,7 @@ class AdanaxisWeaponLibrary < MushObject
       :ai_params => {:seek_acceleration => 0.1},
       :angular_velocity => MushRotation.new
     )
-    
+
     @m_weapons[:player_nuclear] = AdanaxisWeapon.new(
       :projectile_mesh => 'projectile2',
       :speed => 1.0,
@@ -335,7 +338,7 @@ class AdanaxisWeaponLibrary < MushObject
       ],
       :alpha_stutter => 0.3,
       :fire_sound => 'fire8'
-      
+
     )
 
     @m_weapons[:khazi_rail] = AdanaxisWeapon.new(
@@ -472,7 +475,7 @@ class AdanaxisWeaponLibrary < MushObject
     )
 
   end
-  
+
   def mWeapon(inName)
     if inName
       retVal = @m_weapons[inName.to_sym].dup

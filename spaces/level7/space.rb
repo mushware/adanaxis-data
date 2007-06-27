@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } dbzR4qWxpHUpa7A9LtWGAQ
-# $Id: space.rb,v 1.5 2007/06/14 22:24:28 southa Exp $
+# $Id: space.rb,v 1.6 2007/06/27 12:58:19 southa Exp $
 # $Log: space.rb,v $
+# Revision 1.6  2007/06/27 12:58:19  southa
+# Debian packaging
+#
 # Revision 1.5  2007/06/14 22:24:28  southa
 # Level and gameplay tweaks
 #
@@ -43,13 +46,13 @@ class Adanaxis_level7 < AdanaxisSpace
     mTimeoutSpawnAdd(:mSpawn0, 180000)
     mIsBattleSet(true)
   end
-  
+
   def mLoad(game)
     mLoadStandard(game)
     mMusicAdd('game1', 'mushware-sanity-fault.ogg')
     MushGame.cSoundDefine("voice-intro", "mush://waves/voice-L7.ogg")
   end
-  
+
   def mPrecacheListBuild
     super
     mPrecacheListAdd(mPieceLibrary.mAttendantTex('red', 'blue'))
@@ -57,12 +60,12 @@ class Adanaxis_level7 < AdanaxisSpace
     mPrecacheListAdd(mPieceLibrary.mHarpikTex('red', 'blue'))
     mPrecacheListAdd(mPieceLibrary.mRailTex('red'))
   end
-  
+
   def mInitialPiecesCreate
     super
     MushTools.cRandomSeedSet(7)
     diff = AdanaxisRuby.cGameDifficulty
-  
+
     ((-diff-1)..(diff+1)).each do |param|
       mPieceLibrary.mRailCreate(
         :colour => 'red',
@@ -72,9 +75,9 @@ class Adanaxis_level7 < AdanaxisSpace
         ),
         :ai_state => :dormant,
         :ai_state_msec => 80000 - 30000 * diff
-      )  
+      )
     end
-    
+
     (-15..15).each do |param|
       mPieceLibrary.mAttendantCreate(
         :colour => 'blue',
@@ -85,7 +88,7 @@ class Adanaxis_level7 < AdanaxisSpace
         )
       )
     end
-    
+
     (-8..8).each do |param|
       mPieceLibrary.mAttendantCreate(
         :colour => 'red',
@@ -103,7 +106,7 @@ class Adanaxis_level7 < AdanaxisSpace
         :position => MushVector.new(-4, 0, 0, -40)
       )
     )
-    
+
     2.times do |i|
       $currentLogic.mRemnant.mCreate(
         :item_type => :player_quad_cannon,
@@ -112,10 +115,10 @@ class Adanaxis_level7 < AdanaxisSpace
         )
       )
     end
-    
+
     mStandardCosmos(7)
   end
-  
+
   def mSpawn0
     MushTools.cRandomSeedSet(7)
     mPieceLibrary.mCisternCreate(
@@ -132,7 +135,7 @@ class Adanaxis_level7 < AdanaxisSpace
       :ammo_count => 25 + 15 * AdanaxisRuby.cGameDifficulty,
       :weapon => (AdanaxisRuby.cGameDifficulty > 1) ? :harpik_spawner : :attendant_spawner
     )
-    
+
     mPieceLibrary.mCisternCreate(
       :colour => 'blue',
       :post => MushPost.new(

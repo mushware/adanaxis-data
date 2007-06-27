@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } QrcsMpcPBW/6+SVDssrjqQ
-# $Id: space.rb,v 1.4 2007/04/18 09:21:55 southa Exp $
+# $Id: space.rb,v 1.5 2007/06/27 12:58:18 southa Exp $
 # $Log: space.rb,v $
+# Revision 1.5  2007/06/27 12:58:18  southa
+# Debian packaging
+#
 # Revision 1.4  2007/04/18 09:21:55  southa
 # Header and level fixes
 #
@@ -52,20 +55,20 @@ class Adanaxis_level4 < AdanaxisSpace
     mTimeoutSpawnAdd(:mSpawn0, 17000)
     mIsBattleSet(true)
   end
-  
+
   def mLoad(game)
     mLoadStandard(game)
     mMusicAdd('game1', 'mushware-disturbed-sleep.ogg')
     MushGame.cSoundDefine("voice-intro", "mush://waves/voice-L4.ogg")
   end
-  
+
   def mPrecacheListBuild
     super
     mPrecacheListAdd(mPieceLibrary.mAttendantTex('red', 'blue'))
     mPrecacheListAdd(mPieceLibrary.mCisternTex('red'))
     mPrecacheListAdd(mPieceLibrary.mRailTex('red'))
   end
-  
+
   def mInitialPiecesCreate
     super
     MushTools.cRandomSeedSet(4)
@@ -78,14 +81,14 @@ class Adanaxis_level4 < AdanaxisSpace
           :ai_state => :dormant,
           :ai_state_msec => 180000 - 40000 * diff
         )
-      end    
+      end
     end
-    
+
     15.times do |param|
       ['blue'].each do |colour|
         pos = MushVector.new(0, 0, 0, -150) +
           MushTools.cRandomUnitVector * (20 + rand(100));
-        
+
         mPieceLibrary.mAttendantCreate(
           :colour => colour,
           :position => pos
@@ -101,10 +104,10 @@ class Adanaxis_level4 < AdanaxisSpace
         )
       )
     end
-    
+
     mStandardCosmos(4)
   end
-  
+
   def mSpawn0
     MushTools.cRandomSeedSet(4)
     mPieceLibrary.mCisternCreate(

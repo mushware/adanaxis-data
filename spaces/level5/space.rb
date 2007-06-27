@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } r6pSk2dJ6TbGKArdK+El0w
-# $Id: space.rb,v 1.3 2007/04/18 09:21:56 southa Exp $
+# $Id: space.rb,v 1.4 2007/06/27 12:58:19 southa Exp $
 # $Log: space.rb,v $
+# Revision 1.4  2007/06/27 12:58:19  southa
+# Debian packaging
+#
 # Revision 1.3  2007/04/18 09:21:56  southa
 # Header and level fixes
 #
@@ -52,24 +55,24 @@ class Adanaxis_level5 < AdanaxisSpace
     mTimeoutSpawnAdd(:mSpawn0, 15000)
     mIsBattleSet(true)
   end
-  
+
   def mLoad(game)
     mLoadStandard(game)
     mMusicAdd('game1', 'mushware-disturbed-sleep.ogg')
     MushGame.cSoundDefine("voice-intro", "mush://waves/voice-L5.ogg")
   end
-  
+
   def mPrecacheListBuild
     super
     mPrecacheListAdd(mPieceLibrary.mAttendantTex('red', 'blue'))
     mPrecacheListAdd(mPieceLibrary.mCisternTex('red', 'blue'))
     mPrecacheListAdd(mPieceLibrary.mHarpikTex('red'))
   end
-  
+
   def mInitialPiecesCreate
     super
     MushTools.cRandomSeedSet(4)
-    
+
     (1+AdanaxisRuby.cGameDifficulty).times do |param|
       mPieceLibrary.mHarpikCreate(
         :colour => 'red',
@@ -79,12 +82,12 @@ class Adanaxis_level5 < AdanaxisSpace
         )
       )
     end
-    
+
     5.times do |param|
       ['blue'].each do |colour|
         pos = MushVector.new(0, 0, 0, -300) +
           MushTools.cRandomUnitVector * (20 + rand(100));
-        
+
         mPieceLibrary.mAttendantCreate(
           :colour => colour,
           :position => pos
@@ -100,10 +103,10 @@ class Adanaxis_level5 < AdanaxisSpace
         )
       )
     end
-    
+
     mStandardCosmos(4)
   end
-  
+
   def mSpawn0
     MushTools.cRandomSeedSet(4)
     mPieceLibrary.mCisternCreate(
@@ -120,7 +123,7 @@ class Adanaxis_level5 < AdanaxisSpace
       :ammo_count => 25 + 15 * AdanaxisRuby.cGameDifficulty,
       :weapon => (AdanaxisRuby.cGameDifficulty > 1) ? :harpik_spawner : :attendant_spawner
     )
-    
+
     mPieceLibrary.mCisternCreate(
       :colour => 'blue',
       :post => MushPost.new(

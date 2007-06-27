@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } mE5mYbipztvHtBPce3UZow
-# $Id: AdanaxisPiece.rb,v 1.6 2007/04/18 09:21:53 southa Exp $
+# $Id: AdanaxisPiece.rb,v 1.7 2007/06/27 12:58:11 southa Exp $
 # $Log: AdanaxisPiece.rb,v $
+# Revision 1.7  2007/06/27 12:58:11  southa
+# Debian packaging
+#
 # Revision 1.6  2007/04/18 09:21:53  southa
 # Header and level fixes
 #
@@ -60,38 +63,38 @@ class AdanaxisPiece < MushPiece
         raise(RuntimeError, "Unknown remnant type #{@m_remnant.inspect}")
     end
   end
-  
+
   def mLimitedHealthAdd(inProportion)
     newValue = mHitPoints + inProportion * mOriginalHitPoints
-    
+
     newValue = [mOriginalHitPoints, newValue].min
     newValue = [mHitPoints, newValue].max
-    
+
     mHitPointsSet(newValue)
   end
-  
+
   def mLimitedShieldAdd(inProportion)
     newValue = mShield + inProportion * mOriginalShield
-    
+
     newValue = [mOriginalShield, newValue].min
     newValue = [mShield, newValue].max
-    
+
     mShieldSet(newValue)
   end
-  
+
   def mUnlimitedHealthAdd(inProportion)
     newValue = mHitPoints + inProportion * mOriginalHitPoints
-    
+
     newValue = [mOriginalHitPoints, newValue].min
-    
+
     mHitPointsSet(newValue)
   end
-  
+
   def mUnlimitedShieldAdd(inProportion)
     newValue = mShield + inProportion * mOriginalShield
-    
+
     newValue = [mOriginalShield, newValue].min
-    
+
     mShieldSet(newValue)
   end
 end

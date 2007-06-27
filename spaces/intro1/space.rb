@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } mK7l7POWm2GdY0eu86LiCA
-# $Id: space.rb,v 1.5 2007/06/16 07:13:40 southa Exp $
+# $Id: space.rb,v 1.6 2007/06/27 12:58:13 southa Exp $
 # $Log: space.rb,v $
+# Revision 1.6  2007/06/27 12:58:13  southa
+# Debian packaging
+#
 # Revision 1.5  2007/06/16 07:13:40  southa
 # Licence corrections
 #
@@ -47,13 +50,13 @@ class Adanaxis_intro1 < AdanaxisSpace
   SCENESTATE_SHOW_Z = 6
   SCENESTATE_FIRE_INFO = 7
   SCENESTATE_AXES_DONE = 8
-  
+
   def initialize(inParams = {})
     super
     @m_cutScene = self
     @m_cutScenePhase = 0
   end
-  
+
   def mLoad(game)
     mLoadStandard(game)
     mMusicAdd('game1', 'mushware-familiarisation.ogg')
@@ -80,9 +83,9 @@ class Adanaxis_intro1 < AdanaxisSpace
     @m_scannerSize = 0.02
     @m_mouseOffset = MushVector.new(0, 0, 0, 0)
     @m_text = []
-    
+
     @m_singleButton = (MushGame.cPackageID =~ /-macosx-/)
-    
+
     @m_positions = [
       MushVector.new(0.0, 0.0, -0.45, 0),
       MushVector.new(0.0, 0.0, -0.77, 0),
@@ -93,7 +96,7 @@ class Adanaxis_intro1 < AdanaxisSpace
       MushVector.new(0.0, 0.0, 1.13, 0),
       MushVector.new(0, 0, 0, 0)
     ]
-      
+
     mStateChange(SCENESTATE_INIT)
   end
 
@@ -101,7 +104,7 @@ class Adanaxis_intro1 < AdanaxisSpace
     @m_sceneState = inState
     @m_stateMsec = MushGame.cFreeMsec
   end
-  
+
   def mStateNext
     mStateChange(@m_sceneState + 1)
   end
@@ -113,19 +116,19 @@ class Adanaxis_intro1 < AdanaxisSpace
   def mScannerRender
     @m_symbolFont.mRenderSymbolAtSize(
       AdanaxisFontLibrary::SYMBOL_SCAN_WHITE, @m_scannerPos.x, @m_scannerPos.y, @m_scannerSize);
-    
+
     @m_symbolFont.mRenderSymbolAtSize(
       AdanaxisFontLibrary::SYMBOL_SCAN_X,
       @m_scannerPos.x + 0.7 * @m_scannerSize * Math.sin(@m_scannerValue.x),
       @m_scannerPos.y + 0.7 * @m_scannerSize * Math.cos(@m_scannerValue.x),
       @m_scannerSize * 0.3)
-      
+
    @m_symbolFont.mRenderSymbolAtSize(
       AdanaxisFontLibrary::SYMBOL_SCAN_Y,
       @m_scannerPos.x + 0.7 * @m_scannerSize * Math.sin(@m_scannerValue.y),
       @m_scannerPos.y + 0.7 * @m_scannerSize * Math.cos(@m_scannerValue.y),
       @m_scannerSize * 0.3)
-      
+
    @m_symbolFont.mRenderSymbolAtSize(
       AdanaxisFontLibrary::SYMBOL_SCAN_Z,
       @m_scannerPos.x + 0.7 * @m_scannerSize * Math.sin(@m_scannerValue.z),
@@ -149,7 +152,7 @@ class Adanaxis_intro1 < AdanaxisSpace
     mCutSceneMove(inNum)
     @m_symbolFont.colour = MushVector.new(1,1,1,1)
     @m_textFont.colour = MushVector.new(1,1,1,0.5)
-    
+
     textBase = 0.28
     @m_text.each do |line|
       @m_textFont.mRenderAtSize(line, -0.01 * line.size, textBase, 0.02);
@@ -159,7 +162,7 @@ class Adanaxis_intro1 < AdanaxisSpace
     mMouseRender if @m_mouseAlpha > 0.0
     mSpaceBarRender if @m_spaceBarAlpha > 0.0
   end
-  
+
   def mPhaseTrigger(inNum)
     if inNum > @m_cutScenePhase
       @m_cutScenePhase = inNum
@@ -167,7 +170,7 @@ class Adanaxis_intro1 < AdanaxisSpace
       yield if block_given?
     end
   end
-  
+
   def mCutSceneMove(inNum)
     case @m_sceneState
       when SCENESTATE_INIT
@@ -175,7 +178,7 @@ class Adanaxis_intro1 < AdanaxisSpace
           mPhaseTrigger(1)
           mStateNext
         end
-        
+
       when SCENESTATE_PRETEXT_1
         if mStateAgeMsec > 5000
           mPhaseTrigger(2) {
@@ -187,12 +190,12 @@ class Adanaxis_intro1 < AdanaxisSpace
           }
           mStateNext
         end
-        
+
       when SCENESTATE_TEXT_1
         if mStateAgeMsec > 3000
           mStateNext
         end
-        
+
       when SCENESTATE_ZOOM
         @m_mouseAlpha = mStateAgeMsec / 4000.0
         @m_mouseAlpha = 1.0 if @m_mouseAlpha > 1.0
@@ -210,7 +213,7 @@ class Adanaxis_intro1 < AdanaxisSpace
           }
           mStateNext
         end
-        
+
       when SCENESTATE_SHOW_X
         if mStateAgeMsec > 12000
           mPhaseTrigger(4) {
@@ -220,7 +223,7 @@ class Adanaxis_intro1 < AdanaxisSpace
             @m_text << "shows the position of the target in x"
           }
         end
-        
+
         xVal = Math.sin(Math::PI * mStateAgeMsec / 4000.0)
         @m_mouseOffset = MushVector.new(0.1*xVal, 0, 0, 0)
         @m_scannerValue.x = -xVal
@@ -235,7 +238,7 @@ class Adanaxis_intro1 < AdanaxisSpace
           }
           mStateNext
         end
-    
+
       when SCENESTATE_SHOW_Y
         if mStateAgeMsec > 12000
           mPhaseTrigger(6) {
@@ -244,7 +247,7 @@ class Adanaxis_intro1 < AdanaxisSpace
             @m_text << "shows the position of the target in y"
           }
         end
-        
+
         yVal = Math.sin(Math::PI * mStateAgeMsec / 4000.0)
         @m_mouseOffset = MushVector.new(0, 0.1*yVal, 0, 0)
         @m_scannerValue.x = 0
@@ -261,10 +264,10 @@ class Adanaxis_intro1 < AdanaxisSpace
           }
           mStateNext
         end
-        
-    
+
+
       when SCENESTATE_SHOW_Z
-      
+
 
 
         if mStateAgeMsec > 12000
@@ -274,13 +277,13 @@ class Adanaxis_intro1 < AdanaxisSpace
             @m_text << "the position of the target in z"
           }
         end
-        
+
         if @m_singleButton
           @m_spaceBarAlpha = ((mStateAgeMsec - 18000) / 2000.0).mClamp(0.0, 1.0)
         end
 
         if mStateAgeMsec > 20000
-        
+
           if @m_singleButton
             mPhaseTrigger(9) {
               @m_text << ""
@@ -299,7 +302,7 @@ class Adanaxis_intro1 < AdanaxisSpace
             }
           end
         end
-        
+
         if mStateAgeMsec > 20000
           zVal = Math.sin(Math::PI * mStateAgeMsec / 4000.0)
           @m_mouseOffset = MushVector.new(0.1*zVal, 0, 0, 0)
@@ -309,14 +312,14 @@ class Adanaxis_intro1 < AdanaxisSpace
         end
         if mStateAgeMsec > 36000
           @m_mouseFont = MushGLFont.new(:name => "mouse1-font")
-          @m_spaceBarFont = MushGLFont.new(:name => "spacebar1-font")        
-          mStateNext 
+          @m_spaceBarFont = MushGLFont.new(:name => "spacebar1-font")
+          mStateNext
         end
-      
+
       when SCENESTATE_FIRE_INFO
         @m_spaceBarAlpha = 1.0 - mStateAgeMsec / 4000.0
         @m_spaceBarAlpha = 0.0 if @m_spaceBarAlpha < 0.0
-      
+
         mPhaseTrigger(11) {
           @m_text = [
             "When all three dots are at the top of the marker,",
@@ -374,22 +377,22 @@ class Adanaxis_intro1 < AdanaxisSpace
         @m_mouseAlpha = 1.0 - mStateAgeMsec / 4000.0
         @m_mouseAlpha = 0.0 if @m_mouseAlpha < 0.0
         @m_scannerSize -= 0.001 if @m_scannerSize > 0.02
-        
+
         mStateNext if mStateAgeMsec > 6000
       else
         MushGame.cCutSceneModeExit
     end
-    
+
     angPos = MushRotation.new
-    
+
     MushTools.cRotationInXWPlane(-0.085*@m_scannerValue.x).mRotate(angPos)
     MushTools.cRotationInYWPlane(-0.085*@m_scannerValue.y).mRotate(angPos)
     MushTools.cRotationInZWPlane(-0.2*@m_scannerValue.z).mRotate(angPos)
-    
+
     AdanaxisRuby.cPlayerOrientationForce(angPos);
-    
+
   end
-  
+
   def mInitialPiecesCreate
     super
 
@@ -420,8 +423,8 @@ class Adanaxis_intro1 < AdanaxisSpace
           )
         )
     end
-    
+
     mStandardCosmos(0)
-    
+
   end
 end

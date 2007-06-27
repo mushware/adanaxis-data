@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } zzdeABXUMqlbEfZQnA9/iA
-# $Id: space.rb,v 1.3 2007/04/18 09:21:55 southa Exp $
+# $Id: space.rb,v 1.4 2007/06/27 12:58:18 southa Exp $
 # $Log: space.rb,v $
+# Revision 1.4  2007/06/27 12:58:18  southa
+# Debian packaging
+#
 # Revision 1.3  2007/04/18 09:21:55  southa
 # Header and level fixes
 #
@@ -44,19 +47,19 @@ class Adanaxis_level3 < AdanaxisSpace
     mTimeoutSpawnAdd(:mSpawn1, 63000) if AdanaxisRuby.cGameDifficulty > 1
     mTimeoutSpawnAdd(:mSpawn2, 80000) if AdanaxisRuby.cGameDifficulty > 0
   end
-  
+
   def mLoad(game)
     mLoadStandard(game)
     mMusicAdd('game1', 'mushware-extensions-to-space.ogg')
     MushGame.cSoundDefine("voice-intro", "mush://waves/voice-L3.ogg")
   end
-  
+
   def mPrecacheListBuild
     super
     mPrecacheListAdd(mPieceLibrary.mAttendantTex('red'))
     mPrecacheListAdd(mPieceLibrary.mCisternTex('red'))
   end
-  
+
   def mCisternCreate(inRange, inOffset = MushVector.new(0,0,0,0))
     inRange.each do |i|
       patrolPoints = [
@@ -67,10 +70,10 @@ class Adanaxis_level3 < AdanaxisSpace
       ]
 
       patrolPoints.map! { |vec| inOffset + vec }
-    
+
       angPos = MushTools.cRotationInXZPlane(Math::PI/2)
       MushTools.cRotationInYWPlane(Math::PI/2).mRotate(angPos)
-      
+
       mPieceLibrary.mCisternCreate(
         :colour => 'red',
         :post => MushPost.new(
@@ -82,13 +85,13 @@ class Adanaxis_level3 < AdanaxisSpace
       )
     end
   end
-  
+
   def mInitialPiecesCreate
     super
     mCisternCreate(0..0)
     mStandardCosmos(3)
   end
-  
+
   def mSpawn0
     mCisternCreate(-1..1, MushVector.new(0,0,0,-200))
     MushGame.cVoicePlay('voice-E3-1') # 'Hostile import detected'
@@ -100,7 +103,7 @@ class Adanaxis_level3 < AdanaxisSpace
     MushGame.cVoicePlay('voice-E3-2') # 'Hostile import detected'
     true
   end
-  
+
   def mSpawn2
     (-1..1).each do |i|
       $currentLogic.mRemnant.mCreate(

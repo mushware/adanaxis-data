@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } NHt6tROzs1RTyOqi3fhapQ
-# $Id: space.rb,v 1.7 2007/06/12 11:09:36 southa Exp $
+# $Id: space.rb,v 1.8 2007/06/27 12:58:14 southa Exp $
 # $Log: space.rb,v $
+# Revision 1.8  2007/06/27 12:58:14  southa
+# Debian packaging
+#
 # Revision 1.7  2007/06/12 11:09:36  southa
 # Level 28
 #
@@ -47,18 +50,18 @@ class Adanaxis_level1 < AdanaxisSpace
   def initialize(inParams = {})
     super
   end
-  
+
   def mLoad(game)
     mLoadStandard(game)
     mMusicAdd('game1', 'mushware-extensions-to-space.ogg')
     MushGame.cSoundDefine("voice-intro", "mush://waves/voice-L1.ogg")
   end
-  
+
   def mPrecacheListBuild
     super
     mPrecacheListAdd(mPieceLibrary.mAttendantTex('red'))
   end
-  
+
   def mInitialPiecesCreate
     super
     (-2..2).each do |i|

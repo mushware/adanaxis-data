@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } 2PJSPl/tbkKbte5wpKsJHw
-# $Id: space.rb,v 1.1 2007/06/14 12:14:16 southa Exp $
+# $Id: space.rb,v 1.2 2007/06/27 12:58:18 southa Exp $
 # $Log: space.rb,v $
+# Revision 1.2  2007/06/27 12:58:18  southa
+# Debian packaging
+#
 # Revision 1.1  2007/06/14 12:14:16  southa
 # Level 30
 #
@@ -34,7 +37,7 @@ class Adanaxis_level30 < AdanaxisSpace
     20.times do |i|
       mTimeOnlySpawnAdd(:mWarehouseAdd, 30000+i*60000)
     end
-    
+
     5.times do |i|
       mTimeOnlySpawnAdd(:mLimescaleAdd, 14000+i*20000) if diff > 0
       mTimeOnlySpawnAdd(:mCisternAdd, 16000+i*20000)
@@ -52,11 +55,11 @@ class Adanaxis_level30 < AdanaxisSpace
     5.times do |i|
       mTimeOnlySpawnAdd(:mSpawn0, 100000+60000 * i)
     end
-    
+
     mIsBattleSet(true)
     mPrimarySet(PRIMARY_RED)
   end
-  
+
   def mLoad(game)
     mLoadStandard(game)
     mMusicAdd('game1', 'mushware-sanity-fault.ogg')
@@ -64,7 +67,7 @@ class Adanaxis_level30 < AdanaxisSpace
     MushGame.cSoundDefine("voice-intro", "mush://waves/voice-L30.ogg")
     MushGame.cSoundDefine("voice-M1", "mush://waves/voice-M1.ogg")
   end
-  
+
   def mPrecacheListBuild
     super
     mPrecacheListAdd(mPieceLibrary.mAttendantTex('blue'))
@@ -87,12 +90,12 @@ class Adanaxis_level30 < AdanaxisSpace
     angVel = MushTools.cRotationInXYPlane(Math::PI / 1200);
     MushTools.cRotationInZWPlane(Math::PI / 1314).mRotate(angVel);
     MushTools.cRotationInYZPlane(Math::PI / 1575).mRotate(angVel);
-  
+
     vel = MushVector.new(-0.05*(1+diff),0,0,0)
     angPos = MushTools.cRotationInYZPlane(Math::PI/2)
     MushTools.cRotationInXWPlane(Math::PI/2).mRotate(angPos)
     MushTools.cRotationInXYPlane(Math::PI/2).mRotate(angPos)
-  
+
     1.times do |param|
       mPieceLibrary.mHubCreate(
         :colour => 'red',
@@ -123,7 +126,7 @@ class Adanaxis_level30 < AdanaxisSpace
         :weapon => :harpik_spawner
       )
     end
-   
+
     (-3..3).each do |param|
       mPieceLibrary.mWarehouseCreate(
         :colour => 'red',
@@ -140,7 +143,7 @@ class Adanaxis_level30 < AdanaxisSpace
         :remnant => :player_nuclear
       )
     end
-    
+
     [-1,1].each do |param|
 
       mPieceLibrary.mRailCreate(
@@ -150,7 +153,7 @@ class Adanaxis_level30 < AdanaxisSpace
           :angular_position => MushTools.cRandomOrientation
         )
       )
-      
+
       mPieceLibrary.mRailCreate(
         :colour => 'red',
         :post => MushPost.new(
@@ -158,7 +161,7 @@ class Adanaxis_level30 < AdanaxisSpace
           :angular_position => MushTools.cRandomOrientation
         )
       )
-      
+
       if diff > 0
         mPieceLibrary.mRailCreate(
           :colour => 'red',
@@ -168,7 +171,7 @@ class Adanaxis_level30 < AdanaxisSpace
           )
         )
       end
-      
+
       if diff > 1
         mPieceLibrary.mRailCreate(
           :colour => 'red',
@@ -179,7 +182,7 @@ class Adanaxis_level30 < AdanaxisSpace
         )
       end
     end
-    
+
     mPieceLibrary.mCisternCreate(
       :colour => 'blue',
       :post => MushPost.new(
@@ -196,7 +199,7 @@ class Adanaxis_level30 < AdanaxisSpace
       :ai_state_msec => 10000,
       :weapon => :harpik_spawner
     )
-    
+
     3.times do |param|
       mPieceLibrary.mVendorCreate(
         :colour => 'blue',
@@ -207,7 +210,7 @@ class Adanaxis_level30 < AdanaxisSpace
         )
       )
     end
-    
+
     3.times do |param|
       mPieceLibrary.mLimescaleCreate(
         :colour => 'blue',
@@ -218,7 +221,7 @@ class Adanaxis_level30 < AdanaxisSpace
         )
       )
     end
- 
+
     2.times do |param|
       $currentLogic.mRemnant.mCreate(
         :item_type => :player_heavy_cannon,
@@ -227,7 +230,7 @@ class Adanaxis_level30 < AdanaxisSpace
         )
       )
     end
-          
+
     1.times do |param|
       $currentLogic.mRemnant.mCreate(
         :item_type => :player_rail,
@@ -236,7 +239,7 @@ class Adanaxis_level30 < AdanaxisSpace
         )
       )
     end
-         
+
     3.times do |param|
       $currentLogic.mRemnant.mCreate(
         :item_type => :player_flak,
@@ -245,7 +248,7 @@ class Adanaxis_level30 < AdanaxisSpace
         )
       )
     end
- 
+
     1.times do |param|
       $currentLogic.mRemnant.mCreate(
         :item_type => :player_heavy_missile,
@@ -254,12 +257,12 @@ class Adanaxis_level30 < AdanaxisSpace
         )
       )
     end
-         
 
-                                  
+
+
     mStandardCosmos(30)
   end
-  
+
   def mSpawn0
     mPieceLibrary.mCisternCreate(
       :colour => 'blue',
@@ -275,7 +278,7 @@ class Adanaxis_level30 < AdanaxisSpace
       :ai_state_msec => 10000,
       :weapon => :attendant_spawner
     )
-    
+
     1.times do |param|
       mPieceLibrary.mLimescaleCreate(
         :colour => 'blue',
@@ -301,11 +304,11 @@ class Adanaxis_level30 < AdanaxisSpace
       ),
       :spawned => true
     )
-    
+
     return true
   end
 
-  
+
   def mCisternAdd
     diff = AdanaxisRuby.cGameDifficulty
 
@@ -367,7 +370,7 @@ class Adanaxis_level30 < AdanaxisSpace
       ),
       :spawned => true
     )
-    
+
     return true
   end
 

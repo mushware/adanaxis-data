@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } nT/cYel2zN/IldsA3rvRuw
-# $Id: AdanaxisEffects.rb,v 1.10 2007/06/14 22:24:26 southa Exp $
+# $Id: AdanaxisEffects.rb,v 1.11 2007/06/27 12:58:10 southa Exp $
 # $Log: AdanaxisEffects.rb,v $
+# Revision 1.11  2007/06/27 12:58:10  southa
+# Debian packaging
+#
 # Revision 1.10  2007/06/14 22:24:26  southa
 # Level and gameplay tweaks
 #
@@ -54,7 +57,7 @@ class AdanaxisEffects < MushObject
     @m_numEmberMeshes = 10
     @m_numExploMeshes = 8
     @m_numFlareMeshes = 10
-    
+
     @m_emberDefaults = {
       :lifetime_msec => 1000,
       :ember_speed_range => (0.1..0.4),
@@ -70,13 +73,13 @@ class AdanaxisEffects < MushObject
       :lifetime_msec => 400,
       :flare_scale_range => (2.0..4.0)
       }
-  
-    @m_numEmbers = 10  
-    @m_numFlares = 1  
-    @m_numExplos = 1  
-            
+
+    @m_numEmbers = 10
+    @m_numFlares = 1
+    @m_numExplos = 1
+
   end
-  
+
   def mApplySpeedRange(ioParams, inSymbol)
     speedRange = ioParams[inSymbol]
     if speedRange
@@ -86,36 +89,36 @@ class AdanaxisEffects < MushObject
       ioParams[:post].velocity = ioParams[:post].velocity + dispVec
     end
   end
-  
+
   def mApplyScaleRange(ioParams, inSymbol)
     scaleRange = ioParams[inSymbol]
     ioParams[:render_scale] = MushUtil.cRandomValInRange(scaleRange) if scaleRange
   end
-  
+
   def mApplyLifetimeRange(ioParams, inSymbol)
     lifetimeRange = ioParams[inSymbol]
     if lifetimeRange
       ioParams[:lifetime_msec] = MushUtil.cRandomValInRange(lifetimeRange)
     end
   end
-  
+
   def mEmberCreate(inParams = {})
     mergedParams = @m_emberDefaults.merge(inParams)
-  
+
     meshNum = mergedParams[:ember_number] || rand(@m_numEmberMeshes)
     mergedParams[:mesh_name] = "ember#{meshNum}"
-    
+
     mApplySpeedRange(mergedParams, :ember_speed_range)
     mApplyScaleRange(mergedParams, :ember_scale_range)
     mApplyLifetimeRange(mergedParams, :ember_lifetime_range)
-    
+
     AdanaxisPieceDeco.cCreate(mergedParams)
   end
-  
+
   def mExploCreate(inParams = {})
     mergedParams = @m_exploDefaults.merge(inParams)
-  
-  
+
+
     exploNum = mergedParams[:explo_number]
     if exploNum.kind_of?(Range)
       exploNum = exploNum.begin + rand(exploNum.end - exploNum.begin)
@@ -124,15 +127,15 @@ class AdanaxisEffects < MushObject
     end
 
     mergedParams[:mesh_name] = "explo#{exploNum}"
-    
+
     mApplySpeedRange(mergedParams, :explosion_speed_range)
     mApplyScaleRange(mergedParams, :explosion_scale_range)
     mApplyLifetimeRange(mergedParams, :explosion_lifetime_range)
-    
+
     AdanaxisPieceDeco.cCreate(mergedParams)
     return exploNum
   end
-  
+
   def mFlareCreate(inParams = {})
     mergedParams = @m_flareDefaults.merge(inParams)
 
@@ -159,24 +162,24 @@ class AdanaxisEffects < MushObject
       objParams[:explosion_lifetime_range] ||= (rootScale * 1000 .. rootScale * 1200)
       objParams[:flare_scale_range] ||= (effectScale * 12.0 .. effectScale * 15.0)
       objParams[:flare_lifetime_range] ||= (rootScale * 1000 .. rootScale * 1200)
-      
+
       exploMin = MushUtil.cClamped(Integer(effectScale)-2, 0, 6)
       exploMax = MushUtil.cClamped(Integer(effectScale)+1, 2, 7)
-      
+
       objParams[:explo_number] ||= (exploMin..exploMax)
     end
 
     # Embers inherit a fraction of the object's velocity
     objParams[:post].velocity = objParams[:post].velocity * 0.5
-  
+
     (objParams[:embers] || @m_numEmbers).times { mEmberCreate(objParams) }
-    
+
     objParams[:post].velocity = MushVector.new(0,0,0,0)
-    
+
     exploNum = nil
     (objParams[:explosions] || @m_numExplos).times { exploNum = mExploCreate(objParams) }
     (objParams[:flares] || @m_numFlares).times { mFlareCreate(objParams) }
-    
+
     return exploNum
   end
 end

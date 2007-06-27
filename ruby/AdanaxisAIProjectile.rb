@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } YNRxyoroF56Ueof+iUvYlA
-# $Id: AdanaxisAIProjectile.rb,v 1.4 2007/04/18 09:21:51 southa Exp $
+# $Id: AdanaxisAIProjectile.rb,v 1.5 2007/06/27 12:58:10 southa Exp $
 # $Log: AdanaxisAIProjectile.rb,v $
+# Revision 1.5  2007/06/27 12:58:10  southa
+# Debian packaging
+#
 # Revision 1.4  2007/04/18 09:21:51  southa
 # Header and level fixes
 #
@@ -55,7 +58,7 @@ class AdanaxisAIProjectile < AdanaxisAI
         @m_targetID = nil
       end
     end
-    
+
     100
   end
 
@@ -69,7 +72,7 @@ class AdanaxisAIProjectile < AdanaxisAI
         callInterval = 100
       when AISTATE_PROJECTILE_SEEK
         callInterval = mStateActionProjectileSeek
-      else callInterval = super 
+      else callInterval = super
     end
 
     callInterval

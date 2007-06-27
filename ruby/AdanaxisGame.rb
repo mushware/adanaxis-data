@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } WUu2wSgP1e0mYJ11mlAduA
-# $Id: AdanaxisGame.rb,v 1.48 2007/06/14 18:55:10 southa Exp $
+# $Id: AdanaxisGame.rb,v 1.49 2007/06/27 12:58:10 southa Exp $
 # $Log: AdanaxisGame.rb,v $
+# Revision 1.49  2007/06/27 12:58:10  southa
+# Debian packaging
+#
 # Revision 1.48  2007/06/14 18:55:10  southa
 # Level and display tweaks
 #
@@ -120,31 +123,31 @@ class AdanaxisGame < MushObject
   def initialize
     @m_spaceName = 'menu1'
     @m_levels = AdanaxisLevels.new
-    
+
     @m_view = MushView.new(
       :dashboard => AdanaxisDashboard.new
     )
 
     @m_menuRender = AdanaxisRender.new
     @m_menuRender.mCreate
-    
+
     @m_menuSet = AdanaxisMenu.new
     @m_currentMenu = 0
     @m_entryDisplayMode = ""
     @m_textureDetail = 0
     @m_showHidden = false;
   end
-  
+
   mush_accessor :m_space, :m_spaceName, :m_view
-  
+
   def mSpaceObjectName
     'Adanaxis_'+@m_spaceName
   end
 
   def mSpacePath
-    MushConfig.cGlobalSpacesPath + '/' + @m_spaceName  
+    MushConfig.cGlobalSpacesPath + '/' + @m_spaceName
   end
-  
+
   def mMushLoad
     if File.directory?(MushConfig.cGlobalMushPath)
       Dir.foreach(MushConfig.cGlobalMushPath) do |leafname|
@@ -156,7 +159,7 @@ class AdanaxisGame < MushObject
     end
     # MushFile.cLibraryDump
   end
-  
+
   def mLoad
     mMushLoad
     raise "Level unavailable (no space.rb file)" unless File.file?(mSpacePath+'/space.rb')
@@ -170,15 +173,15 @@ class AdanaxisGame < MushObject
   def mRender(inParams = {})
     @m_view.mDashboardRender(inParams)
   end
-  
+
   def mCutSceneRender(inNum)
     @m_space.mCutSceneRender(inNum)
   end
-  
+
   def mEpilogueRender
     @m_space.mEpilogueRender
   end
-  
+
   def mMenuRender(msec)
     menu = @m_menuSet.mMenu(@m_currentMenu)
     menu.highlight_colour = MushVector.new(1,1,0.7,0.5+0.25*Math.sin(msec/100.0))
@@ -208,11 +211,11 @@ class AdanaxisGame < MushObject
   def mEpilogueStartDead
     MushGame.cNamedDialoguesAdd('^dead')
   end
-  
+
   def mEpilogueStartLost
     MushGame.cNamedDialoguesAdd('^lost')
   end
-  
+
   def mEpilogueStartWon
     MushGame.cNamedDialoguesAdd('^won')
   end
@@ -224,11 +227,11 @@ class AdanaxisGame < MushObject
       :red_total => inRedKhaziTotal,
       :blue_total => inBlueKhaziTotal
       )
-      
+
     @m_space.mKhaziCountSet(inKhazi)
     @m_space.mKhaziRedCountSet(inRedKhaziCount)
     @m_space.mKhaziBlueCountSet(inBlueKhaziCount)
-    
+
     return @m_space.mGameState
   end
 
@@ -262,9 +265,9 @@ class AdanaxisGame < MushObject
     keyChar = (inKey < 256)?(inKey.chr):('?')
     # keyName = MushGame.cKeySymbolsToName(inKey);
     # puts "key #{inKey}, '#{keyChar}' '#{keyName}' #{inIsDown}"
-    
+
     @m_showHidden = ((inModifier & MushKeys::KMOD_SHIFT) != 0)
-    
+
     if inIsDown
       menu = @m_menuSet.mMenu(@m_currentMenu)
 
@@ -293,21 +296,21 @@ class AdanaxisGame < MushObject
       @m_menuSet.mUpdate(@m_currentMenu)
     end
   end
-  
+
   def mMenuResume(param, input)
     MushGame.cGameModeEnter
   end
-  
+
   def mMenuQuit(param, input)
-    MushGame.cQuit  
+    MushGame.cQuit
   end
-  
+
   def mMenuBack(param, input)
     if (param)
       @m_currentMenu = param
     else
       @m_currentMenu = AdanaxisMenu::MENU_TOPLEVEL
-    end    
+    end
   end
 
   def mToMenu(param, input)
@@ -356,11 +359,11 @@ class AdanaxisGame < MushObject
     MushGame.cControlsToDefaultSet
     @m_currentMenu = AdanaxisMenu::MENU_TOPLEVEL
   end
-  
+
   def mMenuGameSelect(params, input)
     @m_spaceName = params
     MushGame.cNewGameEnter
-  end    
+  end
 
   def mMenuToOptions(params, input)
     @m_entryDisplayMode = MushGame.cDisplayModeString
@@ -385,7 +388,7 @@ class AdanaxisGame < MushObject
       @m_currentMenu = params
     else
       @m_currentMenu = AdanaxisMenu::MENU_TOPLEVEL
-    end    
+    end
   end
 
   def mMenuDifficulty(params, input)
@@ -395,7 +398,7 @@ class AdanaxisGame < MushObject
       AdanaxisRuby.cConfigDifficultySet( (AdanaxisRuby.cConfigDifficulty + 1) % 3 )
     end
   end
-  
+
   def mMenuAudioVolume(params, input)
     if input < 0
       MushGame.cAudioVolumeSet( (MushGame.cAudioVolume + 100) % 110 )
@@ -403,7 +406,7 @@ class AdanaxisGame < MushObject
       MushGame.cAudioVolumeSet( (MushGame.cAudioVolume + 10) % 110 )
     end
   end
-  
+
   def mMenuMusicVolume(params, input)
     if input < 0
       MushGame.cMusicVolumeSet( (MushGame.cMusicVolume + 100) % 110 )
@@ -411,7 +414,7 @@ class AdanaxisGame < MushObject
       MushGame.cMusicVolumeSet( (MushGame.cMusicVolume + 10) % 110 )
     end
   end
-  
+
   def mMenuVoiceVolume(params, input)
     if input < 0
       MushGame.cVoiceVolumeSet( (MushGame.cVoiceVolume + 100) % 110 )
@@ -419,7 +422,7 @@ class AdanaxisGame < MushObject
       MushGame.cVoiceVolumeSet( (MushGame.cVoiceVolume + 10) % 110 )
     end
   end
-  
+
   def mMenuTextureDetail(params, input)
     if input < 0
       MushGame.cTextureDetailSet( (MushGame.cTextureDetail + 4) % 5 )
@@ -427,14 +430,14 @@ class AdanaxisGame < MushObject
       MushGame.cTextureDetailSet( (MushGame.cTextureDetail + 1) % 5 )
     end
   end
-  
+
   def mMenuGLCompression(params, input)
     case AdanaxisRuby.cUseGLCompression
       when 0: AdanaxisRuby.cUseGLCompressionSet(1)
       when 1: AdanaxisRuby.cUseGLCompressionSet(0)
     end
   end
-  
+
   def mMenuGLShader(params, input)
     case AdanaxisRuby.cUseGLShader
       when 0: AdanaxisRuby.cUseGLShaderSet(1)
@@ -449,13 +452,13 @@ class AdanaxisGame < MushObject
     else
       mouseSens += 0.1
     end
-    
+
     mouseSens = -10 if mouseSens > 10.01
     mouseSens = 10 if mouseSens < -10.01
-    
+
     MushGame.cMouseSensitivitySet(mouseSens)
   end
-  
+
   def mMenuBrightness(params, input)
     brightness = MushGame.cBrightness
     if input < 0
@@ -463,12 +466,12 @@ class AdanaxisGame < MushObject
     else
       brightness += 0.1
     end
-    
+
     brightness = 0.1 if brightness > 2.01
     brightness = 2 if brightness < 0.09
-    
+
     MushGame.cBrightnessSet(brightness)
   end
-  
+
   attr_reader :spacePath, :space
 end

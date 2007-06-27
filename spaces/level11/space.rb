@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } woNAXScqPUhjqjL/tvMMtg
-# $Id: space.rb,v 1.1 2007/05/03 18:00:33 southa Exp $
+# $Id: space.rb,v 1.2 2007/06/27 12:58:14 southa Exp $
 # $Log: space.rb,v $
+# Revision 1.2  2007/06/27 12:58:14  southa
+# Debian packaging
+#
 # Revision 1.1  2007/05/03 18:00:33  southa
 # Level 11
 #
@@ -28,7 +31,7 @@ require 'Adanaxis.rb'
 class Adanaxis_level11 < AdanaxisSpace
   def initialize(inParams = {})
     super
-    
+
     if AdanaxisRuby.cGameDifficulty > 0
       mTimeoutSpawnAdd(:mSpawn0, 20000)
     end
@@ -36,16 +39,16 @@ class Adanaxis_level11 < AdanaxisSpace
       mTimeoutSpawnAdd(:mSpawn1, 60000)
     end
     mTimeoutSpawnAdd(:mSpawn2, 120000)
-    
+
     mIsBattleSet(true)
   end
-  
+
   def mLoad(game)
     mLoadStandard(game)
     mMusicAdd('game1', 'mushware-sanity-fault.ogg')
     MushGame.cSoundDefine("voice-intro", "mush://waves/voice-L11.ogg")
   end
-  
+
   def mPrecacheListBuild
     super
     mPrecacheListAdd(mPieceLibrary.mAttendantTex('red', 'blue'))
@@ -64,10 +67,10 @@ class Adanaxis_level11 < AdanaxisSpace
     angVel = MushTools.cRotationInXYPlane(Math::PI / 1200);
     MushTools.cRotationInZWPlane(Math::PI / 1314).mRotate(angVel);
     MushTools.cRotationInYZPlane(Math::PI / 1575).mRotate(angVel);
-  
+
     vel = MushVector.new(-0.05*(1+diff),0,0,0)
     angPos = MushTools.cRotationInXZPlane(Math::PI/2)
-  
+
     8.times do |param|
       ['blue', 'red'].each do |colour|
         mPieceLibrary.mHarpikCreate(
@@ -128,7 +131,7 @@ class Adanaxis_level11 < AdanaxisSpace
         :ai_state_msec => 10000+250*param
       )
     end
-   
+
     [-1,1].each do |param|
       mPieceLibrary.mWarehouseCreate(
         :colour => 'red',
@@ -146,7 +149,7 @@ class Adanaxis_level11 < AdanaxisSpace
         :remnant => :player_heavy_missile
       )
     end
-    
+
     $currentLogic.mRemnant.mCreate(
       :item_type => (AdanaxisRuby.cGameDifficulty < 2) ? :player_heavy_missile : :player_light_missile,
       :post => MushPost.new(
@@ -171,10 +174,10 @@ class Adanaxis_level11 < AdanaxisSpace
         :position => MushVector.new(0, 0, 0, -80)
       )
     )
-    
+
     mStandardCosmos(11)
   end
-  
+
   def mSpawn0
     diff = AdanaxisRuby.cGameDifficulty
     mPieceLibrary.mCisternCreate(

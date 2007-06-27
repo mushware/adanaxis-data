@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } lORLU4vT56ruWJ92wVVyiw
-# $Id: AdanaxisPieceEffector.rb,v 1.12 2007/06/08 16:23:03 southa Exp $
+# $Id: AdanaxisPieceEffector.rb,v 1.13 2007/06/27 12:58:11 southa Exp $
 # $Log: AdanaxisPieceEffector.rb,v $
+# Revision 1.13  2007/06/27 12:58:11  southa
+# Debian packaging
+#
 # Revision 1.12  2007/06/08 16:23:03  southa
 # Level 26
 #
@@ -67,18 +70,18 @@ class AdanaxisPieceEffector < AdanaxisPiece
     @m_lifeMsec = inParams[:lifetime_msec] || 0
     @m_rail = inParams[:rail] || false
     @m_isFlush = inParams[:is_flush] || false
-    
+
     if @m_isFlush
       @m_callInterval = 100
     else
       @m_callInterval = nil
     end
-    
-    return @m_callInterval 
+
+    return @m_callInterval
   end
-  
+
   mush_accessor :m_rail, :m_owner
-  
+
   def mDamageFactor(inPiece)
     if @m_rail
       retVal = @m_damageFactor
@@ -93,13 +96,13 @@ class AdanaxisPieceEffector < AdanaxisPiece
 
   def mFlushEffect
     flarePost = mPost.dup
-    
+
     flareOffset = MushTools.cRandomUnitVector * (5+rand(10))
     flareVel = flareOffset * -0.03
 
     flarePost.position = flarePost.position + flareOffset
     flarePost.velocity = flareVel
-    
+
     $currentLogic.mEffects.mExploCreate(
       :post => flarePost,
       :explosion_lifetime_range => 600..600,
@@ -107,16 +110,16 @@ class AdanaxisPieceEffector < AdanaxisPiece
       :alpha_stutter => 0
     )
   end
-  
+
   def mActionTimer
     if @m_isFlush
       mLoad
       mFlushEffect
-    end    
+    end
     @m_callInterval
   end
 
-  
+
   def mCollisionHandle(event)
     if @m_isFlush
       unless event.mPiece2.mOriginalHitPoints > 500.0 # Don't move heavy objects
@@ -136,7 +139,7 @@ class AdanaxisPieceEffector < AdanaxisPiece
         angVel = event.mPiece2.mPost.angular_velocity
         angAccel.mRotate(angVel)
         event.mPiece2.mPost.angular_velocity = MushTools::cSlerp(angVel, MushRotation.new, 0.01)
-        
+
         if event.mPiece2.kind_of?(AdanaxisPiecePlayer)
           # Different behaviour for player
           event.mPiece2.mControlReleasedSet(true)

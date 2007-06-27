@@ -18,6 +18,9 @@
 #%Header } 2tVPM89yFBzn4dSGgYG41w
 # $Id: AdanaxisWeapon.rb,v 1.24 2007/06/05 12:15:14 southa Exp $
 # $Log: AdanaxisWeapon.rb,v $
+# Revision 1.25  2007/06/27 12:58:13  southa
+# Debian packaging
+#
 # Revision 1.24  2007/06/05 12:15:14  southa
 # Level 21
 #
@@ -123,9 +126,9 @@ class AdanaxisWeapon < MushObject
     @m_jammable = inParams[:jammable]
     @m_lastFireMsec = 0
   end
-  
+
   mush_accessor :m_ammoCount
-  
+
   def mFireOpportunityTake
     retVal = false
     if @m_lastFireMsec + @m_fireRateMsec < MushGame.cGameMsec && @m_ammoCount != 0
@@ -136,22 +139,22 @@ class AdanaxisWeapon < MushObject
     end
     retVal
   end
-  
+
   def mCommonFire(inEvent, inPiece, inProjPost)
     @m_lastFireMsec = MushGame.cGameMsec
     @m_offsetNumber += 1
-    @m_offsetNumber = 0 if @m_offsetNumber >= @m_offsetSequence.size    
-    
+    @m_offsetNumber = 0 if @m_offsetNumber >= @m_offsetSequence.size
+
     MushGame.cTiedSoundPlay(@m_fireSound, inProjPost) if @m_fireSound
     MushGame.cTiedSoundPlay(@m_reloadSound, inProjPost) if @m_reloadSound
 
     @m_ammoCount -= 1 if @m_ammoCount
 
   end
-  
+
   def mProjectileFire(inEvent, inPiece)
     projPost = inEvent.mPost.dup
-    
+
     # Get player forward velocity but not transverse
     vel = projPost.velocity
     projPost.angular_position.mInverse.mRotate(vel)
@@ -161,13 +164,13 @@ class AdanaxisWeapon < MushObject
     vel.w = vel.w - @m_speed
 
     offset = @m_offsetSequence[@m_offsetNumber].dup
-    
+
     projPost.angular_position.mRotate(offset)
     projPost.angular_position.mRotate(vel)
-    
+
     projPost.position = projPost.position + offset
     projPost.velocity = vel
-    
+
     # Apply the angular velocity in the object frame
     if @m_type == :rocket
       projPost.angular_velocity = MushRotation.new
@@ -177,7 +180,7 @@ class AdanaxisWeapon < MushObject
       projPost.angular_position.mRotate(angVel)
       projPost.angular_velocity = angVel
     end
-    
+
     if @m_aiParams
       aiParams = @m_aiParams.merge(
         :target_id => inEvent.mTargetID
@@ -186,7 +189,7 @@ class AdanaxisWeapon < MushObject
         aiParams[:seek_acceleration] *= -1.0
       end
     end
-    
+
     baseVelocity = projPost.velocity
     lifetime = @m_lifetimeMsec
     @m_numProjectiles.times do
@@ -206,15 +209,15 @@ class AdanaxisWeapon < MushObject
         :alpha_stutter => @m_alphaStutter
       )
     end
-    
+
     mCommonFire(inEvent, inPiece, projPost)
-    
+
     nil
   end
-  
+
   def mItemFire(inEvent, inPiece)
     projPost = inEvent.mPost.dup
-    
+
     vel = projPost.velocity
     projPost.angular_position.mInverse.mRotate(vel)
     vel.x = 0
@@ -223,26 +226,26 @@ class AdanaxisWeapon < MushObject
     vel.w = vel.w - @m_speed
 
     offset = @m_offsetSequence[@m_offsetNumber].dup
-    
+
     projPost.angular_position.mRotate(offset)
     projPost.angular_position.mRotate(vel)
-    
+
     projPost.position = projPost.position + offset
     projPost.velocity = vel
-    
+
     # Apply the angular velocity in the object frame
 
     angVel = projPost.angular_position.mInverse
     @m_angularVelocity.mRotate(angVel)
     projPost.angular_position.mRotate(angVel)
     projPost.angular_velocity = angVel
-    
+
     if @m_aiParams
       aiParams = @m_aiParams.merge(
         :target_id => inEvent.mTargetID
       )
     end
-    
+
     baseVelocity = projPost.velocity
     lifetime = @m_lifetimeMsec
     @m_numProjectiles.times do
@@ -263,22 +266,22 @@ class AdanaxisWeapon < MushObject
         :alpha_stutter => @m_alphaStutter
       )
     end
-    
+
     mCommonFire(inEvent, inPiece, projPost)
-    
+
     nil
   end
-  
+
   def mRailFire(inEvent, inPiece)
     projPost = inEvent.mPost.dup
     offset = @m_offsetSequence[@m_offsetNumber].dup
-    
+
     # Apply the angular velocity in the object frame
     angVel = projPost.angular_position.mInverse
     @m_angularVelocity.mRotate(angVel)
     projPost.angular_position.mRotate(angVel)
     projPost.angular_velocity = angVel
-    
+
     baseVelocity = projPost.velocity
     lifetime = @m_lifetimeMsec
 
@@ -301,7 +304,7 @@ class AdanaxisWeapon < MushObject
       :post => projPost,
       :lifetime_msec => lifetime
     )
-    
+
     $currentLogic.mEffects.mFlareCreate(
       :post => projPost,
       :flare_lifetime_range => 400..500,
@@ -312,10 +315,10 @@ class AdanaxisWeapon < MushObject
 
     nil
   end
-  
+
   def mSpawnerFire(inEvent, inPiece)
     projPost = inEvent.mPost.dup
-    
+
     # Get firer forward velocity but not transverse
     vel = projPost.velocity
     projPost.angular_position.mInverse.mRotate(vel)
@@ -325,26 +328,26 @@ class AdanaxisWeapon < MushObject
     vel.w = vel.w - @m_speed
 
     offset = @m_offsetSequence[@m_offsetNumber].dup
-    
+
     projPost.angular_position.mRotate(offset)
     projPost.angular_position.mRotate(vel)
-    
+
     projPost.position = projPost.position + offset
     projPost.velocity = vel
-    
+
     # Rotate spawned object so it faces the opposite way to the spawner
     angPos = projPost.angular_position
     # This combo send (x,y,z,w) to (-x,-y,-z,-w)
     MushTools.cRotationInXYPlane(Math::PI).mRotate(angPos)
     MushTools.cRotationInZWPlane(Math::PI).mRotate(angPos)
     projPost.angular_position = angPos
-    
+
     # Apply the angular velocity in the object frame
     angVel = projPost.angular_position.mInverse
     @m_angularVelocity.mRotate(angVel)
     projPost.angular_position.mRotate(angVel)
     projPost.angular_velocity = angVel
-    
+
     baseVelocity = projPost.velocity
     lifetime = @m_lifetimeMsec
 
@@ -374,12 +377,12 @@ class AdanaxisWeapon < MushObject
           :spawned => true
         )
     end
-    
+
     mCommonFire(inEvent, inPiece, projPost)
 
     nil
   end
-  
+
   def mFire(inEvent, inPiece)
     case @m_type
       when :item : mItemFire(inEvent, inPiece)

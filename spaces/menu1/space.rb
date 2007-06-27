@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } I8osFEJNsWIYjScVol2eYQ
-# $Id: space.rb,v 1.29 2007/06/15 12:45:49 southa Exp $
+# $Id: space.rb,v 1.30 2007/06/27 12:58:20 southa Exp $
 # $Log: space.rb,v $
+# Revision 1.30  2007/06/27 12:58:20  southa
+# Debian packaging
+#
 # Revision 1.29  2007/06/15 12:45:49  southa
 # Prerelease work
 #
@@ -104,7 +107,7 @@ class Adanaxis_menu1 < AdanaxisSpace
   def initialize(inParams = {})
     super
   end
-  
+
   def mLoad(game)
     mLoadStandard(game)
     mMusicAdd('theme1', 'mushware-adanaxistheme.ogg')
@@ -114,7 +117,7 @@ class Adanaxis_menu1 < AdanaxisSpace
     # Don't call super - needn't cache entire cosmos, explosions etc.
     mPrecacheListAdd(mPieceLibrary.mAttendantTex('red'))
   end
-  
+
   def mInitialPiecesCreate
     super
 

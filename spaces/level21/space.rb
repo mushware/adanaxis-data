@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } pVGKzexpJyWOy693xb72/w
-# $Id: space.rb,v 1.2 2007/06/05 12:15:14 southa Exp $
+# $Id: space.rb,v 1.3 2007/06/27 12:58:16 southa Exp $
 # $Log: space.rb,v $
+# Revision 1.3  2007/06/27 12:58:16  southa
+# Debian packaging
+#
 # Revision 1.2  2007/06/05 12:15:14  southa
 # Level 21
 #
@@ -31,17 +34,17 @@ require 'Adanaxis.rb'
 class Adanaxis_level21 < AdanaxisSpace
   def initialize(inParams = {})
     super
-    
+
     mIsBattleSet(true)
     mJammingSet(true)
   end
-  
+
   def mLoad(game)
     mLoadStandard(game)
     mMusicAdd('game1', 'mushware-sanity-fault.ogg')
     MushGame.cSoundDefine("voice-intro", "mush://waves/voice-L21.ogg")
   end
-  
+
   def mPrecacheListBuild
     super
     mPrecacheListAdd(mPieceLibrary.mAttendantTex('blue'))
@@ -60,10 +63,10 @@ class Adanaxis_level21 < AdanaxisSpace
     angVel = MushTools.cRotationInXYPlane(Math::PI / 1200);
     MushTools.cRotationInZWPlane(Math::PI / 1314).mRotate(angVel);
     MushTools.cRotationInYZPlane(Math::PI / 1575).mRotate(angVel);
-  
+
     vel = MushVector.new(-0.05*(1+diff),0,0,0)
     angPos = MushTools.cRotationInXZPlane(Math::PI/2)
-    
+
     (3+3*diff).times do |param|
       mPieceLibrary.mVendorCreate(
         :colour => 'red',
@@ -74,7 +77,7 @@ class Adanaxis_level21 < AdanaxisSpace
         )
       )
     end
-    
+
     4.times do |param|
       mPieceLibrary.mFreshenerCreate(
         :colour => 'blue',
@@ -85,7 +88,7 @@ class Adanaxis_level21 < AdanaxisSpace
         :is_jammer => true
       )
     end
-    
+
     4.times do |param|
       ['blue', 'red', 'red'].each do |colour|
         mPieceLibrary.mHarpikCreate(
@@ -98,7 +101,7 @@ class Adanaxis_level21 < AdanaxisSpace
         )
       end
     end
-    
+
     2.times do |param|
       mPieceLibrary.mRailCreate(
         :colour => 'red',
@@ -110,7 +113,7 @@ class Adanaxis_level21 < AdanaxisSpace
         :ai_state_msec => 15000
       )
     end
-    
+
     mPieceLibrary.mCisternCreate(
       :colour => 'red',
       :post => MushPost.new(
@@ -129,7 +132,7 @@ class Adanaxis_level21 < AdanaxisSpace
       :ai_state_msec => 10000,
       :weapon => :vendor_spawner
     )
-  
+
     mPieceLibrary.mCisternCreate(
       :colour => 'blue',
       :post => MushPost.new(
@@ -145,14 +148,14 @@ class Adanaxis_level21 < AdanaxisSpace
       :ai_state => :patrol,
       :ai_state_msec => 10000
     )
-  
+
     $currentLogic.mRemnant.mCreate(
       :item_type => (AdanaxisRuby.cGameDifficulty < 2) ? :player_light_missile : :player_heavy_cannon,
       :post => MushPost.new(
         :position => MushVector.new(-10, 0 , 0, -20)
       )
     )
-    
+
     if diff < 1
       $currentLogic.mRemnant.mCreate(
         :item_type => :player_heavy_cannon,
@@ -161,17 +164,17 @@ class Adanaxis_level21 < AdanaxisSpace
         )
       )
     end
- 
+
     $currentLogic.mRemnant.mCreate(
       :item_type => :player_heavy_missile,
       :post => MushPost.new(
         :position => MushVector.new(10, 0, 0, -80)
       )
     )
-          
+
     mStandardCosmos(21)
   end
-  
+
   def mJammersEliminated
     mJammingSet(false)
     MushGame.cNamedDialoguesAdd('^unjammed')

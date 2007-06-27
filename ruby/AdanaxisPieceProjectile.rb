@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } v+pp5BpYYO52RCrKVe0eBw
-# $Id: AdanaxisPieceProjectile.rb,v 1.20 2007/05/21 13:32:52 southa Exp $
+# $Id: AdanaxisPieceProjectile.rb,v 1.21 2007/06/27 12:58:12 southa Exp $
 # $Log: AdanaxisPieceProjectile.rb,v $
+# Revision 1.21  2007/06/27 12:58:12  southa
+# Debian packaging
+#
 # Revision 1.20  2007/05/21 13:32:52  southa
 # Flush weapon
 #
@@ -92,7 +95,7 @@ class AdanaxisPieceProjectile < AdanaxisPiece
     @m_damageFrame = inParams[:damage_frame]
     @m_acceleration = inParams[:acceleration] || 0.0
     @m_speedLimit = inParams[:speed_limit] || 0.0
-    
+
     aiParams = inParams[:ai_params]
     if aiParams
       @m_ai = AdanaxisAIProjectile.new(aiParams)
@@ -102,34 +105,34 @@ class AdanaxisPieceProjectile < AdanaxisPiece
     end
     @m_isRocket = inParams[:is_rocket]
     @m_isFlush = inParams[:is_flush]
-    
+
     return @m_callInterval
   end
-  
+
   mush_reader :m_owner
-  
+
   def mActionTimer
     mLoad
-    
+
     if @m_ai
       @m_callInterval = @m_ai.mActByState(self)
       @m_callInterval = 100 if @m_isRocket
     end
-    
+
     mRocketEffect if @m_isRocket
-    
+
     mSave
-    
+
     @m_callInterval
   end
-  
+
   def mRocketEffect
     flarePost = mPost.dup
-    
+
     flareVel = MushVector.new(0,0,0,0.5)
     mPost.angular_position.mRotate(flareVel)
     flarePost.velocity = flarePost.velocity + flareVel
-    
+
     flareScale = (mAgeMsec / 2000.0).mClamp(0.1, 5.0)
     $currentLogic.mEffects.mFlareCreate(
       :post => flarePost,
@@ -138,7 +141,7 @@ class AdanaxisPieceProjectile < AdanaxisPiece
       :alpha_stutter => 0
     )
   end
-  
+
   def mExplosionEffect
     if @m_originalHitPoints >= 50.0
       $currentLogic.mEffects.mExplode(
@@ -181,7 +184,7 @@ class AdanaxisPieceProjectile < AdanaxisPiece
       )
     end
   end
-  
+
   def mExplosionSound
     case @m_originalHitPoints
       when 0...100.0
@@ -189,7 +192,7 @@ class AdanaxisPieceProjectile < AdanaxisPiece
         MushGame.cSoundPlay('nuke_explo1', mPost)
     end
   end
-  
+
   def mDamageFrameCreate
     AdanaxisPieceEffector.cCreate(
       :mesh_name => 'nuke_splash',
@@ -238,12 +241,12 @@ class AdanaxisPieceProjectile < AdanaxisPiece
       end
     end
   end
-  
+
   def mCollisionHandle(event)
     if @m_isFlush
       mFlushFrameCreate
     end
-    
+
     if @m_damageFrame
       # Collisions don't affect damage frames - they just expire
     else
@@ -251,7 +254,7 @@ class AdanaxisPieceProjectile < AdanaxisPiece
       super
     end
   end
-  
+
   def mExpiryHandle(event)
     unless @m_damageFrame
       mLoad

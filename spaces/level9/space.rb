@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } +x8o4iWTNy6ghh0UIQjADg
-# $Id: space.rb,v 1.3 2007/05/01 16:40:07 southa Exp $
+# $Id: space.rb,v 1.4 2007/06/27 12:58:19 southa Exp $
 # $Log: space.rb,v $
+# Revision 1.4  2007/06/27 12:58:19  southa
+# Debian packaging
+#
 # Revision 1.3  2007/05/01 16:40:07  southa
 # Level 10
 #
@@ -48,13 +51,13 @@ class Adanaxis_level9 < AdanaxisSpace
     super
     mTimeoutSpawnAdd(:mSpawn0, 180000)
   end
-  
+
   def mLoad(game)
     mLoadStandard(game)
     mMusicAdd('game1', 'mushware-respiration.ogg')
     MushGame.cSoundDefine("voice-intro", "mush://waves/voice-L9.ogg")
   end
-  
+
   def mPrecacheListBuild
     super
     mPrecacheListAdd(mPieceLibrary.mAttendantTex('red'))
@@ -70,10 +73,10 @@ class Adanaxis_level9 < AdanaxisSpace
     diff = AdanaxisRuby.cGameDifficulty
 
     # Red convoy
-    
+
     vel = MushVector.new(-0.05*(1+diff),0,0,0)
     angPos = MushTools.cRotationInXZPlane(Math::PI/2)
-  
+
     (-diff..diff).each do |param|
       mPieceLibrary.mLimescaleCreate(
         :colour => 'red',
@@ -102,7 +105,7 @@ class Adanaxis_level9 < AdanaxisSpace
         :ai_state_msec => 10000+250*param
       )
     end
-  
+
     [-1,1].each do |param|
       mPieceLibrary.mHarpikCreate(
         :colour => 'red',
@@ -119,7 +122,7 @@ class Adanaxis_level9 < AdanaxisSpace
         :ai_state_msec => 8000+250*param
       )
     end
-   
+
     [-1,1].each do |param|
       mPieceLibrary.mWarehouseCreate(
         :colour => 'red',
@@ -137,17 +140,17 @@ class Adanaxis_level9 < AdanaxisSpace
         :remnant => (AdanaxisRuby.cGameDifficulty < 2) ? :player_light_missile : :player_heavy_cannon
       )
     end
-    
+
     $currentLogic.mRemnant.mCreate(
       :item_type => (AdanaxisRuby.cGameDifficulty < 1) ? :player_light_missile : :player_heavy_cannon,
       :post => MushPost.new(
         :position => MushVector.new(4, 2, 0, -40)
       )
     )
-    
+
     mStandardCosmos(9)
   end
-  
+
   def mSpawn0
     MushTools.cRandomSeedSet(9)
     diff = AdanaxisRuby.cGameDifficulty

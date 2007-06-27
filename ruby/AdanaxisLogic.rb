@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } 7kYW2RBXOMyutS8FkQ7cvA
-# $Id: AdanaxisLogic.rb,v 1.20 2007/04/18 09:21:52 southa Exp $
+# $Id: AdanaxisLogic.rb,v 1.21 2007/06/27 12:58:11 southa Exp $
 # $Log: AdanaxisLogic.rb,v $
+# Revision 1.21  2007/06/27 12:58:11  southa
+# Debian packaging
+#
 # Revision 1.20  2007/04/18 09:21:52  southa
 # Header and level fixes
 #
@@ -86,7 +89,7 @@ class AdanaxisLogic < MushLogic
   DIFFICULTY_EASY = 0
   DIFFICULTY_NORMAL = 1
   DIFFICULTY_HARD = 2
-  
+
   def initialize
     @m_outbox = []
     @m_effects = AdanaxisEffects.new
@@ -118,32 +121,32 @@ class AdanaxisLogic < MushLogic
     event.dest = dest
     @m_outbox << event
   end
-  
+
   def mReceiveSequence
     mInboxConsume(@m_outbox)
   end
-  
+
   def mCollisionEventConsume(event)
     event.mPiece1.mLoad
     event.mPiece2.mLoad
-    
+
     # Decrement hit points here, otherwise one object will used the already-
     # decremented value of the other
-    
+
     hitPoints1 = event.mPiece1.mHitPoints
     hitPoints2 = event.mPiece2.mHitPoints
-    
+
     event.mPiece1.mDamageTake(hitPoints2 * event.mPiece2.mDamageFactor(event.mPiece1), event.mPiece2)
     event.mPiece2.mDamageTake(hitPoints1 * event.mPiece1.mDamageFactor(event.mPiece2), event.mPiece1)
-    
+
     # Send to each object with itself in the first position
     event.mPiece1.mEventHandle(event)
-    
+
     # Swap piece1 and piece2 in the event
     event.mPiecesSwap!
-    
+
     event.mPiece1.mEventHandle(event)
-    
+
     event.mPiece1.mSave
     event.mPiece2.mSave
   end

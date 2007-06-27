@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } nGrSUf+xucUnHatVLC77Dg
-# $Id: space.rb,v 1.5 2007/06/15 12:45:49 southa Exp $
+# $Id: space.rb,v 1.6 2007/06/27 12:58:19 southa Exp $
 # $Log: space.rb,v $
+# Revision 1.6  2007/06/27 12:58:19  southa
+# Debian packaging
+#
 # Revision 1.5  2007/06/15 12:45:49  southa
 # Prerelease work
 #
@@ -61,25 +64,25 @@ class Adanaxis_level6 < AdanaxisSpace
     mTimeoutSpawnAdd(:mSpawn0, 13000)
     mIsBattleSet(true)
   end
-  
+
   def mLoad(game)
     mLoadStandard(game)
     mMusicAdd('game1', 'mushware-respiration.ogg')
     MushGame.cSoundDefine("voice-intro", "mush://waves/voice-L6.ogg")
   end
-  
+
   def mPrecacheListBuild
     super
     mPrecacheListAdd(mPieceLibrary.mAttendantTex('red', 'blue'))
     mPrecacheListAdd(mPieceLibrary.mCisternTex('red', 'blue'))
     mPrecacheListAdd(mPieceLibrary.mHarpikTex('red', 'blue'))
   end
-  
+
   def mInitialPiecesCreate
     super
     MushTools.cRandomSeedSet(6)
     diff = AdanaxisRuby.cGameDifficulty
-    
+
     ((diff < 1)?1:2).times do |param|
       ['blue', 'red', 'red'].each do |colour|
         mPieceLibrary.mHarpikCreate(
@@ -92,7 +95,7 @@ class Adanaxis_level6 < AdanaxisSpace
         )
       end
     end
-    
+
     ((diff<1)?10:20).times do |param|
       ['blue', 'red', 'red'].each do |colour|
         mPieceLibrary.mAttendantCreate(
@@ -112,10 +115,10 @@ class Adanaxis_level6 < AdanaxisSpace
         :position => MushVector.new(0, 0, 0, -20)
       )
     )
-    
+
     mStandardCosmos(6)
   end
-  
+
   def mSpawn0
     MushTools.cRandomSeedSet(6)
     mPieceLibrary.mCisternCreate(
@@ -132,7 +135,7 @@ class Adanaxis_level6 < AdanaxisSpace
       :ammo_count => 5 + 5 * AdanaxisRuby.cGameDifficulty,
       :weapon => (AdanaxisRuby.cGameDifficulty > 1) ? :harpik_spawner : :attendant_spawner
     )
-    
+
     mPieceLibrary.mCisternCreate(
       :colour => 'blue',
       :post => MushPost.new(

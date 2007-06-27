@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } dp11LTIiZ/qOIlaxZiMXaA
-# $Id: AdanaxisRemnant.rb,v 1.12 2007/04/18 09:21:53 southa Exp $
+# $Id: AdanaxisRemnant.rb,v 1.13 2007/06/27 12:58:12 southa Exp $
 # $Log: AdanaxisRemnant.rb,v $
+# Revision 1.13  2007/06/27 12:58:12  southa
+# Debian packaging
+#
 # Revision 1.12  2007/04/18 09:21:53  southa
 # Header and level fixes
 #
@@ -89,7 +92,7 @@ class AdanaxisRemnant < MushObject
     @m_shieldDefaults = @remnantDefaults.merge(
       :mesh_name => "shieldbox1"
     )
-    
+
     @m_ammoDefaults = @remnantDefaults
   end
 
@@ -97,56 +100,56 @@ class AdanaxisRemnant < MushObject
     itemParams = {}
     itemType = inParams[:item_type]
     case itemType
-      when :health1,:health2,:health3 
+      when :health1,:health2,:health3
         itemParams.merge!(@m_healthDefaults)
       when :shield1,:shield3,:shield3
         itemParams.merge!(@m_shieldDefaults)
       when :player_base
         itemParams.merge!(@m_ammoDefaults)
-        itemParams.merge!(:mesh_name => 'basebox1')        
+        itemParams.merge!(:mesh_name => 'basebox1')
       when :player_light_cannon
         itemParams.merge!(@m_ammoDefaults)
-        itemParams.merge!(:mesh_name => 'lightcannonbox1')        
+        itemParams.merge!(:mesh_name => 'lightcannonbox1')
       when :player_quad_cannon
         itemParams.merge!(@m_ammoDefaults)
-        itemParams.merge!(:mesh_name => 'quadcannonbox1')        
+        itemParams.merge!(:mesh_name => 'quadcannonbox1')
       when :player_flak
         itemParams.merge!(@m_ammoDefaults)
-        itemParams.merge!(:mesh_name => 'flakbox1')        
+        itemParams.merge!(:mesh_name => 'flakbox1')
       when :player_heavy_cannon
         itemParams.merge!(@m_ammoDefaults)
-        itemParams.merge!(:mesh_name => 'heavycannonbox1')        
+        itemParams.merge!(:mesh_name => 'heavycannonbox1')
       when :player_rail
         itemParams.merge!(@m_ammoDefaults)
-        itemParams.merge!(:mesh_name => 'railbox1')        
+        itemParams.merge!(:mesh_name => 'railbox1')
       when :player_light_missile
         itemParams.merge!(@m_ammoDefaults)
-        itemParams.merge!(:mesh_name => 'lightmissilebox1')        
+        itemParams.merge!(:mesh_name => 'lightmissilebox1')
       when :player_heavy_missile
         itemParams.merge!(@m_ammoDefaults)
-        itemParams.merge!(:mesh_name => 'heavymissilebox1')        
+        itemParams.merge!(:mesh_name => 'heavymissilebox1')
       when :player_flush
         itemParams.merge!(@m_ammoDefaults)
-        itemParams.merge!(:mesh_name => 'flushbox1')        
+        itemParams.merge!(:mesh_name => 'flushbox1')
       when :player_nuclear
         itemParams.merge!(@m_ammoDefaults)
-        itemParams.merge!(:mesh_name => 'nuclearbox1')        
+        itemParams.merge!(:mesh_name => 'nuclearbox1')
       else
         raise(RuntimeError, "Unknown remnant type '#{itemType || '(not set)'}'")
     end
     itemParams.merge!(inParams)
- 
+
     velocityFactor = itemParams[:velocity_factor] || 0.0
- 
+
     itemParams[:post] = MushPost.new(
       :position => itemParams[:post].position,
       :velocity => itemParams[:post].velocity * velocityFactor,
       :angular_velocity => MushTools.cRandomAngularVelocity(0.01)
     )
-    
+
     AdanaxisPieceItem.cCreate(itemParams)
   end
-  
+
   def mCollect(inItem, inPiece)
     case inItem.mItemType
       when :health1
@@ -208,9 +211,9 @@ class AdanaxisRemnant < MushObject
 
   def mLowGradeRemnant(inSequenceNum)
     retVal = nil
-    
+
     selector = mPseudoRandom(inSequenceNum)
-    
+
     if selector == 0
       # No remnant
     elsif selector % 32 == 0
@@ -226,12 +229,12 @@ class AdanaxisRemnant < MushObject
     end
     retVal
   end
-  
+
   def mMediumGradeRemnant(inSequenceNum)
     retVal = nil
-    
+
     selector = mPseudoRandom(inSequenceNum)
-    
+
     if selector == 0
       retVal = :player_flak
     elsif selector % 32 == 0
@@ -245,14 +248,14 @@ class AdanaxisRemnant < MushObject
     elsif selector % 2 == 0
       retVal = :player_flak
     else
-      retVal = :health2    
+      retVal = :health2
     end
     retVal
   end
-  
+
   def mStandardRemnant(inSequenceNum)
     retVal = nil
-    
+
     if inSequenceNum == 0
       # No remnant
     elsif inSequenceNum % 8 == 0
@@ -263,6 +266,6 @@ class AdanaxisRemnant < MushObject
     retVal = @m_names[rand(@m_names.size - 2)]
     retVal
   end
-  
-  
+
+
 end

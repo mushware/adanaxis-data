@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } O1v+y3B+dNItd1DJVcu9Rw
-# $Id: AdanaxisTextureLibrary.rb,v 1.52 2007/06/14 12:14:15 southa Exp $
+# $Id: AdanaxisTextureLibrary.rb,v 1.53 2007/06/27 12:58:12 southa Exp $
 # $Log: AdanaxisTextureLibrary.rb,v $
+# Revision 1.53  2007/06/27 12:58:12  southa
+# Debian packaging
+#
 # Revision 1.52  2007/06/14 12:14:15  southa
 # Level 30
 #
@@ -227,7 +230,7 @@ class AdanaxisTextureLibrary < MushObject
 	)
 
   # Boxes
-  
+
   mBoxNames.each do |name|
     filename = MushConfig.cGlobalPixelsPath+"/#{name}box1.tiff"
     MushLog.cWarning("Missing box texture #{filename}") unless File.file?(filename)
@@ -254,7 +257,7 @@ class AdanaxisTextureLibrary < MushObject
       :resident      => 1
     )
   end
-  
+
   MushGLTexture::cDefine(
     :name          => "rail1-tex",
     :type          => 'TIFF',
@@ -271,7 +274,7 @@ class AdanaxisTextureLibrary < MushObject
     when 1: 4
     else 8
   end
-  
+
   maxExplos.times do |exploNum|
     100.times do |i|
       filename = "mush://pixels/artb-explo#{exploNum}-#{i}.tiff|#{MushConfig.cGlobalPixelsPath}/explo#{exploNum}-#{i}.tiff"
@@ -326,7 +329,7 @@ class AdanaxisTextureLibrary < MushObject
 		:cache         => 1,
     :compress      => compressNear
 	)
-  
+
 	MushGLTexture::cDefine(
 		:name          => 'attendant-tex',
     :type          => 'CellNoise',
@@ -341,7 +344,7 @@ class AdanaxisTextureLibrary < MushObject
 		:cache         => 1,
     :compress      => compressNear
 	)
-	
+
 	MushGLTexture::cDefine(
 		:name          => 'attendant-red-tex',
     :type          => 'CellNoise',
@@ -356,7 +359,7 @@ class AdanaxisTextureLibrary < MushObject
 		:cache         => 1,
     :compress      => compressNear
 	)
-	
+
 	MushGLTexture::cDefine(
 		:name          => 'attendant-blue-tex',
     :type          => 'CellNoise',
@@ -372,7 +375,7 @@ class AdanaxisTextureLibrary < MushObject
     :compress      => compressNear
 	)
 
-	
+
   scale = 0.2
   MushGLTexture::cDefine(
 		:name          => 'bleach-tex',
@@ -418,7 +421,7 @@ class AdanaxisTextureLibrary < MushObject
 		:cache         => 1,
     :compress      => compressNear
 	)
-	
+
   scale = 0.2
   MushGLTexture::cDefine(
 		:name          => 'cistern-tex',
@@ -510,7 +513,7 @@ class AdanaxisTextureLibrary < MushObject
 		:cache         => 1,
     :compress      => compressNear
 	)
-	
+
   scale = 0.1
   MushGLTexture::cDefine(
 		:name          => 'floater-tex',
@@ -556,7 +559,7 @@ class AdanaxisTextureLibrary < MushObject
 		:cache         => 1,
     :compress      => compressNear
 	)
-  
+
   scale = 0.5
   MushGLTexture::cDefine(
 		:name          => 'freshener-tex',
@@ -648,7 +651,7 @@ class AdanaxisTextureLibrary < MushObject
 		:cache         => 1,
     :compress      => compressNear
 	)
-  
+
   scale = 0.05
   MushGLTexture::cDefine(
 		:name          => 'hub-tex',
@@ -694,7 +697,7 @@ class AdanaxisTextureLibrary < MushObject
 		:cache         => 1,
     :compress      => compressNear
 	)
-	
+
   scale = 0.5
   MushGLTexture::cDefine(
 		:name          => 'limescale-tex',
@@ -740,7 +743,7 @@ class AdanaxisTextureLibrary < MushObject
 		:cache         => 1,
     :compress      => compressNear
 	)
-  
+
   scale = 0.1
   MushGLTexture::cDefine(
 		:name          => 'vendor-tex',
@@ -786,7 +789,7 @@ class AdanaxisTextureLibrary < MushObject
 		:cache         => 1,
     :compress      => compressNear
 	)
-  
+
   scale = 0.1
   MushGLTexture::cDefine(
 		:name          => 'vortex-tex',
@@ -832,7 +835,7 @@ class AdanaxisTextureLibrary < MushObject
 		:cache         => 1,
     :compress      => compressNear
 	)
-  
+
   scale = 0.1
   MushGLTexture::cDefine(
 		:name          => 'warehouse-tex',
@@ -941,9 +944,9 @@ class AdanaxisTextureLibrary < MushObject
 		:cache         => 1,
     :compress      => compressNear
 	)
-	
+
 	scale = 4
-	
+
 	MushGLTexture::cDefine(
 		:name          => 'projectile1-tex',
     :type          => 'CellNoise',
@@ -989,7 +992,7 @@ class AdanaxisTextureLibrary < MushObject
 		:cache         => 1,
     :compress      => compressFar
 	)
-    
+
   scale = 0.02
 	MushGLTexture::cDefine(
 		:name          => 'world2-tex',
@@ -1055,7 +1058,7 @@ class AdanaxisTextureLibrary < MushObject
 	)
 
   scale = 1
-  
+
   10.times do |i|
     MushGLTexture::cDefine(
       :name          => "star#{i}-tex",
@@ -1137,4 +1140,4 @@ class AdanaxisTextureLibrary < MushObject
 
   end
 end
-	
+

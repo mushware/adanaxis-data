@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } Waqa0lR5jK9SxVWI9wRGTg
-# $Id: space.rb,v 1.2 2007/06/14 22:24:27 southa Exp $
+# $Id: space.rb,v 1.3 2007/06/27 12:58:15 southa Exp $
 # $Log: space.rb,v $
+# Revision 1.3  2007/06/27 12:58:15  southa
+# Debian packaging
+#
 # Revision 1.2  2007/06/14 22:24:27  southa
 # Level and gameplay tweaks
 #
@@ -31,7 +34,7 @@ require 'Adanaxis.rb'
 class Adanaxis_level14 < AdanaxisSpace
   def initialize(inParams = {})
     super
-    
+
     mTimeoutSpawnAdd(:mSpawn2, 20000)
 
     if AdanaxisRuby.cGameDifficulty > 0
@@ -39,17 +42,17 @@ class Adanaxis_level14 < AdanaxisSpace
       mTimeoutSpawnAdd(:mSpawn1, 60000)
     end
     mTimeoutSpawnAdd(:mSpawn2, 120000)
-    
+
     mIsBattleSet(true)
     @m_jammerSpawnDone =  false
   end
-  
+
   def mLoad(game)
     mLoadStandard(game)
     mMusicAdd('game1', 'mushware-sanity-fault.ogg')
     MushGame.cSoundDefine("voice-intro", "mush://waves/voice-L14.ogg")
   end
-  
+
   def mPrecacheListBuild
     super
     mPrecacheListAdd(mPieceLibrary.mAttendantTex('red', 'blue'))
@@ -69,10 +72,10 @@ class Adanaxis_level14 < AdanaxisSpace
     angVel = MushTools.cRotationInXYPlane(Math::PI / 1200);
     MushTools.cRotationInZWPlane(Math::PI / 1314).mRotate(angVel);
     MushTools.cRotationInYZPlane(Math::PI / 1575).mRotate(angVel);
-  
+
     vel = MushVector.new(-0.05*(1+diff),0,0,0)
     angPos = MushTools.cRotationInXZPlane(Math::PI/2)
-  
+
     (-diff..diff).each do |param|
       mPieceLibrary.mFreshenerCreate(
         :colour => 'red',
@@ -89,7 +92,7 @@ class Adanaxis_level14 < AdanaxisSpace
         )
       )
     end
-    
+
     8.times do |param|
       ['blue', 'red'].each do |colour|
         mPieceLibrary.mHarpikCreate(
@@ -133,7 +136,7 @@ class Adanaxis_level14 < AdanaxisSpace
         :ai_state_msec => 10000+250*param
       )
     end
-   
+
     [-1,1].each do |param|
       mPieceLibrary.mWarehouseCreate(
         :colour => 'red',
@@ -151,14 +154,14 @@ class Adanaxis_level14 < AdanaxisSpace
         :remnant => :player_heavy_missile
       )
     end
-    
+
     $currentLogic.mRemnant.mCreate(
       :item_type => (AdanaxisRuby.cGameDifficulty < 2) ? :player_light_missile : :player_heavy_cannon,
       :post => MushPost.new(
         :position => MushVector.new(6, 6, 0, -20)
       )
     )
-    
+
     if diff < 1
       $currentLogic.mRemnant.mCreate(
         :item_type => :player_heavy_cannon,
@@ -167,10 +170,10 @@ class Adanaxis_level14 < AdanaxisSpace
         )
       )
     end
-    
+
     mStandardCosmos(14)
   end
-  
+
   def mSpawn0
     diff = AdanaxisRuby.cGameDifficulty
     mPieceLibrary.mCisternCreate(
@@ -228,7 +231,7 @@ class Adanaxis_level14 < AdanaxisSpace
         :weapon => :harpik_spawner
       )
     end
-          
+
     mPieceLibrary.mCisternCreate(
       :colour => 'red',
       :post => MushPost.new(
@@ -244,7 +247,7 @@ class Adanaxis_level14 < AdanaxisSpace
       :ai_state => :dormant,
       :ai_state_msec => 6000,
       :weapon => :vendor_spawner
-    )  
+    )
 
     MushGame.cVoicePlay('voice-E1-1') # 'Guided ordnance detected'
     return true
@@ -274,7 +277,7 @@ class Adanaxis_level14 < AdanaxisSpace
 
     return false
   end
-  
+
   def mJammersEliminated
     unless @m_jammerSpawnDone
       diff = AdanaxisRuby.cGameDifficulty

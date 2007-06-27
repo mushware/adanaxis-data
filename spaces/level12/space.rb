@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } yJWwNgjiqAR0Rx9dArCddQ
-# $Id: space.rb,v 1.2 2007/06/14 22:24:27 southa Exp $
+# $Id: space.rb,v 1.3 2007/06/27 12:58:14 southa Exp $
 # $Log: space.rb,v $
+# Revision 1.3  2007/06/27 12:58:14  southa
+# Debian packaging
+#
 # Revision 1.2  2007/06/14 22:24:27  southa
 # Level and gameplay tweaks
 #
@@ -31,7 +34,7 @@ require 'Adanaxis.rb'
 class Adanaxis_level12 < AdanaxisSpace
   def initialize(inParams = {})
     super
-    
+
     if AdanaxisRuby.cGameDifficulty > 1
       mTimeoutSpawnAdd(:mSpawn0, 20000)
     end
@@ -39,13 +42,13 @@ class Adanaxis_level12 < AdanaxisSpace
       mTimeoutSpawnAdd(:mSpawn1, 60000)
     end
   end
-  
+
   def mLoad(game)
-    mLoadStandard(game) 
+    mLoadStandard(game)
     mMusicAdd('game1', 'mushware-respiration.ogg')
     MushGame.cSoundDefine("voice-intro", "mush://waves/voice-L12.ogg")
   end
-  
+
   def mPrecacheListBuild
     super
     mPrecacheListAdd(mPieceLibrary.mAttendantTex('red'))
@@ -63,10 +66,10 @@ class Adanaxis_level12 < AdanaxisSpace
     angVel = MushTools.cRotationInXYPlane(Math::PI / 1200);
     MushTools.cRotationInZWPlane(Math::PI / 1314).mRotate(angVel);
     MushTools.cRotationInYZPlane(Math::PI / 1575).mRotate(angVel);
-  
+
     vel = MushVector.new(-0.05*(1+diff),0,0,0)
     angPos = MushTools.cRotationInXZPlane(Math::PI/2)
-  
+
     (3+3*diff).times do |param|
       mPieceLibrary.mVendorCreate(
         :colour => 'red',
@@ -109,7 +112,7 @@ class Adanaxis_level12 < AdanaxisSpace
         :weapon => (diff > 1) ? :harpik_spawner : :attendant_spawner
       )
     end
-    
+
     $currentLogic.mRemnant.mCreate(
       :item_type => (AdanaxisRuby.cGameDifficulty < 2) ? :player_light_missile : :player_heavy_cannon,
       :post => MushPost.new(
@@ -128,10 +131,10 @@ class Adanaxis_level12 < AdanaxisSpace
         :position => MushVector.new(0, 0, 0, -60)
       )
     )
-    
+
     mStandardCosmos(12)
   end
-  
+
   def mSpawn0
     diff = AdanaxisRuby.cGameDifficulty
     mPieceLibrary.mCisternCreate(

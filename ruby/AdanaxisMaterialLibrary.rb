@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } hU1TyrK37EoLKkw5zEmDXQ
-# $Id: AdanaxisMaterialLibrary.rb,v 1.35 2007/06/14 12:14:15 southa Exp $
+# $Id: AdanaxisMaterialLibrary.rb,v 1.36 2007/06/27 12:58:11 southa Exp $
 # $Log: AdanaxisMaterialLibrary.rb,v $
+# Revision 1.36  2007/06/27 12:58:11  southa
+# Debian packaging
+#
 # Revision 1.35  2007/06/14 12:14:15  southa
 # Level 30
 #
@@ -157,7 +160,7 @@ class AdanaxisMaterialLibrary < MushObject
       'rail-red',
       'rail-blue'
       ]
-      
+
     tiledList.each do |name|
       MushMaterial.cDefine(
         :name => "#{name}-mat",
@@ -218,13 +221,13 @@ class AdanaxisMaterialLibrary < MushObject
       :texture_names => ["flare#{i}-tex"]
       )
     end
-    
+
     numExplo = @m_textureLibrary.mExploNames.size
     if numExplo > 0
       8.times do |i|
         texToUse = i
         texToUse = numExplo - 1 if texToUse >= numExplo
-        
+
         MushMaterial.cDefine(
           :name => "explo#{i}-mat",
           :mapping_type => :tiled,
@@ -238,7 +241,7 @@ class AdanaxisMaterialLibrary < MushObject
           :mapping_type => :tiled,
           :texture_names => ["flare#{i}-tex"]
         )
-      end    
+      end
     end
 
     if @m_textureLibrary.mCosmos1Names.size > 0
@@ -248,7 +251,7 @@ class AdanaxisMaterialLibrary < MushObject
           :mapping_type => :tiled,
           :texture_names => [@m_textureLibrary.mCosmos1Names[i]]
         )
-      end  
+      end
     end
 
     ['ground', 'river', 'block'].each do |prefix|
@@ -258,7 +261,7 @@ class AdanaxisMaterialLibrary < MushObject
         :texture_names => ["#{prefix}1-tex"]
       )
     end
-    
+
     @m_textureLibrary.mBoxNames.each do |prefix|
       MushMaterial.cDefine(
         :name => "#{prefix}box1-mat",

@@ -18,6 +18,9 @@
 #%Header } IMaIOOzsmxL/y4OnoZnJew
 # $Id: AdanaxisPieceItem.rb,v 1.8 2007/05/29 13:25:56 southa Exp $
 # $Log: AdanaxisPieceItem.rb,v $
+# Revision 1.9  2007/06/27 12:58:11  southa
+# Debian packaging
+#
 # Revision 1.8  2007/05/29 13:25:56  southa
 # Level 20
 #
@@ -57,21 +60,21 @@ class AdanaxisPieceItem < AdanaxisPiece
     @m_itemType = inParams[:item_type] || raise(RuntimeError, "No item_type supplied")
     @m_callInterval = 1000
   end
-  
+
   mush_accessor :m_itemType
-  
+
   def mVulnerability
     # Items are invulnerable for a period after creation
     return (mAgeMsec < 2000) ? 0.0 : 1.0
   end
-  
+
   def mActionTimer
     mLoad
     mDecoEffect
-    
+
     @m_callInterval
   end
-  
+
   def mDecoEffect
     $currentLogic.mEffects.mExplode(
       :post => mPost,
@@ -83,7 +86,7 @@ class AdanaxisPieceItem < AdanaxisPiece
       :ember_scale_range => (0.1..0.3)
     )
   end
-  
+
   def mExplosionEffect
     $currentLogic.mEffects.mExplode(
       :post => mPost,
@@ -93,10 +96,10 @@ class AdanaxisPieceItem < AdanaxisPiece
       :flare_scale_range => (1.7..2.0)
     )
   end
-  
+
   def mExplosionSound
   end
-  
+
   def mFatalCollisionHandle(event)
     super
     mExplosionEffect

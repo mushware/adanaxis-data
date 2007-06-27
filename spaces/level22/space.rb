@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } 6bn9rwZGbPpD22NcOqftSQ
-# $Id: space.rb,v 1.3 2007/06/06 12:24:13 southa Exp $
+# $Id: space.rb,v 1.4 2007/06/27 12:58:16 southa Exp $
 # $Log: space.rb,v $
+# Revision 1.4  2007/06/27 12:58:16  southa
+# Debian packaging
+#
 # Revision 1.3  2007/06/06 12:24:13  southa
 # Level 22
 #
@@ -34,16 +37,16 @@ require 'Adanaxis.rb'
 class Adanaxis_level22 < AdanaxisSpace
   def initialize(inParams = {})
     super
-    
+
     mIsBattleSet(true)
   end
-  
+
   def mLoad(game)
     mLoadStandard(game)
     mMusicAdd('game1', 'mushware-disturbed-sleep.ogg')
     MushGame.cSoundDefine("voice-intro", "mush://waves/voice-L22.ogg")
   end
-  
+
   def mPrecacheListBuild
     super
     mPrecacheListAdd(mPieceLibrary.mBleachTex('red'))
@@ -62,10 +65,10 @@ class Adanaxis_level22 < AdanaxisSpace
     angVel = MushTools.cRotationInXYPlane(Math::PI / 1200);
     MushTools.cRotationInZWPlane(Math::PI / 1314).mRotate(angVel);
     MushTools.cRotationInYZPlane(Math::PI / 1575).mRotate(angVel);
-  
+
     vel = MushVector.new(0,0,0,-0.1)
     angPos = MushTools.cRotationInXZPlane(Math::PI/2)
-    
+
     # Blue convoy
     (-1..1).each do |param1|
       (-1..1).each do |param2|
@@ -86,7 +89,7 @@ class Adanaxis_level22 < AdanaxisSpace
         )
       end
     end
-        
+
     [-1,1].each do |param|
       mPieceLibrary.mVendorCreate(
         :colour => 'blue',
@@ -102,7 +105,7 @@ class Adanaxis_level22 < AdanaxisSpace
         :ai_state_msec => 31000
       )
     end
-        
+
     [-1,1].each do |param|
       mPieceLibrary.mCisternCreate(
         :colour => 'blue',
@@ -120,7 +123,7 @@ class Adanaxis_level22 < AdanaxisSpace
         :ammo_count => 15-5*diff
       )
     end
-        
+
     2.times do |param|
       pos = MushVector.new(-10,-50,80,-250-100*param)
       mPieceLibrary.mRailCreate(
@@ -137,10 +140,10 @@ class Adanaxis_level22 < AdanaxisSpace
         :ai_state => :patrol,
         :ai_state_msec => 29000
       )
-    end    
-        
-    # Red forces    
-    
+    end
+
+    # Red forces
+
     4.times do |param|
       mPieceLibrary.mBleachCreate(
         :colour => 'red',
@@ -154,7 +157,7 @@ class Adanaxis_level22 < AdanaxisSpace
         :ammo_count => 1
       )
     end
-    
+
     6.times do |param|
       ['red'].each do |colour|
         mPieceLibrary.mHarpikCreate(
@@ -167,7 +170,7 @@ class Adanaxis_level22 < AdanaxisSpace
         )
       end
     end
-    
+
     2.times do |param|
       mPieceLibrary.mRailCreate(
         :colour => 'red',
@@ -179,7 +182,7 @@ class Adanaxis_level22 < AdanaxisSpace
         :ai_state_msec => 3000+1000*param
       )
     end
-    
+
 
     $currentLogic.mRemnant.mCreate(
       :item_type => :player_heavy_cannon,
@@ -188,7 +191,7 @@ class Adanaxis_level22 < AdanaxisSpace
       )
     )
 
- 
+
     (3-diff).times do |i|
       $currentLogic.mRemnant.mCreate(
         :item_type => :player_heavy_missile,
@@ -197,14 +200,14 @@ class Adanaxis_level22 < AdanaxisSpace
         )
       )
     end
-    
+
     $currentLogic.mRemnant.mCreate(
       :item_type => :player_flush,
       :post => MushPost.new(
         :position => MushVector.new(0,-2, 0, -60)
       )
     )
-          
+
     mStandardCosmos(22)
   end
 end

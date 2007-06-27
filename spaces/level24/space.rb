@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } eJafnjaQrw91kX21MD8lEA
-# $Id: space.rb,v 1.1 2007/06/07 13:23:02 southa Exp $
+# $Id: space.rb,v 1.2 2007/06/27 12:58:17 southa Exp $
 # $Log: space.rb,v $
+# Revision 1.2  2007/06/27 12:58:17  southa
+# Debian packaging
+#
 # Revision 1.1  2007/06/07 13:23:02  southa
 # Level 24
 #
@@ -32,13 +35,13 @@ class Adanaxis_level24 < AdanaxisSpace
     mIsBattleSet(true)
     mPermanentThrustSet(true)
   end
-  
+
   def mLoad(game)
     mLoadStandard(game)
     mMusicAdd('game1', 'mushware-sanity-fault.ogg')
     MushGame.cSoundDefine("voice-intro", "mush://waves/voice-L24.ogg")
   end
-  
+
   def mPrecacheListBuild
     super
     mPrecacheListAdd(mPieceLibrary.mAttendantTex('red', 'blue'))
@@ -58,10 +61,10 @@ class Adanaxis_level24 < AdanaxisSpace
     angVel = MushTools.cRotationInXYPlane(Math::PI / 1200);
     MushTools.cRotationInZWPlane(Math::PI / 1314).mRotate(angVel);
     MushTools.cRotationInYZPlane(Math::PI / 1575).mRotate(angVel);
-  
+
     vel = MushVector.new(-0.05*(1+diff),0,0,0)
     angPos = MushTools.cRotationInXZPlane(Math::PI/2)
-  
+
     1.times do |param|
       mPieceLibrary.mFreshenerCreate(
         :colour => 'red',
@@ -71,7 +74,7 @@ class Adanaxis_level24 < AdanaxisSpace
         )
       )
     end
-    
+
     (2+diff).times do |param|
         mPieceLibrary.mRailCreate(
           :colour => 'red',
@@ -84,7 +87,7 @@ class Adanaxis_level24 < AdanaxisSpace
           :ai_state_msec => 30000
         )
     end
-    
+
     4.times do |param|
       ['blue', 'red'].each do |colour|
         mPieceLibrary.mHarpikCreate(
@@ -115,7 +118,7 @@ class Adanaxis_level24 < AdanaxisSpace
         :ai_state_msec => 10000+250*param
       )
     end
-    
+
     diff.times do |param|
       mPieceLibrary.mLimescaleCreate(
         :colour => 'red',
@@ -138,7 +141,7 @@ class Adanaxis_level24 < AdanaxisSpace
       :ai_state => :dormant,
       :ai_state_msec => 10000
     )
-    
+
     1.times do |param|
       mPieceLibrary.mVortexCreate(
         :colour => 'red',
@@ -149,7 +152,7 @@ class Adanaxis_level24 < AdanaxisSpace
         )
       )
     end
-    
+
     mPieceLibrary.mCisternCreate(
       :colour => 'blue',
       :post => MushPost.new(
@@ -165,14 +168,14 @@ class Adanaxis_level24 < AdanaxisSpace
       :ai_state => :patrol,
       :ai_state_msec => 10000
     )
-  
+
     $currentLogic.mRemnant.mCreate(
       :item_type => (AdanaxisRuby.cGameDifficulty < 2) ? :player_light_missile : :player_heavy_cannon,
       :post => MushPost.new(
         :position => MushVector.new(0, 0 , 0, -100)
       )
     )
-    
+
     if diff < 1
       $currentLogic.mRemnant.mCreate(
         :item_type => :player_heavy_cannon,
@@ -181,14 +184,14 @@ class Adanaxis_level24 < AdanaxisSpace
         )
       )
     end
- 
+
     $currentLogic.mRemnant.mCreate(
       :item_type => :player_heavy_missile,
       :post => MushPost.new(
         :position => MushVector.new(0, 0, 0, -120)
       )
     )
-          
+
     mStandardCosmos(24)
   end
 

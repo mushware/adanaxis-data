@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } RYWpT3VNpIfWOg8yw3pBgA
-# $Id: space.rb,v 1.2 2007/06/11 20:06:12 southa Exp $
+# $Id: space.rb,v 1.3 2007/06/27 12:58:14 southa Exp $
 # $Log: space.rb,v $
+# Revision 1.3  2007/06/27 12:58:14  southa
+# Debian packaging
+#
 # Revision 1.2  2007/06/11 20:06:12  southa
 # Compatibility fixes and level 27
 #
@@ -35,13 +38,13 @@ class Adanaxis_level13 < AdanaxisSpace
     mIsBattleSet(false)
     mPrimarySet(PRIMARY_RED)
   end
-  
+
   def mLoad(game)
     mLoadStandard(game)
     mMusicAdd('game1', 'mushware-sanity-fault.ogg')
     MushGame.cSoundDefine("voice-intro", "mush://waves/voice-L13.ogg")
   end
-  
+
   def mPrecacheListBuild
     super
     mPrecacheListAdd(mPieceLibrary.mAttendantTex('red', 'blue'))
@@ -58,10 +61,10 @@ class Adanaxis_level13 < AdanaxisSpace
     diff = AdanaxisRuby.cGameDifficulty
 
     # Red convoy
-    
+
     vel = MushVector.new(0,0,0,-0.05*(1+diff))
     angPos = MushTools.cRotationInXZPlane(Math::PI/2)
-  
+
     (-1..1).each do |param1|
       (-1..1).each do |param2|
         pos = MushVector.new(10*param1+50*param2, -50+10*param1, 0, -250-100*param1)
@@ -83,7 +86,7 @@ class Adanaxis_level13 < AdanaxisSpace
         )
       end
     end
-    
+
     [-1,1].each do |param|
       mPieceLibrary.mCisternCreate(
         :colour => 'red',
@@ -107,7 +110,7 @@ class Adanaxis_level13 < AdanaxisSpace
         :is_primary => true
       )
     end
-  
+
     (3-diff).times do |i|
       [-1,1].each do |param|
         mPieceLibrary.mHarpikCreate(
@@ -126,9 +129,9 @@ class Adanaxis_level13 < AdanaxisSpace
         )
       end
     end
-     
+
     # Red forces
-    
+
     4.times do |param|
       mPieceLibrary.mRailCreate(
         :colour => 'red',
@@ -152,7 +155,7 @@ class Adanaxis_level13 < AdanaxisSpace
         )
       )
     end
-    
+
     mPieceLibrary.mCisternCreate(
       :colour => 'blue',
       :post => MushPost.new(
@@ -167,7 +170,7 @@ class Adanaxis_level13 < AdanaxisSpace
       :ai_state_msec => 2000,
       :weapon => :attendant_spawner
     )
-    
+
     if diff < 2
       $currentLogic.mRemnant.mCreate(
         :item_type => (diff < 1) ? :player_heavy_missile : :player_heavy_cannon,
@@ -176,7 +179,7 @@ class Adanaxis_level13 < AdanaxisSpace
         )
       )
     end
-    
+
     mStandardCosmos(13)
   end
 end

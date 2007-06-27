@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } jdaTlpT5VDypkvAKnvFTkQ
-# $Id: AdanaxisAI.rb,v 1.24 2007/06/14 12:14:14 southa Exp $
+# $Id: AdanaxisAI.rb,v 1.25 2007/06/27 12:58:09 southa Exp $
 # $Log: AdanaxisAI.rb,v $
+# Revision 1.25  2007/06/27 12:58:09  southa
+# Debian packaging
+#
 # Revision 1.24  2007/06/14 12:14:14  southa
 # Level 30
 #
@@ -111,7 +114,7 @@ class AdanaxisAI < MushObject
     @m_stateChangeMsec = 0
     @r_piece = nil
     @r_post = nil
-    
+
     # Parameters
     @m_targetID = inParams[:target_id]
     @m_evadeAcceleration = inParams[:evade_acceleration] || 0
@@ -130,15 +133,15 @@ class AdanaxisAI < MushObject
 
     case inParams[:ai_state]
     when :dormant
-      mStateChangeDormant(inParams[:ai_state_msec])    
+      mStateChangeDormant(inParams[:ai_state_msec])
     when :evade
-      mStateChangeEvade(inParams[:ai_state_msec])    
+      mStateChangeEvade(inParams[:ai_state_msec])
     when :patrol
       mStateChangePatrol(inParams[:ai_state_msec])
     when :seek
-      mStateChangeSeek(inParams[:ai_state_msec])    
+      mStateChangeSeek(inParams[:ai_state_msec])
     when :waypoint
-      mStateChangeWaypoint(inParams[:waypoint], inParams[:ai_state_msec])    
+      mStateChangeWaypoint(inParams[:waypoint], inParams[:ai_state_msec])
     end
   end
 
@@ -169,17 +172,17 @@ class AdanaxisAI < MushObject
     @m_stateDuration = duration
     mStateChange(AISTATE_DORMANT)
   end
-  
+
   def mStateChangeEvade(duration)
     @m_stateDuration = duration
     @m_evadePoint = nil
     mStateChange(AISTATE_EVADE)
   end
-  
+
   def mStateChangeIdle
     mStateChange(AISTATE_IDLE)
   end
-  
+
   def mStateChangeRam(duration)
     @m_stateDuration = duration
     mTargetSelect unless @m_targetID
@@ -255,7 +258,7 @@ class AdanaxisAI < MushObject
         @m_evadeAcceleration # Acceleration
       )
     end
-    
+
     100
   end
 
@@ -266,7 +269,7 @@ class AdanaxisAI < MushObject
   def mStateActionPatrolExit
     mStateChangeIdle
   end
-  
+
   def mStateActionPatrolNextPoint
     @m_patrolIndex += 1
     @m_patrolIndex = 0 if @m_patrolIndex >= @m_patrolPoints.size
@@ -279,14 +282,14 @@ class AdanaxisAI < MushObject
       if distToPoint2 < 100.0 * @m_patrolSpeed * @m_patrolSpeed
         mStateActionPatrolNextPoint
       end
-      
+
       MushUtil.cRotateAndSeek(@r_post,
         @m_patrolPoint, # Target
         @m_patrolSpeed, # Maximum speed
         @m_patrolAcceleration # Acceleration
       )
     end
-    
+
     100
   end
 
@@ -314,7 +317,7 @@ class AdanaxisAI < MushObject
         @m_targetID = nil
       end
     end
-    
+
     100
   end
 
@@ -343,9 +346,9 @@ class AdanaxisAI < MushObject
         @m_targetID = nil
       end
     end
-    
+
     mFire if onTarget
-    
+
     100
   end
 
@@ -367,7 +370,7 @@ class AdanaxisAI < MushObject
 
     100
   end
-  
+
   def mActMain
     callInterval = 100
 
@@ -392,7 +395,7 @@ class AdanaxisAI < MushObject
       when AISTATE_WAYPOINT
         callInterval = mStateActionWaypoint
         mStateActionWaypointExit if mStateExpired?
-      else raise MushError.new("Bad aiState value #{@m_state}") 
+      else raise MushError.new("Bad aiState value #{@m_state}")
     end
 
     callInterval
@@ -414,7 +417,7 @@ class AdanaxisAI < MushObject
     rescue
       mStateChange(AISTATE_IDLE)
       raise
-    end  
+    end
     callInterval
   end
 

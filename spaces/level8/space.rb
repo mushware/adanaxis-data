@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } Tp7lS4wJ/+t+rNlDNGTIHA
-# $Id: space.rb,v 1.9 2007/06/14 18:55:11 southa Exp $
+# $Id: space.rb,v 1.10 2007/06/27 12:58:19 southa Exp $
 # $Log: space.rb,v $
+# Revision 1.10  2007/06/27 12:58:19  southa
+# Debian packaging
+#
 # Revision 1.9  2007/06/14 18:55:11  southa
 # Level and display tweaks
 #
@@ -53,13 +56,13 @@ class Adanaxis_level8 < AdanaxisSpace
     mIsBattleSet(true)
     mPrimarySet(PRIMARY_BLUE)
   end
-  
+
   def mLoad(game)
     mLoadStandard(game)
     mMusicAdd('game1', 'mushware-sanity-fault.ogg')
     MushGame.cSoundDefine("voice-intro", "mush://waves/voice-L8.ogg")
   end
-  
+
   def mPrecacheListBuild
     super
     mPrecacheListAdd(mPieceLibrary.mAttendantTex('red', 'blue'))
@@ -75,10 +78,10 @@ class Adanaxis_level8 < AdanaxisSpace
     diff = AdanaxisRuby.cGameDifficulty
 
     # Blue convoy
-    
+
     vel = MushVector.new(0,0,0,-0.05*(1+diff))
     angPos = MushTools.cRotationInXZPlane(Math::PI/2)
-  
+
     (-2..2).each do |param|
       pos = MushVector.new(10*param, -50+10*param, 0, -250-100*param)
       mPieceLibrary.mWarehouseCreate(
@@ -116,7 +119,7 @@ class Adanaxis_level8 < AdanaxisSpace
         :ai_state_msec => 10000+250*param
       )
     end
-  
+
     (3-diff).times do |i|
       [-1,1].each do |param|
         mPieceLibrary.mHarpikCreate(
@@ -135,9 +138,9 @@ class Adanaxis_level8 < AdanaxisSpace
         )
       end
     end
-     
+
     # Red forces
-    
+
     (-1..(diff+1)).each do |param|
       mPieceLibrary.mHarpikCreate(
         :colour => 'red',
@@ -148,7 +151,7 @@ class Adanaxis_level8 < AdanaxisSpace
         :ai_state_msec => 2000
       )
     end
-    
+
     2.times do |param|
       mPieceLibrary.mRailCreate(
         :colour => 'red',
@@ -170,7 +173,7 @@ class Adanaxis_level8 < AdanaxisSpace
         )
       )
     end
-    
+
     diff.times do |param|
       mPieceLibrary.mHarpikCreate(
         :colour => 'red',
@@ -181,7 +184,7 @@ class Adanaxis_level8 < AdanaxisSpace
         )
       )
     end
-    
+
     mPieceLibrary.mCisternCreate(
       :colour => 'red',
       :post => MushPost.new(
@@ -197,7 +200,7 @@ class Adanaxis_level8 < AdanaxisSpace
       :ai_state_msec => 6000,
       :weapon => :attendant_spawner
     )
-    
+
     $currentLogic.mRemnant.mCreate(
       :item_type => (AdanaxisRuby.cGameDifficulty < 1) ? :player_heavy_missile : :player_heavy_cannon,
       :post => MushPost.new(
@@ -221,7 +224,7 @@ class Adanaxis_level8 < AdanaxisSpace
 
     mStandardCosmos(8)
   end
-  
+
   def mSpawn0
     MushTools.cRandomSeedSet(8)
     diff = AdanaxisRuby.cGameDifficulty

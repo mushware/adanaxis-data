@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } 9YSQ1OpRrVrYfJcJiZXFmw
-# $Id: AdanaxisSpace.rb,v 1.37 2007/06/15 12:45:48 southa Exp $
+# $Id: AdanaxisSpace.rb,v 1.38 2007/06/27 12:58:12 southa Exp $
 # $Log: AdanaxisSpace.rb,v $
+# Revision 1.38  2007/06/27 12:58:12  southa
+# Debian packaging
+#
 # Revision 1.37  2007/06/15 12:45:48  southa
 # Prerelease work
 #
@@ -117,7 +120,7 @@ class AdanaxisSpace < MushObject
   PRIMARY_NONE=0
   PRIMARY_RED=1
   PRIMARY_BLUE=2
-  
+
   def initialize(inParams = {})
     @m_gameInited = false
     @m_spawnList = []
@@ -129,7 +132,7 @@ class AdanaxisSpace < MushObject
     @m_waveLibrary = AdanaxisWaveLibrary.new
     @m_weaponLibrary = AdanaxisWeaponLibrary.new
     @m_pieceLibrary = AdanaxisPieceLibrary.new
-    
+
     @m_khaziCount = 0;
     @m_khaziRedCount = 0;
     @m_khaziBlueCount = 0;
@@ -143,18 +146,18 @@ class AdanaxisSpace < MushObject
     @m_speedAugmentation = false;
     @m_textFont = MushGLFont.new(:name => (inParams[:font] || 'library-font1'));
     @m_precacheIndex = 0
-    
+
     @m_precacheList = nil
-    
+
   end
-  
+
   mush_reader :m_textureLibrary, :m_materialLibrary, :m_meshLibrary,
               :m_weaponLibrary, :m_fontLibrary, :m_pieceLibrary
-              
+
   mush_accessor :m_khaziCount, :m_khaziRedCount, :m_khaziBlueCount, :m_isBattle,
     :m_primary, :m_retinaSpin, :m_jamming, :m_permanentSpin, :m_permanentThrust,
     :m_speedAugmentation
-  
+
   def mLoadStandard(game)
     @m_fontLibrary.mCreate
     @m_textureLibrary.mCreate
@@ -163,17 +166,17 @@ class AdanaxisSpace < MushObject
     AdanaxisShaderLibrary.cCreate
 	  @m_waveLibrary.mCreate
 	  @m_weaponLibrary.mCreate
-    
+
     dialogueFile = game.mSpacePath+"/dialogues.xml"
     if File.file?(dialogueFile)
       MushGame.cGameDialoguesLoad(dialogueFile)
     end
   end
-  
+
   def mMusicAdd(inID, inName)
       MushGame.cSoundStreamDefine(inID, MushConfig.cGlobalWavesPath+'/'+inName)
   end
-  
+
   def mPrecacheListAdd(inNames)
     @m_precacheList = [] unless @m_precacheList
     if inNames === String
@@ -184,10 +187,10 @@ class AdanaxisSpace < MushObject
       end
     end
   end
-  
+
   def mPrecacheListBuild
     @m_precacheList = []
-    
+
     @m_textureLibrary.mExploNames.each do |exploSet|
       exploSet.each do |texName|
         @m_precacheList << texName
@@ -197,14 +200,14 @@ class AdanaxisSpace < MushObject
     @m_textureLibrary.mCosmos1Names.each do |texName|
       @m_precacheList << texName
     end
-        
+
     10.times { |i| @m_precacheList << "ember#{i}-tex" }
     10.times { |i| @m_precacheList << "star#{i}-tex" }
     10.times { |i| @m_precacheList << "flare#{i}-tex" }
     (1..3).each { |i| @m_precacheList << "ball#{i}-tex" }
     (1..1).each { |i| @m_precacheList << "projectile#{i}-tex" }
   end
-  
+
   def mPrecache
     unless @m_precacheList
       mPrecacheListBuild
@@ -215,7 +218,7 @@ class AdanaxisSpace < MushObject
         i = @m_precacheIndex
         @m_precacheIndex += 1 # Always increment in case of throw
         break unless @m_precacheList[i] # If nil, skip this frame
-        
+
         MushGLTexture.cPrecache(@m_precacheList[i])
 
         break if Time.now.to_f > startTime + 0.1 # Yield to draw a frame every 100ms
@@ -224,10 +227,10 @@ class AdanaxisSpace < MushObject
 
     return (100*@m_precacheIndex) / @m_precacheList.size
   end
-  
+
   def mSpawn
     eventFound = false
-    
+
     @m_triggeredEvents.reject! do |entry|
       deleteThis = false
       if !eventFound && entry.mKhaziTest == :zero_red
@@ -238,7 +241,7 @@ class AdanaxisSpace < MushObject
       deleteThis
     end
   end
-  
+
   def mSpawnAdd(inSpawner)
     @m_triggeredEvents << AdanaxisTriggeredEvent.new(
       :khazi_test => :zero_red,
@@ -248,7 +251,7 @@ class AdanaxisSpace < MushObject
 
   def mStandardCosmos(inSeed)
     srand(inSeed)
-    
+
     1000.times do
       pos = MushTools.cRandomUnitVector * (7 + 20 * rand)
       world = AdanaxisWorld.new(
@@ -259,12 +262,12 @@ class AdanaxisSpace < MushObject
       )
     end
   end
-  
+
   def mGameInit
     # @m_precachePercent = 0
     MushGame.cNamedDialoguesAdd('^start')
   end
-  
+
   def mGameState
     retVal = MushGame::GAMERESULT_NONE
     if mIsBattle
@@ -284,25 +287,25 @@ class AdanaxisSpace < MushObject
     end
     retVal
   end
-  
+
   def mHandlePrecacheEnd
     mGameInit unless @m_gameInited
     @m_gameInited = true
   end
-  
+
   def mInitialPiecesCreate
   end
-  
+
   def mIsMenuBackdrop
     false
   end
-  
+
   def mCutSceneRender
   end
-  
+
   def mEpilogueRender
   end
-  
+
   def mTimeoutSpawnAdd(inSpawner, inTime)
     @m_triggeredEvents << AdanaxisTriggeredEvent.new(
       :game_msec => inTime,
@@ -322,7 +325,7 @@ class AdanaxisSpace < MushObject
   def mGameModeTick
 
     gameMsec = MushGame.cGameMsec
-    
+
     @m_triggeredEvents.reject! do |entry|
       deleteThis = false
       if entry.mGameMsec && entry.mGameMsec < gameMsec
@@ -333,7 +336,7 @@ class AdanaxisSpace < MushObject
     end
 
   end
-  
+
   def mJammersEliminated
   end
 end

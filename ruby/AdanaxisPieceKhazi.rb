@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } c0+5e8uuCH467wwI5GuRFA
-# $Id: AdanaxisPieceKhazi.rb,v 1.46 2007/06/08 16:23:03 southa Exp $
+# $Id: AdanaxisPieceKhazi.rb,v 1.47 2007/06/27 12:58:11 southa Exp $
 # $Log: AdanaxisPieceKhazi.rb,v $
+# Revision 1.47  2007/06/27 12:58:11  southa
+# Debian packaging
+#
 # Revision 1.46  2007/06/08 16:23:03  southa
 # Level 26
 #
@@ -167,22 +170,22 @@ require 'AdanaxisUtil.rb'
 class AdanaxisPieceKhazi < AdanaxisPiece
   extend MushRegistered
   mushRegistered_install
-  
+
   def initialize(inParams={})
     AdanaxisUtil.cSpellCheck(inParams)
-    
+
     @m_defaultType = "k"
     super
-    
+
     @m_callInterval = 100
-    
+
     aiParams = {
       :seek_speed => 0.02,
       :seek_acceleration => 0.01,
       :patrol_speed => 0.1,
       :patrol_acceleration => 0.01
     }.merge(inParams)
-    
+
     @m_ai = (inParams[:ai_object] || AdanaxisAIKhazi).new(aiParams)
     @m_remnant = inParams[:remnant]
     @m_weaponName = inParams[:weapon] || nil
@@ -194,23 +197,23 @@ class AdanaxisPieceKhazi < AdanaxisPiece
     @m_effectScale = inParams[:effect_scale] || @m_hitPoints / 10.0
     @m_colour = inParams[:colour]
   end
-  
+
   mush_reader :m_weapon, :m_weaponName, :m_colour
-  
+
   def mDamageTake(inDamage, inPiece)
     # Hard targets only affected by high yield weapons, so
     unless mOriginalHitPoints >= 500.0 && inPiece.mHitPoints < 100.0
       super
     end
   end
-  
+
   def mWeaponChange(inWeapon)
     if @m_weaponName != inWeapon
       @m_weaponName = inWeapon
       @m_weapon = $currentGame.mSpace.mWeaponLibrary.mWeapon(@m_weaponName)
     end
   end
-  
+
   def mFireHandle(event)
     if @m_weapon
       @m_weapon.mFire(event, self)
@@ -231,7 +234,7 @@ class AdanaxisPieceKhazi < AdanaxisPiece
     @m_callInterval = @m_ai.mActByState(self)
 
     mSave
-    
+
     @m_callInterval
   end
 
@@ -245,14 +248,14 @@ class AdanaxisPieceKhazi < AdanaxisPiece
       $currentLogic.mEventConsume(event, @m_id, @m_id)
     end
   end
-  
+
   def mCollectItem(inItem)
     if @m_weaponName == :khazi_rail && inItem.mItemType == :player_rail
       @m_weapon.mAmmoCountSet(@m_weapon.mAmmoCount + 6)
       MushGame.cSoundPlay("load4", mPost)
     end
   end
-  
+
   def mFatalCollisionHandle(event)
     super
     # Choose numbers
@@ -267,7 +270,7 @@ class AdanaxisPieceKhazi < AdanaxisPiece
       :effect_scale => @m_effectScale
       )
     MushGame.cSoundPlay("explo#{exploNum}", mPost) if exploNum
-    
+
     objPost = mPost.dup
     angVel = MushTools.cRotationInXYPlane(Math::PI / 200);
     MushTools.cRotationInZWPlane(Math::PI / 473).mRotate(angVel);
@@ -275,24 +278,24 @@ class AdanaxisPieceKhazi < AdanaxisPiece
 
     objPost.velocity = MushVector.new(0,0,0,0)
     objPost.angular_velocity = angVel
-    
+
     case event.mPiece2
       when AdanaxisPieceProjectile:
-        mRemnantCreate if event.mPiece2.mOwner =~ /^p/      
+        mRemnantCreate if event.mPiece2.mOwner =~ /^p/
       when AdanaxisPieceEffector:
         if event.mPiece2.mOwner =~ /^p/ && !event.mPiece2.mRail
           mRemnantCreate
         end
     end
-    
+
   end
-  
+
   def mCollisionHandle(event)
     super
     case event.mPiece2
       when AdanaxisPieceProjectile:
         @m_ai.mTargetOverride(event.mPiece2.mOwner)
-        
+
       when AdanaxisPieceItem:
         if @m_hitPoints > 0.0
           mCollectItem(event.mPiece2)
@@ -300,7 +303,7 @@ class AdanaxisPieceKhazi < AdanaxisPiece
         end
     end
   end
-  
+
   def mDamageFrameCreate(inHitPoints)
     AdanaxisPieceEffector.cCreate(
       :mesh_name => 'nuke_splash',
@@ -311,12 +314,12 @@ class AdanaxisPieceKhazi < AdanaxisPiece
       :vulnerability => 0.0
     )
   end
-  
+
   def mDetonate
     # For mines
     mExpireFlagSet(true)
     mDamageFrameCreate(@m_originalHitPoints * 4)
-    
+
     $currentLogic.mEffects.mExplode(
         :post => mPost,
         :embers => 0,
@@ -337,7 +340,7 @@ end
 #
 # Method: cCreate
 #
-# Creates a new AdanaxisKhazi object.  
+# Creates a new AdanaxisKhazi object.
 #
 # Parameters:
 #

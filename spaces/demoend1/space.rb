@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } OoZAE2xJ8TQ5uhfSNw67VQ
-# $Id: space.rb,v 1.1 2007/06/12 11:09:36 southa Exp $
+# $Id: space.rb,v 1.2 2007/06/27 12:58:13 southa Exp $
 # $Log: space.rb,v $
+# Revision 1.2  2007/06/27 12:58:13  southa
+# Debian packaging
+#
 # Revision 1.1  2007/06/12 11:09:36  southa
 # Level 28
 #
@@ -32,13 +35,13 @@ class Adanaxis_demoend1 < AdanaxisSpace
   def initialize(inParams = {})
     super
   end
-  
+
   def mLoad(game)
     mLoadStandard(game)
     mMusicAdd('game1', 'mushware-adanaxistheme.ogg')
     mMusicAdd('game2', 'mushware-familiarisation.ogg')
   end
-  
+
   def mPrecacheListBuild
     super
     mPrecacheListAdd(mPieceLibrary.mFreshenerTex('red'))
@@ -52,10 +55,10 @@ class Adanaxis_demoend1 < AdanaxisSpace
     angVel = MushTools.cRotationInXYPlane(Math::PI / 1200);
     MushTools.cRotationInZWPlane(Math::PI / 1314).mRotate(angVel);
     MushTools.cRotationInYZPlane(Math::PI / 1575).mRotate(angVel);
-  
+
     vel = MushVector.new(-0.05*(1+diff),0,0,0)
     angPos = MushTools.cRotationInXZPlane(Math::PI/2)
-  
+
     mPieceLibrary.mFreshenerCreate(
       :colour => 'red',
       :post => MushPost.new(
@@ -65,7 +68,7 @@ class Adanaxis_demoend1 < AdanaxisSpace
       :is_stealth => true
     )
 
-    
+
     mStandardCosmos(1)
   end
 

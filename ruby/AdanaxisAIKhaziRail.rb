@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } n0TnZk2jVKfwXiZ1ggPsvw
-# $Id: AdanaxisAIKhaziRail.rb,v 1.3 2007/05/01 16:40:06 southa Exp $
+# $Id: AdanaxisAIKhaziRail.rb,v 1.4 2007/06/27 12:58:10 southa Exp $
 # $Log: AdanaxisAIKhaziRail.rb,v $
+# Revision 1.4  2007/06/27 12:58:10  southa
+# Debian packaging
+#
 # Revision 1.3  2007/05/01 16:40:06  southa
 # Level 10
 #
@@ -40,12 +43,12 @@ class AdanaxisAIKhaziRail < AdanaxisAIKhazi
   def mStateActionDormantExit
     mStateChangeSeek(40000)
   end
-  
+
   def mStateActionEvadeExit
     mTargetSelect # Always reselect target
     mStateChangeSeek(40000)
   end
-  
+
   def mStateActionRamExit
     mStateChangeEvade(20000)
   end

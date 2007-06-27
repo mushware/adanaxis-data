@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } EVzTvV0QrXwUNNo3xXEfsg
-# $Id: AdanaxisRender.rb,v 1.10 2007/04/18 09:21:53 southa Exp $
+# $Id: AdanaxisRender.rb,v 1.11 2007/06/27 12:58:12 southa Exp $
 # $Log: AdanaxisRender.rb,v $
+# Revision 1.11  2007/06/27 12:58:12  southa
+# Debian packaging
+#
 # Revision 1.10  2007/04/18 09:21:53  southa
 # Header and level fixes
 #
@@ -49,16 +52,16 @@ class AdanaxisRender < MushObject
   def initialize
     @m_packageID = MushGame.cPackageID
   end
- 
+
   def mCreate
     @m_menuFont = MushGLFont.new(:name => 'library-font1');
     @m_menuStr = "Menu from ruby";
   end
-    
+
   def mRenderMenu
     @m_menuFont.mRender(@m_menuStr)
   end
-  
+
   def mRender
     mRenderMenu
   end

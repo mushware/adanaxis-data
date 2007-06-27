@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } mlKueD/mGSpgjEKFEnd97w
-# $Id: space.rb,v 1.4 2007/05/23 19:15:00 southa Exp $
+# $Id: space.rb,v 1.5 2007/06/27 12:58:15 southa Exp $
 # $Log: space.rb,v $
+# Revision 1.5  2007/06/27 12:58:15  southa
+# Debian packaging
+#
 # Revision 1.4  2007/05/23 19:15:00  southa
 # Level 18
 #
@@ -39,13 +42,13 @@ class Adanaxis_level18 < AdanaxisSpace
     super
     mIsBattleSet(true)
   end
-  
+
   def mLoad(game)
     mLoadStandard(game)
     mMusicAdd('game1', 'mushware-extensions-to-space.ogg')
     MushGame.cSoundDefine("voice-intro", "mush://waves/voice-L18.ogg")
   end
-  
+
   def mPrecacheListBuild
     super
     mPrecacheListAdd(mPieceLibrary.mAttendantTex('red', 'blue'))
@@ -63,7 +66,7 @@ class Adanaxis_level18 < AdanaxisSpace
 
     vel = MushVector.new(0,0,0,-0.05*(1+diff))
     angPos = MushTools.cRotationInXZPlane(Math::PI/2)
-  
+
     (0..2+diff).each do |param1|
         mPieceLibrary.mVortexCreate(
           :colour => 'red',
@@ -76,7 +79,7 @@ class Adanaxis_level18 < AdanaxisSpace
           :ai_state_msec => 10000+1000*param1
         )
     end
-    
+
     diff.times do |param|
       mPieceLibrary.mRailCreate(
         :colour => 'red',
@@ -111,7 +114,7 @@ class Adanaxis_level18 < AdanaxisSpace
         )
       )
     end
-    
+
     (-10..10).each do |param|
       mPieceLibrary.mAttendantCreate(
         :colour => 'blue',
@@ -122,7 +125,7 @@ class Adanaxis_level18 < AdanaxisSpace
         )
       )
     end
-    
+
     mPieceLibrary.mCisternCreate(
       :colour => 'blue',
       :post => MushPost.new(
@@ -144,14 +147,14 @@ class Adanaxis_level18 < AdanaxisSpace
         :position => MushVector.new(-4, 0, 0, -40)
       )
     )
-   
+
     $currentLogic.mRemnant.mCreate(
       :item_type => (diff < 2) ? :player_quad_cannon : :player_base,
       :post => MushPost.new(
         :position => MushVector.new(-4, 0, 0, -50)
       )
     )
-    
+
     mStandardCosmos(18)
   end
 end

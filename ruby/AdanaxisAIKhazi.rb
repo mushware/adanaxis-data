@@ -18,6 +18,9 @@
 #%Header } aZmOtgfuS1g+kQm04rgIbw
 # $Id: AdanaxisAIKhazi.rb,v 1.4 2007/04/18 09:21:51 southa Exp $
 # $Log: AdanaxisAIKhazi.rb,v $
+# Revision 1.5  2007/06/27 12:58:09  southa
+# Debian packaging
+#
 # Revision 1.4  2007/04/18 09:21:51  southa
 # Header and level fixes
 #

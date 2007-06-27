@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } pTNbCmBcm3e2sTy5IgV1fg
-# $Id: space.rb,v 1.8 2007/04/18 09:21:57 southa Exp $ 
+# $Id: space.rb,v 1.9 2007/06/27 12:58:20 southa Exp $
 # $Log: space.rb,v $
+# Revision 1.9  2007/06/27 12:58:20  southa
+# Debian packaging
+#
 # Revision 1.8  2007/04/18 09:21:57  southa
 # Header and level fixes
 #
@@ -105,25 +108,25 @@ class Adanaxis_local4 < AdanaxisSpace
     super
     mIsBattleSet(true)
   end
-  
+
   def mLoad(game)
     mLoadStandard(game)
     mMusicAdd('game1', 'mushware-sanity-fault.ogg')
   end
-  
+
   def mPrecacheListBuild
     super
     mPrecacheListAdd(mPieceLibrary.mAttendantTex('red', 'blue'))
     mPrecacheListAdd(mPieceLibrary.mRailTex('red', 'blue'))
   end
-  
-  def mInitialPiecesCreate  
+
+  def mInitialPiecesCreate
     super
     20.times do |param|
       ['red', 'red', 'blue'].each do |colour|
         pos = MushVector.new(0, 0, 0, -200 + ((colour == 'red') ? -60 : 60)) +
           MushTools.cRandomUnitVector * (20 + rand(100));
-        
+
         mPieceLibrary.mAttendantCreate(
           :colour => colour,
           :position => pos
@@ -138,7 +141,7 @@ class Adanaxis_local4 < AdanaxisSpace
           :colour => colour,
           :position => pos
         )
-      end    
+      end
     end
 
     1.times do |param|
@@ -159,6 +162,6 @@ class Adanaxis_local4 < AdanaxisSpace
       )
     end
     mStandardCosmos(4)
-    
+
   end
 end

@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } 7+U6dcoMRIA9Kk+44ydQ6Q
-# $Id: AdanaxisEvents.rb,v 1.9 2007/04/18 09:21:52 southa Exp $
+# $Id: AdanaxisEvents.rb,v 1.10 2007/06/27 12:58:10 southa Exp $
 # $Log: AdanaxisEvents.rb,v $
+# Revision 1.10  2007/06/27 12:58:10  southa
+# Debian packaging
+#
 # Revision 1.9  2007/04/18 09:21:52  southa
 # Header and level fixes
 #
@@ -51,7 +54,7 @@ class AdanaxisEventFire < MushEvent
     @m_post = MushPost.new
     @m_targetID = ""
   end
-  
+
   mush_accessor :m_post, :m_targetID
 end
 
@@ -60,7 +63,7 @@ class AdanaxisEventKeyState < MushEvent
     @m_keyNum = []
     @m_state = []
   end
-  
+
   mush_accessor :m_keyNum, :m_state
 end
 
@@ -68,6 +71,6 @@ class AdanaxisEventSpaceCall < MushEvent
   def initialize
     @m_method = nil
   end
-  
+
   mush_accessor :m_method
 end

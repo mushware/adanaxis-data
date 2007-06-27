@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } hQ/1zCGP7t1xqYysqbrYmQ
-# $Id: AdanaxisAIKhaziHarpik.rb,v 1.3 2007/04/21 18:05:46 southa Exp $
+# $Id: AdanaxisAIKhaziHarpik.rb,v 1.4 2007/06/27 12:58:09 southa Exp $
 # $Log: AdanaxisAIKhaziHarpik.rb,v $
+# Revision 1.4  2007/06/27 12:58:09  southa
+# Debian packaging
+#
 # Revision 1.3  2007/04/21 18:05:46  southa
 # Level 8
 #
@@ -32,7 +35,7 @@ require 'Mushware.rb'
 require 'AdanaxisAIKhazi.rb'
 
 class AdanaxisAIKhaziHarpik < AdanaxisAIKhazi
-  
+
   def mWeaponChoose
     if @m_targetID
       targetPiece = MushGame.cPieceLookup(@m_targetID)
@@ -49,7 +52,7 @@ class AdanaxisAIKhaziHarpik < AdanaxisAIKhazi
     mWeaponChoose
     super
   end
-  
+
   def mStateActionDormantExit
     mStateChangeEvade(3000)
   end
@@ -61,7 +64,7 @@ class AdanaxisAIKhaziHarpik < AdanaxisAIKhazi
   def mStateActionEvadeExit
     mStateChangeSeek(10000)
   end
-  
+
   def mStateActionRamExit
     mStateChangeEvade(3000)
   end

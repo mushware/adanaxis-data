@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } t6tXWbJlUg+QJrGoDG/9lQ
-# $Id: AdanaxisDashboard.rb,v 1.16 2007/06/14 18:55:10 southa Exp $
+# $Id: AdanaxisDashboard.rb,v 1.17 2007/06/27 12:58:10 southa Exp $
 # $Log: AdanaxisDashboard.rb,v $
+# Revision 1.17  2007/06/27 12:58:10  southa
+# Debian packaging
+#
 # Revision 1.16  2007/06/14 18:55:10  southa
 # Level and display tweaks
 #
@@ -120,7 +123,7 @@ class AdanaxisDashboard < MushDashboard
     end
   end
 
-  def mDamageUpdate(inAmount, inIncomingVel)  
+  def mDamageUpdate(inAmount, inIncomingVel)
     iconArray = AdanaxisVTools.cApproachVectorToDamageIcons(inIncomingVel)
 
     @m_damage.each_with_index do |damageValue, i|
@@ -135,7 +138,7 @@ class AdanaxisDashboard < MushDashboard
     @m_valueXStep = 1.0
     @m_valueYPos = MushGL.cViewExtent.y - @m_valueSize / 2.0
   end
-  
+
   def mRenderValuesBeginTopRight
     @m_valueXPos = 0.5
     @m_valueXStep = -1.0
@@ -147,79 +150,79 @@ class AdanaxisDashboard < MushDashboard
     @m_valueXStep = 1.0
     @m_valueYPos = - MushGL.cViewExtent.y + @m_valueSize / 2.0
   end
-  
+
   def mRenderValuesBeginBottomRight
     @m_valueXPos = 0.5
     @m_valueXStep = -1.0
     @m_valueYPos = - MushGL.cViewExtent.y + @m_valueSize / 2.0
   end
-  
+
   def mRenderValueNext
     @m_valueXPos += @m_valueXStep * @m_valueSize
   end
-  
+
   def mRenderValue(inSymbol, inValue, inColour, inFont = @m_dashboardFont)
     xCentre = @m_valueXPos + @m_valueXStep * @m_valueSize / 2.0
-  
+
     inFont.colour = inColour
     inFont.mRenderSymbolAtSize(inSymbol, xCentre, @m_valueYPos, @m_valueSize);
-  
+
     @m_textFont.colour = MushVector.new(1,1,1,inColour.w)
-    
+
     valueStr = inValue.to_s
     xTextCentre = xCentre - 0.01 * valueStr.length
     @m_textFont.mRenderAtSize(valueStr, xTextCentre, @m_valueYPos, @m_valueSize / 3.0);
-    
+
     mRenderValueNext
   end
-  
+
   def mAlphaForValue(inTimedValue)
     alpha = 1.0 - (inTimedValue.mGameMsecSinceChange) / 1000.0
     alpha = 0.3 if alpha < 0.3
     return alpha
   end
-  
+
   def mRender(inParams = {})
     mRenderValuesBeginTopLeft
 
-    if @m_primary == AdanaxisSpace::PRIMARY_RED 
+    if @m_primary == AdanaxisSpace::PRIMARY_RED
       alpha = mAlphaForValue(@m_redCount)
-      value = Integer(@m_redCount.mValue) 
+      value = Integer(@m_redCount.mValue)
       value = 0 if value < 0
       colour = MushVector.new(1,0.3,0.3,alpha)
-      
+
       mRenderValue(AdanaxisFontLibrary::DASHBOARD_RED_COUNT, "P#{value}", colour)
     end
-    
+
     alpha = mAlphaForValue(@m_redTotal)
-    value = Integer(@m_redTotal.mValue) 
+    value = Integer(@m_redTotal.mValue)
     value = 0 if value < 0
     colour = MushVector.new(1,0.3,0.3,alpha)
-    
+
     mRenderValue(AdanaxisFontLibrary::DASHBOARD_RED_COUNT, value, colour)
-    
+
     if @m_isBattle
-      if @m_primary == AdanaxisSpace::PRIMARY_BLUE 
+      if @m_primary == AdanaxisSpace::PRIMARY_BLUE
         alpha = mAlphaForValue(@m_blueCount)
-        value = Integer(@m_blueCount.mValue) 
+        value = Integer(@m_blueCount.mValue)
         value = 0 if value < 0
         colour = MushVector.new(0.3,0.3,1,alpha)
-        
+
         mRenderValue(AdanaxisFontLibrary::DASHBOARD_BLUE_COUNT, "P#{value}", colour)
       end
-    
+
       alpha = mAlphaForValue(@m_blueTotal)
-      value = Integer(@m_blueTotal.mValue) 
+      value = Integer(@m_blueTotal.mValue)
       value = 0 if value < 0
       colour = MushVector.new(0.3,0.3,1,alpha)
-      
+
       mRenderValue(AdanaxisFontLibrary::DASHBOARD_BLUE_COUNT, value, colour)
     end
-    
+
     mRenderValuesBeginBottomLeft
 
     alpha = mAlphaForValue(@m_hitPointRatio)
-    value = Integer(@m_hitPointRatio.mValue * 100) 
+    value = Integer(@m_hitPointRatio.mValue * 100)
     value = 0 if value < 0
     colour = case value
       when 0..20 : MushVector.new(1,0,0,alpha)
@@ -227,11 +230,11 @@ class AdanaxisDashboard < MushDashboard
       when 50..100 :  MushVector.new(0.3,0.6,1,alpha)
       else MushVector.new(1,1,1,alpha)
     end
-    
+
     mRenderValue(AdanaxisFontLibrary::DASHBOARD_HEALTH, value, colour)
-    
+
     alpha = mAlphaForValue(@m_shieldRatio)
-    value = Integer(@m_shieldRatio.mValue * 100) 
+    value = Integer(@m_shieldRatio.mValue * 100)
     value = 0 if value < 0
     colour = case value
       when 0 : MushVector.new(0.3,0.3,0.3,alpha)
@@ -240,11 +243,11 @@ class AdanaxisDashboard < MushDashboard
     end
 
     mRenderValue(AdanaxisFontLibrary::DASHBOARD_SHIELD, value, colour)
-    
+
     mRenderValuesBeginBottomRight
-    
+
     alpha = mAlphaForValue(@m_ammoCount)
-    value = Integer(@m_ammoCount.mValue) 
+    value = Integer(@m_ammoCount.mValue)
     value = 0 if value < 0
     colour = case value
       when 0 : MushVector.new(0.3,0.3,0.3,alpha)
@@ -252,16 +255,16 @@ class AdanaxisDashboard < MushDashboard
     end
 
     mRenderValue(0, value, colour, @m_weaponFont)
-    
-    mRenderDamage 
+
+    mRenderDamage
   end
-  
+
   def mDamageForValue(inTimedValue)
     alpha = inTimedValue.mValue - (inTimedValue.mGameMsecSinceChange) / 2000.0
     alpha = 0.0 if alpha < 0.0
     return alpha
   end
-  
+
   def mRenderDamage
     if @m_damageActive
       totalDamage = 0
