@@ -18,8 +18,11 @@
 #
 ##############################################################################
 #%Header } pQw6UBGrukp0QOB1l19i1Q
-# $Id: start.txt,v 1.37 2007/06/11 20:06:13 southa Exp $
+# $Id: start.txt,v 1.38 2007/06/25 17:58:46 southa Exp $
 # $Log: start.txt,v $
+# Revision 1.38  2007/06/25 17:58:46  southa
+# X11 fixes
+#
 # Revision 1.37  2007/06/11 20:06:13  southa
 # Compatibility fixes and level 27
 #
@@ -136,9 +139,9 @@
 # On entry RESOURCES_PATH is set to the directory above the one the executable is in
 # configset("RESOURCES_PATH","/usr/local/bin/adanaxis")
 
-configset("GLOBAL_SPACES_PATH",$RESOURCES_PATH+"/spaces") 
-configset("GLOBAL_PIXELS_PATH",$RESOURCES_PATH+"/pixels") 
-configset("GLOBAL_WAVES_PATH",$RESOURCES_PATH+"/waves") 
+configset("GLOBAL_SPACES_PATH",$RESOURCES_PATH+"/spaces")
+configset("GLOBAL_PIXELS_PATH",$RESOURCES_PATH+"/pixels")
+configset("GLOBAL_WAVES_PATH",$RESOURCES_PATH+"/waves")
 configset("SYSTEM_PATH",$RESOURCES_PATH+"/system")
 configset("RUBY_PATH",$RESOURCES_PATH+"/ruby")
 
@@ -151,7 +154,7 @@ configset("REG_FILENAME", $GLOBAL_SAVE_PATH+"/reg.xml")
 
 # Set configuration file paths
 configset("CONFIG_FILENAME", $GLOBAL_SAVE_PATH+"/adanaxisconfig.xml")
-configset("RECORDS_FILENAME", $GLOBAL_SAVE_PATH+"/adanaxisrecords.xml")
+configset("RECORDS_PATH", $GLOBAL_SAVE_PATH)
 configset("ADANAXIS_AXISCONFIG_DEFAULT_FILENAME", $SYSTEM_PATH+"/axisconfig-default.xml")
 configset("ADANAXIS_KEYCONFIG_DEFAULT_FILENAME", $SYSTEM_PATH+"/keyconfig-default.xml")
 
