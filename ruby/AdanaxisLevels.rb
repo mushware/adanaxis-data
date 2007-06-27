@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } awql8pmBxnDZkd78CilajQ
-# $Id: AdanaxisLevels.rb,v 1.15 2007/06/26 17:10:31 southa Exp $
+# $Id: AdanaxisLevels.rb,v 1.16 2007/06/27 12:58:10 southa Exp $
 # $Log: AdanaxisLevels.rb,v $
+# Revision 1.16  2007/06/27 12:58:10  southa
+# Debian packaging
+#
 # Revision 1.15  2007/06/26 17:10:31  southa
 # X11 tweaks
 #
@@ -69,7 +72,7 @@ class AdanaxisLevels
   def initialize
     @m_levels = []
     @m_validParams = %w{directory name creator visibility permit next}
-    @m_isDemo = (MushGame.cPackageID =~ /_demo-/)
+    @m_isDemo = (MushGame.cPackageID =~ /demo-/)
   end
 
   def mScanLevel(path)
