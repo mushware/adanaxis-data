@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } WUu2wSgP1e0mYJ11mlAduA
-# $Id: AdanaxisGame.rb,v 1.49 2007/06/27 12:58:10 southa Exp $
+# $Id: AdanaxisGame.rb,v 1.50 2007/06/27 13:18:53 southa Exp $
 # $Log: AdanaxisGame.rb,v $
+# Revision 1.50  2007/06/27 13:18:53  southa
+# Debian packaging
+#
 # Revision 1.49  2007/06/27 12:58:10  southa
 # Debian packaging
 #
@@ -302,6 +305,15 @@ class AdanaxisGame < MushObject
   end
 
   def mMenuQuit(param, input)
+    MushGame.cQuit
+  end
+
+  def mMenuQuitToHelp(param, input)
+    begin
+      MushGame.cHelpFileOpen
+    rescue Exception => e
+      puts "Exception: "+e
+    end
     MushGame.cQuit
   end
 

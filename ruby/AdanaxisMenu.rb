@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } GNi1POqLNjzyJkWRwNeuIQ
-# $Id: AdanaxisMenu.rb,v 1.26 2007/06/27 12:58:11 southa Exp $
+# $Id: AdanaxisMenu.rb,v 1.27 2007/06/27 13:18:54 southa Exp $
 # $Log: AdanaxisMenu.rb,v $
+# Revision 1.27  2007/06/27 13:18:54  southa
+# Debian packaging
+#
 # Revision 1.26  2007/06/27 12:58:11  southa
 # Debian packaging
 #
@@ -282,17 +285,28 @@ class AdanaxisMenu < MushObject
 
   def mUpdate(menu)
     if menu == MENU_TOPLEVEL
+      if (MushGame.cPackageID =~ /-x11-/)
+        menuArray = [
+              ["New Game", :mToMenu, MENU_CHOOSE_LEVEL],
+              ["Controls", :mToMenu, MENU_CONTROL],
+              ["Options", :mMenuToOptions],
+              ["Read Game Info PDF", :mMenuQuitToHelp],
+              ["Quit", :mMenuQuit]
+            ]
+      else
         menuArray = [
               ["New Game", :mToMenu, MENU_CHOOSE_LEVEL],
               ["Controls", :mToMenu, MENU_CONTROL],
               ["Options", :mMenuToOptions],
               ["Quit", :mMenuQuit]
             ]
-        if @m_allowResume
-          menuArray.unshift ["Resume", :mMenuResume]
-        end
+      end
+       
+      if @m_allowResume
+        menuArray.unshift ["Resume", :mMenuResume]
+      end
 
-        @m_menuSet[MENU_TOPLEVEL].menu = menuArray
+      @m_menuSet[MENU_TOPLEVEL].menu = menuArray
     end
 
     if menu == MENU_KEYS
