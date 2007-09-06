@@ -18,7 +18,8 @@
 #
 ##############################################################################
 #%Header } 7vq09p7XN5+SY1/m34zSSQ
-Sample sources are:
+
+Sample sources for GPL release are:
 
 gpl-explo0.wav   Golgotha old_generic.mp3
 gpl-explo1.wav   Golgotha supertank_lvl_one_main_barrel_interrior_44khz.mp3
@@ -27,7 +28,7 @@ gpl-explo3.wav   Golgotha supertank_lvl_one_main_barrel_interrior_44khz.mp3
 gpl-explo4.wav   Golgotha big_begrtha_gun_fire_22khz.mp3
 gpl-explo5.wav   Golgotha generic.mp3
 gpl-explo6.wav   Golgotha acid.mp3
-gpl-explo7.wav   Golgotha super_mortar.mp3 (extract from)
+gpl-explo7.wav   Golgotha super_mortar.mp3 (an extract from)
 
 gpl-fire0.wav    Mushware
 gpl-fire1.wav    Golgotha old_auto1_lp.wav
