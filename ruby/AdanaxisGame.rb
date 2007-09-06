@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } WUu2wSgP1e0mYJ11mlAduA
-# $Id: AdanaxisGame.rb,v 1.50 2007/06/27 13:18:53 southa Exp $
+# $Id: AdanaxisGame.rb,v 1.51 2007/06/30 11:45:42 southa Exp $
 # $Log: AdanaxisGame.rb,v $
+# Revision 1.51  2007/06/30 11:45:42  southa
+# X11 release
+#
 # Revision 1.50  2007/06/27 13:18:53  southa
 # Debian packaging
 #
@@ -483,6 +486,10 @@ class AdanaxisGame < MushObject
     brightness = 2 if brightness < 0.09
 
     MushGame.cBrightnessSet(brightness)
+  end
+
+  def mMenuShowSubtitles(params, input)
+    MushGame.cShowSubtitlesSet(!MushGame.cShowSubtitles)
   end
 
   attr_reader :spacePath, :space

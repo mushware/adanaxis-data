@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } 9YSQ1OpRrVrYfJcJiZXFmw
-# $Id: AdanaxisSpace.rb,v 1.38 2007/06/27 12:58:12 southa Exp $
+# $Id: AdanaxisSpace.rb,v 1.39 2007/06/27 13:18:55 southa Exp $
 # $Log: AdanaxisSpace.rb,v $
+# Revision 1.39  2007/06/27 13:18:55  southa
+# Debian packaging
+#
 # Revision 1.38  2007/06/27 12:58:12  southa
 # Debian packaging
 #
@@ -264,8 +267,11 @@ class AdanaxisSpace < MushObject
   end
 
   def mGameInit
-    # @m_precachePercent = 0
     MushGame.cNamedDialoguesAdd('^start')
+    
+    if MushGame.cShowSubtitles
+      MushGame.cNamedDialoguesAdd('^sub-start')
+    end
   end
 
   def mGameState

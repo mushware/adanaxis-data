@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } GNi1POqLNjzyJkWRwNeuIQ
-# $Id: AdanaxisMenu.rb,v 1.27 2007/06/27 13:18:54 southa Exp $
+# $Id: AdanaxisMenu.rb,v 1.28 2007/06/30 11:45:42 southa Exp $
 # $Log: AdanaxisMenu.rb,v $
+# Revision 1.28  2007/06/30 11:45:42  southa
+# X11 release
+#
 # Revision 1.27  2007/06/27 13:18:54  southa
 # Debian packaging
 #
@@ -425,6 +428,7 @@ class AdanaxisMenu < MushObject
         when 4: "Vast (>512MB)"
         else "Unknown"
       end
+      
       difficultyName = case AdanaxisRuby.cConfigDifficulty
         when 0: "Easy"
         when 1: "Normal"
@@ -432,17 +436,25 @@ class AdanaxisMenu < MushObject
         when 3: "Madness"
         else "Unknown"
       end
+      
       useGLCompressionName = case AdanaxisRuby.cUseGLCompression
         when 0: "No"
         when 1: "Yes"
         when 2: "Unavailable"
         else "Unknown"
       end
+      
       useGLShaderName = case AdanaxisRuby.cUseGLShader
         when 0: "No"
         when 1: "Yes"
         when 2: "Unavailable"
         else "Unknown"
+      end
+      
+      if MushGame.cShowSubtitles
+        showSubtitlesName = 'Yes'
+      else
+        showSubtitlesName = 'No'
       end
 
       @m_menuSet[MENU_OPTIONS].menu = [
@@ -453,6 +465,7 @@ class AdanaxisMenu < MushObject
         ["Voiceover volume     : #{MushGame.cVoiceVolume}%", :mMenuVoiceVolume],
         ["Texture detail       : #{detailName}", :mMenuTextureDetail],
         ["Brightness           : #{'%2.2f'%MushGame.cBrightness}", :mMenuBrightness],
+        ["Show subtitles       : #{showSubtitlesName}", :mMenuShowSubtitles],
         ["Mouse sensitivity    : #{'%2.2f'%MushGame.cMouseSensitivity}", :mMenuMouseSensitivity],
         ["Texture compression  : #{useGLCompressionName}", :mMenuGLCompression],
         ["Use compiled shaders : #{useGLShaderName}", :mMenuGLShader],
