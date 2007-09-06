@@ -21,9 +21,9 @@
 Sample sources are:
 
 gpl-explo0.wav   Golgotha old_generic.mp3
-gpl-explo1.wav   Golgotha old_generic.mp3
+gpl-explo1.wav   Golgotha supertank_lvl_one_main_barrel_interrior_44khz.mp3
 gpl-explo2.wav   Golgotha shockwave.mp3
-gpl-explo3.wav   Golgotha ground_vehicle.mp3
+gpl-explo3.wav   Golgotha supertank_lvl_one_main_barrel_interrior_44khz.mp3
 gpl-explo4.wav   Golgotha big_begrtha_gun_fire_22khz.mp3
 gpl-explo5.wav   Golgotha generic.mp3
 gpl-explo6.wav   Golgotha acid.mp3
@@ -40,3 +40,13 @@ gpl-fire7.wav    Golgotha acid2.mp3
 gpl-fire8.wav    Golgotha electric_tower_firing_three_22khz_lp.wav
 gpl-fire9.wav    Golgotha supertank_fires_rocket_22khz.mp3
 
+gpl-load0.wav    Golgotha main_barrel_refuel.mp3
+gpl-load1.wav    Golgotha main_barrel_refuel.mp3
+gpl-load2.wav    Golgotha main_barrel_refuel.mp3
+gpl-load3.wav    Golgotha main_barrel_refuel.mp3
+gpl-load4.wav    Golgotha electric_car_charged_lp.wav
+gpl-load5.wav    Golgotha main_barrel_refuel.mp3 + main_missile_refuel.mp3
+gpl-load6.wav    Golgotha missile_truck_lower.mp3
+gpl-load7.wav    Golgotha missile_truck_raise.mp3
+gpl-load8.wav    Golgotha missile_truck_lower.mp3
+gpl-load9.wav    Golgotha rising_missile_bay.mp3 + missile_truck_lp.wav
