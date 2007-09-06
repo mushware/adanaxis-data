@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } k0OwuxbYunzv3JtJrHodsw
-# $Id: AdanaxisWaveLibrary.rb,v 1.10 2007/05/10 11:44:12 southa Exp $
+# $Id: AdanaxisWaveLibrary.rb,v 1.11 2007/06/27 12:58:13 southa Exp $
 # $Log: AdanaxisWaveLibrary.rb,v $
+# Revision 1.11  2007/06/27 12:58:13  southa
+# Debian packaging
+#
 # Revision 1.10  2007/05/10 11:44:12  southa
 # Level15
 #
@@ -51,16 +54,15 @@
 
 class AdanaxisWaveLibrary < MushObject
   def mCreate
-    MushGame.cSoundDefine('nuke_explo1', "mush://waves/sdog-explo7.wav|#{MushConfig.cGlobalWavesPath}/explode.wav")
     8.times do |i|
-      MushGame.cSoundDefine("explo#{i}", "mush://waves/sdog-explo#{i}.wav|#{MushConfig.cGlobalWavesPath}/explode.wav")
+      MushGame.cSoundDefine("explo#{i}", "mush://waves/sdog-explo#{i}.wav|#{MushConfig.cGlobalWavesPath}/gpl-explo#{i}.wav|null:")
     end
     10.times do |i|
-      MushGame.cSoundDefine("fire#{i}", "mush://waves/sdog-fire#{i}.wav|#{MushConfig.cGlobalWavesPath}/fire.wav")
-      MushGame.cSoundDefine("load#{i}", "mush://waves/sdog-load#{i}.wav|#{MushConfig.cGlobalWavesPath}/collect1.wav")
+      MushGame.cSoundDefine("fire#{i}", "mush://waves/sdog-fire#{i}.wav|#{MushConfig.cGlobalWavesPath}/gpl-fire#{i}.wav|null:")
+      MushGame.cSoundDefine("load#{i}", "mush://waves/sdog-load#{i}.wav|#{MushConfig.cGlobalWavesPath}/gpl-load#{i}.wav|null:")
     end
-    MushGame.cSoundDefine("shieldcollect1", "mush://waves/sdog-shieldcollect1.wav|#{MushConfig.cGlobalWavesPath}/collect1.wav")
-    MushGame.cSoundDefine("healthcollect1", "mush://waves/sdog-healthcollect1.wav|#{MushConfig.cGlobalWavesPath}/collect1.wav")
+    MushGame.cSoundDefine("shieldcollect0", "mush://waves/sdog-shieldcollect0.wav|#{MushConfig.cGlobalWavesPath}/gpl-shieldcollect0.wav|null:")
+    MushGame.cSoundDefine("healthcollect0", "mush://waves/sdog-healthcollect0.wav|#{MushConfig.cGlobalWavesPath}/gpl-healthcollect0.wav|null:")
 
     (1..11).each do |i|
       case i
@@ -69,7 +71,7 @@ class AdanaxisWaveLibrary < MushObject
         else num=3
       end
       (1..num).each do |j|
-        MushGame.cSoundDefine("voice-E#{i}-#{j}", "mush://waves/voice-E#{i}-#{j}.ogg")
+        MushGame.cSoundDefine("voice-E#{i}-#{j}", "mush://waves/voice-E#{i}-#{j}.ogg|null:")
       end
     end
   end

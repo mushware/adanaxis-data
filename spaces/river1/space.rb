@@ -195,8 +195,29 @@
 # This software carries NO WARRANTY of any kind.
 #
 ##############################################################################
-# $Id: space.rb,v 1.19 2007/07/03 13:30:13 southa Exp $
+#%Header } 0/+/WU9nlN6gOxSaFqE2Cw
+#%Header {
+##############################################################################
+#
+# File data-adanaxis/spaces/river1/space.rb
+#
+# Copyright Andy Southgate 2006-2007
+#
+# This file may be used and distributed under the terms of the Mushware
+# Software Licence version 1.4, under the terms for 'Proprietary original
+# source files'.  If not supplied with this software, a copy of the licence
+# can be obtained from Mushware Limited via http://www.mushware.com/.
+# One of your options under that licence is to use and distribute this file
+# under the terms of the GNU General Public Licence version 2.
+#
+# This software carries NO WARRANTY of any kind.
+#
+##############################################################################
+# $Id: space.rb,v 1.20 2007/07/03 13:56:36 southa Exp $
 # $Log: space.rb,v $
+# Revision 1.20  2007/07/03 13:56:36  southa
+# Generic dpkg release
+#
 # Revision 1.19  2007/07/03 13:30:13  southa
 # Generic dpkg release
 #

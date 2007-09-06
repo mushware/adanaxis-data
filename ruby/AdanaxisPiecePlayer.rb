@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } /CLhMQeLenBvuR33lAQjXA
-# $Id: AdanaxisPiecePlayer.rb,v 1.33 2007/06/27 12:58:12 southa Exp $
+# $Id: AdanaxisPiecePlayer.rb,v 1.34 2007/06/27 13:18:54 southa Exp $
 # $Log: AdanaxisPiecePlayer.rb,v $
+# Revision 1.34  2007/06/27 13:18:54  southa
+# Debian packaging
+#
 # Revision 1.33  2007/06/27 12:58:12  southa
 # Debian packaging
 #
@@ -151,7 +154,7 @@ class AdanaxisPiecePlayer < AdanaxisPiece
     @m_weaponName = @@c_weaponList[@m_weaponNum]
     @m_weapon = $currentGame.mSpace.mWeaponLibrary.mWeapon(@m_weaponName)
     @m_magazine = AdanaxisMagazine.new
-    @m_magazine.mPlayerLoadAll if $MUSHCONFIG['-DEBUG']
+    @m_magazine.mPlayerLoadAll if $MUSHCONFIG['DEBUG']
     @m_fireState = false
     @m_numActions = 0
     @m_lastAmmoAddMsec = 0

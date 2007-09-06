@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } mK7l7POWm2GdY0eu86LiCA
-# $Id: space.rb,v 1.6 2007/06/27 12:58:13 southa Exp $
+# $Id: space.rb,v 1.7 2007/06/27 13:18:55 southa Exp $
 # $Log: space.rb,v $
+# Revision 1.7  2007/06/27 13:18:55  southa
+# Debian packaging
+#
 # Revision 1.6  2007/06/27 12:58:13  southa
 # Debian packaging
 #
@@ -61,7 +64,7 @@ class Adanaxis_intro1 < AdanaxisSpace
     mLoadStandard(game)
     mMusicAdd('game1', 'mushware-familiarisation.ogg')
     15.times do |i|
-      MushGame.cSoundDefine("voice-F#{i+1}", "mush://waves/voice-F#{i+1}.ogg")
+      MushGame.cSoundDefine("voice-F#{i+1}", "mush://waves/voice-F#{i+1}.ogg|null:")
     end
   end
 

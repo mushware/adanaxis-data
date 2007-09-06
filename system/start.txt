@@ -18,8 +18,11 @@
 #
 ##############################################################################
 #%Header } pQw6UBGrukp0QOB1l19i1Q
-# $Id: start.txt,v 1.39 2007/06/27 11:56:42 southa Exp $
+# $Id: start.txt,v 1.40 2007/06/27 13:38:28 southa Exp $
 # $Log: start.txt,v $
+# Revision 1.40  2007/06/27 13:38:28  southa
+# Debian packaging
+#
 # Revision 1.39  2007/06/27 11:56:42  southa
 # Debian packaging
 #
@@ -205,3 +208,5 @@ configstringadd('displaylighting', 'dynamic', 'none=None&dynamic=Dynamic')
 
 # Load the system font
 loadfontmap('font-mono1',$GLOBAL_PIXELS_PATH+'/font-mono1.tiff',8,12,337,768)
+
+

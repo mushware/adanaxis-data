@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } a4w1D4MdBeTsE9kZXbu8eA
-# $Id: space.rb,v 1.3 2007/06/27 12:58:17 southa Exp $
+# $Id: space.rb,v 1.4 2007/06/27 13:18:58 southa Exp $
 # $Log: space.rb,v $
+# Revision 1.4  2007/06/27 13:18:58  southa
+# Debian packaging
+#
 # Revision 1.3  2007/06/27 12:58:17  southa
 # Debian packaging
 #
@@ -43,7 +46,7 @@ class Adanaxis_level27 < AdanaxisSpace
   def mLoad(game)
     mLoadStandard(game)
     mMusicAdd('game1', 'mushware-sanity-fault.ogg')
-    MushGame.cSoundDefine("voice-intro", "mush://waves/voice-L27.ogg")
+    MushGame.cSoundDefine("voice-intro", "mush://waves/voice-L27.ogg|null:")
   end
 
   def mPrecacheListBuild

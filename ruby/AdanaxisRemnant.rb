@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } dp11LTIiZ/qOIlaxZiMXaA
-# $Id: AdanaxisRemnant.rb,v 1.13 2007/06/27 12:58:12 southa Exp $
+# $Id: AdanaxisRemnant.rb,v 1.14 2007/06/27 13:18:54 southa Exp $
 # $Log: AdanaxisRemnant.rb,v $
+# Revision 1.14  2007/06/27 13:18:54  southa
+# Debian packaging
+#
 # Revision 1.13  2007/06/27 12:58:12  southa
 # Debian packaging
 #
@@ -154,22 +157,22 @@ class AdanaxisRemnant < MushObject
     case inItem.mItemType
       when :health1
         inPiece.mLimitedHealthAdd(0.1) if inPiece.respond_to?(:mLimitedHealthAdd)
-        MushGame.cSoundPlay("healthcollect1", inPiece.mPost)
+        MushGame.cSoundPlay("healthcollect0", inPiece.mPost)
       when :shield1
         inPiece.mLimitedShieldAdd(0.1) if inPiece.respond_to?(:mLimitedShieldAdd)
-        MushGame.cSoundPlay("shieldcollect1", inPiece.mPost)
+        MushGame.cSoundPlay("shieldcollect0", inPiece.mPost)
       when :health2
         inPiece.mLimitedHealthAdd(0.2) if inPiece.respond_to?(:mLimitedHealthAdd)
-        MushGame.cSoundPlay("healthcollect1", inPiece.mPost)
+        MushGame.cSoundPlay("healthcollect0", inPiece.mPost)
       when :shield2
         inPiece.mLimitedShieldAdd(0.2) if inPiece.respond_to?(:mLimitedShieldAdd)
-        MushGame.cSoundPlay("shieldcollect1", inPiece.mPost)
+        MushGame.cSoundPlay("shieldcollect0", inPiece.mPost)
       when :health3
         inPiece.mUnlimitedHealthAdd(0.5) if inPiece.respond_to?(:mUnlimitedHealthAdd)
-        MushGame.cSoundPlay("healthcollect1", inPiece.mPost)
+        MushGame.cSoundPlay("healthcollect0", inPiece.mPost)
       when :shield3
         inPiece.mUnlimitedShieldAdd(0.5) if inPiece.respond_to?(:mUnlimitedShieldAdd)
-        MushGame.cSoundPlay("shieldcollect1", inPiece.mPost)
+        MushGame.cSoundPlay("shieldcollect0", inPiece.mPost)
       when :player_base
         inPiece.mAmmoCollect(:player_base, 100) if inPiece.respond_to?(:mAmmoCollect)
         MushGame.cSoundPlay("load0", inPiece.mPost)

@@ -16,8 +16,11 @@
 #
 ##############################################################################
 #%Header } v+pp5BpYYO52RCrKVe0eBw
-# $Id: AdanaxisPieceProjectile.rb,v 1.21 2007/06/27 12:58:12 southa Exp $
+# $Id: AdanaxisPieceProjectile.rb,v 1.22 2007/06/27 13:18:54 southa Exp $
 # $Log: AdanaxisPieceProjectile.rb,v $
+# Revision 1.22  2007/06/27 13:18:54  southa
+# Debian packaging
+#
 # Revision 1.21  2007/06/27 12:58:12  southa
 # Debian packaging
 #
@@ -189,7 +192,7 @@ class AdanaxisPieceProjectile < AdanaxisPiece
     case @m_originalHitPoints
       when 0...100.0
       else
-        MushGame.cSoundPlay('nuke_explo1', mPost)
+        MushGame.cSoundPlay('explo7', mPost)
     end
   end
 
