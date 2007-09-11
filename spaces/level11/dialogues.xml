@@ -14,8 +14,11 @@
 #
 ##############################################################################
 #
-# $Id: dialogues.xml,v 1.3 2007/06/13 14:08:42 southa Exp $
+# $Id: dialogues.xml,v 1.4 2007/06/14 22:24:27 southa Exp $
 # $Log: dialogues.xml,v $
+# Revision 1.4  2007/06/14 22:24:27  southa
+# Level and gameplay tweaks
+#
 # Revision 1.3  2007/06/13 14:08:42  southa
 # Level 29
 #
@@ -66,8 +69,8 @@
 <startColour>(1,1,1,0)</startColour>
 <midColour>(1,1,1,0.5)</midColour>
 <endColour>(1,0,0,0)</endColour>
-<startTime>0</startTime>
-<endTime>500</endTime>
+<startTime>400</startTime>
+<endTime>900</endTime>
 <fadeTime>100</fadeTime>
 <startSize>0.02</startSize>
 <midSize>0.02</midSize>
@@ -79,7 +82,7 @@
 <fontRef type="GLFontRef">
 <name>"font-mono1"</name>
 </fontRef>
-<value>"their nearest target and fire repeatedly"</value>
+<value>"their nearest target and fire repeatedly."</value>
 </string>
 <posticity type="MushPiePosticity">
 <pos>(0,-0.20,0,0)</pos>
@@ -87,8 +90,8 @@
 <startColour>(1,1,1,0)</startColour>
 <midColour>(1,1,1,0.5)</midColour>
 <endColour>(1,0,0,0)</endColour>
-<startTime>0</startTime>
-<endTime>500</endTime>
+<startTime>400</startTime>
+<endTime>900</endTime>
 <fadeTime>100</fadeTime>
 <startSize>0.02</startSize>
 <midSize>0.02</midSize>
@@ -108,8 +111,8 @@
 <startColour>(1,1,1,0)</startColour>
 <midColour>(1,1,1,0.5)</midColour>
 <endColour>(1,0,0,0)</endColour>
-<startTime>600</startTime>
-<endTime>1100</endTime>
+<startTime>1000</startTime>
+<endTime>1500</endTime>
 <fadeTime>100</fadeTime>
 <startSize>0.02</startSize>
 <midSize>0.02</midSize>
@@ -129,6 +132,74 @@
   <startTime>0</startTime>
  </obj>
 )</soundStreams>
+</obj>
+,
+"sub-start1"=<obj type="GameDialogue">
+<strings>(
+<obj type="GameStringSpec">
+<string type="GLString">
+<fontRef type="GLFontRef">
+<name>"font-mono1"</name>
+</fontRef>
+<value>"A large scale engagement has triggered an"</value>
+</string>
+<posticity type="MushPiePosticity">
+<pos>(0,-0.06,0,0)</pos>
+</posticity>
+<startColour>(1,1,1,0)</startColour>
+<midColour>(1,1,1,0.5)</midColour>
+<endColour>(1,0,0,0)</endColour>
+<startTime>20</startTime>
+<endTime>420</endTime>
+<fadeTime>100</fadeTime>
+<startSize>0.02</startSize>
+<midSize>0.02</midSize>
+<endSize>0.02</endSize>
+</obj>
+,
+<obj type="GameStringSpec">
+<string type="GLString">
+<fontRef type="GLFontRef">
+<name>"font-mono1"</name>
+</fontRef>
+<value>"import sequence.  Beam artillery signatures"</value>
+</string>
+<posticity type="MushPiePosticity">
+<pos>(0,-0.09,0,0)</pos>
+</posticity>
+<startColour>(1,1,1,0)</startColour>
+<midColour>(1,1,1,0.5)</midColour>
+<endColour>(1,0,0,0)</endColour>
+<startTime>40</startTime>
+<endTime>440</endTime>
+<fadeTime>100</fadeTime>
+<startSize>0.02</startSize>
+<midSize>0.02</midSize>
+<endSize>0.02</endSize>
+</obj>
+,
+<obj type="GameStringSpec">
+<string type="GLString">
+<fontRef type="GLFontRef">
+<name>"font-mono1"</name>
+</fontRef>
+<value>"are present in this region."</value>
+</string>
+<posticity type="MushPiePosticity">
+<pos>(0,-0.12,0,0)</pos>
+</posticity>
+<startColour>(1,1,1,0)</startColour>
+<midColour>(1,1,1,0.5)</midColour>
+<endColour>(1,0,0,0)</endColour>
+<startTime>60</startTime>
+<endTime>460</endTime>
+<fadeTime>100</fadeTime>
+<startSize>0.02</startSize>
+<midSize>0.02</midSize>
+<endSize>0.02</endSize>
+</obj>
+)
+</strings>
 </obj>
 ,
 "dead1"=<obj type="GameDialogue">

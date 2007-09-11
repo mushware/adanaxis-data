@@ -14,8 +14,11 @@
 #
 ##############################################################################
 #
-# $Id: dialogues.xml,v 1.2 2007/06/13 14:08:41 southa Exp $
+# $Id: dialogues.xml,v 1.1 2007/06/14 12:14:15 southa Exp $
 # $Log: dialogues.xml,v $
+# Revision 1.1  2007/06/14 12:14:15  southa
+# Level 30
+#
 # Revision 1.2  2007/06/13 14:08:41  southa
 # Level 29
 #
@@ -434,6 +437,10 @@
   <startTime>6000</startTime>
  </obj>
 )</soundStreams>
+</obj>
+,
+"sub-start1"=<obj type="GameDialogue">
+<strings>()</strings>
 </obj>
 ,
 "dead1"=<obj type="GameDialogue">

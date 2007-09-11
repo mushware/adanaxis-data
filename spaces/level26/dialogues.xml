@@ -14,8 +14,11 @@
 #
 ##############################################################################
 #
-# $Id: dialogues.xml,v 1.2 2007/06/13 14:08:44 southa Exp $
+# $Id: dialogues.xml,v 1.3 2007/06/14 18:55:11 southa Exp $
 # $Log: dialogues.xml,v $
+# Revision 1.3  2007/06/14 18:55:11  southa
+# Level and display tweaks
+#
 # Revision 1.2  2007/06/13 14:08:44  southa
 # Level 29
 #
@@ -59,6 +62,74 @@
   <startTime>0</startTime>
  </obj>
 )</soundStreams>
+</obj>
+,
+"sub-start1"=<obj type="GameDialogue">
+<strings>(
+<obj type="GameStringSpec">
+<string type="GLString">
+<fontRef type="GLFontRef">
+<name>"font-mono1"</name>
+</fontRef>
+<value>"A hardened transport gate is assisting hostile"</value>
+</string>
+<posticity type="MushPiePosticity">
+<pos>(0,-0.06,0,0)</pos>
+</posticity>
+<startColour>(1,1,1,0)</startColour>
+<midColour>(1,1,1,0.5)</midColour>
+<endColour>(1,0,0,0)</endColour>
+<startTime>20</startTime>
+<endTime>420</endTime>
+<fadeTime>100</fadeTime>
+<startSize>0.02</startSize>
+<midSize>0.02</midSize>
+<endSize>0.02</endSize>
+</obj>
+,
+<obj type="GameStringSpec">
+<string type="GLString">
+<fontRef type="GLFontRef">
+<name>"font-mono1"</name>
+</fontRef>
+<value>"action.  Take possesion of high-yield devices"</value>
+</string>
+<posticity type="MushPiePosticity">
+<pos>(0,-0.09,0,0)</pos>
+</posticity>
+<startColour>(1,1,1,0)</startColour>
+<midColour>(1,1,1,0.5)</midColour>
+<endColour>(1,0,0,0)</endColour>
+<startTime>40</startTime>
+<endTime>440</endTime>
+<fadeTime>100</fadeTime>
+<startSize>0.02</startSize>
+<midSize>0.02</midSize>
+<endSize>0.02</endSize>
+</obj>
+,
+<obj type="GameStringSpec">
+<string type="GLString">
+<fontRef type="GLFontRef">
+<name>"font-mono1"</name>
+</fontRef>
+<value>"from the red convoy and destroy the gate."</value>
+</string>
+<posticity type="MushPiePosticity">
+<pos>(0,-0.12,0,0)</pos>
+</posticity>
+<startColour>(1,1,1,0)</startColour>
+<midColour>(1,1,1,0.5)</midColour>
+<endColour>(1,0,0,0)</endColour>
+<startTime>60</startTime>
+<endTime>460</endTime>
+<fadeTime>100</fadeTime>
+<startSize>0.02</startSize>
+<midSize>0.02</midSize>
+<endSize>0.02</endSize>
+</obj>
+)
+</strings>
 </obj>
 ,
 "dead1"=<obj type="GameDialogue">

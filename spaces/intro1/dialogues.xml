@@ -14,8 +14,11 @@
 #
 ##############################################################################
 #
-# $Id: dialogues.xml,v 1.3 2007/04/19 12:57:57 southa Exp $
+# $Id: dialogues.xml,v 1.4 2007/06/13 14:08:41 southa Exp $
 # $Log: dialogues.xml,v $
+# Revision 1.4  2007/06/13 14:08:41  southa
+# Level 29
+#
 # Revision 1.3  2007/04/19 12:57:57  southa
 # Prerelease work
 #
@@ -114,7 +117,10 @@
 )</soundStreams>
 </obj>
 ,
-"won1"=<obj type="GameDialogue">
+"sub-start1"=<obj type="GameDialogue">
+<strings>()</strings>
+</obj>
+,"won1"=<obj type="GameDialogue">
 <strings>(
 <obj type="GameStringSpec">
 <string type="GLString">

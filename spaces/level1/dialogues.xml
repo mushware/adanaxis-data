@@ -14,8 +14,11 @@
 #
 ##############################################################################
 #
-# $Id: dialogues.xml,v 1.5 2007/06/13 14:08:42 southa Exp $
+# $Id: dialogues.xml,v 1.6 2007/09/06 19:30:33 southa Exp $
 # $Log: dialogues.xml,v $
+# Revision 1.6  2007/09/06 19:30:33  southa
+# Subtitles
+#
 # Revision 1.5  2007/06/13 14:08:42  southa
 # Level 29
 #
@@ -108,7 +111,7 @@
 <fontRef type="GLFontRef">
 <name>"font-mono1"</name>
 </fontRef>
-<value>"An import sequence was triggered.  All targets"</value>
+<value>"region.  An import sequence was triggered."</value>
 </string>
 <posticity type="MushPiePosticity">
 <pos>(0,-0.09,0,0)</pos>
@@ -129,7 +132,7 @@
 <fontRef type="GLFontRef">
 <name>"font-mono1"</name>
 </fontRef>
-<value>"are deemed hostile."</value>
+<value>"All targets are deemed hostile."</value>
 </string>
 <posticity type="MushPiePosticity">
 <pos>(0,-0.12,0,0)</pos>

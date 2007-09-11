@@ -14,8 +14,11 @@
 #
 ##############################################################################
 #
-# $Id: dialogues.xml,v 1.1 2007/05/24 16:59:42 southa Exp $
+# $Id: dialogues.xml,v 1.2 2007/06/13 14:08:43 southa Exp $
 # $Log: dialogues.xml,v $
+# Revision 1.2  2007/06/13 14:08:43  southa
+# Level 29
+#
 # Revision 1.1  2007/05/24 16:59:42  southa
 # Level 19
 #
@@ -56,6 +59,74 @@
   <startTime>0</startTime>
  </obj>
 )</soundStreams>
+</obj>
+,
+"sub-start1"=<obj type="GameDialogue">
+<strings>(
+<obj type="GameStringSpec">
+<string type="GLString">
+<fontRef type="GLFontRef">
+<name>"font-mono1"</name>
+</fontRef>
+<value>"A large-scale engagement is in progress."</value>
+</string>
+<posticity type="MushPiePosticity">
+<pos>(0,-0.06,0,0)</pos>
+</posticity>
+<startColour>(1,1,1,0)</startColour>
+<midColour>(1,1,1,0.5)</midColour>
+<endColour>(1,0,0,0)</endColour>
+<startTime>20</startTime>
+<endTime>420</endTime>
+<fadeTime>100</fadeTime>
+<startSize>0.02</startSize>
+<midSize>0.02</midSize>
+<endSize>0.02</endSize>
+</obj>
+,
+<obj type="GameStringSpec">
+<string type="GLString">
+<fontRef type="GLFontRef">
+<name>"font-mono1"</name>
+</fontRef>
+<value>"Red targets must be destroyed prior to"</value>
+</string>
+<posticity type="MushPiePosticity">
+<pos>(0,-0.09,0,0)</pos>
+</posticity>
+<startColour>(1,1,1,0)</startColour>
+<midColour>(1,1,1,0.5)</midColour>
+<endColour>(1,0,0,0)</endColour>
+<startTime>40</startTime>
+<endTime>440</endTime>
+<fadeTime>100</fadeTime>
+<startSize>0.02</startSize>
+<midSize>0.02</midSize>
+<endSize>0.02</endSize>
+</obj>
+,
+<obj type="GameStringSpec">
+<string type="GLString">
+<fontRef type="GLFontRef">
+<name>"font-mono1"</name>
+</fontRef>
+<value>"the arrival of incoming reinforcements."</value>
+</string>
+<posticity type="MushPiePosticity">
+<pos>(0,-0.12,0,0)</pos>
+</posticity>
+<startColour>(1,1,1,0)</startColour>
+<midColour>(1,1,1,0.5)</midColour>
+<endColour>(1,0,0,0)</endColour>
+<startTime>60</startTime>
+<endTime>460</endTime>
+<fadeTime>100</fadeTime>
+<startSize>0.02</startSize>
+<midSize>0.02</midSize>
+<endSize>0.02</endSize>
+</obj>
+)
+</strings>
 </obj>
 ,
 "dead1"=<obj type="GameDialogue">
