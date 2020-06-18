@@ -1,25 +1,34 @@
 #%Header {
 ##############################################################################
 #
-# File data-adanaxis/waves/README.txt
+# File adanaxis-data/waves/README.txt
 #
-# Author Andy Southgate 2006-2007
+# Copyright: Andy Southgate 2002-2007, 2020
 #
-# This file contains original work by Andy Southgate.  The author and his
-# employer (Mushware Limited) irrevocably waive all of their copyright rights
-# vested in this particular version of this file to the furthest extent
-# permitted.  The author and Mushware Limited also irrevocably waive any and
-# all of their intellectual property rights arising from said file and its
-# creation that would otherwise restrict the rights of any party to use and/or
-# distribute the use of, the techniques and methods used herein.  A written
-# waiver can be obtained via http://www.mushware.com/.
+# Permission is hereby granted, free of charge, to any person obtaining a
+# copy of this software and associated documentation files (the "Software"),
+# to deal in the Software without restriction, including without limitation
+# the rights to use, copy, modify, merge, publish, distribute, sublicense,
+# and/or sell copies of the Software, and to permit persons to whom the
+# Software is furnished to do so, subject to the following conditions:
+# 
+# The above copyright notice and this permission notice shall be included in
+# all copies or substantial portions of the Software.
 #
-# This software carries NO WARRANTY of any kind.
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+# FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+# DEALINGS IN THE SOFTWARE.
 #
 ##############################################################################
-#%Header } 7vq09p7XN5+SY1/m34zSSQ
+#%Header } xOwY1eSxSaNB6P4GB+87sA
 
-Sample sources for GPL release are:
+Files listed as 'Golgotha' are believed to be in the Public Domain.  For
+other files the above licence applies.  The 'gpl' files refer to the GPL
+release of Adanaxis and are not necessarily used in the current game.
 
 gpl-explo0.wav   Golgotha old_generic.mp3
 gpl-explo1.wav   Golgotha supertank_lvl_one_main_barrel_interrior_44khz.mp3
@@ -30,7 +39,7 @@ gpl-explo5.wav   Golgotha generic.mp3
 gpl-explo6.wav   Golgotha acid.mp3
 gpl-explo7.wav   Golgotha super_mortar.mp3 (an extract from)
 
-gpl-fire0.wav    Mushware
+gpl-fire0.wav    Andy Southgate
 gpl-fire1.wav    Golgotha old_auto1_lp.wav
 gpl-fire2.wav    Golgotha main1.mp3 (truncated)
 gpl-fire3.wav    Golgotha old_auto1_lp.wav (processed)
@@ -51,3 +60,13 @@ gpl-load6.wav    Golgotha missile_truck_lower.mp3
 gpl-load7.wav    Golgotha missile_truck_raise.mp3
 gpl-load8.wav    Golgotha missile_truck_lower.mp3
 gpl-load9.wav    Golgotha rising_missile_bay.mp3 + missile_truck_lp.wav
+
+Orginal compositions by Andy Southgate:
+
+mushware-adanaxistheme.ogg
+mushware-disturbed-sleep.ogg
+mushware-except-for-this.ogg
+mushware-extensions-to-space.ogg
+mushware-familiarisation.ogg
+mushware-respiration.ogg
+mushware-sanity-fault.ogg
