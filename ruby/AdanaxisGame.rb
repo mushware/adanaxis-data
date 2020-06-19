@@ -281,7 +281,7 @@ class AdanaxisGame < MushObject
     # keyName = MushGame.cKeySymbolsToName(inKey);
     # puts "key #{inKey}, '#{keyChar}' '#{keyName}' #{inIsDown}"
 
-    @m_showHidden = ((inModifier & MushKeys::KMOD_SHIFT) != 0)
+    @m_showHidden = ((inModifier & (MushKeys::KMOD_LSHIFT | MushKeys::KMOD_RSHIFT)) != 0)
 
     if inIsDown
       menu = @m_menuSet.mMenu(@m_currentMenu)
