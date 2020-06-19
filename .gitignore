@@ -31,3 +31,4 @@ mushware-cache
 system/*.dll
 system/*.exe
 system/*.pdb
+system/stderr.txt
