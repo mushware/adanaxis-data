@@ -27,4 +27,7 @@ _$*
 core
 # CVS default ignores end
 
+mushware-cache
 system/*.dll
+system/*.exe
+system/*.pdb
