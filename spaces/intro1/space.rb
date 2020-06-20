@@ -60,8 +60,9 @@ class Adanaxis_intro1 < AdanaxisSpace
   SCENESTATE_SHOW_X = 4
   SCENESTATE_SHOW_Y = 5
   SCENESTATE_SHOW_Z = 6
-  SCENESTATE_FIRE_INFO = 7
-  SCENESTATE_AXES_DONE = 8
+  SCENESTATE_SHOW_WASD = 7
+  SCENESTATE_FIRE_INFO = 8
+  SCENESTATE_AXES_DONE = 9
 
   def initialize(inParams = {})
     super
@@ -178,7 +179,9 @@ class Adanaxis_intro1 < AdanaxisSpace
   def mPhaseTrigger(inNum)
     if inNum > @m_cutScenePhase
       @m_cutScenePhase = inNum
-      MushGame.cVoicePlay("voice-F#{inNum}")
+      if inNum.is_a? Integer
+        MushGame.cVoicePlay("voice-F#{inNum}")
+      end
       yield if block_given?
     end
   end
@@ -280,8 +283,6 @@ class Adanaxis_intro1 < AdanaxisSpace
 
       when SCENESTATE_SHOW_Z
 
-
-
         if mStateAgeMsec > 12000
           mPhaseTrigger(8) {
             @m_text << ""
@@ -327,6 +328,59 @@ class Adanaxis_intro1 < AdanaxisSpace
           @m_spaceBarFont = MushGLFont.new(:name => "spacebar1-font")
           mStateNext
         end
+
+
+      when SCENESTATE_SHOW_WASD
+
+        mPhaseTrigger(10.1) {
+          @m_text = [
+            "The craft can also move conventionally",
+            "using the W, A, S and D keys"
+          ]
+        }
+
+        if mStateAgeMsec > 6000
+          mPhaseTrigger(10.2) {
+            @m_text << ""
+            @m_text << "The original 2006 game forgot"
+            @m_text << "to mention this"
+          }
+        end
+
+        if mStateAgeMsec > 9000
+          mPhaseTrigger(10.3) {
+            @m_text << ""
+            @m_text << "So no voiceover"
+          }
+        end
+
+        if mStateAgeMsec > 12000
+          mPhaseTrigger(10.4) {
+            @m_text << ""
+            @m_text << ""
+            @m_text << ""
+            @m_text << ""
+            @m_text << ""
+            @m_text << ""
+            @m_text << ""
+            @m_text << ""
+            @m_text << ""
+            @m_text << ""
+            @m_text << "Awks"
+          }
+        end
+
+        if mStateAgeMsec > 15000
+          mPhaseTrigger(10.5) {
+            @m_text << ""
+            @m_text << "But let's continue..."
+          }
+        end
+
+        if mStateAgeMsec > 18000 
+          mStateNext
+        end
+
 
       when SCENESTATE_FIRE_INFO
         @m_spaceBarAlpha = 1.0 - mStateAgeMsec / 4000.0

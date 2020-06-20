@@ -159,6 +159,9 @@ configset("GLOBAL_WAVES_PATH",$RESOURCES_PATH+"/waves")
 configset("SYSTEM_PATH",$RESOURCES_PATH+"/system")
 configset("RUBY_PATH",$RESOURCES_PATH+"/ruby")
 
+# Mutate the application into Adanaxis
+adanaxis
+
 # Find somewhere to save our files.  Directory name first, then paths to check
 setsavepath(".adanaxis", $HOME, $SYSTEM_PATH, "/tmp")
 setcachepath("mushware-cache", $RESOURCES_PATH, $HOME+"/.adanaxis", $HOME, $SYSTEM_PATH, "/tmp")
@@ -204,9 +207,6 @@ configset('X11_USE_SDL_LISTMODES', 1)
 
 # Load the dialogues
 GameDialogueLoad($SYSTEM_PATH+'/objects.xml')
-
-# Mutate the application into Adanaxis
-adanaxis
 
 # Add config elements - not used in this application
 configvalueadd('displaymode', 0, 0, 0)
