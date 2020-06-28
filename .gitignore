@@ -28,6 +28,7 @@ core
 # CVS default ignores end
 
 *.lastcodeanalysissucceeded
+*.ilk
 mushware-cache
 system/*.dll
 system/*.exe
