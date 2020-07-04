@@ -11,7 +11,7 @@
 # the rights to use, copy, modify, merge, publish, distribute, sublicense,
 # and/or sell copies of the Software, and to permit persons to whom the
 # Software is furnished to do so, subject to the following conditions:
-# 
+#
 # The above copyright notice and this permission notice shall be included in
 # all copies or substantial portions of the Software.
 #
@@ -24,7 +24,7 @@
 # DEALINGS IN THE SOFTWARE.
 #
 ##############################################################################
-#%Header } ZN9y3Au+1O2AM0EdH4VmSg
+#%Header } bS8yapvxGwUUUj6v0+1XxA
 # $Id: AdanaxisAIKhaziRail.rb,v 1.4 2007/06/27 12:58:10 southa Exp $
 # $Log: AdanaxisAIKhaziRail.rb,v $
 # Revision 1.4  2007/06/27 12:58:10  southa

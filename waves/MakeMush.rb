@@ -11,7 +11,7 @@
 # the rights to use, copy, modify, merge, publish, distribute, sublicense,
 # and/or sell copies of the Software, and to permit persons to whom the
 # Software is furnished to do so, subject to the following conditions:
-# 
+#
 # The above copyright notice and this permission notice shall be included in
 # all copies or substantial portions of the Software.
 #
@@ -24,7 +24,7 @@
 # DEALINGS IN THE SOFTWARE.
 #
 ##############################################################################
-#%Header } zFG0b21GnJvZ2unrI4i6fQ
+#%Header } D/BBLfjiAwagktx7s5e3mA
 # $Id: MakeMush.rb,v 1.2 2006/11/06 12:56:31 southa Exp $
 # $Log: MakeMush.rb,v $
 # Revision 1.2  2006/11/06 12:56:31  southa

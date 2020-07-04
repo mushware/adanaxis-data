@@ -11,7 +11,7 @@
 # the rights to use, copy, modify, merge, publish, distribute, sublicense,
 # and/or sell copies of the Software, and to permit persons to whom the
 # Software is furnished to do so, subject to the following conditions:
-# 
+#
 # The above copyright notice and this permission notice shall be included in
 # all copies or substantial portions of the Software.
 #
@@ -24,7 +24,7 @@
 # DEALINGS IN THE SOFTWARE.
 #
 ##############################################################################
-#%Header } T3o1kI7Y4Kl0x5ZzfU86cQ
+#%Header } THM/wRoV1AtvPGnr+bAUsw
 # $Id: AdanaxisRemnant.rb,v 1.14 2007/06/27 13:18:54 southa Exp $
 # $Log: AdanaxisRemnant.rb,v $
 # Revision 1.14  2007/06/27 13:18:54  southa

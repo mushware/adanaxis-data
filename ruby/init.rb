@@ -11,7 +11,7 @@
 # the rights to use, copy, modify, merge, publish, distribute, sublicense,
 # and/or sell copies of the Software, and to permit persons to whom the
 # Software is furnished to do so, subject to the following conditions:
-# 
+#
 # The above copyright notice and this permission notice shall be included in
 # all copies or substantial portions of the Software.
 #
@@ -24,7 +24,7 @@
 # DEALINGS IN THE SOFTWARE.
 #
 ##############################################################################
-#%Header } vTCcQnAqfucts8hBb5tOZA
+#%Header } /C4+DzDtpT9z0rS2MgkySQ
 # $Id: init.rb,v 1.17 2006/08/24 13:04:37 southa Exp $
 # $Log: init.rb,v $
 # Revision 1.17  2006/08/24 13:04:37  southa

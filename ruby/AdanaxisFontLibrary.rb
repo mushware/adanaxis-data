@@ -11,7 +11,7 @@
 # the rights to use, copy, modify, merge, publish, distribute, sublicense,
 # and/or sell copies of the Software, and to permit persons to whom the
 # Software is furnished to do so, subject to the following conditions:
-# 
+#
 # The above copyright notice and this permission notice shall be included in
 # all copies or substantial portions of the Software.
 #
@@ -24,7 +24,7 @@
 # DEALINGS IN THE SOFTWARE.
 #
 ##############################################################################
-#%Header } onGNqSRNtdFlJf7wV54zvg
+#%Header } xRFsl85tth3aXPEHW1n/tw
 # $Id: AdanaxisFontLibrary.rb,v 1.16 2007/06/27 12:58:10 southa Exp $
 # $Log: AdanaxisFontLibrary.rb,v $
 # Revision 1.16  2007/06/27 12:58:10  southa

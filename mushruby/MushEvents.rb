@@ -11,7 +11,7 @@
 # the rights to use, copy, modify, merge, publish, distribute, sublicense,
 # and/or sell copies of the Software, and to permit persons to whom the
 # Software is furnished to do so, subject to the following conditions:
-# 
+#
 # The above copyright notice and this permission notice shall be included in
 # all copies or substantial portions of the Software.
 #
@@ -24,7 +24,7 @@
 # DEALINGS IN THE SOFTWARE.
 #
 ##############################################################################
-#%Header } lmT2vlD+0zvQ2rHHPwyMKQ
+#%Header } hsoP9GyQilelpf+YG2f/1g
 # $Id: MushEvents.rb,v 1.6 2007/03/13 21:45:02 southa Exp $
 # $Log: MushEvents.rb,v $
 # Revision 1.6  2007/03/13 21:45:02  southa

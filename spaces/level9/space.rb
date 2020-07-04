@@ -11,7 +11,7 @@
 # the rights to use, copy, modify, merge, publish, distribute, sublicense,
 # and/or sell copies of the Software, and to permit persons to whom the
 # Software is furnished to do so, subject to the following conditions:
-# 
+#
 # The above copyright notice and this permission notice shall be included in
 # all copies or substantial portions of the Software.
 #
@@ -24,7 +24,7 @@
 # DEALINGS IN THE SOFTWARE.
 #
 ##############################################################################
-#%Header } i6pc1ClKTkPnAc/dZObJQQ
+#%Header } k/f0PXwAKospBFctSR80KA
 # $Id: space.rb,v 1.5 2007/06/27 13:18:59 southa Exp $
 # $Log: space.rb,v $
 # Revision 1.5  2007/06/27 13:18:59  southa

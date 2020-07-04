@@ -11,7 +11,7 @@
 # the rights to use, copy, modify, merge, publish, distribute, sublicense,
 # and/or sell copies of the Software, and to permit persons to whom the
 # Software is furnished to do so, subject to the following conditions:
-# 
+#
 # The above copyright notice and this permission notice shall be included in
 # all copies or substantial portions of the Software.
 #
@@ -24,7 +24,7 @@
 # DEALINGS IN THE SOFTWARE.
 #
 ##############################################################################
-#%Header } xOwY1eSxSaNB6P4GB+87sA
+#%Header } D96X6v6nTiZmTt+oWcJvZA
 
 Files listed as 'Golgotha' are believed to be in the Public Domain.  For
 other files the above licence applies.  The 'gpl' files refer to the GPL

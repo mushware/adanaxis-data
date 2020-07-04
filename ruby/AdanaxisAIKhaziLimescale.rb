@@ -11,7 +11,7 @@
 # the rights to use, copy, modify, merge, publish, distribute, sublicense,
 # and/or sell copies of the Software, and to permit persons to whom the
 # Software is furnished to do so, subject to the following conditions:
-# 
+#
 # The above copyright notice and this permission notice shall be included in
 # all copies or substantial portions of the Software.
 #
@@ -24,7 +24,7 @@
 # DEALINGS IN THE SOFTWARE.
 #
 ##############################################################################
-#%Header } upFnSNPiXdwel1QS+oj/zQ
+#%Header } 1tHPNouDW9ccPhS/3ktV7w
 #
 # $Id: AdanaxisAIKhaziLimescale.rb,v 1.1 2007/05/01 16:40:05 southa Exp $
 # $Log: AdanaxisAIKhaziLimescale.rb,v $
