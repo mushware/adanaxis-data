@@ -433,8 +433,8 @@ class AdanaxisMenu < MushObject
         when 0: "Low"
         when 1: "Medium"
         when 2: "High"
-        when 3: "Very high (>128MB)"
-        when 4: "Vast (>512MB)"
+        when 3: "Very high (>1GB)"
+        when 4: "Vast (>4GB)"
         else "Unknown"
       end
       
@@ -448,7 +448,7 @@ class AdanaxisMenu < MushObject
       
       useGLCompressionName = case AdanaxisRuby.cUseGLCompression
         when 0: "No"
-        when 1: "Yes"
+        when 1: "Yes (can be very slow)"
         when 2: "Unavailable"
         else "Unknown"
       end
