@@ -449,23 +449,23 @@ class AdanaxisGame < MushObject
 
   def mMenuTextureDetail(params, input)
     if input < 0
-      MushGame.cTextureDetailSet( (MushGame.cTextureDetail + 4) % 5 )
+      MushGame.cTextureDetailSet( (MushGame.cTextureDetail + 5) % 6 )
     else
-      MushGame.cTextureDetailSet( (MushGame.cTextureDetail + 1) % 5 )
+      MushGame.cTextureDetailSet( (MushGame.cTextureDetail + 1) % 6 )
     end
   end
 
   def mMenuGLCompression(params, input)
     case AdanaxisRuby.cUseGLCompression
       when 0: AdanaxisRuby.cUseGLCompressionSet(1)
-      when 1: AdanaxisRuby.cUseGLCompressionSet(0)
+      else AdanaxisRuby.cUseGLCompressionSet(0)
     end
   end
 
   def mMenuGLShader(params, input)
     case AdanaxisRuby.cUseGLShader
       when 0: AdanaxisRuby.cUseGLShaderSet(1)
-      when 1: AdanaxisRuby.cUseGLShaderSet(0)
+      else AdanaxisRuby.cUseGLShaderSet(0)
     end
   end
 
@@ -499,6 +499,13 @@ class AdanaxisGame < MushObject
 
   def mMenuShowSubtitles(params, input)
     MushGame.cShowSubtitlesSet(!MushGame.cShowSubtitles)
+  end
+
+  def mMenuApply2020Makeover(params, input)
+    case AdanaxisRuby.cApply2020Makeover
+      when 0: AdanaxisRuby.cApply2020MakeoverSet(1)
+      else AdanaxisRuby.cApply2020MakeoverSet(0)
+    end
   end
 
   attr_reader :spacePath, :space

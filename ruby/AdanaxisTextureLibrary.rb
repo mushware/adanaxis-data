@@ -156,6 +156,14 @@ class AdanaxisTextureLibrary < MushObject
 
   def mCreate
     levelOfDetail = MushGame.cTextureDetail
+    if AdanaxisRuby.cApply2020Makeover == 1
+      edgeProximityDistScale = 1
+      edgeProximityDist = 0.04
+    else
+      edgeProximityDistScale = 0
+      edgeProximityDist = 0
+    end
+    edgeProximityCol = [1.0, 1.0, 1.0, 0.3]
     textureSize = 256 * (2 ** levelOfDetail);
     smallTextureSize = 128 * (2 ** levelOfDetail);
     largeTextureSize = 512 * (2 ** levelOfDetail);
@@ -336,7 +344,9 @@ class AdanaxisTextureLibrary < MushObject
     :numoctaves    => 8,
     :octaveratio   => 0.5,
 		:cache         => 1,
-    :compress      => compressNear
+    :compress      => compressNear,
+    :edgeproximitydist => edgeProximityDist,
+    :edgeproximitycol => edgeProximityCol
 	)
 
 	MushGLTexture::cDefine(
@@ -351,7 +361,9 @@ class AdanaxisTextureLibrary < MushObject
     :numoctaves    => 8,
     :octaveratio   => 0.5,
 		:cache         => 1,
-    :compress      => compressNear
+    :compress      => compressNear,
+    :edgeproximitydist => edgeProximityDist,
+    :edgeproximitycol => edgeProximityCol
 	)
 
 	MushGLTexture::cDefine(
@@ -366,7 +378,9 @@ class AdanaxisTextureLibrary < MushObject
     :numoctaves    => 8,
     :octaveratio   => 0.5,
 		:cache         => 1,
-    :compress      => compressNear
+    :compress      => compressNear,
+    :edgeproximitydist => edgeProximityDist,
+    :edgeproximitycol => edgeProximityCol
 	)
 
 	MushGLTexture::cDefine(
@@ -381,7 +395,9 @@ class AdanaxisTextureLibrary < MushObject
     :numoctaves    => 8,
     :octaveratio   => 0.5,
 		:cache         => 1,
-    :compress      => compressNear
+    :compress      => compressNear,
+    :edgeproximitydist => edgeProximityDist,
+    :edgeproximitycol => edgeProximityCol
 	)
 
 
@@ -398,7 +414,9 @@ class AdanaxisTextureLibrary < MushObject
     :numoctaves    => 8,
     :octaveratio   => 0.5,
 		:cache         => 1,
-    :compress      => compressNear
+    :compress      => compressNear,
+    :edgeproximitydist => edgeProximityDist,
+    :edgeproximitycol => edgeProximityCol
 	)
 
   MushGLTexture::cDefine(
@@ -413,7 +431,9 @@ class AdanaxisTextureLibrary < MushObject
     :numoctaves    => 8,
     :octaveratio   => 0.5,
 		:cache         => 1,
-    :compress      => compressNear
+    :compress      => compressNear,
+    :edgeproximitydist => edgeProximityDist,
+    :edgeproximitycol => edgeProximityCol
 	)
 
   MushGLTexture::cDefine(
@@ -428,7 +448,9 @@ class AdanaxisTextureLibrary < MushObject
     :numoctaves    => 8,
     :octaveratio   => 0.5,
 		:cache         => 1,
-    :compress      => compressNear
+    :compress      => compressNear,
+    :edgeproximitydist => edgeProximityDist,
+    :edgeproximitycol => edgeProximityCol
 	)
 
   scale = 0.2
@@ -444,7 +466,9 @@ class AdanaxisTextureLibrary < MushObject
     :numoctaves    => 8,
     :octaveratio   => 0.5,
 		:cache         => 1,
-    :compress      => compressNear
+    :compress      => compressNear,
+    :edgeproximitydist => edgeProximityDist,
+    :edgeproximitycol => edgeProximityCol
 	)
 
   MushGLTexture::cDefine(
@@ -459,7 +483,9 @@ class AdanaxisTextureLibrary < MushObject
     :numoctaves    => 8,
     :octaveratio   => 0.5,
 		:cache         => 1,
-    :compress      => compressNear
+    :compress      => compressNear,
+    :edgeproximitydist => edgeProximityDist,
+    :edgeproximitycol => edgeProximityCol
 	)
 
   MushGLTexture::cDefine(
@@ -474,7 +500,9 @@ class AdanaxisTextureLibrary < MushObject
     :numoctaves    => 8,
     :octaveratio   => 0.5,
 		:cache         => 1,
-    :compress      => compressNear
+    :compress      => compressNear,
+    :edgeproximitydist => edgeProximityDist,
+    :edgeproximitycol => edgeProximityCol
 	)
 
   scale = 0.5
@@ -490,7 +518,9 @@ class AdanaxisTextureLibrary < MushObject
     :numoctaves    => 4,
     :octaveratio   => 0.5,
 		:cache         => 1,
-    :compress      => compressNear
+    :compress      => compressNear,
+    :edgeproximitydist => edgeProximityDist,
+    :edgeproximitycol => edgeProximityCol
 	)
 
   MushGLTexture::cDefine(
@@ -505,7 +535,9 @@ class AdanaxisTextureLibrary < MushObject
     :numoctaves    => 4,
     :octaveratio   => 0.5,
 		:cache         => 1,
-    :compress      => compressNear
+    :compress      => compressNear,
+    :edgeproximitydist => edgeProximityDist,
+    :edgeproximitycol => edgeProximityCol
 	)
 
   MushGLTexture::cDefine(
@@ -520,7 +552,9 @@ class AdanaxisTextureLibrary < MushObject
     :numoctaves    => 4,
     :octaveratio   => 0.5,
 		:cache         => 1,
-    :compress      => compressNear
+    :compress      => compressNear,
+    :edgeproximitydist => edgeProximityDist,
+    :edgeproximitycol => edgeProximityCol
 	)
 
   scale = 0.1
@@ -536,7 +570,9 @@ class AdanaxisTextureLibrary < MushObject
     :numoctaves    => 8,
     :octaveratio   => 0.5,
 		:cache         => 1,
-    :compress      => compressNear
+    :compress      => compressNear,
+    :edgeproximitydist => edgeProximityDist,
+    :edgeproximitycol => edgeProximityCol
 	)
 
   MushGLTexture::cDefine(
@@ -551,7 +587,9 @@ class AdanaxisTextureLibrary < MushObject
     :numoctaves    => 8,
     :octaveratio   => 0.5,
 		:cache         => 1,
-    :compress      => compressNear
+    :compress      => compressNear,
+    :edgeproximitydist => edgeProximityDist,
+    :edgeproximitycol => edgeProximityCol
 	)
 
   MushGLTexture::cDefine(
@@ -566,7 +604,9 @@ class AdanaxisTextureLibrary < MushObject
     :numoctaves    => 8,
     :octaveratio   => 0.5,
 		:cache         => 1,
-    :compress      => compressNear
+    :compress      => compressNear,
+    :edgeproximitydist => edgeProximityDist,
+    :edgeproximitycol => edgeProximityCol
 	)
 
   scale = 0.5
@@ -582,7 +622,9 @@ class AdanaxisTextureLibrary < MushObject
     :numoctaves    => 8,
     :octaveratio   => 0.5,
 		:cache         => 1,
-    :compress      => compressNear
+    :compress      => compressNear,
+    :edgeproximitydist => edgeProximityDist,
+    :edgeproximitycol => edgeProximityCol
 	)
 
   MushGLTexture::cDefine(
@@ -597,7 +639,9 @@ class AdanaxisTextureLibrary < MushObject
     :numoctaves    => 8,
     :octaveratio   => 0.5,
 		:cache         => 1,
-    :compress      => compressNear
+    :compress      => compressNear,
+    :edgeproximitydist => edgeProximityDist,
+    :edgeproximitycol => edgeProximityCol
 	)
 
   MushGLTexture::cDefine(
@@ -612,7 +656,9 @@ class AdanaxisTextureLibrary < MushObject
     :numoctaves    => 8,
     :octaveratio   => 0.5,
 		:cache         => 1,
-    :compress      => compressNear
+    :compress      => compressNear,
+    :edgeproximitydist => edgeProximityDist,
+    :edgeproximitycol => edgeProximityCol
 	)
 
   scale = 0.5
@@ -628,7 +674,9 @@ class AdanaxisTextureLibrary < MushObject
     :numoctaves    => 3,
     :octaveratio   => 0.7,
 		:cache         => 1,
-    :compress      => compressNear
+    :compress      => compressNear,
+    :edgeproximitydist => edgeProximityDist,
+    :edgeproximitycol => edgeProximityCol
 	)
 
   MushGLTexture::cDefine(
@@ -643,7 +691,9 @@ class AdanaxisTextureLibrary < MushObject
     :numoctaves    => 3,
     :octaveratio   => 0.7,
 		:cache         => 1,
-    :compress      => compressNear
+    :compress      => compressNear,
+    :edgeproximitydist => edgeProximityDist,
+    :edgeproximitycol => edgeProximityCol
 	)
 
   MushGLTexture::cDefine(
@@ -658,7 +708,9 @@ class AdanaxisTextureLibrary < MushObject
     :numoctaves    => 3,
     :octaveratio   => 0.7,
 		:cache         => 1,
-    :compress      => compressNear
+    :compress      => compressNear,
+    :edgeproximitydist => edgeProximityDist,
+    :edgeproximitycol => edgeProximityCol
 	)
 
   scale = 0.05
@@ -674,7 +726,9 @@ class AdanaxisTextureLibrary < MushObject
     :numoctaves    => 8,
     :octaveratio   => 0.4,
 		:cache         => 1,
-    :compress      => compressNear
+    :compress      => compressNear,
+    :edgeproximitydist => edgeProximityDist,
+    :edgeproximitycol => edgeProximityCol
 	)
 
   MushGLTexture::cDefine(
@@ -689,7 +743,9 @@ class AdanaxisTextureLibrary < MushObject
     :numoctaves    => 8,
     :octaveratio   => 0.4,
 		:cache         => 1,
-    :compress      => compressNear
+    :compress      => compressNear,
+    :edgeproximitydist => edgeProximityDist,
+    :edgeproximitycol => edgeProximityCol
 	)
 
   MushGLTexture::cDefine(
@@ -704,7 +760,9 @@ class AdanaxisTextureLibrary < MushObject
     :numoctaves    => 8,
     :octaveratio   => 0.4,
 		:cache         => 1,
-    :compress      => compressNear
+    :compress      => compressNear,
+    :edgeproximitydist => edgeProximityDist,
+    :edgeproximitycol => edgeProximityCol
 	)
 
   scale = 0.5
@@ -720,7 +778,9 @@ class AdanaxisTextureLibrary < MushObject
     :numoctaves    => 8,
     :octaveratio   => 0.5,
 		:cache         => 1,
-    :compress      => compressNear
+    :compress      => compressNear,
+    :edgeproximitydist => edgeProximityDist,
+    :edgeproximitycol => edgeProximityCol
 	)
 
   MushGLTexture::cDefine(
@@ -735,7 +795,9 @@ class AdanaxisTextureLibrary < MushObject
     :numoctaves    => 8,
     :octaveratio   => 0.5,
 		:cache         => 1,
-    :compress      => compressNear
+    :compress      => compressNear,
+    :edgeproximitydist => edgeProximityDist,
+    :edgeproximitycol => edgeProximityCol
 	)
 
   MushGLTexture::cDefine(
@@ -750,7 +812,9 @@ class AdanaxisTextureLibrary < MushObject
     :numoctaves    => 8,
     :octaveratio   => 0.5,
 		:cache         => 1,
-    :compress      => compressNear
+    :compress      => compressNear,
+    :edgeproximitydist => edgeProximityDist,
+    :edgeproximitycol => edgeProximityCol
 	)
 
   scale = 0.1
@@ -766,7 +830,9 @@ class AdanaxisTextureLibrary < MushObject
     :numoctaves    => 8,
     :octaveratio   => 0.5,
 		:cache         => 1,
-    :compress      => compressNear
+    :compress      => compressNear,
+    :edgeproximitydist => edgeProximityDist,
+    :edgeproximitycol => edgeProximityCol
 	)
 
   MushGLTexture::cDefine(
@@ -781,7 +847,9 @@ class AdanaxisTextureLibrary < MushObject
     :numoctaves    => 8,
     :octaveratio   => 0.5,
 		:cache         => 1,
-    :compress      => compressNear
+    :compress      => compressNear,
+    :edgeproximitydist => edgeProximityDist,
+    :edgeproximitycol => edgeProximityCol
 	)
 
   MushGLTexture::cDefine(
@@ -796,7 +864,9 @@ class AdanaxisTextureLibrary < MushObject
     :numoctaves    => 8,
     :octaveratio   => 0.5,
 		:cache         => 1,
-    :compress      => compressNear
+    :compress      => compressNear,
+    :edgeproximitydist => edgeProximityDist,
+    :edgeproximitycol => edgeProximityCol
 	)
 
   scale = 0.1
@@ -812,7 +882,9 @@ class AdanaxisTextureLibrary < MushObject
     :numoctaves    => 8,
     :octaveratio   => 0.5,
 		:cache         => 1,
-    :compress      => compressNear
+    :compress      => compressNear,
+    :edgeproximitydist => edgeProximityDist,
+    :edgeproximitycol => edgeProximityCol
 	)
 
   MushGLTexture::cDefine(
@@ -827,7 +899,9 @@ class AdanaxisTextureLibrary < MushObject
     :numoctaves    => 8,
     :octaveratio   => 0.5,
 		:cache         => 1,
-    :compress      => compressNear
+    :compress      => compressNear,
+    :edgeproximitydist => edgeProximityDist,
+    :edgeproximitycol => edgeProximityCol
 	)
 
   MushGLTexture::cDefine(
@@ -842,7 +916,9 @@ class AdanaxisTextureLibrary < MushObject
     :numoctaves    => 8,
     :octaveratio   => 0.5,
 		:cache         => 1,
-    :compress      => compressNear
+    :compress      => compressNear,
+    :edgeproximitydist => edgeProximityDist,
+    :edgeproximitycol => edgeProximityCol
 	)
 
   scale = 0.1
@@ -858,7 +934,9 @@ class AdanaxisTextureLibrary < MushObject
     :numoctaves    => 8,
     :octaveratio   => 0.625,
 		:cache         => 1,
-    :compress      => compressNear
+    :compress      => compressNear,
+    :edgeproximitydist => edgeProximityDist,
+    :edgeproximitycol => edgeProximityCol
 	)
 
   MushGLTexture::cDefine(
@@ -873,7 +951,9 @@ class AdanaxisTextureLibrary < MushObject
     :numoctaves    => 8,
     :octaveratio   => 0.625,
 		:cache         => 1,
-    :compress      => compressNear
+    :compress      => compressNear,
+    :edgeproximitydist => edgeProximityDist,
+    :edgeproximitycol => edgeProximityCol
 	)
 
   MushGLTexture::cDefine(
@@ -888,7 +968,9 @@ class AdanaxisTextureLibrary < MushObject
     :numoctaves    => 8,
     :octaveratio   => 0.625,
 		:cache         => 1,
-    :compress      => compressNear
+    :compress      => compressNear,
+    :edgeproximitydist => edgeProximityDist,
+    :edgeproximitycol => edgeProximityCol
 	)
 
   scale = 0.1
@@ -904,7 +986,9 @@ class AdanaxisTextureLibrary < MushObject
     :numoctaves    => 8,
     :octaveratio   => 0.6,
 		:cache         => 1,
-    :compress      => compressNear
+    :compress      => compressNear,
+    :edgeproximitydist => 1.5 * edgeProximityDist,
+    :edgeproximitycol => edgeProximityCol
 	)
 
 	MushGLTexture::cDefine(
@@ -919,7 +1003,9 @@ class AdanaxisTextureLibrary < MushObject
     :numoctaves    => 8,
     :octaveratio   => 0.6,
 		:cache         => 1,
-    :compress      => compressNear
+    :compress      => compressNear,
+    :edgeproximitydist => 1.5 * edgeProximityDist,
+    :edgeproximitycol => edgeProximityCol
 	)
 
 	MushGLTexture::cDefine(
@@ -934,7 +1020,9 @@ class AdanaxisTextureLibrary < MushObject
     :numoctaves    => 8,
     :octaveratio   => 0.6,
 		:cache         => 1,
-    :compress      => compressNear
+    :compress      => compressNear,
+    :edgeproximitydist => 1.5 * edgeProximityDist,
+    :edgeproximitycol => edgeProximityCol
 	)
 
   scale = 1.4
@@ -951,7 +1039,9 @@ class AdanaxisTextureLibrary < MushObject
     :numoctaves    => 5,
     :octaveratio   => 0.5,
 		:cache         => 1,
-    :compress      => compressNear
+    :compress      => compressNear,
+    :edgeproximitydist => edgeProximityDist,
+    :edgeproximitycol => edgeProximityCol
 	)
 
 	scale = 4
@@ -968,7 +1058,9 @@ class AdanaxisTextureLibrary < MushObject
     :numoctaves    => 8,
     :octaveratio   => 0.5,
 		:cache         => 1,
-    :compress      => compressNear
+    :compress      => compressNear,
+    :edgeproximitydist => edgeProximityDist,
+    :edgeproximitycol => edgeProximityCol
 	)
 
 	MushGLTexture::cDefine(
@@ -983,7 +1075,9 @@ class AdanaxisTextureLibrary < MushObject
     :numoctaves    => 8,
     :octaveratio   => 0.5,
 		:cache         => 1,
-    :compress      => compressNear
+    :compress      => compressNear,
+    :edgeproximitydist => edgeProximityDist,
+    :edgeproximitycol => edgeProximityCol
 	)
 
   scale = 0.01
@@ -999,7 +1093,9 @@ class AdanaxisTextureLibrary < MushObject
     :numoctaves    => 8,
     :octaveratio   => 0.5,
 		:cache         => 1,
-    :compress      => compressFar
+    :compress      => compressFar,
+    :edgeproximitydist => edgeProximityDist,
+    :edgeproximitycol => edgeProximityCol
 	)
 
   scale = 0.02
@@ -1015,7 +1111,9 @@ class AdanaxisTextureLibrary < MushObject
     :numoctaves    => 4,
     :octaveratio   => 1,
 		:cache         => 1,
-    :compress      => compressFar
+    :compress      => compressFar,
+    :edgeproximitydist => edgeProximityDist,
+    :edgeproximitycol => edgeProximityCol
 	)
 
   scale = 1
@@ -1031,7 +1129,9 @@ class AdanaxisTextureLibrary < MushObject
     :numoctaves    => 4,
     :octaveratio   => 0.5,
 		:cache         => 1,
-    :compress      => compressNear
+    :compress      => compressNear,
+    :edgeproximitydist => edgeProximityDist,
+    :edgeproximitycol => edgeProximityCol
 	)
 
   scale = 1
@@ -1047,7 +1147,9 @@ class AdanaxisTextureLibrary < MushObject
     :numoctaves    => 8,
     :octaveratio   => 0.5,
 		:cache         => 1,
-    :compress      => compressNear
+    :compress      => compressNear,
+    :edgeproximitydist => edgeProximityDist,
+    :edgeproximitycol => edgeProximityCol
 	)
 
   scale = 1
@@ -1063,7 +1165,9 @@ class AdanaxisTextureLibrary < MushObject
     :numoctaves    => 4,
     :octaveratio   => 0.5,
 		:cache         => 1,
-    :compress      => compressNear
+    :compress      => compressNear,
+    :edgeproximitydist => edgeProximityDist,
+    :edgeproximitycol => edgeProximityCol
 	)
 
   scale = 1

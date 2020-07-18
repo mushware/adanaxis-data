@@ -433,8 +433,24 @@ class AdanaxisMenu < MushObject
         when 0: "Low"
         when 1: "Medium"
         when 2: "High"
-        when 3: "Very high (>1GB)"
-        when 4: "Vast (>4GB)"
+        when 3:
+          if AdanaxisRuby.cUseGLCompression == 1:
+            "Very high (>256MB)"
+          else
+            "Very high (>1GB)"
+          end
+        when 4:
+          if AdanaxisRuby.cUseGLCompression == 1:
+            "Vast (>1GB)"
+          else
+            "Vast (>4GB)"
+          end
+        when 5:
+          if AdanaxisRuby.cUseGLCompression == 1:
+            "Behemoth (>4GB)"
+          else
+            "Behemoth (>16GB)"
+          end
         else "Unknown"
       end
       
@@ -466,18 +482,25 @@ class AdanaxisMenu < MushObject
         showSubtitlesName = 'No'
       end
 
+      apply2020MakeoverName = case AdanaxisRuby.cApply2020Makeover
+        when 0: "No"
+        when 1: "Yes"
+        else "Unknown"
+      end
+
       @m_menuSet[MENU_OPTIONS].menu = [
         ["Display mode         : "+MushGame.cDisplayModeString, :mMenuDisplayMode],
         ["Game difficulty      : #{difficultyName}", :mMenuDifficulty],
         ["Audio volume         : #{MushGame.cAudioVolume}%", :mMenuAudioVolume],
         ["Music volume         : #{MushGame.cMusicVolume}%", :mMenuMusicVolume],
         ["Voiceover volume     : #{MushGame.cVoiceVolume}%", :mMenuVoiceVolume],
-        ["Texture detail       : #{detailName}", :mMenuTextureDetail],
+        ["Texture detail (RAM) : #{detailName}", :mMenuTextureDetail],
         ["Brightness           : #{'%2.2f'%MushGame.cBrightness}", :mMenuBrightness],
         ["Show subtitles       : #{showSubtitlesName}", :mMenuShowSubtitles],
         ["Mouse sensitivity    : #{'%2.2f'%MushGame.cMouseSensitivity}", :mMenuMouseSensitivity],
         ["Texture compression  : #{useGLCompressionName}", :mMenuGLCompression],
         ["Use compiled shaders : #{useGLShaderName}", :mMenuGLShader],
+        ["Apply 2020 makeover  : #{apply2020MakeoverName}", :mMenuApply2020Makeover],
         ["Back", :mMenuDisplayReset, MENU_TOPLEVEL]
       ]
 

@@ -163,7 +163,7 @@ class AdanaxisPiecePlayer < AdanaxisPiece
     @m_weaponName = @@c_weaponList[@m_weaponNum]
     @m_weapon = $currentGame.mSpace.mWeaponLibrary.mWeapon(@m_weaponName)
     @m_magazine = AdanaxisMagazine.new
-    @m_magazine.mPlayerLoadAll if $MUSHCONFIG['DEBUG']
+    # @m_magazine.mPlayerLoadAll if $MUSHCONFIG['DEBUG']
     @m_fireState = false
     @m_numActions = 0
     @m_lastAmmoAddMsec = 0
