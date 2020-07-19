@@ -449,9 +449,9 @@ class AdanaxisGame < MushObject
 
   def mMenuTextureDetail(params, input)
     if input < 0
-      MushGame.cTextureDetailSet( (MushGame.cTextureDetail + 5) % 6 )
+      MushGame.cTextureDetailSet( (MushGame.cTextureDetail + 3) % 4 )
     else
-      MushGame.cTextureDetailSet( (MushGame.cTextureDetail + 1) % 6 )
+      MushGame.cTextureDetailSet( (MushGame.cTextureDetail + 1) % 4 )
     end
   end
 
