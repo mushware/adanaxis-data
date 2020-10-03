@@ -84,6 +84,6 @@ class AdanaxisRender < MushObject
 
   def mPackageIDRender
     @m_menuFont.colour = MushVector.new(1,1,1,0.3)
-    @m_menuFont.mRenderAtSize(@m_packageID, -@m_packageID.length * 0.006, -0.27, 0.012);
+    @m_menuFont.mRenderAtSize(@m_packageID, -@m_packageID.length * 0.006, -0.47, 0.012);
   end
 end

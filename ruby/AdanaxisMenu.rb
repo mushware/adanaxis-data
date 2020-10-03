@@ -488,6 +488,12 @@ class AdanaxisMenu < MushObject
         else "Unknown"
       end
 
+      showFpsName = case AdanaxisRuby.cShowFps
+        when 0: "No"
+        when 1: "Yes"
+        else "Unknown"
+      end
+
       @m_menuSet[MENU_OPTIONS].menu = [
         ["Display mode         : "+MushGame.cDisplayModeString, :mMenuDisplayMode],
         ["Game difficulty      : #{difficultyName}", :mMenuDifficulty],
@@ -501,6 +507,7 @@ class AdanaxisMenu < MushObject
         ["Texture compression  : #{useGLCompressionName}", :mMenuGLCompression],
         ["Use compiled shaders : #{useGLShaderName}", :mMenuGLShader],
         ["Apply 2020 makeover  : #{apply2020MakeoverName}", :mMenuApply2020Makeover],
+        ["Show FPS             : #{showFpsName}", :mMenuShowFps],
         ["Back", :mMenuDisplayReset, MENU_TOPLEVEL]
       ]
 

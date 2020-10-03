@@ -508,5 +508,13 @@ class AdanaxisGame < MushObject
     end
   end
 
+  
+  def mMenuShowFps(params, input)
+    case AdanaxisRuby.cShowFps
+      when 0: AdanaxisRuby.cShowFpsSet(1)
+      else AdanaxisRuby.cShowFpsSet(0)
+    end
+  end
+
   attr_reader :spacePath, :space
 end
