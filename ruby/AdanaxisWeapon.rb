@@ -394,9 +394,9 @@ class AdanaxisWeapon < MushObject
 
   def mFire(inEvent, inPiece)
     case @m_type
-      when :item : mItemFire(inEvent, inPiece)
-      when :spawner : mSpawnerFire(inEvent, inPiece)
-      when :rail : mRailFire(inEvent, inPiece)
+      when :item  then mItemFire(inEvent, inPiece)
+      when :spawner  then mSpawnerFire(inEvent, inPiece)
+      when :rail  then mRailFire(inEvent, inPiece)
       else mProjectileFire(inEvent, inPiece)
     end
   end

@@ -610,8 +610,8 @@ protected
 
     # Choose a mesh name based on the colour
     retParams[:mesh_name] = case inParams[:colour]
-      when /(red|blue)/: "attendant-#$1"
-      when nil:          "attendant"
+      when /(red|blue)/ then "attendant-#$1"
+      when nil then          "attendant"
       else raise "Unknown attendant colour #{inParams[:colour]}"
     end
 
@@ -640,8 +640,8 @@ protected
     retParams = @m_bleachDefaults.dup
 
     retParams[:mesh_name] = case inParams[:colour]
-      when /(red|blue)/: "bleach-#$1"
-      when nil:          "bleach"
+      when /(red|blue)/ then "bleach-#$1"
+      when nil then          "bleach"
       else raise "Unknown bleach colour #{inParams[:colour]}"
     end
 
@@ -662,8 +662,8 @@ protected
 
     # Choose a mesh name based on the colour
     retParams[:mesh_name] = case inParams[:colour]
-      when /(red|blue)/: "cistern-#$1"
-      when nil:          "cistern"
+      when /(red|blue)/ then "cistern-#$1"
+      when nil then          "cistern"
       else raise "Unknown cistern colour #{inParams[:colour]}"
     end
 
@@ -692,8 +692,8 @@ protected
     retParams = @m_doorDefaults.dup
 
     retParams[:mesh_name] = case inParams[:colour]
-      when /(red|blue)/: "door-#$1"
-      when nil:          "door"
+      when /(red|blue)/ then "door-#$1"
+      when nil then          "door"
       else raise "Unknown door colour #{inParams[:colour]}"
     end
 
@@ -712,8 +712,8 @@ protected
     retParams = @m_floaterDefaults.dup
 
     retParams[:mesh_name] = case inParams[:colour]
-      when /(red|blue)/: "floater-#$1"
-      when nil:          "floater"
+      when /(red|blue)/ then "floater-#$1"
+      when nil then          "floater"
       else raise "Unknown floater colour #{inParams[:colour]}"
     end
 
@@ -732,8 +732,8 @@ protected
     retParams = @m_freshenerDefaults.dup
 
     retParams[:mesh_name] = case inParams[:colour]
-      when /(red|blue)/: "freshener-#$1"
-      when nil:          "freshener"
+      when /(red|blue)/ then "freshener-#$1"
+      when nil then          "freshener"
       else raise "Unknown freshener colour #{inParams[:colour]}"
     end
 
@@ -754,8 +754,8 @@ protected
 
     # Choose a mesh name based on the colour
     retParams[:mesh_name] = case inParams[:colour]
-      when /(red|blue)/: "harpik-#$1"
-      when nil:          "harpik"
+      when /(red|blue)/ then "harpik-#$1"
+      when nil then          "harpik"
       else raise "Unknown harpik colour #{inParams[:colour]}"
     end
 
@@ -784,8 +784,8 @@ protected
     retParams = @m_hubDefaults.dup
 
     retParams[:mesh_name] = case inParams[:colour]
-      when /(red|blue)/: "hub-#$1"
-      when nil:          "hub"
+      when /(red|blue)/ then "hub-#$1"
+      when nil then          "hub"
       else raise "Unknown hub colour #{inParams[:colour]}"
     end
 
@@ -801,8 +801,8 @@ protected
   def mLimescaleParams(inParams = {})
     retParams = @m_limescaleDefaults.dup
     retParams[:mesh_name] = case inParams[:colour]
-      when /(red|blue)/: "limescale-#$1"
-      when nil:          "limescale"
+      when /(red|blue)/ then "limescale-#$1"
+      when nil then          "limescale"
       else raise "Unknown limescale colour #{inParams[:colour]}"
     end
 
@@ -824,8 +824,8 @@ protected
     retParams = @m_vendorDefaults.dup
 
     retParams[:mesh_name] = case inParams[:colour]
-      when /(red|blue)/: "vendor-#$1"
-      when nil:          "vendor"
+      when /(red|blue)/ then "vendor-#$1"
+      when nil then          "vendor"
       else raise "Unknown vendor colour #{inParams[:colour]}"
     end
 
@@ -842,8 +842,8 @@ protected
     retParams = @m_vortexDefaults.dup
 
     retParams[:mesh_name] = case inParams[:colour]
-      when /(red|blue)/: "vortex-#$1"
-      when nil:          "vortex"
+      when /(red|blue)/ then "vortex-#$1"
+      when nil then          "vortex"
       else raise "Unknown vortex colour #{inParams[:colour]}"
     end
 
@@ -862,8 +862,8 @@ protected
     retParams = @m_warehouseDefaults.dup
 
     retParams[:mesh_name] = case inParams[:colour]
-      when /(red|blue)/: "warehouse-#$1"
-      when nil:          "warehouse"
+      when /(red|blue)/ then "warehouse-#$1"
+      when nil then          "warehouse"
       else raise "Unknown warehouse colour #{inParams[:colour]}"
     end
 
@@ -881,8 +881,8 @@ protected
     retParams = @m_railDefaults.dup
 
     retParams[:mesh_name] = case inParams[:colour]
-      when /(red|blue)/: "rail-#$1"
-      when nil:          "rail"
+      when /(red|blue)/ then "rail-#$1"
+      when nil then          "rail"
       else raise "Unknown rail colour #{inParams[:colour]}"
     end
 

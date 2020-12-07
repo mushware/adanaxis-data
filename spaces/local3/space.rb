@@ -122,12 +122,12 @@ class Adanaxis_local3 < AdanaxisSpace
     # Must still increment @preCached if cPrecache throws
     @preCached += 1
     case (num)
-      when 20..29 : MushGLTexture.cPrecache("ember#{num-20}-tex")
-      when 30..39 : MushGLTexture.cPrecache("star#{num-30}-tex")
-      when 40..49 : MushGLTexture.cPrecache("flare#{num-40}-tex")
-      when 50     : MushGLTexture.cPrecache("attendant-tex")
-      when 51     : MushGLTexture.cPrecache("projectile1-tex")
-      when 52     : MushGLTexture.cPrecache("projectile2-tex")
+      when 20..29  then MushGLTexture.cPrecache("ember#{num-20}-tex")
+      when 30..39  then MushGLTexture.cPrecache("star#{num-30}-tex")
+      when 40..49  then MushGLTexture.cPrecache("flare#{num-40}-tex")
+      when 50      then MushGLTexture.cPrecache("attendant-tex")
+      when 51      then MushGLTexture.cPrecache("projectile1-tex")
+      when 52      then MushGLTexture.cPrecache("projectile2-tex")
     end
 
     num

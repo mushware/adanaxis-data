@@ -108,8 +108,8 @@ class MushPiece < MushObject
   def mEventHandle(event)
     retVal = nil
     case event
-      when MushEventCollision: mCollisionHandle(event)
-      when MushEventExpiry: mExpiryHandle(event)
+      when MushEventCollision then mCollisionHandle(event)
+      when MushEventExpiry then mExpiryHandle(event)
       else MushLog.cWarning "Unhandled message #{event.class} in #{self.class}"
     end
     retVal || @m_callInterval

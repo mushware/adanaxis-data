@@ -301,11 +301,11 @@ class AdanaxisGame < MushObject
               end
               @m_currentMenu = AdanaxisMenu::MENU_TOPLEVEL
             end
-          when MushKeys::SDLK_UP : menu.mUp
-          when MushKeys::SDLK_DOWN : menu.mDown
-          when MushKeys::SDLK_KP_ENTER, MushKeys::SDLK_RETURN: menu.mEnter(self)
-          when MushKeys::SDLK_LEFT: menu.mLeft(self)
-          when MushKeys::SDLK_RIGHT: menu.mRight(self)
+          when MushKeys::SDLK_UP  then menu.mUp
+          when MushKeys::SDLK_DOWN  then menu.mDown
+          when MushKeys::SDLK_KP_ENTER, MushKeys::SDLK_RETURN then menu.mEnter(self)
+          when MushKeys::SDLK_LEFT then menu.mLeft(self)
+          when MushKeys::SDLK_RIGHT then menu.mRight(self)
         end
       end
       @m_menuSet.mUpdate(@m_currentMenu)
@@ -342,7 +342,7 @@ class AdanaxisGame < MushObject
     @m_menuSet.mReset(@m_currentMenu)
 
     case @m_currentMenu
-      when AdanaxisMenu::MENU_CHOOSE_LEVEL:
+      when AdanaxisMenu::MENU_CHOOSE_LEVEL
         @m_levels.mScanForLevels
         @m_menuSet.mUpdateLevels(@m_levels.mLevelList, @m_showHidden)
     end
@@ -457,14 +457,14 @@ class AdanaxisGame < MushObject
 
   def mMenuGLCompression(params, input)
     case AdanaxisRuby.cUseGLCompression
-      when 0: AdanaxisRuby.cUseGLCompressionSet(1)
+      when 0 then AdanaxisRuby.cUseGLCompressionSet(1)
       else AdanaxisRuby.cUseGLCompressionSet(0)
     end
   end
 
   def mMenuGLShader(params, input)
     case AdanaxisRuby.cUseGLShader
-      when 0: AdanaxisRuby.cUseGLShaderSet(1)
+      when 0 then AdanaxisRuby.cUseGLShaderSet(1)
       else AdanaxisRuby.cUseGLShaderSet(0)
     end
   end
@@ -503,7 +503,7 @@ class AdanaxisGame < MushObject
 
   def mMenuApply2020Makeover(params, input)
     case AdanaxisRuby.cApply2020Makeover
-      when 0: AdanaxisRuby.cApply2020MakeoverSet(1)
+      when 0 then AdanaxisRuby.cApply2020MakeoverSet(1)
       else AdanaxisRuby.cApply2020MakeoverSet(0)
     end
   end
@@ -511,7 +511,7 @@ class AdanaxisGame < MushObject
   
   def mMenuShowFps(params, input)
     case AdanaxisRuby.cShowFps
-      when 0: AdanaxisRuby.cShowFpsSet(1)
+      when 0 then AdanaxisRuby.cShowFpsSet(1)
       else AdanaxisRuby.cShowFpsSet(0)
     end
   end

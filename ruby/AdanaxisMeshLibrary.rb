@@ -1782,7 +1782,7 @@ class AdanaxisMeshLibrary
       mesh = MushMesh.new("#{prefix}")
       base1 = MushBaseSingleFacet.new(:order => 4)
       scale = case prefix
-        when 'nuke_splash' : 1000
+        when 'nuke_splash'  then 1000
         else 150
       end
       baseDisplacement1 = MushDisplacement.new(

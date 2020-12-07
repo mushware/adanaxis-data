@@ -257,8 +257,8 @@ class AdanaxisPiecePlayer < AdanaxisPiece
 
   def mEventHandle(event)
     case event
-      when AdanaxisEventFire: mFireHandle(event)
-      when AdanaxisEventKeyState: mKeyStateHandle(event)
+      when AdanaxisEventFire then mFireHandle(event)
+      when AdanaxisEventKeyState then mKeyStateHandle(event)
       else super
     end
     @m_callInterval
@@ -358,7 +358,7 @@ class AdanaxisPiecePlayer < AdanaxisPiece
     super
 
     case event.mPiece2
-      when AdanaxisPieceItem:
+      when AdanaxisPieceItem
         if @m_hitPoints > 0.0
           mCollectItem(event.mPiece2)
           event.mPiece2.mExpireFlagSet(true)

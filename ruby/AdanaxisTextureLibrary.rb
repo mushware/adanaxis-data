@@ -287,8 +287,8 @@ class AdanaxisTextureLibrary < MushObject
 
   @m_explo1Names = []
   maxExplos = case levelOfDetail
-    when 0: 2
-    when 1: 4
+    when 0 then 2
+    when 1 then 4
     else 8
   end
 

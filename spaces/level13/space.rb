@@ -115,8 +115,8 @@ class Adanaxis_level13 < AdanaxisSpace
         :ai_state => :patrol,
         :ai_state_msec => 10000+250*param,
         :weapon => case diff
-                    when 0: :attendant_spawner
-                    when 1: :harpik_spawner
+                    when 0 then :attendant_spawner
+                    when 1 then :harpik_spawner
                     else :limescale_spawner
                   end,
         :is_primary => true

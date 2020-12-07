@@ -389,8 +389,8 @@ class Adanaxis_river1 < AdanaxisSpace
     # Must still increment @preCached if cPrecache throws
     @preCached += 1
     case (num)
-      when 9   : MushGLTexture.cPrecache("river1-tex")
-      when 19 : MushGLTexture.cPrecache("ground1-tex")
+      when 9    then MushGLTexture.cPrecache("river1-tex")
+      when 19  then MushGLTexture.cPrecache("ground1-tex")
     end
 
     3 * num

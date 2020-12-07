@@ -430,23 +430,23 @@ class AdanaxisMenu < MushObject
 
     if menu == MENU_OPTIONS
       detailName = case MushGame.cTextureDetail
-        when 0: "Low"
-        when 1: "Medium"
-        when 2: "High"
-        when 3:
-          if AdanaxisRuby.cUseGLCompression == 1:
+        when 0 then "Low"
+        when 1 then "Medium"
+        when 2 then "High"
+        when 3
+          if AdanaxisRuby.cUseGLCompression == 1
             "Very high (>256MB)"
           else
             "Very high (>1GB)"
           end
-        when 4:
-          if AdanaxisRuby.cUseGLCompression == 1:
+        when 4
+          if AdanaxisRuby.cUseGLCompression == 1
             "Vast (>1GB)"
           else
             "Vast (>4GB)"
           end
-        when 5:
-          if AdanaxisRuby.cUseGLCompression == 1:
+        when 5
+          if AdanaxisRuby.cUseGLCompression == 1
             "Behemoth (>4GB)"
           else
             "Behemoth (>16GB)"
@@ -455,24 +455,24 @@ class AdanaxisMenu < MushObject
       end
       
       difficultyName = case AdanaxisRuby.cConfigDifficulty
-        when 0: "Easy"
-        when 1: "Normal"
-        when 2: "Hard"
-        when 3: "Madness"
+        when 0 then "Easy"
+        when 1 then "Normal"
+        when 2 then "Hard"
+        when 3 then "Madness"
         else "Unknown"
       end
       
       useGLCompressionName = case AdanaxisRuby.cUseGLCompression
-        when 0: "No"
-        when 1: "Yes (can be very slow)"
-        when 2: "Unavailable"
+        when 0 then "No"
+        when 1 then "Yes (can be very slow)"
+        when 2 then "Unavailable"
         else "Unknown"
       end
       
       useGLShaderName = case AdanaxisRuby.cUseGLShader
-        when 0: "No"
-        when 1: "Yes"
-        when 2: "Unavailable"
+        when 0 then "No"
+        when 1 then "Yes"
+        when 2 then "Unavailable"
         else "Unknown"
       end
       
@@ -483,14 +483,14 @@ class AdanaxisMenu < MushObject
       end
 
       apply2020MakeoverName = case AdanaxisRuby.cApply2020Makeover
-        when 0: "No"
-        when 1: "Yes"
+        when 0 then "No"
+        when 1 then "Yes"
         else "Unknown"
       end
 
       showFpsName = case AdanaxisRuby.cShowFps
-        when 0: "No"
-        when 1: "Yes"
+        when 0 then "No"
+        when 1 then "Yes"
         else "Unknown"
       end
 

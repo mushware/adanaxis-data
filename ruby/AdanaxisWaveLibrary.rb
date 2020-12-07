@@ -75,8 +75,8 @@ class AdanaxisWaveLibrary < MushObject
 
     (1..11).each do |i|
       case i
-        when 9,10: num=4
-        when 11: num=6
+        when 9,10 then num=4
+        when 11 then num=6
         else num=3
       end
       (1..num).each do |j|

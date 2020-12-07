@@ -384,7 +384,7 @@ class AdanaxisAI < MushObject
     callInterval = 100
 
     case @m_state
-      when AISTATE_DORMANT :
+      when AISTATE_DORMANT
         callInterval = mStateActionDormant
         mStateActionDormantExit if mStateExpired?
       when AISTATE_EVADE

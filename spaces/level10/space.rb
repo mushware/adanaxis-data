@@ -196,8 +196,8 @@ class Adanaxis_level10 < AdanaxisSpace
         :ai_state => :patrol,
         :ai_state_msec => 8000+250*param,
         :remnant => case diff
-                      when 0: :player_heavy_missile
-                      when 1: :player_rail
+                      when 0 then :player_heavy_missile
+                      when 1 then :player_rail
                       else :player_light_missile
                     end
       )

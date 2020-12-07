@@ -231,7 +231,7 @@ class AdanaxisPieceKhazi < AdanaxisPiece
 
   def mEventHandle(event)
     case event
-      when AdanaxisEventFire: mFireHandle(event)
+      when AdanaxisEventFire then mFireHandle(event)
       else super
     end
     @m_callInterval
@@ -289,9 +289,9 @@ class AdanaxisPieceKhazi < AdanaxisPiece
     objPost.angular_velocity = angVel
 
     case event.mPiece2
-      when AdanaxisPieceProjectile:
+      when AdanaxisPieceProjectile
         mRemnantCreate if event.mPiece2.mOwner =~ /^p/
-      when AdanaxisPieceEffector:
+      when AdanaxisPieceEffector
         if event.mPiece2.mOwner =~ /^p/ && !event.mPiece2.mRail
           mRemnantCreate
         end
@@ -302,10 +302,10 @@ class AdanaxisPieceKhazi < AdanaxisPiece
   def mCollisionHandle(event)
     super
     case event.mPiece2
-      when AdanaxisPieceProjectile:
+      when AdanaxisPieceProjectile
         @m_ai.mTargetOverride(event.mPiece2.mOwner)
 
-      when AdanaxisPieceItem:
+      when AdanaxisPieceItem
         if @m_hitPoints > 0.0
           mCollectItem(event.mPiece2)
           event.mPiece2.mExpireFlagSet(true)

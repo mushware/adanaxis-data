@@ -234,9 +234,9 @@ class AdanaxisDashboard < MushDashboard
     value = Integer(@m_hitPointRatio.mValue * 100)
     value = 0 if value < 0
     colour = case value
-      when 0..20 : MushVector.new(1,0,0,alpha)
-      when 20..50 :  MushVector.new(1,1,0.5,alpha)
-      when 50..100 :  MushVector.new(0.3,0.6,1,alpha)
+      when 0..20  then MushVector.new(1,0,0,alpha)
+      when 20..50  then  MushVector.new(1,1,0.5,alpha)
+      when 50..100  then  MushVector.new(0.3,0.6,1,alpha)
       else MushVector.new(1,1,1,alpha)
     end
 
@@ -246,8 +246,8 @@ class AdanaxisDashboard < MushDashboard
     value = Integer(@m_shieldRatio.mValue * 100)
     value = 0 if value < 0
     colour = case value
-      when 0 : MushVector.new(0.3,0.3,0.3,alpha)
-      when 1..100 :  MushVector.new(1.0,1.0,0.5,alpha)
+      when 0  then MushVector.new(0.3,0.3,0.3,alpha)
+      when 1..100  then  MushVector.new(1.0,1.0,0.5,alpha)
       else MushVector.new(0.6,0.8,1,[alpha, 0.4].max)
     end
 
@@ -259,7 +259,7 @@ class AdanaxisDashboard < MushDashboard
     value = Integer(@m_ammoCount.mValue)
     value = 0 if value < 0
     colour = case value
-      when 0 : MushVector.new(0.3,0.3,0.3,alpha)
+      when 0  then MushVector.new(0.3,0.3,0.3,alpha)
       else MushVector.new(1,1,1,alpha)
     end
 
